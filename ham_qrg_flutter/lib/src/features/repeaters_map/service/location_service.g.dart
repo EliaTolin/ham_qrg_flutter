@@ -10,11 +10,11 @@ part of 'location_service.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(locationService)
-const locationServiceProvider = LocationServiceProvider._();
+final locationServiceProvider = LocationServiceProvider._();
 
 final class LocationServiceProvider extends $FunctionalProvider<LocationService,
     LocationService, LocationService> with $Provider<LocationService> {
-  const LocationServiceProvider._()
+  LocationServiceProvider._()
       : super(
           from: null,
           argument: null,

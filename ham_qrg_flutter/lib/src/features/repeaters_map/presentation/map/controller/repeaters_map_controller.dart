@@ -1,6 +1,8 @@
-import 'package:ham_qrg/src/features/repeaters_map/data/repository/repeaters_repository.dart';
+import 'dart:developer';
+
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters_map/presentation/map/controller/state/repeaters_map_state.dart';
+import 'package:ham_qrg/src/features/repeaters_map/provider/get_repeaters_in_bounds/get_repeaters_in_bounds_provider.dart';
 import 'package:ham_qrg/src/features/repeaters_map/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,10 +12,17 @@ part 'repeaters_map_controller.g.dart';
 class RepeatersMapController extends _$RepeatersMapController {
   @override
   FutureOr<RepeatersMapState> build() async {
+    log('BUILD REPEATERS MAP CONTROLLER');
     return _loadInitialRepeaters();
   }
 
-  Future<void> toggleModeFilter(RepeaterMode mode) async {
+  Future<void> toggleModeFilter({
+    required double lat1,
+    required double lon1,
+    required double lat2,
+    required double lon2,
+    required RepeaterMode mode,
+  }) async {
     final currentState = state.value;
     if (currentState == null) {
       return;
@@ -28,17 +37,13 @@ class RepeatersMapController extends _$RepeatersMapController {
 
     // Reload with current bounds if we have them, otherwise reload initial state
     if (currentState.latitude != null && currentState.longitude != null) {
-      // Use a reasonable default bounds around the current location
-      final lat = currentState.latitude;
-      final lon = currentState.longitude;
-      const boundsSize = 0.1;
-      // await loadRepeatersFromBounds(
-      //   lat1: lat - boundsSize,
-      //   lon1: lon - boundsSize,
-      //   lat2: lat + boundsSize,
-      //   lon2: lon + boundsSize,
-      //   selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
-      // );
+      await loadRepeatersFromBounds(
+        lat1: lat1,
+        lon1: lon1,
+        lat2: lat2,
+        lon2: lon2,
+        selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
+      );
     } else {
       // Fallback to initial load
       state = const AsyncLoading();
@@ -63,15 +68,13 @@ class RepeatersMapController extends _$RepeatersMapController {
 
     state = await AsyncValue.guard(() async {
       try {
-        final repository = ref.read(repeatersRepositoryProvider);
-        final repeaters = await repository.getRepeatersInBounds(
+        final repeaters = await _fetchRepeatersFromBounds(
           lat1: lat1,
           lon1: lon1,
           lat2: lat2,
           lon2: lon2,
           modes: modesToFilter?.isEmpty ?? true ? null : modesToFilter,
         );
-
         return RepeatersMapState(
           repeaters: repeaters,
           latitude: currentState?.latitude,
@@ -97,16 +100,22 @@ class RepeatersMapController extends _$RepeatersMapController {
     final currentState = state.value;
     final modesToFilter = selectedModes ?? currentState?.selectedModes.toList();
 
+    late final ({double latitude, double longitude}) position;
     try {
-      final position = await ref.read(locationServiceProvider).getCurrentPosition();
+      position = await ref.read(locationServiceProvider).getCurrentPosition();
+    } catch (_) {
+      const initialLat = 41.9028; // Rome default
+      const initialLon = 12.4964;
+      position = (latitude: initialLat, longitude: initialLon);
+    }
 
+    try {
       // Use a reasonable default bounds around user location
       final lat = position.latitude;
       final lon = position.longitude;
-      const boundsSize = 0.1; // ~11km radius
+      const boundsSize = 0.1;
 
-      final repository = ref.read(repeatersRepositoryProvider);
-      final repeaters = await repository.getRepeatersInBounds(
+      final repeaters = await _fetchRepeatersFromBounds(
         lat1: lat - boundsSize,
         lon1: lon - boundsSize,
         lat2: lat + boundsSize,
@@ -116,8 +125,8 @@ class RepeatersMapController extends _$RepeatersMapController {
 
       return RepeatersMapState(
         repeaters: repeaters,
-        latitude: lat,
-        longitude: lon,
+        latitude: position.latitude,
+        longitude: position.longitude,
         selectedModes: modesToFilter?.toSet() ?? {},
       );
     } on LocationException catch (error) {
@@ -126,5 +135,23 @@ class RepeatersMapController extends _$RepeatersMapController {
         selectedModes: modesToFilter?.toSet() ?? {},
       );
     }
+  }
+
+  Future<List<Repeater>> _fetchRepeatersFromBounds({
+    required double lat1,
+    required double lon1,
+    required double lat2,
+    required double lon2,
+    List<RepeaterMode>? modes,
+  }) async {
+    return await ref.read(
+      getRepeatersInBoundsProvider(
+        lat1: lat1,
+        lon1: lon1,
+        lat2: lat2,
+        lon2: lon2,
+        modes: modes?.isEmpty ?? true ? null : modes,
+      ).future,
+    );
   }
 }

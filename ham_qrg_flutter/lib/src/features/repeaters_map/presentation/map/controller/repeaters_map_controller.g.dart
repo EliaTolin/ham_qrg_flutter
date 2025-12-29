@@ -10,11 +10,11 @@ part of 'repeaters_map_controller.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(RepeatersMapController)
-const repeatersMapControllerProvider = RepeatersMapControllerProvider._();
+final repeatersMapControllerProvider = RepeatersMapControllerProvider._();
 
 final class RepeatersMapControllerProvider
     extends $AsyncNotifierProvider<RepeatersMapController, RepeatersMapState> {
-  const RepeatersMapControllerProvider._()
+  RepeatersMapControllerProvider._()
       : super(
           from: null,
           argument: null,
@@ -34,7 +34,7 @@ final class RepeatersMapControllerProvider
 }
 
 String _$repeatersMapControllerHash() =>
-    r'd7a5c5feafa89d94eec60a3f6152bc656aae66f9';
+    r'976cf4fac9bcd9f6ed83b43aeee0a31cd53ce9c8';
 
 abstract class _$RepeatersMapController
     extends $AsyncNotifier<RepeatersMapState> {
@@ -42,7 +42,6 @@ abstract class _$RepeatersMapController
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref =
         this.ref as $Ref<AsyncValue<RepeatersMapState>, RepeatersMapState>;
     final element = ref.element as $ClassProviderElement<
@@ -50,6 +49,6 @@ abstract class _$RepeatersMapController
         AsyncValue<RepeatersMapState>,
         Object?,
         Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

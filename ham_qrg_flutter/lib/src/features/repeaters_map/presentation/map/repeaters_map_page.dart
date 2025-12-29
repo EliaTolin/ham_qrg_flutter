@@ -6,7 +6,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters_map/presentation/hooks/use_map_camera.dart';
 import 'package:ham_qrg/src/features/repeaters_map/presentation/map/controller/repeaters_map_controller.dart';
 import 'package:ham_qrg/src/features/repeaters_map/presentation/map/controller/state/repeaters_map_state.dart';
 import 'package:ham_qrg/src/features/repeaters_map/presentation/utils/map_utils.dart';
@@ -17,45 +16,53 @@ import 'package:ham_qrg/src/features/repeaters_map/presentation/widgets/summary_
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
+/// Initial zoom level for the map (configurable)
+const double _initialZoom = 8;
+
+/// Debounce delay for camera changes (milliseconds)
+const int _cameraDebounceMs = 500;
+
 @RoutePage()
 class RepeatersMapPage extends HookConsumerWidget {
   const RepeatersMapPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncState = ref.watch(repeatersMapControllerProvider);
-    final notifier = ref.read(repeatersMapControllerProvider.notifier);
     final mapController = useState<MapboxMap?>(null);
     final pointManager = useState<PointAnnotationManager?>(null);
     final cameraChangeTimer = useRef<Timer?>(null);
     final userLocation = useState<({double lat, double lon})?>(null);
+    final showLocationButton = useState<bool>(false);
 
+    final asyncState = ref.watch(repeatersMapControllerProvider);
+    final notifier = ref.read(repeatersMapControllerProvider.notifier);
     final mapState = asyncState.value;
 
-    // Update user location from state
-    useEffect(
-      () {
-        if (mapState?.latitude != null && mapState?.longitude != null) {
-          final lat = mapState!.latitude!;
-          final lon = mapState.longitude!;
-          userLocation.value = (
-            lat: lat,
-            lon: lon,
-          );
-        }
-        return null;
-      },
-      [mapState?.latitude, mapState?.longitude],
-    );
+    if (asyncState.isLoading) {
+      return const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+    }
 
+    if (asyncState.hasError) {
+      return Center(
+        child: Text(asyncState.error.toString()),
+      );
+    }
+
+    final data = asyncState.value;
+    if (data == null) {
+      return const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+    }
     // Sync annotations when repeaters change
     useEffect(
       () {
         if (mapController.value != null &&
             pointManager.value != null &&
             (mapState?.repeaters.isNotEmpty ?? false)) {
-          _syncMapAnnotations(
-            mapController.value!,
+          _syncAnnotations(
             pointManager.value!,
             mapState!.repeaters,
           );
@@ -63,29 +70,6 @@ class RepeatersMapPage extends HookConsumerWidget {
         return null;
       },
       [mapState?.repeaters],
-    );
-
-    // Check if location button should be shown
-    final showLocationButton = useShouldShowLocationButton(
-      mapController.value,
-      userLocation.value,
-    );
-
-    // Show loading while controller is loading
-    if (asyncState.isLoading) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(context.localization.repeatersMapTitle),
-        ),
-        body: const Center(
-          child: CircularProgressIndicator.adaptive(),
-        ),
-      );
-    }
-
-    final cameraPos = getInitialCameraPosition(
-      latitude: mapState?.latitude,
-      longitude: mapState?.longitude,
     );
 
     return Scaffold(
@@ -97,9 +81,9 @@ class RepeatersMapPage extends HookConsumerWidget {
           MapWidget(
             cameraOptions: CameraOptions(
               center: Point(
-                coordinates: Position(cameraPos.lon, cameraPos.lat),
+                coordinates: Position(data.longitude!, data.latitude!),
               ),
-              zoom: cameraPos.zoom,
+              zoom: _initialZoom, // Zoom closer if we have user location
               bearing: 0,
               pitch: 0,
             ),
@@ -109,7 +93,6 @@ class RepeatersMapPage extends HookConsumerWidget {
                 ref,
                 mapController.value,
                 cameraChangeTimer,
-                userLocation.value,
               );
             },
             onMapCreated: (mapboxMap) async {
@@ -119,17 +102,19 @@ class RepeatersMapPage extends HookConsumerWidget {
                 pointManager,
                 ref,
                 context,
-                mapState?.repeaters ?? [],
+                data.latitude != null && data.longitude != null,
               );
             },
           ),
+
+          // Overlays (banners, chips, buttons)
           _buildOverlays(
             context,
             ref,
             asyncState,
             mapState,
             notifier,
-            showLocationButton,
+            showLocationButton.value,
             mapController.value,
             userLocation.value,
           ),
@@ -138,37 +123,20 @@ class RepeatersMapPage extends HookConsumerWidget {
     );
   }
 
+  /// Handle camera changes with debounce
   void _handleCameraChange(
     WidgetRef ref,
     MapboxMap? map,
     ObjectRef<Timer?> timerRef,
-    ({double lat, double lon})? userLocation,
   ) {
+    if (map == null) return;
+
     timerRef.value?.cancel();
     timerRef.value = Timer(
-      const Duration(milliseconds: 800),
+      const Duration(milliseconds: _cameraDebounceMs),
       () async {
-        if (map == null) return;
-
         try {
-          final cameraState = await map.getCameraState();
-          final centerCoords = cameraState.center.coordinates;
-          final zoom = cameraState.zoom;
-
-          final centerLat = centerCoords[1]!.toDouble();
-          final centerLon = centerCoords[0]!.toDouble();
-
-          // Calculate bounds from center and zoom
-          final latRange = 360 / (1 << zoom.toInt());
-          final lonRange = latRange * (1 / (1 << (zoom.toInt() ~/ 2)));
-
-          final controller = ref.read(repeatersMapControllerProvider.notifier);
-          await controller.loadRepeatersFromBounds(
-            lat1: centerLat - latRange / 2,
-            lon1: centerLon - lonRange / 2,
-            lat2: centerLat + latRange / 2,
-            lon2: centerLon + lonRange / 2,
-          );
+          await _loadRepeatersForVisibleBounds(ref, map);
         } catch (e) {
           // Ignore errors during camera movement
         }
@@ -176,13 +144,14 @@ class RepeatersMapPage extends HookConsumerWidget {
     );
   }
 
+  /// Initialize map and load initial repeaters
   Future<void> _initializeMap(
     MapboxMap mapboxMap,
     ValueNotifier<MapboxMap?> mapController,
     ValueNotifier<PointAnnotationManager?> pointManager,
     WidgetRef ref,
     BuildContext context,
-    List<Repeater> initialRepeaters,
+    bool hasUserLocation,
   ) async {
     mapController.value = mapboxMap;
 
@@ -219,14 +188,63 @@ class RepeatersMapPage extends HookConsumerWidget {
       ),
     );
 
-    // Sync initial annotations after a short delay
-    if (initialRepeaters.isNotEmpty) {
-      await _syncMapAnnotations(mapboxMap, manager, initialRepeaters);
+    // If we have user location, center map on it first
+    if (hasUserLocation) {
+      final mapState = ref.read(repeatersMapControllerProvider).value;
+      if (mapState?.latitude != null && mapState?.longitude != null) {
+        await moveCameraToLocation(
+          mapboxMap,
+          mapState!.latitude!,
+          mapState.longitude!,
+          zoom: 10,
+        );
+        // Wait for camera animation to complete
+        await Future.delayed(const Duration(milliseconds: 800));
+      }
+    }
+
+    // Load repeaters for visible bounds after map is ready
+    await _loadRepeatersForVisibleBounds(ref, mapboxMap);
+  }
+
+  /// Load repeaters based on visible map bounds
+  Future<void> _loadRepeatersForVisibleBounds(
+    WidgetRef ref,
+    MapboxMap map,
+  ) async {
+    try {
+      // Get visible bounds from map
+      final bounds = await map.coordinateBoundsForCamera(
+        CameraOptions(
+          center: await map.getCameraState().then((s) => s.center),
+          zoom: await map.getCameraState().then((s) => s.zoom),
+        ),
+      );
+
+      // Extract coordinates from bounds
+      final sw = bounds.southwest.coordinates;
+      final ne = bounds.northeast.coordinates;
+
+      final lat1 = sw[1]!.toDouble();
+      final lon1 = sw[0]!.toDouble();
+      final lat2 = ne[1]!.toDouble();
+      final lon2 = ne[0]!.toDouble();
+
+      // Load repeaters
+      final controller = ref.read(repeatersMapControllerProvider.notifier);
+      await controller.loadRepeatersFromBounds(
+        lat1: lat1,
+        lon1: lon1,
+        lat2: lat2,
+        lon2: lon2,
+      );
+    } catch (e) {
+      // Ignore errors
     }
   }
 
-  Future<void> _syncMapAnnotations(
-    MapboxMap map,
+  /// Sync annotations on map
+  Future<void> _syncAnnotations(
     PointAnnotationManager manager,
     List<Repeater> repeaters,
   ) async {
@@ -259,6 +277,7 @@ class RepeatersMapPage extends HookConsumerWidget {
     }
   }
 
+  /// Build overlay widgets (banners, chips, buttons)
   Widget _buildOverlays(
     BuildContext context,
     WidgetRef ref,
@@ -271,10 +290,13 @@ class RepeatersMapPage extends HookConsumerWidget {
   ) {
     return Stack(
       children: [
+        // Error banners
         if (mapState?.locationError != null)
           PermissionBanner(
             errorType: mapState!.locationError!,
-            onRetry: () => notifier.toggleModeFilter(RepeaterMode.analog),
+            onRetry: () async {
+              ref.invalidate(repeatersMapControllerProvider);
+            },
           ),
         if (asyncState.hasError && mapState?.locationError == null)
           InfoBanner(
@@ -286,6 +308,7 @@ class RepeatersMapPage extends HookConsumerWidget {
             icon: const Icon(Icons.location_off_outlined),
             label: context.localization.repeatersMapEmpty,
           ),
+        // Summary chip
         if (mapState?.repeaters.isNotEmpty ?? false)
           Positioned(
             top: 32,
@@ -297,6 +320,7 @@ class RepeatersMapPage extends HookConsumerWidget {
               ),
             ),
           ),
+        // Mode filter chips
         Positioned(
           bottom: 16,
           left: 16,
@@ -304,10 +328,20 @@ class RepeatersMapPage extends HookConsumerWidget {
           child: SafeArea(
             child: ModeFilterChips(
               selectedModes: mapState?.selectedModes ?? {},
-              onModeToggled: notifier.toggleModeFilter,
+              onModeToggled: (mode) async {
+                final visibleBounds = await _getVisibleBounds(mapController!);
+                await notifier.toggleModeFilter(
+                  lat1: visibleBounds.lat1,
+                  lon1: visibleBounds.lon1,
+                  lat2: visibleBounds.lat2,
+                  lon2: visibleBounds.lon2,
+                  mode: mode,
+                );
+              },
             ),
           ),
         ),
+        // Return to location button
         if (showLocationButton && userLocation != null && mapController != null)
           Positioned(
             bottom: 100,
@@ -328,6 +362,26 @@ class RepeatersMapPage extends HookConsumerWidget {
     );
   }
 
+  Future<({double lat1, double lon1, double lat2, double lon2})> _getVisibleBounds(
+    MapboxMap map,
+  ) async {
+    final bounds = await map.coordinateBoundsForCamera(
+      CameraOptions(
+        center: await map.getCameraState().then((s) => s.center),
+        zoom: await map.getCameraState().then((s) => s.zoom),
+      ),
+    );
+    final sw = bounds.southwest.coordinates;
+    final ne = bounds.northeast.coordinates;
+    return (
+      lat1: sw[1]!.toDouble(),
+      lon1: sw[0]!.toDouble(),
+      lat2: ne[1]!.toDouble(),
+      lon2: ne[0]!.toDouble()
+    );
+  }
+
+  /// Handle return to user location
   Future<void> _handleReturnToLocation(
     WidgetRef ref,
     MapboxMap mapController,
@@ -337,8 +391,10 @@ class RepeatersMapPage extends HookConsumerWidget {
       mapController,
       userLocation.lat,
       userLocation.lon,
+      zoom: 10,
     );
 
+    // Reload repeaters for new location
     final controller = ref.read(repeatersMapControllerProvider.notifier);
     const boundsSize = 0.1;
     await controller.loadRepeatersFromBounds(

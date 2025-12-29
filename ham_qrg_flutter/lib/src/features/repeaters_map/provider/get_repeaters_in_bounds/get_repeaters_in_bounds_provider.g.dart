@@ -10,12 +10,12 @@ part of 'get_repeaters_in_bounds_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(getRepeatersInBounds)
-const getRepeatersInBoundsProvider = GetRepeatersInBoundsFamily._();
+final getRepeatersInBoundsProvider = GetRepeatersInBoundsFamily._();
 
 final class GetRepeatersInBoundsProvider extends $FunctionalProvider<
         AsyncValue<List<Repeater>>, List<Repeater>, FutureOr<List<Repeater>>>
     with $FutureModifier<List<Repeater>>, $FutureProvider<List<Repeater>> {
-  const GetRepeatersInBoundsProvider._(
+  GetRepeatersInBoundsProvider._(
       {required GetRepeatersInBoundsFamily super.from,
       required ({
         double lat1,
@@ -97,7 +97,7 @@ final class GetRepeatersInBoundsFamily extends $Family
               int limit,
               List<RepeaterMode>? modes,
             })> {
-  const GetRepeatersInBoundsFamily._()
+  GetRepeatersInBoundsFamily._()
       : super(
           retry: null,
           name: r'getRepeatersInBoundsProvider',

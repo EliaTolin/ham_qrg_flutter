@@ -10,12 +10,12 @@ part of 'get_user_id_from_email_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(getUserIdFromEmail)
-const getUserIdFromEmailProvider = GetUserIdFromEmailFamily._();
+final getUserIdFromEmailProvider = GetUserIdFromEmailFamily._();
 
 final class GetUserIdFromEmailProvider
     extends $FunctionalProvider<AsyncValue<String?>, String?, FutureOr<String?>>
     with $FutureModifier<String?>, $FutureProvider<String?> {
-  const GetUserIdFromEmailProvider._(
+  GetUserIdFromEmailProvider._(
       {required GetUserIdFromEmailFamily super.from,
       required String super.argument})
       : super(
@@ -66,7 +66,7 @@ String _$getUserIdFromEmailHash() =>
 
 final class GetUserIdFromEmailFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<String?>, String> {
-  const GetUserIdFromEmailFamily._()
+  GetUserIdFromEmailFamily._()
       : super(
           retry: null,
           name: r'getUserIdFromEmailProvider',

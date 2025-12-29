@@ -10,13 +10,13 @@ part of 'param_supabase_datasource.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(paramSupabaseDatasource)
-const paramSupabaseDatasourceProvider = ParamSupabaseDatasourceProvider._();
+final paramSupabaseDatasourceProvider = ParamSupabaseDatasourceProvider._();
 
 final class ParamSupabaseDatasourceProvider extends $FunctionalProvider<
     ParamDatasource,
     ParamDatasource,
     ParamDatasource> with $Provider<ParamDatasource> {
-  const ParamSupabaseDatasourceProvider._()
+  ParamSupabaseDatasourceProvider._()
       : super(
           from: null,
           argument: null,

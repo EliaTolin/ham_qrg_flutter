@@ -10,12 +10,12 @@ part of 'update_profile_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(updateProfile)
-const updateProfileProvider = UpdateProfileFamily._();
+final updateProfileProvider = UpdateProfileFamily._();
 
 final class UpdateProfileProvider
     extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const UpdateProfileProvider._(
+  UpdateProfileProvider._(
       {required UpdateProfileFamily super.from,
       required Profile super.argument})
       : super(
@@ -65,7 +65,7 @@ String _$updateProfileHash() => r'66146972803fdcd57f88e40db273a54225f36ff8';
 
 final class UpdateProfileFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<void>, Profile> {
-  const UpdateProfileFamily._()
+  UpdateProfileFamily._()
       : super(
           retry: null,
           name: r'updateProfileProvider',

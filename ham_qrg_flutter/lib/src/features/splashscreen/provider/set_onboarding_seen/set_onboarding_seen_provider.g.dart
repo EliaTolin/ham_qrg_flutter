@@ -10,12 +10,12 @@ part of 'set_onboarding_seen_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(setOnboardingSeen)
-const setOnboardingSeenProvider = SetOnboardingSeenProvider._();
+final setOnboardingSeenProvider = SetOnboardingSeenProvider._();
 
 final class SetOnboardingSeenProvider
     extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const SetOnboardingSeenProvider._()
+  SetOnboardingSeenProvider._()
       : super(
           from: null,
           argument: null,

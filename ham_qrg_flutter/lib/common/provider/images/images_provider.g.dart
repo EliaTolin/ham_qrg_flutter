@@ -10,12 +10,12 @@ part of 'images_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(uploadImage)
-const uploadImageProvider = UploadImageFamily._();
+final uploadImageProvider = UploadImageFamily._();
 
 final class UploadImageProvider
     extends $FunctionalProvider<AsyncValue<String>, String, FutureOr<String>>
     with $FutureModifier<String>, $FutureProvider<String> {
-  const UploadImageProvider._(
+  UploadImageProvider._(
       {required UploadImageFamily super.from,
       required (
         String,
@@ -87,7 +87,7 @@ final class UploadImageFamily extends $Family
               String, {
               bool upsert,
             })> {
-  const UploadImageFamily._()
+  UploadImageFamily._()
       : super(
           retry: null,
           name: r'uploadImageProvider',

@@ -10,7 +10,7 @@ part of 'get_profile_with_picture_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(getProfileWithPicture)
-const getProfileWithPictureProvider = GetProfileWithPictureFamily._();
+final getProfileWithPictureProvider = GetProfileWithPictureFamily._();
 
 final class GetProfileWithPictureProvider extends $FunctionalProvider<
         AsyncValue<ProfileWithPicture>,
@@ -19,7 +19,7 @@ final class GetProfileWithPictureProvider extends $FunctionalProvider<
     with
         $FutureModifier<ProfileWithPicture>,
         $FutureProvider<ProfileWithPicture> {
-  const GetProfileWithPictureProvider._(
+  GetProfileWithPictureProvider._(
       {required GetProfileWithPictureFamily super.from,
       required String super.argument})
       : super(
@@ -71,7 +71,7 @@ String _$getProfileWithPictureHash() =>
 
 final class GetProfileWithPictureFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<ProfileWithPicture>, String> {
-  const GetProfileWithPictureFamily._()
+  GetProfileWithPictureFamily._()
       : super(
           retry: null,
           name: r'getProfileWithPictureProvider',

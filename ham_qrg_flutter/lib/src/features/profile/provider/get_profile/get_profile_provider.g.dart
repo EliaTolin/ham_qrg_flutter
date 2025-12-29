@@ -10,12 +10,12 @@ part of 'get_profile_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(getProfile)
-const getProfileProvider = GetProfileProvider._();
+final getProfileProvider = GetProfileProvider._();
 
 final class GetProfileProvider
     extends $FunctionalProvider<AsyncValue<Profile>, Profile, FutureOr<Profile>>
     with $FutureModifier<Profile>, $FutureProvider<Profile> {
-  const GetProfileProvider._()
+  GetProfileProvider._()
       : super(
           from: null,
           argument: null,

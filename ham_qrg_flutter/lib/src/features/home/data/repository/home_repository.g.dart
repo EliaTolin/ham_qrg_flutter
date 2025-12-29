@@ -10,12 +10,12 @@ part of 'home_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(homeRepository)
-const homeRepositoryProvider = HomeRepositoryProvider._();
+final homeRepositoryProvider = HomeRepositoryProvider._();
 
 final class HomeRepositoryProvider extends $FunctionalProvider<
         AsyncValue<HomeRepository>, HomeRepository, FutureOr<HomeRepository>>
     with $FutureModifier<HomeRepository>, $FutureProvider<HomeRepository> {
-  const HomeRepositoryProvider._()
+  HomeRepositoryProvider._()
       : super(
           from: null,
           argument: null,

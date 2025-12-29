@@ -10,11 +10,11 @@ part of 'splash_controller.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(SplashController)
-const splashControllerProvider = SplashControllerProvider._();
+final splashControllerProvider = SplashControllerProvider._();
 
 final class SplashControllerProvider
     extends $AsyncNotifierProvider<SplashController, SplashAction?> {
-  const SplashControllerProvider._()
+  SplashControllerProvider._()
       : super(
           from: null,
           argument: null,
@@ -40,13 +40,12 @@ abstract class _$SplashController extends $AsyncNotifier<SplashAction?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<SplashAction?>, SplashAction?>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<AsyncValue<SplashAction?>, SplashAction?>,
         AsyncValue<SplashAction?>,
         Object?,
         Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

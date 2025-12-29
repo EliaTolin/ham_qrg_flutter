@@ -10,13 +10,13 @@ part of 'in_app_rating_service.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(inAppRatingService)
-const inAppRatingServiceProvider = InAppRatingServiceProvider._();
+final inAppRatingServiceProvider = InAppRatingServiceProvider._();
 
 final class InAppRatingServiceProvider extends $FunctionalProvider<
     InAppRatingService,
     InAppRatingService,
     InAppRatingService> with $Provider<InAppRatingService> {
-  const InAppRatingServiceProvider._()
+  InAppRatingServiceProvider._()
       : super(
           from: null,
           argument: null,

@@ -10,12 +10,12 @@ part of 'set_last_telegram_invite_show_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(setLastTelegramInviteShow)
-const setLastTelegramInviteShowProvider = SetLastTelegramInviteShowProvider._();
+final setLastTelegramInviteShowProvider = SetLastTelegramInviteShowProvider._();
 
 final class SetLastTelegramInviteShowProvider
     extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const SetLastTelegramInviteShowProvider._()
+  SetLastTelegramInviteShowProvider._()
       : super(
           from: null,
           argument: null,

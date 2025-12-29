@@ -10,12 +10,12 @@ part of 'need_to_show_telegram_invite_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(needToShowTelegramInvite)
-const needToShowTelegramInviteProvider = NeedToShowTelegramInviteProvider._();
+final needToShowTelegramInviteProvider = NeedToShowTelegramInviteProvider._();
 
 final class NeedToShowTelegramInviteProvider
     extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
     with $FutureModifier<bool>, $FutureProvider<bool> {
-  const NeedToShowTelegramInviteProvider._()
+  NeedToShowTelegramInviteProvider._()
       : super(
           from: null,
           argument: null,

@@ -10,12 +10,12 @@ part of 'in_app_review_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(inAppReview)
-const inAppReviewProvider = InAppReviewProvider._();
+final inAppReviewProvider = InAppReviewProvider._();
 
 final class InAppReviewProvider
     extends $FunctionalProvider<InAppReview, InAppReview, InAppReview>
     with $Provider<InAppReview> {
-  const InAppReviewProvider._()
+  InAppReviewProvider._()
       : super(
           from: null,
           argument: null,

@@ -10,12 +10,12 @@ part of 'change_password_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(changePassword)
-const changePasswordProvider = ChangePasswordFamily._();
+final changePasswordProvider = ChangePasswordFamily._();
 
 final class ChangePasswordProvider
     extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const ChangePasswordProvider._(
+  ChangePasswordProvider._(
       {required ChangePasswordFamily super.from,
       required String super.argument})
       : super(
@@ -65,7 +65,7 @@ String _$changePasswordHash() => r'f550b15e3e915624e5c58ef4e60081fdc31df29e';
 
 final class ChangePasswordFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<void>, String> {
-  const ChangePasswordFamily._()
+  ChangePasswordFamily._()
       : super(
           retry: null,
           name: r'changePasswordProvider',

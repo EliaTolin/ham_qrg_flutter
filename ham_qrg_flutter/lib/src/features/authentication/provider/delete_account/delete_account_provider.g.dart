@@ -10,12 +10,12 @@ part of 'delete_account_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(deleteAccount)
-const deleteAccountProvider = DeleteAccountProvider._();
+final deleteAccountProvider = DeleteAccountProvider._();
 
 final class DeleteAccountProvider
     extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const DeleteAccountProvider._()
+  DeleteAccountProvider._()
       : super(
           from: null,
           argument: null,

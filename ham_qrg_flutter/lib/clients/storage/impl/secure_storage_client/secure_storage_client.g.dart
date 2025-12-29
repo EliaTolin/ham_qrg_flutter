@@ -10,13 +10,13 @@ part of 'secure_storage_client.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(_flutterSecureStorage)
-const _flutterSecureStorageProvider = _FlutterSecureStorageProvider._();
+final _flutterSecureStorageProvider = _FlutterSecureStorageProvider._();
 
 final class _FlutterSecureStorageProvider extends $FunctionalProvider<
     FlutterSecureStorage,
     FlutterSecureStorage,
     FlutterSecureStorage> with $Provider<FlutterSecureStorage> {
-  const _FlutterSecureStorageProvider._()
+  _FlutterSecureStorageProvider._()
       : super(
           from: null,
           argument: null,
@@ -54,12 +54,12 @@ String _$_flutterSecureStorageHash() =>
     r'424335f229892260797667f93ac55781b3ca9f1a';
 
 @ProviderFor(secureStorageClient)
-const secureStorageClientProvider = SecureStorageClientProvider._();
+final secureStorageClientProvider = SecureStorageClientProvider._();
 
 final class SecureStorageClientProvider extends $FunctionalProvider<
         AsyncValue<StorageClient>, StorageClient, FutureOr<StorageClient>>
     with $FutureModifier<StorageClient>, $FutureProvider<StorageClient> {
-  const SecureStorageClientProvider._()
+  SecureStorageClientProvider._()
       : super(
           from: null,
           argument: null,

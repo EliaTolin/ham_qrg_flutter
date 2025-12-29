@@ -10,11 +10,11 @@ part of 'change_password_controller_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(ChangePasswordController)
-const changePasswordControllerProvider = ChangePasswordControllerProvider._();
+final changePasswordControllerProvider = ChangePasswordControllerProvider._();
 
 final class ChangePasswordControllerProvider
     extends $AsyncNotifierProvider<ChangePasswordController, void> {
-  const ChangePasswordControllerProvider._()
+  ChangePasswordControllerProvider._()
       : super(
           from: null,
           argument: null,
@@ -41,13 +41,12 @@ abstract class _$ChangePasswordController extends $AsyncNotifier<void> {
   @$mustCallSuper
   @override
   void runBuild() {
-    build();
     final ref = this.ref as $Ref<AsyncValue<void>, void>;
     final element = ref.element as $ClassProviderElement<
         AnyNotifier<AsyncValue<void>, void>,
         AsyncValue<void>,
         Object?,
         Object?>;
-    element.handleValue(ref, null);
+    element.handleCreate(ref, build);
   }
 }

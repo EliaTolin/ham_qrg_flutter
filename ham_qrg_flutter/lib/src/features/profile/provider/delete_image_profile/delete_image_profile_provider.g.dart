@@ -10,12 +10,12 @@ part of 'delete_image_profile_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(deleteImageProfile)
-const deleteImageProfileProvider = DeleteImageProfileProvider._();
+final deleteImageProfileProvider = DeleteImageProfileProvider._();
 
 final class DeleteImageProfileProvider
     extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const DeleteImageProfileProvider._()
+  DeleteImageProfileProvider._()
       : super(
           from: null,
           argument: null,

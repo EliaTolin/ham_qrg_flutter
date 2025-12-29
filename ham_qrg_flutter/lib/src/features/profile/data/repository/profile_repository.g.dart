@@ -10,7 +10,7 @@ part of 'profile_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(profileRepository)
-const profileRepositoryProvider = ProfileRepositoryProvider._();
+final profileRepositoryProvider = ProfileRepositoryProvider._();
 
 final class ProfileRepositoryProvider extends $FunctionalProvider<
         AsyncValue<ProfileRepository>,
@@ -19,7 +19,7 @@ final class ProfileRepositoryProvider extends $FunctionalProvider<
     with
         $FutureModifier<ProfileRepository>,
         $FutureProvider<ProfileRepository> {
-  const ProfileRepositoryProvider._()
+  ProfileRepositoryProvider._()
       : super(
           from: null,
           argument: null,

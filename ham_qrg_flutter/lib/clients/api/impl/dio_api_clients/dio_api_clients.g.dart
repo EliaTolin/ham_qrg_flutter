@@ -10,11 +10,11 @@ part of 'dio_api_clients.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(_dio)
-const _dioProvider = _DioFamily._();
+final _dioProvider = _DioFamily._();
 
 final class _DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
     with $Provider<Dio> {
-  const _DioProvider._(
+  _DioProvider._(
       {required _DioFamily super.from,
       required ({
         TalkerDioLogger talkerDioLogger,
@@ -90,7 +90,7 @@ final class _DioFamily extends $Family
               String? token,
               String? baseUrl,
             })> {
-  const _DioFamily._()
+  _DioFamily._()
       : super(
           retry: null,
           name: r'_dioProvider',
@@ -115,13 +115,13 @@ final class _DioFamily extends $Family
 }
 
 @ProviderFor(dioResponseMapper)
-const dioResponseMapperProvider = DioResponseMapperProvider._();
+final dioResponseMapperProvider = DioResponseMapperProvider._();
 
 final class DioResponseMapperProvider extends $FunctionalProvider<
     ResponseMappers<dynamic>,
     ResponseMappers<dynamic>,
     ResponseMappers<dynamic>> with $Provider<ResponseMappers<dynamic>> {
-  const DioResponseMapperProvider._()
+  DioResponseMapperProvider._()
       : super(
           from: null,
           argument: null,
@@ -158,12 +158,12 @@ final class DioResponseMapperProvider extends $FunctionalProvider<
 String _$dioResponseMapperHash() => r'6d6613cc2ccc74e9fb702bc6ce5517c892e9d30b';
 
 @ProviderFor(dioApiClient)
-const dioApiClientProvider = DioApiClientFamily._();
+final dioApiClientProvider = DioApiClientFamily._();
 
 final class DioApiClientProvider extends $FunctionalProvider<
         AsyncValue<DioApiClient>, DioApiClient, FutureOr<DioApiClient>>
     with $FutureModifier<DioApiClient>, $FutureProvider<DioApiClient> {
-  const DioApiClientProvider._(
+  DioApiClientProvider._(
       {required DioApiClientFamily super.from,
       required ({
         String? baseUrl,
@@ -228,7 +228,7 @@ final class DioApiClientFamily extends $Family
               String? baseUrl,
               String? token,
             })> {
-  const DioApiClientFamily._()
+  DioApiClientFamily._()
       : super(
           retry: null,
           name: r'dioApiClientProvider',

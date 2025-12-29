@@ -10,14 +10,14 @@ part of 'splash_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(splashRepository)
-const splashRepositoryProvider = SplashRepositoryProvider._();
+final splashRepositoryProvider = SplashRepositoryProvider._();
 
 final class SplashRepositoryProvider extends $FunctionalProvider<
         AsyncValue<SplashRepository>,
         SplashRepository,
         FutureOr<SplashRepository>>
     with $FutureModifier<SplashRepository>, $FutureProvider<SplashRepository> {
-  const SplashRepositoryProvider._()
+  SplashRepositoryProvider._()
       : super(
           from: null,
           argument: null,

@@ -10,12 +10,12 @@ part of 'anonymous_signin_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(anonymousSignIn)
-const anonymousSignInProvider = AnonymousSignInProvider._();
+final anonymousSignInProvider = AnonymousSignInProvider._();
 
 final class AnonymousSignInProvider
     extends $FunctionalProvider<AsyncValue<String>, String, FutureOr<String>>
     with $FutureModifier<String>, $FutureProvider<String> {
-  const AnonymousSignInProvider._()
+  AnonymousSignInProvider._()
       : super(
           from: null,
           argument: null,

@@ -10,14 +10,14 @@ part of 'splash_local_datasource.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(splashLocalDatasource)
-const splashLocalDatasourceProvider = SplashLocalDatasourceProvider._();
+final splashLocalDatasourceProvider = SplashLocalDatasourceProvider._();
 
 final class SplashLocalDatasourceProvider extends $FunctionalProvider<
         AsyncValue<SplashDatasource>,
         SplashDatasource,
         FutureOr<SplashDatasource>>
     with $FutureModifier<SplashDatasource>, $FutureProvider<SplashDatasource> {
-  const SplashLocalDatasourceProvider._()
+  SplashLocalDatasourceProvider._()
       : super(
           from: null,
           argument: null,

@@ -10,7 +10,7 @@ part of 'auth_supabase_datasource.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(authSupabaseDatasource)
-const authSupabaseDatasourceProvider = AuthSupabaseDatasourceProvider._();
+final authSupabaseDatasourceProvider = AuthSupabaseDatasourceProvider._();
 
 final class AuthSupabaseDatasourceProvider extends $FunctionalProvider<
         AsyncValue<AuthSupabaseDatasource>,
@@ -19,7 +19,7 @@ final class AuthSupabaseDatasourceProvider extends $FunctionalProvider<
     with
         $FutureModifier<AuthSupabaseDatasource>,
         $FutureProvider<AuthSupabaseDatasource> {
-  const AuthSupabaseDatasourceProvider._()
+  AuthSupabaseDatasourceProvider._()
       : super(
           from: null,
           argument: null,

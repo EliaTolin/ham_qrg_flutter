@@ -10,12 +10,12 @@ part of 'get_params_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(getParams)
-const getParamsProvider = GetParamsProvider._();
+final getParamsProvider = GetParamsProvider._();
 
 final class GetParamsProvider extends $FunctionalProvider<
         AsyncValue<List<Param>>, List<Param>, FutureOr<List<Param>>>
     with $FutureModifier<List<Param>>, $FutureProvider<List<Param>> {
-  const GetParamsProvider._()
+  GetParamsProvider._()
       : super(
           from: null,
           argument: null,
@@ -44,12 +44,12 @@ final class GetParamsProvider extends $FunctionalProvider<
 String _$getParamsHash() => r'365ef30025647b2aaddfec617463fd22f5e19886';
 
 @ProviderFor(getParamByKey)
-const getParamByKeyProvider = GetParamByKeyFamily._();
+final getParamByKeyProvider = GetParamByKeyFamily._();
 
 final class GetParamByKeyProvider
     extends $FunctionalProvider<AsyncValue<Param?>, Param?, FutureOr<Param?>>
     with $FutureModifier<Param?>, $FutureProvider<Param?> {
-  const GetParamByKeyProvider._(
+  GetParamByKeyProvider._(
       {required GetParamByKeyFamily super.from, required String super.argument})
       : super(
           retry: null,
@@ -98,7 +98,7 @@ String _$getParamByKeyHash() => r'240952a24f77fc2d51e6365e4404c4d92e082b4f';
 
 final class GetParamByKeyFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<Param?>, String> {
-  const GetParamByKeyFamily._()
+  GetParamByKeyFamily._()
       : super(
           retry: null,
           name: r'getParamByKeyProvider',

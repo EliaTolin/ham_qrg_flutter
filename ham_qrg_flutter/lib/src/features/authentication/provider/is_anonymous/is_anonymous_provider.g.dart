@@ -10,12 +10,12 @@ part of 'is_anonymous_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(isAnonymous)
-const isAnonymousProvider = IsAnonymousProvider._();
+final isAnonymousProvider = IsAnonymousProvider._();
 
 final class IsAnonymousProvider
     extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
     with $FutureModifier<bool>, $FutureProvider<bool> {
-  const IsAnonymousProvider._()
+  IsAnonymousProvider._()
       : super(
           from: null,
           argument: null,

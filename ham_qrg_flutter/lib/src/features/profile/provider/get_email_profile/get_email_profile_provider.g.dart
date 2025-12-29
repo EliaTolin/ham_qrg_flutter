@@ -10,12 +10,12 @@ part of 'get_email_profile_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(getEmailProfile)
-const getEmailProfileProvider = GetEmailProfileProvider._();
+final getEmailProfileProvider = GetEmailProfileProvider._();
 
 final class GetEmailProfileProvider
     extends $FunctionalProvider<AsyncValue<String?>, String?, FutureOr<String?>>
     with $FutureModifier<String?>, $FutureProvider<String?> {
-  const GetEmailProfileProvider._()
+  GetEmailProfileProvider._()
       : super(
           from: null,
           argument: null,

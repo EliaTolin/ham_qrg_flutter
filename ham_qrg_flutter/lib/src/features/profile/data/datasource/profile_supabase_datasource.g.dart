@@ -10,13 +10,13 @@ part of 'profile_supabase_datasource.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(profileSupabaseDatasource)
-const profileSupabaseDatasourceProvider = ProfileSupabaseDatasourceProvider._();
+final profileSupabaseDatasourceProvider = ProfileSupabaseDatasourceProvider._();
 
 final class ProfileSupabaseDatasourceProvider extends $FunctionalProvider<
     ProfileDatasource,
     ProfileDatasource,
     ProfileDatasource> with $Provider<ProfileDatasource> {
-  const ProfileSupabaseDatasourceProvider._()
+  ProfileSupabaseDatasourceProvider._()
       : super(
           from: null,
           argument: null,

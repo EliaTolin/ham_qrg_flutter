@@ -10,12 +10,12 @@ part of 'get_user_id_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(getUserId)
-const getUserIdProvider = GetUserIdProvider._();
+final getUserIdProvider = GetUserIdProvider._();
 
 final class GetUserIdProvider
     extends $FunctionalProvider<AsyncValue<String?>, String?, FutureOr<String?>>
     with $FutureModifier<String?>, $FutureProvider<String?> {
-  const GetUserIdProvider._()
+  GetUserIdProvider._()
       : super(
           from: null,
           argument: null,

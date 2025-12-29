@@ -10,12 +10,12 @@ part of 'sign_in_google_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(signInWithGoogle)
-const signInWithGoogleProvider = SignInWithGoogleProvider._();
+final signInWithGoogleProvider = SignInWithGoogleProvider._();
 
 final class SignInWithGoogleProvider
     extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
     with $FutureModifier<bool>, $FutureProvider<bool> {
-  const SignInWithGoogleProvider._()
+  SignInWithGoogleProvider._()
       : super(
           from: null,
           argument: null,

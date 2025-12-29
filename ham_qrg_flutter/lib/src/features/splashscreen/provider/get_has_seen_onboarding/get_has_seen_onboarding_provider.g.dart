@@ -10,12 +10,12 @@ part of 'get_has_seen_onboarding_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(getHasSeenOnboarding)
-const getHasSeenOnboardingProvider = GetHasSeenOnboardingProvider._();
+final getHasSeenOnboardingProvider = GetHasSeenOnboardingProvider._();
 
 final class GetHasSeenOnboardingProvider
     extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
     with $FutureModifier<bool>, $FutureProvider<bool> {
-  const GetHasSeenOnboardingProvider._()
+  GetHasSeenOnboardingProvider._()
       : super(
           from: null,
           argument: null,

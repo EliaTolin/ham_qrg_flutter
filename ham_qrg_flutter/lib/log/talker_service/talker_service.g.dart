@@ -10,11 +10,11 @@ part of 'talker_service.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(talkerService)
-const talkerServiceProvider = TalkerServiceProvider._();
+final talkerServiceProvider = TalkerServiceProvider._();
 
 final class TalkerServiceProvider
     extends $FunctionalProvider<Talker, Talker, Talker> with $Provider<Talker> {
-  const TalkerServiceProvider._()
+  TalkerServiceProvider._()
       : super(
           from: null,
           argument: null,
@@ -50,11 +50,11 @@ final class TalkerServiceProvider
 String _$talkerServiceHash() => r'b50886bd225374c3e966e032017c94f1b4c33fe0';
 
 @ProviderFor(talkerDioLogger)
-const talkerDioLoggerProvider = TalkerDioLoggerProvider._();
+final talkerDioLoggerProvider = TalkerDioLoggerProvider._();
 
 final class TalkerDioLoggerProvider extends $FunctionalProvider<TalkerDioLogger,
     TalkerDioLogger, TalkerDioLogger> with $Provider<TalkerDioLogger> {
-  const TalkerDioLoggerProvider._()
+  TalkerDioLoggerProvider._()
       : super(
           from: null,
           argument: null,

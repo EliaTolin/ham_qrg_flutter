@@ -10,12 +10,12 @@ part of 'sign_in_apple_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(signInWithApple)
-const signInWithAppleProvider = SignInWithAppleProvider._();
+final signInWithAppleProvider = SignInWithAppleProvider._();
 
 final class SignInWithAppleProvider
     extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
     with $FutureModifier<bool>, $FutureProvider<bool> {
-  const SignInWithAppleProvider._()
+  SignInWithAppleProvider._()
       : super(
           from: null,
           argument: null,

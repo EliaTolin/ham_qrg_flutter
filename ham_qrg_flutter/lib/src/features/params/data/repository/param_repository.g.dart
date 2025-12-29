@@ -10,11 +10,11 @@ part of 'param_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(paramRepository)
-const paramRepositoryProvider = ParamRepositoryProvider._();
+final paramRepositoryProvider = ParamRepositoryProvider._();
 
 final class ParamRepositoryProvider extends $FunctionalProvider<ParamRepository,
     ParamRepository, ParamRepository> with $Provider<ParamRepository> {
-  const ParamRepositoryProvider._()
+  ParamRepositoryProvider._()
       : super(
           from: null,
           argument: null,

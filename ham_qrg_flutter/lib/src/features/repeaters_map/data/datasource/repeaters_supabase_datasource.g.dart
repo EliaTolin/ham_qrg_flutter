@@ -10,14 +10,14 @@ part of 'repeaters_supabase_datasource.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(repeatersSupabaseDatasource)
-const repeatersSupabaseDatasourceProvider =
+final repeatersSupabaseDatasourceProvider =
     RepeatersSupabaseDatasourceProvider._();
 
 final class RepeatersSupabaseDatasourceProvider extends $FunctionalProvider<
     RepeatersDatasource,
     RepeatersDatasource,
     RepeatersDatasource> with $Provider<RepeatersDatasource> {
-  const RepeatersSupabaseDatasourceProvider._()
+  RepeatersSupabaseDatasourceProvider._()
       : super(
           from: null,
           argument: null,

@@ -10,12 +10,12 @@ part of 'logout_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(logout)
-const logoutProvider = LogoutProvider._();
+final logoutProvider = LogoutProvider._();
 
 final class LogoutProvider
     extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const LogoutProvider._()
+  LogoutProvider._()
       : super(
           from: null,
           argument: null,

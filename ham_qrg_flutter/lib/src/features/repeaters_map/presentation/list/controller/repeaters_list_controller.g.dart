@@ -10,11 +10,11 @@ part of 'repeaters_list_controller.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(RepeatersListController)
-const repeatersListControllerProvider = RepeatersListControllerProvider._();
+final repeatersListControllerProvider = RepeatersListControllerProvider._();
 
 final class RepeatersListControllerProvider extends $AsyncNotifierProvider<
     RepeatersListController, RepeatersListState> {
-  const RepeatersListControllerProvider._()
+  RepeatersListControllerProvider._()
       : super(
           from: null,
           argument: null,
@@ -42,7 +42,6 @@ abstract class _$RepeatersListController
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref =
         this.ref as $Ref<AsyncValue<RepeatersListState>, RepeatersListState>;
     final element = ref.element as $ClassProviderElement<
@@ -50,6 +49,6 @@ abstract class _$RepeatersListController
         AsyncValue<RepeatersListState>,
         Object?,
         Object?>;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

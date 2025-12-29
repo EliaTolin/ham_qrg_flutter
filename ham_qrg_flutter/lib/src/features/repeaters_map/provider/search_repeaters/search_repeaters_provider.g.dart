@@ -10,12 +10,12 @@ part of 'search_repeaters_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(searchRepeaters)
-const searchRepeatersProvider = SearchRepeatersFamily._();
+final searchRepeatersProvider = SearchRepeatersFamily._();
 
 final class SearchRepeatersProvider extends $FunctionalProvider<
         AsyncValue<List<Repeater>>, List<Repeater>, FutureOr<List<Repeater>>>
     with $FutureModifier<List<Repeater>>, $FutureProvider<List<Repeater>> {
-  const SearchRepeatersProvider._(
+  SearchRepeatersProvider._(
       {required SearchRepeatersFamily super.from,
       required ({
         String query,
@@ -84,7 +84,7 @@ final class SearchRepeatersFamily extends $Family
               int limit,
               List<RepeaterMode>? modes,
             })> {
-  const SearchRepeatersFamily._()
+  SearchRepeatersFamily._()
       : super(
           retry: null,
           name: r'searchRepeatersProvider',

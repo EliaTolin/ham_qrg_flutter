@@ -10,7 +10,7 @@ part of 'shared_pref_storage_client.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(_sharedPreferences)
-const _sharedPreferencesProvider = _SharedPreferencesProvider._();
+final _sharedPreferencesProvider = _SharedPreferencesProvider._();
 
 final class _SharedPreferencesProvider extends $FunctionalProvider<
         AsyncValue<SharedPreferences>,
@@ -19,7 +19,7 @@ final class _SharedPreferencesProvider extends $FunctionalProvider<
     with
         $FutureModifier<SharedPreferences>,
         $FutureProvider<SharedPreferences> {
-  const _SharedPreferencesProvider._()
+  _SharedPreferencesProvider._()
       : super(
           from: null,
           argument: null,
@@ -49,12 +49,12 @@ String _$_sharedPreferencesHash() =>
     r'a20d3a2ec6ca1b476d47637177bb4ce55823fb2e';
 
 @ProviderFor(sharedPrefStorageClient)
-const sharedPrefStorageClientProvider = SharedPrefStorageClientProvider._();
+final sharedPrefStorageClientProvider = SharedPrefStorageClientProvider._();
 
 final class SharedPrefStorageClientProvider extends $FunctionalProvider<
         AsyncValue<StorageClient>, StorageClient, FutureOr<StorageClient>>
     with $FutureModifier<StorageClient>, $FutureProvider<StorageClient> {
-  const SharedPrefStorageClientProvider._()
+  SharedPrefStorageClientProvider._()
       : super(
           from: null,
           argument: null,

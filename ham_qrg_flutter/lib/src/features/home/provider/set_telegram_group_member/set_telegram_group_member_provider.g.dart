@@ -10,13 +10,13 @@ part of 'set_telegram_group_member_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(setAlreadyInTelegramCommunity)
-const setAlreadyInTelegramCommunityProvider =
+final setAlreadyInTelegramCommunityProvider =
     SetAlreadyInTelegramCommunityProvider._();
 
 final class SetAlreadyInTelegramCommunityProvider
     extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const SetAlreadyInTelegramCommunityProvider._()
+  SetAlreadyInTelegramCommunityProvider._()
       : super(
           from: null,
           argument: null,

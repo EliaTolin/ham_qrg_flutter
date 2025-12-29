@@ -10,12 +10,12 @@ part of 'upload_propics_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(uploadPropics)
-const uploadPropicsProvider = UploadPropicsFamily._();
+final uploadPropicsProvider = UploadPropicsFamily._();
 
 final class UploadPropicsProvider
     extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
     with $FutureModifier<void>, $FutureProvider<void> {
-  const UploadPropicsProvider._(
+  UploadPropicsProvider._(
       {required UploadPropicsFamily super.from, required File super.argument})
       : super(
           retry: null,
@@ -64,7 +64,7 @@ String _$uploadPropicsHash() => r'97a5fdf11418eb576c6e10b194e8b976ccee8360';
 
 final class UploadPropicsFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<void>, File> {
-  const UploadPropicsFamily._()
+  UploadPropicsFamily._()
       : super(
           retry: null,
           name: r'uploadPropicsProvider',

@@ -10,12 +10,12 @@ part of 'home_local_datasource.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(homeLocalDatasource)
-const homeLocalDatasourceProvider = HomeLocalDatasourceProvider._();
+final homeLocalDatasourceProvider = HomeLocalDatasourceProvider._();
 
 final class HomeLocalDatasourceProvider extends $FunctionalProvider<
         AsyncValue<HomeDatasource>, HomeDatasource, FutureOr<HomeDatasource>>
     with $FutureModifier<HomeDatasource>, $FutureProvider<HomeDatasource> {
-  const HomeLocalDatasourceProvider._()
+  HomeLocalDatasourceProvider._()
       : super(
           from: null,
           argument: null,

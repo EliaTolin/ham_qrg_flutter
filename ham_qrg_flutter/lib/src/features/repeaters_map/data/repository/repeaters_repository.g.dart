@@ -10,13 +10,13 @@ part of 'repeaters_repository.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(repeatersRepository)
-const repeatersRepositoryProvider = RepeatersRepositoryProvider._();
+final repeatersRepositoryProvider = RepeatersRepositoryProvider._();
 
 final class RepeatersRepositoryProvider extends $FunctionalProvider<
     RepeatersRepository,
     RepeatersRepository,
     RepeatersRepository> with $Provider<RepeatersRepository> {
-  const RepeatersRepositoryProvider._()
+  RepeatersRepositoryProvider._()
       : super(
           from: null,
           argument: null,

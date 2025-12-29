@@ -10,7 +10,7 @@ part of 'image_caching_service.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(imageCachingService)
-const imageCachingServiceProvider = ImageCachingServiceProvider._();
+final imageCachingServiceProvider = ImageCachingServiceProvider._();
 
 final class ImageCachingServiceProvider extends $FunctionalProvider<
         AsyncValue<ImageCachingService>,
@@ -19,7 +19,7 @@ final class ImageCachingServiceProvider extends $FunctionalProvider<
     with
         $FutureModifier<ImageCachingService>,
         $FutureProvider<ImageCachingService> {
-  const ImageCachingServiceProvider._()
+  ImageCachingServiceProvider._()
       : super(
           from: null,
           argument: null,
