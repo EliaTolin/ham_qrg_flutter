@@ -11,23 +11,22 @@ part 'repeaters_supabase_datasource.g.dart';
 class RepeatersSupabaseDatasource implements RepeatersDatasource {
   RepeatersSupabaseDatasource(this._client);
   final SupabaseClient _client;
-
   @override
-  Future<List<RepeaterModel>> getRepeatersNearby({
-    required double latitude,
-    required double longitude,
-    double radiusKm = 50,
-    int limit = 50,
+  Future<List<RepeaterModel>> getRepeatersInBounds({
+    required double lat1,
+    required double lon1,
+    required double lat2,
+    required double lon2,
     List<String>? modes,
   }) async {
     try {
       final data = await _client.rpc(
-        'repeaters_nearby',
+        'repeaters_in_bounds',
         params: <String, dynamic>{
-          'p_lat': latitude,
-          'p_lon': longitude,
-          'p_radius_km': radiusKm,
-          'p_limit': limit,
+          'p_lat1': lat1,
+          'p_lon1': lon1,
+          'p_lat2': lat2,
+          'p_lon2': lon2,
           if (modes != null && modes.isNotEmpty) 'p_modes': modes,
         },
       );
@@ -44,7 +43,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
           )
           .toList();
     } catch (error, stackTrace) {
-      log('Error fetching repeaters_nearby: $error', stackTrace: stackTrace);
+      log('Error fetching repeaters_in_bounds: $error', stackTrace: stackTrace);
       rethrow;
     }
   }

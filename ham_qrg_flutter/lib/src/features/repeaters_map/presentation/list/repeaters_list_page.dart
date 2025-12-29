@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters_map/presentation/controller/repeaters_map_controller.dart';
-import 'package:ham_qrg/src/features/repeaters_map/presentation/controller/state/repeaters_map_state/repeaters_map_state.dart';
+import 'package:ham_qrg/src/features/repeaters_map/presentation/list/controller/repeaters_list_controller.dart';
+import 'package:ham_qrg/src/features/repeaters_map/presentation/list/controller/state/repeaters_list_state.dart';
 import 'package:ham_qrg/src/features/repeaters_map/presentation/widgets/mode_filter_chips.dart';
 import 'package:ham_qrg/src/features/repeaters_map/presentation/widgets/repeater_list_item.dart';
 import 'package:ham_qrg/src/features/repeaters_map/provider/search_repeaters/search_repeaters_provider.dart';
@@ -59,8 +59,8 @@ class RepeatersListPage extends HookConsumerWidget {
       [searchController],
     );
 
-    final nearbyAsyncState = ref.watch(repeatersMapControllerProvider);
-    final nearbyNotifier = ref.read(repeatersMapControllerProvider.notifier);
+    final listAsyncState = ref.watch(repeatersListControllerProvider);
+    final listNotifier = ref.read(repeatersListControllerProvider.notifier);
 
     // Determine if we're in search mode based on current text input
     final currentSearchText = searchController.text.trim();
@@ -74,9 +74,9 @@ class RepeatersListPage extends HookConsumerWidget {
         ? ref.watch(
             searchRepeatersProvider(
               query: debouncedQuery,
-              modes: nearbyAsyncState.value?.selectedModes.isEmpty ?? true
+              modes: listAsyncState.value?.selectedModes.isEmpty ?? true
                   ? null
-                  : nearbyAsyncState.value!.selectedModes.toList(),
+                  : listAsyncState.value!.selectedModes.toList(),
             ),
           )
         : null;
@@ -122,14 +122,14 @@ class RepeatersListPage extends HookConsumerWidget {
               ref,
               searchAsyncState,
               isTyping,
-              nearbyAsyncState.value?.selectedModes ?? <RepeaterMode>{},
-              nearbyNotifier,
+              listAsyncState.value?.selectedModes ?? <RepeaterMode>{},
+              listNotifier,
             )
           : _buildNearbyResults(
               context,
               ref,
-              nearbyAsyncState,
-              nearbyNotifier,
+              listAsyncState,
+              listNotifier,
             ),
     );
   }
@@ -140,7 +140,7 @@ class RepeatersListPage extends HookConsumerWidget {
     AsyncValue<List<Repeater>>? searchAsyncState,
     bool isTyping,
     Set<RepeaterMode> selectedModes,
-    RepeatersMapController notifier,
+    RepeatersListController notifier,
   ) {
     final l10n = context.localization;
     final theme = Theme.of(context);
@@ -218,14 +218,14 @@ class RepeatersListPage extends HookConsumerWidget {
   Widget _buildNearbyResults(
     BuildContext context,
     WidgetRef ref,
-    AsyncValue<RepeatersMapState> nearbyAsyncState,
-    RepeatersMapController notifier,
+    AsyncValue<RepeatersListState> listAsyncState,
+    RepeatersListController notifier,
   ) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return nearbyAsyncState.when(
+    return listAsyncState.when(
       data: (state) {
         if (state.repeaters.isEmpty) {
           return Center(

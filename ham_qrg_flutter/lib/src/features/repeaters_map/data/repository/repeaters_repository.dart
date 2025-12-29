@@ -12,18 +12,18 @@ class RepeatersRepository {
 
   final _mapper = RepeatersMappers();
 
-  Future<List<Repeater>> getRepeatersNearby({
-    required double latitude,
-    required double longitude,
-    double radiusKm = 50,
-    int limit = 50,
+  Future<List<Repeater>> getRepeatersInBounds({
+    required double lat1,
+    required double lon1,
+    required double lat2,
+    required double lon2,
     List<RepeaterMode>? modes,
   }) async {
-    final data = await _datasource.getRepeatersNearby(
-      latitude: latitude,
-      longitude: longitude,
-      radiusKm: radiusKm,
-      limit: limit,
+    final data = await _datasource.getRepeatersInBounds(
+      lat1: lat1,
+      lon1: lon1,
+      lat2: lat2,
+      lon2: lon2,
       modes: _mapper.mapModesToValues(modes),
     );
     return data.map(_mapper.fromModel).toList();

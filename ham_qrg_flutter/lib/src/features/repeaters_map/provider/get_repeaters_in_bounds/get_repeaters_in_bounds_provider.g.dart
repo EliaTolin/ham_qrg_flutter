@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_repeaters_nearby_provider.dart';
+part of 'get_repeaters_in_bounds_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,36 +9,37 @@ part of 'get_repeaters_nearby_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(getRepeatersNearby)
-const getRepeatersNearbyProvider = GetRepeatersNearbyFamily._();
+@ProviderFor(getRepeatersInBounds)
+const getRepeatersInBoundsProvider = GetRepeatersInBoundsFamily._();
 
-final class GetRepeatersNearbyProvider extends $FunctionalProvider<
+final class GetRepeatersInBoundsProvider extends $FunctionalProvider<
         AsyncValue<List<Repeater>>, List<Repeater>, FutureOr<List<Repeater>>>
     with $FutureModifier<List<Repeater>>, $FutureProvider<List<Repeater>> {
-  const GetRepeatersNearbyProvider._(
-      {required GetRepeatersNearbyFamily super.from,
+  const GetRepeatersInBoundsProvider._(
+      {required GetRepeatersInBoundsFamily super.from,
       required ({
-        double latitude,
-        double longitude,
-        double radiusKm,
+        double lat1,
+        double lon1,
+        double lat2,
+        double lon2,
         int limit,
         List<RepeaterMode>? modes,
       })
           super.argument})
       : super(
           retry: null,
-          name: r'getRepeatersNearbyProvider',
+          name: r'getRepeatersInBoundsProvider',
           isAutoDispose: true,
           dependencies: null,
           $allTransitiveDependencies: null,
         );
 
   @override
-  String debugGetCreateSourceHash() => _$getRepeatersNearbyHash();
+  String debugGetCreateSourceHash() => _$getRepeatersInBoundsHash();
 
   @override
   String toString() {
-    return r'getRepeatersNearbyProvider'
+    return r'getRepeatersInBoundsProvider'
         ''
         '$argument';
   }
@@ -52,17 +53,19 @@ final class GetRepeatersNearbyProvider extends $FunctionalProvider<
   @override
   FutureOr<List<Repeater>> create(Ref ref) {
     final argument = this.argument as ({
-      double latitude,
-      double longitude,
-      double radiusKm,
+      double lat1,
+      double lon1,
+      double lat2,
+      double lon2,
       int limit,
       List<RepeaterMode>? modes,
     });
-    return getRepeatersNearby(
+    return getRepeatersInBounds(
       ref,
-      latitude: argument.latitude,
-      longitude: argument.longitude,
-      radiusKm: argument.radiusKm,
+      lat1: argument.lat1,
+      lon1: argument.lon1,
+      lat2: argument.lat2,
+      lon2: argument.lon2,
       limit: argument.limit,
       modes: argument.modes,
     );
@@ -70,7 +73,7 @@ final class GetRepeatersNearbyProvider extends $FunctionalProvider<
 
   @override
   bool operator ==(Object other) {
-    return other is GetRepeatersNearbyProvider && other.argument == argument;
+    return other is GetRepeatersInBoundsProvider && other.argument == argument;
   }
 
   @override
@@ -79,44 +82,47 @@ final class GetRepeatersNearbyProvider extends $FunctionalProvider<
   }
 }
 
-String _$getRepeatersNearbyHash() =>
-    r'767460e715b23d8f1a0c1e325089dd09b1efb046';
+String _$getRepeatersInBoundsHash() =>
+    r'b994452258a71b196662b5678ee80c24a41ef7b0';
 
-final class GetRepeatersNearbyFamily extends $Family
+final class GetRepeatersInBoundsFamily extends $Family
     with
         $FunctionalFamilyOverride<
             FutureOr<List<Repeater>>,
             ({
-              double latitude,
-              double longitude,
-              double radiusKm,
+              double lat1,
+              double lon1,
+              double lat2,
+              double lon2,
               int limit,
               List<RepeaterMode>? modes,
             })> {
-  const GetRepeatersNearbyFamily._()
+  const GetRepeatersInBoundsFamily._()
       : super(
           retry: null,
-          name: r'getRepeatersNearbyProvider',
+          name: r'getRepeatersInBoundsProvider',
           dependencies: null,
           $allTransitiveDependencies: null,
           isAutoDispose: true,
         );
 
-  GetRepeatersNearbyProvider call({
-    required double latitude,
-    required double longitude,
-    double radiusKm = 50.0,
-    int limit = 50,
+  GetRepeatersInBoundsProvider call({
+    required double lat1,
+    required double lon1,
+    required double lat2,
+    required double lon2,
+    int limit = 500,
     List<RepeaterMode>? modes,
   }) =>
-      GetRepeatersNearbyProvider._(argument: (
-        latitude: latitude,
-        longitude: longitude,
-        radiusKm: radiusKm,
+      GetRepeatersInBoundsProvider._(argument: (
+        lat1: lat1,
+        lon1: lon1,
+        lat2: lat2,
+        lon2: lon2,
         limit: limit,
         modes: modes,
       ), from: this);
 
   @override
-  String toString() => r'getRepeatersNearbyProvider';
+  String toString() => r'getRepeatersInBoundsProvider';
 }

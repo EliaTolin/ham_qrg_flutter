@@ -5,8 +5,8 @@ import 'package:ham_qrg/src/features/home/presentation/home_page.dart';
 import 'package:ham_qrg/src/features/onboarding/presentation/onboarding_page.dart';
 import 'package:ham_qrg/src/features/profile/presentation/profile/profile_screen.dart';
 import 'package:ham_qrg/src/features/profile/presentation/user_settings/user_settings_screen.dart';
-import 'package:ham_qrg/src/features/repeaters_map/presentation/repeaters_list_page.dart';
-import 'package:ham_qrg/src/features/repeaters_map/presentation/repeaters_map_page.dart';
+import 'package:ham_qrg/src/features/repeaters_map/presentation/list/repeaters_list_page.dart';
+import 'package:ham_qrg/src/features/repeaters_map/presentation/map/repeaters_map_page.dart';
 import 'package:ham_qrg/src/features/splashscreen/presentation/splashscreen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

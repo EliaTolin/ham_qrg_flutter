@@ -1,11 +1,11 @@
 import 'package:ham_qrg/src/features/repeaters_map/data/model/repeater/repeater_model.dart';
 
 abstract interface class RepeatersDatasource {
-  Future<List<RepeaterModel>> getRepeatersNearby({
-    required double latitude,
-    required double longitude,
-    double radiusKm,
-    int limit,
+  Future<List<RepeaterModel>> getRepeatersInBounds({
+    required double lat1,
+    required double lon1,
+    required double lat2,
+    required double lon2,
     List<String>? modes,
   });
 

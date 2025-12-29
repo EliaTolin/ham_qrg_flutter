@@ -27,15 +27,17 @@ lib/src/features/[feature_name]/
 │       ├── [entity_name].dart
 │       └── [entity_name].freezed.dart          # Generato da Freezed
 ├── presentation/
-│   ├── controller/
-│   │   ├── [feature]_controller.dart
-│   │   ├── [feature]_controller.g.dart         # Generato da Riverpod
-│   │   └── state/
-│   │       └── [feature]_state/
-│   │           ├── [feature]_state.dart
-│   │           └── [feature]_state.freezed.dart
-│   ├── [feature]_page.dart                     # Pagina principale
-│   └── widgets/                                # Widget specifici della feature
+│   ├── [page_name]/                            # Cartella per ogni pagina
+│   │   ├── controller/
+│   │   │   ├── [page_name]_controller.dart
+│   │   │   ├── [page_name]_controller.g.dart   # Generato da Riverpod
+│   │   │   └── state/
+│   │   │       ├── [page_name]_state.dart
+│   │   │       └── [page_name]_state.freezed.dart
+│   │   └── [page_name]_page.dart
+│   ├── widgets/                                # Widget condivisi tra pagine
+│   ├── hooks/                                  # Hook custom (se necessario)
+│   └── utils/                                  # Utility condivise (se necessario)
 ├── provider/
 │   └── [action_name]/                          # Provider per azioni specifiche
 │       ├── [action_name]_provider.dart
@@ -344,23 +346,53 @@ Future<void> update[Entity](
 
 ---
 
-## 7. Controllers
+## 7. Controllers e States
 
-### Struttura Controller (`[feature]_controller.dart`)
+### Struttura: Ogni Pagina ha il suo Controller e State
+
+**IMPORTANTE**: Ogni pagina nella feature DEVE avere:
+- La sua cartella dedicata in `presentation/[page_name]/`
+- Il suo controller in `presentation/[page_name]/controller/[page_name]_controller.dart`
+- Il suo state in `presentation/[page_name]/controller/state/[page_name]_state.dart`
+- La sua pagina in `presentation/[page_name]/[page_name]_page.dart`
+
+**Esempio di struttura:**
+```
+presentation/
+├── list/
+│   ├── controller/
+│   │   ├── repeaters_list_controller.dart
+│   │   ├── repeaters_list_controller.g.dart
+│   │   └── state/
+│   │       ├── repeaters_list_state.dart
+│   │       └── repeaters_list_state.freezed.dart
+│   └── repeaters_list_page.dart
+├── map/
+│   ├── controller/
+│   │   ├── repeaters_map_controller.dart
+│   │   ├── repeaters_map_controller.g.dart
+│   │   └── state/
+│   │       ├── repeaters_map_state.dart
+│   │       └── repeaters_map_state.freezed.dart
+│   └── repeaters_map_page.dart
+└── widgets/  # Widget condivisi tra pagine
+```
+
+### Struttura Controller (`[page_name]_controller.dart`)
 
 ```dart
-import 'package:quiz_radioamatori/src/features/[feature]/presentation/controller/state/[feature]_state/[feature]_state.dart';
+import 'package:quiz_radioamatori/src/features/[feature]/presentation/[page_name]/controller/state/[page_name]_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part '[feature]_controller.g.dart';
+part '[page_name]_controller.g.dart';
 
 @riverpod
-class [Feature]Controller extends _$[Feature]Controller {
+class [PageName]Controller extends _$[PageName]Controller {
   @override
-  FutureOr<[Feature]State> build() async {
+  FutureOr<[PageName]State> build() async {
     // Inizializzazione dello stato
     final data = await ref.read(someProvider.future);
-    return [Feature]State(
+    return [PageName]State(
       // Valori iniziali
     );
   }
@@ -372,7 +404,7 @@ class [Feature]Controller extends _$[Feature]Controller {
       await ref.read(someActionProvider.future);
       return currentState?.copyWith(
         // Nuovo stato
-      ) ?? const [Feature]State(/* default */);
+      ) ?? const [PageName]State(/* default */);
     });
   }
 
@@ -380,7 +412,7 @@ class [Feature]Controller extends _$[Feature]Controller {
     try {
       state = await AsyncValue.guard(() async {
         // Logica
-        return state.value ?? const [Feature]State(/* default */);
+        return state.value ?? const [PageName]State(/* default */);
       });
     } catch (e) {
       state = AsyncError(e, StackTrace.current);
@@ -390,65 +422,72 @@ class [Feature]Controller extends _$[Feature]Controller {
 ```
 
 **Regole:**
-- Estendi sempre `_$[Feature]Controller` (generato da Riverpod)
+- **Ogni pagina ha il suo controller dedicato** - NON condividere controller tra pagine diverse
+- Estendi sempre `_$[PageName]Controller` (generato da Riverpod)
 - Override `build()` per inizializzare lo stato
-- `build()` deve restituire `FutureOr<[Feature]State>`
+- `build()` deve restituire `FutureOr<[PageName]State>`
 - Usa `AsyncValue.guard()` per gestire errori e loading automaticamente
 - Per aggiornare lo stato, usa `state = await AsyncValue.guard(...)`
 - Accedi allo stato corrente con `state.value`
 - Usa `copyWith()` per aggiornare lo stato immutabile
 - Gestisci gli errori con `AsyncError` se necessario
 - I metodi delle azioni devono essere `Future<void>`
+- Il controller deve essere nella stessa cartella della pagina: `presentation/[page_name]/controller/`
 
-### State (`[feature]_state.dart`)
+### State (`[page_name]_state.dart`)
 
 ```dart
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '[feature]_state.freezed.dart';
+part '[page_name]_state.freezed.dart';
 
 @freezed
-class [Feature]State with _$[Feature]State {
-  const factory [Feature]State({
+abstract class [PageName]State with _$[PageName]State {
+  const factory [PageName]State({
     required bool isLoading,
     String? errorMessage,
-    // Altri campi dello stato
-  }) = _[Feature]State;
+    // Altri campi dello stato specifici per questa pagina
+  }) = _[PageName]State;
 }
 ```
 
 **Regole:**
+- **Ogni controller ha il suo state dedicato** - NON condividere state tra controller diversi
 - Usa `@freezed` per lo stato immutabile
-- Lo stato deve contenere solo i dati necessari per la UI
+- Lo stato deve contenere solo i dati necessari per la UI di quella specifica pagina
 - Usa `copyWith()` per aggiornare lo stato
 - Include campi per loading ed errori se necessario
+- Lo state deve essere nella cartella `controller/state/` del controller: `presentation/[page_name]/controller/state/`
+- Usa `abstract class` per lo state (non solo `class`)
 
 ---
 
 ## 8. Pages
 
-### Struttura Page (`[feature]_page.dart`)
+### Struttura Page (`[page_name]_page.dart`)
+
+**IMPORTANTE**: Ogni pagina deve essere nella sua cartella dedicata: `presentation/[page_name]/[page_name]_page.dart`
 
 ```dart
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:quiz_radioamatori/src/features/[feature]/presentation/controller/[feature]_controller.dart';
+import 'package:quiz_radioamatori/src/features/[feature]/presentation/[page_name]/controller/[page_name]_controller.dart';
 import 'package:quiz_radioamatori/src/shared/widgets/error_card.dart';
 
 @RoutePage()
-class [Feature]Page extends HookConsumerWidget {
-  const [Feature]Page({super.key});
+class [PageName]Page extends HookConsumerWidget {
+  const [PageName]Page({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch([feature]ControllerProvider);
+    final controller = ref.watch([pageName]ControllerProvider);
 
     return controller.when(
       data: (state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('[Feature]'),
+            title: const Text('[Page Name]'),
           ),
           body: // UI basata su state
         );
@@ -465,13 +504,16 @@ class [Feature]Page extends HookConsumerWidget {
 ```
 
 **Regole:**
+- **Ogni pagina ha la sua cartella dedicata** in `presentation/[page_name]/`
 - Usa `HookConsumerWidget` per combinare Hooks e Riverpod
 - Aggiungi `@RoutePage()` annotation per auto_route
-- Usa `ref.watch()` per osservare il controller
+- Usa `ref.watch()` per osservare il controller della pagina specifica
+- Il controller deve essere quello della stessa pagina: `[pageName]ControllerProvider`
 - Gestisci i tre stati: `data`, `error`, `loading`
-- In caso di errore mostra sempre il widget `ErrorCard` in modo centralizzato.
-- Accedi al notifier con `ref.read([feature]ControllerProvider.notifier)` per chiamare metodi
+- In caso di errore mostra sempre il widget `ErrorCard` in modo centralizzato
+- Accedi al notifier con `ref.read([pageName]ControllerProvider.notifier)` per chiamare metodi
 - Usa `context.mounted` prima di navigare o mostrare dialog dopo operazioni async
+- **NON condividere controller tra pagine diverse** - ogni pagina deve avere il suo controller
 
 ---
 
