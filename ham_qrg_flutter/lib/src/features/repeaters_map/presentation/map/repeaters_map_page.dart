@@ -59,9 +59,7 @@ class RepeatersMapPage extends HookConsumerWidget {
     // Sync annotations when repeaters change
     useEffect(
       () {
-        if (mapController.value != null &&
-            pointManager.value != null &&
-            (mapState?.repeaters.isNotEmpty ?? false)) {
+        if (mapController.value != null && pointManager.value != null) {
           _syncAnnotations(
             pointManager.value!,
             mapState!.repeaters,
@@ -250,6 +248,7 @@ class RepeatersMapPage extends HookConsumerWidget {
   ) async {
     try {
       await manager.deleteAll();
+      if (repeaters.isEmpty) return;
 
       final annotations = <PointAnnotationOptions>[];
       for (final repeater in repeaters) {

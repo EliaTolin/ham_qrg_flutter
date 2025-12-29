@@ -9,6 +9,14 @@ abstract interface class RepeatersDatasource {
     List<String>? modes,
   });
 
+  Future<List<RepeaterModel>> getRepeatersNearby({
+    required double latitude,
+    required double longitude,
+    double radiusKm,
+    int limit,
+    List<String>? modes,
+  });
+
   Future<List<RepeaterModel>> searchRepeaters({
     required String query,
     int limit,

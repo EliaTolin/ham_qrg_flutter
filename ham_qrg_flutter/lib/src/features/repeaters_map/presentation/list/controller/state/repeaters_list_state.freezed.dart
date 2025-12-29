@@ -17,6 +17,7 @@ mixin _$RepeatersListState {
   List<Repeater> get repeaters;
   LocationErrorType? get locationError;
   Set<RepeaterMode> get selectedModes;
+  double get radiusKm;
 
   /// Create a copy of RepeatersListState
   /// with the given fields replaced by the non-null parameter values.
@@ -35,7 +36,9 @@ mixin _$RepeatersListState {
             (identical(other.locationError, locationError) ||
                 other.locationError == locationError) &&
             const DeepCollectionEquality()
-                .equals(other.selectedModes, selectedModes));
+                .equals(other.selectedModes, selectedModes) &&
+            (identical(other.radiusKm, radiusKm) ||
+                other.radiusKm == radiusKm));
   }
 
   @override
@@ -43,11 +46,12 @@ mixin _$RepeatersListState {
       runtimeType,
       const DeepCollectionEquality().hash(repeaters),
       locationError,
-      const DeepCollectionEquality().hash(selectedModes));
+      const DeepCollectionEquality().hash(selectedModes),
+      radiusKm);
 
   @override
   String toString() {
-    return 'RepeatersListState(repeaters: $repeaters, locationError: $locationError, selectedModes: $selectedModes)';
+    return 'RepeatersListState(repeaters: $repeaters, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm)';
   }
 }
 
@@ -60,7 +64,8 @@ abstract mixin class $RepeatersListStateCopyWith<$Res> {
   $Res call(
       {List<Repeater> repeaters,
       LocationErrorType? locationError,
-      Set<RepeaterMode> selectedModes});
+      Set<RepeaterMode> selectedModes,
+      double radiusKm});
 }
 
 /// @nodoc
@@ -79,6 +84,7 @@ class _$RepeatersListStateCopyWithImpl<$Res>
     Object? repeaters = null,
     Object? locationError = freezed,
     Object? selectedModes = null,
+    Object? radiusKm = null,
   }) {
     return _then(_self.copyWith(
       repeaters: null == repeaters
@@ -93,6 +99,10 @@ class _$RepeatersListStateCopyWithImpl<$Res>
           ? _self.selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable
               as Set<RepeaterMode>,
+      radiusKm: null == radiusKm
+          ? _self.radiusKm
+          : radiusKm // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -191,15 +201,15 @@ extension RepeatersListStatePatterns on RepeatersListState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(List<Repeater> repeaters, LocationErrorType? locationError,
-            Set<RepeaterMode> selectedModes)?
+            Set<RepeaterMode> selectedModes, double radiusKm)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _RepeatersListState() when $default != null:
-        return $default(
-            _that.repeaters, _that.locationError, _that.selectedModes);
+        return $default(_that.repeaters, _that.locationError,
+            _that.selectedModes, _that.radiusKm);
       case _:
         return orElse();
     }
@@ -221,14 +231,14 @@ extension RepeatersListStatePatterns on RepeatersListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(List<Repeater> repeaters, LocationErrorType? locationError,
-            Set<RepeaterMode> selectedModes)
+            Set<RepeaterMode> selectedModes, double radiusKm)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _RepeatersListState():
-        return $default(
-            _that.repeaters, _that.locationError, _that.selectedModes);
+        return $default(_that.repeaters, _that.locationError,
+            _that.selectedModes, _that.radiusKm);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -248,15 +258,18 @@ extension RepeatersListStatePatterns on RepeatersListState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Repeater> repeaters,
-            LocationErrorType? locationError, Set<RepeaterMode> selectedModes)?
+    TResult? Function(
+            List<Repeater> repeaters,
+            LocationErrorType? locationError,
+            Set<RepeaterMode> selectedModes,
+            double radiusKm)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _RepeatersListState() when $default != null:
-        return $default(
-            _that.repeaters, _that.locationError, _that.selectedModes);
+        return $default(_that.repeaters, _that.locationError,
+            _that.selectedModes, _that.radiusKm);
       case _:
         return null;
     }
@@ -269,7 +282,8 @@ class _RepeatersListState implements RepeatersListState {
   const _RepeatersListState(
       {final List<Repeater> repeaters = const <Repeater>[],
       this.locationError,
-      final Set<RepeaterMode> selectedModes = const <RepeaterMode>{}})
+      final Set<RepeaterMode> selectedModes = const <RepeaterMode>{},
+      this.radiusKm = 100})
       : _repeaters = repeaters,
         _selectedModes = selectedModes;
 
@@ -293,6 +307,10 @@ class _RepeatersListState implements RepeatersListState {
     return EqualUnmodifiableSetView(_selectedModes);
   }
 
+  @override
+  @JsonKey()
+  final double radiusKm;
+
   /// Create a copy of RepeatersListState
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -311,7 +329,9 @@ class _RepeatersListState implements RepeatersListState {
             (identical(other.locationError, locationError) ||
                 other.locationError == locationError) &&
             const DeepCollectionEquality()
-                .equals(other._selectedModes, _selectedModes));
+                .equals(other._selectedModes, _selectedModes) &&
+            (identical(other.radiusKm, radiusKm) ||
+                other.radiusKm == radiusKm));
   }
 
   @override
@@ -319,11 +339,12 @@ class _RepeatersListState implements RepeatersListState {
       runtimeType,
       const DeepCollectionEquality().hash(_repeaters),
       locationError,
-      const DeepCollectionEquality().hash(_selectedModes));
+      const DeepCollectionEquality().hash(_selectedModes),
+      radiusKm);
 
   @override
   String toString() {
-    return 'RepeatersListState(repeaters: $repeaters, locationError: $locationError, selectedModes: $selectedModes)';
+    return 'RepeatersListState(repeaters: $repeaters, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm)';
   }
 }
 
@@ -338,7 +359,8 @@ abstract mixin class _$RepeatersListStateCopyWith<$Res>
   $Res call(
       {List<Repeater> repeaters,
       LocationErrorType? locationError,
-      Set<RepeaterMode> selectedModes});
+      Set<RepeaterMode> selectedModes,
+      double radiusKm});
 }
 
 /// @nodoc
@@ -357,6 +379,7 @@ class __$RepeatersListStateCopyWithImpl<$Res>
     Object? repeaters = null,
     Object? locationError = freezed,
     Object? selectedModes = null,
+    Object? radiusKm = null,
   }) {
     return _then(_RepeatersListState(
       repeaters: null == repeaters
@@ -371,6 +394,10 @@ class __$RepeatersListStateCopyWithImpl<$Res>
           ? _self._selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable
               as Set<RepeaterMode>,
+      radiusKm: null == radiusKm
+          ? _self.radiusKm
+          : radiusKm // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }

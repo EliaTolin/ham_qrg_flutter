@@ -13,7 +13,7 @@ class RepeatersMapController extends _$RepeatersMapController {
   @override
   FutureOr<RepeatersMapState> build() async {
     log('BUILD REPEATERS MAP CONTROLLER');
-    return _loadInitialRepeaters();
+    return _initalLoad();
   }
 
   Future<void> toggleModeFilter({
@@ -48,7 +48,7 @@ class RepeatersMapController extends _$RepeatersMapController {
       // Fallback to initial load
       state = const AsyncLoading();
       state = await AsyncValue.guard(
-        () => _loadInitialRepeaters(
+        () => _initalLoad(
           selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
         ),
       );
@@ -75,6 +75,7 @@ class RepeatersMapController extends _$RepeatersMapController {
           lon2: lon2,
           modes: modesToFilter?.isEmpty ?? true ? null : modesToFilter,
         );
+        log('REPEATERS: ${repeaters.length}');
         return RepeatersMapState(
           repeaters: repeaters,
           latitude: currentState?.latitude,
@@ -94,7 +95,7 @@ class RepeatersMapController extends _$RepeatersMapController {
   }
 
   /// Load initial repeaters, trying to get user location first
-  Future<RepeatersMapState> _loadInitialRepeaters({
+  Future<RepeatersMapState> _initalLoad({
     List<RepeaterMode>? selectedModes,
   }) async {
     final currentState = state.value;
@@ -110,21 +111,8 @@ class RepeatersMapController extends _$RepeatersMapController {
     }
 
     try {
-      // Use a reasonable default bounds around user location
-      final lat = position.latitude;
-      final lon = position.longitude;
-      const boundsSize = 0.1;
-
-      final repeaters = await _fetchRepeatersFromBounds(
-        lat1: lat - boundsSize,
-        lon1: lon - boundsSize,
-        lat2: lat + boundsSize,
-        lon2: lon + boundsSize,
-        modes: modesToFilter?.isEmpty ?? true ? null : modesToFilter,
-      );
-
       return RepeatersMapState(
-        repeaters: repeaters,
+        repeaters: [],
         latitude: position.latitude,
         longitude: position.longitude,
         selectedModes: modesToFilter?.toSet() ?? {},
@@ -144,6 +132,8 @@ class RepeatersMapController extends _$RepeatersMapController {
     required double lon2,
     List<RepeaterMode>? modes,
   }) async {
+    log('FETCH REPEATERS FROM BOUNDS: $lat1, $lon1, $lat2, $lon2, $modes');
+
     return await ref.read(
       getRepeatersInBoundsProvider(
         lat1: lat1,

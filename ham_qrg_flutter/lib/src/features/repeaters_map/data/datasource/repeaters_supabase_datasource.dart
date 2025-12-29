@@ -49,6 +49,43 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
+  Future<List<RepeaterModel>> getRepeatersNearby({
+    required double latitude,
+    required double longitude,
+    double radiusKm = 50,
+    int limit = 50,
+    List<String>? modes,
+  }) async {
+    try {
+      final data = await _client.rpc(
+        'repeaters_nearby',
+        params: <String, dynamic>{
+          'p_lat': latitude,
+          'p_lon': longitude,
+          'p_radius_km': radiusKm,
+          'p_limit': limit,
+          if (modes != null && modes.isNotEmpty) 'p_modes': modes,
+        },
+      );
+
+      if (data is! List) {
+        return [];
+      }
+
+      return data
+          .map(
+            (e) => RepeaterModel.fromJson(
+              Map<String, dynamic>.from(e as Map<dynamic, dynamic>),
+            ),
+          )
+          .toList();
+    } catch (error, stackTrace) {
+      log('Error fetching repeaters_nearby: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
+
+  @override
   Future<List<RepeaterModel>> searchRepeaters({
     required String query,
     int limit = 100,

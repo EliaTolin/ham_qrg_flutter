@@ -13,6 +13,9 @@ import 'package:ham_qrg/src/features/repeaters_map/provider/search_repeaters/sea
 import 'package:ham_qrg/src/features/repeaters_map/service/location_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+/// Debounce delay for search (milliseconds)
+const int _searchDebounceMs = 500;
+
 @RoutePage()
 class RepeatersListPage extends HookConsumerWidget {
   const RepeatersListPage({super.key});
@@ -23,34 +26,28 @@ class RepeatersListPage extends HookConsumerWidget {
     final searchQuery = useState<String>('');
     final debounceTimer = useRef<Timer?>(null);
 
-    // Debounce search query - starts timer when user types
+    final listAsyncState = ref.watch(repeatersListControllerProvider);
+    final listNotifier = ref.read(repeatersListControllerProvider.notifier);
+
+    // Handle search debounce
     useEffect(
       () {
         void onTextChanged() {
           final currentText = searchController.text.trim();
-
-          // Cancel previous timer if exists
           debounceTimer.value?.cancel();
 
-          // If text is empty, update immediately
           if (currentText.isEmpty) {
             searchQuery.value = '';
             return;
           }
 
-          // Start debounce timer - updates query after user stops typing
           debounceTimer.value = Timer(
-            const Duration(milliseconds: 500),
-            () {
-              searchQuery.value = currentText;
-            },
+            const Duration(milliseconds: _searchDebounceMs),
+            () => searchQuery.value = currentText,
           );
         }
 
-        // Add listener to controller
         searchController.addListener(onTextChanged);
-
-        // Cleanup: remove listener and cancel timer
         return () {
           searchController.removeListener(onTextChanged);
           debounceTimer.value?.cancel();
@@ -59,17 +56,13 @@ class RepeatersListPage extends HookConsumerWidget {
       [searchController],
     );
 
-    final listAsyncState = ref.watch(repeatersListControllerProvider);
-    final listNotifier = ref.read(repeatersListControllerProvider.notifier);
-
-    // Determine if we're in search mode based on current text input
+    // Determine search mode
     final currentSearchText = searchController.text.trim();
     final isSearchMode = currentSearchText.isNotEmpty;
     final debouncedQuery = searchQuery.value.trim();
     final isTyping = isSearchMode && currentSearchText != debouncedQuery;
 
-    // Only trigger search provider when we have a debounced query
-    // If user is typing, we'll show loading state manually
+    // Get search results if in search mode
     final searchAsyncState = debouncedQuery.isNotEmpty
         ? ref.watch(
             searchRepeatersProvider(
@@ -81,13 +74,33 @@ class RepeatersListPage extends HookConsumerWidget {
           )
         : null;
 
-    final l10n = context.localization;
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    // Handle loading state
+    if (listAsyncState.isLoading && !isSearchMode) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(context.localization.repeatersListTitle),
+        ),
+        body: const Center(
+          child: CircularProgressIndicator.adaptive(),
+        ),
+      );
+    }
+
+    // Handle error state
+    if (listAsyncState.hasError && !isSearchMode && listAsyncState.error != null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(context.localization.repeatersListTitle),
+        ),
+        body: _buildErrorState(context, listAsyncState.error!),
+      );
+    }
+
+    final listState = listAsyncState.value;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.repeatersListTitle),
+        title: Text(context.localization.repeatersListTitle),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: Padding(
@@ -95,9 +108,9 @@ class RepeatersListPage extends HookConsumerWidget {
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
-                hintText: l10n.repeatersSearchHint,
+                hintText: context.localization.repeatersSearchHint,
                 prefixIcon: const Icon(Icons.search),
-                suffixIcon: searchController.text.isNotEmpty
+                suffixIcon: currentSearchText.isNotEmpty
                     ? IconButton(
                         icon: const Icon(Icons.clear),
                         onPressed: () {
@@ -110,7 +123,7 @@ class RepeatersListPage extends HookConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 filled: true,
-                fillColor: colorScheme.surface,
+                fillColor: Theme.of(context).colorScheme.surface,
               ),
             ),
           ),
@@ -119,34 +132,29 @@ class RepeatersListPage extends HookConsumerWidget {
       body: isSearchMode
           ? _buildSearchResults(
               context,
-              ref,
               searchAsyncState,
               isTyping,
-              listAsyncState.value?.selectedModes ?? <RepeaterMode>{},
-              listNotifier,
             )
           : _buildNearbyResults(
               context,
               ref,
-              listAsyncState,
+              listState,
               listNotifier,
             ),
     );
   }
 
+  /// Build search results view
   Widget _buildSearchResults(
     BuildContext context,
-    WidgetRef ref,
     AsyncValue<List<Repeater>>? searchAsyncState,
     bool isTyping,
-    Set<RepeaterMode> selectedModes,
-    RepeatersListController notifier,
   ) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    // Show loading if user is typing or if provider is loading
+    // Show loading while typing or loading
     if (isTyping || searchAsyncState == null || searchAsyncState.isLoading) {
       return const Center(
         child: CircularProgressIndicator.adaptive(),
@@ -180,165 +188,183 @@ class RepeatersListPage extends HookConsumerWidget {
         return ListView.builder(
           padding: const EdgeInsets.all(16),
           itemCount: repeaters.length,
-          itemBuilder: (context, index) {
-            final repeater = repeaters[index];
-            return RepeaterListItem(
-              repeater: repeater,
-            );
-          },
+          itemBuilder: (context, index) => RepeaterListItem(
+            repeater: repeaters[index],
+          ),
         );
       },
       loading: () => const Center(
         child: CircularProgressIndicator.adaptive(),
       ),
-      error: (error, stackTrace) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.warning_amber_rounded,
-                size: 64,
-                color: colorScheme.error.withValues(alpha: 0.6),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                l10n.repeatersMapGenericError,
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodyLarge,
-              ),
-            ],
-          ),
-        ),
-      ),
+      error: (error, stackTrace) => _buildErrorState(context, error),
     );
   }
 
+  /// Build nearby results view
   Widget _buildNearbyResults(
     BuildContext context,
     WidgetRef ref,
-    AsyncValue<RepeatersListState> listAsyncState,
+    RepeatersListState? listState,
     RepeatersListController notifier,
   ) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return listAsyncState.when(
-      data: (state) {
-        if (state.repeaters.isEmpty) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.location_off_outlined,
-                  size: 64,
-                  color: colorScheme.onSurface.withValues(alpha: 0.3),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  l10n.repeatersMapEmpty,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.6),
-                  ),
-                ),
-              ],
-            ),
-          );
-        }
+    if (listState == null) {
+      return const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+    }
 
-        return Column(
+    // Show empty state
+    if (listState.repeaters.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: colorScheme.surface,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.05),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: ModeFilterChips(
-                selectedModes: state.selectedModes,
-                onModeToggled: notifier.toggleModeFilter,
-              ),
+            Icon(
+              Icons.location_off_outlined,
+              size: 64,
+              color: colorScheme.onSurface.withValues(alpha: 0.3),
             ),
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: state.repeaters.length,
-                itemBuilder: (context, index) {
-                  final repeater = state.repeaters[index];
-                  return RepeaterListItem(
-                    repeater: repeater,
-                  );
-                },
+            const SizedBox(height: 16),
+            Text(
+              l10n.repeatersMapEmpty,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           ],
-        );
-      },
-      loading: () => const Center(
-        child: CircularProgressIndicator.adaptive(),
-      ),
-      error: (error, stackTrace) {
-        if (error is LocationException) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.location_off,
-                    size: 64,
-                    color: colorScheme.error.withValues(alpha: 0.6),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    switch (error.type) {
-                      LocationErrorType.permissionDenied ||
-                      LocationErrorType.permissionPermanentlyDenied =>
-                        l10n.repeatersMapPermissionPermanentlyDenied,
-                      LocationErrorType.servicesDisabled =>
-                        l10n.repeatersMapLocationServicesDisabled,
-                    },
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.bodyLarge,
-                  ),
-                ],
-              ),
-            ),
-          );
-        }
+        ),
+      );
+    }
 
-        return Center(
-          child: Padding(
+    // Show location error banner if present
+    if (listState.locationError != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.location_off,
+                size: 64,
+                color: colorScheme.error.withValues(alpha: 0.6),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                switch (listState.locationError!) {
+                  LocationErrorType.permissionDenied ||
+                  LocationErrorType.permissionPermanentlyDenied =>
+                    l10n.repeatersMapPermissionPermanentlyDenied,
+                  LocationErrorType.servicesDisabled => l10n.repeatersMapLocationServicesDisabled,
+                },
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(repeatersListControllerProvider.notifier).reload();
+                },
+                child: Text(l10n.repeatersMapRetry),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // Show list with filters
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.05),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: ModeFilterChips(
+            selectedModes: listState.selectedModes,
+            onModeToggled: notifier.toggleModeFilter,
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
             padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.warning_amber_rounded,
-                  size: 64,
-                  color: colorScheme.error.withValues(alpha: 0.6),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  l10n.repeatersMapGenericError,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyLarge,
-                ),
-              ],
+            itemCount: listState.repeaters.length,
+            itemBuilder: (context, index) => RepeaterListItem(
+              repeater: listState.repeaters[index],
             ),
           ),
-        );
-      },
+        ),
+      ],
+    );
+  }
+
+  /// Build error state widget
+  Widget _buildErrorState(BuildContext context, Object error) {
+    final l10n = context.localization;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    if (error is LocationException) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.location_off,
+                size: 64,
+                color: colorScheme.error.withValues(alpha: 0.6),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                switch (error.type) {
+                  LocationErrorType.permissionDenied ||
+                  LocationErrorType.permissionPermanentlyDenied =>
+                    l10n.repeatersMapPermissionPermanentlyDenied,
+                  LocationErrorType.servicesDisabled => l10n.repeatersMapLocationServicesDisabled,
+                },
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyLarge,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.warning_amber_rounded,
+              size: 64,
+              color: colorScheme.error.withValues(alpha: 0.6),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              l10n.repeatersMapGenericError,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyLarge,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

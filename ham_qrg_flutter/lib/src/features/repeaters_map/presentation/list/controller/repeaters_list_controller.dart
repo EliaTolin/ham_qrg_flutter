@@ -1,6 +1,8 @@
-import 'package:ham_qrg/src/features/repeaters_map/data/repository/repeaters_repository.dart';
+import 'dart:developer';
+
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters_map/presentation/list/controller/state/repeaters_list_state.dart';
+import 'package:ham_qrg/src/features/repeaters_map/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
 import 'package:ham_qrg/src/features/repeaters_map/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,6 +12,7 @@ part 'repeaters_list_controller.g.dart';
 class RepeatersListController extends _$RepeatersListController {
   @override
   FutureOr<RepeatersListState> build() async {
+    log('BUILD REPEATERS LIST CONTROLLER');
     return _loadInitialRepeaters();
   }
 
@@ -55,20 +58,23 @@ class RepeatersListController extends _$RepeatersListController {
     final currentState = state.value;
     final modesToFilter = selectedModes ?? currentState?.selectedModes.toList();
 
+    late final ({double latitude, double longitude}) position;
     try {
-      final position = await ref.read(locationServiceProvider).getCurrentPosition();
+      position = await ref.read(locationServiceProvider).getCurrentPosition();
+    } catch (_) {
+      const initialLat = 41.9028; // Rome default
+      const initialLon = 12.4964;
+      position = (latitude: initialLat, longitude: initialLon);
+    }
 
+    try {
       // Use a reasonable default bounds around user location
       final lat = position.latitude;
       final lon = position.longitude;
-      const boundsSize = 0.1; // ~11km radius
 
-      final repository = ref.read(repeatersRepositoryProvider);
-      final repeaters = await repository.getRepeatersInBounds(
-        lat1: lat - boundsSize,
-        lon1: lon - boundsSize,
-        lat2: lat + boundsSize,
-        lon2: lon + boundsSize,
+      final repeaters = await _fetchRepeatersFromRadius(
+        latitude: lat,
+        longitude: lon,
         modes: modesToFilter?.isEmpty ?? true ? null : modesToFilter,
       );
 
@@ -82,5 +88,20 @@ class RepeatersListController extends _$RepeatersListController {
         selectedModes: modesToFilter?.toSet() ?? {},
       );
     }
+  }
+
+  Future<List<Repeater>> _fetchRepeatersFromRadius({
+    required double latitude,
+    required double longitude,
+    List<RepeaterMode>? modes,
+  }) async {
+    return await ref.read(
+      getRepeatersNearbyProvider(
+        latitude: latitude,
+        longitude: longitude,
+        modes: modes?.isEmpty ?? true ? null : modes,
+        radiusKm: 100,
+      ).future,
+    );
   }
 }

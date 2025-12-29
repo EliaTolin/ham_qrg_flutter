@@ -10,6 +10,6 @@ abstract class RepeatersListState with _$RepeatersListState {
     @Default(<Repeater>[]) List<Repeater> repeaters,
     LocationErrorType? locationError,
     @Default(<RepeaterMode>{}) Set<RepeaterMode> selectedModes,
+    @Default(100) double radiusKm,
   }) = _RepeatersListState;
 }
-
