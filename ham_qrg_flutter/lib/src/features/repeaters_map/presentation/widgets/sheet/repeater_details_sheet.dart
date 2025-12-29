@@ -23,6 +23,26 @@ class RepeaterDetailsSheet extends ConsumerWidget {
     return '$frequencyHz Hz';
   }
 
+  static String formatShift(int? shiftHz, String? shiftRaw) {
+    if (shiftRaw != null && shiftRaw.isNotEmpty) {
+      return shiftRaw;
+    }
+    if (shiftHz != null) {
+      if (shiftHz >= 1000) {
+        return '${(shiftHz / 1000).toStringAsFixed(1)} kHz';
+      }
+      return '$shiftHz Hz';
+    }
+    return '-';
+  }
+
+  static String formatCtcss(double? ctcssHz) {
+    if (ctcssHz != null) {
+      return '${ctcssHz.toStringAsFixed(1)} Hz';
+    }
+    return '-';
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
@@ -53,7 +73,6 @@ class RepeaterDetailsSheet extends ConsumerWidget {
           ),
         ],
         if (repeater.name != null) ...[
-          const SizedBox(height: 4),
           Text(
             repeater.name!,
             style: theme.textTheme.titleMedium?.copyWith(
@@ -61,21 +80,35 @@ class RepeaterDetailsSheet extends ConsumerWidget {
             ),
           ),
         ],
-        const SizedBox(height: 16),
         _DetailRow(
           icon: Icons.radio,
           label: l10n.repeaterMode,
           value: RepeaterModeHelper.getModeLabel(repeater.mode, l10n),
           modeColor: RepeaterModeHelper.getModeColorObject(repeater.mode),
         ),
-        const SizedBox(height: 12),
         _DetailRow(
           icon: Icons.waves,
           label: l10n.repeaterFrequency,
           value: RepeaterDetailsSheet.formatFrequency(repeater.frequencyHz),
         ),
+        if (repeater.shiftHz != null || repeater.shiftRaw != null) ...[
+          _DetailRow(
+            icon: Icons.swap_horiz,
+            label: l10n.repeaterShift,
+            value: RepeaterDetailsSheet.formatShift(
+              repeater.shiftHz,
+              repeater.shiftRaw,
+            ),
+          ),
+        ],
+        if (repeater.ctcssHz != null) ...[
+          _DetailRow(
+            icon: Icons.tune,
+            label: l10n.repeaterCtcss,
+            value: RepeaterDetailsSheet.formatCtcss(repeater.ctcssHz),
+          ),
+        ],
         if (repeater.locality != null || repeater.region != null) ...[
-          const SizedBox(height: 12),
           _DetailRow(
             icon: Icons.location_on,
             label: l10n.repeaterLocation,
@@ -174,10 +207,12 @@ class _DetailRow extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                   ],
-                  Text(
-                    value,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
+                  Flexible(
+                    child: Text(
+                      value,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],

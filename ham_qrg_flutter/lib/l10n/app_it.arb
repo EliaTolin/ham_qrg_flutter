@@ -76,6 +76,8 @@
   "repeaterModeEcholink": "Echolink",
   "repeaterModeWinlink": "Winlink",
   "repeaterFrequency": "Frequenza",
+  "repeaterShift": "Shift",
+  "repeaterCtcss": "CTCSS",
   "repeaterLocation": "Posizione",
   "repeaterDistance": "Distanza",
   "repeatersMapReturnToLocation": "Torna alla mia posizione",

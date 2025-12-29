@@ -210,6 +210,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterFrequency => 'Frequenza';
 
   @override
+  String get repeaterShift => 'Shift';
+
+  @override
+  String get repeaterCtcss => 'CTCSS';
+
+  @override
   String get repeaterLocation => 'Posizione';
 
   @override

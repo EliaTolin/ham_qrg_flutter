@@ -472,6 +472,18 @@ abstract class AppLocalizations {
   /// **'Frequenza'**
   String get repeaterFrequency;
 
+  /// No description provided for @repeaterShift.
+  ///
+  /// In it, this message translates to:
+  /// **'Shift'**
+  String get repeaterShift;
+
+  /// No description provided for @repeaterCtcss.
+  ///
+  /// In it, this message translates to:
+  /// **'CTCSS'**
+  String get repeaterCtcss;
+
   /// No description provided for @repeaterLocation.
   ///
   /// In it, this message translates to:
