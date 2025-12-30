@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:ham_qrg/clients/supabase/supabase_client/supabase_client.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/datasource/repeaters_datasource.dart';
+import 'package:ham_qrg/src/features/repeaters_map/data/model/feedback/feedback_model.dart';
+import 'package:ham_qrg/src/features/repeaters_map/data/model/feedback/feedback_stats_model.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/model/repeater/repeater_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -252,6 +254,100 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
           .eq('repeater_id', repeaterId);
     } catch (error, stackTrace) {
       log('Error removing favorite repeater: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<FeedbackStatsModel?> getRepeaterFeedbackStats(
+    String repeaterId,
+  ) async {
+    try {
+      final data = await _client
+          .from('v_repeater_feedback_stats')
+          .select()
+          .eq('repeater_id', repeaterId)
+          .maybeSingle();
+
+      if (data == null) {
+        return null;
+      }
+
+      return FeedbackStatsModel.fromJson(
+        Map<String, dynamic>.from(data),
+      );
+    } catch (error, stackTrace) {
+      log('Error fetching repeater feedback stats: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> addRepeaterFeedback({
+    required String userId,
+    required String repeaterId,
+    required String type,
+    required String station,
+    required double latitude,
+    required double longitude,
+    required String comment,
+  }) async {
+    try {
+      await _client.from('repeater_feedback').insert({
+        'repeater_id': repeaterId,
+        'user_id': userId,
+        'type': type,
+        'station': station,
+        'lat': latitude,
+        'lon': longitude,
+        'comment': comment.trim(),
+      });
+    } catch (error, stackTrace) {
+      log('Error adding repeater feedback: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deleteRepeaterFeedback(
+    String userId,
+    String feedbackId,
+  ) async {
+    try {
+      await _client.from('repeater_feedback').delete().eq('id', feedbackId).eq('user_id', userId);
+    } catch (error, stackTrace) {
+      log('Error deleting repeater feedback: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<FeedbackModel>> getRepeaterFeedbacks({
+    required String repeaterId,
+    int? limit,
+  }) async {
+    try {
+      var query = _client
+          .from('repeater_feedback')
+          .select()
+          .eq('repeater_id', repeaterId)
+          .order('created_at', ascending: false);
+
+      if (limit != null) {
+        query = query.limit(limit);
+      }
+
+      final data = await query;
+
+      return (data as List)
+          .map(
+            (e) => FeedbackModel.fromJson(
+              Map<String, dynamic>.from(e),
+            ),
+          )
+          .toList();
+    } catch (error, stackTrace) {
+      log('Error fetching repeater feedbacks: $error', stackTrace: stackTrace);
       rethrow;
     }
   }

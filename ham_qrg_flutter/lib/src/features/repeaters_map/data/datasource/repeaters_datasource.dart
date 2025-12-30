@@ -1,3 +1,5 @@
+import 'package:ham_qrg/src/features/repeaters_map/data/model/feedback/feedback_model.dart';
+import 'package:ham_qrg/src/features/repeaters_map/data/model/feedback/feedback_stats_model.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/model/repeater/repeater_model.dart';
 
 abstract interface class RepeatersDatasource {
@@ -33,4 +35,24 @@ abstract interface class RepeatersDatasource {
   Future<void> addFavoriteRepeater(String userId, String repeaterId);
 
   Future<void> removeFavoriteRepeater(String userId, String repeaterId);
+
+  // Feedback methods
+  Future<FeedbackStatsModel?> getRepeaterFeedbackStats(String repeaterId);
+
+  Future<void> addRepeaterFeedback({
+    required String userId,
+    required String repeaterId,
+    required String type,
+    required String station,
+    required double latitude,
+    required double longitude,
+    required String comment,
+  });
+
+  Future<void> deleteRepeaterFeedback(String userId, String feedbackId);
+
+  Future<List<FeedbackModel>> getRepeaterFeedbacks({
+    required String repeaterId,
+    int? limit,
+  });
 }

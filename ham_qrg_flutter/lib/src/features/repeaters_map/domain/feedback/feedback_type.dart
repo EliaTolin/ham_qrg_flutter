@@ -1,0 +1,5 @@
+enum FeedbackType {
+  like,
+  down,
+}
+

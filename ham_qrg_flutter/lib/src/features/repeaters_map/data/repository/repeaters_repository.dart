@@ -1,6 +1,11 @@
 import 'package:ham_qrg/src/features/repeaters_map/data/datasource/repeaters_datasource.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/datasource/repeaters_supabase_datasource.dart';
+import 'package:ham_qrg/src/features/repeaters_map/data/mappers/feedback_mappers.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/mappers/repeaters_mappers.dart';
+import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/feedback.dart';
+import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/feedback_stats.dart';
+import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/feedback_type.dart';
+import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/station_kind.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,6 +16,8 @@ class RepeatersRepository {
   final RepeatersDatasource _datasource;
 
   final _mapper = RepeatersMappers();
+  final _feedbackMapper = FeedbackMapper();
+  final _feedbackStatsMapper = FeedbackStatsMapper();
 
   Future<List<Repeater>> getRepeatersInBounds({
     required double lat1,
@@ -80,6 +87,70 @@ class RepeatersRepository {
 
   Future<void> removeFavoriteRepeater(String userId, String repeaterId) async {
     return _datasource.removeFavoriteRepeater(userId, repeaterId);
+  }
+
+  // Feedback methods
+  Future<FeedbackStats?> getRepeaterFeedbackStats(String repeaterId) async {
+    final model = await _datasource.getRepeaterFeedbackStats(repeaterId);
+    if (model == null) {
+      return null;
+    }
+    return _feedbackStatsMapper.fromModel(model);
+  }
+
+  Future<void> addRepeaterFeedback({
+    required String userId,
+    required String repeaterId,
+    required FeedbackType type,
+    required StationKind station,
+    required double latitude,
+    required double longitude,
+    required String comment,
+  }) async {
+    return _datasource.addRepeaterFeedback(
+      userId: userId,
+      repeaterId: repeaterId,
+      type: _feedbackTypeToString(type),
+      station: _stationKindToString(station),
+      latitude: latitude,
+      longitude: longitude,
+      comment: comment,
+    );
+  }
+
+  Future<void> deleteRepeaterFeedback(String userId, String feedbackId) async {
+    return _datasource.deleteRepeaterFeedback(userId, feedbackId);
+  }
+
+  Future<List<Feedback>> getRepeaterFeedbacks({
+    required String repeaterId,
+    int? limit,
+  }) async {
+    final data = await _datasource.getRepeaterFeedbacks(
+      repeaterId: repeaterId,
+      limit: limit,
+    );
+    return data.map(_feedbackMapper.fromModel).toList();
+  }
+
+  String _feedbackTypeToString(FeedbackType type) {
+    switch (type) {
+      case FeedbackType.like:
+        return 'like';
+      case FeedbackType.down:
+        return 'down';
+    }
+  }
+
+  String _stationKindToString(StationKind station) {
+    switch (station) {
+      case StationKind.portable:
+        return 'portable';
+      case StationKind.mobile:
+        return 'mobile';
+      case StationKind.fixed:
+        return 'fixed';
+    }
   }
 }
 
