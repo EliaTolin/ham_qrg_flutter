@@ -30,5 +30,6 @@ abstract class RepeaterModel with _$RepeaterModel {
     @JsonKey(name: 'distance_m') double? distanceM,
   }) = _RepeaterModel;
 
-  factory RepeaterModel.fromJson(Map<String, dynamic> json) => _$RepeaterModelFromJson(json);
+  factory RepeaterModel.fromJson(Map<String, dynamic> json) =>
+      _$RepeaterModelFromJson(json);
 }

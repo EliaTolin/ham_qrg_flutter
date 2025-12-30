@@ -19,7 +19,8 @@ void useMapAnnotations(
       Future<void> syncAnnotations() async {
         if (managerRef.value == null) {
           try {
-            managerRef.value = await map.annotations.createPointAnnotationManager();
+            managerRef.value =
+                await map.annotations.createPointAnnotationManager();
           } catch (e) {
             return;
           }
@@ -37,7 +38,8 @@ void useMapAnnotations(
             final lon = repeater.longitude;
             if (lat == null || lon == null) continue;
 
-            final iconBytes = await RepeaterModeHelper.generateRepeaterIcon(repeater.mode);
+            final iconBytes =
+                await RepeaterModeHelper.generateRepeaterIcon(repeater.mode);
             annotations.add(
               PointAnnotationOptions(
                 geometry: Point(coordinates: Position(lon, lat)),

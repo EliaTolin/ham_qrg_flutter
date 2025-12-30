@@ -53,7 +53,8 @@ class RepeaterListItem extends StatelessWidget {
                           Text(
                             repeater.name!,
                             style: theme.textTheme.bodyMedium?.copyWith(
-                              color: colorScheme.onSurface.withValues(alpha: 0.6),
+                              color:
+                                  colorScheme.onSurface.withValues(alpha: 0.6),
                             ),
                           ),
                         ],
@@ -61,7 +62,8 @@ class RepeaterListItem extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: colorMode.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),

@@ -149,13 +149,118 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
 
   @override
   Future<int?> getTotalFavoritesCount() async {
-    return 0;
+    try {
+      final userId = _client.auth.currentUser?.id;
+      if (userId == null) {
+        return null;
+      }
+      final data =
+          await _client.from('user_favorite_repeaters').select('id').eq('user_id', userId).count();
+      return data.count;
+    } catch (e) {
+      log('Error fetching total favorites count: $e');
+      rethrow;
+    }
   }
 
   @override
   Future<int> getTotalRepeatersCount() async {
-    final data = await _client.from('repeaters').select('id').count();
-    return data.count;
+    try {
+      final data = await _client.from('repeaters').select('id').count();
+      return data.count;
+    } catch (e) {
+      log('Error fetching total repeaters count: $e');
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<String>> getFavoriteRepeatersIds() async {
+    try {
+      final userId = _client.auth.currentUser?.id;
+      if (userId == null) {
+        return [];
+      }
+      final data =
+          await _client.from('user_favorite_repeaters').select('repeater_id').eq('user_id', userId);
+
+      return (data as List)
+          .map(
+            (e) => (e as Map<String, dynamic>)['repeater_id'] as String,
+          )
+          .toList();
+    } catch (error, stackTrace) {
+      log(
+        'Error fetching favorite repeaters IDs: $error',
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<RepeaterModel>> getFavoriteRepeaters() async {
+    try {
+      final userId = _client.auth.currentUser?.id;
+      if (userId == null) {
+        return [];
+      }
+      final data = await _client
+          .from('user_favorite_repeaters')
+          .select('repeater:repeaters(*)')
+          .eq('user_id', userId);
+
+      return (data as List)
+          .map((e) {
+            final repeaterData = (e as Map<String, dynamic>)['repeater'];
+            if (repeaterData == null) {
+              return null;
+            }
+            return RepeaterModel.fromJson(
+              Map<String, dynamic>.from(repeaterData),
+            );
+          })
+          .whereType<RepeaterModel>()
+          .toList();
+    } catch (error, stackTrace) {
+      log('Error fetching favorite repeaters: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> addFavoriteRepeater(String repeaterId) async {
+    try {
+      final userId = _client.auth.currentUser?.id;
+      if (userId == null) {
+        throw Exception('User not authenticated');
+      }
+      await _client.from('user_favorite_repeaters').insert({
+        'user_id': userId,
+        'repeater_id': repeaterId,
+      });
+    } catch (error, stackTrace) {
+      log('Error adding favorite repeater: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> removeFavoriteRepeater(String repeaterId) async {
+    try {
+      final userId = _client.auth.currentUser?.id;
+      if (userId == null) {
+        throw Exception('User not authenticated');
+      }
+      await _client
+          .from('user_favorite_repeaters')
+          .delete()
+          .eq('user_id', userId)
+          .eq('repeater_id', repeaterId);
+    } catch (error, stackTrace) {
+      log('Error removing favorite repeater: $error', stackTrace: stackTrace);
+      rethrow;
+    }
   }
 }
 

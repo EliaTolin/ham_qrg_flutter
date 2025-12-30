@@ -53,12 +53,16 @@ class ModeFilterChips extends ConsumerWidget {
                 selectedColor: modeColor.withValues(alpha: 0.2),
                 checkmarkColor: modeColor,
                 labelStyle: TextStyle(
-                  color: isSelected ? modeColor : colorScheme.onSurface.withValues(alpha: 0.7),
+                  color: isSelected
+                      ? modeColor
+                      : colorScheme.onSurface.withValues(alpha: 0.7),
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                 ),
                 onSelected: (_) => onModeToggled(mode),
                 side: BorderSide(
-                  color: isSelected ? modeColor : colorScheme.outline.withValues(alpha: 0.3),
+                  color: isSelected
+                      ? modeColor
+                      : colorScheme.outline.withValues(alpha: 0.3),
                   width: isSelected ? 1.5 : 1,
                 ),
               ),

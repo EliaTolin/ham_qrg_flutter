@@ -50,7 +50,8 @@ bool useShouldShowLocationButton(
       }
 
       // Check periodically
-      final timer = Timer.periodic(const Duration(seconds: 2), (_) => checkDistance());
+      final timer =
+          Timer.periodic(const Duration(seconds: 2), (_) => checkDistance());
       checkDistance(); // Initial check
 
       return timer.cancel;

@@ -87,7 +87,9 @@ class RepeatersListPage extends HookConsumerWidget {
     }
 
     // Handle error state
-    if (listAsyncState.hasError && !isSearchMode && listAsyncState.error != null) {
+    if (listAsyncState.hasError &&
+        !isSearchMode &&
+        listAsyncState.error != null) {
       return Scaffold(
         appBar: AppBar(
           title: Text(context.localization.repeatersListTitle),
@@ -259,7 +261,8 @@ class RepeatersListPage extends HookConsumerWidget {
                   LocationErrorType.permissionDenied ||
                   LocationErrorType.permissionPermanentlyDenied =>
                     l10n.repeatersMapPermissionPermanentlyDenied,
-                  LocationErrorType.servicesDisabled => l10n.repeatersMapLocationServicesDisabled,
+                  LocationErrorType.servicesDisabled =>
+                    l10n.repeatersMapLocationServicesDisabled,
                 },
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge,
@@ -334,7 +337,8 @@ class RepeatersListPage extends HookConsumerWidget {
                   LocationErrorType.permissionDenied ||
                   LocationErrorType.permissionPermanentlyDenied =>
                     l10n.repeatersMapPermissionPermanentlyDenied,
-                  LocationErrorType.servicesDisabled => l10n.repeatersMapLocationServicesDisabled,
+                  LocationErrorType.servicesDisabled =>
+                    l10n.repeatersMapLocationServicesDisabled,
                 },
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge,

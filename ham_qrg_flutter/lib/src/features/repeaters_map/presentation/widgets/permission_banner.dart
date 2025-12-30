@@ -19,9 +19,11 @@ class PermissionBanner extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
     final description = switch (errorType) {
-      LocationErrorType.servicesDisabled => l10n.repeatersMapLocationServicesDisabled,
+      LocationErrorType.servicesDisabled =>
+        l10n.repeatersMapLocationServicesDisabled,
       LocationErrorType.permissionDenied => l10n.repeatersMapPermissionMessage,
-      LocationErrorType.permissionPermanentlyDenied => l10n.repeatersMapPermissionPermanentlyDenied,
+      LocationErrorType.permissionPermanentlyDenied =>
+        l10n.repeatersMapPermissionPermanentlyDenied,
     };
 
     return InfoBanner(

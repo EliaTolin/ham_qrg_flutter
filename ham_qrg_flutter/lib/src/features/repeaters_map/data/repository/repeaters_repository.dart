@@ -66,6 +66,23 @@ class RepeatersRepository {
   Future<int?> getTotalFavoritesCount() async {
     return _datasource.getTotalFavoritesCount();
   }
+
+  Future<List<String>> getFavoriteRepeatersIds() async {
+    return _datasource.getFavoriteRepeatersIds();
+  }
+
+  Future<List<Repeater>> getFavoriteRepeaters() async {
+    final data = await _datasource.getFavoriteRepeaters();
+    return data.map(_mapper.fromModel).toList();
+  }
+
+  Future<void> addFavoriteRepeater(String repeaterId) async {
+    return _datasource.addFavoriteRepeater(repeaterId);
+  }
+
+  Future<void> removeFavoriteRepeater(String repeaterId) async {
+    return _datasource.removeFavoriteRepeater(repeaterId);
+  }
 }
 
 @riverpod

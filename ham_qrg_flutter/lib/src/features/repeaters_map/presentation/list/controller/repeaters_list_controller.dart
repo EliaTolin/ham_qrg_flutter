@@ -33,7 +33,8 @@ class RepeatersListController extends _$RepeatersListController {
     state = const AsyncLoading();
     state = await AsyncValue.guard(
       () => _loadInitialRepeaters(
-        selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
+        selectedModes:
+            newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
       ),
     );
   }

@@ -87,7 +87,8 @@ class RepeaterDetailPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            RepeaterModeHelper.getModeLabel(repeater.mode, l10n),
+                            RepeaterModeHelper.getModeLabel(
+                                repeater.mode, l10n),
                             style: theme.textTheme.labelMedium?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
@@ -136,13 +137,15 @@ class RepeaterDetailPage extends StatelessWidget {
                 // Shift & CTCSS Row
                 Row(
                   children: [
-                    if (repeater.shiftHz != null || repeater.shiftRaw != null) ...[
+                    if (repeater.shiftHz != null ||
+                        repeater.shiftRaw != null) ...[
                       Expanded(
                         child: _InfoCard(
                           icon: Icons.swap_horiz,
                           iconColor: colorScheme.secondary,
                           title: l10n.repeaterShift,
-                          value: formatShift(repeater.shiftHz, repeater.shiftRaw),
+                          value:
+                              formatShift(repeater.shiftHz, repeater.shiftRaw),
                           subtitle: 'Offset',
                         ),
                       ),

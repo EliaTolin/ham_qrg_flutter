@@ -134,7 +134,9 @@ class RepeaterDetailsSheet extends ConsumerWidget {
           value: formatFrequency(repeater.frequencyHz),
         ),
         // Shift & CTCSS Row
-        if (repeater.shiftHz != null || repeater.shiftRaw != null || repeater.ctcssHz != null) ...[
+        if (repeater.shiftHz != null ||
+            repeater.shiftRaw != null ||
+            repeater.ctcssHz != null) ...[
           const SizedBox(height: 12),
           Row(
             children: [

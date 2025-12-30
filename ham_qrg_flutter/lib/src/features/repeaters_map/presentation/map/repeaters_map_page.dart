@@ -256,7 +256,8 @@ class RepeatersMapPage extends HookConsumerWidget {
         final lon = repeater.longitude;
         if (lat == null || lon == null) continue;
 
-        final iconBytes = await RepeaterModeHelper.generateRepeaterIcon(repeater.mode);
+        final iconBytes =
+            await RepeaterModeHelper.generateRepeaterIcon(repeater.mode);
         annotations.add(
           PointAnnotationOptions(
             geometry: Point(coordinates: Position(lon, lat)),
@@ -361,7 +362,8 @@ class RepeatersMapPage extends HookConsumerWidget {
     );
   }
 
-  Future<({double lat1, double lon1, double lat2, double lon2})> _getVisibleBounds(
+  Future<({double lat1, double lon1, double lat2, double lon2})>
+      _getVisibleBounds(
     MapboxMap map,
   ) async {
     final bounds = await map.coordinateBoundsForCamera(
