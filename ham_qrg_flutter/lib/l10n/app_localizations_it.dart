@@ -222,6 +222,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterDistance => 'Distanza';
 
   @override
+  String get repeaterViewFullDetails => 'Vedi dettagli completi';
+
+  @override
   String get repeatersMapReturnToLocation => 'Torna alla mia posizione';
 
   @override

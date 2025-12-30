@@ -91,6 +91,70 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RepeaterDetailPage]
+class RepeaterDetailRoute extends PageRouteInfo<RepeaterDetailRouteArgs> {
+  RepeaterDetailRoute({
+    required String repeaterId,
+    required Repeater repeater,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RepeaterDetailRoute.name,
+          args: RepeaterDetailRouteArgs(
+            repeaterId: repeaterId,
+            repeater: repeater,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RepeaterDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RepeaterDetailRouteArgs>();
+      return RepeaterDetailPage(
+        repeaterId: args.repeaterId,
+        repeater: args.repeater,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class RepeaterDetailRouteArgs {
+  const RepeaterDetailRouteArgs({
+    required this.repeaterId,
+    required this.repeater,
+    this.key,
+  });
+
+  final String repeaterId;
+
+  final Repeater repeater;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RepeaterDetailRouteArgs{repeaterId: $repeaterId, repeater: $repeater, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! RepeaterDetailRouteArgs) return false;
+    return repeaterId == other.repeaterId &&
+        repeater == other.repeater &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode => repeaterId.hashCode ^ repeater.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [RepeatersListPage]
 class RepeatersListRoute extends PageRouteInfo<void> {
   const RepeatersListRoute({List<PageRouteInfo>? children})

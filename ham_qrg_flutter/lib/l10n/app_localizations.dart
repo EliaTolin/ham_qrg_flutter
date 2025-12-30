@@ -496,6 +496,12 @@ abstract class AppLocalizations {
   /// **'Distanza'**
   String get repeaterDistance;
 
+  /// No description provided for @repeaterViewFullDetails.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi dettagli completi'**
+  String get repeaterViewFullDetails;
+
   /// No description provided for @repeatersMapReturnToLocation.
   ///
   /// In it, this message translates to:
