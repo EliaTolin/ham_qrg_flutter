@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:ham_qrg/clients/supabase/supabase_client/supabase_client.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/datasource/repeaters_datasource.dart';
-import 'package:ham_qrg/src/features/repeaters_map/data/model/feedback/feedback_model.dart';
-import 'package:ham_qrg/src/features/repeaters_map/data/model/feedback/feedback_stats_model.dart';
+import 'package:ham_qrg/src/features/repeaters_map/data/model/feedback/repeater_feedback_model.dart';
+import 'package:ham_qrg/src/features/repeaters_map/data/model/feedback/repeater_feedback_stats_model.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/model/repeater/repeater_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -259,7 +259,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
-  Future<FeedbackStatsModel?> getRepeaterFeedbackStats(
+  Future<RepeaterFeedbackStatsModel?> getRepeaterFeedbackStats(
     String repeaterId,
   ) async {
     try {
@@ -273,7 +273,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         return null;
       }
 
-      return FeedbackStatsModel.fromJson(
+      return RepeaterFeedbackStatsModel.fromJson(
         Map<String, dynamic>.from(data),
       );
     } catch (error, stackTrace) {
@@ -322,7 +322,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
-  Future<List<FeedbackModel>> getRepeaterFeedbacks({
+  Future<List<RepeaterFeedbackModel>> getRepeaterFeedbacks({
     required String repeaterId,
     int? limit,
   }) async {
@@ -341,13 +341,39 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
 
       return (data as List)
           .map(
-            (e) => FeedbackModel.fromJson(
+            (e) => RepeaterFeedbackModel.fromJson(
               Map<String, dynamic>.from(e),
             ),
           )
           .toList();
     } catch (error, stackTrace) {
       log('Error fetching repeater feedbacks: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<RepeaterFeedbackModel?> getMyRepeaterFeedback({
+    required String userId,
+    required String repeaterId,
+  }) async {
+    try {
+      final data = await _client
+          .from('repeater_feedback')
+          .select()
+          .eq('repeater_id', repeaterId)
+          .eq('user_id', userId)
+          .maybeSingle();
+
+      if (data == null) {
+        return null;
+      }
+
+      return RepeaterFeedbackModel.fromJson(
+        Map<String, dynamic>.from(data),
+      );
+    } catch (error, stackTrace) {
+      log('Error fetching my repeater feedback: $error', stackTrace: stackTrace);
       rethrow;
     }
   }

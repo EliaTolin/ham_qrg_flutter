@@ -84,4 +84,3 @@ final class DeleteRepeaterFeedbackFamily extends $Family
   @override
   String toString() => r'deleteRepeaterFeedbackProvider';
 }
-

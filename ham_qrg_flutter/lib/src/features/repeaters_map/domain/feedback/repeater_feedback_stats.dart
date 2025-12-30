@@ -1,15 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'feedback_stats.freezed.dart';
+part 'repeater_feedback_stats.freezed.dart';
 
 @freezed
-abstract class FeedbackStats with _$FeedbackStats {
-  const factory FeedbackStats({
+abstract class RepeaterFeedbackStats with _$RepeaterFeedbackStats {
+  const factory RepeaterFeedbackStats({
     required String repeaterId,
     required int likesTotal,
     required int downTotal,
     DateTime? lastLikeAt,
     DateTime? lastDownAt,
-  }) = _FeedbackStats;
+  }) = _RepeaterFeedbackStats;
 }
-

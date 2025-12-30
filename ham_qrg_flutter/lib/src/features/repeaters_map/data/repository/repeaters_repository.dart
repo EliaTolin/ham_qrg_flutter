@@ -1,10 +1,11 @@
 import 'package:ham_qrg/src/features/repeaters_map/data/datasource/repeaters_datasource.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/datasource/repeaters_supabase_datasource.dart';
-import 'package:ham_qrg/src/features/repeaters_map/data/mappers/feedback_mappers.dart';
+import 'package:ham_qrg/src/features/repeaters_map/data/mappers/repeater_feedback_mapper.dart';
+import 'package:ham_qrg/src/features/repeaters_map/data/mappers/repeater_feedback_stats_mapper.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/mappers/repeaters_mappers.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/feedback.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/feedback_stats.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/feedback_type.dart';
+import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/repeater_feedback.dart';
+import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/repeater_feedback_stats.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/station_kind.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -16,8 +17,8 @@ class RepeatersRepository {
   final RepeatersDatasource _datasource;
 
   final _mapper = RepeatersMappers();
-  final _feedbackMapper = FeedbackMapper();
-  final _feedbackStatsMapper = FeedbackStatsMapper();
+  final _feedbackMapper = RepeaterFeedbackMapper();
+  final _feedbackStatsMapper = RepeaterFeedbackStatsMapper();
 
   Future<List<Repeater>> getRepeatersInBounds({
     required double lat1,
@@ -90,7 +91,9 @@ class RepeatersRepository {
   }
 
   // Feedback methods
-  Future<FeedbackStats?> getRepeaterFeedbackStats(String repeaterId) async {
+  Future<RepeaterFeedbackStats?> getRepeaterFeedbackStats(
+    String repeaterId,
+  ) async {
     final model = await _datasource.getRepeaterFeedbackStats(repeaterId);
     if (model == null) {
       return null;
@@ -110,8 +113,8 @@ class RepeatersRepository {
     return _datasource.addRepeaterFeedback(
       userId: userId,
       repeaterId: repeaterId,
-      type: _feedbackTypeToString(type),
-      station: _stationKindToString(station),
+      type: type.name,
+      station: station.name,
       latitude: latitude,
       longitude: longitude,
       comment: comment,
@@ -122,7 +125,7 @@ class RepeatersRepository {
     return _datasource.deleteRepeaterFeedback(userId, feedbackId);
   }
 
-  Future<List<Feedback>> getRepeaterFeedbacks({
+  Future<List<RepeaterFeedback>> getRepeaterFeedbacks({
     required String repeaterId,
     int? limit,
   }) async {
@@ -133,24 +136,18 @@ class RepeatersRepository {
     return data.map(_feedbackMapper.fromModel).toList();
   }
 
-  String _feedbackTypeToString(FeedbackType type) {
-    switch (type) {
-      case FeedbackType.like:
-        return 'like';
-      case FeedbackType.down:
-        return 'down';
+  Future<RepeaterFeedback?> getMyRepeaterFeedback({
+    required String userId,
+    required String repeaterId,
+  }) async {
+    final model = await _datasource.getMyRepeaterFeedback(
+      userId: userId,
+      repeaterId: repeaterId,
+    );
+    if (model == null) {
+      return null;
     }
-  }
-
-  String _stationKindToString(StationKind station) {
-    switch (station) {
-      case StationKind.portable:
-        return 'portable';
-      case StationKind.mobile:
-        return 'mobile';
-      case StationKind.fixed:
-        return 'fixed';
-    }
+    return _feedbackMapper.fromModel(model);
   }
 }
 

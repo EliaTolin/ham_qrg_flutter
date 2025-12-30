@@ -18,7 +18,10 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       shiftRaw: model.shiftRaw,
       toneRaw: model.toneRaw,
       ctcssHz: model.ctcssHz,
-      mode: _modeFromString(model.mode),
+      mode: RepeaterMode.values.firstWhere(
+        (e) => e.name.toLowerCase() == model.mode.toLowerCase(),
+        orElse: () => RepeaterMode.analog,
+      ),
       network: model.network,
       region: model.region,
       provinceCode: model.provinceCode,
@@ -45,7 +48,7 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       shiftRaw: entity.shiftRaw,
       toneRaw: entity.toneRaw,
       ctcssHz: entity.ctcssHz,
-      mode: _modeToString(entity.mode),
+      mode: entity.mode.name,
       network: entity.network,
       region: entity.region,
       provinceCode: entity.provinceCode,
@@ -57,50 +60,7 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
     );
   }
 
-  String mapModeToValue(RepeaterMode mode) => _modeToString(mode);
-
   List<String>? mapModesToValues(List<RepeaterMode>? modes) {
-    return modes?.map(_modeToString).toList();
-  }
-
-  RepeaterMode _modeFromString(String value) {
-    final normalized = value.toLowerCase();
-    switch (normalized) {
-      case 'analog':
-        return RepeaterMode.analog;
-      case 'c4fm':
-        return RepeaterMode.c4fm;
-      case 'dstar':
-        return RepeaterMode.dstar;
-      case 'dmr':
-        return RepeaterMode.dmr;
-      case 'allmode':
-        return RepeaterMode.allmode;
-      case 'echolink':
-        return RepeaterMode.echolink;
-      case 'winlink':
-        return RepeaterMode.winlink;
-      default:
-        return RepeaterMode.analog;
-    }
-  }
-
-  String _modeToString(RepeaterMode mode) {
-    switch (mode) {
-      case RepeaterMode.analog:
-        return 'Analog';
-      case RepeaterMode.c4fm:
-        return 'C4FM';
-      case RepeaterMode.dstar:
-        return 'DSTAR';
-      case RepeaterMode.dmr:
-        return 'DMR';
-      case RepeaterMode.allmode:
-        return 'ALLMODE';
-      case RepeaterMode.echolink:
-        return 'Echolink';
-      case RepeaterMode.winlink:
-        return 'Winlink';
-    }
+    return modes?.map((mode) => mode.name).toList();
   }
 }

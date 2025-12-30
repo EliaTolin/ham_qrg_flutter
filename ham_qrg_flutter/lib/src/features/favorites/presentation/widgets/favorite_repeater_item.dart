@@ -4,7 +4,6 @@ import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/common/widgets/icons/repeater_icon.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters_map/presentation/widgets/sheet/repeater_details_sheet.dart';
 
 class FavoriteRepeaterItem extends StatelessWidget {
   const FavoriteRepeaterItem({
@@ -121,29 +120,6 @@ class FavoriteRepeaterItem extends StatelessWidget {
       return '${distanceMeters.toStringAsFixed(0)} m';
     }
     return '${(distanceMeters / 1000).toStringAsFixed(1)} km';
-  }
-
-  void _showRepeaterDetails(BuildContext context, Repeater repeater) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => DraggableScrollableSheet(
-        initialChildSize: 0.6,
-        minChildSize: 0.5,
-        maxChildSize: 0.95,
-        builder: (context, scrollController) => Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-          ),
-          child: RepeaterDetailsSheet(
-            repeater: repeater,
-            scrollController: scrollController,
-          ),
-        ),
-      ),
-    );
   }
 }
 

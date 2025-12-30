@@ -3,4 +3,3 @@ enum StationKind {
   mobile,
   fixed,
 }
-

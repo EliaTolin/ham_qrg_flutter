@@ -64,5 +64,3 @@ class FavoritesController extends _$FavoritesController {
     });
   }
 }
-
-

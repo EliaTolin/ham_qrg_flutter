@@ -2,4 +2,3 @@ enum FeedbackType {
   like,
   down,
 }
-

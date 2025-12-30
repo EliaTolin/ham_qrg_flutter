@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'feedback_model.freezed.dart';
-part 'feedback_model.g.dart';
+part 'repeater_feedback_model.freezed.dart';
+part 'repeater_feedback_model.g.dart';
 
 @freezed
-abstract class FeedbackModel with _$FeedbackModel {
-  const factory FeedbackModel({
+abstract class RepeaterFeedbackModel with _$RepeaterFeedbackModel {
+  const factory RepeaterFeedbackModel({
     required String id,
     @JsonKey(name: 'repeater_id') required String repeaterId,
     @JsonKey(name: 'user_id') required String userId,
@@ -15,9 +15,9 @@ abstract class FeedbackModel with _$FeedbackModel {
     required double lon,
     required String comment,
     @JsonKey(name: 'created_at') required String createdAt,
-  }) = _FeedbackModel;
+  }) = _RepeaterFeedbackModel;
 
-  factory FeedbackModel.fromJson(Map<String, dynamic> json) =>
-      _$FeedbackModelFromJson(json);
+  factory RepeaterFeedbackModel.fromJson(Map<String, dynamic> json) =>
+      _$RepeaterFeedbackModelFromJson(json);
 }
 

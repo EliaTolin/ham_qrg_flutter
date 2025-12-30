@@ -17,5 +17,3 @@ abstract class FavoritesState with _$FavoritesState {
         searchQuery: '',
       );
 }
-
-

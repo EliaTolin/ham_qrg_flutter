@@ -13,8 +13,12 @@ part of 'get_repeater_feedback_stats_provider.dart';
 final getRepeaterFeedbackStatsProvider = GetRepeaterFeedbackStatsFamily._();
 
 final class GetRepeaterFeedbackStatsProvider extends $FunctionalProvider<
-        AsyncValue<FeedbackStats?>, FeedbackStats?, FutureOr<FeedbackStats?>>
-    with $FutureModifier<FeedbackStats?>, $FutureProvider<FeedbackStats?> {
+        AsyncValue<RepeaterFeedbackStats?>,
+        RepeaterFeedbackStats?,
+        FutureOr<RepeaterFeedbackStats?>>
+    with
+        $FutureModifier<RepeaterFeedbackStats?>,
+        $FutureProvider<RepeaterFeedbackStats?> {
   GetRepeaterFeedbackStatsProvider._(
       {required GetRepeaterFeedbackStatsFamily super.from,
       required String super.argument})
@@ -38,12 +42,12 @@ final class GetRepeaterFeedbackStatsProvider extends $FunctionalProvider<
 
   @$internal
   @override
-  $FutureProviderElement<FeedbackStats?> $createElement(
+  $FutureProviderElement<RepeaterFeedbackStats?> $createElement(
           $ProviderPointer pointer) =>
       $FutureProviderElement(pointer);
 
   @override
-  FutureOr<FeedbackStats?> create(Ref ref) {
+  FutureOr<RepeaterFeedbackStats?> create(Ref ref) {
     final argument = this.argument as String;
     return getRepeaterFeedbackStats(
       ref,
@@ -64,10 +68,10 @@ final class GetRepeaterFeedbackStatsProvider extends $FunctionalProvider<
 }
 
 String _$getRepeaterFeedbackStatsHash() =>
-    r'5f83663ee4a0ab9448728f42d094c18c55e4895c';
+    r'f479c527dfa47405042c90236c11200167a7489e';
 
 final class GetRepeaterFeedbackStatsFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<FeedbackStats?>, String> {
+    with $FunctionalFamilyOverride<FutureOr<RepeaterFeedbackStats?>, String> {
   GetRepeaterFeedbackStatsFamily._()
       : super(
           retry: null,
@@ -85,4 +89,3 @@ final class GetRepeaterFeedbackStatsFamily extends $Family
   @override
   String toString() => r'getRepeaterFeedbackStatsProvider';
 }
-

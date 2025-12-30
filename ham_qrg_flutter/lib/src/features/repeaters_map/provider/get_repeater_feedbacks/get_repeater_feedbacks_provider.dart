@@ -1,11 +1,11 @@
 import 'package:ham_qrg/src/features/repeaters_map/data/repository/repeaters_repository.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/feedback.dart';
+import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/repeater_feedback.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'get_repeater_feedbacks_provider.g.dart';
 
 @riverpod
-Future<List<Feedback>> getRepeaterFeedbacks(
+Future<List<RepeaterFeedback>> getRepeaterFeedbacks(
   Ref ref, {
   required String repeaterId,
   int? limit,
@@ -16,4 +16,3 @@ Future<List<Feedback>> getRepeaterFeedbacks(
     limit: limit,
   );
 }
-

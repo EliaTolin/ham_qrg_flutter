@@ -86,9 +86,7 @@ class _FilterChip extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isSelected
-                ? (isPrimary
-                    ? colorScheme.outline
-                    : (color ?? colorScheme.primary))
+                ? (isPrimary ? colorScheme.outline : (color ?? colorScheme.primary))
                 : colorScheme.outline.withValues(alpha: 0.1),
             width: isSelected ? 1.5 : 1,
           ),
@@ -97,9 +95,7 @@ class _FilterChip extends StatelessWidget {
           label,
           style: theme.textTheme.labelSmall?.copyWith(
             color: isSelected
-                ? (isPrimary
-                    ? colorScheme.onSurface
-                    : (color ?? colorScheme.primary))
+                ? (isPrimary ? colorScheme.onSurface : (color ?? colorScheme.primary))
                 : colorScheme.onSurfaceVariant,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
           ),
@@ -108,5 +104,3 @@ class _FilterChip extends StatelessWidget {
     );
   }
 }
-
-

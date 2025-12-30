@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'feedback.dart';
+part of 'repeater_feedback_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,79 +13,87 @@ part of 'feedback.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$Feedback {
+mixin _$RepeaterFeedbackModel {
   String get id;
+  @JsonKey(name: 'repeater_id')
   String get repeaterId;
+  @JsonKey(name: 'user_id')
   String get userId;
-  FeedbackType get type;
-  StationKind get station;
-  double get latitude;
-  double get longitude;
+  String get type;
+  String get station;
+  double get lat;
+  double get lon;
   String get comment;
-  DateTime get createdAt;
+  @JsonKey(name: 'created_at')
+  String get createdAt;
 
-  /// Create a copy of Feedback
+  /// Create a copy of RepeaterFeedbackModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $FeedbackCopyWith<Feedback> get copyWith =>
-      _$FeedbackCopyWithImpl<Feedback>(this as Feedback, _$identity);
+  $RepeaterFeedbackModelCopyWith<RepeaterFeedbackModel> get copyWith =>
+      _$RepeaterFeedbackModelCopyWithImpl<RepeaterFeedbackModel>(
+          this as RepeaterFeedbackModel, _$identity);
+
+  /// Serializes this RepeaterFeedbackModel to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Feedback &&
+            other is RepeaterFeedbackModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.station, station) || other.station == station) &&
-            (identical(other.latitude, latitude) ||
-                other.latitude == latitude) &&
-            (identical(other.longitude, longitude) ||
-                other.longitude == longitude) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lon, lon) || other.lon == lon) &&
             (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, repeaterId, userId, type,
-      station, latitude, longitude, comment, createdAt);
+      station, lat, lon, comment, createdAt);
 
   @override
   String toString() {
-    return 'Feedback(id: $id, repeaterId: $repeaterId, userId: $userId, type: $type, station: $station, latitude: $latitude, longitude: $longitude, comment: $comment, createdAt: $createdAt)';
+    return 'RepeaterFeedbackModel(id: $id, repeaterId: $repeaterId, userId: $userId, type: $type, station: $station, lat: $lat, lon: $lon, comment: $comment, createdAt: $createdAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class $FeedbackCopyWith<$Res> {
-  factory $FeedbackCopyWith(Feedback value, $Res Function(Feedback) _then) =
-      _$FeedbackCopyWithImpl;
+abstract mixin class $RepeaterFeedbackModelCopyWith<$Res> {
+  factory $RepeaterFeedbackModelCopyWith(RepeaterFeedbackModel value,
+          $Res Function(RepeaterFeedbackModel) _then) =
+      _$RepeaterFeedbackModelCopyWithImpl;
   @useResult
   $Res call(
       {String id,
-      String repeaterId,
-      String userId,
-      FeedbackType type,
-      StationKind station,
-      double latitude,
-      double longitude,
+      @JsonKey(name: 'repeater_id') String repeaterId,
+      @JsonKey(name: 'user_id') String userId,
+      String type,
+      String station,
+      double lat,
+      double lon,
       String comment,
-      DateTime createdAt});
+      @JsonKey(name: 'created_at') String createdAt});
 }
 
 /// @nodoc
-class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
-  _$FeedbackCopyWithImpl(this._self, this._then);
+class _$RepeaterFeedbackModelCopyWithImpl<$Res>
+    implements $RepeaterFeedbackModelCopyWith<$Res> {
+  _$RepeaterFeedbackModelCopyWithImpl(this._self, this._then);
 
-  final Feedback _self;
-  final $Res Function(Feedback) _then;
+  final RepeaterFeedbackModel _self;
+  final $Res Function(RepeaterFeedbackModel) _then;
 
-  /// Create a copy of Feedback
+  /// Create a copy of RepeaterFeedbackModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -95,8 +103,8 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
     Object? userId = null,
     Object? type = null,
     Object? station = null,
-    Object? latitude = null,
-    Object? longitude = null,
+    Object? lat = null,
+    Object? lon = null,
     Object? comment = null,
     Object? createdAt = null,
   }) {
@@ -116,18 +124,18 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as FeedbackType,
+              as String,
       station: null == station
           ? _self.station
           : station // ignore: cast_nullable_to_non_nullable
-              as StationKind,
-      latitude: null == latitude
-          ? _self.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _self.lat
+          : lat // ignore: cast_nullable_to_non_nullable
               as double,
-      longitude: null == longitude
-          ? _self.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
+      lon: null == lon
+          ? _self.lon
+          : lon // ignore: cast_nullable_to_non_nullable
               as double,
       comment: null == comment
           ? _self.comment
@@ -136,13 +144,13 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
     ));
   }
 }
 
-/// Adds pattern-matching-related methods to [Feedback].
-extension FeedbackPatterns on Feedback {
+/// Adds pattern-matching-related methods to [RepeaterFeedbackModel].
+extension RepeaterFeedbackModelPatterns on RepeaterFeedbackModel {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:
@@ -157,12 +165,12 @@ extension FeedbackPatterns on Feedback {
 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Feedback value)? $default, {
+    TResult Function(_RepeaterFeedbackModel value)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _Feedback() when $default != null:
+      case _RepeaterFeedbackModel() when $default != null:
         return $default(_that);
       case _:
         return orElse();
@@ -184,11 +192,11 @@ extension FeedbackPatterns on Feedback {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_Feedback value) $default,
+    TResult Function(_RepeaterFeedbackModel value) $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _Feedback():
+      case _RepeaterFeedbackModel():
         return $default(_that);
       case _:
         throw StateError('Unexpected subclass');
@@ -209,11 +217,11 @@ extension FeedbackPatterns on Feedback {
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_Feedback value)? $default,
+    TResult? Function(_RepeaterFeedbackModel value)? $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _Feedback() when $default != null:
+      case _RepeaterFeedbackModel() when $default != null:
         return $default(_that);
       case _:
         return null;
@@ -236,28 +244,28 @@ extension FeedbackPatterns on Feedback {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             String id,
-            String repeaterId,
-            String userId,
-            FeedbackType type,
-            StationKind station,
-            double latitude,
-            double longitude,
+            @JsonKey(name: 'repeater_id') String repeaterId,
+            @JsonKey(name: 'user_id') String userId,
+            String type,
+            String station,
+            double lat,
+            double lon,
             String comment,
-            DateTime createdAt)?
+            @JsonKey(name: 'created_at') String createdAt)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _Feedback() when $default != null:
+      case _RepeaterFeedbackModel() when $default != null:
         return $default(
             _that.id,
             _that.repeaterId,
             _that.userId,
             _that.type,
             _that.station,
-            _that.latitude,
-            _that.longitude,
+            _that.lat,
+            _that.lon,
             _that.comment,
             _that.createdAt);
       case _:
@@ -282,27 +290,27 @@ extension FeedbackPatterns on Feedback {
   TResult when<TResult extends Object?>(
     TResult Function(
             String id,
-            String repeaterId,
-            String userId,
-            FeedbackType type,
-            StationKind station,
-            double latitude,
-            double longitude,
+            @JsonKey(name: 'repeater_id') String repeaterId,
+            @JsonKey(name: 'user_id') String userId,
+            String type,
+            String station,
+            double lat,
+            double lon,
             String comment,
-            DateTime createdAt)
+            @JsonKey(name: 'created_at') String createdAt)
         $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _Feedback():
+      case _RepeaterFeedbackModel():
         return $default(
             _that.id,
             _that.repeaterId,
             _that.userId,
             _that.type,
             _that.station,
-            _that.latitude,
-            _that.longitude,
+            _that.lat,
+            _that.lon,
             _that.comment,
             _that.createdAt);
       case _:
@@ -326,27 +334,27 @@ extension FeedbackPatterns on Feedback {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             String id,
-            String repeaterId,
-            String userId,
-            FeedbackType type,
-            StationKind station,
-            double latitude,
-            double longitude,
+            @JsonKey(name: 'repeater_id') String repeaterId,
+            @JsonKey(name: 'user_id') String userId,
+            String type,
+            String station,
+            double lat,
+            double lon,
             String comment,
-            DateTime createdAt)?
+            @JsonKey(name: 'created_at') String createdAt)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _Feedback() when $default != null:
+      case _RepeaterFeedbackModel() when $default != null:
         return $default(
             _that.id,
             _that.repeaterId,
             _that.userId,
             _that.type,
             _that.station,
-            _that.latitude,
-            _that.longitude,
+            _that.lat,
+            _that.lon,
             _that.comment,
             _that.createdAt);
       case _:
@@ -356,103 +364,117 @@ extension FeedbackPatterns on Feedback {
 }
 
 /// @nodoc
-
-class _Feedback implements Feedback {
-  const _Feedback(
+@JsonSerializable()
+class _RepeaterFeedbackModel implements RepeaterFeedbackModel {
+  const _RepeaterFeedbackModel(
       {required this.id,
-      required this.repeaterId,
-      required this.userId,
+      @JsonKey(name: 'repeater_id') required this.repeaterId,
+      @JsonKey(name: 'user_id') required this.userId,
       required this.type,
       required this.station,
-      required this.latitude,
-      required this.longitude,
+      required this.lat,
+      required this.lon,
       required this.comment,
-      required this.createdAt});
+      @JsonKey(name: 'created_at') required this.createdAt});
+  factory _RepeaterFeedbackModel.fromJson(Map<String, dynamic> json) =>
+      _$RepeaterFeedbackModelFromJson(json);
 
   @override
   final String id;
   @override
+  @JsonKey(name: 'repeater_id')
   final String repeaterId;
   @override
+  @JsonKey(name: 'user_id')
   final String userId;
   @override
-  final FeedbackType type;
+  final String type;
   @override
-  final StationKind station;
+  final String station;
   @override
-  final double latitude;
+  final double lat;
   @override
-  final double longitude;
+  final double lon;
   @override
   final String comment;
   @override
-  final DateTime createdAt;
+  @JsonKey(name: 'created_at')
+  final String createdAt;
 
-  /// Create a copy of Feedback
+  /// Create a copy of RepeaterFeedbackModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$FeedbackCopyWith<_Feedback> get copyWith =>
-      __$FeedbackCopyWithImpl<_Feedback>(this, _$identity);
+  _$RepeaterFeedbackModelCopyWith<_RepeaterFeedbackModel> get copyWith =>
+      __$RepeaterFeedbackModelCopyWithImpl<_RepeaterFeedbackModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$RepeaterFeedbackModelToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Feedback &&
+            other is _RepeaterFeedbackModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.station, station) || other.station == station) &&
-            (identical(other.latitude, latitude) ||
-                other.latitude == latitude) &&
-            (identical(other.longitude, longitude) ||
-                other.longitude == longitude) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lon, lon) || other.lon == lon) &&
             (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, repeaterId, userId, type,
-      station, latitude, longitude, comment, createdAt);
+      station, lat, lon, comment, createdAt);
 
   @override
   String toString() {
-    return 'Feedback(id: $id, repeaterId: $repeaterId, userId: $userId, type: $type, station: $station, latitude: $latitude, longitude: $longitude, comment: $comment, createdAt: $createdAt)';
+    return 'RepeaterFeedbackModel(id: $id, repeaterId: $repeaterId, userId: $userId, type: $type, station: $station, lat: $lat, lon: $lon, comment: $comment, createdAt: $createdAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$FeedbackCopyWith<$Res>
-    implements $FeedbackCopyWith<$Res> {
-  factory _$FeedbackCopyWith(_Feedback value, $Res Function(_Feedback) _then) =
-      __$FeedbackCopyWithImpl;
+abstract mixin class _$RepeaterFeedbackModelCopyWith<$Res>
+    implements $RepeaterFeedbackModelCopyWith<$Res> {
+  factory _$RepeaterFeedbackModelCopyWith(_RepeaterFeedbackModel value,
+          $Res Function(_RepeaterFeedbackModel) _then) =
+      __$RepeaterFeedbackModelCopyWithImpl;
   @override
   @useResult
   $Res call(
       {String id,
-      String repeaterId,
-      String userId,
-      FeedbackType type,
-      StationKind station,
-      double latitude,
-      double longitude,
+      @JsonKey(name: 'repeater_id') String repeaterId,
+      @JsonKey(name: 'user_id') String userId,
+      String type,
+      String station,
+      double lat,
+      double lon,
       String comment,
-      DateTime createdAt});
+      @JsonKey(name: 'created_at') String createdAt});
 }
 
 /// @nodoc
-class __$FeedbackCopyWithImpl<$Res> implements _$FeedbackCopyWith<$Res> {
-  __$FeedbackCopyWithImpl(this._self, this._then);
+class __$RepeaterFeedbackModelCopyWithImpl<$Res>
+    implements _$RepeaterFeedbackModelCopyWith<$Res> {
+  __$RepeaterFeedbackModelCopyWithImpl(this._self, this._then);
 
-  final _Feedback _self;
-  final $Res Function(_Feedback) _then;
+  final _RepeaterFeedbackModel _self;
+  final $Res Function(_RepeaterFeedbackModel) _then;
 
-  /// Create a copy of Feedback
+  /// Create a copy of RepeaterFeedbackModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -462,12 +484,12 @@ class __$FeedbackCopyWithImpl<$Res> implements _$FeedbackCopyWith<$Res> {
     Object? userId = null,
     Object? type = null,
     Object? station = null,
-    Object? latitude = null,
-    Object? longitude = null,
+    Object? lat = null,
+    Object? lon = null,
     Object? comment = null,
     Object? createdAt = null,
   }) {
-    return _then(_Feedback(
+    return _then(_RepeaterFeedbackModel(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -483,18 +505,18 @@ class __$FeedbackCopyWithImpl<$Res> implements _$FeedbackCopyWith<$Res> {
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as FeedbackType,
+              as String,
       station: null == station
           ? _self.station
           : station // ignore: cast_nullable_to_non_nullable
-              as StationKind,
-      latitude: null == latitude
-          ? _self.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _self.lat
+          : lat // ignore: cast_nullable_to_non_nullable
               as double,
-      longitude: null == longitude
-          ? _self.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
+      lon: null == lon
+          ? _self.lon
+          : lon // ignore: cast_nullable_to_non_nullable
               as double,
       comment: null == comment
           ? _self.comment
@@ -503,10 +525,9 @@ class __$FeedbackCopyWithImpl<$Res> implements _$FeedbackCopyWith<$Res> {
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
     ));
   }
 }
 
 // dart format on
-

@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'feedback_model.dart';
+part of 'repeater_feedback_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_FeedbackModel _$FeedbackModelFromJson(Map<String, dynamic> json) =>
-    _FeedbackModel(
+_RepeaterFeedbackModel _$RepeaterFeedbackModelFromJson(
+        Map<String, dynamic> json) =>
+    _RepeaterFeedbackModel(
       id: json['id'] as String,
       repeaterId: json['repeater_id'] as String,
       userId: json['user_id'] as String,
@@ -19,7 +20,8 @@ _FeedbackModel _$FeedbackModelFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String,
     );
 
-Map<String, dynamic> _$FeedbackModelToJson(_FeedbackModel instance) =>
+Map<String, dynamic> _$RepeaterFeedbackModelToJson(
+        _RepeaterFeedbackModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'repeater_id': instance.repeaterId,
@@ -31,4 +33,3 @@ Map<String, dynamic> _$FeedbackModelToJson(_FeedbackModel instance) =>
       'comment': instance.comment,
       'created_at': instance.createdAt,
     };
-

@@ -1,18 +1,23 @@
 import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:ham_qrg/src/features/repeaters_map/data/repository/repeaters_repository.dart';
+import 'package:ham_qrg/src/features/repeaters_map/domain/feedback/repeater_feedback.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'delete_repeater_feedback_provider.g.dart';
+part 'get_my_repeater_feedback_provider.g.dart';
 
 @riverpod
-Future<void> deleteRepeaterFeedback(
+Future<RepeaterFeedback?> getMyRepeaterFeedback(
   Ref ref,
-  String feedbackId,
+  String repeaterId,
 ) async {
   final userId = await ref.watch(getUserIdProvider.future);
   if (userId == null) {
-    throw Exception('User not authenticated');
+    return null;
   }
   final repository = ref.read(repeatersRepositoryProvider);
-  return repository.deleteRepeaterFeedback(userId, feedbackId);
+  return repository.getMyRepeaterFeedback(
+    userId: userId,
+    repeaterId: repeaterId,
+  );
 }
+

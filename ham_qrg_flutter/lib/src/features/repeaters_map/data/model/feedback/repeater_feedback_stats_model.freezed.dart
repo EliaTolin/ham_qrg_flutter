@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'feedback_stats_model.dart';
+part of 'repeater_feedback_stats_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,7 +13,7 @@ part of 'feedback_stats_model.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$FeedbackStatsModel {
+mixin _$RepeaterFeedbackStatsModel {
   @JsonKey(name: 'repeater_id')
   String get repeaterId;
   @JsonKey(name: 'likes_total')
@@ -25,22 +25,23 @@ mixin _$FeedbackStatsModel {
   @JsonKey(name: 'last_down_at')
   String? get lastDownAt;
 
-  /// Create a copy of FeedbackStatsModel
+  /// Create a copy of RepeaterFeedbackStatsModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $FeedbackStatsModelCopyWith<FeedbackStatsModel> get copyWith =>
-      _$FeedbackStatsModelCopyWithImpl<FeedbackStatsModel>(
-          this as FeedbackStatsModel, _$identity);
+  $RepeaterFeedbackStatsModelCopyWith<RepeaterFeedbackStatsModel>
+      get copyWith =>
+          _$RepeaterFeedbackStatsModelCopyWithImpl<RepeaterFeedbackStatsModel>(
+              this as RepeaterFeedbackStatsModel, _$identity);
 
-  /// Serializes this FeedbackStatsModel to a JSON map.
+  /// Serializes this RepeaterFeedbackStatsModel to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FeedbackStatsModel &&
+            other is RepeaterFeedbackStatsModel &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
             (identical(other.likesTotal, likesTotal) ||
@@ -60,15 +61,15 @@ mixin _$FeedbackStatsModel {
 
   @override
   String toString() {
-    return 'FeedbackStatsModel(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
+    return 'RepeaterFeedbackStatsModel(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class $FeedbackStatsModelCopyWith<$Res> {
-  factory $FeedbackStatsModelCopyWith(
-          FeedbackStatsModel value, $Res Function(FeedbackStatsModel) _then) =
-      _$FeedbackStatsModelCopyWithImpl;
+abstract mixin class $RepeaterFeedbackStatsModelCopyWith<$Res> {
+  factory $RepeaterFeedbackStatsModelCopyWith(RepeaterFeedbackStatsModel value,
+          $Res Function(RepeaterFeedbackStatsModel) _then) =
+      _$RepeaterFeedbackStatsModelCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'repeater_id') String repeaterId,
@@ -79,14 +80,14 @@ abstract mixin class $FeedbackStatsModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FeedbackStatsModelCopyWithImpl<$Res>
-    implements $FeedbackStatsModelCopyWith<$Res> {
-  _$FeedbackStatsModelCopyWithImpl(this._self, this._then);
+class _$RepeaterFeedbackStatsModelCopyWithImpl<$Res>
+    implements $RepeaterFeedbackStatsModelCopyWith<$Res> {
+  _$RepeaterFeedbackStatsModelCopyWithImpl(this._self, this._then);
 
-  final FeedbackStatsModel _self;
-  final $Res Function(FeedbackStatsModel) _then;
+  final RepeaterFeedbackStatsModel _self;
+  final $Res Function(RepeaterFeedbackStatsModel) _then;
 
-  /// Create a copy of FeedbackStatsModel
+  /// Create a copy of RepeaterFeedbackStatsModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -122,8 +123,8 @@ class _$FeedbackStatsModelCopyWithImpl<$Res>
   }
 }
 
-/// Adds pattern-matching-related methods to [FeedbackStatsModel].
-extension FeedbackStatsModelPatterns on FeedbackStatsModel {
+/// Adds pattern-matching-related methods to [RepeaterFeedbackStatsModel].
+extension RepeaterFeedbackStatsModelPatterns on RepeaterFeedbackStatsModel {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:
@@ -138,12 +139,12 @@ extension FeedbackStatsModelPatterns on FeedbackStatsModel {
 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_FeedbackStatsModel value)? $default, {
+    TResult Function(_RepeaterFeedbackStatsModel value)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStatsModel() when $default != null:
+      case _RepeaterFeedbackStatsModel() when $default != null:
         return $default(_that);
       case _:
         return orElse();
@@ -165,11 +166,11 @@ extension FeedbackStatsModelPatterns on FeedbackStatsModel {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_FeedbackStatsModel value) $default,
+    TResult Function(_RepeaterFeedbackStatsModel value) $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStatsModel():
+      case _RepeaterFeedbackStatsModel():
         return $default(_that);
       case _:
         throw StateError('Unexpected subclass');
@@ -190,11 +191,11 @@ extension FeedbackStatsModelPatterns on FeedbackStatsModel {
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_FeedbackStatsModel value)? $default,
+    TResult? Function(_RepeaterFeedbackStatsModel value)? $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStatsModel() when $default != null:
+      case _RepeaterFeedbackStatsModel() when $default != null:
         return $default(_that);
       case _:
         return null;
@@ -226,7 +227,7 @@ extension FeedbackStatsModelPatterns on FeedbackStatsModel {
   }) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStatsModel() when $default != null:
+      case _RepeaterFeedbackStatsModel() when $default != null:
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
             _that.lastLikeAt, _that.lastDownAt);
       case _:
@@ -259,7 +260,7 @@ extension FeedbackStatsModelPatterns on FeedbackStatsModel {
   ) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStatsModel():
+      case _RepeaterFeedbackStatsModel():
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
             _that.lastLikeAt, _that.lastDownAt);
       case _:
@@ -291,7 +292,7 @@ extension FeedbackStatsModelPatterns on FeedbackStatsModel {
   ) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStatsModel() when $default != null:
+      case _RepeaterFeedbackStatsModel() when $default != null:
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
             _that.lastLikeAt, _that.lastDownAt);
       case _:
@@ -302,15 +303,15 @@ extension FeedbackStatsModelPatterns on FeedbackStatsModel {
 
 /// @nodoc
 @JsonSerializable()
-class _FeedbackStatsModel implements FeedbackStatsModel {
-  const _FeedbackStatsModel(
+class _RepeaterFeedbackStatsModel implements RepeaterFeedbackStatsModel {
+  const _RepeaterFeedbackStatsModel(
       {@JsonKey(name: 'repeater_id') required this.repeaterId,
       @JsonKey(name: 'likes_total') required this.likesTotal,
       @JsonKey(name: 'down_total') required this.downTotal,
       @JsonKey(name: 'last_like_at') this.lastLikeAt,
       @JsonKey(name: 'last_down_at') this.lastDownAt});
-  factory _FeedbackStatsModel.fromJson(Map<String, dynamic> json) =>
-      _$FeedbackStatsModelFromJson(json);
+  factory _RepeaterFeedbackStatsModel.fromJson(Map<String, dynamic> json) =>
+      _$RepeaterFeedbackStatsModelFromJson(json);
 
   @override
   @JsonKey(name: 'repeater_id')
@@ -328,17 +329,18 @@ class _FeedbackStatsModel implements FeedbackStatsModel {
   @JsonKey(name: 'last_down_at')
   final String? lastDownAt;
 
-  /// Create a copy of FeedbackStatsModel
+  /// Create a copy of RepeaterFeedbackStatsModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$FeedbackStatsModelCopyWith<_FeedbackStatsModel> get copyWith =>
-      __$FeedbackStatsModelCopyWithImpl<_FeedbackStatsModel>(this, _$identity);
+  _$RepeaterFeedbackStatsModelCopyWith<_RepeaterFeedbackStatsModel>
+      get copyWith => __$RepeaterFeedbackStatsModelCopyWithImpl<
+          _RepeaterFeedbackStatsModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$FeedbackStatsModelToJson(
+    return _$RepeaterFeedbackStatsModelToJson(
       this,
     );
   }
@@ -347,7 +349,7 @@ class _FeedbackStatsModel implements FeedbackStatsModel {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FeedbackStatsModel &&
+            other is _RepeaterFeedbackStatsModel &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
             (identical(other.likesTotal, likesTotal) ||
@@ -367,16 +369,17 @@ class _FeedbackStatsModel implements FeedbackStatsModel {
 
   @override
   String toString() {
-    return 'FeedbackStatsModel(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
+    return 'RepeaterFeedbackStatsModel(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$FeedbackStatsModelCopyWith<$Res>
-    implements $FeedbackStatsModelCopyWith<$Res> {
-  factory _$FeedbackStatsModelCopyWith(
-          _FeedbackStatsModel value, $Res Function(_FeedbackStatsModel) _then) =
-      __$FeedbackStatsModelCopyWithImpl;
+abstract mixin class _$RepeaterFeedbackStatsModelCopyWith<$Res>
+    implements $RepeaterFeedbackStatsModelCopyWith<$Res> {
+  factory _$RepeaterFeedbackStatsModelCopyWith(
+          _RepeaterFeedbackStatsModel value,
+          $Res Function(_RepeaterFeedbackStatsModel) _then) =
+      __$RepeaterFeedbackStatsModelCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -388,14 +391,14 @@ abstract mixin class _$FeedbackStatsModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$FeedbackStatsModelCopyWithImpl<$Res>
-    implements _$FeedbackStatsModelCopyWith<$Res> {
-  __$FeedbackStatsModelCopyWithImpl(this._self, this._then);
+class __$RepeaterFeedbackStatsModelCopyWithImpl<$Res>
+    implements _$RepeaterFeedbackStatsModelCopyWith<$Res> {
+  __$RepeaterFeedbackStatsModelCopyWithImpl(this._self, this._then);
 
-  final _FeedbackStatsModel _self;
-  final $Res Function(_FeedbackStatsModel) _then;
+  final _RepeaterFeedbackStatsModel _self;
+  final $Res Function(_RepeaterFeedbackStatsModel) _then;
 
-  /// Create a copy of FeedbackStatsModel
+  /// Create a copy of RepeaterFeedbackStatsModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -406,7 +409,7 @@ class __$FeedbackStatsModelCopyWithImpl<$Res>
     Object? lastLikeAt = freezed,
     Object? lastDownAt = freezed,
   }) {
-    return _then(_FeedbackStatsModel(
+    return _then(_RepeaterFeedbackStatsModel(
       repeaterId: null == repeaterId
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
@@ -432,4 +435,3 @@ class __$FeedbackStatsModelCopyWithImpl<$Res>
 }
 
 // dart format on
-

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'feedback_stats.dart';
+part of 'repeater_feedback_stats.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,26 +13,26 @@ part of 'feedback_stats.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$FeedbackStats {
+mixin _$RepeaterFeedbackStats {
   String get repeaterId;
   int get likesTotal;
   int get downTotal;
   DateTime? get lastLikeAt;
   DateTime? get lastDownAt;
 
-  /// Create a copy of FeedbackStats
+  /// Create a copy of RepeaterFeedbackStats
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $FeedbackStatsCopyWith<FeedbackStats> get copyWith =>
-      _$FeedbackStatsCopyWithImpl<FeedbackStats>(
-          this as FeedbackStats, _$identity);
+  $RepeaterFeedbackStatsCopyWith<RepeaterFeedbackStats> get copyWith =>
+      _$RepeaterFeedbackStatsCopyWithImpl<RepeaterFeedbackStats>(
+          this as RepeaterFeedbackStats, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FeedbackStats &&
+            other is RepeaterFeedbackStats &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
             (identical(other.likesTotal, likesTotal) ||
@@ -51,15 +51,15 @@ mixin _$FeedbackStats {
 
   @override
   String toString() {
-    return 'FeedbackStats(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
+    return 'RepeaterFeedbackStats(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class $FeedbackStatsCopyWith<$Res> {
-  factory $FeedbackStatsCopyWith(
-          FeedbackStats value, $Res Function(FeedbackStats) _then) =
-      _$FeedbackStatsCopyWithImpl;
+abstract mixin class $RepeaterFeedbackStatsCopyWith<$Res> {
+  factory $RepeaterFeedbackStatsCopyWith(RepeaterFeedbackStats value,
+          $Res Function(RepeaterFeedbackStats) _then) =
+      _$RepeaterFeedbackStatsCopyWithImpl;
   @useResult
   $Res call(
       {String repeaterId,
@@ -70,14 +70,14 @@ abstract mixin class $FeedbackStatsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FeedbackStatsCopyWithImpl<$Res>
-    implements $FeedbackStatsCopyWith<$Res> {
-  _$FeedbackStatsCopyWithImpl(this._self, this._then);
+class _$RepeaterFeedbackStatsCopyWithImpl<$Res>
+    implements $RepeaterFeedbackStatsCopyWith<$Res> {
+  _$RepeaterFeedbackStatsCopyWithImpl(this._self, this._then);
 
-  final FeedbackStats _self;
-  final $Res Function(FeedbackStats) _then;
+  final RepeaterFeedbackStats _self;
+  final $Res Function(RepeaterFeedbackStats) _then;
 
-  /// Create a copy of FeedbackStats
+  /// Create a copy of RepeaterFeedbackStats
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -113,8 +113,8 @@ class _$FeedbackStatsCopyWithImpl<$Res>
   }
 }
 
-/// Adds pattern-matching-related methods to [FeedbackStats].
-extension FeedbackStatsPatterns on FeedbackStats {
+/// Adds pattern-matching-related methods to [RepeaterFeedbackStats].
+extension RepeaterFeedbackStatsPatterns on RepeaterFeedbackStats {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:
@@ -129,12 +129,12 @@ extension FeedbackStatsPatterns on FeedbackStats {
 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_FeedbackStats value)? $default, {
+    TResult Function(_RepeaterFeedbackStats value)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStats() when $default != null:
+      case _RepeaterFeedbackStats() when $default != null:
         return $default(_that);
       case _:
         return orElse();
@@ -156,11 +156,11 @@ extension FeedbackStatsPatterns on FeedbackStats {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_FeedbackStats value) $default,
+    TResult Function(_RepeaterFeedbackStats value) $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStats():
+      case _RepeaterFeedbackStats():
         return $default(_that);
       case _:
         throw StateError('Unexpected subclass');
@@ -181,11 +181,11 @@ extension FeedbackStatsPatterns on FeedbackStats {
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_FeedbackStats value)? $default,
+    TResult? Function(_RepeaterFeedbackStats value)? $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStats() when $default != null:
+      case _RepeaterFeedbackStats() when $default != null:
         return $default(_that);
       case _:
         return null;
@@ -213,7 +213,7 @@ extension FeedbackStatsPatterns on FeedbackStats {
   }) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStats() when $default != null:
+      case _RepeaterFeedbackStats() when $default != null:
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
             _that.lastLikeAt, _that.lastDownAt);
       case _:
@@ -242,7 +242,7 @@ extension FeedbackStatsPatterns on FeedbackStats {
   ) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStats():
+      case _RepeaterFeedbackStats():
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
             _that.lastLikeAt, _that.lastDownAt);
       case _:
@@ -270,7 +270,7 @@ extension FeedbackStatsPatterns on FeedbackStats {
   ) {
     final _that = this;
     switch (_that) {
-      case _FeedbackStats() when $default != null:
+      case _RepeaterFeedbackStats() when $default != null:
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
             _that.lastLikeAt, _that.lastDownAt);
       case _:
@@ -281,8 +281,8 @@ extension FeedbackStatsPatterns on FeedbackStats {
 
 /// @nodoc
 
-class _FeedbackStats implements FeedbackStats {
-  const _FeedbackStats(
+class _RepeaterFeedbackStats implements RepeaterFeedbackStats {
+  const _RepeaterFeedbackStats(
       {required this.repeaterId,
       required this.likesTotal,
       required this.downTotal,
@@ -300,19 +300,20 @@ class _FeedbackStats implements FeedbackStats {
   @override
   final DateTime? lastDownAt;
 
-  /// Create a copy of FeedbackStats
+  /// Create a copy of RepeaterFeedbackStats
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$FeedbackStatsCopyWith<_FeedbackStats> get copyWith =>
-      __$FeedbackStatsCopyWithImpl<_FeedbackStats>(this, _$identity);
+  _$RepeaterFeedbackStatsCopyWith<_RepeaterFeedbackStats> get copyWith =>
+      __$RepeaterFeedbackStatsCopyWithImpl<_RepeaterFeedbackStats>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FeedbackStats &&
+            other is _RepeaterFeedbackStats &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
             (identical(other.likesTotal, likesTotal) ||
@@ -331,16 +332,16 @@ class _FeedbackStats implements FeedbackStats {
 
   @override
   String toString() {
-    return 'FeedbackStats(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
+    return 'RepeaterFeedbackStats(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$FeedbackStatsCopyWith<$Res>
-    implements $FeedbackStatsCopyWith<$Res> {
-  factory _$FeedbackStatsCopyWith(
-          _FeedbackStats value, $Res Function(_FeedbackStats) _then) =
-      __$FeedbackStatsCopyWithImpl;
+abstract mixin class _$RepeaterFeedbackStatsCopyWith<$Res>
+    implements $RepeaterFeedbackStatsCopyWith<$Res> {
+  factory _$RepeaterFeedbackStatsCopyWith(_RepeaterFeedbackStats value,
+          $Res Function(_RepeaterFeedbackStats) _then) =
+      __$RepeaterFeedbackStatsCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -352,14 +353,14 @@ abstract mixin class _$FeedbackStatsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$FeedbackStatsCopyWithImpl<$Res>
-    implements _$FeedbackStatsCopyWith<$Res> {
-  __$FeedbackStatsCopyWithImpl(this._self, this._then);
+class __$RepeaterFeedbackStatsCopyWithImpl<$Res>
+    implements _$RepeaterFeedbackStatsCopyWith<$Res> {
+  __$RepeaterFeedbackStatsCopyWithImpl(this._self, this._then);
 
-  final _FeedbackStats _self;
-  final $Res Function(_FeedbackStats) _then;
+  final _RepeaterFeedbackStats _self;
+  final $Res Function(_RepeaterFeedbackStats) _then;
 
-  /// Create a copy of FeedbackStats
+  /// Create a copy of RepeaterFeedbackStats
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -370,7 +371,7 @@ class __$FeedbackStatsCopyWithImpl<$Res>
     Object? lastLikeAt = freezed,
     Object? lastDownAt = freezed,
   }) {
-    return _then(_FeedbackStats(
+    return _then(_RepeaterFeedbackStats(
       repeaterId: null == repeaterId
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
@@ -396,4 +397,3 @@ class __$FeedbackStatsCopyWithImpl<$Res>
 }
 
 // dart format on
-
