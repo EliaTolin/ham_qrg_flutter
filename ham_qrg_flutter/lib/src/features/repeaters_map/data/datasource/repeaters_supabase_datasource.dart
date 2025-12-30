@@ -146,6 +146,17 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       }
     }
   }
+
+  @override
+  Future<int?> getTotalFavoritesCount() async {
+    return 0;
+  }
+
+  @override
+  Future<int> getTotalRepeatersCount() async {
+    final data = await _client.from('repeaters').select('id').count();
+    return data.count;
+  }
 }
 
 @riverpod

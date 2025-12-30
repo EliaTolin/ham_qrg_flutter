@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DashboardStatistics {
   int get totalRepeaters;
-  int get favoritesCount;
+  int? get favoritesCount;
 
   /// Create a copy of DashboardStatistics
   /// with the given fields replaced by the non-null parameter values.
@@ -51,7 +51,7 @@ abstract mixin class $DashboardStatisticsCopyWith<$Res> {
           DashboardStatistics value, $Res Function(DashboardStatistics) _then) =
       _$DashboardStatisticsCopyWithImpl;
   @useResult
-  $Res call({int totalRepeaters, int favoritesCount});
+  $Res call({int totalRepeaters, int? favoritesCount});
 }
 
 /// @nodoc
@@ -68,17 +68,17 @@ class _$DashboardStatisticsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? totalRepeaters = null,
-    Object? favoritesCount = null,
+    Object? favoritesCount = freezed,
   }) {
     return _then(_self.copyWith(
       totalRepeaters: null == totalRepeaters
           ? _self.totalRepeaters
           : totalRepeaters // ignore: cast_nullable_to_non_nullable
               as int,
-      favoritesCount: null == favoritesCount
+      favoritesCount: freezed == favoritesCount
           ? _self.favoritesCount
           : favoritesCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -176,7 +176,7 @@ extension DashboardStatisticsPatterns on DashboardStatistics {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int totalRepeaters, int favoritesCount)? $default, {
+    TResult Function(int totalRepeaters, int? favoritesCount)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -203,7 +203,7 @@ extension DashboardStatisticsPatterns on DashboardStatistics {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int totalRepeaters, int favoritesCount) $default,
+    TResult Function(int totalRepeaters, int? favoritesCount) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -228,7 +228,7 @@ extension DashboardStatisticsPatterns on DashboardStatistics {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int totalRepeaters, int favoritesCount)? $default,
+    TResult? Function(int totalRepeaters, int? favoritesCount)? $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -249,7 +249,7 @@ class _DashboardStatistics implements DashboardStatistics {
   @override
   final int totalRepeaters;
   @override
-  final int favoritesCount;
+  final int? favoritesCount;
 
   /// Create a copy of DashboardStatistics
   /// with the given fields replaced by the non-null parameter values.
@@ -288,7 +288,7 @@ abstract mixin class _$DashboardStatisticsCopyWith<$Res>
       __$DashboardStatisticsCopyWithImpl;
   @override
   @useResult
-  $Res call({int totalRepeaters, int favoritesCount});
+  $Res call({int totalRepeaters, int? favoritesCount});
 }
 
 /// @nodoc
@@ -305,17 +305,17 @@ class __$DashboardStatisticsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? totalRepeaters = null,
-    Object? favoritesCount = null,
+    Object? favoritesCount = freezed,
   }) {
     return _then(_DashboardStatistics(
       totalRepeaters: null == totalRepeaters
           ? _self.totalRepeaters
           : totalRepeaters // ignore: cast_nullable_to_non_nullable
               as int,
-      favoritesCount: null == favoritesCount
+      favoritesCount: freezed == favoritesCount
           ? _self.favoritesCount
           : favoritesCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }

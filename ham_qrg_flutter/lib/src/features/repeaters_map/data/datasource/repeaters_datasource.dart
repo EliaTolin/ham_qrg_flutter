@@ -22,4 +22,16 @@ abstract interface class RepeatersDatasource {
     int limit,
     List<String>? modes,
   });
+
+  Future<int> getTotalRepeatersCount();
+
+  Future<int?> getTotalFavoritesCount();
+
+  Future<List<String>> getFavoriteRepeatersIds();
+
+  Future<List<RepeaterModel>> getFavoriteRepeaters();
+
+  Future<void> addFavoriteRepeater(String repeaterId);
+
+  Future<void> removeFavoriteRepeater(String repeaterId);
 }

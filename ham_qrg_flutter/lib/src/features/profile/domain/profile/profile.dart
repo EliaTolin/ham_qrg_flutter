@@ -8,6 +8,7 @@ abstract class Profile with _$Profile {
     required String id,
     required String name,
     required String surname,
+    required String? callsign,
     required String? propic,
   }) = _Profile;
 }

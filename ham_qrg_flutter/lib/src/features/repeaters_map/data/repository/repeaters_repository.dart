@@ -58,6 +58,14 @@ class RepeatersRepository {
     );
     return data.map(_mapper.fromModel).toList();
   }
+
+  Future<int> getTotalRepeatersCount() async {
+    return _datasource.getTotalRepeatersCount();
+  }
+
+  Future<int?> getTotalFavoritesCount() async {
+    return _datasource.getTotalFavoritesCount();
+  }
 }
 
 @riverpod

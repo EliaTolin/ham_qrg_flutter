@@ -9,9 +9,6 @@ import 'package:ham_qrg/src/features/repeaters_map/presentation/utils/map_utils.
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
-/// Initial zoom level for the dashboard map
-const double _dashboardMapZoom = 10;
-
 class MapSectionWidget extends HookConsumerWidget {
   const MapSectionWidget({
     required this.nearbyRepeaters,
@@ -27,8 +24,6 @@ class MapSectionWidget extends HookConsumerWidget {
     for (final repeater in nearbyRepeaters) {
       log('REPEATER: ${repeater.callsign}');
     }
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
     final mapController = useState<MapboxMap?>(null);
     final pointManager = useState<PointAnnotationManager?>(null);
 

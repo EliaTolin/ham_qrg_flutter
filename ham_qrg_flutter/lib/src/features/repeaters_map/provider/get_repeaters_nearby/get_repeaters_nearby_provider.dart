@@ -22,4 +22,3 @@ Future<List<Repeater>> getRepeatersNearby(
     modes: modes,
   );
 }
-

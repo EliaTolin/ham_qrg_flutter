@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
+import 'package:ham_qrg/common/widgets/icons/repeater_icon.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters_map/presentation/widgets/sheet/repeater_details_sheet.dart';
 
@@ -17,7 +18,7 @@ class RepeaterListItem extends StatelessWidget {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final modeColor = RepeaterModeHelper.getModeColorObject(repeater.mode);
+    final colorMode = RepeaterModeHelper.getModeColorObject(repeater.mode);
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
@@ -33,19 +34,7 @@ class RepeaterListItem extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: modeColor.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(
-                      Icons.radio,
-                      color: modeColor,
-                      size: 24,
-                    ),
-                  ),
+                  RepeaterIcon(mode: repeater.mode),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -74,16 +63,16 @@ class RepeaterListItem extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: modeColor.withValues(alpha: 0.1),
+                      color: colorMode.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: modeColor.withValues(alpha: 0.3),
+                        color: colorMode.withValues(alpha: 0.3),
                       ),
                     ),
                     child: Text(
                       RepeaterModeHelper.getModeLabel(repeater.mode, l10n),
                       style: theme.textTheme.labelSmall?.copyWith(
-                        color: modeColor,
+                        color: colorMode,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

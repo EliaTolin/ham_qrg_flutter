@@ -9,6 +9,7 @@ abstract class ProfileModel with _$ProfileModel {
     required String id,
     @JsonKey(name: 'first_name', defaultValue: '') required String firstName,
     @JsonKey(name: 'last_name', defaultValue: '') required String lastName,
+    required String? callsign,
     required String? propic,
   }) = _ProfileModel;
 

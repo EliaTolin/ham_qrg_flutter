@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
+import 'package:ham_qrg/common/widgets/icons/repeater_icon.dart';
 import 'package:ham_qrg/common/widgets/profile/profile_chip.dart';
 import 'package:ham_qrg/src/features/dashboard/controller/dashboard_controller.dart';
 import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
@@ -22,38 +23,34 @@ class DashboardPage extends HookConsumerWidget {
 
     return controller.when(
       data: (state) => Scaffold(
-        body: Column(
+        body: Stack(
           children: [
-            // Map Section (58% height)
-            Expanded(
-              flex: 58,
-              child: Stack(
-                children: [
-                  MapSectionWidget(
-                    nearbyRepeaters: state.nearbyRepeaters,
-                    initialPosition: (
-                      lat: state.initialPosition.lat,
-                      lon: state.initialPosition.lon,
-                      zoom: 10
-                    ),
-                  ),
-                  Positioned(
-                    top: MediaQuery.of(context).padding.top + 16,
-                    right: 16,
-                    child: ProfileChip(
-                      imageProfileUrl: state.profile?.propic,
-                      callSign: 'IU4VRB',
-                    ),
-                  ),
-                ],
+            // Map Section (full screen)
+            MapSectionWidget(
+              nearbyRepeaters: state.nearbyRepeaters,
+              initialPosition: (
+                lat: state.initialPosition.lat,
+                lon: state.initialPosition.lon,
+                zoom: 10
               ),
             ),
-            // Content Section (42% height)
-            Expanded(
-              flex: 42,
-              child: _ContentSection(
+            // Profile Chip
+            Positioned(
+              top: MediaQuery.of(context).padding.top + 16,
+              right: 16,
+              child: ProfileChip(
+                imageProfileUrl: state.profile?.propic,
+                callSign: state.profile?.callsign,
+              ),
+            ),
+            // Draggable Content Sheet
+            DraggableScrollableSheet(
+              initialChildSize: 0.42,
+              minChildSize: 0.42,
+              builder: (context, scrollController) => _ContentSection(
                 statistics: state.statistics,
                 nearbyRepeaters: state.nearbyRepeaters,
+                scrollController: scrollController,
               ),
             ),
           ],
@@ -86,10 +83,12 @@ class _ContentSection extends StatelessWidget {
   const _ContentSection({
     required this.statistics,
     required this.nearbyRepeaters,
+    required this.scrollController,
   });
 
   final DashboardStatistics statistics;
   final List<Repeater> nearbyRepeaters;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +122,7 @@ class _ContentSection extends StatelessWidget {
           // Scrollable Content
           Expanded(
             child: SingleChildScrollView(
+              controller: scrollController,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +131,9 @@ class _ContentSection extends StatelessWidget {
                   _QuickAccessSection(statistics: statistics),
                   const SizedBox(height: 24),
                   // Nearby Section
-                  _NearbySection(nearbyRepeaters: nearbyRepeaters),
+                  _NearbySection(
+                    nearbyRepeaters: nearbyRepeaters.take(10).toList(),
+                  ),
                   const SizedBox(height: 16),
                 ],
               ),
@@ -194,7 +196,7 @@ class _QuickAccessSection extends StatelessWidget {
                   icon: Icons.favorite,
                   iconColor: Colors.amber,
                   title: l10n.homeMyFavorites,
-                  subtitle: l10n.homeSaved(statistics.favoritesCount),
+                  subtitle: l10n.homeSaved(statistics.favoritesCount ?? 0),
                   onTap: () {
                     // Navigate to favorites
                   },
@@ -358,19 +360,7 @@ class _NearbyRepeaterItem extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: colorScheme.surfaceContainerHighest,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(
-                Icons.radio,
-                color: colorScheme.onSurfaceVariant,
-                size: 24,
-              ),
-            ),
+            RepeaterIcon(mode: repeater.mode),
             const SizedBox(width: 12),
             Expanded(
               child: Column(

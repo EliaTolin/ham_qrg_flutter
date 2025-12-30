@@ -49,7 +49,7 @@ class RepeaterDetailPage extends StatelessWidget {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final modeColor = RepeaterModeHelper.getModeColorObject(repeater.mode);
+    final colorMode = RepeaterModeHelper.getModeColorObject(repeater.mode);
 
     return Scaffold(
       body: CustomScrollView(
@@ -65,8 +65,8 @@ class RepeaterDetailPage extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      modeColor.withValues(alpha: 0.8),
-                      modeColor.withValues(alpha: 0.6),
+                      colorMode.withValues(alpha: 0.8),
+                      colorMode.withValues(alpha: 0.6),
                     ],
                   ),
                 ),

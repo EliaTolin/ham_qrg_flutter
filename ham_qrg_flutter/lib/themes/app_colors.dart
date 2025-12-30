@@ -63,4 +63,3 @@ class AppColors {
   static const Color favorite = Color(0xFFEF4444); // red-500
   static const Color favoriteLight = Color(0xFFFCA5A5); // red-300
 }
-

@@ -1,0 +1,10 @@
+import 'package:ham_qrg/src/features/repeaters_map/data/repository/repeaters_repository.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'get_total_favorites_count_provider.g.dart';
+
+@riverpod
+Future<int?> getTotalFavoritesCount(Ref ref) async {
+  final repository = ref.read(repeatersRepositoryProvider);
+  return repository.getTotalFavoritesCount();
+}

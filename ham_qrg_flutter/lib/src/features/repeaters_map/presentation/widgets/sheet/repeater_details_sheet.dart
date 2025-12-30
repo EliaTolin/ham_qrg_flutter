@@ -50,8 +50,7 @@ class RepeaterDetailsSheet extends ConsumerWidget {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final modeColor = RepeaterModeHelper.getModeColorObject(repeater.mode);
-
+    final colorMode = RepeaterModeHelper.getModeColorObject(repeater.mode);
     final content = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,8 +75,8 @@ class RepeaterDetailsSheet extends ConsumerWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                modeColor.withValues(alpha: 0.15),
-                modeColor.withValues(alpha: 0.05),
+                colorMode.withValues(alpha: 0.15),
+                colorMode.withValues(alpha: 0.05),
               ],
             ),
             borderRadius: BorderRadius.circular(16),
@@ -93,13 +92,13 @@ class RepeaterDetailsSheet extends ConsumerWidget {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: modeColor.withValues(alpha: 0.2),
+                      color: colorMode.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       RepeaterModeHelper.getModeLabel(repeater.mode, l10n),
                       style: theme.textTheme.labelMedium?.copyWith(
-                        color: modeColor,
+                        color: colorMode,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

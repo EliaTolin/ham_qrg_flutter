@@ -6,6 +6,6 @@ part 'dashboard_statistics.freezed.dart';
 abstract class DashboardStatistics with _$DashboardStatistics {
   const factory DashboardStatistics({
     required int totalRepeaters,
-    required int favoritesCount,
+    required int? favoritesCount,
   }) = _DashboardStatistics;
 }

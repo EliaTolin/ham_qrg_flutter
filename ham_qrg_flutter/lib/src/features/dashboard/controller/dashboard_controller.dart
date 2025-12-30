@@ -1,7 +1,9 @@
 import 'package:ham_qrg/src/features/dashboard/controller/state/dashboard_state.dart';
-import 'package:ham_qrg/src/features/dashboard/provider/get_dashboard_statistics/get_dashboard_statistics_provider.dart';
+import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:ham_qrg/src/features/repeaters_map/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
+import 'package:ham_qrg/src/features/repeaters_map/provider/get_total_favorites_count/get_total_favorites_count_provider.dart';
+import 'package:ham_qrg/src/features/repeaters_map/provider/get_total_repeaters_count/get_total_repeaters_count_provider.dart';
 import 'package:ham_qrg/src/features/repeaters_map/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,7 +18,7 @@ class DashboardController extends _$DashboardController {
 
   Future<DashboardState> _loadInitialData() async {
     // Load statistics
-    final statistics = await ref.read(getDashboardStatisticsProvider.future);
+
     final profile = await ref.read(getProfileProvider.future);
     // Try to get user location, fallback to Rome if fails
     late final ({double latitude, double longitude}) position;
@@ -26,6 +28,16 @@ class DashboardController extends _$DashboardController {
       const initialLat = 41.9028; // Rome default
       const initialLon = 12.4964;
       position = (latitude: initialLat, longitude: initialLon);
+    }
+
+    late final int? countFavorites;
+    late final int countRepeaters;
+
+    try {
+      countFavorites = await ref.read(getTotalFavoritesCountProvider.future);
+      countRepeaters = await ref.read(getTotalRepeatersCountProvider.future);
+    } on Exception catch (e) {
+      throw Exception(e);
     }
 
     try {
@@ -38,14 +50,20 @@ class DashboardController extends _$DashboardController {
       );
 
       return DashboardState(
-        statistics: statistics,
+        statistics: DashboardStatistics(
+          totalRepeaters: countRepeaters,
+          favoritesCount: countFavorites,
+        ),
         initialPosition: (lat: position.latitude, lon: position.longitude),
         nearbyRepeaters: nearbyRepeaters,
         profile: profile,
       );
     } on LocationException catch (error) {
       return DashboardState(
-        statistics: statistics,
+        statistics: DashboardStatistics(
+          totalRepeaters: countRepeaters,
+          favoritesCount: countFavorites,
+        ),
         initialPosition: (lat: position.latitude, lon: position.longitude),
         nearbyRepeaters: [],
         locationError: error.type,
