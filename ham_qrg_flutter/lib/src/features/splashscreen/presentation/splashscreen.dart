@@ -327,11 +327,11 @@ class _LoadingBarState extends State<_LoadingBar> with SingleTickerProviderState
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 2500),
       vsync: this,
-    )..repeat();
+    )..forward();
 
-    _animation = Tween<double>(begin: 0, end: 0.33).animate(
+    _animation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOut,

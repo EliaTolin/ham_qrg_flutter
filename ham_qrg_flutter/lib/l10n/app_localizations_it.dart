@@ -358,8 +358,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get commonAppNamePart2 => 'QRG';
 
   @override
-  String get commonAppTagline => 'Italian Repeater Network';
+  String get commonAppTagline => 'Repeater Network';
 
   @override
-  String get commonPoweredBy => 'POWERED BY HAMRADIO ITALY';
+  String get commonPoweredBy => 'POWERED BY IU4VRB';
 }

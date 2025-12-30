@@ -751,13 +751,13 @@ abstract class AppLocalizations {
   /// No description provided for @commonAppTagline.
   ///
   /// In it, this message translates to:
-  /// **'Italian Repeater Network'**
+  /// **'Repeater Network'**
   String get commonAppTagline;
 
   /// No description provided for @commonPoweredBy.
   ///
   /// In it, this message translates to:
-  /// **'POWERED BY HAMRADIO ITALY'**
+  /// **'POWERED BY IU4VRB'**
   String get commonPoweredBy;
 }
 
