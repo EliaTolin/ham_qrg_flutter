@@ -514,6 +514,7 @@ class [PageName]Page extends HookConsumerWidget {
 - Accedi al notifier con `ref.read([pageName]ControllerProvider.notifier)` per chiamare metodi
 - Usa `context.mounted` prima di navigare o mostrare dialog dopo operazioni async
 - **NON condividere controller tra pagine diverse** - ogni pagina deve avere il suo controller
+- **IMPORTANTE: Le pagine NON devono mai ricevere modelli/entità come parametri** - ricevono solo ID primitivi (String, int, ecc.) e il controller fa la fetch dei dati necessari tramite provider
 
 ---
 

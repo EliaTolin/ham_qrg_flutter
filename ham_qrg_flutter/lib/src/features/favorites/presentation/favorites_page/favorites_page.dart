@@ -8,7 +8,7 @@ import 'package:ham_qrg/src/features/favorites/presentation/favorites_page/contr
 import 'package:ham_qrg/src/features/favorites/presentation/favorites_page/controller/state/favorites_state.dart';
 import 'package:ham_qrg/src/features/favorites/presentation/widgets/favorite_repeater_item.dart';
 import 'package:ham_qrg/src/features/favorites/presentation/widgets/mode_filter_chips_horizontal.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Debounce delay for search (milliseconds)

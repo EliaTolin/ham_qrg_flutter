@@ -885,6 +885,228 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Aggiungi ai preferiti'**
   String get favoritesAdd;
+
+  /// No description provided for @repeaterDetailSave.
+  ///
+  /// In it, this message translates to:
+  /// **'Salva'**
+  String get repeaterDetailSave;
+
+  /// No description provided for @repeaterDetailShare.
+  ///
+  /// In it, this message translates to:
+  /// **'Condividi'**
+  String get repeaterDetailShare;
+
+  /// No description provided for @repeaterDetailReport.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnala'**
+  String get repeaterDetailReport;
+
+  /// No description provided for @repeaterDetailTotalLikes.
+  ///
+  /// In it, this message translates to:
+  /// **'Mi piace totali'**
+  String get repeaterDetailTotalLikes;
+
+  /// No description provided for @repeaterDetailReports1Yr.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazioni (1 anno)'**
+  String get repeaterDetailReports1Yr;
+
+  /// No description provided for @repeaterDetailHealthScore.
+  ///
+  /// In it, this message translates to:
+  /// **'Punteggio salute'**
+  String get repeaterDetailHealthScore;
+
+  /// No description provided for @repeaterDetailExcellent.
+  ///
+  /// In it, this message translates to:
+  /// **'Eccellente'**
+  String get repeaterDetailExcellent;
+
+  /// No description provided for @repeaterDetailScoreCalculated.
+  ///
+  /// In it, this message translates to:
+  /// **'Punteggio calcolato da {count} segnalazioni negative nell\'ultimo anno'**
+  String repeaterDetailScoreCalculated(int count);
+
+  /// No description provided for @repeaterDetailLastLike.
+  ///
+  /// In it, this message translates to:
+  /// **'Ultimo mi piace'**
+  String get repeaterDetailLastLike;
+
+  /// No description provided for @repeaterDetailLastDownReport.
+  ///
+  /// In it, this message translates to:
+  /// **'Ultima segnalazione negativa'**
+  String get repeaterDetailLastDownReport;
+
+  /// No description provided for @repeaterDetailTechnicalData.
+  ///
+  /// In it, this message translates to:
+  /// **'Dati tecnici'**
+  String get repeaterDetailTechnicalData;
+
+  /// No description provided for @repeaterDetailFrequency.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza'**
+  String get repeaterDetailFrequency;
+
+  /// No description provided for @repeaterDetailShift.
+  ///
+  /// In it, this message translates to:
+  /// **'Shift'**
+  String get repeaterDetailShift;
+
+  /// No description provided for @repeaterDetailSubtone.
+  ///
+  /// In it, this message translates to:
+  /// **'Sottotono (SQL)'**
+  String get repeaterDetailSubtone;
+
+  /// No description provided for @repeaterDetailMode.
+  ///
+  /// In it, this message translates to:
+  /// **'Modalità'**
+  String get repeaterDetailMode;
+
+  /// No description provided for @repeaterDetailLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'Posizione'**
+  String get repeaterDetailLocation;
+
+  /// No description provided for @repeaterDetailAway.
+  ///
+  /// In it, this message translates to:
+  /// **'{distance} di distanza'**
+  String repeaterDetailAway(String distance);
+
+  /// No description provided for @repeaterDetailCommunityReports.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazioni community'**
+  String get repeaterDetailCommunityReports;
+
+  /// No description provided for @repeaterDetailUpdateStatusFeedback.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiorna stato e feedback'**
+  String get repeaterDetailUpdateStatusFeedback;
+
+  /// No description provided for @repeaterDetailEquipment.
+  ///
+  /// In it, this message translates to:
+  /// **'Attrezzatura'**
+  String get repeaterDetailEquipment;
+
+  /// No description provided for @repeaterDetailEquipmentRequired.
+  ///
+  /// In it, this message translates to:
+  /// **'Attrezzatura *'**
+  String get repeaterDetailEquipmentRequired;
+
+  /// No description provided for @repeaterDetailLocationField.
+  ///
+  /// In it, this message translates to:
+  /// **'Luogo'**
+  String get repeaterDetailLocationField;
+
+  /// No description provided for @repeaterDetailLocationRequired.
+  ///
+  /// In it, this message translates to:
+  /// **'Luogo *'**
+  String get repeaterDetailLocationRequired;
+
+  /// No description provided for @repeaterDetailComment.
+  ///
+  /// In it, this message translates to:
+  /// **'Commento'**
+  String get repeaterDetailComment;
+
+  /// No description provided for @repeaterDetailCommentOptional.
+  ///
+  /// In it, this message translates to:
+  /// **'Commento (Opzionale)'**
+  String get repeaterDetailCommentOptional;
+
+  /// No description provided for @repeaterDetailCommentPlaceholder.
+  ///
+  /// In it, this message translates to:
+  /// **'Qualità del segnale, rapporto audio o commenti generali...'**
+  String get repeaterDetailCommentPlaceholder;
+
+  /// No description provided for @repeaterDetailReportDown.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnala problema'**
+  String get repeaterDetailReportDown;
+
+  /// No description provided for @repeaterDetailCheckinLike.
+  ///
+  /// In it, this message translates to:
+  /// **'Check-in e mi piace'**
+  String get repeaterDetailCheckinLike;
+
+  /// No description provided for @repeaterDetailYourFeedback.
+  ///
+  /// In it, this message translates to:
+  /// **'Il tuo feedback'**
+  String get repeaterDetailYourFeedback;
+
+  /// No description provided for @repeaterDetailPostedJustNow.
+  ///
+  /// In it, this message translates to:
+  /// **'Pubblicato adesso'**
+  String get repeaterDetailPostedJustNow;
+
+  /// No description provided for @repeaterDetailDeleteEntry.
+  ///
+  /// In it, this message translates to:
+  /// **'Elimina voce'**
+  String get repeaterDetailDeleteEntry;
+
+  /// No description provided for @repeaterDetailViewAllReports.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi tutte le {count} segnalazioni'**
+  String repeaterDetailViewAllReports(int count);
+
+  /// No description provided for @repeaterDetailStationPortable.
+  ///
+  /// In it, this message translates to:
+  /// **'Portatile'**
+  String get repeaterDetailStationPortable;
+
+  /// No description provided for @repeaterDetailStationMobile.
+  ///
+  /// In it, this message translates to:
+  /// **'Mobile'**
+  String get repeaterDetailStationMobile;
+
+  /// No description provided for @repeaterDetailStationFixed.
+  ///
+  /// In it, this message translates to:
+  /// **'Fisso'**
+  String get repeaterDetailStationFixed;
+
+  /// No description provided for @repeaterDetailLike.
+  ///
+  /// In it, this message translates to:
+  /// **'Mi piace'**
+  String get repeaterDetailLike;
+
+  /// No description provided for @repeaterDetailReportLabel.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazione'**
+  String get repeaterDetailReportLabel;
 }
 
 class _AppLocalizationsDelegate

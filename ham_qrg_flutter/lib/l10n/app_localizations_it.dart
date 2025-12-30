@@ -432,4 +432,122 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get favoritesAdd => 'Aggiungi ai preferiti';
+
+  @override
+  String get repeaterDetailSave => 'Salva';
+
+  @override
+  String get repeaterDetailShare => 'Condividi';
+
+  @override
+  String get repeaterDetailReport => 'Segnala';
+
+  @override
+  String get repeaterDetailTotalLikes => 'Mi piace totali';
+
+  @override
+  String get repeaterDetailReports1Yr => 'Segnalazioni (1 anno)';
+
+  @override
+  String get repeaterDetailHealthScore => 'Punteggio salute';
+
+  @override
+  String get repeaterDetailExcellent => 'Eccellente';
+
+  @override
+  String repeaterDetailScoreCalculated(int count) {
+    return 'Punteggio calcolato da $count segnalazioni negative nell\'ultimo anno';
+  }
+
+  @override
+  String get repeaterDetailLastLike => 'Ultimo mi piace';
+
+  @override
+  String get repeaterDetailLastDownReport => 'Ultima segnalazione negativa';
+
+  @override
+  String get repeaterDetailTechnicalData => 'Dati tecnici';
+
+  @override
+  String get repeaterDetailFrequency => 'Frequenza';
+
+  @override
+  String get repeaterDetailShift => 'Shift';
+
+  @override
+  String get repeaterDetailSubtone => 'Sottotono (SQL)';
+
+  @override
+  String get repeaterDetailMode => 'Modalità';
+
+  @override
+  String get repeaterDetailLocation => 'Posizione';
+
+  @override
+  String repeaterDetailAway(String distance) {
+    return '$distance di distanza';
+  }
+
+  @override
+  String get repeaterDetailCommunityReports => 'Segnalazioni community';
+
+  @override
+  String get repeaterDetailUpdateStatusFeedback => 'Aggiorna stato e feedback';
+
+  @override
+  String get repeaterDetailEquipment => 'Attrezzatura';
+
+  @override
+  String get repeaterDetailEquipmentRequired => 'Attrezzatura *';
+
+  @override
+  String get repeaterDetailLocationField => 'Luogo';
+
+  @override
+  String get repeaterDetailLocationRequired => 'Luogo *';
+
+  @override
+  String get repeaterDetailComment => 'Commento';
+
+  @override
+  String get repeaterDetailCommentOptional => 'Commento (Opzionale)';
+
+  @override
+  String get repeaterDetailCommentPlaceholder =>
+      'Qualità del segnale, rapporto audio o commenti generali...';
+
+  @override
+  String get repeaterDetailReportDown => 'Segnala problema';
+
+  @override
+  String get repeaterDetailCheckinLike => 'Check-in e mi piace';
+
+  @override
+  String get repeaterDetailYourFeedback => 'Il tuo feedback';
+
+  @override
+  String get repeaterDetailPostedJustNow => 'Pubblicato adesso';
+
+  @override
+  String get repeaterDetailDeleteEntry => 'Elimina voce';
+
+  @override
+  String repeaterDetailViewAllReports(int count) {
+    return 'Vedi tutte le $count segnalazioni';
+  }
+
+  @override
+  String get repeaterDetailStationPortable => 'Portatile';
+
+  @override
+  String get repeaterDetailStationMobile => 'Mobile';
+
+  @override
+  String get repeaterDetailStationFixed => 'Fisso';
+
+  @override
+  String get repeaterDetailLike => 'Mi piace';
+
+  @override
+  String get repeaterDetailReportLabel => 'Segnalazione';
 }

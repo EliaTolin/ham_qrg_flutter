@@ -1,10 +1,10 @@
 import 'package:ham_qrg/src/features/dashboard/controller/state/dashboard_state.dart';
 import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
-import 'package:ham_qrg/src/features/repeaters_map/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
-import 'package:ham_qrg/src/features/repeaters_map/provider/get_total_favorites_count/get_total_favorites_count_provider.dart';
-import 'package:ham_qrg/src/features/repeaters_map/provider/get_total_repeaters_count/get_total_repeaters_count_provider.dart';
-import 'package:ham_qrg/src/features/repeaters_map/service/location_service.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/get_total_favorites_count/get_total_favorites_count_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/get_total_repeaters_count/get_total_repeaters_count_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'dashboard_controller.g.dart';

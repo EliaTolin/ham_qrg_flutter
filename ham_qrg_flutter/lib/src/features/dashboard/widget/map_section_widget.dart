@@ -4,8 +4,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters_map/presentation/utils/map_utils.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/utils/map_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 

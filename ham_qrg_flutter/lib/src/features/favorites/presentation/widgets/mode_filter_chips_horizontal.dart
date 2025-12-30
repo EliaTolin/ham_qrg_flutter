@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 class ModeFilterChipsHorizontal extends StatelessWidget {
   const ModeFilterChipsHorizontal({

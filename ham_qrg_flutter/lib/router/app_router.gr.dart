@@ -127,16 +127,11 @@ class ProfileRoute extends PageRouteInfo<void> {
 class RepeaterDetailRoute extends PageRouteInfo<RepeaterDetailRouteArgs> {
   RepeaterDetailRoute({
     required String repeaterId,
-    required Repeater repeater,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
           RepeaterDetailRoute.name,
-          args: RepeaterDetailRouteArgs(
-            repeaterId: repeaterId,
-            repeater: repeater,
-            key: key,
-          ),
+          args: RepeaterDetailRouteArgs(repeaterId: repeaterId, key: key),
           initialChildren: children,
         );
 
@@ -146,44 +141,32 @@ class RepeaterDetailRoute extends PageRouteInfo<RepeaterDetailRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<RepeaterDetailRouteArgs>();
-      return RepeaterDetailPage(
-        repeaterId: args.repeaterId,
-        repeater: args.repeater,
-        key: args.key,
-      );
+      return RepeaterDetailPage(repeaterId: args.repeaterId, key: args.key);
     },
   );
 }
 
 class RepeaterDetailRouteArgs {
-  const RepeaterDetailRouteArgs({
-    required this.repeaterId,
-    required this.repeater,
-    this.key,
-  });
+  const RepeaterDetailRouteArgs({required this.repeaterId, this.key});
 
   final String repeaterId;
-
-  final Repeater repeater;
 
   final Key? key;
 
   @override
   String toString() {
-    return 'RepeaterDetailRouteArgs{repeaterId: $repeaterId, repeater: $repeater, key: $key}';
+    return 'RepeaterDetailRouteArgs{repeaterId: $repeaterId, key: $key}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! RepeaterDetailRouteArgs) return false;
-    return repeaterId == other.repeaterId &&
-        repeater == other.repeater &&
-        key == other.key;
+    return repeaterId == other.repeaterId && key == other.key;
   }
 
   @override
-  int get hashCode => repeaterId.hashCode ^ repeater.hashCode ^ key.hashCode;
+  int get hashCode => repeaterId.hashCode ^ key.hashCode;
 }
 
 /// generated route for

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 part 'favorites_state.freezed.dart';
 

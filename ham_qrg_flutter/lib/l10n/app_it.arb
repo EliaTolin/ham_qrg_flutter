@@ -185,5 +185,63 @@
     }
   },
   "favoritesRemove": "Rimuovi dai preferiti",
-  "favoritesAdd": "Aggiungi ai preferiti"
+  "favoritesAdd": "Aggiungi ai preferiti",
+  "repeaterDetailSave": "Salva",
+  "repeaterDetailShare": "Condividi",
+  "repeaterDetailReport": "Segnala",
+  "repeaterDetailTotalLikes": "Mi piace totali",
+  "repeaterDetailReports1Yr": "Segnalazioni (1 anno)",
+  "repeaterDetailHealthScore": "Punteggio salute",
+  "repeaterDetailExcellent": "Eccellente",
+  "repeaterDetailScoreCalculated": "Punteggio calcolato da {count} segnalazioni negative nell'ultimo anno",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Ultimo mi piace",
+  "repeaterDetailLastDownReport": "Ultima segnalazione negativa",
+  "repeaterDetailTechnicalData": "Dati tecnici",
+  "repeaterDetailFrequency": "Frequenza",
+  "repeaterDetailShift": "Shift",
+  "repeaterDetailSubtone": "Sottotono (SQL)",
+  "repeaterDetailMode": "Modalità",
+  "repeaterDetailLocation": "Posizione",
+  "repeaterDetailAway": "{distance} di distanza",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Segnalazioni community",
+  "repeaterDetailUpdateStatusFeedback": "Aggiorna stato e feedback",
+  "repeaterDetailEquipment": "Attrezzatura",
+  "repeaterDetailEquipmentRequired": "Attrezzatura *",
+  "repeaterDetailLocationField": "Luogo",
+  "repeaterDetailLocationRequired": "Luogo *",
+  "repeaterDetailComment": "Commento",
+  "repeaterDetailCommentOptional": "Commento (Opzionale)",
+  "repeaterDetailCommentPlaceholder": "Qualità del segnale, rapporto audio o commenti generali...",
+  "repeaterDetailReportDown": "Segnala problema",
+  "repeaterDetailCheckinLike": "Check-in e mi piace",
+  "repeaterDetailYourFeedback": "Il tuo feedback",
+  "repeaterDetailPostedJustNow": "Pubblicato adesso",
+  "repeaterDetailDeleteEntry": "Elimina voce",
+  "repeaterDetailViewAllReports": "Vedi tutte le {count} segnalazioni",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Portatile",
+  "repeaterDetailStationMobile": "Mobile",
+  "repeaterDetailStationFixed": "Fisso",
+  "repeaterDetailLike": "Mi piace",
+  "repeaterDetailReportLabel": "Segnalazione"
 }

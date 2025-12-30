@@ -3,7 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:ham_qrg/l10n/app_localizations.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 class RepeaterModeHelper {
   /// Returns the color associated with a repeater mode

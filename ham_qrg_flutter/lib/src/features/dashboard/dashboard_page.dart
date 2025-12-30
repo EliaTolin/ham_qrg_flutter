@@ -8,7 +8,7 @@ import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/dashboard/controller/dashboard_controller.dart';
 import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:ham_qrg/src/features/dashboard/widget/map_section_widget.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -352,7 +352,11 @@ class _NearbyRepeaterItem extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        // Navigate to repeater detail
+        context.router.push(
+          RepeaterDetailRoute(
+            repeaterId: repeater.id,
+          ),
+        );
       },
       borderRadius: BorderRadius.circular(12),
       child: Container(

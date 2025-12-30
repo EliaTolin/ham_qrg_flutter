@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:ham_qrg/src/features/profile/domain/profile/profile.dart';
-import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters_map/service/location_service.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/service/location_service.dart';
 
 part 'dashboard_state.freezed.dart';
 

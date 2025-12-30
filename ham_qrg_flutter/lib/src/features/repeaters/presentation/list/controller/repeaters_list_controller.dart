@@ -1,0 +1,108 @@
+import 'dart:developer';
+
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/service/location_service.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'repeaters_list_controller.g.dart';
+
+@riverpod
+class RepeatersListController extends _$RepeatersListController {
+  @override
+  FutureOr<RepeatersListState> build() async {
+    log('BUILD REPEATERS LIST CONTROLLER');
+    return _loadInitialRepeaters();
+  }
+
+  Future<void> toggleModeFilter(RepeaterMode mode) async {
+    final currentState = state.value;
+    if (currentState == null) {
+      return;
+    }
+
+    final newSelectedModes = Set<RepeaterMode>.from(currentState.selectedModes);
+    if (newSelectedModes.contains(mode)) {
+      newSelectedModes.remove(mode);
+    } else {
+      newSelectedModes.add(mode);
+    }
+
+    // Reload with current location if available
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(
+      () => _loadInitialRepeaters(
+        selectedModes:
+            newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
+      ),
+    );
+  }
+
+  /// Reload repeaters with current filters
+  Future<void> reload() async {
+    final currentState = state.value;
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(
+      () => _loadInitialRepeaters(
+        selectedModes: currentState?.selectedModes.isEmpty ?? true
+            ? null
+            : currentState!.selectedModes.toList(),
+      ),
+    );
+  }
+
+  /// Load initial repeaters, trying to get user location first
+  Future<RepeatersListState> _loadInitialRepeaters({
+    List<RepeaterMode>? selectedModes,
+  }) async {
+    final currentState = state.value;
+    final modesToFilter = selectedModes ?? currentState?.selectedModes.toList();
+
+    late final ({double latitude, double longitude}) position;
+    try {
+      position = await ref.read(locationServiceProvider).getCurrentPosition();
+    } catch (_) {
+      const initialLat = 41.9028; // Rome default
+      const initialLon = 12.4964;
+      position = (latitude: initialLat, longitude: initialLon);
+    }
+
+    try {
+      // Use a reasonable default bounds around user location
+      final lat = position.latitude;
+      final lon = position.longitude;
+
+      final repeaters = await _fetchRepeatersFromRadius(
+        latitude: lat,
+        longitude: lon,
+        modes: modesToFilter?.isEmpty ?? true ? null : modesToFilter,
+      );
+
+      return RepeatersListState(
+        repeaters: repeaters,
+        selectedModes: modesToFilter?.toSet() ?? {},
+      );
+    } on LocationException catch (error) {
+      return RepeatersListState(
+        locationError: error.type,
+        selectedModes: modesToFilter?.toSet() ?? {},
+      );
+    }
+  }
+
+  Future<List<Repeater>> _fetchRepeatersFromRadius({
+    required double latitude,
+    required double longitude,
+    List<RepeaterMode>? modes,
+  }) async {
+    return await ref.read(
+      getRepeatersNearbyProvider(
+        latitude: latitude,
+        longitude: longitude,
+        modes: modes?.isEmpty ?? true ? null : modes,
+        radiusKm: 100,
+      ).future,
+    );
+  }
+}
