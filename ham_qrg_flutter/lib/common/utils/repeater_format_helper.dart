@@ -28,4 +28,32 @@ class RepeaterFormatHelper {
     }
     return '${(distanceMeters / 1000).toStringAsFixed(1)}km away';
   }
+
+  /// Formats a CTCSS (Continuous Tone-Coded Squelch System) frequency in hertz.
+  ///
+  /// Returns a string representation with one decimal place and the "Hz" suffix,
+  /// for example: 88.5 -> "88.5 Hz". If [ctcssHz] is null, returns "-".
+  static String formatCtcss(double? ctcssHz) {
+    if (ctcssHz != null) {
+      return '${ctcssHz.toStringAsFixed(1)} Hz';
+    }
+    return '-';
+  }
+
+  /// Formats a shift in hertz to a human-readable string.
+  ///
+  /// Returns a string representation with one decimal place and the "kHz" suffix,
+  /// for example: 1000 -> "1.0 kHz". If [shiftHz] is null, returns "-".
+  static String formatShift(int? shiftHz, String? shiftRaw) {
+    if (shiftRaw != null && shiftRaw.isNotEmpty) {
+      return shiftRaw;
+    }
+    if (shiftHz != null) {
+      if (shiftHz >= 1000) {
+        return '${(shiftHz / 1000).toStringAsFixed(1)} kHz';
+      }
+      return '$shiftHz Hz';
+    }
+    return '-';
+  }
 }

@@ -26,12 +26,20 @@ class DashboardPage extends HookConsumerWidget {
         body: Stack(
           children: [
             // Map Section (full screen)
-            MapSectionWidget(
-              nearbyRepeaters: state.nearbyRepeaters,
-              initialPosition: (
-                lat: state.initialPosition.lat,
-                lon: state.initialPosition.lon,
-                zoom: 10
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.6,
+              child: GestureDetector(
+                onTap: () {
+                  AutoTabsRouter.of(context).setActiveIndex(2);
+                },
+                child: MapSectionWidget(
+                  nearbyRepeaters: state.nearbyRepeaters,
+                  initialPosition: (
+                    lat: state.initialPosition.lat,
+                    lon: state.initialPosition.lon,
+                    zoom: 8.5
+                  ),
+                ),
               ),
             ),
             // Profile Chip
@@ -183,7 +191,7 @@ class _QuickAccessSection extends StatelessWidget {
                   title: l10n.homeRepeaterList,
                   subtitle: l10n.homeStations(statistics.totalRepeaters),
                   onTap: () {
-                    // Navigate to list
+                    AutoTabsRouter.of(context).setActiveIndex(1);
                   },
                 ),
               ),
@@ -307,7 +315,7 @@ class _NearbySection extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                // Navigate to list
+                AutoTabsRouter.of(context).setActiveIndex(1);
               },
               child: Text(
                 l10n.homeViewAll,
@@ -340,8 +348,6 @@ class _NearbyRepeaterItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final l10n = context.localization;
-    final isActive = repeater.status == RepeaterStatus.active;
 
     return InkWell(
       onTap: () {
@@ -377,25 +383,6 @@ class _NearbyRepeaterItem extends StatelessWidget {
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 6,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: isActive
-                              ? Colors.green.withValues(alpha: 0.1)
-                              : colorScheme.outlineVariant.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          isActive ? l10n.homeActive : l10n.homeIdle,
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: isActive ? Colors.green : colorScheme.onSurfaceVariant,
-                            fontWeight: FontWeight.w600,
-                          ),
                         ),
                       ),
                     ],

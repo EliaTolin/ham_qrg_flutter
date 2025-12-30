@@ -12,11 +12,6 @@ enum RepeaterMode {
   winlink,
 }
 
-enum RepeaterStatus {
-  active,
-  inactive,
-  unknown,
-}
 
 @freezed
 abstract class Repeater with _$Repeater {
@@ -26,7 +21,6 @@ abstract class Repeater with _$Repeater {
     required DateTime updatedAt,
     required int frequencyHz,
     required RepeaterMode mode,
-    required RepeaterStatus status,
     String? callsign,
     String? name,
     int? nodeNumber,

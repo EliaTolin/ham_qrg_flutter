@@ -21,7 +21,6 @@ final class GetRepeatersNearbyProvider extends $FunctionalProvider<
         double latitude,
         double longitude,
         double radiusKm,
-        int limit,
         List<RepeaterMode>? modes,
       })
           super.argument})
@@ -55,7 +54,6 @@ final class GetRepeatersNearbyProvider extends $FunctionalProvider<
       double latitude,
       double longitude,
       double radiusKm,
-      int limit,
       List<RepeaterMode>? modes,
     });
     return getRepeatersNearby(
@@ -63,7 +61,6 @@ final class GetRepeatersNearbyProvider extends $FunctionalProvider<
       latitude: argument.latitude,
       longitude: argument.longitude,
       radiusKm: argument.radiusKm,
-      limit: argument.limit,
       modes: argument.modes,
     );
   }
@@ -80,7 +77,7 @@ final class GetRepeatersNearbyProvider extends $FunctionalProvider<
 }
 
 String _$getRepeatersNearbyHash() =>
-    r'767460e715b23d8f1a0c1e325089dd09b1efb046';
+    r'e7f54944498d845cd336ac977db1b5627440aeb6';
 
 final class GetRepeatersNearbyFamily extends $Family
     with
@@ -90,7 +87,6 @@ final class GetRepeatersNearbyFamily extends $Family
               double latitude,
               double longitude,
               double radiusKm,
-              int limit,
               List<RepeaterMode>? modes,
             })> {
   GetRepeatersNearbyFamily._()
@@ -106,14 +102,12 @@ final class GetRepeatersNearbyFamily extends $Family
     required double latitude,
     required double longitude,
     double radiusKm = 50.0,
-    int limit = 50,
     List<RepeaterMode>? modes,
   }) =>
       GetRepeatersNearbyProvider._(argument: (
         latitude: latitude,
         longitude: longitude,
         radiusKm: radiusKm,
-        limit: limit,
         modes: modes,
       ), from: this);
 

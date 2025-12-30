@@ -11,7 +11,6 @@ abstract class RepeaterModel with _$RepeaterModel {
     @JsonKey(name: 'updated_at') required String updatedAt,
     @JsonKey(name: 'frequency_hz') required int frequencyHz,
     required String mode,
-    required String status,
     String? callsign,
     String? name,
     @JsonKey(name: 'node_number') int? nodeNumber,
@@ -30,6 +29,5 @@ abstract class RepeaterModel with _$RepeaterModel {
     @JsonKey(name: 'distance_m') double? distanceM,
   }) = _RepeaterModel;
 
-  factory RepeaterModel.fromJson(Map<String, dynamic> json) =>
-      _$RepeaterModelFromJson(json);
+  factory RepeaterModel.fromJson(Map<String, dynamic> json) => _$RepeaterModelFromJson(json);
 }

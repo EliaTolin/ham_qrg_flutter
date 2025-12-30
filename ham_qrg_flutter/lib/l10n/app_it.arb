@@ -26,14 +26,14 @@
   "october": "Ottobre",
   "november": "Novembre",
   "december": "Dicembre",
-  "logout": "Logout",
+  "logout": "Esci",
   "profile": "Profilo",
   "settings": "Impostazioni",
   "contact_us": "Contattaci",
   "error_opening_email": "Si è verificato un errore durante l'apertura dell'email",
   "register_now": "Registrati ora",
   "tracking_permission_title": "Supporta l'App",
-  "tracking_permission_message": "Per migliorare la tua esperienza e mostrarti contenuti più rilevanti, aiutaci a mantenere gratuita l'app.\n\nClicca su Allow per supportarci.",
+  "tracking_permission_message": "Per migliorare la tua esperienza e mostrarti contenuti più rilevanti, aiutaci a mantenere gratuita l'app.\n\nClicca su Consenti per supportarci.",
   "tracking_permission_next": "Avanti",
   "skip": "Salta",
   "done": "Fatto",
@@ -68,11 +68,11 @@
     }
   },
   "repeaterMode": "Modalità",
-  "repeaterModeAnalog": "Analog",
+  "repeaterModeAnalog": "Analogico",
   "repeaterModeC4fm": "C4FM",
   "repeaterModeDstar": "D-STAR",
   "repeaterModeDmr": "DMR",
-  "repeaterModeAllmode": "ALLMODE",
+  "repeaterModeAllmode": "Tutti i modi",
   "repeaterModeEcholink": "Echolink",
   "repeaterModeWinlink": "Winlink",
   "repeaterFrequency": "Frequenza",
@@ -112,7 +112,7 @@
   "authBenefitStatsTitle": "Statistiche dettagliate",
   "authBenefitStatsDescription": "Monitora i tuoi progressi e migliora",
   "authBenefitQuizTitle": "Diverse modalità di quiz",
-  "authBenefitQuizDescription": "Allenati in modalità maratona, topics e altro.",
+  "authBenefitQuizDescription": "Allenati in modalità maratona, argomenti e altro.",
   "authBenefitSyncTitle": "Sincronizzazione",
   "authBenefitSyncDescription": "Accedi da qualsiasi dispositivo",
   "authOrSignInWithEmail": "Oppure accedi con email",
@@ -139,14 +139,14 @@
   "authContinueAsGuest": "Continua come ospite",
   "commonAppNamePart1": "Ham",
   "commonAppNamePart2": "QRG",
-  "commonAppTagline": "Repeater Network",
+  "commonAppTagline": "Scopri i ripetitori che ti circondano",
   "commonPoweredBy": "POWERED BY IU4VRB",
-  "homeQuickAccess": "Quick Access",
-  "homeRepeaterList": "Repeater List",
-  "homeMyFavorites": "My Favorites",
-  "homeNearby": "Nearby",
-  "homeViewAll": "View All",
-  "homeStations": "{count} Stations",
+  "homeQuickAccess": "Accesso rapido",
+  "homeRepeaterList": "Lista ripetitori",
+  "homeMyFavorites": "I miei preferiti",
+  "homeNearby": "Vicino a te",
+  "homeViewAll": "Vedi tutto",
+  "homeStations": "{count} stazioni",
   "@homeStations": {
     "placeholders": {
       "count": {
@@ -154,7 +154,7 @@
       }
     }
   },
-  "homeSaved": "{count} Saved",
+  "homeSaved": "{count} salvati",
   "@homeSaved": {
     "placeholders": {
       "count": {
@@ -162,10 +162,10 @@
       }
     }
   },
-  "homeActive": "Active",
-  "homeIdle": "Idle",
+  "homeActive": "Attivo",
+  "homeIdle": "Inattivo",
   "homeNavHome": "Home",
-  "homeNavList": "List",
-  "homeNavFavorites": "Favorites",
-  "homeNavProfile": "Profile"
+  "homeNavList": "Lista",
+  "homeNavFavorites": "Preferiti",
+  "homeNavProfile": "Profilo"
 }

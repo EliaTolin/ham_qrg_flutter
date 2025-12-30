@@ -13,7 +13,6 @@ abstract interface class RepeatersDatasource {
     required double latitude,
     required double longitude,
     double radiusKm,
-    int limit,
     List<String>? modes,
   });
 
@@ -25,13 +24,13 @@ abstract interface class RepeatersDatasource {
 
   Future<int> getTotalRepeatersCount();
 
-  Future<int?> getTotalFavoritesCount();
+  Future<int?> getTotalFavoritesCount(String userId);
 
-  Future<List<String>> getFavoriteRepeatersIds();
+  Future<List<String>> getFavoriteRepeatersIds(String userId);
 
-  Future<List<RepeaterModel>> getFavoriteRepeaters();
+  Future<List<RepeaterModel>> getFavoriteRepeaters(String userId);
 
-  Future<void> addFavoriteRepeater(String repeaterId);
+  Future<void> addFavoriteRepeater(String userId, String repeaterId);
 
-  Future<void> removeFavoriteRepeater(String repeaterId);
+  Future<void> removeFavoriteRepeater(String userId, String repeaterId);
 }

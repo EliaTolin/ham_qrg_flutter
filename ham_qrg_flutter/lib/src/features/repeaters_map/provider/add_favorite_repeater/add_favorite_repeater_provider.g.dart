@@ -62,7 +62,7 @@ final class AddFavoriteRepeaterProvider
 }
 
 String _$addFavoriteRepeaterHash() =>
-    r'3fbb45710f66d2260c61bbf7e686907ab410046b';
+    r'b9ce69dcd1a2cbb5867cd6cfd7659d072066e195';
 
 final class AddFavoriteRepeaterFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<void>, String> {

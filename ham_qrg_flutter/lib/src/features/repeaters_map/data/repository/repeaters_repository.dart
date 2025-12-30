@@ -33,14 +33,12 @@ class RepeatersRepository {
     required double latitude,
     required double longitude,
     double radiusKm = 50,
-    int limit = 50,
     List<RepeaterMode>? modes,
   }) async {
     final data = await _datasource.getRepeatersNearby(
       latitude: latitude,
       longitude: longitude,
       radiusKm: radiusKm,
-      limit: limit,
       modes: _mapper.mapModesToValues(modes),
     );
     return data.map(_mapper.fromModel).toList();
@@ -63,25 +61,25 @@ class RepeatersRepository {
     return _datasource.getTotalRepeatersCount();
   }
 
-  Future<int?> getTotalFavoritesCount() async {
-    return _datasource.getTotalFavoritesCount();
+  Future<int?> getTotalFavoritesCount(String userId) async {
+    return _datasource.getTotalFavoritesCount(userId);
   }
 
-  Future<List<String>> getFavoriteRepeatersIds() async {
-    return _datasource.getFavoriteRepeatersIds();
+  Future<List<String>> getFavoriteRepeatersIds(String userId) async {
+    return _datasource.getFavoriteRepeatersIds(userId);
   }
 
-  Future<List<Repeater>> getFavoriteRepeaters() async {
-    final data = await _datasource.getFavoriteRepeaters();
+  Future<List<Repeater>> getFavoriteRepeaters(String userId) async {
+    final data = await _datasource.getFavoriteRepeaters(userId);
     return data.map(_mapper.fromModel).toList();
   }
 
-  Future<void> addFavoriteRepeater(String repeaterId) async {
-    return _datasource.addFavoriteRepeater(repeaterId);
+  Future<void> addFavoriteRepeater(String userId, String repeaterId) async {
+    return _datasource.addFavoriteRepeater(userId, repeaterId);
   }
 
-  Future<void> removeFavoriteRepeater(String repeaterId) async {
-    return _datasource.removeFavoriteRepeater(repeaterId);
+  Future<void> removeFavoriteRepeater(String userId, String repeaterId) async {
+    return _datasource.removeFavoriteRepeater(userId, repeaterId);
   }
 }
 

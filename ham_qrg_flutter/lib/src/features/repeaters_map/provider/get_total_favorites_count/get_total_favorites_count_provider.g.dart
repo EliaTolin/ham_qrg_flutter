@@ -41,4 +41,4 @@ final class GetTotalFavoritesCountProvider
 }
 
 String _$getTotalFavoritesCountHash() =>
-    r'a218991ccbe4447bbcc1786138397c5a2e9e714f';
+    r'046db2f72d48e1ea52688950ff81130c1a0d5104';

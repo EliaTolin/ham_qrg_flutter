@@ -42,4 +42,4 @@ final class GetFavoriteRepeatersIdsProvider extends $FunctionalProvider<
 }
 
 String _$getFavoriteRepeatersIdsHash() =>
-    r'7b633b9ad97995bd675579ecb8083dd3f856db36';
+    r'b5a11c9f28a0e2e540500b73899eb574d967b771';

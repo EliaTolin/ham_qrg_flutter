@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
+import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
 
@@ -14,35 +15,6 @@ class RepeaterDetailPage extends StatelessWidget {
 
   final String repeaterId;
   final Repeater repeater;
-
-  static String formatFrequency(int frequencyHz) {
-    if (frequencyHz >= 1000000) {
-      return '${(frequencyHz / 1000000).toStringAsFixed(3)} MHz';
-    } else if (frequencyHz >= 1000) {
-      return '${(frequencyHz / 1000).toStringAsFixed(1)} kHz';
-    }
-    return '$frequencyHz Hz';
-  }
-
-  static String formatShift(int? shiftHz, String? shiftRaw) {
-    if (shiftRaw != null && shiftRaw.isNotEmpty) {
-      return shiftRaw;
-    }
-    if (shiftHz != null) {
-      if (shiftHz >= 1000) {
-        return '${(shiftHz / 1000).toStringAsFixed(1)} kHz';
-      }
-      return '$shiftHz Hz';
-    }
-    return '-';
-  }
-
-  static String formatCtcss(double? ctcssHz) {
-    if (ctcssHz != null) {
-      return '${ctcssHz.toStringAsFixed(1)} Hz';
-    }
-    return '-';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +60,9 @@ class RepeaterDetailPage extends StatelessWidget {
                           ),
                           child: Text(
                             RepeaterModeHelper.getModeLabel(
-                                repeater.mode, l10n),
+                              repeater.mode,
+                              l10n,
+                            ),
                             style: theme.textTheme.labelMedium?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
@@ -130,22 +104,21 @@ class RepeaterDetailPage extends StatelessWidget {
                   icon: Icons.waves,
                   iconColor: colorScheme.primary,
                   title: l10n.repeaterFrequency,
-                  value: formatFrequency(repeater.frequencyHz),
+                  value: RepeaterFormatHelper.formatFrequency(repeater.frequencyHz),
                   subtitle: 'Frequenza operativa',
                 ),
                 const SizedBox(height: 12),
                 // Shift & CTCSS Row
                 Row(
                   children: [
-                    if (repeater.shiftHz != null ||
-                        repeater.shiftRaw != null) ...[
+                    if (repeater.shiftHz != null || repeater.shiftRaw != null) ...[
                       Expanded(
                         child: _InfoCard(
                           icon: Icons.swap_horiz,
                           iconColor: colorScheme.secondary,
                           title: l10n.repeaterShift,
                           value:
-                              formatShift(repeater.shiftHz, repeater.shiftRaw),
+                              RepeaterFormatHelper.formatShift(repeater.shiftHz, repeater.shiftRaw),
                           subtitle: 'Offset',
                         ),
                       ),
@@ -157,7 +130,7 @@ class RepeaterDetailPage extends StatelessWidget {
                           icon: Icons.tune,
                           iconColor: colorScheme.tertiary,
                           title: l10n.repeaterCtcss,
-                          value: formatCtcss(repeater.ctcssHz),
+                          value: RepeaterFormatHelper.formatCtcss(repeater.ctcssHz),
                           subtitle: 'Tone',
                         ),
                       ),

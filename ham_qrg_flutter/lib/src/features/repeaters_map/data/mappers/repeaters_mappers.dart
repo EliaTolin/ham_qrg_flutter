@@ -20,7 +20,6 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       ctcssHz: model.ctcssHz,
       mode: _modeFromString(model.mode),
       network: model.network,
-      status: _statusFromString(model.status),
       region: model.region,
       provinceCode: model.provinceCode,
       locality: model.locality,
@@ -48,7 +47,6 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       ctcssHz: entity.ctcssHz,
       mode: _modeToString(entity.mode),
       network: entity.network,
-      status: _statusToString(entity.status),
       region: entity.region,
       provinceCode: entity.provinceCode,
       locality: entity.locality,
@@ -103,29 +101,6 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
         return 'Echolink';
       case RepeaterMode.winlink:
         return 'Winlink';
-    }
-  }
-
-  RepeaterStatus _statusFromString(String value) {
-    final normalized = value.toLowerCase();
-    switch (normalized) {
-      case 'active':
-        return RepeaterStatus.active;
-      case 'inactive':
-        return RepeaterStatus.inactive;
-      default:
-        return RepeaterStatus.unknown;
-    }
-  }
-
-  String _statusToString(RepeaterStatus status) {
-    switch (status) {
-      case RepeaterStatus.active:
-        return 'active';
-      case RepeaterStatus.inactive:
-        return 'inactive';
-      case RepeaterStatus.unknown:
-        return 'unknown';
     }
   }
 }

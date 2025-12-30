@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:ham_qrg/clients/package_info/package_info.dart';
 import 'package:ham_qrg/common/utils/version_utils.dart';
 import 'package:ham_qrg/config/app_configs.dart';
@@ -22,7 +23,9 @@ class SplashController extends _$SplashController {
   @override
   Future<SplashAction?> build() async {
     try {
-      await Future.delayed(const Duration(seconds: 2));
+      if (!kDebugMode) {
+        await Future.delayed(const Duration(seconds: 2));
+      }
       final hasSeenOnboarding = await ref.read(getHasSeenOnboardingProvider.future);
       var userId = await ref.read(getUserIdProvider.future);
       userId ??= await ref.read(anonymousSignInProvider.future);

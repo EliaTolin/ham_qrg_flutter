@@ -53,7 +53,6 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     required double latitude,
     required double longitude,
     double radiusKm = 50,
-    int limit = 50,
     List<String>? modes,
   }) async {
     try {
@@ -63,7 +62,6 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
           'p_lat': latitude,
           'p_lon': longitude,
           'p_radius_km': radiusKm,
-          'p_limit': limit,
           if (modes != null && modes.isNotEmpty) 'p_modes': modes,
         },
       );
@@ -148,10 +146,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
-  Future<int?> getTotalFavoritesCount() async {
+  Future<int?> getTotalFavoritesCount(String userId) async {
     try {
-      final userId = _client.auth.currentUser?.id;
-      if (userId == null) {
+      if (userId.isEmpty) {
         return null;
       }
       final data =
@@ -175,10 +172,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
-  Future<List<String>> getFavoriteRepeatersIds() async {
+  Future<List<String>> getFavoriteRepeatersIds(String userId) async {
     try {
-      final userId = _client.auth.currentUser?.id;
-      if (userId == null) {
+      if (userId.isEmpty) {
         return [];
       }
       final data =
@@ -199,10 +195,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
-  Future<List<RepeaterModel>> getFavoriteRepeaters() async {
+  Future<List<RepeaterModel>> getFavoriteRepeaters(String userId) async {
     try {
-      final userId = _client.auth.currentUser?.id;
-      if (userId == null) {
+      if (userId.isEmpty) {
         return [];
       }
       final data = await _client
@@ -229,10 +224,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
-  Future<void> addFavoriteRepeater(String repeaterId) async {
+  Future<void> addFavoriteRepeater(String userId, String repeaterId) async {
     try {
-      final userId = _client.auth.currentUser?.id;
-      if (userId == null) {
+      if (userId.isEmpty) {
         throw Exception('User not authenticated');
       }
       await _client.from('user_favorite_repeaters').insert({
@@ -246,10 +240,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
-  Future<void> removeFavoriteRepeater(String repeaterId) async {
+  Future<void> removeFavoriteRepeater(String userId, String repeaterId) async {
     try {
-      final userId = _client.auth.currentUser?.id;
-      if (userId == null) {
+      if (userId.isEmpty) {
         throw Exception('User not authenticated');
       }
       await _client
