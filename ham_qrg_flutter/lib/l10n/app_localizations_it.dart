@@ -73,7 +73,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get december => 'Dicembre';
 
   @override
-  String get logout => 'Logout';
+  String get logout => 'Esci';
 
   @override
   String get profile => 'Profilo';
@@ -96,7 +96,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tracking_permission_message =>
-      'Per migliorare la tua esperienza e mostrarti contenuti più rilevanti, aiutaci a mantenere gratuita l\'app.\n\nClicca su Allow per supportarci.';
+      'Per migliorare la tua esperienza e mostrarti contenuti più rilevanti, aiutaci a mantenere gratuita l\'app.\n\nClicca su Consenti per supportarci.';
 
   @override
   String get tracking_permission_next => 'Avanti';
@@ -186,7 +186,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterMode => 'Modalità';
 
   @override
-  String get repeaterModeAnalog => 'Analog';
+  String get repeaterModeAnalog => 'Analogico';
 
   @override
   String get repeaterModeC4fm => 'C4FM';
@@ -198,7 +198,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterModeDmr => 'DMR';
 
   @override
-  String get repeaterModeAllmode => 'ALLMODE';
+  String get repeaterModeAllmode => 'Tutti i modi';
 
   @override
   String get repeaterModeEcholink => 'Echolink';
@@ -276,7 +276,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get authBenefitQuizDescription =>
-      'Allenati in modalità maratona, topics e altro.';
+      'Allenati in modalità maratona, argomenti e altro.';
 
   @override
   String get authBenefitSyncTitle => 'Sincronizzazione';
@@ -358,51 +358,78 @@ class AppLocalizationsIt extends AppLocalizations {
   String get commonAppNamePart2 => 'QRG';
 
   @override
-  String get commonAppTagline => 'Repeater Network';
+  String get commonAppTagline => 'Scopri i ripetitori che ti circondano';
 
   @override
   String get commonPoweredBy => 'POWERED BY IU4VRB';
 
   @override
-  String get homeQuickAccess => 'Quick Access';
+  String get homeQuickAccess => 'Accesso rapido';
 
   @override
-  String get homeRepeaterList => 'Repeater List';
+  String get homeRepeaterList => 'Lista ripetitori';
 
   @override
-  String get homeMyFavorites => 'My Favorites';
+  String get homeMyFavorites => 'I miei preferiti';
 
   @override
-  String get homeNearby => 'Nearby';
+  String get homeNearby => 'Vicino a te';
 
   @override
-  String get homeViewAll => 'View All';
+  String get homeViewAll => 'Vedi tutto';
 
   @override
   String homeStations(int count) {
-    return '$count Stations';
+    return '$count stazioni';
   }
 
   @override
   String homeSaved(int count) {
-    return '$count Saved';
+    return '$count salvati';
   }
 
   @override
-  String get homeActive => 'Active';
+  String get homeActive => 'Attivo';
 
   @override
-  String get homeIdle => 'Idle';
+  String get homeIdle => 'Inattivo';
 
   @override
   String get homeNavHome => 'Home';
 
   @override
-  String get homeNavList => 'List';
+  String get homeNavList => 'Lista';
 
   @override
-  String get homeNavFavorites => 'Favorites';
+  String get homeNavFavorites => 'Preferiti';
 
   @override
-  String get homeNavProfile => 'Profile';
+  String get homeNavProfile => 'Profilo';
+
+  @override
+  String get favoritesTitle => 'I miei preferiti';
+
+  @override
+  String get favoritesSearchHint => 'Cerca ripetitori salvati...';
+
+  @override
+  String get favoritesFilterAllSaved => 'Tutti salvati';
+
+  @override
+  String get favoritesEmpty => 'Nessun ripetitore salvato';
+
+  @override
+  String get favoritesEmptyDescription =>
+      'Aggiungi ripetitori ai preferiti per vederli qui';
+
+  @override
+  String favoritesShowing(int showing, int total) {
+    return 'Mostrando $showing di $total stazioni preferite';
+  }
+
+  @override
+  String get favoritesRemove => 'Rimuovi dai preferiti';
+
+  @override
+  String get favoritesAdd => 'Aggiungi ai preferiti';
 }

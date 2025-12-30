@@ -217,7 +217,7 @@ abstract class AppLocalizations {
   /// No description provided for @logout.
   ///
   /// In it, this message translates to:
-  /// **'Logout'**
+  /// **'Esci'**
   String get logout;
 
   /// No description provided for @profile.
@@ -259,7 +259,7 @@ abstract class AppLocalizations {
   /// No description provided for @tracking_permission_message.
   ///
   /// In it, this message translates to:
-  /// **'Per migliorare la tua esperienza e mostrarti contenuti più rilevanti, aiutaci a mantenere gratuita l\'app.\n\nClicca su Allow per supportarci.'**
+  /// **'Per migliorare la tua esperienza e mostrarti contenuti più rilevanti, aiutaci a mantenere gratuita l\'app.\n\nClicca su Consenti per supportarci.'**
   String get tracking_permission_message;
 
   /// No description provided for @tracking_permission_next.
@@ -427,7 +427,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterModeAnalog.
   ///
   /// In it, this message translates to:
-  /// **'Analog'**
+  /// **'Analogico'**
   String get repeaterModeAnalog;
 
   /// No description provided for @repeaterModeC4fm.
@@ -451,7 +451,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterModeAllmode.
   ///
   /// In it, this message translates to:
-  /// **'ALLMODE'**
+  /// **'Tutti i modi'**
   String get repeaterModeAllmode;
 
   /// No description provided for @repeaterModeEcholink.
@@ -589,7 +589,7 @@ abstract class AppLocalizations {
   /// No description provided for @authBenefitQuizDescription.
   ///
   /// In it, this message translates to:
-  /// **'Allenati in modalità maratona, topics e altro.'**
+  /// **'Allenati in modalità maratona, argomenti e altro.'**
   String get authBenefitQuizDescription;
 
   /// No description provided for @authBenefitSyncTitle.
@@ -751,7 +751,7 @@ abstract class AppLocalizations {
   /// No description provided for @commonAppTagline.
   ///
   /// In it, this message translates to:
-  /// **'Repeater Network'**
+  /// **'Scopri i ripetitori che ti circondano'**
   String get commonAppTagline;
 
   /// No description provided for @commonPoweredBy.
@@ -763,55 +763,55 @@ abstract class AppLocalizations {
   /// No description provided for @homeQuickAccess.
   ///
   /// In it, this message translates to:
-  /// **'Quick Access'**
+  /// **'Accesso rapido'**
   String get homeQuickAccess;
 
   /// No description provided for @homeRepeaterList.
   ///
   /// In it, this message translates to:
-  /// **'Repeater List'**
+  /// **'Lista ripetitori'**
   String get homeRepeaterList;
 
   /// No description provided for @homeMyFavorites.
   ///
   /// In it, this message translates to:
-  /// **'My Favorites'**
+  /// **'I miei preferiti'**
   String get homeMyFavorites;
 
   /// No description provided for @homeNearby.
   ///
   /// In it, this message translates to:
-  /// **'Nearby'**
+  /// **'Vicino a te'**
   String get homeNearby;
 
   /// No description provided for @homeViewAll.
   ///
   /// In it, this message translates to:
-  /// **'View All'**
+  /// **'Vedi tutto'**
   String get homeViewAll;
 
   /// No description provided for @homeStations.
   ///
   /// In it, this message translates to:
-  /// **'{count} Stations'**
+  /// **'{count} stazioni'**
   String homeStations(int count);
 
   /// No description provided for @homeSaved.
   ///
   /// In it, this message translates to:
-  /// **'{count} Saved'**
+  /// **'{count} salvati'**
   String homeSaved(int count);
 
   /// No description provided for @homeActive.
   ///
   /// In it, this message translates to:
-  /// **'Active'**
+  /// **'Attivo'**
   String get homeActive;
 
   /// No description provided for @homeIdle.
   ///
   /// In it, this message translates to:
-  /// **'Idle'**
+  /// **'Inattivo'**
   String get homeIdle;
 
   /// No description provided for @homeNavHome.
@@ -823,20 +823,68 @@ abstract class AppLocalizations {
   /// No description provided for @homeNavList.
   ///
   /// In it, this message translates to:
-  /// **'List'**
+  /// **'Lista'**
   String get homeNavList;
 
   /// No description provided for @homeNavFavorites.
   ///
   /// In it, this message translates to:
-  /// **'Favorites'**
+  /// **'Preferiti'**
   String get homeNavFavorites;
 
   /// No description provided for @homeNavProfile.
   ///
   /// In it, this message translates to:
-  /// **'Profile'**
+  /// **'Profilo'**
   String get homeNavProfile;
+
+  /// No description provided for @favoritesTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'I miei preferiti'**
+  String get favoritesTitle;
+
+  /// No description provided for @favoritesSearchHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Cerca ripetitori salvati...'**
+  String get favoritesSearchHint;
+
+  /// No description provided for @favoritesFilterAllSaved.
+  ///
+  /// In it, this message translates to:
+  /// **'Tutti salvati'**
+  String get favoritesFilterAllSaved;
+
+  /// No description provided for @favoritesEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ripetitore salvato'**
+  String get favoritesEmpty;
+
+  /// No description provided for @favoritesEmptyDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiungi ripetitori ai preferiti per vederli qui'**
+  String get favoritesEmptyDescription;
+
+  /// No description provided for @favoritesShowing.
+  ///
+  /// In it, this message translates to:
+  /// **'Mostrando {showing} di {total} stazioni preferite'**
+  String favoritesShowing(int showing, int total);
+
+  /// No description provided for @favoritesRemove.
+  ///
+  /// In it, this message translates to:
+  /// **'Rimuovi dai preferiti'**
+  String get favoritesRemove;
+
+  /// No description provided for @favoritesAdd.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiungi ai preferiti'**
+  String get favoritesAdd;
 }
 
 class _AppLocalizationsDelegate

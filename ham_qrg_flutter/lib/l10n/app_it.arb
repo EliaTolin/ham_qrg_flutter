@@ -167,5 +167,23 @@
   "homeNavHome": "Home",
   "homeNavList": "Lista",
   "homeNavFavorites": "Preferiti",
-  "homeNavProfile": "Profilo"
+  "homeNavProfile": "Profilo",
+  "favoritesTitle": "I miei preferiti",
+  "favoritesSearchHint": "Cerca ripetitori salvati...",
+  "favoritesFilterAllSaved": "Tutti salvati",
+  "favoritesEmpty": "Nessun ripetitore salvato",
+  "favoritesEmptyDescription": "Aggiungi ripetitori ai preferiti per vederli qui",
+  "favoritesShowing": "Mostrando {showing} di {total} stazioni preferite",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Rimuovi dai preferiti",
+  "favoritesAdd": "Aggiungi ai preferiti"
 }

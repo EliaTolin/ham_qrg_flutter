@@ -4,6 +4,7 @@ import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/widgets/icons/repeater_icon.dart';
 import 'package:ham_qrg/common/widgets/profile/profile_chip.dart';
+import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/dashboard/controller/dashboard_controller.dart';
 import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:ham_qrg/src/features/dashboard/widget/map_section_widget.dart';
@@ -206,7 +207,7 @@ class _QuickAccessSection extends StatelessWidget {
                   title: l10n.homeMyFavorites,
                   subtitle: l10n.homeSaved(statistics.favoritesCount ?? 0),
                   onTap: () {
-                    // Navigate to favorites
+                    context.router.push(const FavoritesRoute());
                   },
                 ),
               ),

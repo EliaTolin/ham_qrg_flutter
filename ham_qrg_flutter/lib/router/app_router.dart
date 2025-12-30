@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/auth_screen.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/change_password/change_password_screen.dart';
 import 'package:ham_qrg/src/features/dashboard/dashboard_page.dart';
+import 'package:ham_qrg/src/features/favorites/presentation/favorites_page/favorites_page.dart';
 import 'package:ham_qrg/src/features/home/presentation/home_page.dart';
 import 'package:ham_qrg/src/features/onboarding/presentation/onboarding_page.dart';
 import 'package:ham_qrg/src/features/profile/presentation/profile/profile_screen.dart';
@@ -38,6 +39,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(path: 'dashboard', page: DashboardRoute.page),
                 AutoRoute(path: 'map', page: RepeatersMapRoute.page),
                 AutoRoute(path: 'list', page: RepeatersListRoute.page),
+                AutoRoute(path: 'favorites', page: FavoritesRoute.page),
                 AutoRoute(path: 'repeater/:repeaterId', page: RepeaterDetailRoute.page),
               ],
             ),

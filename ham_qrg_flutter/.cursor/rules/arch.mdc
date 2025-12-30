@@ -559,7 +559,48 @@ AutoRoute(
 
 ---
 
-## 11. Error Handling
+## 11. Localizzazione e Traduzioni
+
+### File di Traduzione (`lib/l10n/app_it.arb`)
+
+**REGOLE FONDAMENTALI:**
+- **Chiavi (`key`)**: SEMPRE in inglese
+- **Valori (`value`)**: SEMPRE in italiano
+
+**Esempio corretto:**
+```json
+{
+  "homeQuickAccess": "Accesso Rapido",
+  "homeRepeaterList": "Lista Ripetitori",
+  "homeMyFavorites": "I Miei Preferiti",
+  "error": "Errore",
+  "retry": "Riprova"
+}
+```
+
+**Esempio ERRATO:**
+```json
+{
+  "accessoRapido": "Accesso Rapido",  // ❌ Chiave in italiano
+  "homeQuickAccess": "Quick Access"    // ❌ Valore in inglese
+}
+```
+
+**Regole:**
+- Le chiavi devono essere in `camelCase` in inglese
+- I valori devono essere sempre in italiano
+- Usa nomi descrittivi per le chiavi che riflettono il contesto (es. `homeQuickAccess`, `profileSettings`, `repeaterDetails`)
+- Per placeholder, usa la sintassi ARB standard con `@key` e `placeholders`
+- Quando aggiungi nuove traduzioni, mantieni la coerenza con le chiavi esistenti
+
+**Pattern di naming per le chiavi:**
+- Prefisso con il contesto: `[feature][element]` (es. `homeQuickAccess`, `profileSettings`)
+- Per azioni: `[feature][action]` (es. `repeaterAddFavorite`, `profileUpdate`)
+- Per messaggi di errore: `error[Description]` (es. `errorMessage`, `errorRetry`)
+
+---
+
+## 12. Error Handling
 
 ### Errori Specifici (`errors/[feature]_errors.dart`)
 
@@ -584,7 +625,7 @@ class [Feature]NotFoundException extends [Feature]Exception {
 
 ---
 
-## 12. Best Practices
+## 13. Best Practices
 
 ### Dependency Injection
 - Usa sempre Riverpod per la dependency injection
@@ -631,7 +672,7 @@ class [Feature]NotFoundException extends [Feature]Exception {
 
 ---
 
-## 13. Checklist per Nuova Feature
+## 14. Checklist per Nuova Feature
 
 - [ ] Struttura cartelle creata (`data/`, `domain/`, `presentation/`, `provider/`)
 - [ ] Interfaccia datasource creata
@@ -652,7 +693,7 @@ class [Feature]NotFoundException extends [Feature]Exception {
 
 ---
 
-## 14. Esempi di Pattern Comuni
+## 15. Esempi di Pattern Comuni
 
 ### Pattern: Lista con Loading/Error
 ```dart
