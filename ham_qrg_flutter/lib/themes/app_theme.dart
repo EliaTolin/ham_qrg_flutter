@@ -14,7 +14,7 @@ class AppTheme {
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         onPrimary: AppColors.backgroundDark,
-        secondary: AppColors.modeDMR,
+        secondary: AppColors.secondary,
         onSecondary: Colors.white,
         tertiary: AppColors.modeDStar,
         onTertiary: Colors.white,
@@ -288,7 +288,7 @@ class AppTheme {
       colorScheme: const ColorScheme.dark(
         primary: AppColors.primary,
         onPrimary: AppColors.backgroundDark,
-        secondary: AppColors.modeDMR,
+        secondary: AppColors.secondary,
         onSecondary: Colors.white,
         tertiary: AppColors.modeDStar,
         onTertiary: Colors.white,

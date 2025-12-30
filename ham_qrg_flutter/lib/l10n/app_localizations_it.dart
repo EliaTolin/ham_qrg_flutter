@@ -362,4 +362,47 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get commonPoweredBy => 'POWERED BY IU4VRB';
+
+  @override
+  String get homeQuickAccess => 'Quick Access';
+
+  @override
+  String get homeRepeaterList => 'Repeater List';
+
+  @override
+  String get homeMyFavorites => 'My Favorites';
+
+  @override
+  String get homeNearby => 'Nearby';
+
+  @override
+  String get homeViewAll => 'View All';
+
+  @override
+  String homeStations(int count) {
+    return '$count Stations';
+  }
+
+  @override
+  String homeSaved(int count) {
+    return '$count Saved';
+  }
+
+  @override
+  String get homeActive => 'Active';
+
+  @override
+  String get homeIdle => 'Idle';
+
+  @override
+  String get homeNavHome => 'Home';
+
+  @override
+  String get homeNavList => 'List';
+
+  @override
+  String get homeNavFavorites => 'Favorites';
+
+  @override
+  String get homeNavProfile => 'Profile';
 }

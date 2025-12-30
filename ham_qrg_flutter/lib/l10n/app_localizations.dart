@@ -759,6 +759,84 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'POWERED BY IU4VRB'**
   String get commonPoweredBy;
+
+  /// No description provided for @homeQuickAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Quick Access'**
+  String get homeQuickAccess;
+
+  /// No description provided for @homeRepeaterList.
+  ///
+  /// In it, this message translates to:
+  /// **'Repeater List'**
+  String get homeRepeaterList;
+
+  /// No description provided for @homeMyFavorites.
+  ///
+  /// In it, this message translates to:
+  /// **'My Favorites'**
+  String get homeMyFavorites;
+
+  /// No description provided for @homeNearby.
+  ///
+  /// In it, this message translates to:
+  /// **'Nearby'**
+  String get homeNearby;
+
+  /// No description provided for @homeViewAll.
+  ///
+  /// In it, this message translates to:
+  /// **'View All'**
+  String get homeViewAll;
+
+  /// No description provided for @homeStations.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} Stations'**
+  String homeStations(int count);
+
+  /// No description provided for @homeSaved.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} Saved'**
+  String homeSaved(int count);
+
+  /// No description provided for @homeActive.
+  ///
+  /// In it, this message translates to:
+  /// **'Active'**
+  String get homeActive;
+
+  /// No description provided for @homeIdle.
+  ///
+  /// In it, this message translates to:
+  /// **'Idle'**
+  String get homeIdle;
+
+  /// No description provided for @homeNavHome.
+  ///
+  /// In it, this message translates to:
+  /// **'Home'**
+  String get homeNavHome;
+
+  /// No description provided for @homeNavList.
+  ///
+  /// In it, this message translates to:
+  /// **'List'**
+  String get homeNavList;
+
+  /// No description provided for @homeNavFavorites.
+  ///
+  /// In it, this message translates to:
+  /// **'Favorites'**
+  String get homeNavFavorites;
+
+  /// No description provided for @homeNavProfile.
+  ///
+  /// In it, this message translates to:
+  /// **'Profile'**
+  String get homeNavProfile;
 }
 
 class _AppLocalizationsDelegate

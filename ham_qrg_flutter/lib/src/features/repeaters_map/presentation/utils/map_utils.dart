@@ -34,16 +34,3 @@ void showRepeaterDetails(BuildContext context, Repeater repeater) {
     ),
   );
 }
-
-/// Calculate initial camera position from state
-({double lat, double lon, double zoom}) getInitialCameraPosition({
-  double? latitude,
-  double? longitude,
-}) {
-  return (
-    lat: latitude ?? 41.9028, // Rome default
-    lon: longitude ?? 12.4964,
-    zoom: latitude != null ? 13.0 : 5.5,
-  );
-}
-

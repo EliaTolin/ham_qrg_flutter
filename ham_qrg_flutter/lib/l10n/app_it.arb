@@ -140,5 +140,32 @@
   "commonAppNamePart1": "Ham",
   "commonAppNamePart2": "QRG",
   "commonAppTagline": "Repeater Network",
-  "commonPoweredBy": "POWERED BY IU4VRB"
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Quick Access",
+  "homeRepeaterList": "Repeater List",
+  "homeMyFavorites": "My Favorites",
+  "homeNearby": "Nearby",
+  "homeViewAll": "View All",
+  "homeStations": "{count} Stations",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} Saved",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Active",
+  "homeIdle": "Idle",
+  "homeNavHome": "Home",
+  "homeNavList": "List",
+  "homeNavFavorites": "Favorites",
+  "homeNavProfile": "Profile"
 }

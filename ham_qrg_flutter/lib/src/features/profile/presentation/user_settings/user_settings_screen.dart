@@ -6,7 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:ham_qrg/common/extension/hard_coded_string.dart';
 import 'package:ham_qrg/common/widgets/button/save_button.dart';
-import 'package:ham_qrg/common/widgets/profile_avatar.dart';
+import 'package:ham_qrg/common/widgets/profile/profile_avatar.dart';
 import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/profile/presentation/user_settings/controller/user_settings_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

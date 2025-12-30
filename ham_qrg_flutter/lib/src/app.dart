@@ -30,7 +30,6 @@ class HamQRG extends ConsumerWidget {
       title: 'HamQRG',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
     );
   }
 }

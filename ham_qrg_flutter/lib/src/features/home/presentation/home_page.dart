@@ -38,6 +38,7 @@ class HomePage extends HookConsumerWidget {
 
         return AutoTabsScaffold(
           routes: const [
+            DashboardRoute(),
             RepeatersListRoute(),
             RepeatersMapRoute(),
             ProfileRoute(),
@@ -48,6 +49,10 @@ class HomePage extends HookConsumerWidget {
               onDestinationSelected: tabsRouter.setActiveIndex,
               backgroundColor: Colors.white,
               destinations: const [
+                NavigationDestination(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
                 NavigationDestination(
                   icon: Icon(Icons.list),
                   label: 'Lista',

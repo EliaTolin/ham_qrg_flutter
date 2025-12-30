@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:ham_qrg/clients/package_info/package_info.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/widgets/profile_avatar.dart';
+import 'package:ham_qrg/common/widgets/profile/profile_avatar.dart';
 import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:ham_qrg/config/app_configs.dart';
 import 'package:ham_qrg/router/app_router.dart';
