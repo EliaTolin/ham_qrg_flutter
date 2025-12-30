@@ -14,17 +14,17 @@ class ProfileChip extends StatelessWidget {
         Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.8),
+        color: colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(9999),
         border: Border.all(
           color: colorScheme.primary.withValues(alpha: 0.5),
         ),
       ),
       child: Row(
+        spacing: 8,
         mainAxisSize: MainAxisSize.min,
         children: [
           ProfileAvatar(imageProfileUrl: imageProfileUrl, size: 24),
-          const SizedBox(width: 8),
           if (callSign != null)
             Text(
               callSign!,

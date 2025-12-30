@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$DashboardState {
-  HomeStatistics get statistics;
+  DashboardStatistics get statistics;
   ({double lat, double lon}) get initialPosition;
   List<Repeater> get nearbyRepeaters;
   Profile? get profile;
@@ -66,13 +66,13 @@ abstract mixin class $DashboardStateCopyWith<$Res> {
       _$DashboardStateCopyWithImpl;
   @useResult
   $Res call(
-      {HomeStatistics statistics,
+      {DashboardStatistics statistics,
       ({double lat, double lon}) initialPosition,
       List<Repeater> nearbyRepeaters,
       Profile? profile,
       LocationErrorType? locationError});
 
-  $HomeStatisticsCopyWith<$Res> get statistics;
+  $DashboardStatisticsCopyWith<$Res> get statistics;
   $ProfileCopyWith<$Res>? get profile;
 }
 
@@ -99,7 +99,7 @@ class _$DashboardStateCopyWithImpl<$Res>
       statistics: null == statistics
           ? _self.statistics
           : statistics // ignore: cast_nullable_to_non_nullable
-              as HomeStatistics,
+              as DashboardStatistics,
       initialPosition: null == initialPosition
           ? _self.initialPosition
           : initialPosition // ignore: cast_nullable_to_non_nullable
@@ -123,8 +123,8 @@ class _$DashboardStateCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $HomeStatisticsCopyWith<$Res> get statistics {
-    return $HomeStatisticsCopyWith<$Res>(_self.statistics, (value) {
+  $DashboardStatisticsCopyWith<$Res> get statistics {
+    return $DashboardStatisticsCopyWith<$Res>(_self.statistics, (value) {
       return _then(_self.copyWith(statistics: value));
     });
   }
@@ -238,7 +238,7 @@ extension DashboardStatePatterns on DashboardState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            HomeStatistics statistics,
+            DashboardStatistics statistics,
             ({double lat, double lon}) initialPosition,
             List<Repeater> nearbyRepeaters,
             Profile? profile,
@@ -272,7 +272,7 @@ extension DashboardStatePatterns on DashboardState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            HomeStatistics statistics,
+            DashboardStatistics statistics,
             ({double lat, double lon}) initialPosition,
             List<Repeater> nearbyRepeaters,
             Profile? profile,
@@ -304,7 +304,7 @@ extension DashboardStatePatterns on DashboardState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            HomeStatistics statistics,
+            DashboardStatistics statistics,
             ({double lat, double lon}) initialPosition,
             List<Repeater> nearbyRepeaters,
             Profile? profile,
@@ -334,7 +334,7 @@ class _DashboardState implements DashboardState {
       : _nearbyRepeaters = nearbyRepeaters;
 
   @override
-  final HomeStatistics statistics;
+  final DashboardStatistics statistics;
   @override
   final ({double lat, double lon}) initialPosition;
   final List<Repeater> _nearbyRepeaters;
@@ -398,14 +398,14 @@ abstract mixin class _$DashboardStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {HomeStatistics statistics,
+      {DashboardStatistics statistics,
       ({double lat, double lon}) initialPosition,
       List<Repeater> nearbyRepeaters,
       Profile? profile,
       LocationErrorType? locationError});
 
   @override
-  $HomeStatisticsCopyWith<$Res> get statistics;
+  $DashboardStatisticsCopyWith<$Res> get statistics;
   @override
   $ProfileCopyWith<$Res>? get profile;
 }
@@ -433,7 +433,7 @@ class __$DashboardStateCopyWithImpl<$Res>
       statistics: null == statistics
           ? _self.statistics
           : statistics // ignore: cast_nullable_to_non_nullable
-              as HomeStatistics,
+              as DashboardStatistics,
       initialPosition: null == initialPosition
           ? _self.initialPosition
           : initialPosition // ignore: cast_nullable_to_non_nullable
@@ -457,8 +457,8 @@ class __$DashboardStateCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $HomeStatisticsCopyWith<$Res> get statistics {
-    return $HomeStatisticsCopyWith<$Res>(_self.statistics, (value) {
+  $DashboardStatisticsCopyWith<$Res> get statistics {
+    return $DashboardStatisticsCopyWith<$Res>(_self.statistics, (value) {
       return _then(_self.copyWith(statistics: value));
     });
   }

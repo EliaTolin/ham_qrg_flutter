@@ -85,26 +85,6 @@ class MapSectionWidget extends HookConsumerWidget {
             ),
           ),
         ),
-        // My Location Button
-        Positioned(
-          bottom: 16,
-          right: 16,
-          child: FloatingActionButton(
-            onPressed: () async {
-              if (mapController.value != null) {
-                await moveCameraToLocation(
-                  mapController.value!,
-                  initialPosition.lat,
-                  initialPosition.lon,
-                  zoom: _dashboardMapZoom,
-                );
-              }
-            },
-            backgroundColor: colorScheme.primary,
-            foregroundColor: colorScheme.onPrimary,
-            child: const Icon(Icons.my_location),
-          ),
-        ),
       ],
     );
   }
@@ -134,6 +114,7 @@ class MapSectionWidget extends HookConsumerWidget {
             );
             showRepeaterDetails(context, repeater);
           } catch (e) {
+            log('ERROR: $e');
             // Repeater not found, ignore
           }
         }

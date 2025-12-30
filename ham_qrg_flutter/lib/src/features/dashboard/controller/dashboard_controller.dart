@@ -1,7 +1,7 @@
 import 'package:ham_qrg/src/features/dashboard/controller/state/dashboard_state.dart';
-import 'package:ham_qrg/src/features/home/provider/get_home_statistics/get_home_statistics_provider.dart';
-import 'package:ham_qrg/src/features/home/provider/get_nearby_repeaters/get_nearby_repeaters_provider.dart';
+import 'package:ham_qrg/src/features/dashboard/provider/get_dashboard_statistics/get_dashboard_statistics_provider.dart';
 import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:ham_qrg/src/features/repeaters_map/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
 import 'package:ham_qrg/src/features/repeaters_map/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,7 +16,7 @@ class DashboardController extends _$DashboardController {
 
   Future<DashboardState> _loadInitialData() async {
     // Load statistics
-    final statistics = await ref.read(getHomeStatisticsProvider.future);
+    final statistics = await ref.read(getDashboardStatisticsProvider.future);
     final profile = await ref.read(getProfileProvider.future);
     // Try to get user location, fallback to Rome if fails
     late final ({double latitude, double longitude}) position;
@@ -31,7 +31,7 @@ class DashboardController extends _$DashboardController {
     try {
       // Load nearby repeaters
       final nearbyRepeaters = await ref.read(
-        getNearbyRepeatersProvider(
+        getRepeatersNearbyProvider(
           latitude: position.latitude,
           longitude: position.longitude,
         ).future,

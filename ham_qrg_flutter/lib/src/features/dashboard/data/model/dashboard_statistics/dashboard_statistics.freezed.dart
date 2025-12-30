@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'home_statistics.dart';
+part of 'dashboard_statistics.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,56 +13,64 @@ part of 'home_statistics.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$HomeStatistics {
+mixin _$DashboardStatisticsModel {
+  @JsonKey(name: 'total_repeaters')
   int get totalRepeaters;
+  @JsonKey(name: 'favorites_count')
   int get favoritesCount;
 
-  /// Create a copy of HomeStatistics
+  /// Create a copy of DashboardStatisticsModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $HomeStatisticsCopyWith<HomeStatistics> get copyWith =>
-      _$HomeStatisticsCopyWithImpl<HomeStatistics>(
-          this as HomeStatistics, _$identity);
+  $DashboardStatisticsModelCopyWith<DashboardStatisticsModel> get copyWith =>
+      _$DashboardStatisticsModelCopyWithImpl<DashboardStatisticsModel>(
+          this as DashboardStatisticsModel, _$identity);
+
+  /// Serializes this DashboardStatisticsModel to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is HomeStatistics &&
+            other is DashboardStatisticsModel &&
             (identical(other.totalRepeaters, totalRepeaters) ||
                 other.totalRepeaters == totalRepeaters) &&
             (identical(other.favoritesCount, favoritesCount) ||
                 other.favoritesCount == favoritesCount));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, totalRepeaters, favoritesCount);
 
   @override
   String toString() {
-    return 'HomeStatistics(totalRepeaters: $totalRepeaters, favoritesCount: $favoritesCount)';
+    return 'DashboardStatisticsModel(totalRepeaters: $totalRepeaters, favoritesCount: $favoritesCount)';
   }
 }
 
 /// @nodoc
-abstract mixin class $HomeStatisticsCopyWith<$Res> {
-  factory $HomeStatisticsCopyWith(
-          HomeStatistics value, $Res Function(HomeStatistics) _then) =
-      _$HomeStatisticsCopyWithImpl;
+abstract mixin class $DashboardStatisticsModelCopyWith<$Res> {
+  factory $DashboardStatisticsModelCopyWith(DashboardStatisticsModel value,
+          $Res Function(DashboardStatisticsModel) _then) =
+      _$DashboardStatisticsModelCopyWithImpl;
   @useResult
-  $Res call({int totalRepeaters, int favoritesCount});
+  $Res call(
+      {@JsonKey(name: 'total_repeaters') int totalRepeaters,
+      @JsonKey(name: 'favorites_count') int favoritesCount});
 }
 
 /// @nodoc
-class _$HomeStatisticsCopyWithImpl<$Res>
-    implements $HomeStatisticsCopyWith<$Res> {
-  _$HomeStatisticsCopyWithImpl(this._self, this._then);
+class _$DashboardStatisticsModelCopyWithImpl<$Res>
+    implements $DashboardStatisticsModelCopyWith<$Res> {
+  _$DashboardStatisticsModelCopyWithImpl(this._self, this._then);
 
-  final HomeStatistics _self;
-  final $Res Function(HomeStatistics) _then;
+  final DashboardStatisticsModel _self;
+  final $Res Function(DashboardStatisticsModel) _then;
 
-  /// Create a copy of HomeStatistics
+  /// Create a copy of DashboardStatisticsModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -83,8 +91,8 @@ class _$HomeStatisticsCopyWithImpl<$Res>
   }
 }
 
-/// Adds pattern-matching-related methods to [HomeStatistics].
-extension HomeStatisticsPatterns on HomeStatistics {
+/// Adds pattern-matching-related methods to [DashboardStatisticsModel].
+extension DashboardStatisticsModelPatterns on DashboardStatisticsModel {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:
@@ -99,12 +107,12 @@ extension HomeStatisticsPatterns on HomeStatistics {
 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeStatistics value)? $default, {
+    TResult Function(_DashboardStatisticsModel value)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _HomeStatistics() when $default != null:
+      case _DashboardStatisticsModel() when $default != null:
         return $default(_that);
       case _:
         return orElse();
@@ -126,11 +134,11 @@ extension HomeStatisticsPatterns on HomeStatistics {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_HomeStatistics value) $default,
+    TResult Function(_DashboardStatisticsModel value) $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _HomeStatistics():
+      case _DashboardStatisticsModel():
         return $default(_that);
       case _:
         throw StateError('Unexpected subclass');
@@ -151,11 +159,11 @@ extension HomeStatisticsPatterns on HomeStatistics {
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HomeStatistics value)? $default,
+    TResult? Function(_DashboardStatisticsModel value)? $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _HomeStatistics() when $default != null:
+      case _DashboardStatisticsModel() when $default != null:
         return $default(_that);
       case _:
         return null;
@@ -176,12 +184,14 @@ extension HomeStatisticsPatterns on HomeStatistics {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int totalRepeaters, int favoritesCount)? $default, {
+    TResult Function(@JsonKey(name: 'total_repeaters') int totalRepeaters,
+            @JsonKey(name: 'favorites_count') int favoritesCount)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _HomeStatistics() when $default != null:
+      case _DashboardStatisticsModel() when $default != null:
         return $default(_that.totalRepeaters, _that.favoritesCount);
       case _:
         return orElse();
@@ -203,11 +213,13 @@ extension HomeStatisticsPatterns on HomeStatistics {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int totalRepeaters, int favoritesCount) $default,
+    TResult Function(@JsonKey(name: 'total_repeaters') int totalRepeaters,
+            @JsonKey(name: 'favorites_count') int favoritesCount)
+        $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _HomeStatistics():
+      case _DashboardStatisticsModel():
         return $default(_that.totalRepeaters, _that.favoritesCount);
       case _:
         throw StateError('Unexpected subclass');
@@ -228,11 +240,13 @@ extension HomeStatisticsPatterns on HomeStatistics {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int totalRepeaters, int favoritesCount)? $default,
+    TResult? Function(@JsonKey(name: 'total_repeaters') int totalRepeaters,
+            @JsonKey(name: 'favorites_count') int favoritesCount)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _HomeStatistics() when $default != null:
+      case _DashboardStatisticsModel() when $default != null:
         return $default(_that.totalRepeaters, _that.favoritesCount);
       case _:
         return null;
@@ -241,64 +255,80 @@ extension HomeStatisticsPatterns on HomeStatistics {
 }
 
 /// @nodoc
-
-class _HomeStatistics implements HomeStatistics {
-  const _HomeStatistics(
-      {required this.totalRepeaters, required this.favoritesCount});
+@JsonSerializable()
+class _DashboardStatisticsModel implements DashboardStatisticsModel {
+  const _DashboardStatisticsModel(
+      {@JsonKey(name: 'total_repeaters') required this.totalRepeaters,
+      @JsonKey(name: 'favorites_count') required this.favoritesCount});
+  factory _DashboardStatisticsModel.fromJson(Map<String, dynamic> json) =>
+      _$DashboardStatisticsModelFromJson(json);
 
   @override
+  @JsonKey(name: 'total_repeaters')
   final int totalRepeaters;
   @override
+  @JsonKey(name: 'favorites_count')
   final int favoritesCount;
 
-  /// Create a copy of HomeStatistics
+  /// Create a copy of DashboardStatisticsModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$HomeStatisticsCopyWith<_HomeStatistics> get copyWith =>
-      __$HomeStatisticsCopyWithImpl<_HomeStatistics>(this, _$identity);
+  _$DashboardStatisticsModelCopyWith<_DashboardStatisticsModel> get copyWith =>
+      __$DashboardStatisticsModelCopyWithImpl<_DashboardStatisticsModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$DashboardStatisticsModelToJson(
+      this,
+    );
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _HomeStatistics &&
+            other is _DashboardStatisticsModel &&
             (identical(other.totalRepeaters, totalRepeaters) ||
                 other.totalRepeaters == totalRepeaters) &&
             (identical(other.favoritesCount, favoritesCount) ||
                 other.favoritesCount == favoritesCount));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, totalRepeaters, favoritesCount);
 
   @override
   String toString() {
-    return 'HomeStatistics(totalRepeaters: $totalRepeaters, favoritesCount: $favoritesCount)';
+    return 'DashboardStatisticsModel(totalRepeaters: $totalRepeaters, favoritesCount: $favoritesCount)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$HomeStatisticsCopyWith<$Res>
-    implements $HomeStatisticsCopyWith<$Res> {
-  factory _$HomeStatisticsCopyWith(
-          _HomeStatistics value, $Res Function(_HomeStatistics) _then) =
-      __$HomeStatisticsCopyWithImpl;
+abstract mixin class _$DashboardStatisticsModelCopyWith<$Res>
+    implements $DashboardStatisticsModelCopyWith<$Res> {
+  factory _$DashboardStatisticsModelCopyWith(_DashboardStatisticsModel value,
+          $Res Function(_DashboardStatisticsModel) _then) =
+      __$DashboardStatisticsModelCopyWithImpl;
   @override
   @useResult
-  $Res call({int totalRepeaters, int favoritesCount});
+  $Res call(
+      {@JsonKey(name: 'total_repeaters') int totalRepeaters,
+      @JsonKey(name: 'favorites_count') int favoritesCount});
 }
 
 /// @nodoc
-class __$HomeStatisticsCopyWithImpl<$Res>
-    implements _$HomeStatisticsCopyWith<$Res> {
-  __$HomeStatisticsCopyWithImpl(this._self, this._then);
+class __$DashboardStatisticsModelCopyWithImpl<$Res>
+    implements _$DashboardStatisticsModelCopyWith<$Res> {
+  __$DashboardStatisticsModelCopyWithImpl(this._self, this._then);
 
-  final _HomeStatistics _self;
-  final $Res Function(_HomeStatistics) _then;
+  final _DashboardStatisticsModel _self;
+  final $Res Function(_DashboardStatisticsModel) _then;
 
-  /// Create a copy of HomeStatistics
+  /// Create a copy of DashboardStatisticsModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -306,7 +336,7 @@ class __$HomeStatisticsCopyWithImpl<$Res>
     Object? totalRepeaters = null,
     Object? favoritesCount = null,
   }) {
-    return _then(_HomeStatistics(
+    return _then(_DashboardStatisticsModel(
       totalRepeaters: null == totalRepeaters
           ? _self.totalRepeaters
           : totalRepeaters // ignore: cast_nullable_to_non_nullable

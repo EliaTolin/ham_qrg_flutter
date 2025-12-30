@@ -4,8 +4,8 @@ import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/widgets/profile/profile_chip.dart';
 import 'package:ham_qrg/src/features/dashboard/controller/dashboard_controller.dart';
+import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:ham_qrg/src/features/dashboard/widget/map_section_widget.dart';
-import 'package:ham_qrg/src/features/home/domain/home_statistics/home_statistics.dart';
 import 'package:ham_qrg/src/features/repeaters_map/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,17 +29,20 @@ class DashboardPage extends HookConsumerWidget {
               flex: 58,
               child: Stack(
                 children: [
-                  Positioned(
-                    top: MediaQuery.of(context).padding.top + 16,
-                    right: 16,
-                    child: ProfileChip(imageProfileUrl: state.profile?.propic, callSign: 'IU4VRB'),
-                  ),
                   MapSectionWidget(
                     nearbyRepeaters: state.nearbyRepeaters,
                     initialPosition: (
                       lat: state.initialPosition.lat,
                       lon: state.initialPosition.lon,
                       zoom: 10
+                    ),
+                  ),
+                  Positioned(
+                    top: MediaQuery.of(context).padding.top + 16,
+                    right: 16,
+                    child: ProfileChip(
+                      imageProfileUrl: state.profile?.propic,
+                      callSign: 'IU4VRB',
                     ),
                   ),
                 ],
@@ -85,7 +88,7 @@ class _ContentSection extends StatelessWidget {
     required this.nearbyRepeaters,
   });
 
-  final HomeStatistics statistics;
+  final DashboardStatistics statistics;
   final List<Repeater> nearbyRepeaters;
 
   @override
@@ -143,7 +146,7 @@ class _ContentSection extends StatelessWidget {
 class _QuickAccessSection extends StatelessWidget {
   const _QuickAccessSection({required this.statistics});
 
-  final HomeStatistics statistics;
+  final DashboardStatistics statistics;
 
   @override
   Widget build(BuildContext context) {
@@ -411,7 +414,9 @@ class _NearbyRepeaterItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        RepeaterFormatHelper.formatFrequency(repeater.frequencyHz),
+                        RepeaterFormatHelper.formatFrequency(
+                          repeater.frequencyHz,
+                        ),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: colorScheme.onSurfaceVariant,
                           fontFeatures: const [FontFeature.tabularFigures()],
@@ -428,7 +433,9 @@ class _NearbyRepeaterItem extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          RepeaterFormatHelper.formatDistance(repeater.distanceMeters),
+                          RepeaterFormatHelper.formatDistance(
+                            repeater.distanceMeters,
+                          ),
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: colorScheme.onSurfaceVariant,
                           ),

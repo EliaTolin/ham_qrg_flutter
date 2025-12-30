@@ -1,7 +1,6 @@
 import 'package:ham_qrg/clients/storage/impl/shared_pref_storage_client/shared_pref_storage_client.dart';
 import 'package:ham_qrg/clients/storage/storage_client.dart';
 import 'package:ham_qrg/src/features/home/data/datasource/home_datasource.dart';
-import 'package:ham_qrg/src/features/home/data/model/home_statistics/home_statistics.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_local_datasource.g.dart';
@@ -43,11 +42,6 @@ class HomeLocalDatasource implements HomeDatasource {
       'lastTelegramInviteDate',
       time.toIso8601String(),
     );
-  }
-
-  @override
-  Future<HomeStatisticsModel> getHomeStatistics() {
-    throw UnimplementedError();
   }
 }
 
