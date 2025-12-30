@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ham_qrg/l10n/app_localizations.dart';
 import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/themes/light_themes.dart';
+import 'package:ham_qrg/themes/app_theme.dart';
 
 class HamQRG extends ConsumerWidget {
   const HamQRG({super.key});
@@ -28,7 +28,9 @@ class HamQRG extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       title: 'HamQRG',
-      theme: lightTheme,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
     );
   }
 }

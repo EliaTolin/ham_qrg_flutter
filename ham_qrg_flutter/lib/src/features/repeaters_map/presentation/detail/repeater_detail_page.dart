@@ -193,7 +193,7 @@ class RepeaterDetailPage extends StatelessWidget {
                 if (repeater.managerCallsign != null ||
                     repeater.network != null ||
                     repeater.locator != null) ...[
-                  _SectionHeader(title: 'Informazioni aggiuntive'),
+                  const _SectionHeader(title: 'Informazioni aggiuntive'),
                   const SizedBox(height: 12),
                   if (repeater.managerCallsign != null)
                     _DetailTile(
@@ -386,4 +386,3 @@ class _DetailTile extends StatelessWidget {
     );
   }
 }
-

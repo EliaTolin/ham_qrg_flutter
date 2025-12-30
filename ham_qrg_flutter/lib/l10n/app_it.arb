@@ -136,5 +136,9 @@
   "authFirstNameRequired": "Il nome è obbligatorio",
   "authLastName": "Cognome",
   "authLastNameRequired": "Il cognome è obbligatorio",
-  "authContinueAsGuest": "Continua come ospite"
+  "authContinueAsGuest": "Continua come ospite",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Italian Repeater Network",
+  "commonPoweredBy": "POWERED BY HAMRADIO ITALY"
 }

@@ -735,6 +735,30 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Continua come ospite'**
   String get authContinueAsGuest;
+
+  /// No description provided for @commonAppNamePart1.
+  ///
+  /// In it, this message translates to:
+  /// **'Ham'**
+  String get commonAppNamePart1;
+
+  /// No description provided for @commonAppNamePart2.
+  ///
+  /// In it, this message translates to:
+  /// **'QRG'**
+  String get commonAppNamePart2;
+
+  /// No description provided for @commonAppTagline.
+  ///
+  /// In it, this message translates to:
+  /// **'Italian Repeater Network'**
+  String get commonAppTagline;
+
+  /// No description provided for @commonPoweredBy.
+  ///
+  /// In it, this message translates to:
+  /// **'POWERED BY HAMRADIO ITALY'**
+  String get commonPoweredBy;
 }
 
 class _AppLocalizationsDelegate

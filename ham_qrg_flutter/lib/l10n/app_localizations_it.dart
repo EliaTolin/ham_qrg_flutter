@@ -350,4 +350,16 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get authContinueAsGuest => 'Continua come ospite';
+
+  @override
+  String get commonAppNamePart1 => 'Ham';
+
+  @override
+  String get commonAppNamePart2 => 'QRG';
+
+  @override
+  String get commonAppTagline => 'Italian Repeater Network';
+
+  @override
+  String get commonPoweredBy => 'POWERED BY HAMRADIO ITALY';
 }

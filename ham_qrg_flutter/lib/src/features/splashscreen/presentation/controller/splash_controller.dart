@@ -22,7 +22,7 @@ class SplashController extends _$SplashController {
   @override
   Future<SplashAction?> build() async {
     try {
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 20));
       final hasSeenOnboarding = await ref.read(getHasSeenOnboardingProvider.future);
       var userId = await ref.read(getUserIdProvider.future);
       userId ??= await ref.read(anonymousSignInProvider.future);
