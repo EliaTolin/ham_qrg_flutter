@@ -6,11 +6,16 @@ class MapAccessModeFilterChips extends StatelessWidget {
   const MapAccessModeFilterChips({
     required this.selectedModes,
     required this.onModeToggled,
+    this.onClearAll,
     super.key,
   });
 
   final Set<AccessMode> selectedModes;
   final ValueChanged<AccessMode> onModeToggled;
+
+  /// Optional callback to clear all selected modes at once.
+  /// If not provided, the widget will toggle each mode individually.
+  final VoidCallback? onClearAll;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +33,11 @@ class MapAccessModeFilterChips extends StatelessWidget {
             label: 'All',
             isSelected: isAllSelected,
             onTap: () {
-              // Clear all selections
-              for (final mode in selectedModes.toList()) {
-                onModeToggled(mode);
-              }
+              if (selectedModes.isEmpty) return;
+
+              // Use onClearAll if provided, otherwise this won't work properly
+              // with async state updates
+              onClearAll?.call();
             },
             isPrimary: true,
           ),

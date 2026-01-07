@@ -65,6 +65,27 @@ class RepeatersMapController extends _$RepeatersMapController {
     selectRepeater(null);
   }
 
+  /// Clear all selected mode filters and reload repeaters
+  Future<void> clearAllModes({
+    required double lat1,
+    required double lon1,
+    required double lat2,
+    required double lon2,
+  }) async {
+    final currentState = state.value;
+    if (currentState == null || currentState.selectedModes.isEmpty) {
+      return;
+    }
+
+    await loadRepeatersFromBounds(
+      lat1: lat1,
+      lon1: lon1,
+      lat2: lat2,
+      lon2: lon2,
+      selectedModes: [], // Clear all modes - pass empty list
+    );
+  }
+
   /// Load repeaters based on map bounds (lat1, lon1, lat2, lon2)
   Future<void> loadRepeatersFromBounds({
     required double lat1,

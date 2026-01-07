@@ -317,13 +317,24 @@ class RepeatersMapPage extends HookConsumerWidget {
                   );
                 }
               },
+              onClearAll: () async {
+                if (mapController != null) {
+                  final visibleBounds = await _getVisibleBounds(mapController);
+                  await notifier.clearAllModes(
+                    lat1: visibleBounds.lat1,
+                    lon1: visibleBounds.lon1,
+                    lat2: visibleBounds.lat2,
+                    lon2: visibleBounds.lon2,
+                  );
+                }
+              },
             ),
           ),
         ),
         // Error banners
         if (mapState?.locationError != null)
           Positioned(
-            top: 100,
+            top: 50,
             left: 16,
             right: 16,
             child: SafeArea(
@@ -337,7 +348,7 @@ class RepeatersMapPage extends HookConsumerWidget {
           ),
         if (asyncState.hasError && mapState?.locationError == null)
           Positioned(
-            top: 100,
+            top: 50,
             left: 16,
             right: 16,
             child: SafeArea(
@@ -362,7 +373,7 @@ class RepeatersMapPage extends HookConsumerWidget {
         // Summary chip
         if (mapState?.repeaters.isNotEmpty ?? false)
           Positioned(
-            top: 100,
+            top: 50,
             left: 16,
             right: 16,
             child: SafeArea(
