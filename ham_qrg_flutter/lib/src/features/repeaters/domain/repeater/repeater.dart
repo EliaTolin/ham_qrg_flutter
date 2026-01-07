@@ -1,17 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
 
 part 'repeater.freezed.dart';
 
 enum RepeaterMode {
   analog,
-  c4fm,
-  dstar,
-  dmr,
-  allmode,
-  echolink,
-  winlink,
+  digital,
+  mixed,
 }
-
 
 @freezed
 abstract class Repeater with _$Repeater {
@@ -23,13 +19,9 @@ abstract class Repeater with _$Repeater {
     required RepeaterMode mode,
     String? callsign,
     String? name,
-    int? nodeNumber,
-    String? managerCallsign,
+    String? manager,
     int? shiftHz,
     String? shiftRaw,
-    String? toneRaw,
-    double? ctcssHz,
-    String? network,
     String? region,
     String? provinceCode,
     String? locality,
@@ -37,5 +29,7 @@ abstract class Repeater with _$Repeater {
     double? latitude,
     double? longitude,
     double? distanceMeters,
+    required String source,
+    @Default([]) List<RepeaterAccess> accesses,
   }) = _Repeater;
 }

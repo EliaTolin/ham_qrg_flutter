@@ -15,13 +15,9 @@ _RepeaterModel _$RepeaterModelFromJson(Map<String, dynamic> json) =>
       mode: json['mode'] as String,
       callsign: json['callsign'] as String?,
       name: json['name'] as String?,
-      nodeNumber: (json['node_number'] as num?)?.toInt(),
-      managerCallsign: json['manager_callsign'] as String?,
+      manager: json['manager'] as String?,
       shiftHz: (json['shift_hz'] as num?)?.toInt(),
       shiftRaw: json['shift_raw'] as String?,
-      toneRaw: json['tone_raw'] as String?,
-      ctcssHz: (json['ctcss_hz'] as num?)?.toDouble(),
-      network: json['network'] as String?,
       region: json['region'] as String?,
       provinceCode: json['province_code'] as String?,
       locality: json['locality'] as String?,
@@ -29,6 +25,12 @@ _RepeaterModel _$RepeaterModelFromJson(Map<String, dynamic> json) =>
       lat: (json['lat'] as num?)?.toDouble(),
       lon: (json['lon'] as num?)?.toDouble(),
       distanceM: (json['distance_m'] as num?)?.toDouble(),
+      source: json['source'] as String,
+      accesses: (json['accesses'] as List<dynamic>?)
+              ?.map((e) =>
+                  RepeaterAccessModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$RepeaterModelToJson(_RepeaterModel instance) =>
@@ -40,13 +42,9 @@ Map<String, dynamic> _$RepeaterModelToJson(_RepeaterModel instance) =>
       'mode': instance.mode,
       'callsign': instance.callsign,
       'name': instance.name,
-      'node_number': instance.nodeNumber,
-      'manager_callsign': instance.managerCallsign,
+      'manager': instance.manager,
       'shift_hz': instance.shiftHz,
       'shift_raw': instance.shiftRaw,
-      'tone_raw': instance.toneRaw,
-      'ctcss_hz': instance.ctcssHz,
-      'network': instance.network,
       'region': instance.region,
       'province_code': instance.provinceCode,
       'locality': instance.locality,
@@ -54,4 +52,6 @@ Map<String, dynamic> _$RepeaterModelToJson(_RepeaterModel instance) =>
       'lat': instance.lat,
       'lon': instance.lon,
       'distance_m': instance.distanceM,
+      'source': instance.source,
+      'accesses': instance.accesses,
     };

@@ -21,13 +21,9 @@ mixin _$Repeater {
   RepeaterMode get mode;
   String? get callsign;
   String? get name;
-  int? get nodeNumber;
-  String? get managerCallsign;
+  String? get manager;
   int? get shiftHz;
   String? get shiftRaw;
-  String? get toneRaw;
-  double? get ctcssHz;
-  String? get network;
   String? get region;
   String? get provinceCode;
   String? get locality;
@@ -35,6 +31,8 @@ mixin _$Repeater {
   double? get latitude;
   double? get longitude;
   double? get distanceMeters;
+  String get source;
+  List<RepeaterAccess> get accesses;
 
   /// Create a copy of Repeater
   /// with the given fields replaced by the non-null parameter values.
@@ -59,16 +57,10 @@ mixin _$Repeater {
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.nodeNumber, nodeNumber) ||
-                other.nodeNumber == nodeNumber) &&
-            (identical(other.managerCallsign, managerCallsign) ||
-                other.managerCallsign == managerCallsign) &&
+            (identical(other.manager, manager) || other.manager == manager) &&
             (identical(other.shiftHz, shiftHz) || other.shiftHz == shiftHz) &&
             (identical(other.shiftRaw, shiftRaw) ||
                 other.shiftRaw == shiftRaw) &&
-            (identical(other.toneRaw, toneRaw) || other.toneRaw == toneRaw) &&
-            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
-            (identical(other.network, network) || other.network == network) &&
             (identical(other.region, region) || other.region == region) &&
             (identical(other.provinceCode, provinceCode) ||
                 other.provinceCode == provinceCode) &&
@@ -80,7 +72,9 @@ mixin _$Repeater {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.distanceMeters, distanceMeters) ||
-                other.distanceMeters == distanceMeters));
+                other.distanceMeters == distanceMeters) &&
+            (identical(other.source, source) || other.source == source) &&
+            const DeepCollectionEquality().equals(other.accesses, accesses));
   }
 
   @override
@@ -93,25 +87,23 @@ mixin _$Repeater {
         mode,
         callsign,
         name,
-        nodeNumber,
-        managerCallsign,
+        manager,
         shiftHz,
         shiftRaw,
-        toneRaw,
-        ctcssHz,
-        network,
         region,
         provinceCode,
         locality,
         locator,
         latitude,
         longitude,
-        distanceMeters
+        distanceMeters,
+        source,
+        const DeepCollectionEquality().hash(accesses)
       ]);
 
   @override
   String toString() {
-    return 'Repeater(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, callsign: $callsign, name: $name, nodeNumber: $nodeNumber, managerCallsign: $managerCallsign, shiftHz: $shiftHz, shiftRaw: $shiftRaw, toneRaw: $toneRaw, ctcssHz: $ctcssHz, network: $network, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, latitude: $latitude, longitude: $longitude, distanceMeters: $distanceMeters)';
+    return 'Repeater(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, latitude: $latitude, longitude: $longitude, distanceMeters: $distanceMeters, source: $source, accesses: $accesses)';
   }
 }
 
@@ -128,20 +120,18 @@ abstract mixin class $RepeaterCopyWith<$Res> {
       RepeaterMode mode,
       String? callsign,
       String? name,
-      int? nodeNumber,
-      String? managerCallsign,
+      String? manager,
       int? shiftHz,
       String? shiftRaw,
-      String? toneRaw,
-      double? ctcssHz,
-      String? network,
       String? region,
       String? provinceCode,
       String? locality,
       String? locator,
       double? latitude,
       double? longitude,
-      double? distanceMeters});
+      double? distanceMeters,
+      String source,
+      List<RepeaterAccess> accesses});
 }
 
 /// @nodoc
@@ -163,13 +153,9 @@ class _$RepeaterCopyWithImpl<$Res> implements $RepeaterCopyWith<$Res> {
     Object? mode = null,
     Object? callsign = freezed,
     Object? name = freezed,
-    Object? nodeNumber = freezed,
-    Object? managerCallsign = freezed,
+    Object? manager = freezed,
     Object? shiftHz = freezed,
     Object? shiftRaw = freezed,
-    Object? toneRaw = freezed,
-    Object? ctcssHz = freezed,
-    Object? network = freezed,
     Object? region = freezed,
     Object? provinceCode = freezed,
     Object? locality = freezed,
@@ -177,6 +163,8 @@ class _$RepeaterCopyWithImpl<$Res> implements $RepeaterCopyWith<$Res> {
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? distanceMeters = freezed,
+    Object? source = null,
+    Object? accesses = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -207,13 +195,9 @@ class _$RepeaterCopyWithImpl<$Res> implements $RepeaterCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      nodeNumber: freezed == nodeNumber
-          ? _self.nodeNumber
-          : nodeNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      managerCallsign: freezed == managerCallsign
-          ? _self.managerCallsign
-          : managerCallsign // ignore: cast_nullable_to_non_nullable
+      manager: freezed == manager
+          ? _self.manager
+          : manager // ignore: cast_nullable_to_non_nullable
               as String?,
       shiftHz: freezed == shiftHz
           ? _self.shiftHz
@@ -222,18 +206,6 @@ class _$RepeaterCopyWithImpl<$Res> implements $RepeaterCopyWith<$Res> {
       shiftRaw: freezed == shiftRaw
           ? _self.shiftRaw
           : shiftRaw // ignore: cast_nullable_to_non_nullable
-              as String?,
-      toneRaw: freezed == toneRaw
-          ? _self.toneRaw
-          : toneRaw // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ctcssHz: freezed == ctcssHz
-          ? _self.ctcssHz
-          : ctcssHz // ignore: cast_nullable_to_non_nullable
-              as double?,
-      network: freezed == network
-          ? _self.network
-          : network // ignore: cast_nullable_to_non_nullable
               as String?,
       region: freezed == region
           ? _self.region
@@ -263,6 +235,14 @@ class _$RepeaterCopyWithImpl<$Res> implements $RepeaterCopyWith<$Res> {
           ? _self.distanceMeters
           : distanceMeters // ignore: cast_nullable_to_non_nullable
               as double?,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String,
+      accesses: null == accesses
+          ? _self.accesses
+          : accesses // ignore: cast_nullable_to_non_nullable
+              as List<RepeaterAccess>,
     ));
   }
 }
@@ -368,20 +348,18 @@ extension RepeaterPatterns on Repeater {
             RepeaterMode mode,
             String? callsign,
             String? name,
-            int? nodeNumber,
-            String? managerCallsign,
+            String? manager,
             int? shiftHz,
             String? shiftRaw,
-            String? toneRaw,
-            double? ctcssHz,
-            String? network,
             String? region,
             String? provinceCode,
             String? locality,
             String? locator,
             double? latitude,
             double? longitude,
-            double? distanceMeters)?
+            double? distanceMeters,
+            String source,
+            List<RepeaterAccess> accesses)?
         $default, {
     required TResult orElse(),
   }) {
@@ -396,20 +374,18 @@ extension RepeaterPatterns on Repeater {
             _that.mode,
             _that.callsign,
             _that.name,
-            _that.nodeNumber,
-            _that.managerCallsign,
+            _that.manager,
             _that.shiftHz,
             _that.shiftRaw,
-            _that.toneRaw,
-            _that.ctcssHz,
-            _that.network,
             _that.region,
             _that.provinceCode,
             _that.locality,
             _that.locator,
             _that.latitude,
             _that.longitude,
-            _that.distanceMeters);
+            _that.distanceMeters,
+            _that.source,
+            _that.accesses);
       case _:
         return orElse();
     }
@@ -438,20 +414,18 @@ extension RepeaterPatterns on Repeater {
             RepeaterMode mode,
             String? callsign,
             String? name,
-            int? nodeNumber,
-            String? managerCallsign,
+            String? manager,
             int? shiftHz,
             String? shiftRaw,
-            String? toneRaw,
-            double? ctcssHz,
-            String? network,
             String? region,
             String? provinceCode,
             String? locality,
             String? locator,
             double? latitude,
             double? longitude,
-            double? distanceMeters)
+            double? distanceMeters,
+            String source,
+            List<RepeaterAccess> accesses)
         $default,
   ) {
     final _that = this;
@@ -465,20 +439,18 @@ extension RepeaterPatterns on Repeater {
             _that.mode,
             _that.callsign,
             _that.name,
-            _that.nodeNumber,
-            _that.managerCallsign,
+            _that.manager,
             _that.shiftHz,
             _that.shiftRaw,
-            _that.toneRaw,
-            _that.ctcssHz,
-            _that.network,
             _that.region,
             _that.provinceCode,
             _that.locality,
             _that.locator,
             _that.latitude,
             _that.longitude,
-            _that.distanceMeters);
+            _that.distanceMeters,
+            _that.source,
+            _that.accesses);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -506,20 +478,18 @@ extension RepeaterPatterns on Repeater {
             RepeaterMode mode,
             String? callsign,
             String? name,
-            int? nodeNumber,
-            String? managerCallsign,
+            String? manager,
             int? shiftHz,
             String? shiftRaw,
-            String? toneRaw,
-            double? ctcssHz,
-            String? network,
             String? region,
             String? provinceCode,
             String? locality,
             String? locator,
             double? latitude,
             double? longitude,
-            double? distanceMeters)?
+            double? distanceMeters,
+            String source,
+            List<RepeaterAccess> accesses)?
         $default,
   ) {
     final _that = this;
@@ -533,20 +503,18 @@ extension RepeaterPatterns on Repeater {
             _that.mode,
             _that.callsign,
             _that.name,
-            _that.nodeNumber,
-            _that.managerCallsign,
+            _that.manager,
             _that.shiftHz,
             _that.shiftRaw,
-            _that.toneRaw,
-            _that.ctcssHz,
-            _that.network,
             _that.region,
             _that.provinceCode,
             _that.locality,
             _that.locator,
             _that.latitude,
             _that.longitude,
-            _that.distanceMeters);
+            _that.distanceMeters,
+            _that.source,
+            _that.accesses);
       case _:
         return null;
     }
@@ -564,20 +532,19 @@ class _Repeater implements Repeater {
       required this.mode,
       this.callsign,
       this.name,
-      this.nodeNumber,
-      this.managerCallsign,
+      this.manager,
       this.shiftHz,
       this.shiftRaw,
-      this.toneRaw,
-      this.ctcssHz,
-      this.network,
       this.region,
       this.provinceCode,
       this.locality,
       this.locator,
       this.latitude,
       this.longitude,
-      this.distanceMeters});
+      this.distanceMeters,
+      required this.source,
+      final List<RepeaterAccess> accesses = const []})
+      : _accesses = accesses;
 
   @override
   final String id;
@@ -594,19 +561,11 @@ class _Repeater implements Repeater {
   @override
   final String? name;
   @override
-  final int? nodeNumber;
-  @override
-  final String? managerCallsign;
+  final String? manager;
   @override
   final int? shiftHz;
   @override
   final String? shiftRaw;
-  @override
-  final String? toneRaw;
-  @override
-  final double? ctcssHz;
-  @override
-  final String? network;
   @override
   final String? region;
   @override
@@ -621,6 +580,16 @@ class _Repeater implements Repeater {
   final double? longitude;
   @override
   final double? distanceMeters;
+  @override
+  final String source;
+  final List<RepeaterAccess> _accesses;
+  @override
+  @JsonKey()
+  List<RepeaterAccess> get accesses {
+    if (_accesses is EqualUnmodifiableListView) return _accesses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_accesses);
+  }
 
   /// Create a copy of Repeater
   /// with the given fields replaced by the non-null parameter values.
@@ -646,16 +615,10 @@ class _Repeater implements Repeater {
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.nodeNumber, nodeNumber) ||
-                other.nodeNumber == nodeNumber) &&
-            (identical(other.managerCallsign, managerCallsign) ||
-                other.managerCallsign == managerCallsign) &&
+            (identical(other.manager, manager) || other.manager == manager) &&
             (identical(other.shiftHz, shiftHz) || other.shiftHz == shiftHz) &&
             (identical(other.shiftRaw, shiftRaw) ||
                 other.shiftRaw == shiftRaw) &&
-            (identical(other.toneRaw, toneRaw) || other.toneRaw == toneRaw) &&
-            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
-            (identical(other.network, network) || other.network == network) &&
             (identical(other.region, region) || other.region == region) &&
             (identical(other.provinceCode, provinceCode) ||
                 other.provinceCode == provinceCode) &&
@@ -667,7 +630,9 @@ class _Repeater implements Repeater {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.distanceMeters, distanceMeters) ||
-                other.distanceMeters == distanceMeters));
+                other.distanceMeters == distanceMeters) &&
+            (identical(other.source, source) || other.source == source) &&
+            const DeepCollectionEquality().equals(other._accesses, _accesses));
   }
 
   @override
@@ -680,25 +645,23 @@ class _Repeater implements Repeater {
         mode,
         callsign,
         name,
-        nodeNumber,
-        managerCallsign,
+        manager,
         shiftHz,
         shiftRaw,
-        toneRaw,
-        ctcssHz,
-        network,
         region,
         provinceCode,
         locality,
         locator,
         latitude,
         longitude,
-        distanceMeters
+        distanceMeters,
+        source,
+        const DeepCollectionEquality().hash(_accesses)
       ]);
 
   @override
   String toString() {
-    return 'Repeater(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, callsign: $callsign, name: $name, nodeNumber: $nodeNumber, managerCallsign: $managerCallsign, shiftHz: $shiftHz, shiftRaw: $shiftRaw, toneRaw: $toneRaw, ctcssHz: $ctcssHz, network: $network, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, latitude: $latitude, longitude: $longitude, distanceMeters: $distanceMeters)';
+    return 'Repeater(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, latitude: $latitude, longitude: $longitude, distanceMeters: $distanceMeters, source: $source, accesses: $accesses)';
   }
 }
 
@@ -717,20 +680,18 @@ abstract mixin class _$RepeaterCopyWith<$Res>
       RepeaterMode mode,
       String? callsign,
       String? name,
-      int? nodeNumber,
-      String? managerCallsign,
+      String? manager,
       int? shiftHz,
       String? shiftRaw,
-      String? toneRaw,
-      double? ctcssHz,
-      String? network,
       String? region,
       String? provinceCode,
       String? locality,
       String? locator,
       double? latitude,
       double? longitude,
-      double? distanceMeters});
+      double? distanceMeters,
+      String source,
+      List<RepeaterAccess> accesses});
 }
 
 /// @nodoc
@@ -752,13 +713,9 @@ class __$RepeaterCopyWithImpl<$Res> implements _$RepeaterCopyWith<$Res> {
     Object? mode = null,
     Object? callsign = freezed,
     Object? name = freezed,
-    Object? nodeNumber = freezed,
-    Object? managerCallsign = freezed,
+    Object? manager = freezed,
     Object? shiftHz = freezed,
     Object? shiftRaw = freezed,
-    Object? toneRaw = freezed,
-    Object? ctcssHz = freezed,
-    Object? network = freezed,
     Object? region = freezed,
     Object? provinceCode = freezed,
     Object? locality = freezed,
@@ -766,6 +723,8 @@ class __$RepeaterCopyWithImpl<$Res> implements _$RepeaterCopyWith<$Res> {
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? distanceMeters = freezed,
+    Object? source = null,
+    Object? accesses = null,
   }) {
     return _then(_Repeater(
       id: null == id
@@ -796,13 +755,9 @@ class __$RepeaterCopyWithImpl<$Res> implements _$RepeaterCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      nodeNumber: freezed == nodeNumber
-          ? _self.nodeNumber
-          : nodeNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
-      managerCallsign: freezed == managerCallsign
-          ? _self.managerCallsign
-          : managerCallsign // ignore: cast_nullable_to_non_nullable
+      manager: freezed == manager
+          ? _self.manager
+          : manager // ignore: cast_nullable_to_non_nullable
               as String?,
       shiftHz: freezed == shiftHz
           ? _self.shiftHz
@@ -811,18 +766,6 @@ class __$RepeaterCopyWithImpl<$Res> implements _$RepeaterCopyWith<$Res> {
       shiftRaw: freezed == shiftRaw
           ? _self.shiftRaw
           : shiftRaw // ignore: cast_nullable_to_non_nullable
-              as String?,
-      toneRaw: freezed == toneRaw
-          ? _self.toneRaw
-          : toneRaw // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ctcssHz: freezed == ctcssHz
-          ? _self.ctcssHz
-          : ctcssHz // ignore: cast_nullable_to_non_nullable
-              as double?,
-      network: freezed == network
-          ? _self.network
-          : network // ignore: cast_nullable_to_non_nullable
               as String?,
       region: freezed == region
           ? _self.region
@@ -852,6 +795,14 @@ class __$RepeaterCopyWithImpl<$Res> implements _$RepeaterCopyWith<$Res> {
           ? _self.distanceMeters
           : distanceMeters // ignore: cast_nullable_to_non_nullable
               as double?,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String,
+      accesses: null == accesses
+          ? _self._accesses
+          : accesses // ignore: cast_nullable_to_non_nullable
+              as List<RepeaterAccess>,
     ));
   }
 }

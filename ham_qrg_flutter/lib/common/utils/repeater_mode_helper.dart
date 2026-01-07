@@ -11,12 +11,8 @@ class RepeaterModeHelper {
   static int getModeColor(RepeaterMode mode) {
     return switch (mode) {
       RepeaterMode.analog => 0xFF00C853, // Bright Green
-      RepeaterMode.c4fm => 0xFF2962FF, // Vibrant Blue
-      RepeaterMode.dstar => 0xFF7B1FA2, // Rich Purple
-      RepeaterMode.dmr => 0xFFFF6D00, // Vibrant Orange
-      RepeaterMode.allmode => 0xFF00B8D4, // Bright Cyan
-      RepeaterMode.echolink => 0xFFD500F9, // Bright Pink/Magenta
-      RepeaterMode.winlink => 0xFF546E7A, // Steel Blue
+      RepeaterMode.digital => 0xFF2962FF, // Vibrant Blue
+      RepeaterMode.mixed => 0xFF00B8D4, // Bright Cyan
     };
   }
 
@@ -29,12 +25,8 @@ class RepeaterModeHelper {
   static String getModeLabel(RepeaterMode mode, AppLocalizations l10n) {
     return switch (mode) {
       RepeaterMode.analog => l10n.repeaterModeAnalog,
-      RepeaterMode.c4fm => l10n.repeaterModeC4fm,
-      RepeaterMode.dstar => l10n.repeaterModeDstar,
-      RepeaterMode.dmr => l10n.repeaterModeDmr,
-      RepeaterMode.allmode => l10n.repeaterModeAllmode,
-      RepeaterMode.echolink => l10n.repeaterModeEcholink,
-      RepeaterMode.winlink => l10n.repeaterModeWinlink,
+      RepeaterMode.digital => 'Digital', // TODO: Add translation
+      RepeaterMode.mixed => 'Mixed', // TODO: Add translation
     };
   }
 

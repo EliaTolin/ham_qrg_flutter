@@ -134,7 +134,9 @@ class RepeaterDetailsSheet extends ConsumerWidget {
           value: formatFrequency(repeater.frequencyHz),
         ),
         // Shift & CTCSS Row
-        if (repeater.shiftHz != null || repeater.shiftRaw != null || repeater.ctcssHz != null) ...[
+        if (repeater.shiftHz != null ||
+            repeater.shiftRaw != null ||
+            (repeater.accesses.isNotEmpty && repeater.accesses.first.ctcssHz != null)) ...[
           const SizedBox(height: 12),
           Row(
             children: [
@@ -149,13 +151,13 @@ class RepeaterDetailsSheet extends ConsumerWidget {
                 ),
                 const SizedBox(width: 12),
               ],
-              if (repeater.ctcssHz != null) ...[
+              if (repeater.accesses.isNotEmpty && repeater.accesses.first.ctcssHz != null) ...[
                 Expanded(
                   child: _InfoCard(
                     icon: Icons.tune,
                     iconColor: colorScheme.tertiary,
                     title: l10n.repeaterCtcss,
-                    value: formatCtcss(repeater.ctcssHz),
+                    value: formatCtcss(repeater.accesses.first.ctcssHz),
                   ),
                 ),
               ],

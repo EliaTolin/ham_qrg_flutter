@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ham_qrg/src/features/repeaters/data/model/access/repeater_access_model.dart';
 
 part 'repeater_model.freezed.dart';
 part 'repeater_model.g.dart';
@@ -13,13 +14,9 @@ abstract class RepeaterModel with _$RepeaterModel {
     required String mode,
     String? callsign,
     String? name,
-    @JsonKey(name: 'node_number') int? nodeNumber,
-    @JsonKey(name: 'manager_callsign') String? managerCallsign,
+    String? manager,
     @JsonKey(name: 'shift_hz') int? shiftHz,
     @JsonKey(name: 'shift_raw') String? shiftRaw,
-    @JsonKey(name: 'tone_raw') String? toneRaw,
-    @JsonKey(name: 'ctcss_hz') double? ctcssHz,
-    String? network,
     String? region,
     @JsonKey(name: 'province_code') String? provinceCode,
     String? locality,
@@ -27,6 +24,8 @@ abstract class RepeaterModel with _$RepeaterModel {
     double? lat,
     double? lon,
     @JsonKey(name: 'distance_m') double? distanceM,
+    required String source,
+    @JsonKey(name: 'accesses') @Default([]) List<RepeaterAccessModel> accesses,
   }) = _RepeaterModel;
 
   factory RepeaterModel.fromJson(Map<String, dynamic> json) => _$RepeaterModelFromJson(json);

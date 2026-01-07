@@ -1,8 +1,13 @@
 import 'package:ham_qrg/common/abstracts/mapper.dart';
+import 'package:ham_qrg/src/features/repeaters/data/mappers/repeater_access_mapper.dart';
 import 'package:ham_qrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
+  RepeatersMappers() : _accessMapper = RepeaterAccessMapper();
+
+  final RepeaterAccessMapper _accessMapper;
+
   @override
   Repeater fromModel(RepeaterModel model) {
     return Repeater(
@@ -11,18 +16,14 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       updatedAt: DateTime.parse(model.updatedAt),
       name: model.name,
       callsign: model.callsign,
-      nodeNumber: model.nodeNumber,
-      managerCallsign: model.managerCallsign,
+      manager: model.manager,
       frequencyHz: model.frequencyHz,
       shiftHz: model.shiftHz,
       shiftRaw: model.shiftRaw,
-      toneRaw: model.toneRaw,
-      ctcssHz: model.ctcssHz,
       mode: RepeaterMode.values.firstWhere(
         (e) => e.name.toLowerCase() == model.mode.toLowerCase(),
         orElse: () => RepeaterMode.analog,
       ),
-      network: model.network,
       region: model.region,
       provinceCode: model.provinceCode,
       locality: model.locality,
@@ -30,6 +31,8 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       latitude: model.lat,
       longitude: model.lon,
       distanceMeters: model.distanceM,
+      source: model.source,
+      accesses: model.accesses.map(_accessMapper.fromModel).toList(),
     );
   }
 
@@ -41,15 +44,11 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       updatedAt: entity.updatedAt.toIso8601String(),
       name: entity.name,
       callsign: entity.callsign,
-      nodeNumber: entity.nodeNumber,
-      managerCallsign: entity.managerCallsign,
+      manager: entity.manager,
       frequencyHz: entity.frequencyHz,
       shiftHz: entity.shiftHz,
       shiftRaw: entity.shiftRaw,
-      toneRaw: entity.toneRaw,
-      ctcssHz: entity.ctcssHz,
       mode: entity.mode.name,
-      network: entity.network,
       region: entity.region,
       provinceCode: entity.provinceCode,
       locality: entity.locality,
@@ -57,6 +56,8 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       lat: entity.latitude,
       lon: entity.longitude,
       distanceM: entity.distanceMeters,
+      source: entity.source,
+      accesses: entity.accesses.map(_accessMapper.toModel).toList(),
     );
   }
 
