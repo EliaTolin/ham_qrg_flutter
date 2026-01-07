@@ -20,4 +20,3 @@ abstract class RepeaterDetailState with _$RepeaterDetailState {
     @Default('') String comment,
   }) = _RepeaterDetailState;
 }
-

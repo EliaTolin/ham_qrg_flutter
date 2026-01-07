@@ -4,8 +4,7 @@ import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dar
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
 
-class RepeaterFeedbackMapper
-    implements Mapper<RepeaterFeedback, RepeaterFeedbackModel> {
+class RepeaterFeedbackMapper implements Mapper<RepeaterFeedback, RepeaterFeedbackModel> {
   @override
   RepeaterFeedback fromModel(RepeaterFeedbackModel model) {
     return RepeaterFeedback(
@@ -40,4 +39,3 @@ class RepeaterFeedbackMapper
     );
   }
 }
-

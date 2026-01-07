@@ -158,4 +158,3 @@ class RepeaterLocationMap extends HookConsumerWidget {
     }
   }
 }
-

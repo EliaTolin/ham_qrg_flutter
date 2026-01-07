@@ -294,9 +294,6 @@ class RepeatersMapPage extends HookConsumerWidget {
     MapboxMap? mapController,
     ({double lat, double lon})? userLocation,
   ) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
     return Stack(
       children: [
         // Header with gradient and filters
@@ -444,30 +441,6 @@ class RepeatersMapPage extends HookConsumerWidget {
       lon1: sw[0]!.toDouble(),
       lat2: ne[1]!.toDouble(),
       lon2: ne[0]!.toDouble()
-    );
-  }
-
-  /// Handle return to user location
-  Future<void> _handleReturnToLocation(
-    WidgetRef ref,
-    MapboxMap mapController,
-    ({double lat, double lon}) userLocation,
-  ) async {
-    await moveCameraToLocation(
-      mapController,
-      userLocation.lat,
-      userLocation.lon,
-      zoom: 10,
-    );
-
-    // Reload repeaters for new location
-    final controller = ref.read(repeatersMapControllerProvider.notifier);
-    const boundsSize = 0.1;
-    await controller.loadRepeatersFromBounds(
-      lat1: userLocation.lat - boundsSize,
-      lon1: userLocation.lon - boundsSize,
-      lat2: userLocation.lat + boundsSize,
-      lon2: userLocation.lon + boundsSize,
     );
   }
 }

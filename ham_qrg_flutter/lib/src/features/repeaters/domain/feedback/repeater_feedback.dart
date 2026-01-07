@@ -18,4 +18,3 @@ abstract class RepeaterFeedback with _$RepeaterFeedback {
     required DateTime createdAt,
   }) = _RepeaterFeedback;
 }
-

@@ -12,4 +12,3 @@ Future<Repeater?> getRepeaterById(
   final repository = ref.read(repeatersRepositoryProvider);
   return repository.getRepeaterById(repeaterId);
 }
-

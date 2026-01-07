@@ -20,4 +20,3 @@ abstract class RepeaterFeedbackModel with _$RepeaterFeedbackModel {
   factory RepeaterFeedbackModel.fromJson(Map<String, dynamic> json) =>
       _$RepeaterFeedbackModelFromJson(json);
 }
-

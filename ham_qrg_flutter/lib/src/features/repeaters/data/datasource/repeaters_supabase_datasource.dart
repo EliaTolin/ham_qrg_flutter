@@ -87,6 +87,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     int limit = 100,
     List<String>? accessModes,
   }) async {
+    log('searchRepeaters: query=$query, accessModes=$accessModes');
     try {
       // Build OR conditions for searching multiple fields using PostgREST syntax
       // Search in: callsign, name, locality, region, locator, manager
@@ -95,10 +96,20 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       final orConditions =
           'callsign.ilike.$searchPattern,name.ilike.$searchPattern,locality.ilike.$searchPattern,region.ilike.$searchPattern,locator.ilike.$searchPattern,manager.ilike.$searchPattern';
 
-      final request = _client.from('repeaters').select().or(orConditions);
+      final hasAccessModeFilter = accessModes != null && accessModes.isNotEmpty;
 
-      // Access mode filtering requires RPC function with join to repeater_access table
-      // For now, search returns all matching repeaters regardless of access mode
+      // Use inner join with repeater_access when filtering by access mode
+      // This returns only repeaters that have at least one matching access mode
+      final selectQuery = hasAccessModeFilter
+          ? '*, accesses:repeater_access!inner(*)'
+          : '*, accesses:repeater_access(*)';
+
+      var request = _client.from('repeaters').select(selectQuery).or(orConditions);
+
+      // Apply access mode filter using the relationship
+      if (hasAccessModeFilter) {
+        request = request.inFilter('accesses.mode', accessModes);
+      }
 
       // Limit results
       final data = await request.limit(limit);
@@ -110,7 +121,16 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       // If OR doesn't work, fallback to simple callsign search
       try {
         log('Falling back to callsign-only search');
-        final request = _client.from('repeaters').select().ilike('callsign', '%$query%');
+        final hasAccessModeFilter = accessModes != null && accessModes.isNotEmpty;
+        final selectQuery = hasAccessModeFilter
+            ? '*, accesses:repeater_access!inner(*)'
+            : '*, accesses:repeater_access(*)';
+
+        var request = _client.from('repeaters').select(selectQuery).ilike('callsign', '%$query%');
+
+        if (hasAccessModeFilter) {
+          request = request.inFilter('accesses.mode', accessModes);
+        }
 
         final data = await request.limit(limit);
         final dataList = data as List;

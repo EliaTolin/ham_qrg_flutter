@@ -4,5 +4,3 @@ enum ToneDirection {
   both,
   unknown,
 }
-
-

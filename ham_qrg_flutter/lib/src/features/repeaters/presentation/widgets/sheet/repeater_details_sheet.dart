@@ -245,7 +245,6 @@ class RepeaterDetailsSheet extends ConsumerWidget {
     if (scrollController != null) {
       return SingleChildScrollView(
         controller: scrollController,
-        padding: const EdgeInsets.symmetric(),
         child: content,
       );
     }

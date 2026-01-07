@@ -6,5 +6,3 @@ enum NetworkKind {
   mixed,
   other,
 }
-
-

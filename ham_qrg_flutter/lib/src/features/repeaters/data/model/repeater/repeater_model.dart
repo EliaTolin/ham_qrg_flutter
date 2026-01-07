@@ -43,9 +43,6 @@ List<RepeaterAccessModel>? _accessesFromJson(dynamic json) {
       .whereType<Map>()
       .map((e) {
         final accessMap = Map<String, dynamic>.from(e);
-        // Remove fields from RPC functions that aren't in the model
-        accessMap.remove('network');
-        accessMap.remove('network_kind');
         try {
           return RepeaterAccessModel.fromJson(accessMap);
         } catch (_) {
