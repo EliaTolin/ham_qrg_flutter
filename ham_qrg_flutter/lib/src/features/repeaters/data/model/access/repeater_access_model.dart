@@ -8,8 +8,13 @@ abstract class RepeaterAccessModel with _$RepeaterAccessModel {
   const factory RepeaterAccessModel({
     required String id,
     @JsonKey(name: 'repeater_id') required String repeaterId,
-    required String mode, @JsonKey(name: 'tone_scope') required String toneScope, @JsonKey(name: 'tone_direction') required String toneDirection, required String source, @JsonKey(name: 'created_at') required String createdAt, @JsonKey(name: 'updated_at') required String updatedAt, @JsonKey(name: 'network_id') String? networkId,
-    @JsonKey(name: 'ctcss_hz') double? ctcssHz,
+    required String mode,
+    required String source,
+    @JsonKey(name: 'created_at') required String createdAt,
+    @JsonKey(name: 'updated_at') required String updatedAt,
+    @JsonKey(name: 'network_id') String? networkId,
+    @JsonKey(name: 'ctcss_tx_hz') double? ctcssTxHz,
+    @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
     @JsonKey(name: 'dcs_code') int? dcsCode,
     @JsonKey(name: 'color_code') int? colorCode,
     @JsonKey(name: 'dmr_id') int? dmrId,
@@ -20,5 +25,3 @@ abstract class RepeaterAccessModel with _$RepeaterAccessModel {
   factory RepeaterAccessModel.fromJson(Map<String, dynamic> json) =>
       _$RepeaterAccessModelFromJson(json);
 }
-
-

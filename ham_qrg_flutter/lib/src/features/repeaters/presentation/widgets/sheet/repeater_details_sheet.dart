@@ -398,9 +398,13 @@ class _AccessCard extends StatelessWidget {
                     repeater.shiftRaw,
                   )}',
                 ),
-              if (access.ctcssHz != null)
+              if (access.ctcssTxHz != null || access.ctcssRxHz != null)
                 _AccessDetailChip(
-                  label: 'TONE ${access.ctcssHz!.toStringAsFixed(1)} Hz',
+                  label: access.ctcssTxHz != null && access.ctcssRxHz != null
+                      ? 'TONE TX ${access.ctcssTxHz!.toStringAsFixed(1)} RX ${access.ctcssRxHz!.toStringAsFixed(1)} Hz'
+                      : access.ctcssTxHz != null
+                          ? 'TONE TX ${access.ctcssTxHz!.toStringAsFixed(1)} Hz'
+                          : 'TONE RX ${access.ctcssRxHz!.toStringAsFixed(1)} Hz',
                 ),
               if (access.colorCode != null)
                 _AccessDetailChip(

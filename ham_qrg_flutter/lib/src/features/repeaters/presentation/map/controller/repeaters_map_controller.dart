@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
@@ -13,7 +11,6 @@ part 'repeaters_map_controller.g.dart';
 class RepeatersMapController extends _$RepeatersMapController {
   @override
   FutureOr<RepeatersMapState> build() async {
-    log('BUILD REPEATERS MAP CONTROLLER');
     return _initalLoad();
   }
 
@@ -43,16 +40,14 @@ class RepeatersMapController extends _$RepeatersMapController {
         lon1: lon1,
         lat2: lat2,
         lon2: lon2,
-        selectedModes:
-            newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
+        selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
       );
     } else {
       // Fallback to initial load
       state = const AsyncLoading();
       state = await AsyncValue.guard(
         () => _initalLoad(
-          selectedModes:
-              newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
+          selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
         ),
       );
     }
@@ -91,7 +86,7 @@ class RepeatersMapController extends _$RepeatersMapController {
           lat2: lat2,
           lon2: lon2,
         );
-        
+
         // Filter by AccessMode client-side
         final filteredRepeaters = modesToFilter?.isEmpty ?? true
             ? repeaters
@@ -100,14 +95,12 @@ class RepeatersMapController extends _$RepeatersMapController {
                   (access) => modesToFilter!.contains(access.mode),
                 );
               }).toList();
-        
-        log('REPEATERS: ${filteredRepeaters.length}');
+
         return RepeatersMapState(
           repeaters: filteredRepeaters,
           latitude: currentState?.latitude,
           longitude: currentState?.longitude,
-          selectedModes:
-              modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
+          selectedModes: modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
           selectedRepeater: currentState?.selectedRepeater,
         );
       } on LocationException catch (error) {
@@ -116,8 +109,7 @@ class RepeatersMapController extends _$RepeatersMapController {
           repeaters: currentState?.repeaters ?? const [],
           latitude: currentState?.latitude,
           longitude: currentState?.longitude,
-          selectedModes:
-              currentState?.selectedModes ?? (modesToFilter?.toSet() ?? {}),
+          selectedModes: currentState?.selectedModes ?? (modesToFilter?.toSet() ?? {}),
           selectedRepeater: currentState?.selectedRepeater,
         );
       }
@@ -162,8 +154,6 @@ class RepeatersMapController extends _$RepeatersMapController {
     required double lon2,
     List<RepeaterMode>? modes, // Keep for API compatibility
   }) async {
-    log('FETCH REPEATERS FROM BOUNDS: $lat1, $lon1, $lat2, $lon2, $modes');
-
     return await ref.read(
       getRepeatersInBoundsProvider(
         lat1: lat1,

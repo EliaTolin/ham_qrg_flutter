@@ -14,8 +14,6 @@ class MapAccessModeFilterChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     // Common access modes to show in filters
     const commonModes = AccessMode.values;
 
@@ -86,33 +84,24 @@ class _FilterChip extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
+    final backgroundColor = isSelected
+        ? (isPrimary ? colorScheme.primary : (color ?? colorScheme.primary))
+        : colorScheme.surface;
+    final textColor = isSelected
+        ? (isPrimary ? colorScheme.onPrimary : Colors.white)
+        : (color ?? colorScheme.onSurface);
+    final borderColor = isSelected ? Colors.transparent : (color ?? colorScheme.outline);
+
     return GestureDetector(
       onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+      child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: isSelected
-              ? (isPrimary
-                  ? colorScheme.primary
-                  : (color ?? colorScheme.primary).withValues(alpha: 0.2))
-              : colorScheme.surfaceContainerHighest.withValues(alpha: 0.9),
+          color: backgroundColor,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isSelected
-                ? (isPrimary ? Colors.transparent : (color ?? colorScheme.primary))
-                : (color ?? colorScheme.outline).withValues(alpha: 0.3),
-            width: isSelected ? 0 : 1,
+            color: borderColor,
           ),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: (color ?? colorScheme.primary).withValues(alpha: 0.2),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ]
-              : null,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -121,7 +110,7 @@ class _FilterChip extends StatelessWidget {
               Icon(
                 icon,
                 size: 18,
-                color: isPrimary ? colorScheme.onPrimary : (color ?? colorScheme.primary),
+                color: textColor,
               ),
               const SizedBox(width: 6),
             ],
@@ -139,9 +128,7 @@ class _FilterChip extends StatelessWidget {
             Text(
               label,
               style: theme.textTheme.labelMedium?.copyWith(
-                color: isSelected
-                    ? (isPrimary ? colorScheme.onPrimary : (color ?? colorScheme.primary))
-                    : Colors.white,
+                color: textColor,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
               ),
             ),

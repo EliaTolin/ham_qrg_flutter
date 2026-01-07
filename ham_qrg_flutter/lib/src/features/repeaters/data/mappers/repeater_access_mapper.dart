@@ -2,8 +2,6 @@ import 'package:ham_qrg/common/abstracts/mapper.dart';
 import 'package:ham_qrg/src/features/repeaters/data/model/access/repeater_access_model.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/tone_direction.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/tone_scope.dart';
 
 class RepeaterAccessMapper implements Mapper<RepeaterAccess, RepeaterAccessModel> {
   @override
@@ -16,16 +14,9 @@ class RepeaterAccessMapper implements Mapper<RepeaterAccess, RepeaterAccessModel
         (e) => e.name.toUpperCase() == model.mode.toUpperCase(),
         orElse: () => AccessMode.analog,
       ),
-      ctcssHz: model.ctcssHz,
+      ctcssTxHz: model.ctcssTxHz,
+      ctcssRxHz: model.ctcssRxHz,
       dcsCode: model.dcsCode,
-      toneScope: ToneScope.values.firstWhere(
-        (e) => e.name.toLowerCase() == model.toneScope.toLowerCase(),
-        orElse: () => ToneScope.unknown,
-      ),
-      toneDirection: ToneDirection.values.firstWhere(
-        (e) => e.name.toLowerCase() == model.toneDirection.toLowerCase(),
-        orElse: () => ToneDirection.unknown,
-      ),
       colorCode: model.colorCode,
       dmrId: model.dmrId,
       dgId: model.dgId,
@@ -43,10 +34,9 @@ class RepeaterAccessMapper implements Mapper<RepeaterAccess, RepeaterAccessModel
       repeaterId: entity.repeaterId,
       networkId: entity.networkId,
       mode: entity.mode.name.toUpperCase(),
-      ctcssHz: entity.ctcssHz,
+      ctcssTxHz: entity.ctcssTxHz,
+      ctcssRxHz: entity.ctcssRxHz,
       dcsCode: entity.dcsCode,
-      toneScope: entity.toneScope.name,
-      toneDirection: entity.toneDirection.name,
       colorCode: entity.colorCode,
       dmrId: entity.dmrId,
       dgId: entity.dgId,

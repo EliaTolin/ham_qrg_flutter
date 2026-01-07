@@ -21,6 +21,8 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     required double lon2,
     List<String>? modes,
   }) async {
+    //log modes
+    log('modes: $modes');
     try {
       final data = await _client.rpc(
         'repeaters_in_bounds',
@@ -66,8 +68,14 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         return [];
       }
 
-      // RPC function now returns accesses as JSONB array
-      return data.map((e) => RepeaterModel.fromJson(e as Map<String, dynamic>)).toList();
+      // RPC function returns (repeater, distance_m) tuples
+      return data.map((e) {
+        final row = e as Map<String, dynamic>;
+        final repeaterData = Map<String, dynamic>.from(row['repeater'] as Map);
+        // Add distance_m to repeater data
+        repeaterData['distance_m'] = row['distance_m'];
+        return RepeaterModel.fromJson(repeaterData);
+      }).toList();
     } catch (error, stackTrace) {
       log('Error fetching repeaters_nearby: $error', stackTrace: stackTrace);
       rethrow;
@@ -378,7 +386,6 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       rethrow;
     }
   }
-
 }
 
 @riverpod

@@ -20,10 +20,6 @@ class MapSectionWidget extends HookConsumerWidget {
   final ({double lat, double lon, double zoom}) initialPosition;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    log('MAP SECTION RECEIVED REPEATERS: ${nearbyRepeaters.length}');
-    for (final repeater in nearbyRepeaters) {
-      log('REPEATER: ${repeater.callsign}');
-    }
     final mapController = useState<MapboxMap?>(null);
     final pointManager = useState<PointAnnotationManager?>(null);
 

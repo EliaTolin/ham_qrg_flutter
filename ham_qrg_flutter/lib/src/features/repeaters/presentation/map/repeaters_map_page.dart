@@ -306,39 +306,20 @@ class RepeatersMapPage extends HookConsumerWidget {
           right: 0,
           child: SafeArea(
             bottom: false,
-            child: Container(
-              padding: const EdgeInsets.only(
-                top: 16,
-                left: 16,
-                right: 16,
-                bottom: 32,
-              ),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    colorScheme.surface.withValues(alpha: 0.9),
-                    colorScheme.surface.withValues(alpha: 0.5),
-                    Colors.transparent,
-                  ],
-                ),
-              ),
-              child: MapAccessModeFilterChips(
-                selectedModes: mapState?.selectedModes ?? {},
-                onModeToggled: (mode) async {
-                  if (mapController != null) {
-                    final visibleBounds = await _getVisibleBounds(mapController);
-                    await notifier.toggleModeFilter(
-                      lat1: visibleBounds.lat1,
-                      lon1: visibleBounds.lon1,
-                      lat2: visibleBounds.lat2,
-                      lon2: visibleBounds.lon2,
-                      mode: mode,
-                    );
-                  }
-                },
-              ),
+            child: MapAccessModeFilterChips(
+              selectedModes: mapState?.selectedModes ?? {},
+              onModeToggled: (mode) async {
+                if (mapController != null) {
+                  final visibleBounds = await _getVisibleBounds(mapController);
+                  await notifier.toggleModeFilter(
+                    lat1: visibleBounds.lat1,
+                    lon1: visibleBounds.lon1,
+                    lat2: visibleBounds.lat2,
+                    lon2: visibleBounds.lon2,
+                    mode: mode,
+                  );
+                }
+              },
             ),
           ),
         ),
@@ -371,7 +352,7 @@ class RepeatersMapPage extends HookConsumerWidget {
           ),
         if (!asyncState.isLoading && (mapState?.repeaters.isEmpty ?? false))
           Positioned(
-            top: 100,
+            top: 50,
             left: 16,
             right: 16,
             child: SafeArea(
@@ -393,78 +374,6 @@ class RepeatersMapPage extends HookConsumerWidget {
               ),
             ),
           ),
-        // Bottom right buttons
-        Positioned(
-          bottom: 32,
-          right: 16,
-          child: SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Layers button
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.8),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.1),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.2),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: IconButton(
-                    icon: const Icon(Icons.layers, size: 20),
-                    color: colorScheme.onSurfaceVariant,
-                    onPressed: () {
-                      // TO-DO: Show map layers options
-                    },
-                  ),
-                ),
-                const SizedBox(height: 16),
-                // My location button
-                Container(
-                  width: 56,
-                  height: 56,
-                  decoration: BoxDecoration(
-                    color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.8),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.1),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.2),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.my_location,
-                      size: 28,
-                      color: colorScheme.primary,
-                    ),
-                    onPressed: userLocation != null && mapController != null
-                        ? () => _handleReturnToLocation(
-                              ref,
-                              mapController,
-                              userLocation,
-                            )
-                        : null,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
       ],
     );
   }

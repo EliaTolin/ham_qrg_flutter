@@ -804,8 +804,15 @@ class _TechnicalDataSection extends StatelessWidget {
             ),
             _TechnicalDataCard(
               label: l10n.repeaterDetailSubtone,
-              value: repeater.accesses.isNotEmpty && repeater.accesses.first.ctcssHz != null
-                  ? '${repeater.accesses.first.ctcssHz!.toStringAsFixed(1)} Hz'
+              value: repeater.accesses.isNotEmpty &&
+                      (repeater.accesses.first.ctcssTxHz != null ||
+                          repeater.accesses.first.ctcssRxHz != null)
+                  ? repeater.accesses.first.ctcssTxHz != null &&
+                          repeater.accesses.first.ctcssRxHz != null
+                      ? 'TX ${repeater.accesses.first.ctcssTxHz!.toStringAsFixed(1)} / RX ${repeater.accesses.first.ctcssRxHz!.toStringAsFixed(1)} Hz'
+                      : repeater.accesses.first.ctcssTxHz != null
+                          ? 'TX ${repeater.accesses.first.ctcssTxHz!.toStringAsFixed(1)} Hz'
+                          : 'RX ${repeater.accesses.first.ctcssRxHz!.toStringAsFixed(1)} Hz'
                   : '-',
             ),
             _TechnicalDataCard(

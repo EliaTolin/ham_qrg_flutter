@@ -12,7 +12,6 @@ part 'repeaters_list_controller.g.dart';
 class RepeatersListController extends _$RepeatersListController {
   @override
   FutureOr<RepeatersListState> build() async {
-    log('BUILD REPEATERS LIST CONTROLLER');
     return _loadInitialRepeaters();
   }
 
