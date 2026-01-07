@@ -17,17 +17,22 @@ mixin _$RepeaterAccessModel {
   String get id;
   @JsonKey(name: 'repeater_id')
   String get repeaterId;
-  @JsonKey(name: 'network_id')
-  String? get networkId;
   String get mode;
-  @JsonKey(name: 'ctcss_hz')
-  double? get ctcssHz;
-  @JsonKey(name: 'dcs_code')
-  int? get dcsCode;
   @JsonKey(name: 'tone_scope')
   String get toneScope;
   @JsonKey(name: 'tone_direction')
   String get toneDirection;
+  String get source;
+  @JsonKey(name: 'created_at')
+  String get createdAt;
+  @JsonKey(name: 'updated_at')
+  String get updatedAt;
+  @JsonKey(name: 'network_id')
+  String? get networkId;
+  @JsonKey(name: 'ctcss_hz')
+  double? get ctcssHz;
+  @JsonKey(name: 'dcs_code')
+  int? get dcsCode;
   @JsonKey(name: 'color_code')
   int? get colorCode;
   @JsonKey(name: 'dmr_id')
@@ -35,11 +40,6 @@ mixin _$RepeaterAccessModel {
   @JsonKey(name: 'dg_id')
   int? get dgId;
   String? get notes;
-  String get source;
-  @JsonKey(name: 'created_at')
-  String get createdAt;
-  @JsonKey(name: 'updated_at')
-  String get updatedAt;
 
   /// Create a copy of RepeaterAccessModel
   /// with the given fields replaced by the non-null parameter values.
@@ -60,25 +60,25 @@ mixin _$RepeaterAccessModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
-            (identical(other.networkId, networkId) ||
-                other.networkId == networkId) &&
             (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
-            (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
             (identical(other.toneScope, toneScope) ||
                 other.toneScope == toneScope) &&
             (identical(other.toneDirection, toneDirection) ||
                 other.toneDirection == toneDirection) &&
-            (identical(other.colorCode, colorCode) ||
-                other.colorCode == colorCode) &&
-            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
-            (identical(other.dgId, dgId) || other.dgId == dgId) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.networkId, networkId) ||
+                other.networkId == networkId) &&
+            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
+            (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
+            (identical(other.colorCode, colorCode) ||
+                other.colorCode == colorCode) &&
+            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
+            (identical(other.dgId, dgId) || other.dgId == dgId) &&
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -87,23 +87,23 @@ mixin _$RepeaterAccessModel {
       runtimeType,
       id,
       repeaterId,
-      networkId,
       mode,
-      ctcssHz,
-      dcsCode,
       toneScope,
       toneDirection,
+      source,
+      createdAt,
+      updatedAt,
+      networkId,
+      ctcssHz,
+      dcsCode,
       colorCode,
       dmrId,
       dgId,
-      notes,
-      source,
-      createdAt,
-      updatedAt);
+      notes);
 
   @override
   String toString() {
-    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, networkId: $networkId, mode: $mode, ctcssHz: $ctcssHz, dcsCode: $dcsCode, toneScope: $toneScope, toneDirection: $toneDirection, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes, source: $source, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, toneScope: $toneScope, toneDirection: $toneDirection, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, ctcssHz: $ctcssHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -116,19 +116,19 @@ abstract mixin class $RepeaterAccessModelCopyWith<$Res> {
   $Res call(
       {String id,
       @JsonKey(name: 'repeater_id') String repeaterId,
-      @JsonKey(name: 'network_id') String? networkId,
       String mode,
-      @JsonKey(name: 'ctcss_hz') double? ctcssHz,
-      @JsonKey(name: 'dcs_code') int? dcsCode,
       @JsonKey(name: 'tone_scope') String toneScope,
       @JsonKey(name: 'tone_direction') String toneDirection,
+      String source,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
+      @JsonKey(name: 'network_id') String? networkId,
+      @JsonKey(name: 'ctcss_hz') double? ctcssHz,
+      @JsonKey(name: 'dcs_code') int? dcsCode,
       @JsonKey(name: 'color_code') int? colorCode,
       @JsonKey(name: 'dmr_id') int? dmrId,
       @JsonKey(name: 'dg_id') int? dgId,
-      String? notes,
-      String source,
-      @JsonKey(name: 'created_at') String createdAt,
-      @JsonKey(name: 'updated_at') String updatedAt});
+      String? notes});
 }
 
 /// @nodoc
@@ -146,19 +146,19 @@ class _$RepeaterAccessModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? repeaterId = null,
-    Object? networkId = freezed,
     Object? mode = null,
-    Object? ctcssHz = freezed,
-    Object? dcsCode = freezed,
     Object? toneScope = null,
     Object? toneDirection = null,
+    Object? source = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? networkId = freezed,
+    Object? ctcssHz = freezed,
+    Object? dcsCode = freezed,
     Object? colorCode = freezed,
     Object? dmrId = freezed,
     Object? dgId = freezed,
     Object? notes = freezed,
-    Object? source = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -169,22 +169,10 @@ class _$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
               as String,
-      networkId: freezed == networkId
-          ? _self.networkId
-          : networkId // ignore: cast_nullable_to_non_nullable
-              as String?,
       mode: null == mode
           ? _self.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as String,
-      ctcssHz: freezed == ctcssHz
-          ? _self.ctcssHz
-          : ctcssHz // ignore: cast_nullable_to_non_nullable
-              as double?,
-      dcsCode: freezed == dcsCode
-          ? _self.dcsCode
-          : dcsCode // ignore: cast_nullable_to_non_nullable
-              as int?,
       toneScope: null == toneScope
           ? _self.toneScope
           : toneScope // ignore: cast_nullable_to_non_nullable
@@ -193,6 +181,30 @@ class _$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.toneDirection
           : toneDirection // ignore: cast_nullable_to_non_nullable
               as String,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: null == updatedAt
+          ? _self.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      networkId: freezed == networkId
+          ? _self.networkId
+          : networkId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ctcssHz: freezed == ctcssHz
+          ? _self.ctcssHz
+          : ctcssHz // ignore: cast_nullable_to_non_nullable
+              as double?,
+      dcsCode: freezed == dcsCode
+          ? _self.dcsCode
+          : dcsCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       colorCode: freezed == colorCode
           ? _self.colorCode
           : colorCode // ignore: cast_nullable_to_non_nullable
@@ -209,18 +221,6 @@ class _$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
-          ? _self.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -321,19 +321,19 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
     TResult Function(
             String id,
             @JsonKey(name: 'repeater_id') String repeaterId,
-            @JsonKey(name: 'network_id') String? networkId,
             String mode,
-            @JsonKey(name: 'ctcss_hz') double? ctcssHz,
-            @JsonKey(name: 'dcs_code') int? dcsCode,
             @JsonKey(name: 'tone_scope') String toneScope,
             @JsonKey(name: 'tone_direction') String toneDirection,
+            String source,
+            @JsonKey(name: 'created_at') String createdAt,
+            @JsonKey(name: 'updated_at') String updatedAt,
+            @JsonKey(name: 'network_id') String? networkId,
+            @JsonKey(name: 'ctcss_hz') double? ctcssHz,
+            @JsonKey(name: 'dcs_code') int? dcsCode,
             @JsonKey(name: 'color_code') int? colorCode,
             @JsonKey(name: 'dmr_id') int? dmrId,
             @JsonKey(name: 'dg_id') int? dgId,
-            String? notes,
-            String source,
-            @JsonKey(name: 'created_at') String createdAt,
-            @JsonKey(name: 'updated_at') String updatedAt)?
+            String? notes)?
         $default, {
     required TResult orElse(),
   }) {
@@ -343,19 +343,19 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
         return $default(
             _that.id,
             _that.repeaterId,
-            _that.networkId,
             _that.mode,
-            _that.ctcssHz,
-            _that.dcsCode,
             _that.toneScope,
             _that.toneDirection,
+            _that.source,
+            _that.createdAt,
+            _that.updatedAt,
+            _that.networkId,
+            _that.ctcssHz,
+            _that.dcsCode,
             _that.colorCode,
             _that.dmrId,
             _that.dgId,
-            _that.notes,
-            _that.source,
-            _that.createdAt,
-            _that.updatedAt);
+            _that.notes);
       case _:
         return orElse();
     }
@@ -379,19 +379,19 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
     TResult Function(
             String id,
             @JsonKey(name: 'repeater_id') String repeaterId,
-            @JsonKey(name: 'network_id') String? networkId,
             String mode,
-            @JsonKey(name: 'ctcss_hz') double? ctcssHz,
-            @JsonKey(name: 'dcs_code') int? dcsCode,
             @JsonKey(name: 'tone_scope') String toneScope,
             @JsonKey(name: 'tone_direction') String toneDirection,
+            String source,
+            @JsonKey(name: 'created_at') String createdAt,
+            @JsonKey(name: 'updated_at') String updatedAt,
+            @JsonKey(name: 'network_id') String? networkId,
+            @JsonKey(name: 'ctcss_hz') double? ctcssHz,
+            @JsonKey(name: 'dcs_code') int? dcsCode,
             @JsonKey(name: 'color_code') int? colorCode,
             @JsonKey(name: 'dmr_id') int? dmrId,
             @JsonKey(name: 'dg_id') int? dgId,
-            String? notes,
-            String source,
-            @JsonKey(name: 'created_at') String createdAt,
-            @JsonKey(name: 'updated_at') String updatedAt)
+            String? notes)
         $default,
   ) {
     final _that = this;
@@ -400,19 +400,19 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
         return $default(
             _that.id,
             _that.repeaterId,
-            _that.networkId,
             _that.mode,
-            _that.ctcssHz,
-            _that.dcsCode,
             _that.toneScope,
             _that.toneDirection,
+            _that.source,
+            _that.createdAt,
+            _that.updatedAt,
+            _that.networkId,
+            _that.ctcssHz,
+            _that.dcsCode,
             _that.colorCode,
             _that.dmrId,
             _that.dgId,
-            _that.notes,
-            _that.source,
-            _that.createdAt,
-            _that.updatedAt);
+            _that.notes);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -435,19 +435,19 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
     TResult? Function(
             String id,
             @JsonKey(name: 'repeater_id') String repeaterId,
-            @JsonKey(name: 'network_id') String? networkId,
             String mode,
-            @JsonKey(name: 'ctcss_hz') double? ctcssHz,
-            @JsonKey(name: 'dcs_code') int? dcsCode,
             @JsonKey(name: 'tone_scope') String toneScope,
             @JsonKey(name: 'tone_direction') String toneDirection,
+            String source,
+            @JsonKey(name: 'created_at') String createdAt,
+            @JsonKey(name: 'updated_at') String updatedAt,
+            @JsonKey(name: 'network_id') String? networkId,
+            @JsonKey(name: 'ctcss_hz') double? ctcssHz,
+            @JsonKey(name: 'dcs_code') int? dcsCode,
             @JsonKey(name: 'color_code') int? colorCode,
             @JsonKey(name: 'dmr_id') int? dmrId,
             @JsonKey(name: 'dg_id') int? dgId,
-            String? notes,
-            String source,
-            @JsonKey(name: 'created_at') String createdAt,
-            @JsonKey(name: 'updated_at') String updatedAt)?
+            String? notes)?
         $default,
   ) {
     final _that = this;
@@ -456,19 +456,19 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
         return $default(
             _that.id,
             _that.repeaterId,
-            _that.networkId,
             _that.mode,
-            _that.ctcssHz,
-            _that.dcsCode,
             _that.toneScope,
             _that.toneDirection,
+            _that.source,
+            _that.createdAt,
+            _that.updatedAt,
+            _that.networkId,
+            _that.ctcssHz,
+            _that.dcsCode,
             _that.colorCode,
             _that.dmrId,
             _that.dgId,
-            _that.notes,
-            _that.source,
-            _that.createdAt,
-            _that.updatedAt);
+            _that.notes);
       case _:
         return null;
     }
@@ -481,19 +481,19 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
   const _RepeaterAccessModel(
       {required this.id,
       @JsonKey(name: 'repeater_id') required this.repeaterId,
-      @JsonKey(name: 'network_id') this.networkId,
       required this.mode,
-      @JsonKey(name: 'ctcss_hz') this.ctcssHz,
-      @JsonKey(name: 'dcs_code') this.dcsCode,
       @JsonKey(name: 'tone_scope') required this.toneScope,
       @JsonKey(name: 'tone_direction') required this.toneDirection,
+      required this.source,
+      @JsonKey(name: 'created_at') required this.createdAt,
+      @JsonKey(name: 'updated_at') required this.updatedAt,
+      @JsonKey(name: 'network_id') this.networkId,
+      @JsonKey(name: 'ctcss_hz') this.ctcssHz,
+      @JsonKey(name: 'dcs_code') this.dcsCode,
       @JsonKey(name: 'color_code') this.colorCode,
       @JsonKey(name: 'dmr_id') this.dmrId,
       @JsonKey(name: 'dg_id') this.dgId,
-      this.notes,
-      required this.source,
-      @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'updated_at') required this.updatedAt});
+      this.notes});
   factory _RepeaterAccessModel.fromJson(Map<String, dynamic> json) =>
       _$RepeaterAccessModelFromJson(json);
 
@@ -503,22 +503,30 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
   @JsonKey(name: 'repeater_id')
   final String repeaterId;
   @override
-  @JsonKey(name: 'network_id')
-  final String? networkId;
-  @override
   final String mode;
-  @override
-  @JsonKey(name: 'ctcss_hz')
-  final double? ctcssHz;
-  @override
-  @JsonKey(name: 'dcs_code')
-  final int? dcsCode;
   @override
   @JsonKey(name: 'tone_scope')
   final String toneScope;
   @override
   @JsonKey(name: 'tone_direction')
   final String toneDirection;
+  @override
+  final String source;
+  @override
+  @JsonKey(name: 'created_at')
+  final String createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  final String updatedAt;
+  @override
+  @JsonKey(name: 'network_id')
+  final String? networkId;
+  @override
+  @JsonKey(name: 'ctcss_hz')
+  final double? ctcssHz;
+  @override
+  @JsonKey(name: 'dcs_code')
+  final int? dcsCode;
   @override
   @JsonKey(name: 'color_code')
   final int? colorCode;
@@ -530,14 +538,6 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
   final int? dgId;
   @override
   final String? notes;
-  @override
-  final String source;
-  @override
-  @JsonKey(name: 'created_at')
-  final String createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final String updatedAt;
 
   /// Create a copy of RepeaterAccessModel
   /// with the given fields replaced by the non-null parameter values.
@@ -563,25 +563,25 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
-            (identical(other.networkId, networkId) ||
-                other.networkId == networkId) &&
             (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
-            (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
             (identical(other.toneScope, toneScope) ||
                 other.toneScope == toneScope) &&
             (identical(other.toneDirection, toneDirection) ||
                 other.toneDirection == toneDirection) &&
-            (identical(other.colorCode, colorCode) ||
-                other.colorCode == colorCode) &&
-            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
-            (identical(other.dgId, dgId) || other.dgId == dgId) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.networkId, networkId) ||
+                other.networkId == networkId) &&
+            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
+            (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
+            (identical(other.colorCode, colorCode) ||
+                other.colorCode == colorCode) &&
+            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
+            (identical(other.dgId, dgId) || other.dgId == dgId) &&
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -590,23 +590,23 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
       runtimeType,
       id,
       repeaterId,
-      networkId,
       mode,
-      ctcssHz,
-      dcsCode,
       toneScope,
       toneDirection,
+      source,
+      createdAt,
+      updatedAt,
+      networkId,
+      ctcssHz,
+      dcsCode,
       colorCode,
       dmrId,
       dgId,
-      notes,
-      source,
-      createdAt,
-      updatedAt);
+      notes);
 
   @override
   String toString() {
-    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, networkId: $networkId, mode: $mode, ctcssHz: $ctcssHz, dcsCode: $dcsCode, toneScope: $toneScope, toneDirection: $toneDirection, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes, source: $source, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, toneScope: $toneScope, toneDirection: $toneDirection, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, ctcssHz: $ctcssHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -621,19 +621,19 @@ abstract mixin class _$RepeaterAccessModelCopyWith<$Res>
   $Res call(
       {String id,
       @JsonKey(name: 'repeater_id') String repeaterId,
-      @JsonKey(name: 'network_id') String? networkId,
       String mode,
-      @JsonKey(name: 'ctcss_hz') double? ctcssHz,
-      @JsonKey(name: 'dcs_code') int? dcsCode,
       @JsonKey(name: 'tone_scope') String toneScope,
       @JsonKey(name: 'tone_direction') String toneDirection,
+      String source,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'updated_at') String updatedAt,
+      @JsonKey(name: 'network_id') String? networkId,
+      @JsonKey(name: 'ctcss_hz') double? ctcssHz,
+      @JsonKey(name: 'dcs_code') int? dcsCode,
       @JsonKey(name: 'color_code') int? colorCode,
       @JsonKey(name: 'dmr_id') int? dmrId,
       @JsonKey(name: 'dg_id') int? dgId,
-      String? notes,
-      String source,
-      @JsonKey(name: 'created_at') String createdAt,
-      @JsonKey(name: 'updated_at') String updatedAt});
+      String? notes});
 }
 
 /// @nodoc
@@ -651,19 +651,19 @@ class __$RepeaterAccessModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? repeaterId = null,
-    Object? networkId = freezed,
     Object? mode = null,
-    Object? ctcssHz = freezed,
-    Object? dcsCode = freezed,
     Object? toneScope = null,
     Object? toneDirection = null,
+    Object? source = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? networkId = freezed,
+    Object? ctcssHz = freezed,
+    Object? dcsCode = freezed,
     Object? colorCode = freezed,
     Object? dmrId = freezed,
     Object? dgId = freezed,
     Object? notes = freezed,
-    Object? source = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
   }) {
     return _then(_RepeaterAccessModel(
       id: null == id
@@ -674,22 +674,10 @@ class __$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
               as String,
-      networkId: freezed == networkId
-          ? _self.networkId
-          : networkId // ignore: cast_nullable_to_non_nullable
-              as String?,
       mode: null == mode
           ? _self.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as String,
-      ctcssHz: freezed == ctcssHz
-          ? _self.ctcssHz
-          : ctcssHz // ignore: cast_nullable_to_non_nullable
-              as double?,
-      dcsCode: freezed == dcsCode
-          ? _self.dcsCode
-          : dcsCode // ignore: cast_nullable_to_non_nullable
-              as int?,
       toneScope: null == toneScope
           ? _self.toneScope
           : toneScope // ignore: cast_nullable_to_non_nullable
@@ -698,6 +686,30 @@ class __$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.toneDirection
           : toneDirection // ignore: cast_nullable_to_non_nullable
               as String,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      updatedAt: null == updatedAt
+          ? _self.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      networkId: freezed == networkId
+          ? _self.networkId
+          : networkId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ctcssHz: freezed == ctcssHz
+          ? _self.ctcssHz
+          : ctcssHz // ignore: cast_nullable_to_non_nullable
+              as double?,
+      dcsCode: freezed == dcsCode
+          ? _self.dcsCode
+          : dcsCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       colorCode: freezed == colorCode
           ? _self.colorCode
           : colorCode // ignore: cast_nullable_to_non_nullable
@@ -714,18 +726,6 @@ class __$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
-          ? _self.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }

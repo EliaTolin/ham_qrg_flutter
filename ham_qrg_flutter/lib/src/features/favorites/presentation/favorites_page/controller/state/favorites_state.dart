@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 part 'favorites_state.freezed.dart';
@@ -7,7 +8,7 @@ part 'favorites_state.freezed.dart';
 abstract class FavoritesState with _$FavoritesState {
   const factory FavoritesState({
     required List<Repeater> favorites,
-    required Set<RepeaterMode> selectedModes,
+    required Set<AccessMode> selectedModes,
     required String searchQuery,
   }) = _FavoritesState;
 

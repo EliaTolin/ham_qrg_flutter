@@ -16,19 +16,19 @@ T _$identity<T>(T value) => value;
 mixin _$RepeaterAccess {
   String get id;
   String get repeaterId;
-  String? get networkId;
   AccessMode get mode;
-  double? get ctcssHz;
-  int? get dcsCode;
   ToneScope get toneScope;
   ToneDirection get toneDirection;
+  String get source;
+  DateTime get createdAt;
+  DateTime get updatedAt;
+  String? get networkId;
+  double? get ctcssHz;
+  int? get dcsCode;
   int? get colorCode;
   int? get dmrId;
   int? get dgId;
   String? get notes;
-  String get source;
-  DateTime get createdAt;
-  DateTime get updatedAt;
 
   /// Create a copy of RepeaterAccess
   /// with the given fields replaced by the non-null parameter values.
@@ -46,25 +46,25 @@ mixin _$RepeaterAccess {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
-            (identical(other.networkId, networkId) ||
-                other.networkId == networkId) &&
             (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
-            (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
             (identical(other.toneScope, toneScope) ||
                 other.toneScope == toneScope) &&
             (identical(other.toneDirection, toneDirection) ||
                 other.toneDirection == toneDirection) &&
-            (identical(other.colorCode, colorCode) ||
-                other.colorCode == colorCode) &&
-            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
-            (identical(other.dgId, dgId) || other.dgId == dgId) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.networkId, networkId) ||
+                other.networkId == networkId) &&
+            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
+            (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
+            (identical(other.colorCode, colorCode) ||
+                other.colorCode == colorCode) &&
+            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
+            (identical(other.dgId, dgId) || other.dgId == dgId) &&
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @override
@@ -72,23 +72,23 @@ mixin _$RepeaterAccess {
       runtimeType,
       id,
       repeaterId,
-      networkId,
       mode,
-      ctcssHz,
-      dcsCode,
       toneScope,
       toneDirection,
+      source,
+      createdAt,
+      updatedAt,
+      networkId,
+      ctcssHz,
+      dcsCode,
       colorCode,
       dmrId,
       dgId,
-      notes,
-      source,
-      createdAt,
-      updatedAt);
+      notes);
 
   @override
   String toString() {
-    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, networkId: $networkId, mode: $mode, ctcssHz: $ctcssHz, dcsCode: $dcsCode, toneScope: $toneScope, toneDirection: $toneDirection, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes, source: $source, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, toneScope: $toneScope, toneDirection: $toneDirection, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, ctcssHz: $ctcssHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -101,19 +101,19 @@ abstract mixin class $RepeaterAccessCopyWith<$Res> {
   $Res call(
       {String id,
       String repeaterId,
-      String? networkId,
       AccessMode mode,
-      double? ctcssHz,
-      int? dcsCode,
       ToneScope toneScope,
       ToneDirection toneDirection,
+      String source,
+      DateTime createdAt,
+      DateTime updatedAt,
+      String? networkId,
+      double? ctcssHz,
+      int? dcsCode,
       int? colorCode,
       int? dmrId,
       int? dgId,
-      String? notes,
-      String source,
-      DateTime createdAt,
-      DateTime updatedAt});
+      String? notes});
 }
 
 /// @nodoc
@@ -131,19 +131,19 @@ class _$RepeaterAccessCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? repeaterId = null,
-    Object? networkId = freezed,
     Object? mode = null,
-    Object? ctcssHz = freezed,
-    Object? dcsCode = freezed,
     Object? toneScope = null,
     Object? toneDirection = null,
+    Object? source = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? networkId = freezed,
+    Object? ctcssHz = freezed,
+    Object? dcsCode = freezed,
     Object? colorCode = freezed,
     Object? dmrId = freezed,
     Object? dgId = freezed,
     Object? notes = freezed,
-    Object? source = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -154,22 +154,10 @@ class _$RepeaterAccessCopyWithImpl<$Res>
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
               as String,
-      networkId: freezed == networkId
-          ? _self.networkId
-          : networkId // ignore: cast_nullable_to_non_nullable
-              as String?,
       mode: null == mode
           ? _self.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as AccessMode,
-      ctcssHz: freezed == ctcssHz
-          ? _self.ctcssHz
-          : ctcssHz // ignore: cast_nullable_to_non_nullable
-              as double?,
-      dcsCode: freezed == dcsCode
-          ? _self.dcsCode
-          : dcsCode // ignore: cast_nullable_to_non_nullable
-              as int?,
       toneScope: null == toneScope
           ? _self.toneScope
           : toneScope // ignore: cast_nullable_to_non_nullable
@@ -178,6 +166,30 @@ class _$RepeaterAccessCopyWithImpl<$Res>
           ? _self.toneDirection
           : toneDirection // ignore: cast_nullable_to_non_nullable
               as ToneDirection,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _self.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      networkId: freezed == networkId
+          ? _self.networkId
+          : networkId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ctcssHz: freezed == ctcssHz
+          ? _self.ctcssHz
+          : ctcssHz // ignore: cast_nullable_to_non_nullable
+              as double?,
+      dcsCode: freezed == dcsCode
+          ? _self.dcsCode
+          : dcsCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       colorCode: freezed == colorCode
           ? _self.colorCode
           : colorCode // ignore: cast_nullable_to_non_nullable
@@ -194,18 +206,6 @@ class _$RepeaterAccessCopyWithImpl<$Res>
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _self.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }
@@ -306,19 +306,19 @@ extension RepeaterAccessPatterns on RepeaterAccess {
     TResult Function(
             String id,
             String repeaterId,
-            String? networkId,
             AccessMode mode,
-            double? ctcssHz,
-            int? dcsCode,
             ToneScope toneScope,
             ToneDirection toneDirection,
+            String source,
+            DateTime createdAt,
+            DateTime updatedAt,
+            String? networkId,
+            double? ctcssHz,
+            int? dcsCode,
             int? colorCode,
             int? dmrId,
             int? dgId,
-            String? notes,
-            String source,
-            DateTime createdAt,
-            DateTime updatedAt)?
+            String? notes)?
         $default, {
     required TResult orElse(),
   }) {
@@ -328,19 +328,19 @@ extension RepeaterAccessPatterns on RepeaterAccess {
         return $default(
             _that.id,
             _that.repeaterId,
-            _that.networkId,
             _that.mode,
-            _that.ctcssHz,
-            _that.dcsCode,
             _that.toneScope,
             _that.toneDirection,
+            _that.source,
+            _that.createdAt,
+            _that.updatedAt,
+            _that.networkId,
+            _that.ctcssHz,
+            _that.dcsCode,
             _that.colorCode,
             _that.dmrId,
             _that.dgId,
-            _that.notes,
-            _that.source,
-            _that.createdAt,
-            _that.updatedAt);
+            _that.notes);
       case _:
         return orElse();
     }
@@ -364,19 +364,19 @@ extension RepeaterAccessPatterns on RepeaterAccess {
     TResult Function(
             String id,
             String repeaterId,
-            String? networkId,
             AccessMode mode,
-            double? ctcssHz,
-            int? dcsCode,
             ToneScope toneScope,
             ToneDirection toneDirection,
+            String source,
+            DateTime createdAt,
+            DateTime updatedAt,
+            String? networkId,
+            double? ctcssHz,
+            int? dcsCode,
             int? colorCode,
             int? dmrId,
             int? dgId,
-            String? notes,
-            String source,
-            DateTime createdAt,
-            DateTime updatedAt)
+            String? notes)
         $default,
   ) {
     final _that = this;
@@ -385,19 +385,19 @@ extension RepeaterAccessPatterns on RepeaterAccess {
         return $default(
             _that.id,
             _that.repeaterId,
-            _that.networkId,
             _that.mode,
-            _that.ctcssHz,
-            _that.dcsCode,
             _that.toneScope,
             _that.toneDirection,
+            _that.source,
+            _that.createdAt,
+            _that.updatedAt,
+            _that.networkId,
+            _that.ctcssHz,
+            _that.dcsCode,
             _that.colorCode,
             _that.dmrId,
             _that.dgId,
-            _that.notes,
-            _that.source,
-            _that.createdAt,
-            _that.updatedAt);
+            _that.notes);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -420,19 +420,19 @@ extension RepeaterAccessPatterns on RepeaterAccess {
     TResult? Function(
             String id,
             String repeaterId,
-            String? networkId,
             AccessMode mode,
-            double? ctcssHz,
-            int? dcsCode,
             ToneScope toneScope,
             ToneDirection toneDirection,
+            String source,
+            DateTime createdAt,
+            DateTime updatedAt,
+            String? networkId,
+            double? ctcssHz,
+            int? dcsCode,
             int? colorCode,
             int? dmrId,
             int? dgId,
-            String? notes,
-            String source,
-            DateTime createdAt,
-            DateTime updatedAt)?
+            String? notes)?
         $default,
   ) {
     final _that = this;
@@ -441,19 +441,19 @@ extension RepeaterAccessPatterns on RepeaterAccess {
         return $default(
             _that.id,
             _that.repeaterId,
-            _that.networkId,
             _that.mode,
-            _that.ctcssHz,
-            _that.dcsCode,
             _that.toneScope,
             _that.toneDirection,
+            _that.source,
+            _that.createdAt,
+            _that.updatedAt,
+            _that.networkId,
+            _that.ctcssHz,
+            _that.dcsCode,
             _that.colorCode,
             _that.dmrId,
             _that.dgId,
-            _that.notes,
-            _that.source,
-            _that.createdAt,
-            _that.updatedAt);
+            _that.notes);
       case _:
         return null;
     }
@@ -466,36 +466,42 @@ class _RepeaterAccess implements RepeaterAccess {
   const _RepeaterAccess(
       {required this.id,
       required this.repeaterId,
-      this.networkId,
       required this.mode,
-      this.ctcssHz,
-      this.dcsCode,
       required this.toneScope,
       required this.toneDirection,
+      required this.source,
+      required this.createdAt,
+      required this.updatedAt,
+      this.networkId,
+      this.ctcssHz,
+      this.dcsCode,
       this.colorCode,
       this.dmrId,
       this.dgId,
-      this.notes,
-      required this.source,
-      required this.createdAt,
-      required this.updatedAt});
+      this.notes});
 
   @override
   final String id;
   @override
   final String repeaterId;
   @override
-  final String? networkId;
-  @override
   final AccessMode mode;
-  @override
-  final double? ctcssHz;
-  @override
-  final int? dcsCode;
   @override
   final ToneScope toneScope;
   @override
   final ToneDirection toneDirection;
+  @override
+  final String source;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
+  @override
+  final String? networkId;
+  @override
+  final double? ctcssHz;
+  @override
+  final int? dcsCode;
   @override
   final int? colorCode;
   @override
@@ -504,12 +510,6 @@ class _RepeaterAccess implements RepeaterAccess {
   final int? dgId;
   @override
   final String? notes;
-  @override
-  final String source;
-  @override
-  final DateTime createdAt;
-  @override
-  final DateTime updatedAt;
 
   /// Create a copy of RepeaterAccess
   /// with the given fields replaced by the non-null parameter values.
@@ -527,25 +527,25 @@ class _RepeaterAccess implements RepeaterAccess {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.repeaterId, repeaterId) ||
                 other.repeaterId == repeaterId) &&
-            (identical(other.networkId, networkId) ||
-                other.networkId == networkId) &&
             (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
-            (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
             (identical(other.toneScope, toneScope) ||
                 other.toneScope == toneScope) &&
             (identical(other.toneDirection, toneDirection) ||
                 other.toneDirection == toneDirection) &&
-            (identical(other.colorCode, colorCode) ||
-                other.colorCode == colorCode) &&
-            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
-            (identical(other.dgId, dgId) || other.dgId == dgId) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.networkId, networkId) ||
+                other.networkId == networkId) &&
+            (identical(other.ctcssHz, ctcssHz) || other.ctcssHz == ctcssHz) &&
+            (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
+            (identical(other.colorCode, colorCode) ||
+                other.colorCode == colorCode) &&
+            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
+            (identical(other.dgId, dgId) || other.dgId == dgId) &&
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @override
@@ -553,23 +553,23 @@ class _RepeaterAccess implements RepeaterAccess {
       runtimeType,
       id,
       repeaterId,
-      networkId,
       mode,
-      ctcssHz,
-      dcsCode,
       toneScope,
       toneDirection,
+      source,
+      createdAt,
+      updatedAt,
+      networkId,
+      ctcssHz,
+      dcsCode,
       colorCode,
       dmrId,
       dgId,
-      notes,
-      source,
-      createdAt,
-      updatedAt);
+      notes);
 
   @override
   String toString() {
-    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, networkId: $networkId, mode: $mode, ctcssHz: $ctcssHz, dcsCode: $dcsCode, toneScope: $toneScope, toneDirection: $toneDirection, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes, source: $source, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, toneScope: $toneScope, toneDirection: $toneDirection, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, ctcssHz: $ctcssHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -584,19 +584,19 @@ abstract mixin class _$RepeaterAccessCopyWith<$Res>
   $Res call(
       {String id,
       String repeaterId,
-      String? networkId,
       AccessMode mode,
-      double? ctcssHz,
-      int? dcsCode,
       ToneScope toneScope,
       ToneDirection toneDirection,
+      String source,
+      DateTime createdAt,
+      DateTime updatedAt,
+      String? networkId,
+      double? ctcssHz,
+      int? dcsCode,
       int? colorCode,
       int? dmrId,
       int? dgId,
-      String? notes,
-      String source,
-      DateTime createdAt,
-      DateTime updatedAt});
+      String? notes});
 }
 
 /// @nodoc
@@ -614,19 +614,19 @@ class __$RepeaterAccessCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? repeaterId = null,
-    Object? networkId = freezed,
     Object? mode = null,
-    Object? ctcssHz = freezed,
-    Object? dcsCode = freezed,
     Object? toneScope = null,
     Object? toneDirection = null,
+    Object? source = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? networkId = freezed,
+    Object? ctcssHz = freezed,
+    Object? dcsCode = freezed,
     Object? colorCode = freezed,
     Object? dmrId = freezed,
     Object? dgId = freezed,
     Object? notes = freezed,
-    Object? source = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
   }) {
     return _then(_RepeaterAccess(
       id: null == id
@@ -637,22 +637,10 @@ class __$RepeaterAccessCopyWithImpl<$Res>
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
               as String,
-      networkId: freezed == networkId
-          ? _self.networkId
-          : networkId // ignore: cast_nullable_to_non_nullable
-              as String?,
       mode: null == mode
           ? _self.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as AccessMode,
-      ctcssHz: freezed == ctcssHz
-          ? _self.ctcssHz
-          : ctcssHz // ignore: cast_nullable_to_non_nullable
-              as double?,
-      dcsCode: freezed == dcsCode
-          ? _self.dcsCode
-          : dcsCode // ignore: cast_nullable_to_non_nullable
-              as int?,
       toneScope: null == toneScope
           ? _self.toneScope
           : toneScope // ignore: cast_nullable_to_non_nullable
@@ -661,6 +649,30 @@ class __$RepeaterAccessCopyWithImpl<$Res>
           ? _self.toneDirection
           : toneDirection // ignore: cast_nullable_to_non_nullable
               as ToneDirection,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _self.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      networkId: freezed == networkId
+          ? _self.networkId
+          : networkId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ctcssHz: freezed == ctcssHz
+          ? _self.ctcssHz
+          : ctcssHz // ignore: cast_nullable_to_non_nullable
+              as double?,
+      dcsCode: freezed == dcsCode
+          ? _self.dcsCode
+          : dcsCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       colorCode: freezed == colorCode
           ? _self.colorCode
           : colorCode // ignore: cast_nullable_to_non_nullable
@@ -677,18 +689,6 @@ class __$RepeaterAccessCopyWithImpl<$Res>
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _self.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }

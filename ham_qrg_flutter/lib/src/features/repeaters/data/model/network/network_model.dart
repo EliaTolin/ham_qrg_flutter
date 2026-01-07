@@ -9,12 +9,12 @@ abstract class NetworkModel with _$NetworkModel {
     required String id,
     required String name,
     @JsonKey(name: 'kind') required String kind,
-    @JsonKey(name: 'parent_network_id') String? parentNetworkId,
+    @JsonKey(name: 'created_at') required String createdAt, @JsonKey(name: 'parent_network_id') String? parentNetworkId,
     String? website,
     String? notes,
-    @JsonKey(name: 'created_at') required String createdAt,
   }) = _NetworkModel;
 
   factory NetworkModel.fromJson(Map<String, dynamic> json) => _$NetworkModelFromJson(json);
 }
+
 

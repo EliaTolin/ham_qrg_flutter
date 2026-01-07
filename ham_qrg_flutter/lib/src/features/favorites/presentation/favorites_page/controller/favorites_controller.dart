@@ -1,5 +1,5 @@
 import 'package:ham_qrg/src/features/favorites/presentation/favorites_page/controller/state/favorites_state.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/get_favorite_repeaters/get_favorite_repeaters_provider.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/remove_favorite_repeater/remove_favorite_repeater_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -26,10 +26,10 @@ class FavoritesController extends _$FavoritesController {
     );
   }
 
-  void toggleModeFilter(RepeaterMode mode) {
+  void toggleModeFilter(AccessMode mode) {
     final currentState = state.value;
     if (currentState == null) return;
-    final newModes = Set<RepeaterMode>.from(currentState.selectedModes);
+    final newModes = Set<AccessMode>.from(currentState.selectedModes);
     if (newModes.contains(mode)) {
       newModes.remove(mode);
     } else {

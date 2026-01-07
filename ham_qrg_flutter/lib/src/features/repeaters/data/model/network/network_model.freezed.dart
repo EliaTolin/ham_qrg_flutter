@@ -18,12 +18,12 @@ mixin _$NetworkModel {
   String get name;
   @JsonKey(name: 'kind')
   String get kind;
+  @JsonKey(name: 'created_at')
+  String get createdAt;
   @JsonKey(name: 'parent_network_id')
   String? get parentNetworkId;
   String? get website;
   String? get notes;
-  @JsonKey(name: 'created_at')
-  String get createdAt;
 
   /// Create a copy of NetworkModel
   /// with the given fields replaced by the non-null parameter values.
@@ -44,22 +44,22 @@ mixin _$NetworkModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.kind, kind) || other.kind == kind) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.parentNetworkId, parentNetworkId) ||
                 other.parentNetworkId == parentNetworkId) &&
             (identical(other.website, website) || other.website == website) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, kind, parentNetworkId, website, notes, createdAt);
+      runtimeType, id, name, kind, createdAt, parentNetworkId, website, notes);
 
   @override
   String toString() {
-    return 'NetworkModel(id: $id, name: $name, kind: $kind, parentNetworkId: $parentNetworkId, website: $website, notes: $notes, createdAt: $createdAt)';
+    return 'NetworkModel(id: $id, name: $name, kind: $kind, createdAt: $createdAt, parentNetworkId: $parentNetworkId, website: $website, notes: $notes)';
   }
 }
 
@@ -73,10 +73,10 @@ abstract mixin class $NetworkModelCopyWith<$Res> {
       {String id,
       String name,
       @JsonKey(name: 'kind') String kind,
+      @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'parent_network_id') String? parentNetworkId,
       String? website,
-      String? notes,
-      @JsonKey(name: 'created_at') String createdAt});
+      String? notes});
 }
 
 /// @nodoc
@@ -94,10 +94,10 @@ class _$NetworkModelCopyWithImpl<$Res> implements $NetworkModelCopyWith<$Res> {
     Object? id = null,
     Object? name = null,
     Object? kind = null,
+    Object? createdAt = null,
     Object? parentNetworkId = freezed,
     Object? website = freezed,
     Object? notes = freezed,
-    Object? createdAt = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -112,6 +112,10 @@ class _$NetworkModelCopyWithImpl<$Res> implements $NetworkModelCopyWith<$Res> {
           ? _self.kind
           : kind // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
       parentNetworkId: freezed == parentNetworkId
           ? _self.parentNetworkId
           : parentNetworkId // ignore: cast_nullable_to_non_nullable
@@ -124,10 +128,6 @@ class _$NetworkModelCopyWithImpl<$Res> implements $NetworkModelCopyWith<$Res> {
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -229,18 +229,18 @@ extension NetworkModelPatterns on NetworkModel {
             String id,
             String name,
             @JsonKey(name: 'kind') String kind,
+            @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'parent_network_id') String? parentNetworkId,
             String? website,
-            String? notes,
-            @JsonKey(name: 'created_at') String createdAt)?
+            String? notes)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _NetworkModel() when $default != null:
-        return $default(_that.id, _that.name, _that.kind, _that.parentNetworkId,
-            _that.website, _that.notes, _that.createdAt);
+        return $default(_that.id, _that.name, _that.kind, _that.createdAt,
+            _that.parentNetworkId, _that.website, _that.notes);
       case _:
         return orElse();
     }
@@ -265,17 +265,17 @@ extension NetworkModelPatterns on NetworkModel {
             String id,
             String name,
             @JsonKey(name: 'kind') String kind,
+            @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'parent_network_id') String? parentNetworkId,
             String? website,
-            String? notes,
-            @JsonKey(name: 'created_at') String createdAt)
+            String? notes)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _NetworkModel():
-        return $default(_that.id, _that.name, _that.kind, _that.parentNetworkId,
-            _that.website, _that.notes, _that.createdAt);
+        return $default(_that.id, _that.name, _that.kind, _that.createdAt,
+            _that.parentNetworkId, _that.website, _that.notes);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -299,17 +299,17 @@ extension NetworkModelPatterns on NetworkModel {
             String id,
             String name,
             @JsonKey(name: 'kind') String kind,
+            @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'parent_network_id') String? parentNetworkId,
             String? website,
-            String? notes,
-            @JsonKey(name: 'created_at') String createdAt)?
+            String? notes)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _NetworkModel() when $default != null:
-        return $default(_that.id, _that.name, _that.kind, _that.parentNetworkId,
-            _that.website, _that.notes, _that.createdAt);
+        return $default(_that.id, _that.name, _that.kind, _that.createdAt,
+            _that.parentNetworkId, _that.website, _that.notes);
       case _:
         return null;
     }
@@ -323,10 +323,10 @@ class _NetworkModel implements NetworkModel {
       {required this.id,
       required this.name,
       @JsonKey(name: 'kind') required this.kind,
+      @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'parent_network_id') this.parentNetworkId,
       this.website,
-      this.notes,
-      @JsonKey(name: 'created_at') required this.createdAt});
+      this.notes});
   factory _NetworkModel.fromJson(Map<String, dynamic> json) =>
       _$NetworkModelFromJson(json);
 
@@ -338,15 +338,15 @@ class _NetworkModel implements NetworkModel {
   @JsonKey(name: 'kind')
   final String kind;
   @override
+  @JsonKey(name: 'created_at')
+  final String createdAt;
+  @override
   @JsonKey(name: 'parent_network_id')
   final String? parentNetworkId;
   @override
   final String? website;
   @override
   final String? notes;
-  @override
-  @JsonKey(name: 'created_at')
-  final String createdAt;
 
   /// Create a copy of NetworkModel
   /// with the given fields replaced by the non-null parameter values.
@@ -371,22 +371,22 @@ class _NetworkModel implements NetworkModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.kind, kind) || other.kind == kind) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.parentNetworkId, parentNetworkId) ||
                 other.parentNetworkId == parentNetworkId) &&
             (identical(other.website, website) || other.website == website) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, kind, parentNetworkId, website, notes, createdAt);
+      runtimeType, id, name, kind, createdAt, parentNetworkId, website, notes);
 
   @override
   String toString() {
-    return 'NetworkModel(id: $id, name: $name, kind: $kind, parentNetworkId: $parentNetworkId, website: $website, notes: $notes, createdAt: $createdAt)';
+    return 'NetworkModel(id: $id, name: $name, kind: $kind, createdAt: $createdAt, parentNetworkId: $parentNetworkId, website: $website, notes: $notes)';
   }
 }
 
@@ -402,10 +402,10 @@ abstract mixin class _$NetworkModelCopyWith<$Res>
       {String id,
       String name,
       @JsonKey(name: 'kind') String kind,
+      @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'parent_network_id') String? parentNetworkId,
       String? website,
-      String? notes,
-      @JsonKey(name: 'created_at') String createdAt});
+      String? notes});
 }
 
 /// @nodoc
@@ -424,10 +424,10 @@ class __$NetworkModelCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? kind = null,
+    Object? createdAt = null,
     Object? parentNetworkId = freezed,
     Object? website = freezed,
     Object? notes = freezed,
-    Object? createdAt = null,
   }) {
     return _then(_NetworkModel(
       id: null == id
@@ -442,6 +442,10 @@ class __$NetworkModelCopyWithImpl<$Res>
           ? _self.kind
           : kind // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
       parentNetworkId: freezed == parentNetworkId
           ? _self.parentNetworkId
           : parentNetworkId // ignore: cast_nullable_to_non_nullable
@@ -454,10 +458,6 @@ class __$NetworkModelCopyWithImpl<$Res>
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }

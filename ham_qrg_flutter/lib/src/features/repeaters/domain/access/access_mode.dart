@@ -9,4 +9,3 @@ enum AccessMode {
   beacon,
   atv,
 }
-

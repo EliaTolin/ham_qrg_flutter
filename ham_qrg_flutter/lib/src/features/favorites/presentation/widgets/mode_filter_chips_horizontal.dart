@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:ham_qrg/common/utils/access_mode_helper.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 
 class ModeFilterChipsHorizontal extends StatelessWidget {
   const ModeFilterChipsHorizontal({
@@ -11,14 +11,22 @@ class ModeFilterChipsHorizontal extends StatelessWidget {
     super.key,
   });
 
-  final Set<RepeaterMode> selectedModes;
-  final ValueChanged<RepeaterMode> onModeToggled;
+  final Set<AccessMode> selectedModes;
+  final ValueChanged<AccessMode> onModeToggled;
   final VoidCallback onAllSelected;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.localization;
     final isAllSelected = selectedModes.isEmpty;
+
+    // Common access modes to show in filters
+    final commonModes = [
+      AccessMode.analog,
+      AccessMode.dmr,
+      AccessMode.c4fm,
+      AccessMode.dstar,
+    ];
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -32,14 +40,14 @@ class ModeFilterChipsHorizontal extends StatelessWidget {
             isPrimary: true,
           ),
           const SizedBox(width: 8),
-          ...RepeaterMode.values.map((mode) {
+          ...commonModes.map((mode) {
             final isSelected = selectedModes.contains(mode);
-            final modeColor = RepeaterModeHelper.getModeColorObject(mode);
+            final modeColor = AccessModeHelper.getAccessModeColorObject(mode);
 
             return Padding(
               padding: const EdgeInsets.only(right: 8),
               child: _FilterChip(
-                label: RepeaterModeHelper.getModeLabel(mode, l10n),
+                label: AccessModeHelper.getAccessModeLabel(mode),
                 isSelected: isSelected,
                 onTap: () => onModeToggled(mode),
                 color: modeColor,

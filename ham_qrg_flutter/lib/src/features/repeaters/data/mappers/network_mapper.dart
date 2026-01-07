@@ -34,3 +34,4 @@ class NetworkMapper implements Mapper<Network, NetworkModel> {
   }
 }
 
+

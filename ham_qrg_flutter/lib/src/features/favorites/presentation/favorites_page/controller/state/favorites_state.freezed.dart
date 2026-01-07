@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FavoritesState {
   List<Repeater> get favorites;
-  Set<RepeaterMode> get selectedModes;
+  Set<AccessMode> get selectedModes;
   String get searchQuery;
 
   /// Create a copy of FavoritesState
@@ -59,7 +59,7 @@ abstract mixin class $FavoritesStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<Repeater> favorites,
-      Set<RepeaterMode> selectedModes,
+      Set<AccessMode> selectedModes,
       String searchQuery});
 }
 
@@ -88,7 +88,7 @@ class _$FavoritesStateCopyWithImpl<$Res>
       selectedModes: null == selectedModes
           ? _self.selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable
-              as Set<RepeaterMode>,
+              as Set<AccessMode>,
       searchQuery: null == searchQuery
           ? _self.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable
@@ -190,7 +190,7 @@ extension FavoritesStatePatterns on FavoritesState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Repeater> favorites, Set<RepeaterMode> selectedModes,
+    TResult Function(List<Repeater> favorites, Set<AccessMode> selectedModes,
             String searchQuery)?
         $default, {
     required TResult orElse(),
@@ -220,7 +220,7 @@ extension FavoritesStatePatterns on FavoritesState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Repeater> favorites, Set<RepeaterMode> selectedModes,
+    TResult Function(List<Repeater> favorites, Set<AccessMode> selectedModes,
             String searchQuery)
         $default,
   ) {
@@ -248,7 +248,7 @@ extension FavoritesStatePatterns on FavoritesState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Repeater> favorites, Set<RepeaterMode> selectedModes,
+    TResult? Function(List<Repeater> favorites, Set<AccessMode> selectedModes,
             String searchQuery)?
         $default,
   ) {
@@ -268,7 +268,7 @@ extension FavoritesStatePatterns on FavoritesState {
 class _FavoritesState implements FavoritesState {
   const _FavoritesState(
       {required final List<Repeater> favorites,
-      required final Set<RepeaterMode> selectedModes,
+      required final Set<AccessMode> selectedModes,
       required this.searchQuery})
       : _favorites = favorites,
         _selectedModes = selectedModes;
@@ -281,9 +281,9 @@ class _FavoritesState implements FavoritesState {
     return EqualUnmodifiableListView(_favorites);
   }
 
-  final Set<RepeaterMode> _selectedModes;
+  final Set<AccessMode> _selectedModes;
   @override
-  Set<RepeaterMode> get selectedModes {
+  Set<AccessMode> get selectedModes {
     if (_selectedModes is EqualUnmodifiableSetView) return _selectedModes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_selectedModes);
@@ -336,7 +336,7 @@ abstract mixin class _$FavoritesStateCopyWith<$Res>
   @useResult
   $Res call(
       {List<Repeater> favorites,
-      Set<RepeaterMode> selectedModes,
+      Set<AccessMode> selectedModes,
       String searchQuery});
 }
 
@@ -365,7 +365,7 @@ class __$FavoritesStateCopyWithImpl<$Res>
       selectedModes: null == selectedModes
           ? _self._selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable
-              as Set<RepeaterMode>,
+              as Set<AccessMode>,
       searchQuery: null == searchQuery
           ? _self.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable

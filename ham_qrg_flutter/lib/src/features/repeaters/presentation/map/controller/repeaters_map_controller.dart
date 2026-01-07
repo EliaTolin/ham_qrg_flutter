@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/get_repeaters_in_bounds/get_repeaters_in_bounds_provider.dart';
@@ -21,14 +22,14 @@ class RepeatersMapController extends _$RepeatersMapController {
     required double lon1,
     required double lat2,
     required double lon2,
-    required RepeaterMode mode,
+    required AccessMode mode,
   }) async {
     final currentState = state.value;
     if (currentState == null) {
       return;
     }
 
-    final newSelectedModes = Set<RepeaterMode>.from(currentState.selectedModes);
+    final newSelectedModes = Set<AccessMode>.from(currentState.selectedModes);
     if (newSelectedModes.contains(mode)) {
       newSelectedModes.remove(mode);
     } else {
@@ -57,33 +58,57 @@ class RepeatersMapController extends _$RepeatersMapController {
     }
   }
 
+  void selectRepeater(Repeater? repeater) {
+    final currentState = state.value;
+    if (currentState == null) return;
+    state = AsyncValue.data(
+      currentState.copyWith(selectedRepeater: repeater),
+    );
+  }
+
+  void clearSelectedRepeater() {
+    selectRepeater(null);
+  }
+
   /// Load repeaters based on map bounds (lat1, lon1, lat2, lon2)
   Future<void> loadRepeatersFromBounds({
     required double lat1,
     required double lon1,
     required double lat2,
     required double lon2,
-    List<RepeaterMode>? selectedModes,
+    List<AccessMode>? selectedModes,
   }) async {
     final currentState = state.value;
     final modesToFilter = selectedModes ?? currentState?.selectedModes.toList();
 
     state = await AsyncValue.guard(() async {
       try {
+        // Convert AccessMode to RepeaterMode for API (for now, we'll filter client-side)
+        // TO-DO: Update API to support AccessMode filtering
         final repeaters = await _fetchRepeatersFromBounds(
           lat1: lat1,
           lon1: lon1,
           lat2: lat2,
           lon2: lon2,
-          modes: modesToFilter?.isEmpty ?? true ? null : modesToFilter,
         );
-        log('REPEATERS: ${repeaters.length}');
+        
+        // Filter by AccessMode client-side
+        final filteredRepeaters = modesToFilter?.isEmpty ?? true
+            ? repeaters
+            : repeaters.where((repeater) {
+                return repeater.accesses.any(
+                  (access) => modesToFilter!.contains(access.mode),
+                );
+              }).toList();
+        
+        log('REPEATERS: ${filteredRepeaters.length}');
         return RepeatersMapState(
-          repeaters: repeaters,
+          repeaters: filteredRepeaters,
           latitude: currentState?.latitude,
           longitude: currentState?.longitude,
           selectedModes:
               modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
+          selectedRepeater: currentState?.selectedRepeater,
         );
       } on LocationException catch (error) {
         return RepeatersMapState(
@@ -93,6 +118,7 @@ class RepeatersMapController extends _$RepeatersMapController {
           longitude: currentState?.longitude,
           selectedModes:
               currentState?.selectedModes ?? (modesToFilter?.toSet() ?? {}),
+          selectedRepeater: currentState?.selectedRepeater,
         );
       }
     });
@@ -100,7 +126,7 @@ class RepeatersMapController extends _$RepeatersMapController {
 
   /// Load initial repeaters, trying to get user location first
   Future<RepeatersMapState> _initalLoad({
-    List<RepeaterMode>? selectedModes,
+    List<AccessMode>? selectedModes,
   }) async {
     final currentState = state.value;
     final modesToFilter = selectedModes ?? currentState?.selectedModes.toList();
@@ -134,7 +160,7 @@ class RepeatersMapController extends _$RepeatersMapController {
     required double lon1,
     required double lat2,
     required double lon2,
-    List<RepeaterMode>? modes,
+    List<RepeaterMode>? modes, // Keep for API compatibility
   }) async {
     log('FETCH REPEATERS FROM BOUNDS: $lat1, $lon1, $lat2, $lon2, $modes');
 

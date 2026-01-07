@@ -25,8 +25,8 @@ class RepeaterModeHelper {
   static String getModeLabel(RepeaterMode mode, AppLocalizations l10n) {
     return switch (mode) {
       RepeaterMode.analog => l10n.repeaterModeAnalog,
-      RepeaterMode.digital => 'Digital', // TODO: Add translation
-      RepeaterMode.mixed => 'Mixed', // TODO: Add translation
+      RepeaterMode.digital => 'Digital', // TO-DO: Add translation
+      RepeaterMode.mixed => 'Mixed', // TO-DO: Add translation
     };
   }
 

@@ -99,7 +99,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
                     ),
                   ],
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.settings_input_antenna,
                   color: Colors.white,
                   size: 18,

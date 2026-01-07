@@ -85,7 +85,7 @@ class _RepeaterDetailContent extends HookConsumerWidget {
     useEffect(
       () {
         locationService.getCurrentPosition().then((position) {
-          // TODO: Use geocoding to get city name from coordinates
+          // TO-DO: Use geocoding to get city name from coordinates
           // For now, we'll leave it empty and let user fill it
         }).catchError((_) {
           // Ignore location errors
@@ -312,7 +312,7 @@ class _ActionButtons extends StatelessWidget {
               icon: Icons.favorite_border,
               label: l10n.repeaterDetailSave,
               onTap: () {
-                // TODO: Implement save functionality
+                // TO-DO: Implement save functionality
               },
             ),
           ),
@@ -326,7 +326,7 @@ class _ActionButtons extends StatelessWidget {
               icon: Icons.share,
               label: l10n.repeaterDetailShare,
               onTap: () {
-                // TODO: Implement share functionality
+                // TO-DO: Implement share functionality
               },
             ),
           ),
@@ -340,7 +340,7 @@ class _ActionButtons extends StatelessWidget {
               icon: Icons.flag_outlined,
               label: l10n.repeaterDetailReport,
               onTap: () {
-                // TODO: Implement report functionality
+                // TO-DO: Implement report functionality
               },
             ),
           ),
@@ -1093,7 +1093,7 @@ class _CommunityReportsSection extends HookConsumerWidget {
             Center(
               child: TextButton(
                 onPressed: () {
-                  // TODO: Navigate to full feedbacks list
+                  // TO-DO: Navigate to full feedbacks list
                 },
                 child: Text(
                   l10n.repeaterDetailViewAllReports(

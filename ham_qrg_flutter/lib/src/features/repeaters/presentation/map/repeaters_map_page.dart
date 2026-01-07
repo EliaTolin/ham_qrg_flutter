@@ -10,8 +10,9 @@ import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/repea
 import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/utils/map_utils.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/info_banner.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/mode_filter_chips.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/widgets/map_access_mode_filter_chips.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/permission_banner.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/summary_chip.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
@@ -71,9 +72,6 @@ class RepeatersMapPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.localization.repeatersMapTitle),
-      ),
       body: Stack(
         children: [
           MapWidget(
@@ -105,7 +103,7 @@ class RepeatersMapPage extends HookConsumerWidget {
             },
           ),
 
-          // Overlays (banners, chips, buttons)
+          // Overlays (header, banners, chips, buttons)
           _buildOverlays(
             context,
             ref,
@@ -116,6 +114,14 @@ class RepeatersMapPage extends HookConsumerWidget {
             mapController.value,
             userLocation.value,
           ),
+
+          // Repeater details sheet (draggable)
+          if (mapState?.selectedRepeater != null)
+            _buildRepeaterDetailsSheet(
+              context,
+              mapState!.selectedRepeater!,
+              notifier,
+            ),
         ],
       ),
     );
@@ -168,7 +174,8 @@ class RepeatersMapPage extends HookConsumerWidget {
               final repeater = currentState.repeaters.firstWhere(
                 (r) => r.id == repeaterId,
               );
-              showRepeaterDetails(context, repeater);
+              // Select repeater instead of showing modal
+              ref.read(repeatersMapControllerProvider.notifier).selectRepeater(repeater);
             } catch (e) {
               // Repeater not found, ignore
             }
@@ -256,8 +263,7 @@ class RepeatersMapPage extends HookConsumerWidget {
         final lon = repeater.longitude;
         if (lat == null || lon == null) continue;
 
-        final iconBytes =
-            await RepeaterModeHelper.generateRepeaterIcon(repeater.mode);
+        final iconBytes = await RepeaterModeHelper.generateRepeaterIcon(repeater.mode);
         annotations.add(
           PointAnnotationOptions(
             geometry: Point(coordinates: Position(lon, lat)),
@@ -277,7 +283,7 @@ class RepeatersMapPage extends HookConsumerWidget {
     }
   }
 
-  /// Build overlay widgets (banners, chips, buttons)
+  /// Build overlay widgets (header, banners, chips, buttons)
   Widget _buildOverlays(
     BuildContext context,
     WidgetRef ref,
@@ -288,82 +294,232 @@ class RepeatersMapPage extends HookConsumerWidget {
     MapboxMap? mapController,
     ({double lat, double lon})? userLocation,
   ) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Stack(
       children: [
+        // Header with gradient and filters
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: SafeArea(
+            bottom: false,
+            child: Container(
+              padding: const EdgeInsets.only(
+                top: 16,
+                left: 16,
+                right: 16,
+                bottom: 32,
+              ),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    colorScheme.surface.withValues(alpha: 0.9),
+                    colorScheme.surface.withValues(alpha: 0.5),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+              child: MapAccessModeFilterChips(
+                selectedModes: mapState?.selectedModes ?? {},
+                onModeToggled: (mode) async {
+                  if (mapController != null) {
+                    final visibleBounds = await _getVisibleBounds(mapController);
+                    await notifier.toggleModeFilter(
+                      lat1: visibleBounds.lat1,
+                      lon1: visibleBounds.lon1,
+                      lat2: visibleBounds.lat2,
+                      lon2: visibleBounds.lon2,
+                      mode: mode,
+                    );
+                  }
+                },
+              ),
+            ),
+          ),
+        ),
         // Error banners
         if (mapState?.locationError != null)
-          PermissionBanner(
-            errorType: mapState!.locationError!,
-            onRetry: () async {
-              ref.invalidate(repeatersMapControllerProvider);
-            },
+          Positioned(
+            top: 100,
+            left: 16,
+            right: 16,
+            child: SafeArea(
+              child: PermissionBanner(
+                errorType: mapState!.locationError!,
+                onRetry: () async {
+                  ref.invalidate(repeatersMapControllerProvider);
+                },
+              ),
+            ),
           ),
         if (asyncState.hasError && mapState?.locationError == null)
-          InfoBanner(
-            icon: const Icon(Icons.warning_amber_rounded),
-            label: context.localization.repeatersMapGenericError,
+          Positioned(
+            top: 100,
+            left: 16,
+            right: 16,
+            child: SafeArea(
+              child: InfoBanner(
+                icon: const Icon(Icons.warning_amber_rounded),
+                label: context.localization.repeatersMapGenericError,
+              ),
+            ),
           ),
         if (!asyncState.isLoading && (mapState?.repeaters.isEmpty ?? false))
-          InfoBanner(
-            icon: const Icon(Icons.location_off_outlined),
-            label: context.localization.repeatersMapEmpty,
+          Positioned(
+            top: 100,
+            left: 16,
+            right: 16,
+            child: SafeArea(
+              child: InfoBanner(
+                icon: const Icon(Icons.location_off_outlined),
+                label: context.localization.repeatersMapEmpty,
+              ),
+            ),
           ),
         // Summary chip
         if (mapState?.repeaters.isNotEmpty ?? false)
           Positioned(
-            top: 32,
-            left: 12,
-            right: 12,
+            top: 100,
+            left: 16,
+            right: 16,
             child: SafeArea(
               child: SummaryChip(
                 count: mapState!.repeaters.length,
               ),
             ),
           ),
-        // Mode filter chips
+        // Bottom right buttons
         Positioned(
-          bottom: 16,
-          left: 16,
+          bottom: 32,
           right: 16,
           child: SafeArea(
-            child: ModeFilterChips(
-              selectedModes: mapState?.selectedModes ?? {},
-              onModeToggled: (mode) async {
-                final visibleBounds = await _getVisibleBounds(mapController!);
-                await notifier.toggleModeFilter(
-                  lat1: visibleBounds.lat1,
-                  lon1: visibleBounds.lon1,
-                  lat2: visibleBounds.lat2,
-                  lon2: visibleBounds.lon2,
-                  mode: mode,
-                );
-              },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Layers button
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.8),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.1),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.2),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: const Icon(Icons.layers, size: 20),
+                    color: colorScheme.onSurfaceVariant,
+                    onPressed: () {
+                      // TO-DO: Show map layers options
+                    },
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // My location button
+                Container(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.8),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.1),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.2),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.my_location,
+                      size: 28,
+                      color: colorScheme.primary,
+                    ),
+                    onPressed: userLocation != null && mapController != null
+                        ? () => _handleReturnToLocation(
+                              ref,
+                              mapController,
+                              userLocation,
+                            )
+                        : null,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        // Return to location button
-        if (showLocationButton && userLocation != null && mapController != null)
-          Positioned(
-            bottom: 100,
-            right: 16,
-            child: SafeArea(
-              child: FloatingActionButton(
-                onPressed: () => _handleReturnToLocation(
-                  ref,
-                  mapController,
-                  userLocation,
-                ),
-                tooltip: 'Torna alla mia posizione',
-                child: const Icon(Icons.my_location),
-              ),
-            ),
-          ),
       ],
     );
   }
 
-  Future<({double lat1, double lon1, double lat2, double lon2})>
-      _getVisibleBounds(
+  /// Build draggable repeater details sheet
+  Widget _buildRepeaterDetailsSheet(
+    BuildContext context,
+    Repeater repeater,
+    RepeatersMapController notifier,
+  ) {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.6,
+      minChildSize: 0.4,
+      maxChildSize: 0.95,
+      builder: (context, scrollController) {
+        return Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          child: Column(
+            children: [
+              // Handle bar
+              Container(
+                margin: const EdgeInsets.only(top: 8),
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              // Close button
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => notifier.clearSelectedRepeater(),
+                ),
+              ),
+              // Repeater details
+              Expanded(
+                child: RepeaterDetailsSheet(
+                  repeater: repeater,
+                  scrollController: scrollController,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<({double lat1, double lon1, double lat2, double lon2})> _getVisibleBounds(
     MapboxMap map,
   ) async {
     final bounds = await map.coordinateBoundsForCamera(

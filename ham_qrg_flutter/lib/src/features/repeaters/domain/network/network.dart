@@ -9,10 +9,10 @@ abstract class Network with _$Network {
     required String id,
     required String name,
     required NetworkKind kind,
-    String? parentNetworkId,
+    required DateTime createdAt, String? parentNetworkId,
     String? website,
     String? notes,
-    required DateTime createdAt,
   }) = _Network;
 }
+
 

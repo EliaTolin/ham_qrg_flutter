@@ -10,19 +10,18 @@ abstract class RepeaterAccess with _$RepeaterAccess {
   const factory RepeaterAccess({
     required String id,
     required String repeaterId,
-    String? networkId,
     required AccessMode mode,
-    double? ctcssHz,
-    int? dcsCode,
     required ToneScope toneScope,
     required ToneDirection toneDirection,
+    required String source,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+    String? networkId,
+    double? ctcssHz,
+    int? dcsCode,
     int? colorCode,
     int? dmrId,
     int? dgId,
     String? notes,
-    required String source,
-    required DateTime createdAt,
-    required DateTime updatedAt,
   }) = _RepeaterAccess;
 }
-

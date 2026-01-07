@@ -32,7 +32,7 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       longitude: model.lon,
       distanceMeters: model.distanceM,
       source: model.source,
-      accesses: model.accesses.map(_accessMapper.fromModel).toList(),
+      accesses: model.accesses?.map(_accessMapper.fromModel).toList() ?? [],
     );
   }
 

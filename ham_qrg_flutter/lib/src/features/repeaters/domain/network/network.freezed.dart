@@ -17,10 +17,10 @@ mixin _$Network {
   String get id;
   String get name;
   NetworkKind get kind;
+  DateTime get createdAt;
   String? get parentNetworkId;
   String? get website;
   String? get notes;
-  DateTime get createdAt;
 
   /// Create a copy of Network
   /// with the given fields replaced by the non-null parameter values.
@@ -37,21 +37,21 @@ mixin _$Network {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.kind, kind) || other.kind == kind) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.parentNetworkId, parentNetworkId) ||
                 other.parentNetworkId == parentNetworkId) &&
             (identical(other.website, website) || other.website == website) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, kind, parentNetworkId, website, notes, createdAt);
+      runtimeType, id, name, kind, createdAt, parentNetworkId, website, notes);
 
   @override
   String toString() {
-    return 'Network(id: $id, name: $name, kind: $kind, parentNetworkId: $parentNetworkId, website: $website, notes: $notes, createdAt: $createdAt)';
+    return 'Network(id: $id, name: $name, kind: $kind, createdAt: $createdAt, parentNetworkId: $parentNetworkId, website: $website, notes: $notes)';
   }
 }
 
@@ -64,10 +64,10 @@ abstract mixin class $NetworkCopyWith<$Res> {
       {String id,
       String name,
       NetworkKind kind,
+      DateTime createdAt,
       String? parentNetworkId,
       String? website,
-      String? notes,
-      DateTime createdAt});
+      String? notes});
 }
 
 /// @nodoc
@@ -85,10 +85,10 @@ class _$NetworkCopyWithImpl<$Res> implements $NetworkCopyWith<$Res> {
     Object? id = null,
     Object? name = null,
     Object? kind = null,
+    Object? createdAt = null,
     Object? parentNetworkId = freezed,
     Object? website = freezed,
     Object? notes = freezed,
-    Object? createdAt = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -103,6 +103,10 @@ class _$NetworkCopyWithImpl<$Res> implements $NetworkCopyWith<$Res> {
           ? _self.kind
           : kind // ignore: cast_nullable_to_non_nullable
               as NetworkKind,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       parentNetworkId: freezed == parentNetworkId
           ? _self.parentNetworkId
           : parentNetworkId // ignore: cast_nullable_to_non_nullable
@@ -115,10 +119,6 @@ class _$NetworkCopyWithImpl<$Res> implements $NetworkCopyWith<$Res> {
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }
@@ -220,18 +220,18 @@ extension NetworkPatterns on Network {
             String id,
             String name,
             NetworkKind kind,
+            DateTime createdAt,
             String? parentNetworkId,
             String? website,
-            String? notes,
-            DateTime createdAt)?
+            String? notes)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _Network() when $default != null:
-        return $default(_that.id, _that.name, _that.kind, _that.parentNetworkId,
-            _that.website, _that.notes, _that.createdAt);
+        return $default(_that.id, _that.name, _that.kind, _that.createdAt,
+            _that.parentNetworkId, _that.website, _that.notes);
       case _:
         return orElse();
     }
@@ -256,17 +256,17 @@ extension NetworkPatterns on Network {
             String id,
             String name,
             NetworkKind kind,
+            DateTime createdAt,
             String? parentNetworkId,
             String? website,
-            String? notes,
-            DateTime createdAt)
+            String? notes)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Network():
-        return $default(_that.id, _that.name, _that.kind, _that.parentNetworkId,
-            _that.website, _that.notes, _that.createdAt);
+        return $default(_that.id, _that.name, _that.kind, _that.createdAt,
+            _that.parentNetworkId, _that.website, _that.notes);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -290,17 +290,17 @@ extension NetworkPatterns on Network {
             String id,
             String name,
             NetworkKind kind,
+            DateTime createdAt,
             String? parentNetworkId,
             String? website,
-            String? notes,
-            DateTime createdAt)?
+            String? notes)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Network() when $default != null:
-        return $default(_that.id, _that.name, _that.kind, _that.parentNetworkId,
-            _that.website, _that.notes, _that.createdAt);
+        return $default(_that.id, _that.name, _that.kind, _that.createdAt,
+            _that.parentNetworkId, _that.website, _that.notes);
       case _:
         return null;
     }
@@ -314,10 +314,10 @@ class _Network implements Network {
       {required this.id,
       required this.name,
       required this.kind,
+      required this.createdAt,
       this.parentNetworkId,
       this.website,
-      this.notes,
-      required this.createdAt});
+      this.notes});
 
   @override
   final String id;
@@ -326,13 +326,13 @@ class _Network implements Network {
   @override
   final NetworkKind kind;
   @override
+  final DateTime createdAt;
+  @override
   final String? parentNetworkId;
   @override
   final String? website;
   @override
   final String? notes;
-  @override
-  final DateTime createdAt;
 
   /// Create a copy of Network
   /// with the given fields replaced by the non-null parameter values.
@@ -350,21 +350,21 @@ class _Network implements Network {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.kind, kind) || other.kind == kind) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.parentNetworkId, parentNetworkId) ||
                 other.parentNetworkId == parentNetworkId) &&
             (identical(other.website, website) || other.website == website) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, kind, parentNetworkId, website, notes, createdAt);
+      runtimeType, id, name, kind, createdAt, parentNetworkId, website, notes);
 
   @override
   String toString() {
-    return 'Network(id: $id, name: $name, kind: $kind, parentNetworkId: $parentNetworkId, website: $website, notes: $notes, createdAt: $createdAt)';
+    return 'Network(id: $id, name: $name, kind: $kind, createdAt: $createdAt, parentNetworkId: $parentNetworkId, website: $website, notes: $notes)';
   }
 }
 
@@ -378,10 +378,10 @@ abstract mixin class _$NetworkCopyWith<$Res> implements $NetworkCopyWith<$Res> {
       {String id,
       String name,
       NetworkKind kind,
+      DateTime createdAt,
       String? parentNetworkId,
       String? website,
-      String? notes,
-      DateTime createdAt});
+      String? notes});
 }
 
 /// @nodoc
@@ -399,10 +399,10 @@ class __$NetworkCopyWithImpl<$Res> implements _$NetworkCopyWith<$Res> {
     Object? id = null,
     Object? name = null,
     Object? kind = null,
+    Object? createdAt = null,
     Object? parentNetworkId = freezed,
     Object? website = freezed,
     Object? notes = freezed,
-    Object? createdAt = null,
   }) {
     return _then(_Network(
       id: null == id
@@ -417,6 +417,10 @@ class __$NetworkCopyWithImpl<$Res> implements _$NetworkCopyWith<$Res> {
           ? _self.kind
           : kind // ignore: cast_nullable_to_non_nullable
               as NetworkKind,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       parentNetworkId: freezed == parentNetworkId
           ? _self.parentNetworkId
           : parentNetworkId // ignore: cast_nullable_to_non_nullable
@@ -429,10 +433,6 @@ class __$NetworkCopyWithImpl<$Res> implements _$NetworkCopyWith<$Res> {
           ? _self.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }

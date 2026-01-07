@@ -13,6 +13,7 @@ _RepeaterModel _$RepeaterModelFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updated_at'] as String,
       frequencyHz: (json['frequency_hz'] as num).toInt(),
       mode: json['mode'] as String,
+      source: json['source'] as String,
       callsign: json['callsign'] as String?,
       name: json['name'] as String?,
       manager: json['manager'] as String?,
@@ -25,12 +26,7 @@ _RepeaterModel _$RepeaterModelFromJson(Map<String, dynamic> json) =>
       lat: (json['lat'] as num?)?.toDouble(),
       lon: (json['lon'] as num?)?.toDouble(),
       distanceM: (json['distance_m'] as num?)?.toDouble(),
-      source: json['source'] as String,
-      accesses: (json['accesses'] as List<dynamic>?)
-              ?.map((e) =>
-                  RepeaterAccessModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      accesses: _accessesFromJson(json['accesses']),
     );
 
 Map<String, dynamic> _$RepeaterModelToJson(_RepeaterModel instance) =>
@@ -40,6 +36,7 @@ Map<String, dynamic> _$RepeaterModelToJson(_RepeaterModel instance) =>
       'updated_at': instance.updatedAt,
       'frequency_hz': instance.frequencyHz,
       'mode': instance.mode,
+      'source': instance.source,
       'callsign': instance.callsign,
       'name': instance.name,
       'manager': instance.manager,
@@ -52,6 +49,5 @@ Map<String, dynamic> _$RepeaterModelToJson(_RepeaterModel instance) =>
       'lat': instance.lat,
       'lon': instance.lon,
       'distance_m': instance.distanceM,
-      'source': instance.source,
       'accesses': instance.accesses,
     };

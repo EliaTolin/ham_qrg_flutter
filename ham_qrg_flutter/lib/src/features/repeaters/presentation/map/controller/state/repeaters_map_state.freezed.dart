@@ -18,7 +18,8 @@ mixin _$RepeatersMapState {
   double? get latitude;
   double? get longitude;
   LocationErrorType? get locationError;
-  Set<RepeaterMode> get selectedModes;
+  Set<AccessMode> get selectedModes;
+  Repeater? get selectedRepeater;
 
   /// Create a copy of RepeatersMapState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,7 +42,9 @@ mixin _$RepeatersMapState {
             (identical(other.locationError, locationError) ||
                 other.locationError == locationError) &&
             const DeepCollectionEquality()
-                .equals(other.selectedModes, selectedModes));
+                .equals(other.selectedModes, selectedModes) &&
+            (identical(other.selectedRepeater, selectedRepeater) ||
+                other.selectedRepeater == selectedRepeater));
   }
 
   @override
@@ -51,11 +54,12 @@ mixin _$RepeatersMapState {
       latitude,
       longitude,
       locationError,
-      const DeepCollectionEquality().hash(selectedModes));
+      const DeepCollectionEquality().hash(selectedModes),
+      selectedRepeater);
 
   @override
   String toString() {
-    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, selectedModes: $selectedModes)';
+    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater)';
   }
 }
 
@@ -70,7 +74,10 @@ abstract mixin class $RepeatersMapStateCopyWith<$Res> {
       double? latitude,
       double? longitude,
       LocationErrorType? locationError,
-      Set<RepeaterMode> selectedModes});
+      Set<AccessMode> selectedModes,
+      Repeater? selectedRepeater});
+
+  $RepeaterCopyWith<$Res>? get selectedRepeater;
 }
 
 /// @nodoc
@@ -91,6 +98,7 @@ class _$RepeatersMapStateCopyWithImpl<$Res>
     Object? longitude = freezed,
     Object? locationError = freezed,
     Object? selectedModes = null,
+    Object? selectedRepeater = freezed,
   }) {
     return _then(_self.copyWith(
       repeaters: null == repeaters
@@ -112,8 +120,26 @@ class _$RepeatersMapStateCopyWithImpl<$Res>
       selectedModes: null == selectedModes
           ? _self.selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable
-              as Set<RepeaterMode>,
+              as Set<AccessMode>,
+      selectedRepeater: freezed == selectedRepeater
+          ? _self.selectedRepeater
+          : selectedRepeater // ignore: cast_nullable_to_non_nullable
+              as Repeater?,
     ));
+  }
+
+  /// Create a copy of RepeatersMapState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterCopyWith<$Res>? get selectedRepeater {
+    if (_self.selectedRepeater == null) {
+      return null;
+    }
+
+    return $RepeaterCopyWith<$Res>(_self.selectedRepeater!, (value) {
+      return _then(_self.copyWith(selectedRepeater: value));
+    });
   }
 }
 
@@ -215,7 +241,8 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             double? latitude,
             double? longitude,
             LocationErrorType? locationError,
-            Set<RepeaterMode> selectedModes)?
+            Set<AccessMode> selectedModes,
+            Repeater? selectedRepeater)?
         $default, {
     required TResult orElse(),
   }) {
@@ -223,7 +250,7 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
     switch (_that) {
       case _RepeatersMapState() when $default != null:
         return $default(_that.repeaters, _that.latitude, _that.longitude,
-            _that.locationError, _that.selectedModes);
+            _that.locationError, _that.selectedModes, _that.selectedRepeater);
       case _:
         return orElse();
     }
@@ -249,14 +276,15 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             double? latitude,
             double? longitude,
             LocationErrorType? locationError,
-            Set<RepeaterMode> selectedModes)
+            Set<AccessMode> selectedModes,
+            Repeater? selectedRepeater)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _RepeatersMapState():
         return $default(_that.repeaters, _that.latitude, _that.longitude,
-            _that.locationError, _that.selectedModes);
+            _that.locationError, _that.selectedModes, _that.selectedRepeater);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -281,14 +309,15 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             double? latitude,
             double? longitude,
             LocationErrorType? locationError,
-            Set<RepeaterMode> selectedModes)?
+            Set<AccessMode> selectedModes,
+            Repeater? selectedRepeater)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _RepeatersMapState() when $default != null:
         return $default(_that.repeaters, _that.latitude, _that.longitude,
-            _that.locationError, _that.selectedModes);
+            _that.locationError, _that.selectedModes, _that.selectedRepeater);
       case _:
         return null;
     }
@@ -303,7 +332,8 @@ class _RepeatersMapState implements RepeatersMapState {
       this.latitude,
       this.longitude,
       this.locationError,
-      final Set<RepeaterMode> selectedModes = const <RepeaterMode>{}})
+      final Set<AccessMode> selectedModes = const <AccessMode>{},
+      this.selectedRepeater})
       : _repeaters = repeaters,
         _selectedModes = selectedModes;
 
@@ -322,14 +352,17 @@ class _RepeatersMapState implements RepeatersMapState {
   final double? longitude;
   @override
   final LocationErrorType? locationError;
-  final Set<RepeaterMode> _selectedModes;
+  final Set<AccessMode> _selectedModes;
   @override
   @JsonKey()
-  Set<RepeaterMode> get selectedModes {
+  Set<AccessMode> get selectedModes {
     if (_selectedModes is EqualUnmodifiableSetView) return _selectedModes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_selectedModes);
   }
+
+  @override
+  final Repeater? selectedRepeater;
 
   /// Create a copy of RepeatersMapState
   /// with the given fields replaced by the non-null parameter values.
@@ -353,7 +386,9 @@ class _RepeatersMapState implements RepeatersMapState {
             (identical(other.locationError, locationError) ||
                 other.locationError == locationError) &&
             const DeepCollectionEquality()
-                .equals(other._selectedModes, _selectedModes));
+                .equals(other._selectedModes, _selectedModes) &&
+            (identical(other.selectedRepeater, selectedRepeater) ||
+                other.selectedRepeater == selectedRepeater));
   }
 
   @override
@@ -363,11 +398,12 @@ class _RepeatersMapState implements RepeatersMapState {
       latitude,
       longitude,
       locationError,
-      const DeepCollectionEquality().hash(_selectedModes));
+      const DeepCollectionEquality().hash(_selectedModes),
+      selectedRepeater);
 
   @override
   String toString() {
-    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, selectedModes: $selectedModes)';
+    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater)';
   }
 }
 
@@ -384,7 +420,11 @@ abstract mixin class _$RepeatersMapStateCopyWith<$Res>
       double? latitude,
       double? longitude,
       LocationErrorType? locationError,
-      Set<RepeaterMode> selectedModes});
+      Set<AccessMode> selectedModes,
+      Repeater? selectedRepeater});
+
+  @override
+  $RepeaterCopyWith<$Res>? get selectedRepeater;
 }
 
 /// @nodoc
@@ -405,6 +445,7 @@ class __$RepeatersMapStateCopyWithImpl<$Res>
     Object? longitude = freezed,
     Object? locationError = freezed,
     Object? selectedModes = null,
+    Object? selectedRepeater = freezed,
   }) {
     return _then(_RepeatersMapState(
       repeaters: null == repeaters
@@ -426,8 +467,26 @@ class __$RepeatersMapStateCopyWithImpl<$Res>
       selectedModes: null == selectedModes
           ? _self._selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable
-              as Set<RepeaterMode>,
+              as Set<AccessMode>,
+      selectedRepeater: freezed == selectedRepeater
+          ? _self.selectedRepeater
+          : selectedRepeater // ignore: cast_nullable_to_non_nullable
+              as Repeater?,
     ));
+  }
+
+  /// Create a copy of RepeatersMapState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterCopyWith<$Res>? get selectedRepeater {
+    if (_self.selectedRepeater == null) {
+      return null;
+    }
+
+    return $RepeaterCopyWith<$Res>(_self.selectedRepeater!, (value) {
+      return _then(_self.copyWith(selectedRepeater: value));
+    });
   }
 }
 

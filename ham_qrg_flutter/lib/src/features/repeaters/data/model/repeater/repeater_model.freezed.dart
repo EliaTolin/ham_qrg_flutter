@@ -22,6 +22,7 @@ mixin _$RepeaterModel {
   @JsonKey(name: 'frequency_hz')
   int get frequencyHz;
   String get mode;
+  String get source;
   String? get callsign;
   String? get name;
   String? get manager;
@@ -38,9 +39,8 @@ mixin _$RepeaterModel {
   double? get lon;
   @JsonKey(name: 'distance_m')
   double? get distanceM;
-  String get source;
-  @JsonKey(name: 'accesses')
-  List<RepeaterAccessModel> get accesses;
+  @JsonKey(name: 'accesses', fromJson: _accessesFromJson)
+  List<RepeaterAccessModel>? get accesses;
 
   /// Create a copy of RepeaterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -66,6 +66,7 @@ mixin _$RepeaterModel {
             (identical(other.frequencyHz, frequencyHz) ||
                 other.frequencyHz == frequencyHz) &&
             (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.source, source) || other.source == source) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
             (identical(other.name, name) || other.name == name) &&
@@ -83,7 +84,6 @@ mixin _$RepeaterModel {
             (identical(other.lon, lon) || other.lon == lon) &&
             (identical(other.distanceM, distanceM) ||
                 other.distanceM == distanceM) &&
-            (identical(other.source, source) || other.source == source) &&
             const DeepCollectionEquality().equals(other.accesses, accesses));
   }
 
@@ -96,6 +96,7 @@ mixin _$RepeaterModel {
         updatedAt,
         frequencyHz,
         mode,
+        source,
         callsign,
         name,
         manager,
@@ -108,13 +109,12 @@ mixin _$RepeaterModel {
         lat,
         lon,
         distanceM,
-        source,
         const DeepCollectionEquality().hash(accesses)
       ]);
 
   @override
   String toString() {
-    return 'RepeaterModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, lat: $lat, lon: $lon, distanceM: $distanceM, source: $source, accesses: $accesses)';
+    return 'RepeaterModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, lat: $lat, lon: $lon, distanceM: $distanceM, accesses: $accesses)';
   }
 }
 
@@ -130,6 +130,7 @@ abstract mixin class $RepeaterModelCopyWith<$Res> {
       @JsonKey(name: 'updated_at') String updatedAt,
       @JsonKey(name: 'frequency_hz') int frequencyHz,
       String mode,
+      String source,
       String? callsign,
       String? name,
       String? manager,
@@ -142,8 +143,8 @@ abstract mixin class $RepeaterModelCopyWith<$Res> {
       double? lat,
       double? lon,
       @JsonKey(name: 'distance_m') double? distanceM,
-      String source,
-      @JsonKey(name: 'accesses') List<RepeaterAccessModel> accesses});
+      @JsonKey(name: 'accesses', fromJson: _accessesFromJson)
+      List<RepeaterAccessModel>? accesses});
 }
 
 /// @nodoc
@@ -164,6 +165,7 @@ class _$RepeaterModelCopyWithImpl<$Res>
     Object? updatedAt = null,
     Object? frequencyHz = null,
     Object? mode = null,
+    Object? source = null,
     Object? callsign = freezed,
     Object? name = freezed,
     Object? manager = freezed,
@@ -176,8 +178,7 @@ class _$RepeaterModelCopyWithImpl<$Res>
     Object? lat = freezed,
     Object? lon = freezed,
     Object? distanceM = freezed,
-    Object? source = null,
-    Object? accesses = null,
+    Object? accesses = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -199,6 +200,10 @@ class _$RepeaterModelCopyWithImpl<$Res>
       mode: null == mode
           ? _self.mode
           : mode // ignore: cast_nullable_to_non_nullable
+              as String,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
               as String,
       callsign: freezed == callsign
           ? _self.callsign
@@ -248,14 +253,10 @@ class _$RepeaterModelCopyWithImpl<$Res>
           ? _self.distanceM
           : distanceM // ignore: cast_nullable_to_non_nullable
               as double?,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as String,
-      accesses: null == accesses
+      accesses: freezed == accesses
           ? _self.accesses
           : accesses // ignore: cast_nullable_to_non_nullable
-              as List<RepeaterAccessModel>,
+              as List<RepeaterAccessModel>?,
     ));
   }
 }
@@ -359,6 +360,7 @@ extension RepeaterModelPatterns on RepeaterModel {
             @JsonKey(name: 'updated_at') String updatedAt,
             @JsonKey(name: 'frequency_hz') int frequencyHz,
             String mode,
+            String source,
             String? callsign,
             String? name,
             String? manager,
@@ -371,8 +373,8 @@ extension RepeaterModelPatterns on RepeaterModel {
             double? lat,
             double? lon,
             @JsonKey(name: 'distance_m') double? distanceM,
-            String source,
-            @JsonKey(name: 'accesses') List<RepeaterAccessModel> accesses)?
+            @JsonKey(name: 'accesses', fromJson: _accessesFromJson)
+            List<RepeaterAccessModel>? accesses)?
         $default, {
     required TResult orElse(),
   }) {
@@ -385,6 +387,7 @@ extension RepeaterModelPatterns on RepeaterModel {
             _that.updatedAt,
             _that.frequencyHz,
             _that.mode,
+            _that.source,
             _that.callsign,
             _that.name,
             _that.manager,
@@ -397,7 +400,6 @@ extension RepeaterModelPatterns on RepeaterModel {
             _that.lat,
             _that.lon,
             _that.distanceM,
-            _that.source,
             _that.accesses);
       case _:
         return orElse();
@@ -425,6 +427,7 @@ extension RepeaterModelPatterns on RepeaterModel {
             @JsonKey(name: 'updated_at') String updatedAt,
             @JsonKey(name: 'frequency_hz') int frequencyHz,
             String mode,
+            String source,
             String? callsign,
             String? name,
             String? manager,
@@ -437,8 +440,8 @@ extension RepeaterModelPatterns on RepeaterModel {
             double? lat,
             double? lon,
             @JsonKey(name: 'distance_m') double? distanceM,
-            String source,
-            @JsonKey(name: 'accesses') List<RepeaterAccessModel> accesses)
+            @JsonKey(name: 'accesses', fromJson: _accessesFromJson)
+            List<RepeaterAccessModel>? accesses)
         $default,
   ) {
     final _that = this;
@@ -450,6 +453,7 @@ extension RepeaterModelPatterns on RepeaterModel {
             _that.updatedAt,
             _that.frequencyHz,
             _that.mode,
+            _that.source,
             _that.callsign,
             _that.name,
             _that.manager,
@@ -462,7 +466,6 @@ extension RepeaterModelPatterns on RepeaterModel {
             _that.lat,
             _that.lon,
             _that.distanceM,
-            _that.source,
             _that.accesses);
       case _:
         throw StateError('Unexpected subclass');
@@ -489,6 +492,7 @@ extension RepeaterModelPatterns on RepeaterModel {
             @JsonKey(name: 'updated_at') String updatedAt,
             @JsonKey(name: 'frequency_hz') int frequencyHz,
             String mode,
+            String source,
             String? callsign,
             String? name,
             String? manager,
@@ -501,8 +505,8 @@ extension RepeaterModelPatterns on RepeaterModel {
             double? lat,
             double? lon,
             @JsonKey(name: 'distance_m') double? distanceM,
-            String source,
-            @JsonKey(name: 'accesses') List<RepeaterAccessModel> accesses)?
+            @JsonKey(name: 'accesses', fromJson: _accessesFromJson)
+            List<RepeaterAccessModel>? accesses)?
         $default,
   ) {
     final _that = this;
@@ -514,6 +518,7 @@ extension RepeaterModelPatterns on RepeaterModel {
             _that.updatedAt,
             _that.frequencyHz,
             _that.mode,
+            _that.source,
             _that.callsign,
             _that.name,
             _that.manager,
@@ -526,7 +531,6 @@ extension RepeaterModelPatterns on RepeaterModel {
             _that.lat,
             _that.lon,
             _that.distanceM,
-            _that.source,
             _that.accesses);
       case _:
         return null;
@@ -543,6 +547,7 @@ class _RepeaterModel implements RepeaterModel {
       @JsonKey(name: 'updated_at') required this.updatedAt,
       @JsonKey(name: 'frequency_hz') required this.frequencyHz,
       required this.mode,
+      required this.source,
       this.callsign,
       this.name,
       this.manager,
@@ -555,9 +560,8 @@ class _RepeaterModel implements RepeaterModel {
       this.lat,
       this.lon,
       @JsonKey(name: 'distance_m') this.distanceM,
-      required this.source,
-      @JsonKey(name: 'accesses')
-      final List<RepeaterAccessModel> accesses = const []})
+      @JsonKey(name: 'accesses', fromJson: _accessesFromJson)
+      final List<RepeaterAccessModel>? accesses})
       : _accesses = accesses;
   factory _RepeaterModel.fromJson(Map<String, dynamic> json) =>
       _$RepeaterModelFromJson(json);
@@ -575,6 +579,8 @@ class _RepeaterModel implements RepeaterModel {
   final int frequencyHz;
   @override
   final String mode;
+  @override
+  final String source;
   @override
   final String? callsign;
   @override
@@ -603,15 +609,15 @@ class _RepeaterModel implements RepeaterModel {
   @override
   @JsonKey(name: 'distance_m')
   final double? distanceM;
+  final List<RepeaterAccessModel>? _accesses;
   @override
-  final String source;
-  final List<RepeaterAccessModel> _accesses;
-  @override
-  @JsonKey(name: 'accesses')
-  List<RepeaterAccessModel> get accesses {
+  @JsonKey(name: 'accesses', fromJson: _accessesFromJson)
+  List<RepeaterAccessModel>? get accesses {
+    final value = _accesses;
+    if (value == null) return null;
     if (_accesses is EqualUnmodifiableListView) return _accesses;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_accesses);
+    return EqualUnmodifiableListView(value);
   }
 
   /// Create a copy of RepeaterModel
@@ -642,6 +648,7 @@ class _RepeaterModel implements RepeaterModel {
             (identical(other.frequencyHz, frequencyHz) ||
                 other.frequencyHz == frequencyHz) &&
             (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.source, source) || other.source == source) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
             (identical(other.name, name) || other.name == name) &&
@@ -659,7 +666,6 @@ class _RepeaterModel implements RepeaterModel {
             (identical(other.lon, lon) || other.lon == lon) &&
             (identical(other.distanceM, distanceM) ||
                 other.distanceM == distanceM) &&
-            (identical(other.source, source) || other.source == source) &&
             const DeepCollectionEquality().equals(other._accesses, _accesses));
   }
 
@@ -672,6 +678,7 @@ class _RepeaterModel implements RepeaterModel {
         updatedAt,
         frequencyHz,
         mode,
+        source,
         callsign,
         name,
         manager,
@@ -684,13 +691,12 @@ class _RepeaterModel implements RepeaterModel {
         lat,
         lon,
         distanceM,
-        source,
         const DeepCollectionEquality().hash(_accesses)
       ]);
 
   @override
   String toString() {
-    return 'RepeaterModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, lat: $lat, lon: $lon, distanceM: $distanceM, source: $source, accesses: $accesses)';
+    return 'RepeaterModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, lat: $lat, lon: $lon, distanceM: $distanceM, accesses: $accesses)';
   }
 }
 
@@ -708,6 +714,7 @@ abstract mixin class _$RepeaterModelCopyWith<$Res>
       @JsonKey(name: 'updated_at') String updatedAt,
       @JsonKey(name: 'frequency_hz') int frequencyHz,
       String mode,
+      String source,
       String? callsign,
       String? name,
       String? manager,
@@ -720,8 +727,8 @@ abstract mixin class _$RepeaterModelCopyWith<$Res>
       double? lat,
       double? lon,
       @JsonKey(name: 'distance_m') double? distanceM,
-      String source,
-      @JsonKey(name: 'accesses') List<RepeaterAccessModel> accesses});
+      @JsonKey(name: 'accesses', fromJson: _accessesFromJson)
+      List<RepeaterAccessModel>? accesses});
 }
 
 /// @nodoc
@@ -742,6 +749,7 @@ class __$RepeaterModelCopyWithImpl<$Res>
     Object? updatedAt = null,
     Object? frequencyHz = null,
     Object? mode = null,
+    Object? source = null,
     Object? callsign = freezed,
     Object? name = freezed,
     Object? manager = freezed,
@@ -754,8 +762,7 @@ class __$RepeaterModelCopyWithImpl<$Res>
     Object? lat = freezed,
     Object? lon = freezed,
     Object? distanceM = freezed,
-    Object? source = null,
-    Object? accesses = null,
+    Object? accesses = freezed,
   }) {
     return _then(_RepeaterModel(
       id: null == id
@@ -777,6 +784,10 @@ class __$RepeaterModelCopyWithImpl<$Res>
       mode: null == mode
           ? _self.mode
           : mode // ignore: cast_nullable_to_non_nullable
+              as String,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
               as String,
       callsign: freezed == callsign
           ? _self.callsign
@@ -826,14 +837,10 @@ class __$RepeaterModelCopyWithImpl<$Res>
           ? _self.distanceM
           : distanceM // ignore: cast_nullable_to_non_nullable
               as double?,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as String,
-      accesses: null == accesses
+      accesses: freezed == accesses
           ? _self._accesses
           : accesses // ignore: cast_nullable_to_non_nullable
-              as List<RepeaterAccessModel>,
+              as List<RepeaterAccessModel>?,
     ));
   }
 }

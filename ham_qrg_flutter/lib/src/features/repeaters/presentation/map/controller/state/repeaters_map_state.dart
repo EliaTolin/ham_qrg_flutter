@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/service/location_service.dart';
 
@@ -11,6 +12,7 @@ abstract class RepeatersMapState with _$RepeatersMapState {
     double? latitude,
     double? longitude,
     LocationErrorType? locationError,
-    @Default(<RepeaterMode>{}) Set<RepeaterMode> selectedModes,
+    @Default(<AccessMode>{}) Set<AccessMode> selectedModes,
+    Repeater? selectedRepeater,
   }) = _RepeatersMapState;
 }

@@ -12,6 +12,7 @@ abstract class RepeaterModel with _$RepeaterModel {
     @JsonKey(name: 'updated_at') required String updatedAt,
     @JsonKey(name: 'frequency_hz') required int frequencyHz,
     required String mode,
+    required String source,
     String? callsign,
     String? name,
     String? manager,
@@ -24,9 +25,33 @@ abstract class RepeaterModel with _$RepeaterModel {
     double? lat,
     double? lon,
     @JsonKey(name: 'distance_m') double? distanceM,
-    required String source,
-    @JsonKey(name: 'accesses') @Default([]) List<RepeaterAccessModel> accesses,
+    @JsonKey(
+      name: 'accesses',
+      fromJson: _accessesFromJson,
+    )
+    List<RepeaterAccessModel>? accesses,
   }) = _RepeaterModel;
 
   factory RepeaterModel.fromJson(Map<String, dynamic> json) => _$RepeaterModelFromJson(json);
+}
+
+List<RepeaterAccessModel>? _accessesFromJson(dynamic json) {
+  if (json == null) return null;
+  if (json is! List) return null;
+
+  return json
+      .whereType<Map>()
+      .map((e) {
+        final accessMap = Map<String, dynamic>.from(e);
+        // Remove fields from RPC functions that aren't in the model
+        accessMap.remove('network');
+        accessMap.remove('network_kind');
+        try {
+          return RepeaterAccessModel.fromJson(accessMap);
+        } catch (_) {
+          return null;
+        }
+      })
+      .whereType<RepeaterAccessModel>()
+      .toList();
 }

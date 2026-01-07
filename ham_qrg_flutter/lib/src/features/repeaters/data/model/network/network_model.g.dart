@@ -11,10 +11,10 @@ _NetworkModel _$NetworkModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       kind: json['kind'] as String,
+      createdAt: json['created_at'] as String,
       parentNetworkId: json['parent_network_id'] as String?,
       website: json['website'] as String?,
       notes: json['notes'] as String?,
-      createdAt: json['created_at'] as String,
     );
 
 Map<String, dynamic> _$NetworkModelToJson(_NetworkModel instance) =>
@@ -22,8 +22,8 @@ Map<String, dynamic> _$NetworkModelToJson(_NetworkModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'kind': instance.kind,
+      'created_at': instance.createdAt,
       'parent_network_id': instance.parentNetworkId,
       'website': instance.website,
       'notes': instance.notes,
-      'created_at': instance.createdAt,
     };

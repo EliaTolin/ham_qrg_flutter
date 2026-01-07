@@ -8,6 +8,7 @@ import 'package:ham_qrg/src/features/favorites/presentation/favorites_page/contr
 import 'package:ham_qrg/src/features/favorites/presentation/favorites_page/controller/state/favorites_state.dart';
 import 'package:ham_qrg/src/features/favorites/presentation/widgets/favorite_repeater_item.dart';
 import 'package:ham_qrg/src/features/favorites/presentation/widgets/mode_filter_chips_horizontal.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -59,9 +60,6 @@ class FavoritesPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.localization.favoritesTitle),
-      ),
       body: controllerAsync.when(
         data: (state) => _buildContent(
           context,
@@ -120,21 +118,55 @@ class FavoritesPage extends HookConsumerWidget {
     return Column(
       children: [
         // Header
-        Padding(
-          padding: const EdgeInsets.all(16),
+        Container(
+          padding: EdgeInsets.only(
+            top: MediaQuery.of(context).padding.top + 12,
+            bottom: 8,
+            left: 24,
+            right: 24,
+          ),
+          decoration: BoxDecoration(
+            color: colorScheme.surface.withValues(alpha: 0.95),
+            border: Border(
+              bottom: BorderSide(
+                color: colorScheme.outline.withValues(alpha: 0.05),
+              ),
+            ),
+          ),
           child: Column(
             children: [
+              // Title and filter button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    l10n.favoritesTitle,
+                    style: theme.textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.filter_list),
+                    onPressed: () {
+                      // TO-DO: Show filter options
+                    },
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
               // Search bar
               TextField(
                 controller: searchController,
                 decoration: InputDecoration(
                   hintText: l10n.favoritesSearchHint,
-                  prefixIcon: const Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search, size: 20),
                   suffixIcon: searchController.text.isNotEmpty
                       ? IconButton(
-                          icon: const Icon(Icons.clear),
+                          icon: const Icon(Icons.clear, size: 20),
                           onPressed: () {
                             searchController.clear();
+                            notifier.updateSearchQuery('');
                           },
                         )
                       : null,
@@ -156,12 +188,9 @@ class FavoritesPage extends HookConsumerWidget {
                 selectedModes: state.selectedModes,
                 onModeToggled: notifier.toggleModeFilter,
                 onAllSelected: () {
-                  notifier.toggleModeFilter(RepeaterMode.analog);
                   // Clear all selections
-                  for (final mode in RepeaterMode.values) {
-                    if (state.selectedModes.contains(mode)) {
-                      notifier.toggleModeFilter(mode);
-                    }
+                  for (final mode in state.selectedModes.toList()) {
+                    notifier.toggleModeFilter(mode);
                   }
                 },
               ),
@@ -173,12 +202,12 @@ class FavoritesPage extends HookConsumerWidget {
           child: filteredFavorites.isEmpty
               ? _buildEmptyState(context)
               : ListView.builder(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   itemCount: filteredFavorites.length + 1,
                   itemBuilder: (context, index) {
                     if (index == filteredFavorites.length) {
                       return Padding(
-                        padding: const EdgeInsets.only(top: 16),
+                        padding: const EdgeInsets.only(top: 32),
                         child: Center(
                           child: Text(
                             l10n.favoritesShowing(
@@ -187,16 +216,21 @@ class FavoritesPage extends HookConsumerWidget {
                             ),
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: colorScheme.onSurfaceVariant,
+                              fontSize: 12,
                             ),
                           ),
                         ),
                       );
                     }
+                    final repeater = filteredFavorites[index];
+                    // TO-DO: Fetch feedback stats for each repeater
+                    // For now, we'll pass null and add TO-DO
                     return FavoriteRepeaterItem(
-                      repeater: filteredFavorites[index],
+                      repeater: repeater,
                       onRemoveFavorite: () {
-                        notifier.removeFavorite(filteredFavorites[index].id);
+                        notifier.removeFavorite(repeater.id);
                       },
+                      // feedbackStats: ref.watch(getRepeaterFeedbackStatsProvider(repeater.id)),
                     );
                   },
                 ),
@@ -246,7 +280,7 @@ class FavoritesPage extends HookConsumerWidget {
   List<Repeater> _filterFavorites(
     List<Repeater> favorites,
     String searchQuery,
-    Set<RepeaterMode> selectedModes,
+    Set<AccessMode> selectedModes,
   ) {
     var filtered = favorites;
 
@@ -265,9 +299,11 @@ class FavoritesPage extends HookConsumerWidget {
       }).toList();
     }
 
-    // Apply mode filter
+    // Apply mode filter - check if repeater has any access with selected mode
     if (selectedModes.isNotEmpty) {
-      filtered = filtered.where((repeater) => selectedModes.contains(repeater.mode)).toList();
+      filtered = filtered.where((repeater) {
+        return repeater.accesses.any((access) => selectedModes.contains(access.mode));
+      }).toList();
     }
 
     return filtered;

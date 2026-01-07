@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
+import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/common/widgets/icons/repeater_icon.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
@@ -53,8 +54,7 @@ class RepeaterListItem extends StatelessWidget {
                           Text(
                             repeater.name!,
                             style: theme.textTheme.bodyMedium?.copyWith(
-                              color:
-                                  colorScheme.onSurface.withValues(alpha: 0.6),
+                              color: colorScheme.onSurface.withValues(alpha: 0.6),
                             ),
                           ),
                         ],
@@ -62,8 +62,7 @@ class RepeaterListItem extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: colorMode.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
@@ -91,7 +90,7 @@ class RepeaterListItem extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    RepeaterDetailsSheet.formatFrequency(repeater.frequencyHz),
+                    RepeaterFormatHelper.formatFrequency(repeater.frequencyHz),
                     style: theme.textTheme.bodyMedium,
                   ),
                   if (repeater.distanceMeters != null) ...[

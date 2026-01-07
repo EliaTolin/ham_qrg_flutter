@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:ham_qrg/clients/supabase/supabase_client/supabase_client.dart';
 import 'package:ham_qrg/src/features/repeaters/data/datasource/repeaters_datasource.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/access/repeater_access_model.dart';
 import 'package:ham_qrg/src/features/repeaters/data/model/feedback/repeater_feedback_model.dart';
 import 'package:ham_qrg/src/features/repeaters/data/model/feedback/repeater_feedback_stats_model.dart';
 import 'package:ham_qrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
@@ -38,10 +37,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         return [];
       }
 
-      // RPC functions return data without nested accesses, so we need to fetch them separately
-      return await Future.wait(
-        data.map((e) => _parseRepeaterWithAccesses(e as Map<dynamic, dynamic>)),
-      );
+      return data.map((e) => RepeaterModel.fromJson(e as Map<String, dynamic>)).toList();
     } catch (error, stackTrace) {
       log('Error fetching repeaters_in_bounds: $error', stackTrace: stackTrace);
       rethrow;
@@ -70,10 +66,8 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         return [];
       }
 
-      // RPC functions return data without nested accesses, so we need to fetch them separately
-      return await Future.wait(
-        data.map((e) => _parseRepeaterWithAccesses(e as Map<dynamic, dynamic>)),
-      );
+      // RPC function now returns accesses as JSONB array
+      return data.map((e) => RepeaterModel.fromJson(e as Map<String, dynamic>)).toList();
     } catch (error, stackTrace) {
       log('Error fetching repeaters_nearby: $error', stackTrace: stackTrace);
       rethrow;
@@ -105,9 +99,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       final data = await request.limit(limit);
 
       final dataList = data as List;
-      return await Future.wait(
-        dataList.map((e) => _parseRepeaterWithAccesses(e as Map<dynamic, dynamic>)),
-      );
+      return dataList.map((e) => RepeaterModel.fromJson(e as Map<String, dynamic>)).toList();
     } catch (error, stackTrace) {
       log('Error searching repeaters: $error', stackTrace: stackTrace);
       // If OR doesn't work, fallback to simple callsign search
@@ -200,7 +192,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         return null;
       }
 
-      return _parseRepeaterWithAccesses(data);
+      return RepeaterModel.fromJson(data);
     } catch (error, stackTrace) {
       log('Error fetching repeater by id: $error', stackTrace: stackTrace);
       rethrow;
@@ -215,18 +207,19 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       }
       final data = await _client
           .from('user_favorite_repeaters')
-          .select('repeater:repeaters(*)')
+          .select('repeater:repeaters(*, accesses:repeater_access(*))')
           .eq('user_id', userId);
 
-      return await Future.wait(
-        (data as List).map((e) async {
-          final repeaterData = (e as Map<String, dynamic>)['repeater'];
-          if (repeaterData == null) {
-            return null;
-          }
-          return _parseRepeaterWithAccesses(repeaterData);
-        }),
-      ).then((list) => list.whereType<RepeaterModel>().toList());
+      return (data as List)
+          .map((e) {
+            final repeaterData = (e as Map<String, dynamic>)['repeater'];
+            if (repeaterData == null) {
+              return null;
+            }
+            return RepeaterModel.fromJson(repeaterData);
+          })
+          .whereType<RepeaterModel>()
+          .toList();
     } catch (error, stackTrace) {
       log('Error fetching favorite repeaters: $error', stackTrace: stackTrace);
       rethrow;
@@ -386,59 +379,6 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     }
   }
 
-  /// Parse repeater data and include accesses
-  Future<RepeaterModel> _parseRepeaterWithAccesses(Map<dynamic, dynamic> data) async {
-    final repeaterData = Map<String, dynamic>.from(data);
-    
-    // Extract accesses if present
-    List<RepeaterAccessModel> accesses = [];
-    if (repeaterData.containsKey('accesses') && repeaterData['accesses'] != null) {
-      final accessesData = repeaterData['accesses'];
-      if (accessesData is List) {
-        accesses = accessesData
-            .map(
-              (e) => RepeaterAccessModel.fromJson(
-                Map<String, dynamic>.from(e as Map<dynamic, dynamic>),
-              ),
-            )
-            .toList();
-      }
-    } else {
-      // If accesses not included, fetch them separately
-      final repeaterId = repeaterData['id'] as String?;
-      if (repeaterId != null) {
-        try {
-          final accessesData = await _client
-              .from('repeater_access')
-              .select()
-              .eq('repeater_id', repeaterId);
-          
-          final accessesList = accessesData as List;
-          if (accessesList.isNotEmpty) {
-            accesses = accessesList
-                .map(
-                  (e) => RepeaterAccessModel.fromJson(
-                    Map<String, dynamic>.from(e as Map<dynamic, dynamic>),
-                  ),
-                )
-                .toList();
-          }
-        } catch (e) {
-          log('Error fetching accesses for repeater $repeaterId: $e');
-          // Continue without accesses
-        }
-      }
-    }
-    
-    // Remove accesses from repeater data before parsing
-    repeaterData.remove('accesses');
-    
-    // Parse repeater
-    final repeater = RepeaterModel.fromJson(repeaterData);
-    
-    // Return repeater with accesses
-    return repeater.copyWith(accesses: accesses);
-  }
 }
 
 @riverpod

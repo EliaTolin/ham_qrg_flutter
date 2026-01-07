@@ -17,6 +17,7 @@ abstract class Repeater with _$Repeater {
     required DateTime updatedAt,
     required int frequencyHz,
     required RepeaterMode mode,
+    required String source,
     String? callsign,
     String? name,
     String? manager,
@@ -29,7 +30,6 @@ abstract class Repeater with _$Repeater {
     double? latitude,
     double? longitude,
     double? distanceMeters,
-    required String source,
     @Default([]) List<RepeaterAccess> accesses,
   }) = _Repeater;
 }
