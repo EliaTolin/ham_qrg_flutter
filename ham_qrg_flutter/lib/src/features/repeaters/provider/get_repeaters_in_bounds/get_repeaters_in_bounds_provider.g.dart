@@ -23,7 +23,7 @@ final class GetRepeatersInBoundsProvider extends $FunctionalProvider<
         double lat2,
         double lon2,
         int limit,
-        List<RepeaterMode>? modes,
+        List<AccessMode>? accessModes,
       })
           super.argument})
       : super(
@@ -58,7 +58,7 @@ final class GetRepeatersInBoundsProvider extends $FunctionalProvider<
       double lat2,
       double lon2,
       int limit,
-      List<RepeaterMode>? modes,
+      List<AccessMode>? accessModes,
     });
     return getRepeatersInBounds(
       ref,
@@ -67,7 +67,7 @@ final class GetRepeatersInBoundsProvider extends $FunctionalProvider<
       lat2: argument.lat2,
       lon2: argument.lon2,
       limit: argument.limit,
-      modes: argument.modes,
+      accessModes: argument.accessModes,
     );
   }
 
@@ -83,7 +83,7 @@ final class GetRepeatersInBoundsProvider extends $FunctionalProvider<
 }
 
 String _$getRepeatersInBoundsHash() =>
-    r'b994452258a71b196662b5678ee80c24a41ef7b0';
+    r'a34ec9d2464010f99abd039b2772c77bf6d3af16';
 
 final class GetRepeatersInBoundsFamily extends $Family
     with
@@ -95,7 +95,7 @@ final class GetRepeatersInBoundsFamily extends $Family
               double lat2,
               double lon2,
               int limit,
-              List<RepeaterMode>? modes,
+              List<AccessMode>? accessModes,
             })> {
   GetRepeatersInBoundsFamily._()
       : super(
@@ -112,7 +112,7 @@ final class GetRepeatersInBoundsFamily extends $Family
     required double lat2,
     required double lon2,
     int limit = 500,
-    List<RepeaterMode>? modes,
+    List<AccessMode>? accessModes,
   }) =>
       GetRepeatersInBoundsProvider._(argument: (
         lat1: lat1,
@@ -120,7 +120,7 @@ final class GetRepeatersInBoundsFamily extends $Family
         lat2: lat2,
         lon2: lon2,
         limit: limit,
-        modes: modes,
+        accessModes: accessModes,
       ), from: this);
 
   @override

@@ -8,20 +8,20 @@ abstract interface class RepeatersDatasource {
     required double lon1,
     required double lat2,
     required double lon2,
-    List<String>? modes,
+    List<String>? accessModes,
   });
 
   Future<List<RepeaterModel>> getRepeatersNearby({
     required double latitude,
     required double longitude,
     double radiusKm,
-    List<String>? modes,
+    List<String>? accessModes,
   });
 
   Future<List<RepeaterModel>> searchRepeaters({
     required String query,
     int limit,
-    List<String>? modes,
+    List<String>? accessModes,
   });
 
   Future<int> getTotalRepeatersCount();

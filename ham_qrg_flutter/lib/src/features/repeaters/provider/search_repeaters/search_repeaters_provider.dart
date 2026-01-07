@@ -1,4 +1,5 @@
 import 'package:ham_qrg/src/features/repeaters/data/repository/repeaters_repository.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -9,7 +10,7 @@ Future<List<Repeater>> searchRepeaters(
   Ref ref, {
   required String query,
   int limit = 100,
-  List<RepeaterMode>? modes,
+  List<AccessMode>? accessModes,
 }) async {
   if (query.trim().isEmpty) {
     return [];
@@ -19,6 +20,6 @@ Future<List<Repeater>> searchRepeaters(
   return repository.searchRepeaters(
     query: query.trim(),
     limit: limit,
-    modes: modes,
+    accessModes: accessModes,
   );
 }

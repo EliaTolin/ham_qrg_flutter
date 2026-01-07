@@ -67,7 +67,7 @@ class RepeatersListPage extends HookConsumerWidget {
         ? ref.watch(
             searchRepeatersProvider(
               query: debouncedQuery,
-              modes: listAsyncState.value?.selectedModes.isEmpty ?? true
+              accessModes: listAsyncState.value?.selectedModes.isEmpty ?? true
                   ? null
                   : listAsyncState.value!.selectedModes.toList(),
             ),

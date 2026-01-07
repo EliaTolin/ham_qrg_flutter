@@ -20,7 +20,7 @@ final class SearchRepeatersProvider extends $FunctionalProvider<
       required ({
         String query,
         int limit,
-        List<RepeaterMode>? modes,
+        List<AccessMode>? accessModes,
       })
           super.argument})
       : super(
@@ -52,13 +52,13 @@ final class SearchRepeatersProvider extends $FunctionalProvider<
     final argument = this.argument as ({
       String query,
       int limit,
-      List<RepeaterMode>? modes,
+      List<AccessMode>? accessModes,
     });
     return searchRepeaters(
       ref,
       query: argument.query,
       limit: argument.limit,
-      modes: argument.modes,
+      accessModes: argument.accessModes,
     );
   }
 
@@ -73,7 +73,7 @@ final class SearchRepeatersProvider extends $FunctionalProvider<
   }
 }
 
-String _$searchRepeatersHash() => r'673ad60f3a557debae63b7fe9788c32559cc6de7';
+String _$searchRepeatersHash() => r'e7b7801388af747b861471b01dae47540b5c9ae0';
 
 final class SearchRepeatersFamily extends $Family
     with
@@ -82,7 +82,7 @@ final class SearchRepeatersFamily extends $Family
             ({
               String query,
               int limit,
-              List<RepeaterMode>? modes,
+              List<AccessMode>? accessModes,
             })> {
   SearchRepeatersFamily._()
       : super(
@@ -96,12 +96,12 @@ final class SearchRepeatersFamily extends $Family
   SearchRepeatersProvider call({
     required String query,
     int limit = 100,
-    List<RepeaterMode>? modes,
+    List<AccessMode>? accessModes,
   }) =>
       SearchRepeatersProvider._(argument: (
         query: query,
         limit: limit,
-        modes: modes,
+        accessModes: accessModes,
       ), from: this);
 
   @override

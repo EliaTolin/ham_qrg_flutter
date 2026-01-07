@@ -1,4 +1,5 @@
 import 'package:ham_qrg/src/features/repeaters/data/repository/repeaters_repository.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,13 +11,13 @@ Future<List<Repeater>> getRepeatersNearby(
   required double latitude,
   required double longitude,
   double radiusKm = 50,
-  List<RepeaterMode>? modes,
+  List<AccessMode>? accessModes,
 }) async {
   final repository = ref.read(repeatersRepositoryProvider);
   return repository.getRepeatersNearby(
     latitude: latitude,
     longitude: longitude,
     radiusKm: radiusKm,
-    modes: modes,
+    accessModes: accessModes,
   );
 }

@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
@@ -15,13 +14,13 @@ class RepeatersListController extends _$RepeatersListController {
     return _loadInitialRepeaters();
   }
 
-  Future<void> toggleModeFilter(RepeaterMode mode) async {
+  Future<void> toggleModeFilter(AccessMode mode) async {
     final currentState = state.value;
     if (currentState == null) {
       return;
     }
 
-    final newSelectedModes = Set<RepeaterMode>.from(currentState.selectedModes);
+    final newSelectedModes = Set<AccessMode>.from(currentState.selectedModes);
     if (newSelectedModes.contains(mode)) {
       newSelectedModes.remove(mode);
     } else {
@@ -32,8 +31,7 @@ class RepeatersListController extends _$RepeatersListController {
     state = const AsyncLoading();
     state = await AsyncValue.guard(
       () => _loadInitialRepeaters(
-        selectedModes:
-            newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
+        selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
       ),
     );
   }
@@ -53,7 +51,7 @@ class RepeatersListController extends _$RepeatersListController {
 
   /// Load initial repeaters, trying to get user location first
   Future<RepeatersListState> _loadInitialRepeaters({
-    List<RepeaterMode>? selectedModes,
+    List<AccessMode>? selectedModes,
   }) async {
     final currentState = state.value;
     final modesToFilter = selectedModes ?? currentState?.selectedModes.toList();
@@ -75,7 +73,7 @@ class RepeatersListController extends _$RepeatersListController {
       final repeaters = await _fetchRepeatersFromRadius(
         latitude: lat,
         longitude: lon,
-        modes: modesToFilter?.isEmpty ?? true ? null : modesToFilter,
+        accessModes: modesToFilter?.isEmpty ?? true ? null : modesToFilter,
       );
 
       return RepeatersListState(
@@ -93,13 +91,13 @@ class RepeatersListController extends _$RepeatersListController {
   Future<List<Repeater>> _fetchRepeatersFromRadius({
     required double latitude,
     required double longitude,
-    List<RepeaterMode>? modes,
+    List<AccessMode>? accessModes,
   }) async {
     return await ref.read(
       getRepeatersNearbyProvider(
         latitude: latitude,
         longitude: longitude,
-        modes: modes?.isEmpty ?? true ? null : modes,
+        accessModes: accessModes?.isEmpty ?? true ? null : accessModes,
         radiusKm: 100,
       ).future,
     );

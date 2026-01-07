@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$RepeatersListState {
   List<Repeater> get repeaters;
   LocationErrorType? get locationError;
-  Set<RepeaterMode> get selectedModes;
+  Set<AccessMode> get selectedModes;
   double get radiusKm;
 
   /// Create a copy of RepeatersListState
@@ -64,7 +64,7 @@ abstract mixin class $RepeatersListStateCopyWith<$Res> {
   $Res call(
       {List<Repeater> repeaters,
       LocationErrorType? locationError,
-      Set<RepeaterMode> selectedModes,
+      Set<AccessMode> selectedModes,
       double radiusKm});
 }
 
@@ -98,7 +98,7 @@ class _$RepeatersListStateCopyWithImpl<$Res>
       selectedModes: null == selectedModes
           ? _self.selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable
-              as Set<RepeaterMode>,
+              as Set<AccessMode>,
       radiusKm: null == radiusKm
           ? _self.radiusKm
           : radiusKm // ignore: cast_nullable_to_non_nullable
@@ -201,7 +201,7 @@ extension RepeatersListStatePatterns on RepeatersListState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(List<Repeater> repeaters, LocationErrorType? locationError,
-            Set<RepeaterMode> selectedModes, double radiusKm)?
+            Set<AccessMode> selectedModes, double radiusKm)?
         $default, {
     required TResult orElse(),
   }) {
@@ -231,7 +231,7 @@ extension RepeatersListStatePatterns on RepeatersListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(List<Repeater> repeaters, LocationErrorType? locationError,
-            Set<RepeaterMode> selectedModes, double radiusKm)
+            Set<AccessMode> selectedModes, double radiusKm)
         $default,
   ) {
     final _that = this;
@@ -261,7 +261,7 @@ extension RepeatersListStatePatterns on RepeatersListState {
     TResult? Function(
             List<Repeater> repeaters,
             LocationErrorType? locationError,
-            Set<RepeaterMode> selectedModes,
+            Set<AccessMode> selectedModes,
             double radiusKm)?
         $default,
   ) {
@@ -282,7 +282,7 @@ class _RepeatersListState implements RepeatersListState {
   const _RepeatersListState(
       {final List<Repeater> repeaters = const <Repeater>[],
       this.locationError,
-      final Set<RepeaterMode> selectedModes = const <RepeaterMode>{},
+      final Set<AccessMode> selectedModes = const <AccessMode>{},
       this.radiusKm = 100})
       : _repeaters = repeaters,
         _selectedModes = selectedModes;
@@ -298,10 +298,10 @@ class _RepeatersListState implements RepeatersListState {
 
   @override
   final LocationErrorType? locationError;
-  final Set<RepeaterMode> _selectedModes;
+  final Set<AccessMode> _selectedModes;
   @override
   @JsonKey()
-  Set<RepeaterMode> get selectedModes {
+  Set<AccessMode> get selectedModes {
     if (_selectedModes is EqualUnmodifiableSetView) return _selectedModes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_selectedModes);
@@ -359,7 +359,7 @@ abstract mixin class _$RepeatersListStateCopyWith<$Res>
   $Res call(
       {List<Repeater> repeaters,
       LocationErrorType? locationError,
-      Set<RepeaterMode> selectedModes,
+      Set<AccessMode> selectedModes,
       double radiusKm});
 }
 
@@ -393,7 +393,7 @@ class __$RepeatersListStateCopyWithImpl<$Res>
       selectedModes: null == selectedModes
           ? _self._selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable
-              as Set<RepeaterMode>,
+              as Set<AccessMode>,
       radiusKm: null == radiusKm
           ? _self.radiusKm
           : radiusKm // ignore: cast_nullable_to_non_nullable

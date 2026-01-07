@@ -78,26 +78,16 @@ class RepeatersMapController extends _$RepeatersMapController {
 
     state = await AsyncValue.guard(() async {
       try {
-        // Convert AccessMode to RepeaterMode for API (for now, we'll filter client-side)
-        // TO-DO: Update API to support AccessMode filtering
         final repeaters = await _fetchRepeatersFromBounds(
           lat1: lat1,
           lon1: lon1,
           lat2: lat2,
           lon2: lon2,
+          accessModes: modesToFilter,
         );
 
-        // Filter by AccessMode client-side
-        final filteredRepeaters = modesToFilter?.isEmpty ?? true
-            ? repeaters
-            : repeaters.where((repeater) {
-                return repeater.accesses.any(
-                  (access) => modesToFilter!.contains(access.mode),
-                );
-              }).toList();
-
         return RepeatersMapState(
-          repeaters: filteredRepeaters,
+          repeaters: repeaters,
           latitude: currentState?.latitude,
           longitude: currentState?.longitude,
           selectedModes: modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
@@ -152,7 +142,7 @@ class RepeatersMapController extends _$RepeatersMapController {
     required double lon1,
     required double lat2,
     required double lon2,
-    List<RepeaterMode>? modes, // Keep for API compatibility
+    List<AccessMode>? accessModes,
   }) async {
     return await ref.read(
       getRepeatersInBoundsProvider(
@@ -160,7 +150,7 @@ class RepeatersMapController extends _$RepeatersMapController {
         lon1: lon1,
         lat2: lat2,
         lon2: lon2,
-        modes: modes?.isEmpty ?? true ? null : modes,
+        accessModes: accessModes?.isEmpty ?? true ? null : accessModes,
       ).future,
     );
   }

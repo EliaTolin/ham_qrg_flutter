@@ -3,6 +3,7 @@ import 'package:ham_qrg/src/features/repeaters/data/datasource/repeaters_supabas
 import 'package:ham_qrg/src/features/repeaters/data/mappers/repeater_feedback_mapper.dart';
 import 'package:ham_qrg/src/features/repeaters/data/mappers/repeater_feedback_stats_mapper.dart';
 import 'package:ham_qrg/src/features/repeaters/data/mappers/repeaters_mappers.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
@@ -25,14 +26,14 @@ class RepeatersRepository {
     required double lon1,
     required double lat2,
     required double lon2,
-    List<RepeaterMode>? modes,
+    List<AccessMode>? accessModes,
   }) async {
     final data = await _datasource.getRepeatersInBounds(
       lat1: lat1,
       lon1: lon1,
       lat2: lat2,
       lon2: lon2,
-      modes: _mapper.mapModesToValues(modes),
+      accessModes: _mapper.mapAccessModesToValues(accessModes),
     );
     return data.map(_mapper.fromModel).toList();
   }
@@ -41,13 +42,13 @@ class RepeatersRepository {
     required double latitude,
     required double longitude,
     double radiusKm = 50,
-    List<RepeaterMode>? modes,
+    List<AccessMode>? accessModes,
   }) async {
     final data = await _datasource.getRepeatersNearby(
       latitude: latitude,
       longitude: longitude,
       radiusKm: radiusKm,
-      modes: _mapper.mapModesToValues(modes),
+      accessModes: _mapper.mapAccessModesToValues(accessModes),
     );
     return data.map(_mapper.fromModel).toList();
   }
@@ -55,12 +56,12 @@ class RepeatersRepository {
   Future<List<Repeater>> searchRepeaters({
     required String query,
     int limit = 100,
-    List<RepeaterMode>? modes,
+    List<AccessMode>? accessModes,
   }) async {
     final data = await _datasource.searchRepeaters(
       query: query,
       limit: limit,
-      modes: _mapper.mapModesToValues(modes),
+      accessModes: _mapper.mapAccessModesToValues(accessModes),
     );
     return data.map(_mapper.fromModel).toList();
   }

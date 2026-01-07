@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:ham_qrg/common/utils/access_mode_helper.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ModeFilterChips extends ConsumerWidget {
@@ -11,12 +10,11 @@ class ModeFilterChips extends ConsumerWidget {
     super.key,
   });
 
-  final Set<RepeaterMode> selectedModes;
-  final ValueChanged<RepeaterMode> onModeToggled;
+  final Set<AccessMode> selectedModes;
+  final ValueChanged<AccessMode> onModeToggled;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -37,15 +35,15 @@ class ModeFilterChips extends ConsumerWidget {
         scrollDirection: Axis.horizontal,
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          children: RepeaterMode.values.map((mode) {
+          children: AccessMode.values.map((mode) {
             final isSelected = selectedModes.contains(mode);
-            final modeColor = RepeaterModeHelper.getModeColorObject(mode);
+            final modeColor = AccessModeHelper.getAccessModeColorObject(mode);
 
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: FilterChip(
                 selected: isSelected,
-                label: Text(RepeaterModeHelper.getModeLabel(mode, l10n)),
+                label: Text(AccessModeHelper.getAccessModeLabel(mode)),
                 avatar: CircleAvatar(
                   backgroundColor: modeColor,
                   radius: 8,
