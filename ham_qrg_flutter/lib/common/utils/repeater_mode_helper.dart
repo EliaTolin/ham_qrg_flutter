@@ -64,10 +64,10 @@ class RepeaterModeHelper {
     // Draw Icons.radio icon using TextPainter
     final textPainter = TextPainter(
       text: TextSpan(
-        text: String.fromCharCode(Icons.radio.codePoint),
+        text: String.fromCharCode(Icons.cell_tower_rounded.codePoint),
         style: TextStyle(
-          fontFamily: Icons.radio.fontFamily,
-          package: Icons.radio.fontPackage,
+          fontFamily: Icons.cell_tower_rounded.fontFamily,
+          package: Icons.cell_tower_rounded.fontPackage,
           fontSize: iconSize,
           color: Colors.white,
         ),
