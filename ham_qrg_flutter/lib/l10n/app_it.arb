@@ -221,6 +221,7 @@
   "repeaterDetailUpdateStatusFeedback": "Aggiorna stato e feedback",
   "repeaterDetailEquipment": "Attrezzatura",
   "repeaterDetailEquipmentRequired": "Attrezzatura *",
+  "repeaterDetailAccessModes": "Modalità di accesso",
   "repeaterDetailLocationField": "Luogo",
   "repeaterDetailLocationRequired": "Luogo *",
   "repeaterDetailComment": "Commento",
@@ -243,5 +244,8 @@
   "repeaterDetailStationMobile": "Mobile",
   "repeaterDetailStationFixed": "Fisso",
   "repeaterDetailLike": "Mi piace",
-  "repeaterDetailReportLabel": "Segnalazione"
+  "repeaterDetailReportLabel": "Segnalazione",
+  "favorite": "Preferito",
+  "accessConfiguration": "Configurazione accesso",
+  "noAccessConfiguration": "Nessuna configurazione disponibile"
 }

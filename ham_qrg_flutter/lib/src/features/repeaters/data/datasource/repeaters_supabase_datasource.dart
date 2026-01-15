@@ -102,7 +102,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       // This returns only repeaters that have at least one matching access mode
       final selectQuery = hasAccessModeFilter
           ? '*, accesses:repeater_access!inner(*)'
-          : '*, accesses:repeater_access(*)';
+          : '*, accesses:repeater_access(*, network:networks(*))';
 
       var request = _client.from('repeaters').select(selectQuery).or(orConditions);
 
@@ -124,7 +124,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         final hasAccessModeFilter = accessModes != null && accessModes.isNotEmpty;
         final selectQuery = hasAccessModeFilter
             ? '*, accesses:repeater_access!inner(*)'
-            : '*, accesses:repeater_access(*)';
+            : '*, accesses:repeater_access(*, network:networks(*))';
 
         var request = _client.from('repeaters').select(selectQuery).ilike('callsign', '%$query%');
 
@@ -205,7 +205,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     try {
       final data = await _client
           .from('repeaters')
-          .select('*, accesses:repeater_access(*)')
+          .select('*, accesses:repeater_access(*, network:networks(*))')
           .eq('id', repeaterId)
           .maybeSingle();
 
@@ -228,7 +228,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       }
       final data = await _client
           .from('user_favorite_repeaters')
-          .select('repeater:repeaters(*, accesses:repeater_access(*))')
+          .select('repeater:repeaters(*, accesses:repeater_access(*, network:networks(*)))')
           .eq('user_id', userId);
 
       return (data as List)

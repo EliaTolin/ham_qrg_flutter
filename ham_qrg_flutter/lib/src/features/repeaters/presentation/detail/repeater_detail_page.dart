@@ -4,11 +4,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
+import 'package:ham_qrg/common/utils/access_mode_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/common/utils/time_helper.dart';
 import 'package:ham_qrg/l10n/app_localizations.dart';
 import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
@@ -122,6 +125,9 @@ class _RepeaterDetailContent extends HookConsumerWidget {
               const SizedBox(height: 16),
               // Technical Data
               _TechnicalDataSection(repeater: state.repeater),
+              const SizedBox(height: 16),
+              // Access Modes
+              _AccessModesSection(repeater: state.repeater),
               const SizedBox(height: 16),
               // Location
               _LocationSection(repeater: state.repeater),
@@ -783,41 +789,23 @@ class _TechnicalDataSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-          childAspectRatio: 1.5,
+        Row(
           children: [
-            _TechnicalDataCard(
-              label: l10n.repeaterDetailFrequency,
-              value: RepeaterFormatHelper.formatFrequency(repeater.frequencyHz),
-            ),
-            _TechnicalDataCard(
-              label: l10n.repeaterDetailShift,
-              value: RepeaterFormatHelper.formatShift(
-                repeater.shiftHz,
-                repeater.shiftRaw,
+            Expanded(
+              child: _TechnicalDataCard(
+                label: l10n.repeaterDetailFrequency,
+                value: RepeaterFormatHelper.formatFrequency(repeater.frequencyHz),
               ),
             ),
-            _TechnicalDataCard(
-              label: l10n.repeaterDetailSubtone,
-              value: repeater.accesses.isNotEmpty &&
-                      (repeater.accesses.first.ctcssTxHz != null ||
-                          repeater.accesses.first.ctcssRxHz != null)
-                  ? repeater.accesses.first.ctcssTxHz != null &&
-                          repeater.accesses.first.ctcssRxHz != null
-                      ? 'TX ${repeater.accesses.first.ctcssTxHz!.toStringAsFixed(1)} / RX ${repeater.accesses.first.ctcssRxHz!.toStringAsFixed(1)} Hz'
-                      : repeater.accesses.first.ctcssTxHz != null
-                          ? 'TX ${repeater.accesses.first.ctcssTxHz!.toStringAsFixed(1)} Hz'
-                          : 'RX ${repeater.accesses.first.ctcssRxHz!.toStringAsFixed(1)} Hz'
-                  : '-',
-            ),
-            _TechnicalDataCard(
-              label: l10n.repeaterDetailMode,
-              value: RepeaterModeHelper.getModeLabel(repeater.mode, l10n),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _TechnicalDataCard(
+                label: l10n.repeaterDetailShift,
+                value: RepeaterFormatHelper.formatShift(
+                  repeater.shiftHz,
+                  repeater.shiftRaw,
+                ),
+              ),
             ),
           ],
         ),
@@ -870,6 +858,390 @@ class _TechnicalDataCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _AccessModesSection extends StatelessWidget {
+  const _AccessModesSection({required this.repeater});
+
+  final Repeater repeater;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.localization;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    if (repeater.accesses.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 4, bottom: 12),
+          child: Text(
+            l10n.accessConfiguration.toUpperCase(),
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+              fontSize: 10,
+            ),
+          ),
+        ),
+        ...repeater.accesses.map((access) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: _AccessModeCard(access: access),
+          );
+        }),
+      ],
+    );
+  }
+}
+
+class _AccessModeCard extends StatelessWidget {
+  const _AccessModeCard({required this.access});
+
+  final RepeaterAccess access;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final accessColor = AccessModeHelper.getAccessModeColorObject(access.mode);
+    final accessLabel = AccessModeHelper.getAccessModeLabel(access.mode);
+    final accessIcon = AccessModeHelper.getAccessModeIcon(access.mode);
+
+    final isAnalog = access.mode == AccessMode.analog;
+    final isDmr = access.mode == AccessMode.dmr;
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: colorScheme.outline.withValues(alpha: 0.1),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header with badge and icon
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: isAnalog
+                      ? colorScheme.surfaceContainerHighest
+                      : accessColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: isAnalog
+                        ? colorScheme.outline.withValues(alpha: 0.2)
+                        : accessColor.withValues(alpha: 0.2),
+                  ),
+                ),
+                child: Text(
+                  accessLabel.toUpperCase(),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: isAnalog ? colorScheme.onSurfaceVariant : accessColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 10,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ),
+              Icon(
+                accessIcon,
+                color: isAnalog
+                    ? colorScheme.outline.withValues(alpha: 0.5)
+                    : accessColor.withValues(alpha: 0.5),
+                size: 20,
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          // Content based on access mode
+          if (isAnalog) _buildAnalogContent(context),
+          if (isDmr) _buildDmrContent(context),
+          if (!isAnalog && !isDmr) _buildGenericContent(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAnalogContent(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'CTCSS/DCS',
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                  fontSize: 10,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                access.ctcssTxHz != null
+                    ? '${access.ctcssTxHz!.toStringAsFixed(1)} Hz'
+                    : access.dcsCode != null
+                        ? 'DCS ${access.dcsCode}'
+                        : '-',
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'SQL (RX)',
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                  fontSize: 10,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                access.ctcssRxHz != null ? '${access.ctcssRxHz!.toStringAsFixed(1)} Hz' : '-',
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDmrContent(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Color Code and DMR ID row
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'COLOR CODE',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                      fontSize: 10,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    access.colorCode?.toString() ?? '-',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'DMR ID',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                      fontSize: 10,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    access.dmrId?.toString() ?? '-',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        // Networks section (if network is available)
+        if (access.network != null) ...[
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.only(top: 12),
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  color: colorScheme.outline.withValues(alpha: 0.1),
+                ),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'NETWORKS',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                    fontSize: 10,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  access.network!.name,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildGenericContent(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    final details = <Widget>[];
+
+    // C4FM specific
+    if (access.mode == AccessMode.c4fm && access.dgId != null) {
+      details.add(
+        _buildDetailRow(context, 'DG-ID', access.dgId.toString()),
+      );
+    }
+
+    // D-STAR specific
+    if (access.mode == AccessMode.dstar) {
+      if (access.network != null) {
+        details.add(
+          _buildDetailRow(context, 'MODULE', access.network!.name),
+        );
+      }
+    }
+
+    // CTCSS/DCS if present
+    if (access.ctcssTxHz != null || access.ctcssRxHz != null) {
+      details.add(
+        _buildDetailRow(
+          context,
+          'TONE',
+          access.ctcssTxHz != null
+              ? '${access.ctcssTxHz!.toStringAsFixed(1)} Hz'
+              : '${access.ctcssRxHz!.toStringAsFixed(1)} Hz',
+        ),
+      );
+    }
+
+    // Notes if present
+    if (access.notes != null && access.notes!.isNotEmpty) {
+      details.add(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'NOTES',
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
+                fontSize: 10,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              access.notes!,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (details.isEmpty) {
+      return Text(
+        'No additional details',
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: colorScheme.onSurfaceVariant,
+          fontStyle: FontStyle.italic,
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: details.expand((widget) => [widget, const SizedBox(height: 8)]).toList()
+        ..removeLast(),
+    );
+  }
+
+  Widget _buildDetailRow(BuildContext context, String label, String value) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: colorScheme.onSurfaceVariant,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 0.5,
+            fontSize: 10,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          value,
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -1019,12 +1391,15 @@ class _CommunityReportsSection extends HookConsumerWidget {
         else
           _FeedbackFormCard(
             selectedStation: selectedStation.value,
+            availableAccessModes: state.repeater.accesses.map((a) => a.mode).toSet(),
+            selectedAccessModes: state.selectedAccessModes,
             locationController: locationText,
             commentController: comment,
             onStationChanged: (station) {
               selectedStation.value = station;
               controller.setSelectedStation(station);
             },
+            onAccessModeToggled: controller.toggleAccessMode,
             onLocationChanged: controller.setLocationText,
             onCommentChanged: controller.setComment,
             onSubmitLike: () async {
@@ -1262,9 +1637,12 @@ class _MyFeedbackCard extends StatelessWidget {
 class _FeedbackFormCard extends StatelessWidget {
   const _FeedbackFormCard({
     required this.selectedStation,
+    required this.availableAccessModes,
+    required this.selectedAccessModes,
     required this.locationController,
     required this.commentController,
     required this.onStationChanged,
+    required this.onAccessModeToggled,
     required this.onLocationChanged,
     required this.onCommentChanged,
     required this.onSubmitLike,
@@ -1273,9 +1651,12 @@ class _FeedbackFormCard extends StatelessWidget {
   });
 
   final StationKind? selectedStation;
+  final Set<AccessMode> availableAccessModes;
+  final Set<AccessMode> selectedAccessModes;
   final TextEditingController locationController;
   final TextEditingController commentController;
   final ValueChanged<StationKind?> onStationChanged;
+  final ValueChanged<AccessMode> onAccessModeToggled;
   final ValueChanged<String?> onLocationChanged;
   final ValueChanged<String> onCommentChanged;
   final VoidCallback onSubmitLike;
@@ -1300,13 +1681,17 @@ class _FeedbackFormCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Equipment selection label
           Text(
-            l10n.repeaterDetailUpdateStatusFeedback,
-            style: theme.textTheme.titleSmall?.copyWith(
+            l10n.repeaterDetailEquipment.toUpperCase(),
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+              fontSize: 10,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
           // Equipment selection buttons
           Row(
             children: [
@@ -1344,10 +1729,12 @@ class _FeedbackFormCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                l10n.repeaterDetailLocationRequired,
+                l10n.repeaterDetailLocationRequired.toUpperCase(),
                 style: theme.textTheme.labelSmall?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                  fontSize: 10,
                 ),
               ),
               const SizedBox(height: 8),
@@ -1355,7 +1742,7 @@ class _FeedbackFormCard extends StatelessWidget {
                 controller: locationController,
                 onChanged: onLocationChanged,
                 decoration: InputDecoration(
-                  hintText: 'City/Area',
+                  hintText: 'City or Area (e.g. Rome)',
                   prefixIcon: const Icon(Icons.location_on, size: 20),
                   filled: true,
                   fillColor: colorScheme.surfaceContainerHighest,
@@ -1371,16 +1758,101 @@ class _FeedbackFormCard extends StatelessWidget {
               ),
             ],
           ),
+          // Access modes selection (only if there are multiple modes)
+          if (availableAccessModes.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.repeaterDetailAccessModes.toUpperCase(),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                    fontSize: 10,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: availableAccessModes.map((mode) {
+                    final isSelected = selectedAccessModes.contains(mode);
+                    final modeColor = AccessModeHelper.getAccessModeColorObject(mode);
+                    final modeLabel = AccessModeHelper.getAccessModeLabel(mode);
+
+                    return InkWell(
+                      onTap: () => onAccessModeToggled(mode),
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? modeColor.withValues(alpha: 0.1)
+                              : colorScheme.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: isSelected
+                                ? modeColor.withValues(alpha: 0.3)
+                                : colorScheme.outline.withValues(alpha: 0.2),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              width: 18,
+                              height: 18,
+                              decoration: BoxDecoration(
+                                color: isSelected ? modeColor : colorScheme.surfaceContainerHighest,
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(
+                                  color: isSelected
+                                      ? modeColor
+                                      : colorScheme.outline.withValues(alpha: 0.3),
+                                ),
+                              ),
+                              child: isSelected
+                                  ? const Icon(
+                                      Icons.check,
+                                      size: 14,
+                                      color: Colors.white,
+                                    )
+                                  : null,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              modeLabel,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: isSelected ? modeColor : colorScheme.onSurface,
+                                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+          ],
           const SizedBox(height: 16),
           // Comment field
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                l10n.repeaterDetailCommentOptional,
+                l10n.repeaterDetailCommentOptional.toUpperCase(),
                 style: theme.textTheme.labelSmall?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                  fontSize: 10,
                 ),
               ),
               const SizedBox(height: 8),
@@ -1390,7 +1862,6 @@ class _FeedbackFormCard extends StatelessWidget {
                 maxLines: 3,
                 decoration: InputDecoration(
                   hintText: l10n.repeaterDetailCommentPlaceholder,
-                  prefixIcon: const Icon(Icons.edit, size: 20),
                   filled: true,
                   fillColor: colorScheme.surfaceContainerHighest,
                   border: OutlineInputBorder(
@@ -1407,27 +1878,33 @@ class _FeedbackFormCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: isSubmitting ? null : onSubmitDown,
-                  icon: const Icon(Icons.warning_amber_rounded),
-                  label: Text(l10n.repeaterDetailReportDown),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.amber,
-                    side: const BorderSide(color: Colors.amber),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                child: FilledButton.icon(
+                  onPressed: isSubmitting ? null : onSubmitLike,
+                  icon: const Icon(Icons.thumb_up, size: 18),
+                  label: Text(l10n.repeaterDetailLike.toUpperCase()),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: colorScheme.primary,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    textStyle: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: FilledButton.icon(
-                  onPressed: isSubmitting ? null : onSubmitLike,
-                  icon: const Icon(Icons.thumb_up),
-                  label: Text(l10n.repeaterDetailCheckinLike),
-                  style: FilledButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                child: OutlinedButton.icon(
+                  onPressed: isSubmitting ? null : onSubmitDown,
+                  icon: const Icon(Icons.warning_amber_rounded, size: 18),
+                  label: Text(l10n.repeaterDetailReportDown.toUpperCase()),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.amber.shade700,
+                    side: BorderSide(color: Colors.amber.shade700),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    textStyle: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

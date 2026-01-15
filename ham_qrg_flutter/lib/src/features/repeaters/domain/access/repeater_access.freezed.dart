@@ -21,6 +21,7 @@ mixin _$RepeaterAccess {
   DateTime get createdAt;
   DateTime get updatedAt;
   String? get networkId;
+  Network? get network;
   double? get ctcssTxHz;
   double? get ctcssRxHz;
   int? get dcsCode;
@@ -53,6 +54,7 @@ mixin _$RepeaterAccess {
                 other.updatedAt == updatedAt) &&
             (identical(other.networkId, networkId) ||
                 other.networkId == networkId) &&
+            (identical(other.network, network) || other.network == network) &&
             (identical(other.ctcssTxHz, ctcssTxHz) ||
                 other.ctcssTxHz == ctcssTxHz) &&
             (identical(other.ctcssRxHz, ctcssRxHz) ||
@@ -75,6 +77,7 @@ mixin _$RepeaterAccess {
       createdAt,
       updatedAt,
       networkId,
+      network,
       ctcssTxHz,
       ctcssRxHz,
       dcsCode,
@@ -85,7 +88,7 @@ mixin _$RepeaterAccess {
 
   @override
   String toString() {
-    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
+    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -103,6 +106,7 @@ abstract mixin class $RepeaterAccessCopyWith<$Res> {
       DateTime createdAt,
       DateTime updatedAt,
       String? networkId,
+      Network? network,
       double? ctcssTxHz,
       double? ctcssRxHz,
       int? dcsCode,
@@ -110,6 +114,8 @@ abstract mixin class $RepeaterAccessCopyWith<$Res> {
       int? dmrId,
       int? dgId,
       String? notes});
+
+  $NetworkCopyWith<$Res>? get network;
 }
 
 /// @nodoc
@@ -132,6 +138,7 @@ class _$RepeaterAccessCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? networkId = freezed,
+    Object? network = freezed,
     Object? ctcssTxHz = freezed,
     Object? ctcssRxHz = freezed,
     Object? dcsCode = freezed,
@@ -169,6 +176,10 @@ class _$RepeaterAccessCopyWithImpl<$Res>
           ? _self.networkId
           : networkId // ignore: cast_nullable_to_non_nullable
               as String?,
+      network: freezed == network
+          ? _self.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as Network?,
       ctcssTxHz: freezed == ctcssTxHz
           ? _self.ctcssTxHz
           : ctcssTxHz // ignore: cast_nullable_to_non_nullable
@@ -198,6 +209,20 @@ class _$RepeaterAccessCopyWithImpl<$Res>
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
+  }
+
+  /// Create a copy of RepeaterAccess
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NetworkCopyWith<$Res>? get network {
+    if (_self.network == null) {
+      return null;
+    }
+
+    return $NetworkCopyWith<$Res>(_self.network!, (value) {
+      return _then(_self.copyWith(network: value));
+    });
   }
 }
 
@@ -302,6 +327,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             DateTime createdAt,
             DateTime updatedAt,
             String? networkId,
+            Network? network,
             double? ctcssTxHz,
             double? ctcssRxHz,
             int? dcsCode,
@@ -323,6 +349,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             _that.createdAt,
             _that.updatedAt,
             _that.networkId,
+            _that.network,
             _that.ctcssTxHz,
             _that.ctcssRxHz,
             _that.dcsCode,
@@ -358,6 +385,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             DateTime createdAt,
             DateTime updatedAt,
             String? networkId,
+            Network? network,
             double? ctcssTxHz,
             double? ctcssRxHz,
             int? dcsCode,
@@ -378,6 +406,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             _that.createdAt,
             _that.updatedAt,
             _that.networkId,
+            _that.network,
             _that.ctcssTxHz,
             _that.ctcssRxHz,
             _that.dcsCode,
@@ -412,6 +441,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             DateTime createdAt,
             DateTime updatedAt,
             String? networkId,
+            Network? network,
             double? ctcssTxHz,
             double? ctcssRxHz,
             int? dcsCode,
@@ -432,6 +462,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             _that.createdAt,
             _that.updatedAt,
             _that.networkId,
+            _that.network,
             _that.ctcssTxHz,
             _that.ctcssRxHz,
             _that.dcsCode,
@@ -456,6 +487,7 @@ class _RepeaterAccess implements RepeaterAccess {
       required this.createdAt,
       required this.updatedAt,
       this.networkId,
+      this.network,
       this.ctcssTxHz,
       this.ctcssRxHz,
       this.dcsCode,
@@ -478,6 +510,8 @@ class _RepeaterAccess implements RepeaterAccess {
   final DateTime updatedAt;
   @override
   final String? networkId;
+  @override
+  final Network? network;
   @override
   final double? ctcssTxHz;
   @override
@@ -517,6 +551,7 @@ class _RepeaterAccess implements RepeaterAccess {
                 other.updatedAt == updatedAt) &&
             (identical(other.networkId, networkId) ||
                 other.networkId == networkId) &&
+            (identical(other.network, network) || other.network == network) &&
             (identical(other.ctcssTxHz, ctcssTxHz) ||
                 other.ctcssTxHz == ctcssTxHz) &&
             (identical(other.ctcssRxHz, ctcssRxHz) ||
@@ -539,6 +574,7 @@ class _RepeaterAccess implements RepeaterAccess {
       createdAt,
       updatedAt,
       networkId,
+      network,
       ctcssTxHz,
       ctcssRxHz,
       dcsCode,
@@ -549,7 +585,7 @@ class _RepeaterAccess implements RepeaterAccess {
 
   @override
   String toString() {
-    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
+    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -569,6 +605,7 @@ abstract mixin class _$RepeaterAccessCopyWith<$Res>
       DateTime createdAt,
       DateTime updatedAt,
       String? networkId,
+      Network? network,
       double? ctcssTxHz,
       double? ctcssRxHz,
       int? dcsCode,
@@ -576,6 +613,9 @@ abstract mixin class _$RepeaterAccessCopyWith<$Res>
       int? dmrId,
       int? dgId,
       String? notes});
+
+  @override
+  $NetworkCopyWith<$Res>? get network;
 }
 
 /// @nodoc
@@ -598,6 +638,7 @@ class __$RepeaterAccessCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? networkId = freezed,
+    Object? network = freezed,
     Object? ctcssTxHz = freezed,
     Object? ctcssRxHz = freezed,
     Object? dcsCode = freezed,
@@ -635,6 +676,10 @@ class __$RepeaterAccessCopyWithImpl<$Res>
           ? _self.networkId
           : networkId // ignore: cast_nullable_to_non_nullable
               as String?,
+      network: freezed == network
+          ? _self.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as Network?,
       ctcssTxHz: freezed == ctcssTxHz
           ? _self.ctcssTxHz
           : ctcssTxHz // ignore: cast_nullable_to_non_nullable
@@ -664,6 +709,20 @@ class __$RepeaterAccessCopyWithImpl<$Res>
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
+  }
+
+  /// Create a copy of RepeaterAccess
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NetworkCopyWith<$Res>? get network {
+    if (_self.network == null) {
+      return null;
+    }
+
+    return $NetworkCopyWith<$Res>(_self.network!, (value) {
+      return _then(_self.copyWith(network: value));
+    });
   }
 }
 

@@ -392,47 +392,67 @@ class RepeatersMapPage extends HookConsumerWidget {
     Repeater repeater,
     RepeatersMapController notifier,
   ) {
-    return DraggableScrollableSheet(
-      initialChildSize: 0.6,
-      minChildSize: 0.4,
-      maxChildSize: 0.95,
-      builder: (context, scrollController) {
-        return Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-          ),
-          child: Column(
-            children: [
-              // Handle bar
-              Container(
-                margin: const EdgeInsets.only(top: 8),
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              // Close button
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () => notifier.clearSelectedRepeater(),
-                ),
-              ),
-              // Repeater details
-              Expanded(
-                child: RepeaterDetailsSheet(
-                  repeater: repeater,
-                  scrollController: scrollController,
-                ),
-              ),
-            ],
-          ),
-        );
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return NotificationListener<DraggableScrollableNotification>(
+      onNotification: (notification) {
+        // Close sheet when dragged below threshold
+        if (notification.extent <= 0.2) {
+          notifier.clearSelectedRepeater();
+        }
+        return false;
       },
+      child: DraggableScrollableSheet(
+        initialChildSize: 0.65,
+        minChildSize: 0.15,
+        maxChildSize: 0.95,
+        builder: (context, scrollController) {
+          return Container(
+            decoration: BoxDecoration(
+              color: theme.scaffoldBackgroundColor,
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+              boxShadow: [
+                BoxShadow(
+                  color: colorScheme.shadow.withValues(alpha: 0.3),
+                  blurRadius: 30,
+                  offset: const Offset(0, -8),
+                ),
+              ],
+              border: Border(
+                top: BorderSide(
+                  color: colorScheme.outline,
+                ),
+              ),
+            ),
+            child: Column(
+              children: [
+                // Handle bar - tap to close
+                GestureDetector(
+                  onTap: () => notifier.clearSelectedRepeater(),
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 12, bottom: 4),
+                    width: 48,
+                    height: 6,
+                    decoration: BoxDecoration(
+                      color: colorScheme.outlineVariant,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                  ),
+                ),
+                // Repeater details
+                Expanded(
+                  child: RepeaterDetailsSheet(
+                    repeater: repeater,
+                    scrollController: scrollController,
+                    onClose: () => notifier.clearSelectedRepeater(),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 

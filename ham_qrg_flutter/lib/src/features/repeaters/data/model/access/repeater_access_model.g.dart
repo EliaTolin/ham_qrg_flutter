@@ -15,6 +15,9 @@ _RepeaterAccessModel _$RepeaterAccessModelFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String,
       updatedAt: json['updated_at'] as String,
       networkId: json['network_id'] as String?,
+      network: json['network'] == null
+          ? null
+          : NetworkModel.fromJson(json['network'] as Map<String, dynamic>),
       ctcssTxHz: (json['ctcss_tx_hz'] as num?)?.toDouble(),
       ctcssRxHz: (json['ctcss_rx_hz'] as num?)?.toDouble(),
       dcsCode: (json['dcs_code'] as num?)?.toInt(),
@@ -34,6 +37,7 @@ Map<String, dynamic> _$RepeaterAccessModelToJson(
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'network_id': instance.networkId,
+      'network': instance.network,
       'ctcss_tx_hz': instance.ctcssTxHz,
       'ctcss_rx_hz': instance.ctcssRxHz,
       'dcs_code': instance.dcsCode,

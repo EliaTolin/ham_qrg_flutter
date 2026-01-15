@@ -25,6 +25,7 @@ mixin _$RepeaterAccessModel {
   String get updatedAt;
   @JsonKey(name: 'network_id')
   String? get networkId;
+  NetworkModel? get network;
   @JsonKey(name: 'ctcss_tx_hz')
   double? get ctcssTxHz;
   @JsonKey(name: 'ctcss_rx_hz')
@@ -66,6 +67,7 @@ mixin _$RepeaterAccessModel {
                 other.updatedAt == updatedAt) &&
             (identical(other.networkId, networkId) ||
                 other.networkId == networkId) &&
+            (identical(other.network, network) || other.network == network) &&
             (identical(other.ctcssTxHz, ctcssTxHz) ||
                 other.ctcssTxHz == ctcssTxHz) &&
             (identical(other.ctcssRxHz, ctcssRxHz) ||
@@ -89,6 +91,7 @@ mixin _$RepeaterAccessModel {
       createdAt,
       updatedAt,
       networkId,
+      network,
       ctcssTxHz,
       ctcssRxHz,
       dcsCode,
@@ -99,7 +102,7 @@ mixin _$RepeaterAccessModel {
 
   @override
   String toString() {
-    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
+    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -117,6 +120,7 @@ abstract mixin class $RepeaterAccessModelCopyWith<$Res> {
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String updatedAt,
       @JsonKey(name: 'network_id') String? networkId,
+      NetworkModel? network,
       @JsonKey(name: 'ctcss_tx_hz') double? ctcssTxHz,
       @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
       @JsonKey(name: 'dcs_code') int? dcsCode,
@@ -124,6 +128,8 @@ abstract mixin class $RepeaterAccessModelCopyWith<$Res> {
       @JsonKey(name: 'dmr_id') int? dmrId,
       @JsonKey(name: 'dg_id') int? dgId,
       String? notes});
+
+  $NetworkModelCopyWith<$Res>? get network;
 }
 
 /// @nodoc
@@ -146,6 +152,7 @@ class _$RepeaterAccessModelCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? networkId = freezed,
+    Object? network = freezed,
     Object? ctcssTxHz = freezed,
     Object? ctcssRxHz = freezed,
     Object? dcsCode = freezed,
@@ -183,6 +190,10 @@ class _$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.networkId
           : networkId // ignore: cast_nullable_to_non_nullable
               as String?,
+      network: freezed == network
+          ? _self.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as NetworkModel?,
       ctcssTxHz: freezed == ctcssTxHz
           ? _self.ctcssTxHz
           : ctcssTxHz // ignore: cast_nullable_to_non_nullable
@@ -212,6 +223,20 @@ class _$RepeaterAccessModelCopyWithImpl<$Res>
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
+  }
+
+  /// Create a copy of RepeaterAccessModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NetworkModelCopyWith<$Res>? get network {
+    if (_self.network == null) {
+      return null;
+    }
+
+    return $NetworkModelCopyWith<$Res>(_self.network!, (value) {
+      return _then(_self.copyWith(network: value));
+    });
   }
 }
 
@@ -316,6 +341,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'updated_at') String updatedAt,
             @JsonKey(name: 'network_id') String? networkId,
+            NetworkModel? network,
             @JsonKey(name: 'ctcss_tx_hz') double? ctcssTxHz,
             @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
             @JsonKey(name: 'dcs_code') int? dcsCode,
@@ -337,6 +363,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             _that.createdAt,
             _that.updatedAt,
             _that.networkId,
+            _that.network,
             _that.ctcssTxHz,
             _that.ctcssRxHz,
             _that.dcsCode,
@@ -372,6 +399,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'updated_at') String updatedAt,
             @JsonKey(name: 'network_id') String? networkId,
+            NetworkModel? network,
             @JsonKey(name: 'ctcss_tx_hz') double? ctcssTxHz,
             @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
             @JsonKey(name: 'dcs_code') int? dcsCode,
@@ -392,6 +420,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             _that.createdAt,
             _that.updatedAt,
             _that.networkId,
+            _that.network,
             _that.ctcssTxHz,
             _that.ctcssRxHz,
             _that.dcsCode,
@@ -426,6 +455,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'updated_at') String updatedAt,
             @JsonKey(name: 'network_id') String? networkId,
+            NetworkModel? network,
             @JsonKey(name: 'ctcss_tx_hz') double? ctcssTxHz,
             @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
             @JsonKey(name: 'dcs_code') int? dcsCode,
@@ -446,6 +476,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             _that.createdAt,
             _that.updatedAt,
             _that.networkId,
+            _that.network,
             _that.ctcssTxHz,
             _that.ctcssRxHz,
             _that.dcsCode,
@@ -470,6 +501,7 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
       @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'updated_at') required this.updatedAt,
       @JsonKey(name: 'network_id') this.networkId,
+      this.network,
       @JsonKey(name: 'ctcss_tx_hz') this.ctcssTxHz,
       @JsonKey(name: 'ctcss_rx_hz') this.ctcssRxHz,
       @JsonKey(name: 'dcs_code') this.dcsCode,
@@ -498,6 +530,8 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
   @override
   @JsonKey(name: 'network_id')
   final String? networkId;
+  @override
+  final NetworkModel? network;
   @override
   @JsonKey(name: 'ctcss_tx_hz')
   final double? ctcssTxHz;
@@ -551,6 +585,7 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
                 other.updatedAt == updatedAt) &&
             (identical(other.networkId, networkId) ||
                 other.networkId == networkId) &&
+            (identical(other.network, network) || other.network == network) &&
             (identical(other.ctcssTxHz, ctcssTxHz) ||
                 other.ctcssTxHz == ctcssTxHz) &&
             (identical(other.ctcssRxHz, ctcssRxHz) ||
@@ -574,6 +609,7 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
       createdAt,
       updatedAt,
       networkId,
+      network,
       ctcssTxHz,
       ctcssRxHz,
       dcsCode,
@@ -584,7 +620,7 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
 
   @override
   String toString() {
-    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
+    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -604,6 +640,7 @@ abstract mixin class _$RepeaterAccessModelCopyWith<$Res>
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String updatedAt,
       @JsonKey(name: 'network_id') String? networkId,
+      NetworkModel? network,
       @JsonKey(name: 'ctcss_tx_hz') double? ctcssTxHz,
       @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
       @JsonKey(name: 'dcs_code') int? dcsCode,
@@ -611,6 +648,9 @@ abstract mixin class _$RepeaterAccessModelCopyWith<$Res>
       @JsonKey(name: 'dmr_id') int? dmrId,
       @JsonKey(name: 'dg_id') int? dgId,
       String? notes});
+
+  @override
+  $NetworkModelCopyWith<$Res>? get network;
 }
 
 /// @nodoc
@@ -633,6 +673,7 @@ class __$RepeaterAccessModelCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? networkId = freezed,
+    Object? network = freezed,
     Object? ctcssTxHz = freezed,
     Object? ctcssRxHz = freezed,
     Object? dcsCode = freezed,
@@ -670,6 +711,10 @@ class __$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.networkId
           : networkId // ignore: cast_nullable_to_non_nullable
               as String?,
+      network: freezed == network
+          ? _self.network
+          : network // ignore: cast_nullable_to_non_nullable
+              as NetworkModel?,
       ctcssTxHz: freezed == ctcssTxHz
           ? _self.ctcssTxHz
           : ctcssTxHz // ignore: cast_nullable_to_non_nullable
@@ -699,6 +744,20 @@ class __$RepeaterAccessModelCopyWithImpl<$Res>
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
+  }
+
+  /// Create a copy of RepeaterAccessModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NetworkModelCopyWith<$Res>? get network {
+    if (_self.network == null) {
+      return null;
+    }
+
+    return $NetworkModelCopyWith<$Res>(_self.network!, (value) {
+      return _then(_self.copyWith(network: value));
+    });
   }
 }
 

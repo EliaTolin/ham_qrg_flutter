@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
@@ -63,6 +64,22 @@ class RepeaterDetailController extends _$RepeaterDetailController {
   void setComment(String comment) {
     state = AsyncData(
       state.value!.copyWith(comment: comment),
+    );
+  }
+
+  void toggleAccessMode(AccessMode mode) {
+    final currentState = state.value;
+    if (currentState == null) return;
+
+    final currentModes = Set<AccessMode>.from(currentState.selectedAccessModes);
+    if (currentModes.contains(mode)) {
+      currentModes.remove(mode);
+    } else {
+      currentModes.add(mode);
+    }
+
+    state = AsyncData(
+      currentState.copyWith(selectedAccessModes: currentModes),
     );
   }
 

@@ -7,18 +7,23 @@ import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/add_favorite_repeater/add_favorite_repeater_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/get_favorite_repeaters_ids/get_favorite_repeaters_ids_provider.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/remove_favorite_repeater/remove_favorite_repeater_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RepeaterDetailsSheet extends ConsumerWidget {
   const RepeaterDetailsSheet({
     required this.repeater,
     this.scrollController,
+    this.onClose,
     super.key,
   });
 
   final Repeater repeater;
   final ScrollController? scrollController;
+  final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,21 +32,23 @@ class RepeaterDetailsSheet extends ConsumerWidget {
     final colorScheme = theme.colorScheme;
     final colorMode = RepeaterModeHelper.getModeColorObject(repeater.mode);
 
-    // TO-DO: Fetch feedback stats
+    // Fetch feedback stats
     final feedbackStatsAsync = ref.watch(
       getRepeaterFeedbackStatsProvider(repeater.id),
     );
     final likesTotal = feedbackStatsAsync.value?.likesTotal ?? 0;
-    // TO-DO: Use downTotal when implementing dislike functionality
-    // final downTotal = feedbackStatsAsync.value?.downTotal ?? 0;
+
+    // Fetch favorite status
+    final favoriteIdsAsync = ref.watch(getFavoriteRepeatersIdsProvider);
+    final isFavorite = favoriteIdsAsync.value?.contains(repeater.id) ?? false;
 
     final content = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Header
+        // Header section
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -51,9 +58,9 @@ class RepeaterDetailsSheet extends ConsumerWidget {
                   Expanded(
                     child: Text(
                       repeater.callsign ?? repeater.name ?? 'Unknown',
-                      style: theme.textTheme.headlineMedium?.copyWith(
+                      style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        letterSpacing: -0.5,
                       ),
                     ),
                   ),
@@ -63,8 +70,8 @@ class RepeaterDetailsSheet extends ConsumerWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: colorMode.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(12),
+                      color: colorMode.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(4),
                       border: Border.all(
                         color: colorMode.withValues(alpha: 0.3),
                       ),
@@ -75,7 +82,7 @@ class RepeaterDetailsSheet extends ConsumerWidget {
                         color: colorMode,
                         fontWeight: FontWeight.bold,
                         fontSize: 10,
-                        letterSpacing: 1.2,
+                        letterSpacing: 0.5,
                       ),
                     ),
                   ),
@@ -90,14 +97,19 @@ class RepeaterDetailsSheet extends ConsumerWidget {
                     size: 16,
                     color: colorScheme.onSurfaceVariant,
                   ),
-                  const SizedBox(width: 4),
-                  Text(
-                    [
-                      repeater.locality,
-                      repeater.region,
-                    ].whereType<String>().join(', '),
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(
+                      [
+                        repeater.locality,
+                        repeater.region,
+                      ].whereType<String>().join(', '),
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
@@ -106,40 +118,45 @@ class RepeaterDetailsSheet extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 16),
-        // Action buttons (Like, Dislike, Favorite)
+        // Action row: Likes display + Favorite button (2 columns)
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Row(
             children: [
+              // Likes display (left column)
               Expanded(
-                child: _ActionButton(
-                  icon: Icons.thumb_up,
-                  label: likesTotal.toString(),
-                  color: Colors.cyan,
-                  onTap: () {
-                    // TO-DO: Implement like functionality
-                  },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.thumb_up,
+                      color: colorScheme.primary,
+                      size: 20,
+                      fill: 1,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      '$likesTotal Likes',
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(width: 12),
+              // Favorite button (right column)
               Expanded(
-                child: _ActionButton(
-                  icon: Icons.thumb_down,
-                  label: '',
-                  color: Colors.grey,
-                  onTap: () {
-                    // TO-DO: Implement dislike functionality
-                  },
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _ActionButton(
-                  icon: Icons.favorite,
-                  label: 'Favorite',
-                  color: Colors.pink,
-                  onTap: () {
-                    // TO-DO: Implement favorite functionality
+                child: _FavoriteButton(
+                  isFavorite: isFavorite,
+                  label: l10n.favorite,
+                  onTap: () async {
+                    if (isFavorite) {
+                      await ref.read(removeFavoriteRepeaterProvider(repeater.id).future);
+                    } else {
+                      await ref.read(addFavoriteRepeaterProvider(repeater.id).future);
+                    }
+                    ref.invalidate(getFavoriteRepeatersIdsProvider);
                   },
                 ),
               ),
@@ -147,21 +164,24 @@ class RepeaterDetailsSheet extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 24),
-        // Access Configuration
+        // Access Configuration section
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'ACCESS CONFIGURATION',
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
+              Padding(
+                padding: const EdgeInsets.only(left: 4, bottom: 12),
+                child: Text(
+                  l10n.accessConfiguration.toUpperCase(),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    fontSize: 10,
+                  ),
                 ),
               ),
-              const SizedBox(height: 12),
               ...repeater.accesses.map((access) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12),
@@ -172,72 +192,82 @@ class RepeaterDetailsSheet extends ConsumerWidget {
                 );
               }),
               if (repeater.accesses.isEmpty)
-                Text(
-                  'No access configuration available',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: colorScheme.outline,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.info_outline,
+                        size: 16,
+                        color: colorScheme.onSurfaceVariant,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          l10n.noAccessConfiguration,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
             ],
           ),
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
         // Additional info (altitude, locator, distance)
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            children: [
-              // TO-DO: Add altitude field to repeater model
-              // if (repeater.altitude != null)
-              //   _InfoChip(
-              //     icon: Icons.terrain,
-              //     label: '${repeater.altitude}m ASL',
-              //   ),
-              if (repeater.locator != null) ...[
-                _InfoChip(
-                  icon: Icons.grid_on,
-                  label: repeater.locator!,
-                ),
-                const SizedBox(width: 12),
+        if (repeater.locator != null || repeater.distanceMeters != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Row(
+              children: [
+                if (repeater.locator != null) ...[
+                  _InfoChip(
+                    icon: Icons.grid_on,
+                    label: repeater.locator!,
+                  ),
+                  const SizedBox(width: 16),
+                ],
+                if (repeater.distanceMeters != null)
+                  _InfoChip(
+                    icon: Icons.straighten,
+                    label: RepeaterFormatHelper.formatDistance(repeater.distanceMeters),
+                  ),
               ],
-              if (repeater.distanceMeters != null)
-                _InfoChip(
-                  icon: Icons.near_me,
-                  label: RepeaterFormatHelper.formatDistance(repeater.distanceMeters),
-                ),
-            ],
+            ),
           ),
-        ),
         const SizedBox(height: 24),
         // Details button
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: SizedBox(
             width: double.infinity,
+            height: 48,
             child: FilledButton.icon(
               onPressed: () {
-                Navigator.of(context).pop();
+                onClose?.call();
                 context.router.push(
                   RepeaterDetailRoute(
                     repeaterId: repeater.id,
                   ),
                 );
               },
-              icon: const Icon(Icons.info_outline),
-              label: const Text('Details'),
-              style: FilledButton.styleFrom(
-                backgroundColor: colorScheme.primary,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
+              icon: const Icon(Icons.info_outline, size: 20),
+              label: Text(l10n.details),
             ),
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).viewInsets.bottom + 16,
+          height: MediaQuery.of(context).viewPadding.bottom + 24,
         ),
       ],
     );
@@ -258,51 +288,59 @@ class RepeaterDetailsSheet extends ConsumerWidget {
   }
 }
 
-class _ActionButton extends StatelessWidget {
-  const _ActionButton({
-    required this.icon,
+class _FavoriteButton extends StatelessWidget {
+  const _FavoriteButton({
+    required this.isFavorite,
     required this.label,
-    required this.color,
     required this.onTap,
   });
 
-  final IconData icon;
+  final bool isFavorite;
   final String label;
-  final Color color;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    const favoriteColor = Colors.pink;
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: colorScheme.outline.withValues(alpha: 0.1),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          height: 48,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: favoriteColor.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: favoriteColor.withValues(alpha: 0.2),
+            ),
           ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: color, size: 24),
-            if (label.isNotEmpty) ...[
-              const SizedBox(height: 4),
-              Text(
-                label,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.w600,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: favoriteColor,
+                size: 20,
+                fill: isFavorite ? 1 : 0,
+              ),
+              const SizedBox(width: 8),
+              Flexible(
+                child: Text(
+                  label,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: favoriteColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
-          ],
+          ),
         ),
       ),
     );
@@ -327,31 +365,33 @@ class _AccessCard extends StatelessWidget {
     final accessLabel = AccessModeHelper.getAccessModeLabel(access.mode);
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.1),
+          color: colorScheme.outline,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: accessColor.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Icon(accessIcon, color: accessColor, size: 20),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          // Mode icon
+          Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: accessColor.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: Icon(accessIcon, color: accessColor, size: 18),
+          ),
+          const SizedBox(width: 12),
+          // Mode details
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
                     Text(
                       accessLabel,
@@ -359,61 +399,64 @@ class _AccessCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(width: 8),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
+                        horizontal: 6,
+                        vertical: 2,
                       ),
                       decoration: BoxDecoration(
                         color: colorScheme.surface,
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(4),
                         border: Border.all(
-                          color: colorScheme.outline.withValues(alpha: 0.1),
+                          color: colorScheme.outline,
                         ),
                       ),
                       child: Text(
                         RepeaterFormatHelper.formatFrequency(repeater.frequencyHz),
                         style: theme.textTheme.labelSmall?.copyWith(
                           fontFeatures: const [FontFeature.tabularFigures()],
+                          fontSize: 10,
                         ),
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          // Access details
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              if (repeater.shiftHz != null || repeater.shiftRaw != null)
-                _AccessDetailChip(
-                  label: 'SHIFT ${RepeaterFormatHelper.formatShift(
-                    repeater.shiftHz,
-                    repeater.shiftRaw,
-                  )}',
+                const SizedBox(height: 4),
+                // Access details row
+                Wrap(
+                  spacing: 12,
+                  runSpacing: 4,
+                  children: [
+                    if (repeater.shiftHz != null || repeater.shiftRaw != null)
+                      _AccessDetailItem(
+                        label: 'SHIFT',
+                        value: RepeaterFormatHelper.formatShift(
+                          repeater.shiftHz,
+                          repeater.shiftRaw,
+                        ),
+                      ),
+                    if (access.ctcssTxHz != null || access.ctcssRxHz != null)
+                      _AccessDetailItem(
+                        label: 'TONE',
+                        value: access.ctcssTxHz != null
+                            ? '${access.ctcssTxHz!.toStringAsFixed(1)} Hz'
+                            : '${access.ctcssRxHz!.toStringAsFixed(1)} Hz',
+                      ),
+                    if (access.colorCode != null)
+                      _AccessDetailItem(
+                        label: 'CC',
+                        value: access.colorCode.toString(),
+                      ),
+                    if (access.dmrId != null)
+                      _AccessDetailItem(
+                        label: 'ID',
+                        value: access.dmrId.toString(),
+                      ),
+                  ],
                 ),
-              if (access.ctcssTxHz != null || access.ctcssRxHz != null)
-                _AccessDetailChip(
-                  label: access.ctcssTxHz != null && access.ctcssRxHz != null
-                      ? 'TONE TX ${access.ctcssTxHz!.toStringAsFixed(1)} RX ${access.ctcssRxHz!.toStringAsFixed(1)} Hz'
-                      : access.ctcssTxHz != null
-                          ? 'TONE TX ${access.ctcssTxHz!.toStringAsFixed(1)} Hz'
-                          : 'TONE RX ${access.ctcssRxHz!.toStringAsFixed(1)} Hz',
-                ),
-              if (access.colorCode != null)
-                _AccessDetailChip(
-                  label: 'CC ${access.colorCode}',
-                ),
-              if (access.dmrId != null)
-                _AccessDetailChip(
-                  label: 'ID ${access.dmrId}',
-                ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
@@ -421,32 +464,40 @@ class _AccessCard extends StatelessWidget {
   }
 }
 
-class _AccessDetailChip extends StatelessWidget {
-  const _AccessDetailChip({required this.label});
+class _AccessDetailItem extends StatelessWidget {
+  const _AccessDetailItem({
+    required this.label,
+    required this.value,
+  });
 
   final String label;
+  final String value;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.1),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: colorScheme.outlineVariant,
+            fontWeight: FontWeight.bold,
+            fontSize: 11,
+          ),
         ),
-      ),
-      child: Text(
-        label,
-        style: theme.textTheme.labelSmall?.copyWith(
-          fontSize: 11,
-          fontWeight: FontWeight.w600,
+        const SizedBox(width: 4),
+        Text(
+          value,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: colorScheme.onSurfaceVariant,
+            fontSize: 11,
+          ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -474,6 +525,7 @@ class _InfoChip extends StatelessWidget {
           label,
           style: theme.textTheme.bodySmall?.copyWith(
             color: colorScheme.onSurfaceVariant,
+            fontSize: 12,
           ),
         ),
       ],

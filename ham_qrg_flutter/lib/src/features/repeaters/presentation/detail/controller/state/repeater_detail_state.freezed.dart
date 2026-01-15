@@ -21,6 +21,7 @@ mixin _$RepeaterDetailState {
   bool get isLoadingFeedback;
   bool get isSubmittingFeedback;
   StationKind? get selectedStation;
+  Set<AccessMode> get selectedAccessModes;
   String? get locationText;
   String get comment;
 
@@ -51,6 +52,8 @@ mixin _$RepeaterDetailState {
                 other.isSubmittingFeedback == isSubmittingFeedback) &&
             (identical(other.selectedStation, selectedStation) ||
                 other.selectedStation == selectedStation) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedAccessModes, selectedAccessModes) &&
             (identical(other.locationText, locationText) ||
                 other.locationText == locationText) &&
             (identical(other.comment, comment) || other.comment == comment));
@@ -66,12 +69,13 @@ mixin _$RepeaterDetailState {
       isLoadingFeedback,
       isSubmittingFeedback,
       selectedStation,
+      const DeepCollectionEquality().hash(selectedAccessModes),
       locationText,
       comment);
 
   @override
   String toString() {
-    return 'RepeaterDetailState(repeater: $repeater, feedbackStats: $feedbackStats, myFeedback: $myFeedback, communityFeedbacks: $communityFeedbacks, isLoadingFeedback: $isLoadingFeedback, isSubmittingFeedback: $isSubmittingFeedback, selectedStation: $selectedStation, locationText: $locationText, comment: $comment)';
+    return 'RepeaterDetailState(repeater: $repeater, feedbackStats: $feedbackStats, myFeedback: $myFeedback, communityFeedbacks: $communityFeedbacks, isLoadingFeedback: $isLoadingFeedback, isSubmittingFeedback: $isSubmittingFeedback, selectedStation: $selectedStation, selectedAccessModes: $selectedAccessModes, locationText: $locationText, comment: $comment)';
   }
 }
 
@@ -89,6 +93,7 @@ abstract mixin class $RepeaterDetailStateCopyWith<$Res> {
       bool isLoadingFeedback,
       bool isSubmittingFeedback,
       StationKind? selectedStation,
+      Set<AccessMode> selectedAccessModes,
       String? locationText,
       String comment});
 
@@ -117,6 +122,7 @@ class _$RepeaterDetailStateCopyWithImpl<$Res>
     Object? isLoadingFeedback = null,
     Object? isSubmittingFeedback = null,
     Object? selectedStation = freezed,
+    Object? selectedAccessModes = null,
     Object? locationText = freezed,
     Object? comment = null,
   }) {
@@ -149,6 +155,10 @@ class _$RepeaterDetailStateCopyWithImpl<$Res>
           ? _self.selectedStation
           : selectedStation // ignore: cast_nullable_to_non_nullable
               as StationKind?,
+      selectedAccessModes: null == selectedAccessModes
+          ? _self.selectedAccessModes
+          : selectedAccessModes // ignore: cast_nullable_to_non_nullable
+              as Set<AccessMode>,
       locationText: freezed == locationText
           ? _self.locationText
           : locationText // ignore: cast_nullable_to_non_nullable
@@ -300,6 +310,7 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
             bool isLoadingFeedback,
             bool isSubmittingFeedback,
             StationKind? selectedStation,
+            Set<AccessMode> selectedAccessModes,
             String? locationText,
             String comment)?
         $default, {
@@ -316,6 +327,7 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
             _that.isLoadingFeedback,
             _that.isSubmittingFeedback,
             _that.selectedStation,
+            _that.selectedAccessModes,
             _that.locationText,
             _that.comment);
       case _:
@@ -346,6 +358,7 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
             bool isLoadingFeedback,
             bool isSubmittingFeedback,
             StationKind? selectedStation,
+            Set<AccessMode> selectedAccessModes,
             String? locationText,
             String comment)
         $default,
@@ -361,6 +374,7 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
             _that.isLoadingFeedback,
             _that.isSubmittingFeedback,
             _that.selectedStation,
+            _that.selectedAccessModes,
             _that.locationText,
             _that.comment);
       case _:
@@ -390,6 +404,7 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
             bool isLoadingFeedback,
             bool isSubmittingFeedback,
             StationKind? selectedStation,
+            Set<AccessMode> selectedAccessModes,
             String? locationText,
             String comment)?
         $default,
@@ -405,6 +420,7 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
             _that.isLoadingFeedback,
             _that.isSubmittingFeedback,
             _that.selectedStation,
+            _that.selectedAccessModes,
             _that.locationText,
             _that.comment);
       case _:
@@ -424,9 +440,11 @@ class _RepeaterDetailState implements RepeaterDetailState {
       this.isLoadingFeedback = false,
       this.isSubmittingFeedback = false,
       this.selectedStation,
+      final Set<AccessMode> selectedAccessModes = const {},
       this.locationText,
       this.comment = ''})
-      : _communityFeedbacks = communityFeedbacks;
+      : _communityFeedbacks = communityFeedbacks,
+        _selectedAccessModes = selectedAccessModes;
 
   @override
   final Repeater repeater;
@@ -452,6 +470,16 @@ class _RepeaterDetailState implements RepeaterDetailState {
   final bool isSubmittingFeedback;
   @override
   final StationKind? selectedStation;
+  final Set<AccessMode> _selectedAccessModes;
+  @override
+  @JsonKey()
+  Set<AccessMode> get selectedAccessModes {
+    if (_selectedAccessModes is EqualUnmodifiableSetView)
+      return _selectedAccessModes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_selectedAccessModes);
+  }
+
   @override
   final String? locationText;
   @override
@@ -486,6 +514,8 @@ class _RepeaterDetailState implements RepeaterDetailState {
                 other.isSubmittingFeedback == isSubmittingFeedback) &&
             (identical(other.selectedStation, selectedStation) ||
                 other.selectedStation == selectedStation) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedAccessModes, _selectedAccessModes) &&
             (identical(other.locationText, locationText) ||
                 other.locationText == locationText) &&
             (identical(other.comment, comment) || other.comment == comment));
@@ -501,12 +531,13 @@ class _RepeaterDetailState implements RepeaterDetailState {
       isLoadingFeedback,
       isSubmittingFeedback,
       selectedStation,
+      const DeepCollectionEquality().hash(_selectedAccessModes),
       locationText,
       comment);
 
   @override
   String toString() {
-    return 'RepeaterDetailState(repeater: $repeater, feedbackStats: $feedbackStats, myFeedback: $myFeedback, communityFeedbacks: $communityFeedbacks, isLoadingFeedback: $isLoadingFeedback, isSubmittingFeedback: $isSubmittingFeedback, selectedStation: $selectedStation, locationText: $locationText, comment: $comment)';
+    return 'RepeaterDetailState(repeater: $repeater, feedbackStats: $feedbackStats, myFeedback: $myFeedback, communityFeedbacks: $communityFeedbacks, isLoadingFeedback: $isLoadingFeedback, isSubmittingFeedback: $isSubmittingFeedback, selectedStation: $selectedStation, selectedAccessModes: $selectedAccessModes, locationText: $locationText, comment: $comment)';
   }
 }
 
@@ -526,6 +557,7 @@ abstract mixin class _$RepeaterDetailStateCopyWith<$Res>
       bool isLoadingFeedback,
       bool isSubmittingFeedback,
       StationKind? selectedStation,
+      Set<AccessMode> selectedAccessModes,
       String? locationText,
       String comment});
 
@@ -557,6 +589,7 @@ class __$RepeaterDetailStateCopyWithImpl<$Res>
     Object? isLoadingFeedback = null,
     Object? isSubmittingFeedback = null,
     Object? selectedStation = freezed,
+    Object? selectedAccessModes = null,
     Object? locationText = freezed,
     Object? comment = null,
   }) {
@@ -589,6 +622,10 @@ class __$RepeaterDetailStateCopyWithImpl<$Res>
           ? _self.selectedStation
           : selectedStation // ignore: cast_nullable_to_non_nullable
               as StationKind?,
+      selectedAccessModes: null == selectedAccessModes
+          ? _self._selectedAccessModes
+          : selectedAccessModes // ignore: cast_nullable_to_non_nullable
+              as Set<AccessMode>,
       locationText: freezed == locationText
           ? _self.locationText
           : locationText // ignore: cast_nullable_to_non_nullable

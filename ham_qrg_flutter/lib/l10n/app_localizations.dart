@@ -1012,6 +1012,12 @@ abstract class AppLocalizations {
   /// **'Attrezzatura *'**
   String get repeaterDetailEquipmentRequired;
 
+  /// No description provided for @repeaterDetailAccessModes.
+  ///
+  /// In it, this message translates to:
+  /// **'Modalità di accesso'**
+  String get repeaterDetailAccessModes;
+
   /// No description provided for @repeaterDetailLocationField.
   ///
   /// In it, this message translates to:
@@ -1107,6 +1113,24 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Segnalazione'**
   String get repeaterDetailReportLabel;
+
+  /// No description provided for @favorite.
+  ///
+  /// In it, this message translates to:
+  /// **'Preferito'**
+  String get favorite;
+
+  /// No description provided for @accessConfiguration.
+  ///
+  /// In it, this message translates to:
+  /// **'Configurazione accesso'**
+  String get accessConfiguration;
+
+  /// No description provided for @noAccessConfiguration.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuna configurazione disponibile'**
+  String get noAccessConfiguration;
 }
 
 class _AppLocalizationsDelegate

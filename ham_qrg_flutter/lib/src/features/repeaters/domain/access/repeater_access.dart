@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/network/network.dart';
 
 part 'repeater_access.freezed.dart';
 
@@ -13,6 +14,7 @@ abstract class RepeaterAccess with _$RepeaterAccess {
     required DateTime createdAt,
     required DateTime updatedAt,
     String? networkId,
+    Network? network,
     double? ctcssTxHz,
     double? ctcssRxHz,
     int? dcsCode,

@@ -501,6 +501,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterDetailEquipmentRequired => 'Attrezzatura *';
 
   @override
+  String get repeaterDetailAccessModes => 'Modalità di accesso';
+
+  @override
   String get repeaterDetailLocationField => 'Luogo';
 
   @override
@@ -550,4 +553,13 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get repeaterDetailReportLabel => 'Segnalazione';
+
+  @override
+  String get favorite => 'Preferito';
+
+  @override
+  String get accessConfiguration => 'Configurazione accesso';
+
+  @override
+  String get noAccessConfiguration => 'Nessuna configurazione disponibile';
 }

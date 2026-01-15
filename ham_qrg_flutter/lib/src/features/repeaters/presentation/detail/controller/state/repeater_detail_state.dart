@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
@@ -16,6 +17,7 @@ abstract class RepeaterDetailState with _$RepeaterDetailState {
     @Default(false) bool isLoadingFeedback,
     @Default(false) bool isSubmittingFeedback,
     StationKind? selectedStation,
+    @Default({}) Set<AccessMode> selectedAccessModes,
     String? locationText,
     @Default('') String comment,
   }) = _RepeaterDetailState;
