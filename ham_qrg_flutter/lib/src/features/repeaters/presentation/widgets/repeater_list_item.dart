@@ -142,25 +142,6 @@ class RepeaterListItem extends StatelessWidget {
   }
 
   void _showRepeaterDetails(BuildContext context, Repeater repeater) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => DraggableScrollableSheet(
-        initialChildSize: 0.6,
-        minChildSize: 0.5,
-        maxChildSize: 0.95,
-        builder: (context, scrollController) => Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-          ),
-          child: RepeaterDetailsSheet(
-            repeater: repeater,
-            scrollController: scrollController,
-          ),
-        ),
-      ),
-    );
+    showRepeaterDetailsSheet(context, repeater);
   }
 }

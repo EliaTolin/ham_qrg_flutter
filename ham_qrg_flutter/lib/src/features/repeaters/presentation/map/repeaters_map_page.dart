@@ -115,13 +115,13 @@ class RepeatersMapPage extends HookConsumerWidget {
             userLocation.value,
           ),
 
-          // Repeater details sheet (draggable)
-          if (mapState?.selectedRepeater != null)
-            _buildRepeaterDetailsSheet(
-              context,
-              mapState!.selectedRepeater!,
-              notifier,
-            ),
+          // // Repeater details sheet (draggable)
+          // if (mapState?.selectedRepeater != null)
+          //   _buildRepeaterDetailsSheet(
+          //     context,
+          //     mapState!.selectedRepeater!,
+          //     notifier,
+          //   ),
         ],
       ),
     );
@@ -174,8 +174,8 @@ class RepeatersMapPage extends HookConsumerWidget {
               final repeater = currentState.repeaters.firstWhere(
                 (r) => r.id == repeaterId,
               );
-              // Select repeater instead of showing modal
-              ref.read(repeatersMapControllerProvider.notifier).selectRepeater(repeater);
+              // Show repeater details sheet
+              showRepeaterDetailsSheet(context, repeater);
             } catch (e) {
               // Repeater not found, ignore
             }
@@ -386,92 +386,91 @@ class RepeatersMapPage extends HookConsumerWidget {
     );
   }
 
-  /// Build draggable repeater details sheet
-  Widget _buildRepeaterDetailsSheet(
-    BuildContext context,
-    Repeater repeater,
-    RepeatersMapController notifier,
-  ) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+  // /// Build draggable repeater details sheet
+  // Widget _buildRepeaterDetailsSheet(
+  //   BuildContext context,
+  //   Repeater repeater,
+  //   RepeatersMapController notifier,
+  // ) {
+  //   final theme = Theme.of(context);
+  //   final colorScheme = theme.colorScheme;
 
-    return NotificationListener<DraggableScrollableNotification>(
-      onNotification: (notification) {
-        // Close sheet when dragged below threshold
-        if (notification.extent <= 0.2) {
-          notifier.clearSelectedRepeater();
-        }
-        return false;
-      },
-      child: DraggableScrollableSheet(
-        initialChildSize: 0.65,
-        minChildSize: 0.15,
-        maxChildSize: 0.95,
-        builder: (context, scrollController) {
-          return Container(
-            decoration: BoxDecoration(
-              color: theme.scaffoldBackgroundColor,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-              boxShadow: [
-                BoxShadow(
-                  color: colorScheme.shadow.withValues(alpha: 0.3),
-                  blurRadius: 30,
-                  offset: const Offset(0, -8),
-                ),
-              ],
-              border: Border(
-                top: BorderSide(
-                  color: colorScheme.outline,
-                ),
-              ),
-            ),
-            child: Column(
-              children: [
-                // Handle bar - tap to close
-                GestureDetector(
-                  onTap: () => notifier.clearSelectedRepeater(),
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 12, bottom: 4),
-                    width: 48,
-                    height: 6,
-                    decoration: BoxDecoration(
-                      color: colorScheme.outlineVariant,
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                  ),
-                ),
-                // Repeater details
-                Expanded(
-                  child: RepeaterDetailsSheet(
-                    repeater: repeater,
-                    scrollController: scrollController,
-                    onClose: () => notifier.clearSelectedRepeater(),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-    );
-  }
+  //   return NotificationListener<DraggableScrollableNotification>(
+  //     onNotification: (notification) {
+  //       // Close sheet when dragged below threshold
+  //       if (notification.extent <= 0.2) {
+  //         notifier.clearSelectedRepeater();
+  //       }
+  //       return false;
+  //     },
+  //     child: DraggableScrollableSheet(
+  //       initialChildSize: 0.65,
+  //       minChildSize: 0.15,
+  //       maxChildSize: 0.95,
+  //       builder: (context, scrollController) {
+  //         return Container(
+  //           decoration: BoxDecoration(
+  //             color: theme.scaffoldBackgroundColor,
+  //             borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+  //             boxShadow: [
+  //               BoxShadow(
+  //                 color: colorScheme.shadow.withValues(alpha: 0.3),
+  //                 blurRadius: 30,
+  //                 offset: const Offset(0, -8),
+  //               ),
+  //             ],
+  //             border: Border(
+  //               top: BorderSide(
+  //                 color: colorScheme.outline,
+  //               ),
+  //             ),
+  //           ),
+  //           child: Column(
+  //             children: [
+  //               // Handle bar - tap to close
+  //               GestureDetector(
+  //                 onTap: () => notifier.clearSelectedRepeater(),
+  //                 child: Container(
+  //                   margin: const EdgeInsets.only(top: 12, bottom: 4),
+  //                   width: 48,
+  //                   height: 6,
+  //                   decoration: BoxDecoration(
+  //                     color: colorScheme.outlineVariant,
+  //                     borderRadius: BorderRadius.circular(3),
+  //                   ),
+  //                 ),
+  //               ),
+  //               // Repeater details
+  //               Expanded(
+  //                 child: RepeaterDetailsSheet(
+  //                   repeater: repeater,
+  //                   scrollController: scrollController,
+  //                   onClose: () => notifier.clearSelectedRepeater(),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+}
 
-  Future<({double lat1, double lon1, double lat2, double lon2})> _getVisibleBounds(
-    MapboxMap map,
-  ) async {
-    final bounds = await map.coordinateBoundsForCamera(
-      CameraOptions(
-        center: await map.getCameraState().then((s) => s.center),
-        zoom: await map.getCameraState().then((s) => s.zoom),
-      ),
-    );
-    final sw = bounds.southwest.coordinates;
-    final ne = bounds.northeast.coordinates;
-    return (
-      lat1: sw[1]!.toDouble(),
-      lon1: sw[0]!.toDouble(),
-      lat2: ne[1]!.toDouble(),
-      lon2: ne[0]!.toDouble()
-    );
-  }
+Future<({double lat1, double lon1, double lat2, double lon2})> _getVisibleBounds(
+  MapboxMap map,
+) async {
+  final bounds = await map.coordinateBoundsForCamera(
+    CameraOptions(
+      center: await map.getCameraState().then((s) => s.center),
+      zoom: await map.getCameraState().then((s) => s.zoom),
+    ),
+  );
+  final sw = bounds.southwest.coordinates;
+  final ne = bounds.northeast.coordinates;
+  return (
+    lat1: sw[1]!.toDouble(),
+    lon1: sw[0]!.toDouble(),
+    lat2: ne[1]!.toDouble(),
+    lon2: ne[0]!.toDouble()
+  );
 }

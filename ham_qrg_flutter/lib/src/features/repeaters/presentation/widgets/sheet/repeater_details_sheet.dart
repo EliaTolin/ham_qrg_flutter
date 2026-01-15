@@ -13,17 +13,38 @@ import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedback_st
 import 'package:ham_qrg/src/features/repeaters/provider/remove_favorite_repeater/remove_favorite_repeater_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RepeaterDetailsSheet extends ConsumerWidget {
-  const RepeaterDetailsSheet({
+Future<void> showRepeaterDetailsSheet(BuildContext context, Repeater repeater) async {
+  await showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    useSafeArea: true,
+    builder: (context) => DraggableScrollableSheet(
+      initialChildSize: 0.6,
+      minChildSize: 0.3,
+      maxChildSize: 0.95,
+      builder: (context, scrollController) => Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: _RepeaterDetailsSheet(
+          repeater: repeater,
+          scrollController: scrollController,
+        ),
+      ),
+    ),
+  );
+}
+
+class _RepeaterDetailsSheet extends ConsumerWidget {
+  const _RepeaterDetailsSheet({
     required this.repeater,
     this.scrollController,
-    this.onClose,
-    super.key,
   });
 
   final Repeater repeater;
   final ScrollController? scrollController;
-  final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -254,7 +275,6 @@ class RepeaterDetailsSheet extends ConsumerWidget {
             height: 48,
             child: FilledButton.icon(
               onPressed: () {
-                onClose?.call();
                 context.router.push(
                   RepeaterDetailRoute(
                     repeaterId: repeater.id,

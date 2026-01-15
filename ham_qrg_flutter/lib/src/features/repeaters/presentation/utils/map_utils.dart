@@ -25,12 +25,5 @@ Future<void> moveCameraToLocation(
 
 /// Show repeater details in a bottom sheet
 void showRepeaterDetails(BuildContext context, Repeater repeater) {
-  showModalBottomSheet(
-    context: context,
-    builder: (context) => RepeaterDetailsSheet(repeater: repeater),
-    isScrollControlled: true,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    ),
-  );
+  showRepeaterDetailsSheet(context, repeater);
 }
