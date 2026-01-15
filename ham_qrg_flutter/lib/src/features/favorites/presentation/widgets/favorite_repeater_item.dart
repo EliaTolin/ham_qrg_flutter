@@ -27,18 +27,13 @@ class FavoriteRepeaterItem extends StatelessWidget {
     final l10n = context.localization;
 
     // Get primary access mode for icon color
-    final primaryAccessMode = repeater.accesses.isNotEmpty
-        ? repeater.accesses.first.mode
-        : AccessMode.analog;
+    final primaryAccessMode =
+        repeater.accesses.isNotEmpty ? repeater.accesses.first.mode : AccessMode.analog;
     final iconColor = AccessModeHelper.getAccessModeColorObject(primaryAccessMode);
     final iconData = AccessModeHelper.getAccessModeIcon(primaryAccessMode);
 
     final likesTotal = feedbackStats?.likesTotal ?? 0;
     final downTotal = feedbackStats?.downTotal ?? 0;
-
-    // TO-DO: Get repeater status (Active/Idle) from repeater model
-    // For now, we'll assume active if there are recent likes
-    final isActive = likesTotal > 0 || downTotal == 0;
 
     return GestureDetector(
       onTap: () {
@@ -106,42 +101,12 @@ class FavoriteRepeaterItem extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Callsign with badge
-                            Row(
-                              children: [
-                                Text(
-                                  repeater.callsign ?? repeater.name ?? 'Unknown',
-                                  style: theme.textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: colorScheme.onSurface,
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                // Status badge
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 6,
-                                    vertical: 2,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: isActive
-                                        ? Colors.green.withValues(alpha: 0.1)
-                                        : Colors.grey.withValues(alpha: 0.1),
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: Text(
-                                    isActive ? 'Active' : 'Idle',
-                                    style: theme.textTheme.labelSmall?.copyWith(
-                                      color: isActive
-                                          ? Colors.green
-                                          : Colors.grey,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                      letterSpacing: 0.5,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              repeater.callsign ?? repeater.name ?? 'Unknown',
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: colorScheme.onSurface,
+                              ),
                             ),
                             // Location
                             if (repeater.locality != null || repeater.region != null) ...[

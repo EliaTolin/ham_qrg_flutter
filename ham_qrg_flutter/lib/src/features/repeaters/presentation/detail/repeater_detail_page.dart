@@ -985,57 +985,86 @@ class _AccessModeCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return Row(
+      spacing: 8,
       children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'CTCSS/DCS',
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.5,
-                  fontSize: 10,
+        // CTCSS Tx
+        if (access.ctcssTxHz != null) ...[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'CTCSS Tx',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                    fontSize: 10,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                access.ctcssTxHz != null
-                    ? '${access.ctcssTxHz!.toStringAsFixed(1)} Hz'
-                    : access.dcsCode != null
-                        ? 'DCS ${access.dcsCode}'
-                        : '-',
-                style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 4),
+                Text(
+                  access.ctcssTxHz!.toStringAsFixed(1),
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'SQL (RX)',
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.5,
-                  fontSize: 10,
+        ],
+        // CTCSS Rx
+        if (access.ctcssRxHz != null) ...[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'CTCSS Rx',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                    fontSize: 10,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                access.ctcssRxHz != null ? '${access.ctcssRxHz!.toStringAsFixed(1)} Hz' : '-',
-                style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 4),
+                Text(
+                  access.ctcssRxHz!.toStringAsFixed(1),
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
+        // DCS
+        if (access.dcsCode != null) ...[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'DCS',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                    fontSize: 10,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  access.dcsCode.toString(),
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ],
     );
   }
