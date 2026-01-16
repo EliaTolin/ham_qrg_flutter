@@ -538,11 +538,41 @@ abstract class AppLocalizations {
   /// **'Entra nella community Telegram'**
   String get profileJoinTelegramCommunity;
 
+  /// No description provided for @profileWelcomeTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Benvenuto su HamQRG'**
+  String get profileWelcomeTitle;
+
+  /// No description provided for @profileWelcomeDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Unisciti alla nostra community di radioamatori in Italia.'**
+  String get profileWelcomeDescription;
+
+  /// No description provided for @profileSectionCommunity.
+  ///
+  /// In it, this message translates to:
+  /// **'Community'**
+  String get profileSectionCommunity;
+
+  /// No description provided for @profileSectionSupport.
+  ///
+  /// In it, this message translates to:
+  /// **'Support'**
+  String get profileSectionSupport;
+
   /// No description provided for @profileVersion.
   ///
   /// In it, this message translates to:
   /// **'Versione: {version}+{buildNumber}'**
   String profileVersion(String version, String buildNumber);
+
+  /// No description provided for @profileVersionFormat.
+  ///
+  /// In it, this message translates to:
+  /// **'Version {version} (Build {buildNumber})'**
+  String profileVersionFormat(String version, String buildNumber);
 
   /// No description provided for @profileError.
   ///

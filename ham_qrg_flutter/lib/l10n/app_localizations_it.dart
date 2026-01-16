@@ -245,8 +245,26 @@ class AppLocalizationsIt extends AppLocalizations {
   String get profileJoinTelegramCommunity => 'Entra nella community Telegram';
 
   @override
+  String get profileWelcomeTitle => 'Benvenuto su HamQRG';
+
+  @override
+  String get profileWelcomeDescription =>
+      'Unisciti alla nostra community di radioamatori in Italia.';
+
+  @override
+  String get profileSectionCommunity => 'Community';
+
+  @override
+  String get profileSectionSupport => 'Support';
+
+  @override
   String profileVersion(String version, String buildNumber) {
     return 'Versione: $version+$buildNumber';
+  }
+
+  @override
+  String profileVersionFormat(String version, String buildNumber) {
+    return 'Version $version (Build $buildNumber)';
   }
 
   @override

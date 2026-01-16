@@ -87,8 +87,23 @@
   "profileSignUpOrLogin": "Registrati o Accedi",
   "profileErrorOpeningEmail": "Errore durante l'apertura della mail",
   "profileJoinTelegramCommunity": "Entra nella community Telegram",
+  "profileWelcomeTitle": "Benvenuto su HamQRG",
+  "profileWelcomeDescription": "Unisciti alla nostra community di radioamatori in Italia.",
+  "profileSectionCommunity": "Community",
+  "profileSectionSupport": "Support",
   "profileVersion": "Versione: {version}+{buildNumber}",
   "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Version {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
     "placeholders": {
       "version": {
         "type": "String"
