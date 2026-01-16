@@ -5,6 +5,7 @@ import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/widgets/icons/repeater_icon.dart';
 import 'package:ham_qrg/common/widgets/profile/profile_chip.dart';
 import 'package:ham_qrg/router/app_router.dart';
+import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:ham_qrg/src/features/dashboard/controller/dashboard_controller.dart';
 import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:ham_qrg/src/features/dashboard/widget/map_section_widget.dart';
@@ -154,13 +155,13 @@ class _ContentSection extends StatelessWidget {
   }
 }
 
-class _QuickAccessSection extends StatelessWidget {
+class _QuickAccessSection extends ConsumerWidget {
   const _QuickAccessSection({required this.statistics});
 
   final DashboardStatistics statistics;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
@@ -206,8 +207,10 @@ class _QuickAccessSection extends StatelessWidget {
                   iconColor: Colors.amber,
                   title: l10n.homeMyFavorites,
                   subtitle: l10n.homeSaved(statistics.favoritesCount ?? 0),
-                  onTap: () {
-                    context.router.push(const FavoritesRoute());
+                  onTap: () async {
+                    final isAuthenticated = await requireAuthentication(context, ref);
+                    if (!isAuthenticated || !context.mounted) return;
+                    await context.router.push(const FavoritesRoute());
                   },
                 ),
               ),

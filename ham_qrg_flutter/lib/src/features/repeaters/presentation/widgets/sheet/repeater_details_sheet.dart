@@ -5,6 +5,7 @@ import 'package:ham_qrg/common/utils/access_mode_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/router/app_router.dart';
+import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/add_favorite_repeater/add_favorite_repeater_provider.dart';
@@ -172,6 +173,10 @@ class _RepeaterDetailsSheet extends ConsumerWidget {
                   isFavorite: isFavorite,
                   label: l10n.favorite,
                   onTap: () async {
+                    // Check authentication before allowing favorite action
+                    final isAuthenticated = await requireAuthentication(context, ref);
+                    if (!isAuthenticated) return;
+
                     if (isFavorite) {
                       await ref.read(removeFavoriteRepeaterProvider(repeater.id).future);
                     } else {

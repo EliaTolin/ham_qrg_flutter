@@ -1161,6 +1161,72 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Devi essere entro {distance} km dal ripetitore per inviare un feedback.'**
   String repeaterDetailDistanceWarning(int distance);
+
+  /// No description provided for @registrationPromptTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Sblocca tutto il potenziale'**
+  String get registrationPromptTitle;
+
+  /// No description provided for @registrationPromptDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Unisciti alla community italiana dei radioamatori e porta la tua esperienza al livello successivo.'**
+  String get registrationPromptDescription;
+
+  /// No description provided for @registrationBenefitInteractTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Interagisci'**
+  String get registrationBenefitInteractTitle;
+
+  /// No description provided for @registrationBenefitInteractDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Valuta i ripetitori e lascia commenti per gli altri.'**
+  String get registrationBenefitInteractDescription;
+
+  /// No description provided for @registrationBenefitFavoritesTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Preferiti'**
+  String get registrationBenefitFavoritesTitle;
+
+  /// No description provided for @registrationBenefitFavoritesDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Salva le tue frequenze e ripetitori più usati.'**
+  String get registrationBenefitFavoritesDescription;
+
+  /// No description provided for @registrationBenefitLogbookTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Logbook'**
+  String get registrationBenefitLogbookTitle;
+
+  /// No description provided for @registrationBenefitLogbookDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Tieni traccia dei tuoi QSO e mantieni uno storico personale.'**
+  String get registrationBenefitLogbookDescription;
+
+  /// No description provided for @registrationSignInApple.
+  ///
+  /// In it, this message translates to:
+  /// **'Accedi con Apple'**
+  String get registrationSignInApple;
+
+  /// No description provided for @registrationSignInGoogle.
+  ///
+  /// In it, this message translates to:
+  /// **'Accedi con Google'**
+  String get registrationSignInGoogle;
+
+  /// No description provided for @registrationPromptFooter.
+  ///
+  /// In it, this message translates to:
+  /// **'Registrazione gratuita. Nessuna licenza richiesta per consultare i dati pubblici.'**
+  String get registrationPromptFooter;
 }
 
 class _AppLocalizationsDelegate

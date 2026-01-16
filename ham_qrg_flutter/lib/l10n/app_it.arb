@@ -259,5 +259,16 @@
         "type": "int"
       }
     }
-  }
+  },
+  "registrationPromptTitle": "Sblocca tutto il potenziale",
+  "registrationPromptDescription": "Unisciti alla community italiana dei radioamatori e porta la tua esperienza al livello successivo.",
+  "registrationBenefitInteractTitle": "Interagisci",
+  "registrationBenefitInteractDescription": "Valuta i ripetitori e lascia commenti per gli altri.",
+  "registrationBenefitFavoritesTitle": "Preferiti",
+  "registrationBenefitFavoritesDescription": "Salva le tue frequenze e ripetitori più usati.",
+  "registrationBenefitLogbookTitle": "Logbook",
+  "registrationBenefitLogbookDescription": "Tieni traccia dei tuoi QSO e mantieni uno storico personale.",
+  "registrationSignInApple": "Accedi con Apple",
+  "registrationSignInGoogle": "Accedi con Google",
+  "registrationPromptFooter": "Registrazione gratuita. Nessuna licenza richiesta per consultare i dati pubblici."
 }

@@ -10,6 +10,7 @@ import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/common/utils/time_helper.dart';
 import 'package:ham_qrg/config/app_configs.dart';
 import 'package:ham_qrg/l10n/app_localizations.dart';
+import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
@@ -259,26 +260,27 @@ class _RepeaterHeader extends StatelessWidget {
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
                           const SizedBox(width: 4),
-                          Text(
-                            [
-                              repeater.locality,
-                              repeater.region,
-                            ].whereType<String>().join(', '),
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                          if (repeater.locator != null) ...[
-                            const SizedBox(width: 8),
-                            Text(
-                              '(${repeater.locator})',
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
+                          Flexible(
+                            child: Text(
+                              [
+                                repeater.locality,
+                                repeater.region,
+                              ].whereType<String>().join(', '),
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
                               ),
                             ),
-                          ],
+                          ),
                         ],
                       ),
+                      if (repeater.locator != null) ...[
+                        Text(
+                          '(${repeater.locator})',
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
+                          ),
+                        ),
+                      ],
                     ],
                   ),
                 ),
@@ -1739,7 +1741,7 @@ class _MyFeedbackCard extends StatelessWidget {
   }
 }
 
-class _FeedbackFormCard extends StatelessWidget {
+class _FeedbackFormCard extends ConsumerWidget {
   const _FeedbackFormCard({
     required this.state,
     required this.availableAccesses,
@@ -1755,7 +1757,7 @@ class _FeedbackFormCard extends StatelessWidget {
   final RepeaterDetailController controller;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -1943,9 +1945,8 @@ class _FeedbackFormCard extends StatelessWidget {
                             : colorScheme.surfaceContainerHighest,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: isSelected
-                              ? accessColor
-                              : colorScheme.outline.withValues(alpha: 0.2),
+                          color:
+                              isSelected ? accessColor : colorScheme.outline.withValues(alpha: 0.2),
                           width: isSelected ? 2 : 1,
                         ),
                       ),
@@ -2088,7 +2089,12 @@ class _FeedbackFormCard extends StatelessWidget {
               Expanded(
                 child: FilledButton.icon(
                   onPressed: canSubmit
-                      ? () => controller.submitFeedback(type: FeedbackType.like)
+                      ? () async {
+                          final isAuthenticated =
+                              await requireAuthentication(context, ref);
+                          if (!isAuthenticated) return;
+                          await controller.submitFeedback(type: FeedbackType.like);
+                        }
                       : null,
                   icon: state.isSubmittingFeedback
                       ? const SizedBox(
@@ -2115,7 +2121,12 @@ class _FeedbackFormCard extends StatelessWidget {
               Expanded(
                 child: FilledButton.icon(
                   onPressed: canSubmit
-                      ? () => controller.submitFeedback(type: FeedbackType.down)
+                      ? () async {
+                          final isAuthenticated =
+                              await requireAuthentication(context, ref);
+                          if (!isAuthenticated) return;
+                          await controller.submitFeedback(type: FeedbackType.down);
+                        }
                       : null,
                   icon: state.isSubmittingFeedback
                       ? const SizedBox(

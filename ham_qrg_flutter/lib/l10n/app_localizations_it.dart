@@ -579,4 +579,42 @@ class AppLocalizationsIt extends AppLocalizations {
   String repeaterDetailDistanceWarning(int distance) {
     return 'Devi essere entro $distance km dal ripetitore per inviare un feedback.';
   }
+
+  @override
+  String get registrationPromptTitle => 'Sblocca tutto il potenziale';
+
+  @override
+  String get registrationPromptDescription =>
+      'Unisciti alla community italiana dei radioamatori e porta la tua esperienza al livello successivo.';
+
+  @override
+  String get registrationBenefitInteractTitle => 'Interagisci';
+
+  @override
+  String get registrationBenefitInteractDescription =>
+      'Valuta i ripetitori e lascia commenti per gli altri.';
+
+  @override
+  String get registrationBenefitFavoritesTitle => 'Preferiti';
+
+  @override
+  String get registrationBenefitFavoritesDescription =>
+      'Salva le tue frequenze e ripetitori più usati.';
+
+  @override
+  String get registrationBenefitLogbookTitle => 'Logbook';
+
+  @override
+  String get registrationBenefitLogbookDescription =>
+      'Tieni traccia dei tuoi QSO e mantieni uno storico personale.';
+
+  @override
+  String get registrationSignInApple => 'Accedi con Apple';
+
+  @override
+  String get registrationSignInGoogle => 'Accedi con Google';
+
+  @override
+  String get registrationPromptFooter =>
+      'Registrazione gratuita. Nessuna licenza richiesta per consultare i dati pubblici.';
 }
