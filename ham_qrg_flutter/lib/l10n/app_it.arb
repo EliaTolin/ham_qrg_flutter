@@ -247,5 +247,17 @@
   "repeaterDetailReportLabel": "Segnalazione",
   "favorite": "Preferito",
   "accessConfiguration": "Configurazione accesso",
-  "noAccessConfiguration": "Nessuna configurazione disponibile"
+  "noAccessConfiguration": "Nessuna configurazione disponibile",
+  "repeaterDetailAddFeedback": "Aggiungi feedback",
+  "repeaterDetailOthersReports": "Segnalazioni altri utenti",
+  "repeaterDetailRemove": "Rimuovi",
+  "repeaterDetailSelectAccess": "Seleziona accesso",
+  "repeaterDetailDistanceWarning": "Devi essere entro {distance} km dal ripetitore per inviare un feedback.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  }
 }

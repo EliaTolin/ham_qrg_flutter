@@ -1,4 +1,6 @@
 import 'package:ham_qrg/common/abstracts/mapper.dart';
+import 'package:ham_qrg/src/features/repeaters/data/mappers/repeater_access_mapper.dart';
+import 'package:ham_qrg/src/features/repeaters/data/mappers/repeaters_mappers.dart';
 import 'package:ham_qrg/src/features/repeaters/data/model/feedback/repeater_feedback_model.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
@@ -9,7 +11,7 @@ class RepeaterFeedbackMapper implements Mapper<RepeaterFeedback, RepeaterFeedbac
   RepeaterFeedback fromModel(RepeaterFeedbackModel model) {
     return RepeaterFeedback(
       id: model.id,
-      repeaterId: model.repeaterId,
+      repeater: RepeatersMappers().fromModel(model.repeater),
       userId: model.userId,
       type: FeedbackType.values.firstWhere(
         (e) => e.name == model.type.toLowerCase(),
@@ -20,6 +22,7 @@ class RepeaterFeedbackMapper implements Mapper<RepeaterFeedback, RepeaterFeedbac
       latitude: model.lat,
       longitude: model.lon,
       comment: model.comment,
+      repeaterAccess: RepeaterAccessMapper().fromModel(model.repeaterAccess),
       createdAt: DateTime.parse(model.createdAt),
     );
   }
@@ -28,7 +31,8 @@ class RepeaterFeedbackMapper implements Mapper<RepeaterFeedback, RepeaterFeedbac
   RepeaterFeedbackModel toModel(RepeaterFeedback entity) {
     return RepeaterFeedbackModel(
       id: entity.id,
-      repeaterId: entity.repeaterId,
+      repeater: RepeatersMappers().toModel(entity.repeater),
+      repeaterAccess: RepeaterAccessMapper().toModel(entity.repeaterAccess),
       userId: entity.userId,
       type: entity.type.name,
       station: entity.station.name,

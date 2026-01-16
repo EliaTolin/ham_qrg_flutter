@@ -1,10 +1,4 @@
-- Login Google
-- Login Apple
-- CTCSS Tone
-- Pagina dettaglio ripetitore
-- Salvataggio nei preferiti ripetitore
-- Recensione ripetitore
-- Commento ripetitore
+Utenti anonimi:
 
 
 testtesttest@yopmail.com

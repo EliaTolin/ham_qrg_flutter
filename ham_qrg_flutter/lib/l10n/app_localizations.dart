@@ -1131,6 +1131,36 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Nessuna configurazione disponibile'**
   String get noAccessConfiguration;
+
+  /// No description provided for @repeaterDetailAddFeedback.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiungi feedback'**
+  String get repeaterDetailAddFeedback;
+
+  /// No description provided for @repeaterDetailOthersReports.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazioni altri utenti'**
+  String get repeaterDetailOthersReports;
+
+  /// No description provided for @repeaterDetailRemove.
+  ///
+  /// In it, this message translates to:
+  /// **'Rimuovi'**
+  String get repeaterDetailRemove;
+
+  /// No description provided for @repeaterDetailSelectAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Seleziona accesso'**
+  String get repeaterDetailSelectAccess;
+
+  /// No description provided for @repeaterDetailDistanceWarning.
+  ///
+  /// In it, this message translates to:
+  /// **'Devi essere entro {distance} km dal ripetitore per inviare un feedback.'**
+  String repeaterDetailDistanceWarning(int distance);
 }
 
 class _AppLocalizationsDelegate

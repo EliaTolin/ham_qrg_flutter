@@ -46,6 +46,7 @@ abstract interface class RepeatersDatasource {
   Future<void> addRepeaterFeedback({
     required String userId,
     required String repeaterId,
+    required String repeaterAccessId,
     required String type,
     required String station,
     required double latitude,
@@ -61,6 +62,11 @@ abstract interface class RepeatersDatasource {
   });
 
   Future<RepeaterFeedbackModel?> getMyRepeaterFeedback({
+    required String userId,
+    required String repeaterId,
+  });
+
+  Future<List<RepeaterFeedbackModel>> getMyRepeaterFeedbacks({
     required String userId,
     required String repeaterId,
   });

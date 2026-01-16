@@ -15,13 +15,14 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RepeaterFeedback {
   String get id;
-  String get repeaterId;
+  Repeater get repeater;
   String get userId;
   FeedbackType get type;
   StationKind get station;
   double get latitude;
   double get longitude;
   String get comment;
+  RepeaterAccess get repeaterAccess;
   DateTime get createdAt;
 
   /// Create a copy of RepeaterFeedback
@@ -38,8 +39,8 @@ mixin _$RepeaterFeedback {
         (other.runtimeType == runtimeType &&
             other is RepeaterFeedback &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.repeaterId, repeaterId) ||
-                other.repeaterId == repeaterId) &&
+            (identical(other.repeater, repeater) ||
+                other.repeater == repeater) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.station, station) || other.station == station) &&
@@ -48,17 +49,19 @@ mixin _$RepeaterFeedback {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.comment, comment) || other.comment == comment) &&
+            (identical(other.repeaterAccess, repeaterAccess) ||
+                other.repeaterAccess == repeaterAccess) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, repeaterId, userId, type,
-      station, latitude, longitude, comment, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, repeater, userId, type,
+      station, latitude, longitude, comment, repeaterAccess, createdAt);
 
   @override
   String toString() {
-    return 'RepeaterFeedback(id: $id, repeaterId: $repeaterId, userId: $userId, type: $type, station: $station, latitude: $latitude, longitude: $longitude, comment: $comment, createdAt: $createdAt)';
+    return 'RepeaterFeedback(id: $id, repeater: $repeater, userId: $userId, type: $type, station: $station, latitude: $latitude, longitude: $longitude, comment: $comment, repeaterAccess: $repeaterAccess, createdAt: $createdAt)';
   }
 }
 
@@ -70,14 +73,18 @@ abstract mixin class $RepeaterFeedbackCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String repeaterId,
+      Repeater repeater,
       String userId,
       FeedbackType type,
       StationKind station,
       double latitude,
       double longitude,
       String comment,
+      RepeaterAccess repeaterAccess,
       DateTime createdAt});
+
+  $RepeaterCopyWith<$Res> get repeater;
+  $RepeaterAccessCopyWith<$Res> get repeaterAccess;
 }
 
 /// @nodoc
@@ -94,13 +101,14 @@ class _$RepeaterFeedbackCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? repeaterId = null,
+    Object? repeater = null,
     Object? userId = null,
     Object? type = null,
     Object? station = null,
     Object? latitude = null,
     Object? longitude = null,
     Object? comment = null,
+    Object? repeaterAccess = null,
     Object? createdAt = null,
   }) {
     return _then(_self.copyWith(
@@ -108,10 +116,10 @@ class _$RepeaterFeedbackCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      repeaterId: null == repeaterId
-          ? _self.repeaterId
-          : repeaterId // ignore: cast_nullable_to_non_nullable
-              as String,
+      repeater: null == repeater
+          ? _self.repeater
+          : repeater // ignore: cast_nullable_to_non_nullable
+              as Repeater,
       userId: null == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -136,11 +144,35 @@ class _$RepeaterFeedbackCopyWithImpl<$Res>
           ? _self.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String,
+      repeaterAccess: null == repeaterAccess
+          ? _self.repeaterAccess
+          : repeaterAccess // ignore: cast_nullable_to_non_nullable
+              as RepeaterAccess,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
+  }
+
+  /// Create a copy of RepeaterFeedback
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterCopyWith<$Res> get repeater {
+    return $RepeaterCopyWith<$Res>(_self.repeater, (value) {
+      return _then(_self.copyWith(repeater: value));
+    });
+  }
+
+  /// Create a copy of RepeaterFeedback
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterAccessCopyWith<$Res> get repeaterAccess {
+    return $RepeaterAccessCopyWith<$Res>(_self.repeaterAccess, (value) {
+      return _then(_self.copyWith(repeaterAccess: value));
+    });
   }
 }
 
@@ -239,13 +271,14 @@ extension RepeaterFeedbackPatterns on RepeaterFeedback {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             String id,
-            String repeaterId,
+            Repeater repeater,
             String userId,
             FeedbackType type,
             StationKind station,
             double latitude,
             double longitude,
             String comment,
+            RepeaterAccess repeaterAccess,
             DateTime createdAt)?
         $default, {
     required TResult orElse(),
@@ -255,13 +288,14 @@ extension RepeaterFeedbackPatterns on RepeaterFeedback {
       case _RepeaterFeedback() when $default != null:
         return $default(
             _that.id,
-            _that.repeaterId,
+            _that.repeater,
             _that.userId,
             _that.type,
             _that.station,
             _that.latitude,
             _that.longitude,
             _that.comment,
+            _that.repeaterAccess,
             _that.createdAt);
       case _:
         return orElse();
@@ -285,13 +319,14 @@ extension RepeaterFeedbackPatterns on RepeaterFeedback {
   TResult when<TResult extends Object?>(
     TResult Function(
             String id,
-            String repeaterId,
+            Repeater repeater,
             String userId,
             FeedbackType type,
             StationKind station,
             double latitude,
             double longitude,
             String comment,
+            RepeaterAccess repeaterAccess,
             DateTime createdAt)
         $default,
   ) {
@@ -300,13 +335,14 @@ extension RepeaterFeedbackPatterns on RepeaterFeedback {
       case _RepeaterFeedback():
         return $default(
             _that.id,
-            _that.repeaterId,
+            _that.repeater,
             _that.userId,
             _that.type,
             _that.station,
             _that.latitude,
             _that.longitude,
             _that.comment,
+            _that.repeaterAccess,
             _that.createdAt);
       case _:
         throw StateError('Unexpected subclass');
@@ -329,13 +365,14 @@ extension RepeaterFeedbackPatterns on RepeaterFeedback {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             String id,
-            String repeaterId,
+            Repeater repeater,
             String userId,
             FeedbackType type,
             StationKind station,
             double latitude,
             double longitude,
             String comment,
+            RepeaterAccess repeaterAccess,
             DateTime createdAt)?
         $default,
   ) {
@@ -344,13 +381,14 @@ extension RepeaterFeedbackPatterns on RepeaterFeedback {
       case _RepeaterFeedback() when $default != null:
         return $default(
             _that.id,
-            _that.repeaterId,
+            _that.repeater,
             _that.userId,
             _that.type,
             _that.station,
             _that.latitude,
             _that.longitude,
             _that.comment,
+            _that.repeaterAccess,
             _that.createdAt);
       case _:
         return null;
@@ -363,19 +401,20 @@ extension RepeaterFeedbackPatterns on RepeaterFeedback {
 class _RepeaterFeedback implements RepeaterFeedback {
   const _RepeaterFeedback(
       {required this.id,
-      required this.repeaterId,
+      required this.repeater,
       required this.userId,
       required this.type,
       required this.station,
       required this.latitude,
       required this.longitude,
       required this.comment,
+      required this.repeaterAccess,
       required this.createdAt});
 
   @override
   final String id;
   @override
-  final String repeaterId;
+  final Repeater repeater;
   @override
   final String userId;
   @override
@@ -388,6 +427,8 @@ class _RepeaterFeedback implements RepeaterFeedback {
   final double longitude;
   @override
   final String comment;
+  @override
+  final RepeaterAccess repeaterAccess;
   @override
   final DateTime createdAt;
 
@@ -405,8 +446,8 @@ class _RepeaterFeedback implements RepeaterFeedback {
         (other.runtimeType == runtimeType &&
             other is _RepeaterFeedback &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.repeaterId, repeaterId) ||
-                other.repeaterId == repeaterId) &&
+            (identical(other.repeater, repeater) ||
+                other.repeater == repeater) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.station, station) || other.station == station) &&
@@ -415,17 +456,19 @@ class _RepeaterFeedback implements RepeaterFeedback {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.comment, comment) || other.comment == comment) &&
+            (identical(other.repeaterAccess, repeaterAccess) ||
+                other.repeaterAccess == repeaterAccess) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, repeaterId, userId, type,
-      station, latitude, longitude, comment, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, repeater, userId, type,
+      station, latitude, longitude, comment, repeaterAccess, createdAt);
 
   @override
   String toString() {
-    return 'RepeaterFeedback(id: $id, repeaterId: $repeaterId, userId: $userId, type: $type, station: $station, latitude: $latitude, longitude: $longitude, comment: $comment, createdAt: $createdAt)';
+    return 'RepeaterFeedback(id: $id, repeater: $repeater, userId: $userId, type: $type, station: $station, latitude: $latitude, longitude: $longitude, comment: $comment, repeaterAccess: $repeaterAccess, createdAt: $createdAt)';
   }
 }
 
@@ -439,14 +482,20 @@ abstract mixin class _$RepeaterFeedbackCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String repeaterId,
+      Repeater repeater,
       String userId,
       FeedbackType type,
       StationKind station,
       double latitude,
       double longitude,
       String comment,
+      RepeaterAccess repeaterAccess,
       DateTime createdAt});
+
+  @override
+  $RepeaterCopyWith<$Res> get repeater;
+  @override
+  $RepeaterAccessCopyWith<$Res> get repeaterAccess;
 }
 
 /// @nodoc
@@ -463,13 +512,14 @@ class __$RepeaterFeedbackCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? repeaterId = null,
+    Object? repeater = null,
     Object? userId = null,
     Object? type = null,
     Object? station = null,
     Object? latitude = null,
     Object? longitude = null,
     Object? comment = null,
+    Object? repeaterAccess = null,
     Object? createdAt = null,
   }) {
     return _then(_RepeaterFeedback(
@@ -477,10 +527,10 @@ class __$RepeaterFeedbackCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      repeaterId: null == repeaterId
-          ? _self.repeaterId
-          : repeaterId // ignore: cast_nullable_to_non_nullable
-              as String,
+      repeater: null == repeater
+          ? _self.repeater
+          : repeater // ignore: cast_nullable_to_non_nullable
+              as Repeater,
       userId: null == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -505,11 +555,35 @@ class __$RepeaterFeedbackCopyWithImpl<$Res>
           ? _self.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String,
+      repeaterAccess: null == repeaterAccess
+          ? _self.repeaterAccess
+          : repeaterAccess // ignore: cast_nullable_to_non_nullable
+              as RepeaterAccess,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
+  }
+
+  /// Create a copy of RepeaterFeedback
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterCopyWith<$Res> get repeater {
+    return $RepeaterCopyWith<$Res>(_self.repeater, (value) {
+      return _then(_self.copyWith(repeater: value));
+    });
+  }
+
+  /// Create a copy of RepeaterFeedback
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterAccessCopyWith<$Res> get repeaterAccess {
+    return $RepeaterAccessCopyWith<$Res>(_self.repeaterAccess, (value) {
+      return _then(_self.copyWith(repeaterAccess: value));
+    });
   }
 }
 

@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 part 'repeater_feedback.freezed.dart';
 
@@ -8,13 +10,14 @@ part 'repeater_feedback.freezed.dart';
 abstract class RepeaterFeedback with _$RepeaterFeedback {
   const factory RepeaterFeedback({
     required String id,
-    required String repeaterId,
+    required Repeater repeater,
     required String userId,
     required FeedbackType type,
     required StationKind station,
     required double latitude,
     required double longitude,
     required String comment,
+    required RepeaterAccess repeaterAccess,
     required DateTime createdAt,
   }) = _RepeaterFeedback;
 }

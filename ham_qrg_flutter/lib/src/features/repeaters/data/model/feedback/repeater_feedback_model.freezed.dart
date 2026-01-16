@@ -15,8 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RepeaterFeedbackModel {
   String get id;
-  @JsonKey(name: 'repeater_id')
-  String get repeaterId;
+  @JsonKey(name: 'repeater')
+  RepeaterModel get repeater;
   @JsonKey(name: 'user_id')
   String get userId;
   String get type;
@@ -24,6 +24,8 @@ mixin _$RepeaterFeedbackModel {
   double get lat;
   double get lon;
   String get comment;
+  @JsonKey(name: 'repeater_access')
+  RepeaterAccessModel get repeaterAccess;
   @JsonKey(name: 'created_at')
   String get createdAt;
 
@@ -44,26 +46,28 @@ mixin _$RepeaterFeedbackModel {
         (other.runtimeType == runtimeType &&
             other is RepeaterFeedbackModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.repeaterId, repeaterId) ||
-                other.repeaterId == repeaterId) &&
+            (identical(other.repeater, repeater) ||
+                other.repeater == repeater) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.station, station) || other.station == station) &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lon, lon) || other.lon == lon) &&
             (identical(other.comment, comment) || other.comment == comment) &&
+            (identical(other.repeaterAccess, repeaterAccess) ||
+                other.repeaterAccess == repeaterAccess) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, repeaterId, userId, type,
-      station, lat, lon, comment, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, repeater, userId, type,
+      station, lat, lon, comment, repeaterAccess, createdAt);
 
   @override
   String toString() {
-    return 'RepeaterFeedbackModel(id: $id, repeaterId: $repeaterId, userId: $userId, type: $type, station: $station, lat: $lat, lon: $lon, comment: $comment, createdAt: $createdAt)';
+    return 'RepeaterFeedbackModel(id: $id, repeater: $repeater, userId: $userId, type: $type, station: $station, lat: $lat, lon: $lon, comment: $comment, repeaterAccess: $repeaterAccess, createdAt: $createdAt)';
   }
 }
 
@@ -75,14 +79,18 @@ abstract mixin class $RepeaterFeedbackModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'repeater_id') String repeaterId,
+      @JsonKey(name: 'repeater') RepeaterModel repeater,
       @JsonKey(name: 'user_id') String userId,
       String type,
       String station,
       double lat,
       double lon,
       String comment,
+      @JsonKey(name: 'repeater_access') RepeaterAccessModel repeaterAccess,
       @JsonKey(name: 'created_at') String createdAt});
+
+  $RepeaterModelCopyWith<$Res> get repeater;
+  $RepeaterAccessModelCopyWith<$Res> get repeaterAccess;
 }
 
 /// @nodoc
@@ -99,13 +107,14 @@ class _$RepeaterFeedbackModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? repeaterId = null,
+    Object? repeater = null,
     Object? userId = null,
     Object? type = null,
     Object? station = null,
     Object? lat = null,
     Object? lon = null,
     Object? comment = null,
+    Object? repeaterAccess = null,
     Object? createdAt = null,
   }) {
     return _then(_self.copyWith(
@@ -113,10 +122,10 @@ class _$RepeaterFeedbackModelCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      repeaterId: null == repeaterId
-          ? _self.repeaterId
-          : repeaterId // ignore: cast_nullable_to_non_nullable
-              as String,
+      repeater: null == repeater
+          ? _self.repeater
+          : repeater // ignore: cast_nullable_to_non_nullable
+              as RepeaterModel,
       userId: null == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -141,11 +150,35 @@ class _$RepeaterFeedbackModelCopyWithImpl<$Res>
           ? _self.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String,
+      repeaterAccess: null == repeaterAccess
+          ? _self.repeaterAccess
+          : repeaterAccess // ignore: cast_nullable_to_non_nullable
+              as RepeaterAccessModel,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
     ));
+  }
+
+  /// Create a copy of RepeaterFeedbackModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterModelCopyWith<$Res> get repeater {
+    return $RepeaterModelCopyWith<$Res>(_self.repeater, (value) {
+      return _then(_self.copyWith(repeater: value));
+    });
+  }
+
+  /// Create a copy of RepeaterFeedbackModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterAccessModelCopyWith<$Res> get repeaterAccess {
+    return $RepeaterAccessModelCopyWith<$Res>(_self.repeaterAccess, (value) {
+      return _then(_self.copyWith(repeaterAccess: value));
+    });
   }
 }
 
@@ -244,13 +277,15 @@ extension RepeaterFeedbackModelPatterns on RepeaterFeedbackModel {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             String id,
-            @JsonKey(name: 'repeater_id') String repeaterId,
+            @JsonKey(name: 'repeater') RepeaterModel repeater,
             @JsonKey(name: 'user_id') String userId,
             String type,
             String station,
             double lat,
             double lon,
             String comment,
+            @JsonKey(name: 'repeater_access')
+            RepeaterAccessModel repeaterAccess,
             @JsonKey(name: 'created_at') String createdAt)?
         $default, {
     required TResult orElse(),
@@ -260,13 +295,14 @@ extension RepeaterFeedbackModelPatterns on RepeaterFeedbackModel {
       case _RepeaterFeedbackModel() when $default != null:
         return $default(
             _that.id,
-            _that.repeaterId,
+            _that.repeater,
             _that.userId,
             _that.type,
             _that.station,
             _that.lat,
             _that.lon,
             _that.comment,
+            _that.repeaterAccess,
             _that.createdAt);
       case _:
         return orElse();
@@ -290,13 +326,15 @@ extension RepeaterFeedbackModelPatterns on RepeaterFeedbackModel {
   TResult when<TResult extends Object?>(
     TResult Function(
             String id,
-            @JsonKey(name: 'repeater_id') String repeaterId,
+            @JsonKey(name: 'repeater') RepeaterModel repeater,
             @JsonKey(name: 'user_id') String userId,
             String type,
             String station,
             double lat,
             double lon,
             String comment,
+            @JsonKey(name: 'repeater_access')
+            RepeaterAccessModel repeaterAccess,
             @JsonKey(name: 'created_at') String createdAt)
         $default,
   ) {
@@ -305,13 +343,14 @@ extension RepeaterFeedbackModelPatterns on RepeaterFeedbackModel {
       case _RepeaterFeedbackModel():
         return $default(
             _that.id,
-            _that.repeaterId,
+            _that.repeater,
             _that.userId,
             _that.type,
             _that.station,
             _that.lat,
             _that.lon,
             _that.comment,
+            _that.repeaterAccess,
             _that.createdAt);
       case _:
         throw StateError('Unexpected subclass');
@@ -334,13 +373,15 @@ extension RepeaterFeedbackModelPatterns on RepeaterFeedbackModel {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             String id,
-            @JsonKey(name: 'repeater_id') String repeaterId,
+            @JsonKey(name: 'repeater') RepeaterModel repeater,
             @JsonKey(name: 'user_id') String userId,
             String type,
             String station,
             double lat,
             double lon,
             String comment,
+            @JsonKey(name: 'repeater_access')
+            RepeaterAccessModel repeaterAccess,
             @JsonKey(name: 'created_at') String createdAt)?
         $default,
   ) {
@@ -349,13 +390,14 @@ extension RepeaterFeedbackModelPatterns on RepeaterFeedbackModel {
       case _RepeaterFeedbackModel() when $default != null:
         return $default(
             _that.id,
-            _that.repeaterId,
+            _that.repeater,
             _that.userId,
             _that.type,
             _that.station,
             _that.lat,
             _that.lon,
             _that.comment,
+            _that.repeaterAccess,
             _that.createdAt);
       case _:
         return null;
@@ -368,13 +410,14 @@ extension RepeaterFeedbackModelPatterns on RepeaterFeedbackModel {
 class _RepeaterFeedbackModel implements RepeaterFeedbackModel {
   const _RepeaterFeedbackModel(
       {required this.id,
-      @JsonKey(name: 'repeater_id') required this.repeaterId,
+      @JsonKey(name: 'repeater') required this.repeater,
       @JsonKey(name: 'user_id') required this.userId,
       required this.type,
       required this.station,
       required this.lat,
       required this.lon,
       required this.comment,
+      @JsonKey(name: 'repeater_access') required this.repeaterAccess,
       @JsonKey(name: 'created_at') required this.createdAt});
   factory _RepeaterFeedbackModel.fromJson(Map<String, dynamic> json) =>
       _$RepeaterFeedbackModelFromJson(json);
@@ -382,8 +425,8 @@ class _RepeaterFeedbackModel implements RepeaterFeedbackModel {
   @override
   final String id;
   @override
-  @JsonKey(name: 'repeater_id')
-  final String repeaterId;
+  @JsonKey(name: 'repeater')
+  final RepeaterModel repeater;
   @override
   @JsonKey(name: 'user_id')
   final String userId;
@@ -397,6 +440,9 @@ class _RepeaterFeedbackModel implements RepeaterFeedbackModel {
   final double lon;
   @override
   final String comment;
+  @override
+  @JsonKey(name: 'repeater_access')
+  final RepeaterAccessModel repeaterAccess;
   @override
   @JsonKey(name: 'created_at')
   final String createdAt;
@@ -423,26 +469,28 @@ class _RepeaterFeedbackModel implements RepeaterFeedbackModel {
         (other.runtimeType == runtimeType &&
             other is _RepeaterFeedbackModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.repeaterId, repeaterId) ||
-                other.repeaterId == repeaterId) &&
+            (identical(other.repeater, repeater) ||
+                other.repeater == repeater) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.station, station) || other.station == station) &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lon, lon) || other.lon == lon) &&
             (identical(other.comment, comment) || other.comment == comment) &&
+            (identical(other.repeaterAccess, repeaterAccess) ||
+                other.repeaterAccess == repeaterAccess) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, repeaterId, userId, type,
-      station, lat, lon, comment, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, repeater, userId, type,
+      station, lat, lon, comment, repeaterAccess, createdAt);
 
   @override
   String toString() {
-    return 'RepeaterFeedbackModel(id: $id, repeaterId: $repeaterId, userId: $userId, type: $type, station: $station, lat: $lat, lon: $lon, comment: $comment, createdAt: $createdAt)';
+    return 'RepeaterFeedbackModel(id: $id, repeater: $repeater, userId: $userId, type: $type, station: $station, lat: $lat, lon: $lon, comment: $comment, repeaterAccess: $repeaterAccess, createdAt: $createdAt)';
   }
 }
 
@@ -456,14 +504,20 @@ abstract mixin class _$RepeaterFeedbackModelCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'repeater_id') String repeaterId,
+      @JsonKey(name: 'repeater') RepeaterModel repeater,
       @JsonKey(name: 'user_id') String userId,
       String type,
       String station,
       double lat,
       double lon,
       String comment,
+      @JsonKey(name: 'repeater_access') RepeaterAccessModel repeaterAccess,
       @JsonKey(name: 'created_at') String createdAt});
+
+  @override
+  $RepeaterModelCopyWith<$Res> get repeater;
+  @override
+  $RepeaterAccessModelCopyWith<$Res> get repeaterAccess;
 }
 
 /// @nodoc
@@ -480,13 +534,14 @@ class __$RepeaterFeedbackModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? repeaterId = null,
+    Object? repeater = null,
     Object? userId = null,
     Object? type = null,
     Object? station = null,
     Object? lat = null,
     Object? lon = null,
     Object? comment = null,
+    Object? repeaterAccess = null,
     Object? createdAt = null,
   }) {
     return _then(_RepeaterFeedbackModel(
@@ -494,10 +549,10 @@ class __$RepeaterFeedbackModelCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      repeaterId: null == repeaterId
-          ? _self.repeaterId
-          : repeaterId // ignore: cast_nullable_to_non_nullable
-              as String,
+      repeater: null == repeater
+          ? _self.repeater
+          : repeater // ignore: cast_nullable_to_non_nullable
+              as RepeaterModel,
       userId: null == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -522,11 +577,35 @@ class __$RepeaterFeedbackModelCopyWithImpl<$Res>
           ? _self.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String,
+      repeaterAccess: null == repeaterAccess
+          ? _self.repeaterAccess
+          : repeaterAccess // ignore: cast_nullable_to_non_nullable
+              as RepeaterAccessModel,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
     ));
+  }
+
+  /// Create a copy of RepeaterFeedbackModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterModelCopyWith<$Res> get repeater {
+    return $RepeaterModelCopyWith<$Res>(_self.repeater, (value) {
+      return _then(_self.copyWith(repeater: value));
+    });
+  }
+
+  /// Create a copy of RepeaterFeedbackModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RepeaterAccessModelCopyWith<$Res> get repeaterAccess {
+    return $RepeaterAccessModelCopyWith<$Res>(_self.repeaterAccess, (value) {
+      return _then(_self.copyWith(repeaterAccess: value));
+    });
   }
 }
 

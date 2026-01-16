@@ -562,4 +562,21 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get noAccessConfiguration => 'Nessuna configurazione disponibile';
+
+  @override
+  String get repeaterDetailAddFeedback => 'Aggiungi feedback';
+
+  @override
+  String get repeaterDetailOthersReports => 'Segnalazioni altri utenti';
+
+  @override
+  String get repeaterDetailRemove => 'Rimuovi';
+
+  @override
+  String get repeaterDetailSelectAccess => 'Seleziona accesso';
+
+  @override
+  String repeaterDetailDistanceWarning(int distance) {
+    return 'Devi essere entro $distance km dal ripetitore per inviare un feedback.';
+  }
 }

@@ -19,6 +19,7 @@ final class AddRepeaterFeedbackProvider
       {required AddRepeaterFeedbackFamily super.from,
       required ({
         String repeaterId,
+        String repeaterAccessId,
         FeedbackType type,
         StationKind station,
         double latitude,
@@ -53,6 +54,7 @@ final class AddRepeaterFeedbackProvider
   FutureOr<void> create(Ref ref) {
     final argument = this.argument as ({
       String repeaterId,
+      String repeaterAccessId,
       FeedbackType type,
       StationKind station,
       double latitude,
@@ -62,6 +64,7 @@ final class AddRepeaterFeedbackProvider
     return addRepeaterFeedback(
       ref,
       repeaterId: argument.repeaterId,
+      repeaterAccessId: argument.repeaterAccessId,
       type: argument.type,
       station: argument.station,
       latitude: argument.latitude,
@@ -82,7 +85,7 @@ final class AddRepeaterFeedbackProvider
 }
 
 String _$addRepeaterFeedbackHash() =>
-    r'e258af1b40aebf3cd404c874196b9a9960d73c6d';
+    r'77b773f3ea4bea6347d6a643cc2512fa9a8d710b';
 
 final class AddRepeaterFeedbackFamily extends $Family
     with
@@ -90,6 +93,7 @@ final class AddRepeaterFeedbackFamily extends $Family
             FutureOr<void>,
             ({
               String repeaterId,
+              String repeaterAccessId,
               FeedbackType type,
               StationKind station,
               double latitude,
@@ -107,6 +111,7 @@ final class AddRepeaterFeedbackFamily extends $Family
 
   AddRepeaterFeedbackProvider call({
     required String repeaterId,
+    required String repeaterAccessId,
     required FeedbackType type,
     required StationKind station,
     required double latitude,
@@ -115,6 +120,7 @@ final class AddRepeaterFeedbackFamily extends $Family
   }) =>
       AddRepeaterFeedbackProvider._(argument: (
         repeaterId: repeaterId,
+        repeaterAccessId: repeaterAccessId,
         type: type,
         station: station,
         latitude: latitude,

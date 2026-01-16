@@ -10,6 +10,7 @@ part 'add_repeater_feedback_provider.g.dart';
 Future<void> addRepeaterFeedback(
   Ref ref, {
   required String repeaterId,
+  required String repeaterAccessId,
   required FeedbackType type,
   required StationKind station,
   required double latitude,
@@ -24,6 +25,7 @@ Future<void> addRepeaterFeedback(
   return repository.addRepeaterFeedback(
     userId: userId,
     repeaterId: repeaterId,
+    repeaterAccessId: repeaterAccessId,
     type: type,
     station: station,
     latitude: latitude,

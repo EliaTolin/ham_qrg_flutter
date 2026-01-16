@@ -308,6 +308,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   Future<void> addRepeaterFeedback({
     required String userId,
     required String repeaterId,
+    required String repeaterAccessId,
     required String type,
     required String station,
     required double latitude,
@@ -317,6 +318,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     try {
       await _client.from('repeater_feedback').insert({
         'repeater_id': repeaterId,
+        'repeater_access_id': repeaterAccessId,
         'user_id': userId,
         'type': type,
         'station': station,
@@ -351,7 +353,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     try {
       var query = _client
           .from('repeater_feedback')
-          .select()
+          .select(
+            '*, repeater:repeaters(*, accesses:repeater_access(*, network:networks(*))), repeater_access:repeater_access_id(*, network:networks(*))',
+          )
           .eq('repeater_id', repeaterId)
           .order('created_at', ascending: false);
 
@@ -396,6 +400,34 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       );
     } catch (error, stackTrace) {
       log('Error fetching my repeater feedback: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<RepeaterFeedbackModel>> getMyRepeaterFeedbacks({
+    required String userId,
+    required String repeaterId,
+  }) async {
+    try {
+      final data = await _client
+          .from('repeater_feedback')
+          .select(
+            '*, repeater:repeaters(*, accesses:repeater_access(*, network:networks(*))), repeater_access:repeater_access_id(*, network:networks(*))',
+          )
+          .eq('repeater_id', repeaterId)
+          .eq('user_id', userId)
+          .order('created_at', ascending: false);
+
+      return (data as List)
+          .map(
+            (e) => RepeaterFeedbackModel.fromJson(
+              Map<String, dynamic>.from(e),
+            ),
+          )
+          .toList();
+    } catch (error, stackTrace) {
+      log('Error fetching my repeater feedbacks: $error', stackTrace: stackTrace);
       rethrow;
     }
   }

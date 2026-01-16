@@ -113,6 +113,7 @@ class RepeatersRepository {
   Future<void> addRepeaterFeedback({
     required String userId,
     required String repeaterId,
+    required String repeaterAccessId,
     required FeedbackType type,
     required StationKind station,
     required double latitude,
@@ -122,6 +123,7 @@ class RepeatersRepository {
     return _datasource.addRepeaterFeedback(
       userId: userId,
       repeaterId: repeaterId,
+      repeaterAccessId: repeaterAccessId,
       type: type.name,
       station: station.name,
       latitude: latitude,
@@ -157,6 +159,17 @@ class RepeatersRepository {
       return null;
     }
     return _feedbackMapper.fromModel(model);
+  }
+
+  Future<List<RepeaterFeedback>> getMyRepeaterFeedbacks({
+    required String userId,
+    required String repeaterId,
+  }) async {
+    final data = await _datasource.getMyRepeaterFeedbacks(
+      userId: userId,
+      repeaterId: repeaterId,
+    );
+    return data.map(_feedbackMapper.fromModel).toList();
   }
 }
 

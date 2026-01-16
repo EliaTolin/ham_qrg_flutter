@@ -8,6 +8,7 @@ import 'package:ham_qrg/common/utils/access_mode_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/common/utils/time_helper.dart';
+import 'package:ham_qrg/config/app_configs.dart';
 import 'package:ham_qrg/l10n/app_localizations.dart';
 import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
@@ -20,7 +21,6 @@ import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/repeater_location_map.dart';
-import 'package:ham_qrg/src/features/repeaters/service/location_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -84,20 +84,6 @@ class _RepeaterDetailContent extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorMode = RepeaterModeHelper.getModeColorObject(state.repeater.mode);
-    final locationService = ref.read(locationServiceProvider);
-
-    // Prefill location with user's current location
-    useEffect(
-      () {
-        locationService.getCurrentPosition().then((position) {
-          // TO-DO: Use geocoding to get city name from coordinates
-        }).catchError((_) {
-          // Ignore location errors
-        });
-        return null;
-      },
-      [],
-    );
 
     return CustomScrollView(
       slivers: [
@@ -1371,10 +1357,8 @@ class _CommunityReportsSection extends HookConsumerWidget {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final locationService = ref.read(locationServiceProvider);
     final profileAsync = ref.watch(getProfileProvider);
 
-    final selectedStation = useState<StationKind?>(state.selectedStation);
     final locationText = useTextEditingController(
       text: state.locationText,
     );
@@ -1382,12 +1366,36 @@ class _CommunityReportsSection extends HookConsumerWidget {
       text: state.comment,
     );
 
-    // Filter out user's own feedback from community list
+    // Get available accesses (those without user feedback)
+    final availableAccesses = controller.getAvailableAccesses();
+
+    // Filter out user's own feedbacks from community list
+    final myFeedbackIds = state.myFeedbacks.map((f) => f.id).toSet();
     final communityFeedbacks =
-        state.communityFeedbacks.where((f) => f.id != state.myFeedback?.id).toList();
+        state.communityFeedbacks.where((f) => !myFeedbackIds.contains(f.id)).toList();
 
     // Get user callsign from profile
     final userCallsign = profileAsync.value?.callsign;
+
+    // Prefill location on mount
+    useEffect(
+      () {
+        controller.prefillUserLocation();
+        return null;
+      },
+      [],
+    );
+
+    // Sync location text with state
+    useEffect(
+      () {
+        if (state.locationText != null && locationText.text != state.locationText) {
+          locationText.text = state.locationText!;
+        }
+        return null;
+      },
+      [state.locationText],
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1409,57 +1417,71 @@ class _CommunityReportsSection extends HookConsumerWidget {
           ],
         ),
         const SizedBox(height: 16),
-        // User's feedback or form
-        if (state.myFeedback != null)
-          _MyFeedbackCard(
-            feedback: state.myFeedback!,
-            userCallsign: userCallsign,
-            onDelete: controller.deleteMyFeedback,
-            isLoading: state.isLoadingFeedback,
-          )
-        else
+        // User's feedbacks section
+        if (state.myFeedbacks.isNotEmpty) ...[
+          Padding(
+            padding: const EdgeInsets.only(left: 4, bottom: 8),
+            child: Text(
+              l10n.repeaterDetailYourFeedback.toUpperCase(),
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
+                fontSize: 10,
+              ),
+            ),
+          ),
+          ...state.myFeedbacks.map(
+            (feedback) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: _MyFeedbackCard(
+                feedback: feedback,
+                userCallsign: userCallsign,
+                onDelete: () => controller.deleteFeedback(feedback.id),
+                isLoading: state.isDeletingFeedback,
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+        ],
+        // Feedback form (only if there are accesses without feedback)
+        if (availableAccesses.isNotEmpty) ...[
+          if (state.myFeedbacks.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(left: 4, bottom: 8),
+              child: Text(
+                l10n.repeaterDetailAddFeedback.toUpperCase(),
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  fontSize: 10,
+                ),
+              ),
+            ),
           _FeedbackFormCard(
-            selectedStation: selectedStation.value,
-            availableAccessModes: state.repeater.accesses.map((a) => a.mode).toSet(),
-            selectedAccessModes: state.selectedAccessModes,
+            state: state,
+            availableAccesses: availableAccesses,
             locationController: locationText,
             commentController: comment,
-            onStationChanged: (station) {
-              selectedStation.value = station;
-              controller.setSelectedStation(station);
-            },
-            onAccessModeToggled: controller.toggleAccessMode,
-            onLocationChanged: controller.setLocationText,
-            onCommentChanged: controller.setComment,
-            onSubmitLike: () async {
-              try {
-                final position = await locationService.getCurrentPosition();
-                await controller.submitFeedback(
-                  type: FeedbackType.like,
-                  latitude: position.latitude,
-                  longitude: position.longitude,
-                );
-              } catch (_) {
-                // Handle error
-              }
-            },
-            onSubmitDown: () async {
-              try {
-                final position = await locationService.getCurrentPosition();
-                await controller.submitFeedback(
-                  type: FeedbackType.down,
-                  latitude: position.latitude,
-                  longitude: position.longitude,
-                );
-              } catch (_) {
-                // Handle error
-              }
-            },
-            isSubmitting: state.isSubmittingFeedback,
+            controller: controller,
           ),
-        const SizedBox(height: 16),
-        // Community feedbacks list
+          const SizedBox(height: 16),
+        ],
+        // Others reports section header
         if (communityFeedbacks.isNotEmpty) ...[
+          Padding(
+            padding: const EdgeInsets.only(left: 4, bottom: 8),
+            child: Text(
+              l10n.repeaterDetailOthersReports.toUpperCase(),
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
+                fontSize: 10,
+              ),
+            ),
+          ),
           ...communityFeedbacks.map(
             (feedback) => Padding(
               padding: const EdgeInsets.only(bottom: 12),
@@ -1468,7 +1490,7 @@ class _CommunityReportsSection extends HookConsumerWidget {
           ),
           if (state.feedbackStats != null &&
               (state.feedbackStats!.likesTotal + state.feedbackStats!.downTotal) >
-                  communityFeedbacks.length)
+                  communityFeedbacks.length + state.myFeedbacks.length)
             Center(
               child: TextButton(
                 onPressed: () {
@@ -1507,6 +1529,9 @@ class _MyFeedbackCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     final displayCallsign = userCallsign ?? feedback.userId.substring(0, 6).toUpperCase();
+    final isLike = feedback.type == FeedbackType.like;
+    final badgeColor = isLike ? Colors.green : Colors.amber;
+    final accessColor = AccessModeHelper.getAccessModeColorObject(feedback.repeaterAccess.mode);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -1551,7 +1576,7 @@ class _MyFeedbackCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '$displayCallsign ${l10n.repeaterDetailYourFeedback.toLowerCase()}',
+                        displayCallsign,
                         style: theme.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -1566,78 +1591,129 @@ class _MyFeedbackCard extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: badgeColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: badgeColor.withValues(alpha: 0.3),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      isLike ? Icons.thumb_up : Icons.warning_amber_rounded,
+                      size: 14,
+                      color: badgeColor,
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.green.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: Colors.green.withValues(alpha: 0.3),
+                    const SizedBox(width: 4),
+                    Text(
+                      isLike ? l10n.repeaterDetailLike : l10n.repeaterDetailReportLabel,
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: badgeColor,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.thumb_up,
-                          size: 14,
-                          color: Colors.green,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          l10n.repeaterDetailLike,
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  IconButton(
-                    icon: const Icon(Icons.delete, size: 18),
-                    onPressed: isLoading ? null : onDelete,
-                    color: colorScheme.onSurfaceVariant,
-                    style: IconButton.styleFrom(
-                      backgroundColor: colorScheme.surfaceContainerHighest,
-                      minimumSize: const Size(28, 28),
-                      padding: EdgeInsets.zero,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
           const SizedBox(height: 12),
-          Row(
+          // Access mode badge
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: accessColor.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                color: accessColor.withValues(alpha: 0.2),
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  AccessModeHelper.getAccessModeIcon(feedback.repeaterAccess.mode),
+                  size: 14,
+                  color: accessColor,
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  _getAccessDescription(feedback.repeaterAccess),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: accessColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
+          // Info chips
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
               _InfoChip(
                 icon: _getStationIcon(feedback.station),
                 label: _getStationLabel(feedback.station, l10n),
               ),
-              const SizedBox(width: 8),
-              _InfoChip(
-                icon: Icons.location_on,
-                label: feedback.comment.isNotEmpty ? feedback.comment.split('\n').first : 'Unknown',
-              ),
             ],
           ),
           if (feedback.comment.isNotEmpty) ...[
             const SizedBox(height: 12),
-            Text(
-              feedback.comment,
-              style: theme.textTheme.bodySmall,
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                feedback.comment,
+                style: theme.textTheme.bodySmall,
+              ),
             ),
           ],
+          const SizedBox(height: 12),
+          // Delete button
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton.icon(
+              onPressed: isLoading ? null : onDelete,
+              icon: isLoading
+                  ? const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.delete_outline, size: 18),
+              label: Text(l10n.repeaterDetailRemove),
+              style: TextButton.styleFrom(
+                foregroundColor: colorScheme.error,
+              ),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  String _getAccessDescription(RepeaterAccess access) {
+    final label = AccessModeHelper.getAccessModeLabel(access.mode);
+    if (access.network != null) {
+      return '$label - ${access.network!.name}';
+    }
+    if (access.ctcssTxHz != null) {
+      return '$label (${access.ctcssTxHz!.toStringAsFixed(1)}Hz)';
+    }
+    return label;
   }
 
   IconData _getStationIcon(StationKind station) {
@@ -1665,38 +1741,28 @@ class _MyFeedbackCard extends StatelessWidget {
 
 class _FeedbackFormCard extends StatelessWidget {
   const _FeedbackFormCard({
-    required this.selectedStation,
-    required this.availableAccessModes,
-    required this.selectedAccessModes,
+    required this.state,
+    required this.availableAccesses,
     required this.locationController,
     required this.commentController,
-    required this.onStationChanged,
-    required this.onAccessModeToggled,
-    required this.onLocationChanged,
-    required this.onCommentChanged,
-    required this.onSubmitLike,
-    required this.onSubmitDown,
-    required this.isSubmitting,
+    required this.controller,
   });
 
-  final StationKind? selectedStation;
-  final Set<AccessMode> availableAccessModes;
-  final Set<AccessMode> selectedAccessModes;
+  final RepeaterDetailState state;
+  final List<RepeaterAccess> availableAccesses;
   final TextEditingController locationController;
   final TextEditingController commentController;
-  final ValueChanged<StationKind?> onStationChanged;
-  final ValueChanged<AccessMode> onAccessModeToggled;
-  final ValueChanged<String?> onLocationChanged;
-  final ValueChanged<String> onCommentChanged;
-  final VoidCallback onSubmitLike;
-  final VoidCallback onSubmitDown;
-  final bool isSubmitting;
+  final RepeaterDetailController controller;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+
+    final isFormValid = controller.isFormValid();
+    final isWithinDistance = controller.isWithinAllowedDistance();
+    final canSubmit = isFormValid && isWithinDistance && !state.isSubmittingFeedback;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -1728,8 +1794,8 @@ class _FeedbackFormCard extends StatelessWidget {
                 child: _EquipmentButton(
                   icon: Icons.smartphone,
                   label: l10n.repeaterDetailStationPortable,
-                  isSelected: selectedStation == StationKind.portable,
-                  onTap: () => onStationChanged(StationKind.portable),
+                  isSelected: state.selectedStation == StationKind.portable,
+                  onTap: () => controller.setSelectedStation(StationKind.portable),
                 ),
               ),
               const SizedBox(width: 8),
@@ -1737,8 +1803,8 @@ class _FeedbackFormCard extends StatelessWidget {
                 child: _EquipmentButton(
                   icon: Icons.directions_car,
                   label: l10n.repeaterDetailStationMobile,
-                  isSelected: selectedStation == StationKind.mobile,
-                  onTap: () => onStationChanged(StationKind.mobile),
+                  isSelected: state.selectedStation == StationKind.mobile,
+                  onTap: () => controller.setSelectedStation(StationKind.mobile),
                 ),
               ),
               const SizedBox(width: 8),
@@ -1746,14 +1812,14 @@ class _FeedbackFormCard extends StatelessWidget {
                 child: _EquipmentButton(
                   icon: Icons.home,
                   label: l10n.repeaterDetailStationFixed,
-                  isSelected: selectedStation == StationKind.fixed,
-                  onTap: () => onStationChanged(StationKind.fixed),
+                  isSelected: state.selectedStation == StationKind.fixed,
+                  onTap: () => controller.setSelectedStation(StationKind.fixed),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          // Location field
+          // Location field with autocomplete
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1769,7 +1835,11 @@ class _FeedbackFormCard extends StatelessWidget {
               const SizedBox(height: 8),
               TextField(
                 controller: locationController,
-                onChanged: onLocationChanged,
+                onChanged: (value) {
+                  controller
+                    ..setLocationText(value)
+                    ..searchLocationSuggestions(value);
+                },
                 decoration: InputDecoration(
                   hintText: 'City or Area (e.g. Rome)',
                   prefixIcon: const Icon(Icons.location_on, size: 20),
@@ -1785,91 +1855,166 @@ class _FeedbackFormCard extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
-          // Access modes selection (only if there are multiple modes)
-          if (availableAccessModes.isNotEmpty) ...[
-            const SizedBox(height: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.repeaterDetailAccessModes.toUpperCase(),
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
-                    fontSize: 10,
+              // Location suggestions
+              if (state.locationSuggestions.isNotEmpty)
+                Container(
+                  margin: const EdgeInsets.only(top: 4),
+                  decoration: BoxDecoration(
+                    color: colorScheme.surface,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: colorScheme.outline.withValues(alpha: 0.2),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: availableAccessModes.map((mode) {
-                    final isSelected = selectedAccessModes.contains(mode);
-                    final modeColor = AccessModeHelper.getAccessModeColorObject(mode);
-                    final modeLabel = AccessModeHelper.getAccessModeLabel(mode);
-
-                    return InkWell(
-                      onTap: () => onAccessModeToggled(mode),
-                      borderRadius: BorderRadius.circular(8),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
-                        ),
-                        decoration: BoxDecoration(
-                          color: isSelected
-                              ? modeColor.withValues(alpha: 0.1)
-                              : colorScheme.surfaceContainerHighest,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: isSelected
-                                ? modeColor.withValues(alpha: 0.3)
-                                : colorScheme.outline.withValues(alpha: 0.2),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: state.locationSuggestions.map((suggestion) {
+                      return InkWell(
+                        onTap: () {
+                          controller.selectLocationSuggestion(suggestion);
+                          locationController.text = suggestion.placeName;
+                        },
+                        borderRadius: BorderRadius.circular(8),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
                           ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              width: 18,
-                              height: 18,
-                              decoration: BoxDecoration(
-                                color: isSelected ? modeColor : colorScheme.surfaceContainerHighest,
-                                borderRadius: BorderRadius.circular(4),
-                                border: Border.all(
-                                  color: isSelected
-                                      ? modeColor
-                                      : colorScheme.outline.withValues(alpha: 0.3),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.place,
+                                size: 18,
+                                color: colorScheme.primary,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  suggestion.placeName,
+                                  style: theme.textTheme.bodyMedium,
                                 ),
                               ),
-                              child: isSelected
-                                  ? const Icon(
-                                      Icons.check,
-                                      size: 14,
-                                      color: Colors.white,
-                                    )
-                                  : null,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              modeLabel,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                color: isSelected ? modeColor : colorScheme.onSurface,
-                                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          // Access selection (single select)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.repeaterDetailSelectAccess.toUpperCase(),
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                  fontSize: 10,
+                ),
+              ),
+              const SizedBox(height: 8),
+              ...availableAccesses.map((access) {
+                final isSelected = state.selectedAccessId == access.id;
+                final accessColor = AccessModeHelper.getAccessModeColorObject(access.mode);
+                final accessIcon = AccessModeHelper.getAccessModeIcon(access.mode);
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: InkWell(
+                    onTap: () => controller.setSelectedAccessId(access.id),
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? accessColor.withValues(alpha: 0.05)
+                            : colorScheme.surfaceContainerHighest,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: isSelected
+                              ? accessColor
+                              : colorScheme.outline.withValues(alpha: 0.2),
+                          width: isSelected ? 2 : 1,
                         ),
                       ),
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
-          ],
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? accessColor.withValues(alpha: 0.2)
+                                  : colorScheme.surfaceContainerHighest,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              accessIcon,
+                              color: isSelected ? accessColor : colorScheme.onSurfaceVariant,
+                              size: 20,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _getAccessTitle(access),
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  _getAccessSubtitle(access),
+                                  style: theme.textTheme.labelSmall?.copyWith(
+                                    color: colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 24,
+                            height: 24,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: isSelected ? accessColor : Colors.transparent,
+                              border: Border.all(
+                                color: isSelected
+                                    ? accessColor
+                                    : colorScheme.outline.withValues(alpha: 0.3),
+                                width: 2,
+                              ),
+                            ),
+                            child: isSelected
+                                ? const Icon(
+                                    Icons.check,
+                                    size: 16,
+                                    color: Colors.white,
+                                  )
+                                : null,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            ],
+          ),
           const SizedBox(height: 16),
           // Comment field
           Column(
@@ -1887,7 +2032,7 @@ class _FeedbackFormCard extends StatelessWidget {
               const SizedBox(height: 8),
               TextField(
                 controller: commentController,
-                onChanged: onCommentChanged,
+                onChanged: controller.setComment,
                 maxLines: 3,
                 decoration: InputDecoration(
                   hintText: l10n.repeaterDetailCommentPlaceholder,
@@ -1902,17 +2047,62 @@ class _FeedbackFormCard extends StatelessWidget {
               ),
             ],
           ),
+          // Distance warning if too far
+          if (isFormValid && !isWithinDistance) ...[
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.amber.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: Colors.amber.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.warning_amber_rounded,
+                    color: Colors.amber,
+                    size: 20,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      l10n.repeaterDetailDistanceWarning(
+                        AppConfigs.maxFeedbackDistanceKm.toInt(),
+                      ),
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: Colors.amber.shade800,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
           const SizedBox(height: 16),
           // Action buttons
           Row(
             children: [
               Expanded(
                 child: FilledButton.icon(
-                  onPressed: isSubmitting ? null : onSubmitLike,
-                  icon: const Icon(Icons.thumb_up, size: 18),
+                  onPressed: canSubmit
+                      ? () => controller.submitFeedback(type: FeedbackType.like)
+                      : null,
+                  icon: state.isSubmittingFeedback
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : const Icon(Icons.thumb_up, size: 18),
                   label: Text(l10n.repeaterDetailLike.toUpperCase()),
                   style: FilledButton.styleFrom(
-                    backgroundColor: colorScheme.primary,
+                    backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     textStyle: theme.textTheme.labelMedium?.copyWith(
@@ -1923,13 +2113,24 @@ class _FeedbackFormCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: isSubmitting ? null : onSubmitDown,
-                  icon: const Icon(Icons.warning_amber_rounded, size: 18),
+                child: FilledButton.icon(
+                  onPressed: canSubmit
+                      ? () => controller.submitFeedback(type: FeedbackType.down)
+                      : null,
+                  icon: state.isSubmittingFeedback
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : const Icon(Icons.warning_amber_rounded, size: 18),
                   label: Text(l10n.repeaterDetailReportDown.toUpperCase()),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.amber.shade700,
-                    side: BorderSide(color: Colors.amber.shade700),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.amber.shade700,
+                    foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     textStyle: theme.textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.bold,
@@ -1942,6 +2143,42 @@ class _FeedbackFormCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _getAccessTitle(RepeaterAccess access) {
+    final label = AccessModeHelper.getAccessModeLabel(access.mode);
+    if (access.network != null) {
+      return '$label (${access.network!.name})';
+    }
+    if (access.ctcssTxHz != null) {
+      return '$label (${access.ctcssTxHz!.toStringAsFixed(1)}Hz)';
+    }
+    return label;
+  }
+
+  String _getAccessSubtitle(RepeaterAccess access) {
+    final parts = <String>[];
+
+    if (access.colorCode != null) {
+      parts.add('CC: ${access.colorCode}');
+    }
+    if (access.dmrId != null) {
+      parts.add('ID: ${access.dmrId}');
+    }
+    if (access.ctcssRxHz != null && access.ctcssTxHz != access.ctcssRxHz) {
+      parts.add('Rx: ${access.ctcssRxHz!.toStringAsFixed(1)}Hz');
+    }
+    if (access.dcsCode != null) {
+      parts.add('DCS: ${access.dcsCode}');
+    }
+    if (access.dgId != null) {
+      parts.add('DG-ID: ${access.dgId}');
+    }
+
+    if (parts.isEmpty) {
+      return AccessModeHelper.getAccessModeLabel(access.mode).toUpperCase();
+    }
+    return parts.join(' • ');
   }
 }
 

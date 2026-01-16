@@ -59,4 +59,7 @@ class AppConfigs {
   static String getMapboxAccessToken() {
     return 'pk.eyJ1IjoiZWxpYXRvbGluIiwiYSI6ImNtOTh3aWRweTA3ZTMybHNic3NoeGI1dmcifQ.e4bCIdcgXs0iddLhEbhhiA';
   }
+
+  /// Maximum distance in kilometers from repeater to submit feedback.
+  static double get maxFeedbackDistanceKm => 400;
 }

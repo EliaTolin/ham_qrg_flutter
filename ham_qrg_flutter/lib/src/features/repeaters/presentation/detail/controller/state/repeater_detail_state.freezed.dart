@@ -16,13 +16,17 @@ T _$identity<T>(T value) => value;
 mixin _$RepeaterDetailState {
   Repeater get repeater;
   RepeaterFeedbackStats? get feedbackStats;
-  RepeaterFeedback? get myFeedback;
+  List<RepeaterFeedback> get myFeedbacks;
   List<RepeaterFeedback> get communityFeedbacks;
   bool get isLoadingFeedback;
   bool get isSubmittingFeedback;
+  bool get isDeletingFeedback;
   StationKind? get selectedStation;
-  Set<AccessMode> get selectedAccessModes;
+  String? get selectedAccessId;
   String? get locationText;
+  double? get userLatitude;
+  double? get userLongitude;
+  List<GeocodingResult> get locationSuggestions;
   String get comment;
 
   /// Create a copy of RepeaterDetailState
@@ -42,20 +46,28 @@ mixin _$RepeaterDetailState {
                 other.repeater == repeater) &&
             (identical(other.feedbackStats, feedbackStats) ||
                 other.feedbackStats == feedbackStats) &&
-            (identical(other.myFeedback, myFeedback) ||
-                other.myFeedback == myFeedback) &&
+            const DeepCollectionEquality()
+                .equals(other.myFeedbacks, myFeedbacks) &&
             const DeepCollectionEquality()
                 .equals(other.communityFeedbacks, communityFeedbacks) &&
             (identical(other.isLoadingFeedback, isLoadingFeedback) ||
                 other.isLoadingFeedback == isLoadingFeedback) &&
             (identical(other.isSubmittingFeedback, isSubmittingFeedback) ||
                 other.isSubmittingFeedback == isSubmittingFeedback) &&
+            (identical(other.isDeletingFeedback, isDeletingFeedback) ||
+                other.isDeletingFeedback == isDeletingFeedback) &&
             (identical(other.selectedStation, selectedStation) ||
                 other.selectedStation == selectedStation) &&
-            const DeepCollectionEquality()
-                .equals(other.selectedAccessModes, selectedAccessModes) &&
+            (identical(other.selectedAccessId, selectedAccessId) ||
+                other.selectedAccessId == selectedAccessId) &&
             (identical(other.locationText, locationText) ||
                 other.locationText == locationText) &&
+            (identical(other.userLatitude, userLatitude) ||
+                other.userLatitude == userLatitude) &&
+            (identical(other.userLongitude, userLongitude) ||
+                other.userLongitude == userLongitude) &&
+            const DeepCollectionEquality()
+                .equals(other.locationSuggestions, locationSuggestions) &&
             (identical(other.comment, comment) || other.comment == comment));
   }
 
@@ -64,18 +76,22 @@ mixin _$RepeaterDetailState {
       runtimeType,
       repeater,
       feedbackStats,
-      myFeedback,
+      const DeepCollectionEquality().hash(myFeedbacks),
       const DeepCollectionEquality().hash(communityFeedbacks),
       isLoadingFeedback,
       isSubmittingFeedback,
+      isDeletingFeedback,
       selectedStation,
-      const DeepCollectionEquality().hash(selectedAccessModes),
+      selectedAccessId,
       locationText,
+      userLatitude,
+      userLongitude,
+      const DeepCollectionEquality().hash(locationSuggestions),
       comment);
 
   @override
   String toString() {
-    return 'RepeaterDetailState(repeater: $repeater, feedbackStats: $feedbackStats, myFeedback: $myFeedback, communityFeedbacks: $communityFeedbacks, isLoadingFeedback: $isLoadingFeedback, isSubmittingFeedback: $isSubmittingFeedback, selectedStation: $selectedStation, selectedAccessModes: $selectedAccessModes, locationText: $locationText, comment: $comment)';
+    return 'RepeaterDetailState(repeater: $repeater, feedbackStats: $feedbackStats, myFeedbacks: $myFeedbacks, communityFeedbacks: $communityFeedbacks, isLoadingFeedback: $isLoadingFeedback, isSubmittingFeedback: $isSubmittingFeedback, isDeletingFeedback: $isDeletingFeedback, selectedStation: $selectedStation, selectedAccessId: $selectedAccessId, locationText: $locationText, userLatitude: $userLatitude, userLongitude: $userLongitude, locationSuggestions: $locationSuggestions, comment: $comment)';
   }
 }
 
@@ -88,18 +104,21 @@ abstract mixin class $RepeaterDetailStateCopyWith<$Res> {
   $Res call(
       {Repeater repeater,
       RepeaterFeedbackStats? feedbackStats,
-      RepeaterFeedback? myFeedback,
+      List<RepeaterFeedback> myFeedbacks,
       List<RepeaterFeedback> communityFeedbacks,
       bool isLoadingFeedback,
       bool isSubmittingFeedback,
+      bool isDeletingFeedback,
       StationKind? selectedStation,
-      Set<AccessMode> selectedAccessModes,
+      String? selectedAccessId,
       String? locationText,
+      double? userLatitude,
+      double? userLongitude,
+      List<GeocodingResult> locationSuggestions,
       String comment});
 
   $RepeaterCopyWith<$Res> get repeater;
   $RepeaterFeedbackStatsCopyWith<$Res>? get feedbackStats;
-  $RepeaterFeedbackCopyWith<$Res>? get myFeedback;
 }
 
 /// @nodoc
@@ -117,13 +136,17 @@ class _$RepeaterDetailStateCopyWithImpl<$Res>
   $Res call({
     Object? repeater = null,
     Object? feedbackStats = freezed,
-    Object? myFeedback = freezed,
+    Object? myFeedbacks = null,
     Object? communityFeedbacks = null,
     Object? isLoadingFeedback = null,
     Object? isSubmittingFeedback = null,
+    Object? isDeletingFeedback = null,
     Object? selectedStation = freezed,
-    Object? selectedAccessModes = null,
+    Object? selectedAccessId = freezed,
     Object? locationText = freezed,
+    Object? userLatitude = freezed,
+    Object? userLongitude = freezed,
+    Object? locationSuggestions = null,
     Object? comment = null,
   }) {
     return _then(_self.copyWith(
@@ -135,10 +158,10 @@ class _$RepeaterDetailStateCopyWithImpl<$Res>
           ? _self.feedbackStats
           : feedbackStats // ignore: cast_nullable_to_non_nullable
               as RepeaterFeedbackStats?,
-      myFeedback: freezed == myFeedback
-          ? _self.myFeedback
-          : myFeedback // ignore: cast_nullable_to_non_nullable
-              as RepeaterFeedback?,
+      myFeedbacks: null == myFeedbacks
+          ? _self.myFeedbacks
+          : myFeedbacks // ignore: cast_nullable_to_non_nullable
+              as List<RepeaterFeedback>,
       communityFeedbacks: null == communityFeedbacks
           ? _self.communityFeedbacks
           : communityFeedbacks // ignore: cast_nullable_to_non_nullable
@@ -151,18 +174,34 @@ class _$RepeaterDetailStateCopyWithImpl<$Res>
           ? _self.isSubmittingFeedback
           : isSubmittingFeedback // ignore: cast_nullable_to_non_nullable
               as bool,
+      isDeletingFeedback: null == isDeletingFeedback
+          ? _self.isDeletingFeedback
+          : isDeletingFeedback // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectedStation: freezed == selectedStation
           ? _self.selectedStation
           : selectedStation // ignore: cast_nullable_to_non_nullable
               as StationKind?,
-      selectedAccessModes: null == selectedAccessModes
-          ? _self.selectedAccessModes
-          : selectedAccessModes // ignore: cast_nullable_to_non_nullable
-              as Set<AccessMode>,
+      selectedAccessId: freezed == selectedAccessId
+          ? _self.selectedAccessId
+          : selectedAccessId // ignore: cast_nullable_to_non_nullable
+              as String?,
       locationText: freezed == locationText
           ? _self.locationText
           : locationText // ignore: cast_nullable_to_non_nullable
               as String?,
+      userLatitude: freezed == userLatitude
+          ? _self.userLatitude
+          : userLatitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      userLongitude: freezed == userLongitude
+          ? _self.userLongitude
+          : userLongitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      locationSuggestions: null == locationSuggestions
+          ? _self.locationSuggestions
+          : locationSuggestions // ignore: cast_nullable_to_non_nullable
+              as List<GeocodingResult>,
       comment: null == comment
           ? _self.comment
           : comment // ignore: cast_nullable_to_non_nullable
@@ -191,20 +230,6 @@ class _$RepeaterDetailStateCopyWithImpl<$Res>
 
     return $RepeaterFeedbackStatsCopyWith<$Res>(_self.feedbackStats!, (value) {
       return _then(_self.copyWith(feedbackStats: value));
-    });
-  }
-
-  /// Create a copy of RepeaterDetailState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RepeaterFeedbackCopyWith<$Res>? get myFeedback {
-    if (_self.myFeedback == null) {
-      return null;
-    }
-
-    return $RepeaterFeedbackCopyWith<$Res>(_self.myFeedback!, (value) {
-      return _then(_self.copyWith(myFeedback: value));
     });
   }
 }
@@ -305,13 +330,17 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
     TResult Function(
             Repeater repeater,
             RepeaterFeedbackStats? feedbackStats,
-            RepeaterFeedback? myFeedback,
+            List<RepeaterFeedback> myFeedbacks,
             List<RepeaterFeedback> communityFeedbacks,
             bool isLoadingFeedback,
             bool isSubmittingFeedback,
+            bool isDeletingFeedback,
             StationKind? selectedStation,
-            Set<AccessMode> selectedAccessModes,
+            String? selectedAccessId,
             String? locationText,
+            double? userLatitude,
+            double? userLongitude,
+            List<GeocodingResult> locationSuggestions,
             String comment)?
         $default, {
     required TResult orElse(),
@@ -322,13 +351,17 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
         return $default(
             _that.repeater,
             _that.feedbackStats,
-            _that.myFeedback,
+            _that.myFeedbacks,
             _that.communityFeedbacks,
             _that.isLoadingFeedback,
             _that.isSubmittingFeedback,
+            _that.isDeletingFeedback,
             _that.selectedStation,
-            _that.selectedAccessModes,
+            _that.selectedAccessId,
             _that.locationText,
+            _that.userLatitude,
+            _that.userLongitude,
+            _that.locationSuggestions,
             _that.comment);
       case _:
         return orElse();
@@ -353,13 +386,17 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
     TResult Function(
             Repeater repeater,
             RepeaterFeedbackStats? feedbackStats,
-            RepeaterFeedback? myFeedback,
+            List<RepeaterFeedback> myFeedbacks,
             List<RepeaterFeedback> communityFeedbacks,
             bool isLoadingFeedback,
             bool isSubmittingFeedback,
+            bool isDeletingFeedback,
             StationKind? selectedStation,
-            Set<AccessMode> selectedAccessModes,
+            String? selectedAccessId,
             String? locationText,
+            double? userLatitude,
+            double? userLongitude,
+            List<GeocodingResult> locationSuggestions,
             String comment)
         $default,
   ) {
@@ -369,13 +406,17 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
         return $default(
             _that.repeater,
             _that.feedbackStats,
-            _that.myFeedback,
+            _that.myFeedbacks,
             _that.communityFeedbacks,
             _that.isLoadingFeedback,
             _that.isSubmittingFeedback,
+            _that.isDeletingFeedback,
             _that.selectedStation,
-            _that.selectedAccessModes,
+            _that.selectedAccessId,
             _that.locationText,
+            _that.userLatitude,
+            _that.userLongitude,
+            _that.locationSuggestions,
             _that.comment);
       case _:
         throw StateError('Unexpected subclass');
@@ -399,13 +440,17 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
     TResult? Function(
             Repeater repeater,
             RepeaterFeedbackStats? feedbackStats,
-            RepeaterFeedback? myFeedback,
+            List<RepeaterFeedback> myFeedbacks,
             List<RepeaterFeedback> communityFeedbacks,
             bool isLoadingFeedback,
             bool isSubmittingFeedback,
+            bool isDeletingFeedback,
             StationKind? selectedStation,
-            Set<AccessMode> selectedAccessModes,
+            String? selectedAccessId,
             String? locationText,
+            double? userLatitude,
+            double? userLongitude,
+            List<GeocodingResult> locationSuggestions,
             String comment)?
         $default,
   ) {
@@ -415,13 +460,17 @@ extension RepeaterDetailStatePatterns on RepeaterDetailState {
         return $default(
             _that.repeater,
             _that.feedbackStats,
-            _that.myFeedback,
+            _that.myFeedbacks,
             _that.communityFeedbacks,
             _that.isLoadingFeedback,
             _that.isSubmittingFeedback,
+            _that.isDeletingFeedback,
             _that.selectedStation,
-            _that.selectedAccessModes,
+            _that.selectedAccessId,
             _that.locationText,
+            _that.userLatitude,
+            _that.userLongitude,
+            _that.locationSuggestions,
             _that.comment);
       case _:
         return null;
@@ -435,23 +484,35 @@ class _RepeaterDetailState implements RepeaterDetailState {
   const _RepeaterDetailState(
       {required this.repeater,
       this.feedbackStats,
-      this.myFeedback,
+      final List<RepeaterFeedback> myFeedbacks = const [],
       final List<RepeaterFeedback> communityFeedbacks = const [],
       this.isLoadingFeedback = false,
       this.isSubmittingFeedback = false,
+      this.isDeletingFeedback = false,
       this.selectedStation,
-      final Set<AccessMode> selectedAccessModes = const {},
+      this.selectedAccessId,
       this.locationText,
+      this.userLatitude,
+      this.userLongitude,
+      final List<GeocodingResult> locationSuggestions = const [],
       this.comment = ''})
-      : _communityFeedbacks = communityFeedbacks,
-        _selectedAccessModes = selectedAccessModes;
+      : _myFeedbacks = myFeedbacks,
+        _communityFeedbacks = communityFeedbacks,
+        _locationSuggestions = locationSuggestions;
 
   @override
   final Repeater repeater;
   @override
   final RepeaterFeedbackStats? feedbackStats;
+  final List<RepeaterFeedback> _myFeedbacks;
   @override
-  final RepeaterFeedback? myFeedback;
+  @JsonKey()
+  List<RepeaterFeedback> get myFeedbacks {
+    if (_myFeedbacks is EqualUnmodifiableListView) return _myFeedbacks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_myFeedbacks);
+  }
+
   final List<RepeaterFeedback> _communityFeedbacks;
   @override
   @JsonKey()
@@ -469,19 +530,28 @@ class _RepeaterDetailState implements RepeaterDetailState {
   @JsonKey()
   final bool isSubmittingFeedback;
   @override
-  final StationKind? selectedStation;
-  final Set<AccessMode> _selectedAccessModes;
-  @override
   @JsonKey()
-  Set<AccessMode> get selectedAccessModes {
-    if (_selectedAccessModes is EqualUnmodifiableSetView)
-      return _selectedAccessModes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_selectedAccessModes);
-  }
-
+  final bool isDeletingFeedback;
+  @override
+  final StationKind? selectedStation;
+  @override
+  final String? selectedAccessId;
   @override
   final String? locationText;
+  @override
+  final double? userLatitude;
+  @override
+  final double? userLongitude;
+  final List<GeocodingResult> _locationSuggestions;
+  @override
+  @JsonKey()
+  List<GeocodingResult> get locationSuggestions {
+    if (_locationSuggestions is EqualUnmodifiableListView)
+      return _locationSuggestions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_locationSuggestions);
+  }
+
   @override
   @JsonKey()
   final String comment;
@@ -504,20 +574,28 @@ class _RepeaterDetailState implements RepeaterDetailState {
                 other.repeater == repeater) &&
             (identical(other.feedbackStats, feedbackStats) ||
                 other.feedbackStats == feedbackStats) &&
-            (identical(other.myFeedback, myFeedback) ||
-                other.myFeedback == myFeedback) &&
+            const DeepCollectionEquality()
+                .equals(other._myFeedbacks, _myFeedbacks) &&
             const DeepCollectionEquality()
                 .equals(other._communityFeedbacks, _communityFeedbacks) &&
             (identical(other.isLoadingFeedback, isLoadingFeedback) ||
                 other.isLoadingFeedback == isLoadingFeedback) &&
             (identical(other.isSubmittingFeedback, isSubmittingFeedback) ||
                 other.isSubmittingFeedback == isSubmittingFeedback) &&
+            (identical(other.isDeletingFeedback, isDeletingFeedback) ||
+                other.isDeletingFeedback == isDeletingFeedback) &&
             (identical(other.selectedStation, selectedStation) ||
                 other.selectedStation == selectedStation) &&
-            const DeepCollectionEquality()
-                .equals(other._selectedAccessModes, _selectedAccessModes) &&
+            (identical(other.selectedAccessId, selectedAccessId) ||
+                other.selectedAccessId == selectedAccessId) &&
             (identical(other.locationText, locationText) ||
                 other.locationText == locationText) &&
+            (identical(other.userLatitude, userLatitude) ||
+                other.userLatitude == userLatitude) &&
+            (identical(other.userLongitude, userLongitude) ||
+                other.userLongitude == userLongitude) &&
+            const DeepCollectionEquality()
+                .equals(other._locationSuggestions, _locationSuggestions) &&
             (identical(other.comment, comment) || other.comment == comment));
   }
 
@@ -526,18 +604,22 @@ class _RepeaterDetailState implements RepeaterDetailState {
       runtimeType,
       repeater,
       feedbackStats,
-      myFeedback,
+      const DeepCollectionEquality().hash(_myFeedbacks),
       const DeepCollectionEquality().hash(_communityFeedbacks),
       isLoadingFeedback,
       isSubmittingFeedback,
+      isDeletingFeedback,
       selectedStation,
-      const DeepCollectionEquality().hash(_selectedAccessModes),
+      selectedAccessId,
       locationText,
+      userLatitude,
+      userLongitude,
+      const DeepCollectionEquality().hash(_locationSuggestions),
       comment);
 
   @override
   String toString() {
-    return 'RepeaterDetailState(repeater: $repeater, feedbackStats: $feedbackStats, myFeedback: $myFeedback, communityFeedbacks: $communityFeedbacks, isLoadingFeedback: $isLoadingFeedback, isSubmittingFeedback: $isSubmittingFeedback, selectedStation: $selectedStation, selectedAccessModes: $selectedAccessModes, locationText: $locationText, comment: $comment)';
+    return 'RepeaterDetailState(repeater: $repeater, feedbackStats: $feedbackStats, myFeedbacks: $myFeedbacks, communityFeedbacks: $communityFeedbacks, isLoadingFeedback: $isLoadingFeedback, isSubmittingFeedback: $isSubmittingFeedback, isDeletingFeedback: $isDeletingFeedback, selectedStation: $selectedStation, selectedAccessId: $selectedAccessId, locationText: $locationText, userLatitude: $userLatitude, userLongitude: $userLongitude, locationSuggestions: $locationSuggestions, comment: $comment)';
   }
 }
 
@@ -552,21 +634,23 @@ abstract mixin class _$RepeaterDetailStateCopyWith<$Res>
   $Res call(
       {Repeater repeater,
       RepeaterFeedbackStats? feedbackStats,
-      RepeaterFeedback? myFeedback,
+      List<RepeaterFeedback> myFeedbacks,
       List<RepeaterFeedback> communityFeedbacks,
       bool isLoadingFeedback,
       bool isSubmittingFeedback,
+      bool isDeletingFeedback,
       StationKind? selectedStation,
-      Set<AccessMode> selectedAccessModes,
+      String? selectedAccessId,
       String? locationText,
+      double? userLatitude,
+      double? userLongitude,
+      List<GeocodingResult> locationSuggestions,
       String comment});
 
   @override
   $RepeaterCopyWith<$Res> get repeater;
   @override
   $RepeaterFeedbackStatsCopyWith<$Res>? get feedbackStats;
-  @override
-  $RepeaterFeedbackCopyWith<$Res>? get myFeedback;
 }
 
 /// @nodoc
@@ -584,13 +668,17 @@ class __$RepeaterDetailStateCopyWithImpl<$Res>
   $Res call({
     Object? repeater = null,
     Object? feedbackStats = freezed,
-    Object? myFeedback = freezed,
+    Object? myFeedbacks = null,
     Object? communityFeedbacks = null,
     Object? isLoadingFeedback = null,
     Object? isSubmittingFeedback = null,
+    Object? isDeletingFeedback = null,
     Object? selectedStation = freezed,
-    Object? selectedAccessModes = null,
+    Object? selectedAccessId = freezed,
     Object? locationText = freezed,
+    Object? userLatitude = freezed,
+    Object? userLongitude = freezed,
+    Object? locationSuggestions = null,
     Object? comment = null,
   }) {
     return _then(_RepeaterDetailState(
@@ -602,10 +690,10 @@ class __$RepeaterDetailStateCopyWithImpl<$Res>
           ? _self.feedbackStats
           : feedbackStats // ignore: cast_nullable_to_non_nullable
               as RepeaterFeedbackStats?,
-      myFeedback: freezed == myFeedback
-          ? _self.myFeedback
-          : myFeedback // ignore: cast_nullable_to_non_nullable
-              as RepeaterFeedback?,
+      myFeedbacks: null == myFeedbacks
+          ? _self._myFeedbacks
+          : myFeedbacks // ignore: cast_nullable_to_non_nullable
+              as List<RepeaterFeedback>,
       communityFeedbacks: null == communityFeedbacks
           ? _self._communityFeedbacks
           : communityFeedbacks // ignore: cast_nullable_to_non_nullable
@@ -618,18 +706,34 @@ class __$RepeaterDetailStateCopyWithImpl<$Res>
           ? _self.isSubmittingFeedback
           : isSubmittingFeedback // ignore: cast_nullable_to_non_nullable
               as bool,
+      isDeletingFeedback: null == isDeletingFeedback
+          ? _self.isDeletingFeedback
+          : isDeletingFeedback // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectedStation: freezed == selectedStation
           ? _self.selectedStation
           : selectedStation // ignore: cast_nullable_to_non_nullable
               as StationKind?,
-      selectedAccessModes: null == selectedAccessModes
-          ? _self._selectedAccessModes
-          : selectedAccessModes // ignore: cast_nullable_to_non_nullable
-              as Set<AccessMode>,
+      selectedAccessId: freezed == selectedAccessId
+          ? _self.selectedAccessId
+          : selectedAccessId // ignore: cast_nullable_to_non_nullable
+              as String?,
       locationText: freezed == locationText
           ? _self.locationText
           : locationText // ignore: cast_nullable_to_non_nullable
               as String?,
+      userLatitude: freezed == userLatitude
+          ? _self.userLatitude
+          : userLatitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      userLongitude: freezed == userLongitude
+          ? _self.userLongitude
+          : userLongitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      locationSuggestions: null == locationSuggestions
+          ? _self._locationSuggestions
+          : locationSuggestions // ignore: cast_nullable_to_non_nullable
+              as List<GeocodingResult>,
       comment: null == comment
           ? _self.comment
           : comment // ignore: cast_nullable_to_non_nullable
@@ -658,20 +762,6 @@ class __$RepeaterDetailStateCopyWithImpl<$Res>
 
     return $RepeaterFeedbackStatsCopyWith<$Res>(_self.feedbackStats!, (value) {
       return _then(_self.copyWith(feedbackStats: value));
-    });
-  }
-
-  /// Create a copy of RepeaterDetailState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RepeaterFeedbackCopyWith<$Res>? get myFeedback {
-    if (_self.myFeedback == null) {
-      return null;
-    }
-
-    return $RepeaterFeedbackCopyWith<$Res>(_self.myFeedback!, (value) {
-      return _then(_self.copyWith(myFeedback: value));
     });
   }
 }
