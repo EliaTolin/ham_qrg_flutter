@@ -40,4 +40,4 @@ final class LogoutProvider
   }
 }
 
-String _$logoutHash() => r'4860d16e38565486b18f29768535f0bfaaaca03c';
+String _$logoutHash() => r'abe05860c59c114581df1fb8e25c578dd5fd83cf';

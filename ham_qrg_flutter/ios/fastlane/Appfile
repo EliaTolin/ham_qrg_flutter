@@ -1,4 +1,4 @@
-app_identifier("it.auroradigital.hamrepeaters") # The bundle identifier of your app
+app_identifier("it.auroradigital.hamqrg") # The bundle identifier of your app
 apple_id("mail@auroradigital.it") # Your Apple Developer Portal username
 
 itc_team_id("124967403") # App Store Connect Team ID

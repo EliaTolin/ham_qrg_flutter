@@ -7,6 +7,7 @@ import 'package:ham_qrg/common/widgets/logo_icon.dart';
 import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
 import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
 import 'package:ham_qrg/src/features/splashscreen/provider/set_onboarding_seen/set_onboarding_seen_provider.dart';
 
 @RoutePage()
@@ -51,17 +52,27 @@ class AuthScreen extends ConsumerWidget {
                 const Gap(32),
                 // Sezione Social Login
                 SignInButtons(
-                  onSignInComplete: () {
-                    ref
-                      ..invalidate(getUserIdProvider)
-                      ..read(setOnboardingSeenProvider.future);
-                    context.router.pushAndPopUntil(
-                      const HomeRoute(),
-                      predicate: (_) => false,
-                    );
+                  onSignInComplete: () async {
+                    ref.invalidate(getUserIdProvider);
+                    await ref.read(setOnboardingSeenProvider.future);
+
+                    final needsOnboarding =
+                        await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+                    if (context.mounted) {
+                      if (needsOnboarding) {
+                        await context.router.pushAndPopUntil(
+                          const PostLoginOnboardingRoute(),
+                          predicate: (_) => false,
+                        );
+                      } else {
+                        await context.router.pushAndPopUntil(
+                          const HomeRoute(),
+                          predicate: (_) => false,
+                        );
+                      }
+                    }
                   },
                 ),
-                const Gap(24),
               ],
             ),
           ),

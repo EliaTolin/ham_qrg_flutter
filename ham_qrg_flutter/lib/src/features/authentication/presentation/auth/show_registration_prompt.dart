@@ -1,11 +1,13 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
+import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
 import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
@@ -35,7 +37,7 @@ Future<bool> requireAuthentication(
   BuildContext context,
   WidgetRef ref,
 ) async {
-  final isAnonymous = await ref.read(isAnonymousProvider.future);
+  final isAnonymous = await ref.watch(isAnonymousProvider.future);
 
   if (!isAnonymous) {
     return true; // User is already authenticated
@@ -79,6 +81,12 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
       if (mounted) {
         setState(() => _isLoading = false);
       }
+      if (mounted) {
+        await context.router.pushAndPopUntil(
+          const HomeRoute(),
+          predicate: (_) => false,
+        );
+      }
     }
   }
 
@@ -102,6 +110,12 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);
+      }
+      if (mounted) {
+        await context.router.pushAndPopUntil(
+          const HomeRoute(),
+          predicate: (_) => false,
+        );
       }
     }
   }
@@ -131,12 +145,12 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
                   child: Column(
                     children: [
                       // Spacer to push content below hero
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.18),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.12),
 
                       // Icon
                       _buildAntennaIcon(isDark),
 
-                      const Gap(24),
+                      const Gap(16),
 
                       // Title and description
                       Padding(
@@ -151,7 +165,7 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
                                   ),
                               textAlign: TextAlign.center,
                             ),
-                            const Gap(12),
+                            const Gap(8),
                             Text(
                               l10n.registrationPromptDescription,
                               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -165,13 +179,12 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
                           ],
                         ),
                       ),
-
-                      const Gap(32),
-
+                      const Gap(16),
                       // Benefits list
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Column(
+                          spacing: 8,
                           children: [
                             _buildBenefitItem(
                               icon: Icons.forum_outlined,
@@ -179,14 +192,12 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
                               description: l10n.registrationBenefitInteractDescription,
                               isDark: isDark,
                             ),
-                            const Gap(16),
                             _buildBenefitItem(
                               icon: Icons.favorite_outline,
                               title: l10n.registrationBenefitFavoritesTitle,
                               description: l10n.registrationBenefitFavoritesDescription,
                               isDark: isDark,
                             ),
-                            const Gap(16),
                             _buildBenefitItem(
                               icon: Icons.history_edu_outlined,
                               title: l10n.registrationBenefitLogbookTitle,

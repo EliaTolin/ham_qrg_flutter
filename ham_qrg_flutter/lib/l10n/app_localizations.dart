@@ -1257,6 +1257,78 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Registrazione gratuita. Nessuna licenza richiesta per consultare i dati pubblici.'**
   String get registrationPromptFooter;
+
+  /// No description provided for @postLoginOnboardingWelcome.
+  ///
+  /// In it, this message translates to:
+  /// **'Benvenuto in'**
+  String get postLoginOnboardingWelcome;
+
+  /// No description provided for @postLoginOnboardingQuestion.
+  ///
+  /// In it, this message translates to:
+  /// **'Sei un radioamatore con licenza?'**
+  String get postLoginOnboardingQuestion;
+
+  /// No description provided for @postLoginOnboardingHelpText.
+  ///
+  /// In it, this message translates to:
+  /// **'Ci aiuta a personalizzare la tua esperienza e mostrarti le frequenze giuste.'**
+  String get postLoginOnboardingHelpText;
+
+  /// No description provided for @postLoginOnboardingYesLicensed.
+  ///
+  /// In it, this message translates to:
+  /// **'Sì, lo sono'**
+  String get postLoginOnboardingYesLicensed;
+
+  /// No description provided for @postLoginOnboardingNoListener.
+  ///
+  /// In it, this message translates to:
+  /// **'No, sono solo un ascoltatore'**
+  String get postLoginOnboardingNoListener;
+
+  /// No description provided for @postLoginOnboardingCallsignTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Identificati'**
+  String get postLoginOnboardingCallsignTitle;
+
+  /// No description provided for @postLoginOnboardingCallsignSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Inserisci il tuo nominativo ufficiale per accedere alle funzionalità di rete.'**
+  String get postLoginOnboardingCallsignSubtitle;
+
+  /// No description provided for @postLoginOnboardingCallsignLabel.
+  ///
+  /// In it, this message translates to:
+  /// **'Nominativo (Callsign)'**
+  String get postLoginOnboardingCallsignLabel;
+
+  /// No description provided for @postLoginOnboardingCallsignHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. IU2XYZ'**
+  String get postLoginOnboardingCallsignHint;
+
+  /// No description provided for @postLoginOnboardingComplete.
+  ///
+  /// In it, this message translates to:
+  /// **'Completa profilo'**
+  String get postLoginOnboardingComplete;
+
+  /// No description provided for @postLoginOnboardingBack.
+  ///
+  /// In it, this message translates to:
+  /// **'Indietro'**
+  String get postLoginOnboardingBack;
+
+  /// No description provided for @postLoginOnboardingChangeInSettings.
+  ///
+  /// In it, this message translates to:
+  /// **'Puoi modificarlo in seguito nelle impostazioni.'**
+  String get postLoginOnboardingChangeInSettings;
 }
 
 class _AppLocalizationsDelegate

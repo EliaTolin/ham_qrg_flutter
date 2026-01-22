@@ -40,16 +40,16 @@
 	<true/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>HamQRG richiede l'accesso alla fotocamera per scattare ai quiz</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>HamQRG richiede l'accesso alle foto per usarli nei tuoi quiz</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Consenti l'accesso alla posizione per mostrare i ripetitori vicini.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Consenti l'accesso alla posizione per mostrare i ripetitori vicini.</string>
 	<key>MBXAccessToken</key>
 	<string>ABC_DEF_1244564</string>
+	<key>NSCameraUsageDescription</key>
+	<string>HamQRG richiede l'accesso alla fotocamera per scattare ai quiz</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Consenti l'accesso alla posizione per mostrare i ripetitori vicini.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Consenti l'accesso alla posizione per mostrare i ripetitori vicini.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>HamQRG richiede l'accesso alle foto per usarli nei tuoi quiz</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

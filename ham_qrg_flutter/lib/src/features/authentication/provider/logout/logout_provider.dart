@@ -10,4 +10,6 @@ Future<void> logout(Ref ref) async {
   await imageService.deleteAllCachedImages();
   final authRepository = await ref.read(authRepositoryProvider.future);
   await authRepository.logout();
+  // I need to sign in again as anonymous
+  await authRepository.anonymousSignIn();
 }

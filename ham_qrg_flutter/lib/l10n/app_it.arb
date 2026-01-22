@@ -285,5 +285,17 @@
   "registrationBenefitLogbookDescription": "Tieni traccia dei tuoi QSO e mantieni uno storico personale.",
   "registrationSignInApple": "Accedi con Apple",
   "registrationSignInGoogle": "Accedi con Google",
-  "registrationPromptFooter": "Registrazione gratuita. Nessuna licenza richiesta per consultare i dati pubblici."
+  "registrationPromptFooter": "Registrazione gratuita. Nessuna licenza richiesta per consultare i dati pubblici.",
+  "postLoginOnboardingWelcome": "Benvenuto in",
+  "postLoginOnboardingQuestion": "Sei un radioamatore con licenza?",
+  "postLoginOnboardingHelpText": "Ci aiuta a personalizzare la tua esperienza e mostrarti le frequenze giuste.",
+  "postLoginOnboardingYesLicensed": "Sì, lo sono",
+  "postLoginOnboardingNoListener": "No, sono solo un ascoltatore",
+  "postLoginOnboardingCallsignTitle": "Identificati",
+  "postLoginOnboardingCallsignSubtitle": "Inserisci il tuo nominativo ufficiale per accedere alle funzionalità di rete.",
+  "postLoginOnboardingCallsignLabel": "Nominativo (Callsign)",
+  "postLoginOnboardingCallsignHint": "Es. IU2XYZ",
+  "postLoginOnboardingComplete": "Completa profilo",
+  "postLoginOnboardingBack": "Indietro",
+  "postLoginOnboardingChangeInSettings": "Puoi modificarlo in seguito nelle impostazioni."
 }

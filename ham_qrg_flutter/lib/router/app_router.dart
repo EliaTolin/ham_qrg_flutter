@@ -5,7 +5,7 @@ import 'package:ham_qrg/src/features/authentication/presentation/auth/change_pas
 import 'package:ham_qrg/src/features/dashboard/dashboard_page.dart';
 import 'package:ham_qrg/src/features/favorites/presentation/favorites_page/favorites_page.dart';
 import 'package:ham_qrg/src/features/home/presentation/home_page.dart';
-import 'package:ham_qrg/src/features/onboarding/presentation/onboarding_page.dart';
+import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/post_login_onboarding_page.dart';
 import 'package:ham_qrg/src/features/profile/presentation/profile/profile_screen.dart';
 import 'package:ham_qrg/src/features/profile/presentation/user_settings/user_settings_screen.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/repeater_detail_page.dart';
@@ -25,8 +25,8 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(path: '/splash', page: SplashRoute.page, initial: true),
-        AutoRoute(page: OnboardingRoute.page),
         AutoRoute(page: AuthRoute.page),
+        AutoRoute(page: PostLoginOnboardingRoute.page),
         AutoRoute(path: '/change-password', page: ChangePasswordRoute.page),
         AutoRoute(
           page: HomeRoute.page,

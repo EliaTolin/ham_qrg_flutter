@@ -11,7 +11,6 @@ import 'package:ham_qrg/src/features/authentication/provider/anonymous_signin/an
 import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:ham_qrg/src/features/params/provider/get_params/get_params_provider.dart';
 import 'package:ham_qrg/src/features/splashscreen/errors/update_required_exception.dart';
-import 'package:ham_qrg/src/features/splashscreen/provider/get_has_seen_onboarding/get_has_seen_onboarding_provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -26,10 +25,8 @@ class SplashController extends _$SplashController {
       if (!kDebugMode) {
         await Future.delayed(const Duration(seconds: 2));
       }
-      final hasSeenOnboarding = await ref.read(getHasSeenOnboardingProvider.future);
       var userId = await ref.read(getUserIdProvider.future);
       userId ??= await ref.read(anonymousSignInProvider.future);
-      final targetRoute = hasSeenOnboarding ? const HomeRoute() : const OnboardingRoute();
       final packageInfo = await ref.read(packageInfoProvider.future);
       try {
         await _ensureMinimumVersion(packageInfo);
@@ -48,7 +45,7 @@ class SplashController extends _$SplashController {
       log('userId: $userId');
       _configureSentryUser(userId);
 
-      return SplashAction.navigate(targetRoute);
+      return const SplashAction.navigate(HomeRoute());
     } catch (error, stackTrace) {
       await Sentry.captureException(error, stackTrace: stackTrace);
       return const SplashAction.navigate(RepeatersMapRoute());

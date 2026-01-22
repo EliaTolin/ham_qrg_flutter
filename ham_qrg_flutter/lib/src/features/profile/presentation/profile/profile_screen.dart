@@ -95,7 +95,7 @@ class ProfileScreen extends HookConsumerWidget {
                             await ref.read(profileControllerProvider.notifier).logout();
                             if (context.mounted) {
                               await context.router.pushAndPopUntil(
-                                const AuthRoute(),
+                                const HomeRoute(),
                                 predicate: (_) => false,
                               );
                             }

@@ -635,4 +635,43 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get registrationPromptFooter =>
       'Registrazione gratuita. Nessuna licenza richiesta per consultare i dati pubblici.';
+
+  @override
+  String get postLoginOnboardingWelcome => 'Benvenuto in';
+
+  @override
+  String get postLoginOnboardingQuestion => 'Sei un radioamatore con licenza?';
+
+  @override
+  String get postLoginOnboardingHelpText =>
+      'Ci aiuta a personalizzare la tua esperienza e mostrarti le frequenze giuste.';
+
+  @override
+  String get postLoginOnboardingYesLicensed => 'Sì, lo sono';
+
+  @override
+  String get postLoginOnboardingNoListener => 'No, sono solo un ascoltatore';
+
+  @override
+  String get postLoginOnboardingCallsignTitle => 'Identificati';
+
+  @override
+  String get postLoginOnboardingCallsignSubtitle =>
+      'Inserisci il tuo nominativo ufficiale per accedere alle funzionalità di rete.';
+
+  @override
+  String get postLoginOnboardingCallsignLabel => 'Nominativo (Callsign)';
+
+  @override
+  String get postLoginOnboardingCallsignHint => 'Es. IU2XYZ';
+
+  @override
+  String get postLoginOnboardingComplete => 'Completa profilo';
+
+  @override
+  String get postLoginOnboardingBack => 'Indietro';
+
+  @override
+  String get postLoginOnboardingChangeInSettings =>
+      'Puoi modificarlo in seguito nelle impostazioni.';
 }
