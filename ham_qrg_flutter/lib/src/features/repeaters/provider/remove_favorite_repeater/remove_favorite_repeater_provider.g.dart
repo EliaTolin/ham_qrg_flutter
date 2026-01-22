@@ -63,7 +63,7 @@ final class RemoveFavoriteRepeaterProvider
 }
 
 String _$removeFavoriteRepeaterHash() =>
-    r'c3ab7904428df24e1998e6eca657d1324298cd3c';
+    r'85d719e29a760940026740a64a90505dda8456fc';
 
 final class RemoveFavoriteRepeaterFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<void>, String> {

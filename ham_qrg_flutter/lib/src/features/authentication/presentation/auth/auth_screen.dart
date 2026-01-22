@@ -7,6 +7,7 @@ import 'package:ham_qrg/common/widgets/logo_icon.dart';
 import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
 import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
 import 'package:ham_qrg/src/features/splashscreen/provider/set_onboarding_seen/set_onboarding_seen_provider.dart';
 
@@ -53,7 +54,9 @@ class AuthScreen extends ConsumerWidget {
                 // Sezione Social Login
                 SignInButtons(
                   onSignInComplete: () async {
-                    ref.invalidate(getUserIdProvider);
+                    ref
+                      ..invalidate(getUserIdProvider)
+                      ..invalidate(isAnonymousProvider);
                     await ref.read(setOnboardingSeenProvider.future);
 
                     final needsOnboarding =

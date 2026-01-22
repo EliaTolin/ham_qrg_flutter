@@ -59,7 +59,18 @@ class FavoritesPage extends HookConsumerWidget {
       [searchController],
     );
 
+    final l10n = context.localization;
+    final theme = Theme.of(context);
+
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          l10n.favoritesTitle,
+          style: theme.textTheme.headlineMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: controllerAsync.when(
         data: (state) => _buildContent(
           context,
@@ -119,8 +130,8 @@ class FavoritesPage extends HookConsumerWidget {
       children: [
         // Header
         Container(
-          padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top + 12,
+          padding: const EdgeInsets.only(
+            top: 12,
             bottom: 8,
             left: 24,
             right: 24,
@@ -135,26 +146,6 @@ class FavoritesPage extends HookConsumerWidget {
           ),
           child: Column(
             children: [
-              // Title and filter button
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    l10n.favoritesTitle,
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.filter_list),
-                    onPressed: () {
-                      // TO-DO: Show filter options
-                    },
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
               // Search bar
               TextField(
                 controller: searchController,

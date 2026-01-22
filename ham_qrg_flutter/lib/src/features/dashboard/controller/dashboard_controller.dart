@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ham_qrg/src/features/dashboard/controller/state/dashboard_state.dart';
 import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
@@ -13,10 +15,14 @@ part 'dashboard_controller.g.dart';
 class DashboardController extends _$DashboardController {
   @override
   FutureOr<DashboardState> build() async {
-    return _loadInitialData();
+    final countFavorites = await ref.watch(getTotalFavoritesCountProvider.future);
+    log('countFavorites: $countFavorites');
+    final countRepeaters = await ref.watch(getTotalRepeatersCountProvider.future);
+
+    return _loadInitialData(countFavorites ?? 0, countRepeaters);
   }
 
-  Future<DashboardState> _loadInitialData() async {
+  Future<DashboardState> _loadInitialData(int countFavorites, int countRepeaters) async {
     // Load statistics
 
     final profile = await ref.read(getProfileProvider.future);
@@ -28,16 +34,6 @@ class DashboardController extends _$DashboardController {
       const initialLat = 41.9028; // Rome default
       const initialLon = 12.4964;
       position = (latitude: initialLat, longitude: initialLon);
-    }
-
-    late final int? countFavorites;
-    late final int countRepeaters;
-
-    try {
-      countFavorites = await ref.read(getTotalFavoritesCountProvider.future);
-      countRepeaters = await ref.read(getTotalRepeatersCountProvider.future);
-    } on Exception catch (e) {
-      throw Exception(e);
     }
 
     try {
@@ -74,6 +70,8 @@ class DashboardController extends _$DashboardController {
 
   Future<void> reload() async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(_loadInitialData);
+    final countFavorites = await ref.read(getTotalFavoritesCountProvider.future);
+    final countRepeaters = await ref.read(getTotalRepeatersCountProvider.future);
+    state = await AsyncValue.guard(() => _loadInitialData(countFavorites ?? 0, countRepeaters));
   }
 }

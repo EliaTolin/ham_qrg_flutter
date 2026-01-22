@@ -9,8 +9,10 @@ import 'package:ham_qrg/src/features/authentication/presentation/auth/show_regis
 import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/add_favorite_repeater/add_favorite_repeater_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/get_favorite_repeaters/get_favorite_repeaters_provider.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/get_favorite_repeaters_ids/get_favorite_repeaters_ids_provider.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/get_total_favorites_count/get_total_favorites_count_provider.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/remove_favorite_repeater/remove_favorite_repeater_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -182,7 +184,10 @@ class _RepeaterDetailsSheet extends ConsumerWidget {
                     } else {
                       await ref.read(addFavoriteRepeaterProvider(repeater.id).future);
                     }
-                    ref.invalidate(getFavoriteRepeatersIdsProvider);
+                    ref
+                      ..invalidate(getFavoriteRepeatersProvider)
+                      ..invalidate(getFavoriteRepeatersIdsProvider)
+                      ..invalidate(getTotalFavoritesCountProvider);
                   },
                 ),
               ),

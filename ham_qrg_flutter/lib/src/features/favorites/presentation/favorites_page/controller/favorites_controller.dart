@@ -10,7 +10,7 @@ part 'favorites_controller.g.dart';
 class FavoritesController extends _$FavoritesController {
   @override
   FutureOr<FavoritesState> build() async {
-    final favorites = await ref.read(getFavoriteRepeatersProvider.future);
+    final favorites = await ref.watch(getFavoriteRepeatersProvider.future);
     return FavoritesState(
       favorites: favorites,
       selectedModes: {},

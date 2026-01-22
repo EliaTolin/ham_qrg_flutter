@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/logout/logout_provider.dart';
 import 'package:ham_qrg/src/features/profile/domain/state/user_state/user_state.dart';
@@ -39,6 +40,12 @@ class ProfileController extends _$ProfileController {
 
   Future<void> logout() async {
     await ref.read(logoutProvider.future);
+    ref
+      ..invalidate(getProfileProvider)
+      ..invalidate(getImageProfileProvider)
+      ..invalidate(getEmailProfileProvider)
+      ..invalidate(isAnonymousProvider)
+      ..invalidate(getUserIdProvider);
     log('User logged out');
   }
 }

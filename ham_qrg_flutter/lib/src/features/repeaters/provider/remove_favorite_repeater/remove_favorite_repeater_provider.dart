@@ -14,5 +14,5 @@ Future<void> removeFavoriteRepeater(
     throw Exception('User not authenticated');
   }
   final repository = ref.read(repeatersRepositoryProvider);
-  return repository.removeFavoriteRepeater(userId, repeaterId);
+  await repository.removeFavoriteRepeater(userId, repeaterId);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/access_mode_helper.dart';
 import 'package:ham_qrg/config/app_configs.dart';
+import 'package:ham_qrg/l10n/app_localizations.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
@@ -35,8 +36,7 @@ class FeedbackFormCard extends ConsumerWidget {
 
     final isFormValid = controller.isFormValid();
     final isWithinDistance = controller.isWithinAllowedDistance();
-    final canSubmit =
-        isFormValid && isWithinDistance && !state.isSubmittingFeedback;
+    final canSubmit = isFormValid && isWithinDistance && !state.isSubmittingFeedback;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -69,8 +69,7 @@ class FeedbackFormCard extends ConsumerWidget {
                   icon: Icons.smartphone,
                   label: l10n.repeaterDetailStationPortable,
                   isSelected: state.selectedStation == StationKind.portable,
-                  onTap: () =>
-                      controller.setSelectedStation(StationKind.portable),
+                  onTap: () => controller.setSelectedStation(StationKind.portable),
                 ),
               ),
               const SizedBox(width: 8),
@@ -79,8 +78,7 @@ class FeedbackFormCard extends ConsumerWidget {
                   icon: Icons.directions_car,
                   label: l10n.repeaterDetailStationMobile,
                   isSelected: state.selectedStation == StationKind.mobile,
-                  onTap: () =>
-                      controller.setSelectedStation(StationKind.mobile),
+                  onTap: () => controller.setSelectedStation(StationKind.mobile),
                 ),
               ),
               const SizedBox(width: 8),
@@ -89,8 +87,7 @@ class FeedbackFormCard extends ConsumerWidget {
                   icon: Icons.home,
                   label: l10n.repeaterDetailStationFixed,
                   isSelected: state.selectedStation == StationKind.fixed,
-                  onTap: () =>
-                      controller.setSelectedStation(StationKind.fixed),
+                  onTap: () => controller.setSelectedStation(StationKind.fixed),
                 ),
               ),
             ],
@@ -121,7 +118,7 @@ class FeedbackFormCard extends ConsumerWidget {
     BuildContext context,
     ThemeData theme,
     ColorScheme colorScheme,
-    dynamic l10n,
+    AppLocalizations l10n,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -219,7 +216,7 @@ class FeedbackFormCard extends ConsumerWidget {
     BuildContext context,
     ThemeData theme,
     ColorScheme colorScheme,
-    dynamic l10n,
+    AppLocalizations l10n,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,8 +233,7 @@ class FeedbackFormCard extends ConsumerWidget {
         const SizedBox(height: 8),
         ...availableAccesses.map((access) {
           final isSelected = state.selectedAccessId == access.id;
-          final accessColor =
-              AccessModeHelper.getAccessModeColorObject(access.mode);
+          final accessColor = AccessModeHelper.getAccessModeColorObject(access.mode);
           final accessIcon = AccessModeHelper.getAccessModeIcon(access.mode);
 
           return Padding(
@@ -253,9 +249,7 @@ class FeedbackFormCard extends ConsumerWidget {
                       : colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: isSelected
-                        ? accessColor
-                        : colorScheme.outline.withValues(alpha: 0.2),
+                    color: isSelected ? accessColor : colorScheme.outline.withValues(alpha: 0.2),
                     width: isSelected ? 2 : 1,
                   ),
                 ),
@@ -272,9 +266,7 @@ class FeedbackFormCard extends ConsumerWidget {
                       ),
                       child: Icon(
                         accessIcon,
-                        color: isSelected
-                            ? accessColor
-                            : colorScheme.onSurfaceVariant,
+                        color: isSelected ? accessColor : colorScheme.onSurfaceVariant,
                         size: 20,
                       ),
                     ),
@@ -305,9 +297,8 @@ class FeedbackFormCard extends ConsumerWidget {
                         shape: BoxShape.circle,
                         color: isSelected ? accessColor : Colors.transparent,
                         border: Border.all(
-                          color: isSelected
-                              ? accessColor
-                              : colorScheme.outline.withValues(alpha: 0.3),
+                          color:
+                              isSelected ? accessColor : colorScheme.outline.withValues(alpha: 0.3),
                           width: 2,
                         ),
                       ),
@@ -333,7 +324,7 @@ class FeedbackFormCard extends ConsumerWidget {
     BuildContext context,
     ThemeData theme,
     ColorScheme colorScheme,
-    dynamic l10n,
+    AppLocalizations l10n,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -370,7 +361,7 @@ class FeedbackFormCard extends ConsumerWidget {
   Widget _buildDistanceWarning(
     BuildContext context,
     ThemeData theme,
-    dynamic l10n,
+    AppLocalizations l10n,
   ) {
     return Container(
       padding: const EdgeInsets.all(12),
@@ -408,7 +399,7 @@ class FeedbackFormCard extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     ThemeData theme,
-    dynamic l10n,
+    AppLocalizations l10n,
     bool canSubmit,
   ) {
     return Row(
@@ -417,8 +408,7 @@ class FeedbackFormCard extends ConsumerWidget {
           child: FilledButton.icon(
             onPressed: canSubmit
                 ? () async {
-                    final isAuthenticated =
-                        await requireAuthentication(context, ref);
+                    final isAuthenticated = await requireAuthentication(context, ref);
                     if (!isAuthenticated) return;
                     await controller.submitFeedback(type: FeedbackType.like);
                   }
@@ -449,8 +439,7 @@ class FeedbackFormCard extends ConsumerWidget {
           child: FilledButton.icon(
             onPressed: canSubmit
                 ? () async {
-                    final isAuthenticated =
-                        await requireAuthentication(context, ref);
+                    final isAuthenticated = await requireAuthentication(context, ref);
                     if (!isAuthenticated) return;
                     await controller.submitFeedback(type: FeedbackType.down);
                   }
