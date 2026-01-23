@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/utils/map_utils.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/cluster_repeaters_sheet.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
@@ -97,6 +98,23 @@ class MapSectionWidget extends HookConsumerWidget {
     // Setup tap listener for annotations
     manager.tapEvents(
       onTap: (annotation) {
+        // Check if this is a cluster marker
+        final clusterKey = annotation.customData?['clusterKey'] as String?;
+        if (clusterKey != null) {
+          // Find all repeaters at this location
+          final clusterRepeaters = nearbyRepeaters.where((r) {
+            if (r.latitude == null || r.longitude == null) return false;
+            final key = '${r.latitude}_${r.longitude}';
+            return key == clusterKey;
+          }).toList();
+
+          if (clusterRepeaters.isNotEmpty) {
+            showClusterRepeatersSheet(context, clusterRepeaters);
+          }
+          return;
+        }
+
+        // Single repeater marker
         final repeaterId = annotation.customData?['repeaterId'] as String?;
         if (repeaterId != null) {
           try {
@@ -125,7 +143,7 @@ class MapSectionWidget extends HookConsumerWidget {
     await _syncAnnotations(manager, nearbyRepeaters);
   }
 
-  /// Sync annotations on map
+  /// Sync annotations on map with clustering for overlapping coordinates
   Future<void> _syncAnnotations(
     PointAnnotationManager manager,
     List<Repeater> repeaters,
@@ -134,22 +152,52 @@ class MapSectionWidget extends HookConsumerWidget {
       await manager.deleteAll();
       if (repeaters.isEmpty) return;
 
-      final annotations = <PointAnnotationOptions>[];
+      // Group repeaters by coordinates
+      final groupedRepeaters = <String, List<Repeater>>{};
       for (final repeater in repeaters) {
         final lat = repeater.latitude;
         final lon = repeater.longitude;
         if (lat == null || lon == null) continue;
 
-        final iconBytes = await RepeaterModeHelper.generateRepeaterIcon(repeater.mode);
-        annotations.add(
-          PointAnnotationOptions(
-            geometry: Point(coordinates: Position(lon, lat)),
-            image: iconBytes,
-            iconSize: 1.2,
-            iconAnchor: IconAnchor.BOTTOM,
-            customData: {'repeaterId': repeater.id},
-          ),
-        );
+        final key = '${lat}_$lon';
+        groupedRepeaters.putIfAbsent(key, () => []).add(repeater);
+      }
+
+      final annotations = <PointAnnotationOptions>[];
+
+      for (final entry in groupedRepeaters.entries) {
+        final repeatersAtLocation = entry.value;
+        final firstRepeater = repeatersAtLocation.first;
+        final lat = firstRepeater.latitude!;
+        final lon = firstRepeater.longitude!;
+
+        if (repeatersAtLocation.length == 1) {
+          // Single repeater - use normal marker
+          final iconBytes =
+              await RepeaterModeHelper.generateRepeaterIcon(firstRepeater.mode);
+          annotations.add(
+            PointAnnotationOptions(
+              geometry: Point(coordinates: Position(lon, lat)),
+              image: iconBytes,
+              iconSize: 1.2,
+              iconAnchor: IconAnchor.BOTTOM,
+              customData: {'repeaterId': firstRepeater.id},
+            ),
+          );
+        } else {
+          // Multiple repeaters - use cluster marker
+          final iconBytes =
+              await RepeaterModeHelper.generateClusterIcon(repeatersAtLocation.length);
+          annotations.add(
+            PointAnnotationOptions(
+              geometry: Point(coordinates: Position(lon, lat)),
+              image: iconBytes,
+              iconSize: 1.2,
+              iconAnchor: IconAnchor.BOTTOM,
+              customData: {'clusterKey': entry.key},
+            ),
+          );
+        }
       }
 
       if (annotations.isNotEmpty) {

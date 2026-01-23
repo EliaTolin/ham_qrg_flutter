@@ -508,6 +508,12 @@ abstract class AppLocalizations {
   /// **'Torna alla mia posizione'**
   String get repeatersMapReturnToLocation;
 
+  /// No description provided for @clusterRepeatersTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} ripetitori in questa posizione'**
+  String clusterRepeatersTitle(int count);
+
   /// No description provided for @profileUnlockFeatures.
   ///
   /// In it, this message translates to:

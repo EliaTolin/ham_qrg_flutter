@@ -89,4 +89,62 @@ class RepeaterModeHelper {
     final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     return byteData!.buffer.asUint8List();
   }
+
+  /// Generates a cluster icon with the count of repeaters
+  /// Returns Uint8List representing a PNG image
+  static Future<Uint8List> generateClusterIcon(int count) async {
+    const size = 72.0;
+
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(recorder);
+
+    // Draw outer circle with gradient-like effect (purple for clusters)
+    final outerPaint = Paint()
+      ..color = const Color(0xFF7C3AED) // Purple for clusters
+      ..style = PaintingStyle.fill;
+    canvas.drawCircle(
+      const Offset(size / 2, size / 2),
+      size / 2 - 2,
+      outerPaint,
+    );
+
+    // Draw white border
+    final borderPaint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 3;
+    canvas.drawCircle(
+      const Offset(size / 2, size / 2),
+      size / 2 - 2,
+      borderPaint,
+    );
+
+    // Draw count text
+    final countText = count > 99 ? '99+' : count.toString();
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: countText,
+        style: const TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+
+    // Center the text
+    final textOffset = Offset(
+      (size - textPainter.width) / 2,
+      (size - textPainter.height) / 2,
+    );
+
+    textPainter.paint(canvas, textOffset);
+
+    // Convert to image
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(size.toInt(), size.toInt());
+    final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    return byteData!.buffer.asUint8List();
+  }
 }

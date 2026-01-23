@@ -82,6 +82,14 @@
   "repeaterDistance": "Distanza",
   "repeaterViewFullDetails": "Vedi dettagli completi",
   "repeatersMapReturnToLocation": "Torna alla mia posizione",
+  "clusterRepeatersTitle": "{count} ripetitori in questa posizione",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "profileUnlockFeatures": "Sblocca tutte le funzionalità",
   "profileUnlockFeaturesDescription": "Registrati per utilizzare le funzioni di recensione, salvataggio preferiti e accedere a statistiche dettagliate.",
   "profileSignUpOrLogin": "Registrati o Accedi",

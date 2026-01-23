@@ -228,6 +228,11 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeatersMapReturnToLocation => 'Torna alla mia posizione';
 
   @override
+  String clusterRepeatersTitle(int count) {
+    return '$count ripetitori in questa posizione';
+  }
+
+  @override
   String get profileUnlockFeatures => 'Sblocca tutte le funzionalità';
 
   @override

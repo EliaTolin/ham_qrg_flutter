@@ -12,6 +12,7 @@ import 'package:ham_qrg/src/features/repeaters/presentation/utils/map_utils.dart
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/info_banner.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/map_access_mode_filter_chips.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/permission_banner.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/cluster_repeaters_sheet.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/summary_chip.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -166,19 +167,35 @@ class RepeatersMapPage extends HookConsumerWidget {
     // Setup tap listener for annotations
     manager.tapEvents(
       onTap: (annotation) {
+        final currentState = ref.read(repeatersMapControllerProvider).value;
+        if (currentState == null) return;
+
+        // Check if this is a cluster marker
+        final clusterKey = annotation.customData?['clusterKey'] as String?;
+        if (clusterKey != null) {
+          // Find all repeaters at this location
+          final clusterRepeaters = currentState.repeaters.where((r) {
+            if (r.latitude == null || r.longitude == null) return false;
+            final key = '${r.latitude}_${r.longitude}';
+            return key == clusterKey;
+          }).toList();
+
+          if (clusterRepeaters.isNotEmpty) {
+            showClusterRepeatersSheet(context, clusterRepeaters);
+          }
+          return;
+        }
+
+        // Single repeater marker
         final repeaterId = annotation.customData?['repeaterId'] as String?;
         if (repeaterId != null) {
-          final currentState = ref.read(repeatersMapControllerProvider).value;
-          if (currentState != null) {
-            try {
-              final repeater = currentState.repeaters.firstWhere(
-                (r) => r.id == repeaterId,
-              );
-              // Show repeater details sheet
-              showRepeaterDetailsSheet(context, repeater);
-            } catch (e) {
-              // Repeater not found, ignore
-            }
+          try {
+            final repeater = currentState.repeaters.firstWhere(
+              (r) => r.id == repeaterId,
+            );
+            showRepeaterDetailsSheet(context, repeater);
+          } catch (e) {
+            // Repeater not found, ignore
           }
         }
       },
@@ -248,7 +265,7 @@ class RepeatersMapPage extends HookConsumerWidget {
     }
   }
 
-  /// Sync annotations on map
+  /// Sync annotations on map with clustering for overlapping coordinates
   Future<void> _syncAnnotations(
     PointAnnotationManager manager,
     List<Repeater> repeaters,
@@ -257,22 +274,52 @@ class RepeatersMapPage extends HookConsumerWidget {
       await manager.deleteAll();
       if (repeaters.isEmpty) return;
 
-      final annotations = <PointAnnotationOptions>[];
+      // Group repeaters by coordinates
+      final groupedRepeaters = <String, List<Repeater>>{};
       for (final repeater in repeaters) {
         final lat = repeater.latitude;
         final lon = repeater.longitude;
         if (lat == null || lon == null) continue;
 
-        final iconBytes = await RepeaterModeHelper.generateRepeaterIcon(repeater.mode);
-        annotations.add(
-          PointAnnotationOptions(
-            geometry: Point(coordinates: Position(lon, lat)),
-            image: iconBytes,
-            iconSize: 1.2,
-            iconAnchor: IconAnchor.BOTTOM,
-            customData: {'repeaterId': repeater.id},
-          ),
-        );
+        final key = '${lat}_$lon';
+        groupedRepeaters.putIfAbsent(key, () => []).add(repeater);
+      }
+
+      final annotations = <PointAnnotationOptions>[];
+
+      for (final entry in groupedRepeaters.entries) {
+        final repeatersAtLocation = entry.value;
+        final firstRepeater = repeatersAtLocation.first;
+        final lat = firstRepeater.latitude!;
+        final lon = firstRepeater.longitude!;
+
+        if (repeatersAtLocation.length == 1) {
+          // Single repeater - use normal marker
+          final iconBytes =
+              await RepeaterModeHelper.generateRepeaterIcon(firstRepeater.mode);
+          annotations.add(
+            PointAnnotationOptions(
+              geometry: Point(coordinates: Position(lon, lat)),
+              image: iconBytes,
+              iconSize: 1.2,
+              iconAnchor: IconAnchor.BOTTOM,
+              customData: {'repeaterId': firstRepeater.id},
+            ),
+          );
+        } else {
+          // Multiple repeaters - use cluster marker
+          final iconBytes =
+              await RepeaterModeHelper.generateClusterIcon(repeatersAtLocation.length);
+          annotations.add(
+            PointAnnotationOptions(
+              geometry: Point(coordinates: Position(lon, lat)),
+              image: iconBytes,
+              iconSize: 1.2,
+              iconAnchor: IconAnchor.BOTTOM,
+              customData: {'clusterKey': entry.key},
+            ),
+          );
+        }
       }
 
       if (annotations.isNotEmpty) {
