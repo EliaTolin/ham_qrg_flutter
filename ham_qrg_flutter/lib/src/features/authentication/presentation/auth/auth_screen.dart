@@ -9,6 +9,7 @@ import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/si
 import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
+import 'package:ham_qrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
 import 'package:ham_qrg/src/features/splashscreen/provider/set_onboarding_seen/set_onboarding_seen_provider.dart';
 
 @RoutePage()
@@ -56,7 +57,8 @@ class AuthScreen extends ConsumerWidget {
                   onSignInComplete: () async {
                     ref
                       ..invalidate(getUserIdProvider)
-                      ..invalidate(isAnonymousProvider);
+                      ..invalidate(isAnonymousProvider)
+                      ..invalidate(profileControllerProvider);
                     await ref.read(setOnboardingSeenProvider.future);
 
                     final needsOnboarding =

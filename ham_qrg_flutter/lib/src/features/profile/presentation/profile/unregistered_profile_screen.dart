@@ -12,6 +12,7 @@ import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_use
 import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
+import 'package:ham_qrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -34,7 +35,8 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
         await ref.read(signInWithAppleProvider.future);
         ref
           ..invalidate(getUserIdProvider)
-          ..invalidate(isAnonymousProvider);
+          ..invalidate(isAnonymousProvider)
+          ..invalidate(profileControllerProvider);
       } catch (e) {
         if (context.mounted) {
           showErrorSnackbar(context, l10n.authUnexpectedError);
@@ -54,7 +56,8 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
         await ref.read(signInWithGoogleProvider.future);
         ref
           ..invalidate(getUserIdProvider)
-          ..invalidate(isAnonymousProvider);
+          ..invalidate(isAnonymousProvider)
+          ..invalidate(profileControllerProvider);
       } catch (e) {
         if (context.mounted) {
           showErrorSnackbar(context, l10n.authUnexpectedError);
