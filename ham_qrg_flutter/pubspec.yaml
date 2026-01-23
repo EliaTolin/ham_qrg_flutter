@@ -79,6 +79,7 @@ flutter:
     - assets/images/
     - assets/svg/
     - assets/icon/
+    - assets/map_layers/
     - shorebird.yaml
 
 sentry:

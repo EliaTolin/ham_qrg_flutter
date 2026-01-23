@@ -1,10 +1,16 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
+import 'dart:ui' as ui;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
+import 'package:ham_qrg/config/constants/map_keys.dart';
+import 'package:ham_qrg/config/constants/map_layers.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/repeaters_map_controller.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
@@ -18,11 +24,14 @@ import 'package:ham_qrg/src/features/repeaters/presentation/widgets/summary_chip
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
-/// Initial zoom level for the map (configurable)
+/// Initial zoom level for the map
 const double _initialZoom = 8;
 
 /// Debounce delay for camera changes (milliseconds)
 const int _cameraDebounceMs = 500;
+
+/// Zoom increment when clicking on a cluster
+const double _clusterZoomIncrement = 1.5;
 
 @RoutePage()
 class RepeatersMapPage extends HookConsumerWidget {
@@ -31,10 +40,8 @@ class RepeatersMapPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mapController = useState<MapboxMap?>(null);
-    final pointManager = useState<PointAnnotationManager?>(null);
     final cameraChangeTimer = useRef<Timer?>(null);
-    final userLocation = useState<({double lat, double lon})?>(null);
-    final showLocationButton = useState<bool>(false);
+    final isStyleLoaded = useState<bool>(false);
 
     final asyncState = ref.watch(repeatersMapControllerProvider);
     final notifier = ref.read(repeatersMapControllerProvider.notifier);
@@ -58,18 +65,16 @@ class RepeatersMapPage extends HookConsumerWidget {
         child: CircularProgressIndicator.adaptive(),
       );
     }
-    // Sync annotations when repeaters change
+
+    // Update GeoJSON source when repeaters change
     useEffect(
       () {
-        if (mapController.value != null && pointManager.value != null) {
-          _syncAnnotations(
-            pointManager.value!,
-            mapState!.repeaters,
-          );
+        if (mapController.value != null && isStyleLoaded.value) {
+          _updateGeoJsonSource(mapController.value!, mapState!.repeaters);
         }
         return null;
       },
-      [mapState?.repeaters],
+      [mapState?.repeaters, isStyleLoaded.value],
     );
 
     return Scaffold(
@@ -80,7 +85,7 @@ class RepeatersMapPage extends HookConsumerWidget {
               center: Point(
                 coordinates: Position(data.longitude!, data.latitude!),
               ),
-              zoom: _initialZoom, // Zoom closer if we have user location
+              zoom: _initialZoom,
               bearing: 0,
               pitch: 0,
             ),
@@ -93,14 +98,29 @@ class RepeatersMapPage extends HookConsumerWidget {
               );
             },
             onMapCreated: (mapboxMap) async {
+              mapController.value = mapboxMap;
               await _initializeMap(
                 mapboxMap,
-                mapController,
-                pointManager,
                 ref,
                 context,
                 data.latitude != null && data.longitude != null,
               );
+            },
+            onStyleLoadedListener: (styleLoaded) async {
+              if (mapController.value != null) {
+                await _onStyleLoaded(mapController.value!, context, ref);
+                isStyleLoaded.value = true;
+              }
+            },
+            onTapListener: (gestureContext) async {
+              if (mapController.value != null) {
+                await _handleMapTap(
+                  mapController.value!,
+                  gestureContext,
+                  ref,
+                  context,
+                );
+              }
             },
           ),
 
@@ -111,18 +131,8 @@ class RepeatersMapPage extends HookConsumerWidget {
             asyncState,
             mapState,
             notifier,
-            showLocationButton.value,
             mapController.value,
-            userLocation.value,
           ),
-
-          // // Repeater details sheet (draggable)
-          // if (mapState?.selectedRepeater != null)
-          //   _buildRepeaterDetailsSheet(
-          //     context,
-          //     mapState!.selectedRepeater!,
-          //     notifier,
-          //   ),
         ],
       ),
     );
@@ -149,68 +159,30 @@ class RepeatersMapPage extends HookConsumerWidget {
     );
   }
 
-  /// Initialize map and load initial repeaters
+  /// Initialize map settings
   Future<void> _initializeMap(
     MapboxMap mapboxMap,
-    ValueNotifier<MapboxMap?> mapController,
-    ValueNotifier<PointAnnotationManager?> pointManager,
     WidgetRef ref,
     BuildContext context,
     bool hasUserLocation,
   ) async {
-    mapController.value = mapboxMap;
-
-    // Create annotation manager
-    final manager = await mapboxMap.annotations.createPointAnnotationManager();
-    pointManager.value = manager;
-
-    // Setup tap listener for annotations
-    manager.tapEvents(
-      onTap: (annotation) {
-        final currentState = ref.read(repeatersMapControllerProvider).value;
-        if (currentState == null) return;
-
-        // Check if this is a cluster marker
-        final clusterKey = annotation.customData?['clusterKey'] as String?;
-        if (clusterKey != null) {
-          // Find all repeaters at this location
-          final clusterRepeaters = currentState.repeaters.where((r) {
-            if (r.latitude == null || r.longitude == null) return false;
-            final key = '${r.latitude}_${r.longitude}';
-            return key == clusterKey;
-          }).toList();
-
-          if (clusterRepeaters.isNotEmpty) {
-            showClusterRepeatersSheet(context, clusterRepeaters);
-          }
-          return;
-        }
-
-        // Single repeater marker
-        final repeaterId = annotation.customData?['repeaterId'] as String?;
-        if (repeaterId != null) {
-          try {
-            final repeater = currentState.repeaters.firstWhere(
-              (r) => r.id == repeaterId,
-            );
-            showRepeaterDetailsSheet(context, repeater);
-          } catch (e) {
-            // Repeater not found, ignore
-          }
-        }
-      },
-    );
-
-    // Enable location component
-    await mapboxMap.location.updateSettings(
-      LocationComponentSettings(
-        enabled: true,
-        pulsingEnabled: true,
-        showAccuracyRing: true,
+    // Configure map settings
+    await Future.wait([
+      mapboxMap.scaleBar.updateSettings(ScaleBarSettings(enabled: false)),
+      mapboxMap.compass.updateSettings(CompassSettings(enabled: false)),
+      mapboxMap.gestures.updateSettings(
+        GesturesSettings(pitchEnabled: false, rotateEnabled: false),
       ),
-    );
+      mapboxMap.location.updateSettings(
+        LocationComponentSettings(
+          enabled: true,
+          pulsingEnabled: true,
+          showAccuracyRing: true,
+        ),
+      ),
+    ]);
 
-    // If we have user location, center map on it first
+    // If we have user location, center map on it
     if (hasUserLocation) {
       final mapState = ref.read(repeatersMapControllerProvider).value;
       if (mapState?.latitude != null && mapState?.longitude != null) {
@@ -220,13 +192,377 @@ class RepeatersMapPage extends HookConsumerWidget {
           mapState.longitude!,
           zoom: 10,
         );
-        // Wait for camera animation to complete
         await Future.delayed(const Duration(milliseconds: 800));
       }
     }
 
-    // Load repeaters for visible bounds after map is ready
+    // Load repeaters for visible bounds
     await _loadRepeatersForVisibleBounds(ref, mapboxMap);
+  }
+
+  /// Called when the map style is fully loaded
+  Future<void> _onStyleLoaded(
+    MapboxMap mapboxMap,
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
+    await Future.wait([
+      _addMarkerImages(mapboxMap),
+      _addStyleLayers(mapboxMap),
+    ]);
+
+    // Update source with current repeaters
+    final mapState = ref.read(repeatersMapControllerProvider).value;
+    if (mapState != null) {
+      await _updateGeoJsonSource(mapboxMap, mapState.repeaters);
+    }
+  }
+
+  /// Add marker images to the map style
+  Future<void> _addMarkerImages(MapboxMap mapboxMap) async {
+    try {
+      // Generate and add marker images for each mode
+      await _addMarkerImage(
+        mapboxMap,
+        MapKeys.analogMarker,
+        RepeaterMode.analog,
+      );
+      await _addMarkerImage(
+        mapboxMap,
+        MapKeys.digitalMarker,
+        RepeaterMode.digital,
+      );
+      await _addMarkerImage(
+        mapboxMap,
+        MapKeys.mixedMarker,
+        RepeaterMode.mixed,
+      );
+    } catch (e) {
+      log('Error adding marker images: $e');
+    }
+  }
+
+  /// Add a single marker image to the map style
+  Future<void> _addMarkerImage(
+    MapboxMap mapboxMap,
+    String imageId,
+    RepeaterMode mode,
+  ) async {
+    final exists = await mapboxMap.style.hasStyleImage(imageId);
+    if (exists) return;
+
+    final iconBytes = await RepeaterModeHelper.generateRepeaterIcon(mode);
+
+    // Get image dimensions
+    final buffer = await ui.ImmutableBuffer.fromUint8List(iconBytes);
+    final descriptor = await ui.ImageDescriptor.encoded(buffer);
+
+    await mapboxMap.style.addStyleImage(
+      imageId,
+      1,
+      MbxImage(
+        width: descriptor.width,
+        height: descriptor.height,
+        data: iconBytes,
+      ),
+      false,
+      [],
+      [],
+      null,
+    );
+  }
+
+  /// Add style layers for clusters and points
+  Future<void> _addStyleLayers(MapboxMap mapboxMap) async {
+    try {
+      // Check if layers already exist
+      final clusterExists = await mapboxMap.style.styleLayerExists(
+        MapKeys.clusterLayer,
+      );
+
+      if (!clusterExists) {
+        await Future.wait([
+          _addLayerFromAsset(mapboxMap, MapLayers.clusterLayer),
+          _addLayerFromAsset(mapboxMap, MapLayers.clusterCountLayer),
+          _addLayerFromAsset(mapboxMap, MapLayers.unclusteredPointLayer),
+        ]);
+      }
+    } catch (e) {
+      log('Error adding style layers: $e');
+    }
+  }
+
+  /// Load and add a style layer from asset
+  Future<void> _addLayerFromAsset(MapboxMap mapboxMap, String assetPath) async {
+    try {
+      final layerJson = await rootBundle.loadString(assetPath);
+      await mapboxMap.style.addStyleLayer(layerJson, null);
+    } catch (e) {
+      log('Error adding layer from $assetPath: $e');
+    }
+  }
+
+  /// Update or create the GeoJSON source with repeaters
+  Future<void> _updateGeoJsonSource(
+    MapboxMap mapboxMap,
+    List<Repeater> repeaters,
+  ) async {
+    try {
+      final geoJson = _repeatersToGeoJson(repeaters);
+
+      final sourceExists = await mapboxMap.style.styleSourceExists(
+        MapKeys.repeatersSource,
+      );
+
+      if (!sourceExists) {
+        await mapboxMap.style.addSource(
+          GeoJsonSource(
+            id: MapKeys.repeatersSource,
+            cluster: true,
+            clusterRadius: 50,
+            clusterMaxZoom: 14,
+            data: geoJson,
+          ),
+        );
+      } else {
+        final source = await mapboxMap.style.getSource(MapKeys.repeatersSource)
+            as GeoJsonSource?;
+        if (source != null) {
+          await source.updateGeoJSON(geoJson);
+        }
+      }
+    } catch (e) {
+      log('Error updating GeoJSON source: $e');
+    }
+  }
+
+  /// Convert repeaters to GeoJSON format
+  String _repeatersToGeoJson(List<Repeater> repeaters) {
+    return jsonEncode({
+      'type': 'FeatureCollection',
+      'features': repeaters
+          .where((r) => r.latitude != null && r.longitude != null)
+          .map(
+            (repeater) => {
+              'type': 'Feature',
+              'geometry': {
+                'type': 'Point',
+                'coordinates': [repeater.longitude, repeater.latitude],
+              },
+              'properties': {
+                'id': repeater.id,
+                'callsign': repeater.callsign,
+                'locality': repeater.locality,
+                'frequencyHz': repeater.frequencyHz,
+                'mode': repeater.mode.name,
+                'latitude': repeater.latitude,
+                'longitude': repeater.longitude,
+              },
+            },
+          )
+          .toList(),
+    });
+  }
+
+  /// Handle tap on the map
+  Future<void> _handleMapTap(
+    MapboxMap mapboxMap,
+    MapContentGestureContext gestureContext,
+    WidgetRef ref,
+    BuildContext context,
+  ) async {
+    if (!context.mounted) return;
+
+    try {
+      final screenCoordinate = await mapboxMap.pixelForCoordinate(
+        gestureContext.point,
+      );
+
+      if (!context.mounted) return;
+
+      // First check for cluster tap
+      final clusterHandled = await _handleClusterTap(
+        mapboxMap,
+        screenCoordinate,
+        ref,
+        context,
+      );
+      if (clusterHandled) return;
+
+      if (!context.mounted) return;
+
+      // Then check for single point tap
+      await _handlePointTap(mapboxMap, screenCoordinate, ref, context);
+    } catch (e) {
+      log('Error handling map tap: $e');
+    }
+  }
+
+  /// Handle tap on a cluster
+  Future<bool> _handleClusterTap(
+    MapboxMap mapboxMap,
+    ScreenCoordinate screenCoordinate,
+    WidgetRef ref,
+    BuildContext context,
+  ) async {
+    try {
+      final features = await mapboxMap.queryRenderedFeatures(
+        RenderedQueryGeometry.fromScreenCoordinate(screenCoordinate),
+        RenderedQueryOptions(layerIds: [MapKeys.clusterLayer]),
+      );
+
+      if (features.isEmpty) return false;
+
+      final feature = features.first;
+      if (feature == null) return false;
+
+      // Get cluster leaves to check if all points are at same location
+      final clusterLeaves = await mapboxMap.getGeoJsonClusterLeaves(
+        feature.queriedFeature.source,
+        feature.queriedFeature.feature,
+        null,
+        null,
+      );
+
+      final leaves = clusterLeaves.featureCollection ?? [];
+
+      // Check if all points are at the same coordinates
+      final uniqueCoordinates = <String>{};
+      for (final leaf in leaves) {
+        if (leaf != null) {
+          final geometry = leaf['geometry'] as Map<dynamic, dynamic>?;
+          if (geometry != null) {
+            final coords = geometry['coordinates'] as List<dynamic>?;
+            if (coords != null && coords.length >= 2) {
+              uniqueCoordinates.add('${coords[0]}_${coords[1]}');
+            }
+          }
+        }
+      }
+
+      if (uniqueCoordinates.length == 1 && leaves.isNotEmpty) {
+        // All repeaters at same location - show list
+        final repeaters = _extractRepeatersFromLeaves(leaves, ref);
+        if (repeaters.isNotEmpty && context.mounted) {
+          showClusterRepeatersSheet(context, repeaters);
+        }
+        return true;
+      } else {
+        // Different locations - zoom in
+        final cameraState = await mapboxMap.getCameraState();
+        final featureMap =
+            feature.queriedFeature.feature as Map<dynamic, dynamic>;
+        final geometry = featureMap['geometry'] as Map<dynamic, dynamic>?;
+        if (geometry != null) {
+          final coords = geometry['coordinates'] as List<dynamic>?;
+          if (coords != null && coords.length >= 2) {
+            await mapboxMap.flyTo(
+              CameraOptions(
+                center: Point(
+                  coordinates: Position(
+                    (coords[0] as num).toDouble(),
+                    (coords[1] as num).toDouble(),
+                  ),
+                ),
+                zoom: cameraState.zoom + _clusterZoomIncrement,
+              ),
+              MapAnimationOptions(duration: 300),
+            );
+          }
+        }
+        return true;
+      }
+    } catch (e) {
+      log('Error handling cluster tap: $e');
+      return false;
+    }
+  }
+
+  /// Extract repeaters from cluster leaves
+  List<Repeater> _extractRepeatersFromLeaves(
+    List<Map<dynamic, dynamic>?> leaves,
+    WidgetRef ref,
+  ) {
+    final currentState = ref.read(repeatersMapControllerProvider).value;
+    if (currentState == null) return [];
+
+    final repeaterIds = <String>[];
+    for (final leaf in leaves) {
+      if (leaf != null) {
+        final properties = leaf['properties'] as Map<dynamic, dynamic>?;
+        if (properties != null) {
+          final id = properties['id'] as String?;
+          if (id != null) {
+            repeaterIds.add(id);
+          }
+        }
+      }
+    }
+
+    return currentState.repeaters
+        .where((r) => repeaterIds.contains(r.id))
+        .toList();
+  }
+
+  /// Handle tap on a single point
+  Future<void> _handlePointTap(
+    MapboxMap mapboxMap,
+    ScreenCoordinate screenCoordinate,
+    WidgetRef ref,
+    BuildContext context,
+  ) async {
+    try {
+      final features = await mapboxMap.queryRenderedFeatures(
+        RenderedQueryGeometry.fromScreenCoordinate(screenCoordinate),
+        RenderedQueryOptions(layerIds: [MapKeys.unclusteredPointLayer]),
+      );
+
+      if (features.isEmpty) return;
+
+      final feature = features.first;
+      if (feature == null) return;
+
+      final featureMap =
+          feature.queriedFeature.feature as Map<dynamic, dynamic>;
+      final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
+      if (properties == null) return;
+
+      final repeaterId = properties['id'] as String?;
+      if (repeaterId == null) return;
+
+      final currentState = ref.read(repeatersMapControllerProvider).value;
+      if (currentState == null) return;
+
+      final repeater = currentState.repeaters.firstWhere(
+        (r) => r.id == repeaterId,
+        orElse: () => throw StateError('Repeater not found'),
+      );
+
+      // Center on the point
+      final geometry = featureMap['geometry'] as Map<dynamic, dynamic>?;
+      if (geometry != null) {
+        final coords = geometry['coordinates'] as List<dynamic>?;
+        if (coords != null && coords.length >= 2) {
+          await mapboxMap.flyTo(
+            CameraOptions(
+              center: Point(
+                coordinates: Position(
+                  (coords[0] as num).toDouble(),
+                  (coords[1] as num).toDouble(),
+                ),
+              ),
+            ),
+            MapAnimationOptions(duration: 200),
+          );
+        }
+      }
+
+      if (context.mounted) {
+        await showRepeaterDetailsSheet(context, repeater);
+      }
+    } catch (e) {
+      log('Error handling point tap: $e');
+    }
   }
 
   /// Load repeaters based on visible map bounds
@@ -235,98 +571,16 @@ class RepeatersMapPage extends HookConsumerWidget {
     MapboxMap map,
   ) async {
     try {
-      // Get visible bounds from map
-      final bounds = await map.coordinateBoundsForCamera(
-        CameraOptions(
-          center: await map.getCameraState().then((s) => s.center),
-          zoom: await map.getCameraState().then((s) => s.zoom),
-        ),
-      );
-
-      // Extract coordinates from bounds
-      final sw = bounds.southwest.coordinates;
-      final ne = bounds.northeast.coordinates;
-
-      final lat1 = sw[1]!.toDouble();
-      final lon1 = sw[0]!.toDouble();
-      final lat2 = ne[1]!.toDouble();
-      final lon2 = ne[0]!.toDouble();
-
-      // Load repeaters
+      final bounds = await _getVisibleBounds(map);
       final controller = ref.read(repeatersMapControllerProvider.notifier);
       await controller.loadRepeatersFromBounds(
-        lat1: lat1,
-        lon1: lon1,
-        lat2: lat2,
-        lon2: lon2,
+        lat1: bounds.lat1,
+        lon1: bounds.lon1,
+        lat2: bounds.lat2,
+        lon2: bounds.lon2,
       );
     } catch (e) {
       // Ignore errors
-    }
-  }
-
-  /// Sync annotations on map with clustering for overlapping coordinates
-  Future<void> _syncAnnotations(
-    PointAnnotationManager manager,
-    List<Repeater> repeaters,
-  ) async {
-    try {
-      await manager.deleteAll();
-      if (repeaters.isEmpty) return;
-
-      // Group repeaters by coordinates
-      final groupedRepeaters = <String, List<Repeater>>{};
-      for (final repeater in repeaters) {
-        final lat = repeater.latitude;
-        final lon = repeater.longitude;
-        if (lat == null || lon == null) continue;
-
-        final key = '${lat}_$lon';
-        groupedRepeaters.putIfAbsent(key, () => []).add(repeater);
-      }
-
-      final annotations = <PointAnnotationOptions>[];
-
-      for (final entry in groupedRepeaters.entries) {
-        final repeatersAtLocation = entry.value;
-        final firstRepeater = repeatersAtLocation.first;
-        final lat = firstRepeater.latitude!;
-        final lon = firstRepeater.longitude!;
-
-        if (repeatersAtLocation.length == 1) {
-          // Single repeater - use normal marker
-          final iconBytes =
-              await RepeaterModeHelper.generateRepeaterIcon(firstRepeater.mode);
-          annotations.add(
-            PointAnnotationOptions(
-              geometry: Point(coordinates: Position(lon, lat)),
-              image: iconBytes,
-              iconSize: 1.2,
-              iconAnchor: IconAnchor.BOTTOM,
-              customData: {'repeaterId': firstRepeater.id},
-            ),
-          );
-        } else {
-          // Multiple repeaters - use cluster marker
-          final iconBytes =
-              await RepeaterModeHelper.generateClusterIcon(repeatersAtLocation.length);
-          annotations.add(
-            PointAnnotationOptions(
-              geometry: Point(coordinates: Position(lon, lat)),
-              image: iconBytes,
-              iconSize: 1.2,
-              iconAnchor: IconAnchor.BOTTOM,
-              customData: {'clusterKey': entry.key},
-            ),
-          );
-        }
-      }
-
-      if (annotations.isNotEmpty) {
-        await manager.createMulti(annotations);
-      }
-    } catch (e) {
-      // Ignore errors if map is not fully initialized yet
     }
   }
 
@@ -337,9 +591,7 @@ class RepeatersMapPage extends HookConsumerWidget {
     AsyncValue<RepeatersMapState> asyncState,
     RepeatersMapState? mapState,
     RepeatersMapController notifier,
-    bool showLocationButton,
     MapboxMap? mapController,
-    ({double lat, double lon})? userLocation,
   ) {
     return Stack(
       children: [
@@ -432,75 +684,6 @@ class RepeatersMapPage extends HookConsumerWidget {
       ],
     );
   }
-
-  // /// Build draggable repeater details sheet
-  // Widget _buildRepeaterDetailsSheet(
-  //   BuildContext context,
-  //   Repeater repeater,
-  //   RepeatersMapController notifier,
-  // ) {
-  //   final theme = Theme.of(context);
-  //   final colorScheme = theme.colorScheme;
-
-  //   return NotificationListener<DraggableScrollableNotification>(
-  //     onNotification: (notification) {
-  //       // Close sheet when dragged below threshold
-  //       if (notification.extent <= 0.2) {
-  //         notifier.clearSelectedRepeater();
-  //       }
-  //       return false;
-  //     },
-  //     child: DraggableScrollableSheet(
-  //       initialChildSize: 0.65,
-  //       minChildSize: 0.15,
-  //       maxChildSize: 0.95,
-  //       builder: (context, scrollController) {
-  //         return Container(
-  //           decoration: BoxDecoration(
-  //             color: theme.scaffoldBackgroundColor,
-  //             borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-  //             boxShadow: [
-  //               BoxShadow(
-  //                 color: colorScheme.shadow.withValues(alpha: 0.3),
-  //                 blurRadius: 30,
-  //                 offset: const Offset(0, -8),
-  //               ),
-  //             ],
-  //             border: Border(
-  //               top: BorderSide(
-  //                 color: colorScheme.outline,
-  //               ),
-  //             ),
-  //           ),
-  //           child: Column(
-  //             children: [
-  //               // Handle bar - tap to close
-  //               GestureDetector(
-  //                 onTap: () => notifier.clearSelectedRepeater(),
-  //                 child: Container(
-  //                   margin: const EdgeInsets.only(top: 12, bottom: 4),
-  //                   width: 48,
-  //                   height: 6,
-  //                   decoration: BoxDecoration(
-  //                     color: colorScheme.outlineVariant,
-  //                     borderRadius: BorderRadius.circular(3),
-  //                   ),
-  //                 ),
-  //               ),
-  //               // Repeater details
-  //               Expanded(
-  //                 child: RepeaterDetailsSheet(
-  //                   repeater: repeater,
-  //                   scrollController: scrollController,
-  //                   onClose: () => notifier.clearSelectedRepeater(),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         );
-  //       },
-  //     ),
-  //   );
 }
 
 Future<({double lat1, double lon1, double lat2, double lon2})> _getVisibleBounds(

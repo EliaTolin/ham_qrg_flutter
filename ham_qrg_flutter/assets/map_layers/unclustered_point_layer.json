@@ -1,0 +1,19 @@
+{
+  "id": "repeaters-unclustered",
+  "type": "symbol",
+  "source": "repeaters-source",
+  "filter": ["!", ["has", "point_count"]],
+  "layout": {
+    "icon-image": [
+      "match",
+      ["get", "mode"],
+      "analog", "analog-marker",
+      "digital", "digital-marker",
+      "mixed", "mixed-marker",
+      "analog-marker"
+    ],
+    "icon-size": 0.5,
+    "icon-allow-overlap": true,
+    "icon-anchor": "bottom"
+  }
+}
