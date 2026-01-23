@@ -8,7 +8,7 @@ import 'package:ham_qrg/common/widgets/form/password_field.dart';
 import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:ham_qrg/common/widgets/snackbars/show_success_snackbar.dart';
 import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/authentication/presentation/auth/change_password/controller/change_password_controller_provider.dart';
+import 'package:ham_qrg/src/features/authentication/presentation/auth/change_password/controller/change_password_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()

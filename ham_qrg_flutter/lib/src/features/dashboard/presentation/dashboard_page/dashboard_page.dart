@@ -6,9 +6,9 @@ import 'package:ham_qrg/common/widgets/icons/repeater_icon.dart';
 import 'package:ham_qrg/common/widgets/profile/profile_chip.dart';
 import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
-import 'package:ham_qrg/src/features/dashboard/controller/dashboard_controller.dart';
 import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
-import 'package:ham_qrg/src/features/dashboard/widget/map_section_widget.dart';
+import 'package:ham_qrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
+import 'package:ham_qrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

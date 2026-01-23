@@ -1144,6 +1144,30 @@ abstract class AppLocalizations {
   /// **'Segnalazione'**
   String get repeaterDetailReportLabel;
 
+  /// No description provided for @repeaterDetailSaved.
+  ///
+  /// In it, this message translates to:
+  /// **'Salvato'**
+  String get repeaterDetailSaved;
+
+  /// No description provided for @repeaterDetailShareMessage.
+  ///
+  /// In it, this message translates to:
+  /// **'Scopri questo ripetitore su HamQRG!'**
+  String get repeaterDetailShareMessage;
+
+  /// No description provided for @repeaterDetailReportDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'La funzionalità di segnalazione sarà disponibile a breve. Potrai segnalare informazioni errate o problemi con questo ripetitore.'**
+  String get repeaterDetailReportDescription;
+
+  /// No description provided for @commonClose.
+  ///
+  /// In it, this message translates to:
+  /// **'Chiudi'**
+  String get commonClose;
+
   /// No description provided for @favorite.
   ///
   /// In it, this message translates to:

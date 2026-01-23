@@ -1,7 +1,7 @@
 import 'package:ham_qrg/src/features/authentication/provider/change_password/change_password_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'change_password_controller_provider.g.dart';
+part 'change_password_controller.g.dart';
 
 @riverpod
 class ChangePasswordController extends _$ChangePasswordController {

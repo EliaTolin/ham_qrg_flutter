@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:ham_qrg/src/features/dashboard/controller/state/dashboard_state.dart';
 import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
+import 'package:ham_qrg/src/features/dashboard/presentation/dashboard_page/controller/state/dashboard_state.dart';
 import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_total_favorites_count/get_total_favorites_count_provider.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/get_total_repeaters_count/get_total_repeaters_count_provider.dart';
 import 'package:ham_qrg/src/features/repeaters/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,11 +15,11 @@ part 'dashboard_controller.g.dart';
 class DashboardController extends _$DashboardController {
   @override
   FutureOr<DashboardState> build() async {
-    final countFavorites = await ref.watch(getTotalFavoritesCountProvider.future);
-    log('countFavorites: $countFavorites');
+    final favoritesState = await ref.watch(favoriteRepeatersProvider.future);
+    log('countFavorites: ${favoritesState.count}');
     final countRepeaters = await ref.watch(getTotalRepeatersCountProvider.future);
 
-    return _loadInitialData(countFavorites ?? 0, countRepeaters);
+    return _loadInitialData(favoritesState.count, countRepeaters);
   }
 
   Future<DashboardState> _loadInitialData(int countFavorites, int countRepeaters) async {
@@ -70,8 +70,9 @@ class DashboardController extends _$DashboardController {
 
   Future<void> reload() async {
     state = const AsyncValue.loading();
-    final countFavorites = await ref.read(getTotalFavoritesCountProvider.future);
+    ref.invalidate(favoriteRepeatersProvider);
+    final favoritesState = await ref.read(favoriteRepeatersProvider.future);
     final countRepeaters = await ref.read(getTotalRepeatersCountProvider.future);
-    state = await AsyncValue.guard(() => _loadInitialData(countFavorites ?? 0, countRepeaters));
+    state = await AsyncValue.guard(() => _loadInitialData(favoritesState.count, countRepeaters));
   }
 }

@@ -1,5 +1,38 @@
+import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+
 /// Helper class for formatting repeater-related data
 class RepeaterFormatHelper {
+  /// Formats a repeater for sharing
+  ///
+  /// Returns a formatted string with callsign, frequency, location and app link.
+  static String formatShareMessage(Repeater repeater, String appMessage) {
+    final buffer = StringBuffer();
+
+    // Callsign/Name
+    final name = repeater.callsign ?? repeater.name ?? 'Repeater';
+    buffer.writeln(name);
+
+    // Frequency
+    final frequency = formatFrequency(repeater.frequencyHz);
+    buffer.writeln(frequency);
+
+    // Location if available
+    final location = [repeater.locality, repeater.region]
+        .whereType<String>()
+        .where((s) => s.isNotEmpty)
+        .join(', ');
+    if (location.isNotEmpty) {
+      buffer.writeln(location);
+    }
+
+    // App message
+    buffer
+      ..writeln()
+      ..write(appMessage);
+
+    return buffer.toString();
+  }
+
   /// Formats frequency in Hz to a human-readable string
   ///
   /// Examples:

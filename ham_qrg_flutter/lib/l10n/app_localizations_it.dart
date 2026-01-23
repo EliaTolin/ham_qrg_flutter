@@ -573,6 +573,20 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterDetailReportLabel => 'Segnalazione';
 
   @override
+  String get repeaterDetailSaved => 'Salvato';
+
+  @override
+  String get repeaterDetailShareMessage =>
+      'Scopri questo ripetitore su HamQRG!';
+
+  @override
+  String get repeaterDetailReportDescription =>
+      'La funzionalità di segnalazione sarà disponibile a breve. Potrai segnalare informazioni errate o problemi con questo ripetitore.';
+
+  @override
+  String get commonClose => 'Chiudi';
+
+  @override
   String get favorite => 'Preferito';
 
   @override

@@ -5,10 +5,10 @@ import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/action_buttons.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/community/community_reports_section.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/location_section.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/performance_metrics_section.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/repeater_detail_action_buttons.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/repeater_header.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/technical_data_section.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -83,10 +83,10 @@ class _RepeaterDetailContent extends HookConsumerWidget {
           colorMode: colorMode,
         ),
         // Action buttons
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ActionButtons(),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: RepeaterDetailActionButtons(repeater: state.repeater),
           ),
         ),
         // Content

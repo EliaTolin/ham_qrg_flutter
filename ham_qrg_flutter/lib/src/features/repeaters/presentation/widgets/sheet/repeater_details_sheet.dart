@@ -8,12 +8,8 @@ import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/add_favorite_repeater/add_favorite_repeater_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_favorite_repeaters/get_favorite_repeaters_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_favorite_repeaters_ids/get_favorite_repeaters_ids_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_total_favorites_count/get_total_favorites_count_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/remove_favorite_repeater/remove_favorite_repeater_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 Future<void> showRepeaterDetailsSheet(BuildContext context, Repeater repeater) async {
@@ -63,8 +59,8 @@ class _RepeaterDetailsSheet extends ConsumerWidget {
     final likesTotal = feedbackStatsAsync.value?.likesTotal ?? 0;
 
     // Fetch favorite status
-    final favoriteIdsAsync = ref.watch(getFavoriteRepeatersIdsProvider);
-    final isFavorite = favoriteIdsAsync.value?.contains(repeater.id) ?? false;
+    final favoritesAsync = ref.watch(favoriteRepeatersProvider);
+    final isFavorite = favoritesAsync.value?.ids.contains(repeater.id) ?? false;
 
     final content = Column(
       mainAxisSize: MainAxisSize.min,
@@ -179,15 +175,12 @@ class _RepeaterDetailsSheet extends ConsumerWidget {
                     final isAuthenticated = await requireAuthentication(context, ref);
                     if (!isAuthenticated) return;
 
+                    final controller = ref.read(favoriteRepeatersProvider.notifier);
                     if (isFavorite) {
-                      await ref.read(removeFavoriteRepeaterProvider(repeater.id).future);
+                      await controller.remove(repeater.id);
                     } else {
-                      await ref.read(addFavoriteRepeaterProvider(repeater.id).future);
+                      await controller.add(repeater.id);
                     }
-                    ref
-                      ..invalidate(getFavoriteRepeatersProvider)
-                      ..invalidate(getFavoriteRepeatersIdsProvider)
-                      ..invalidate(getTotalFavoritesCountProvider);
                   },
                 ),
               ),

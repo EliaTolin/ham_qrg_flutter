@@ -104,6 +104,31 @@ Defined in `lib/themes/app_colors.dart` and `lib/common/utils/access_mode_helper
 - Analysis: extends `very_good_analysis`
 - Generated files excluded: `*.g.dart`, `*.freezed.dart`
 
+### Riverpod Naming Conventions
+
+| Type | Location | Naming | Example |
+|------|----------|--------|---------|
+| **Controller** | `presentation/[page]/controller/` | `*Controller` | `DashboardController` |
+| **Notifier** | `provider/[name]_notifier/` | `*Notifier` | `FavoriteRepeatersNotifier` |
+| **Provider** | `provider/[action]/` | `*Provider` (function) | `getProfileProvider` |
+
+**When to use each:**
+- `*Controller`: UI state management for a specific page. Lives in `presentation/`.
+- `*Notifier`: Application-level state with methods (add/remove/update). Lives in `provider/`.
+- `*Provider`: Simple data fetching or actions without complex state. Lives in `provider/`.
+
+**Folder structure examples:**
+```
+# Controller (UI page state)
+presentation/dashboard_page/controller/dashboard_controller.dart
+
+# Notifier (app-level state with methods)
+provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart
+
+# Provider (simple action/fetch)
+provider/get_profile/get_profile_provider.dart
+```
+
 ## Commit Convention
 
 Prefix format: `[type]: [description]`

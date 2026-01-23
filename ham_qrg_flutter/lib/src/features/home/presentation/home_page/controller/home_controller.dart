@@ -1,4 +1,4 @@
-import 'package:ham_qrg/src/features/home/presentation/controller/state/home_state/home_state.dart';
+import 'package:ham_qrg/src/features/home/presentation/home_page/controller/state/home_state.dart';
 import 'package:ham_qrg/src/features/home/provider/need_to_show_telegram_invite/need_to_show_telegram_invite_provider.dart';
 import 'package:ham_qrg/src/features/home/provider/set_last_telegram_invite_show/set_last_telegram_invite_show_provider.dart';
 import 'package:ham_qrg/src/features/home/provider/set_telegram_group_member/set_telegram_group_member_provider.dart';

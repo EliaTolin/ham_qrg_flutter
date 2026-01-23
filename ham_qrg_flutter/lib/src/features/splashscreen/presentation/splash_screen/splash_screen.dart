@@ -5,7 +5,7 @@ import 'package:ham_qrg/clients/package_info/package_info.dart';
 import 'package:ham_qrg/common/dialogs/show_update_required_dialog.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/splashscreen/presentation/controller/splash_controller.dart';
+import 'package:ham_qrg/src/features/splashscreen/presentation/splash_screen/controller/splash_controller.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 @RoutePage()

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ham_qrg/common/dialogs/show_telegram_invite_dialog.dart';
 import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/home/presentation/controller/home_controller.dart';
+import 'package:ham_qrg/src/features/home/presentation/home_page/controller/home_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -47,7 +47,6 @@ class HomePage extends HookConsumerWidget {
             return NavigationBar(
               selectedIndex: tabsRouter.activeIndex,
               onDestinationSelected: tabsRouter.setActiveIndex,
-              backgroundColor: Colors.white,
               destinations: const [
                 NavigationDestination(
                   icon: Icon(Icons.home),
