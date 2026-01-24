@@ -8,11 +8,18 @@ import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/controller/repeater_details_sheet_controller.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/controller/state/repeater_details_sheet_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-Future<void> showRepeaterDetailsSheet(BuildContext context, Repeater repeater) async {
+/// Shows a modal bottom sheet with repeater details.
+///
+/// This is the main entry point for showing the repeater details sheet.
+/// It takes only the [repeaterId] and fetches all necessary data internally.
+Future<void> showRepeaterDetailsSheet(
+  BuildContext context,
+  String repeaterId,
+) async {
   await showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -27,8 +34,8 @@ Future<void> showRepeaterDetailsSheet(BuildContext context, Repeater repeater) a
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
-        child: _RepeaterDetailsSheet(
-          repeater: repeater,
+        child: RepeaterDetailsSheetContent(
+          repeaterId: repeaterId,
           scrollController: scrollController,
         ),
       ),
@@ -36,31 +43,94 @@ Future<void> showRepeaterDetailsSheet(BuildContext context, Repeater repeater) a
   );
 }
 
-class _RepeaterDetailsSheet extends ConsumerWidget {
-  const _RepeaterDetailsSheet({
-    required this.repeater,
+/// The content widget for the repeater details sheet.
+///
+/// Uses [RepeaterDetailsSheetController] to manage state and data fetching.
+class RepeaterDetailsSheetContent extends ConsumerWidget {
+  const RepeaterDetailsSheetContent({
+    required this.repeaterId,
     this.scrollController,
+    super.key,
   });
 
-  final Repeater repeater;
+  final String repeaterId;
   final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final asyncState = ref.watch(
+      repeaterDetailsSheetControllerProvider(repeaterId),
+    );
+
+    return asyncState.when(
+      data: (state) => _RepeaterDetailsContent(
+        state: state,
+        scrollController: scrollController,
+        onToggleFavorite: () async {
+          final isAuthenticated = await requireAuthentication(context, ref);
+          if (!isAuthenticated) return;
+
+          await ref
+              .read(repeaterDetailsSheetControllerProvider(repeaterId).notifier)
+              .toggleFavorite();
+        },
+      ),
+      loading: () => const Center(
+        child: Padding(
+          padding: EdgeInsets.all(48),
+          child: CircularProgressIndicator.adaptive(),
+        ),
+      ),
+      error: (error, stack) => Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.error_outline,
+                size: 48,
+                color: Theme.of(context).colorScheme.error,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                context.localization.error,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              TextButton(
+                onPressed: () => ref.invalidate(
+                  repeaterDetailsSheetControllerProvider(repeaterId),
+                ),
+                child: Text(context.localization.retry),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _RepeaterDetailsContent extends StatelessWidget {
+  const _RepeaterDetailsContent({
+    required this.state,
+    required this.onToggleFavorite,
+    this.scrollController,
+  });
+
+  final RepeaterDetailsSheetState state;
+  final ScrollController? scrollController;
+  final VoidCallback onToggleFavorite;
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final repeater = state.repeater;
     final colorMode = RepeaterModeHelper.getModeColorObject(repeater.mode);
-
-    // Fetch feedback stats
-    final feedbackStatsAsync = ref.watch(
-      getRepeaterFeedbackStatsProvider(repeater.id),
-    );
-    final likesTotal = feedbackStatsAsync.value?.likesTotal ?? 0;
-
-    // Fetch favorite status
-    final favoritesAsync = ref.watch(favoriteRepeatersProvider);
-    final isFavorite = favoritesAsync.value?.ids.contains(repeater.id) ?? false;
+    final likesTotal = state.feedbackStats?.likesTotal ?? 0;
 
     final content = Column(
       mainAxisSize: MainAxisSize.min,
@@ -97,7 +167,8 @@ class _RepeaterDetailsSheet extends ConsumerWidget {
                       ),
                     ),
                     child: Text(
-                      RepeaterModeHelper.getModeLabel(repeater.mode, l10n).toUpperCase(),
+                      RepeaterModeHelper.getModeLabel(repeater.mode, l10n)
+                          .toUpperCase(),
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: colorMode,
                         fontWeight: FontWeight.bold,
@@ -168,20 +239,10 @@ class _RepeaterDetailsSheet extends ConsumerWidget {
               // Favorite button (right column)
               Expanded(
                 child: _FavoriteButton(
-                  isFavorite: isFavorite,
+                  isFavorite: state.isFavorite,
+                  isLoading: state.isTogglingFavorite,
                   label: l10n.favorite,
-                  onTap: () async {
-                    // Check authentication before allowing favorite action
-                    final isAuthenticated = await requireAuthentication(context, ref);
-                    if (!isAuthenticated) return;
-
-                    final controller = ref.read(favoriteRepeatersProvider.notifier);
-                    if (isFavorite) {
-                      await controller.remove(repeater.id);
-                    } else {
-                      await controller.add(repeater.id);
-                    }
-                  },
+                  onTap: onToggleFavorite,
                 ),
               ),
             ],
@@ -264,7 +325,9 @@ class _RepeaterDetailsSheet extends ConsumerWidget {
                 if (repeater.distanceMeters != null)
                   _InfoChip(
                     icon: Icons.straighten,
-                    label: RepeaterFormatHelper.formatDistance(repeater.distanceMeters),
+                    label: RepeaterFormatHelper.formatDistance(
+                      repeater.distanceMeters,
+                    ),
                   ),
               ],
             ),
@@ -314,11 +377,13 @@ class _RepeaterDetailsSheet extends ConsumerWidget {
 class _FavoriteButton extends StatelessWidget {
   const _FavoriteButton({
     required this.isFavorite,
+    required this.isLoading,
     required this.label,
     required this.onTap,
   });
 
   final bool isFavorite;
+  final bool isLoading;
   final String label;
   final VoidCallback onTap;
 
@@ -330,7 +395,7 @@ class _FavoriteButton extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: onTap,
+        onTap: isLoading ? null : onTap,
         borderRadius: BorderRadius.circular(12),
         child: Container(
           height: 48,
@@ -345,12 +410,22 @@ class _FavoriteButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: favoriteColor,
-                size: 20,
-                fill: isFavorite ? 1 : 0,
-              ),
+              if (isLoading)
+                const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: favoriteColor,
+                  ),
+                )
+              else
+                Icon(
+                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: favoriteColor,
+                  size: 20,
+                  fill: isFavorite ? 1 : 0,
+                ),
               const SizedBox(width: 8),
               Flexible(
                 child: Text(
@@ -436,7 +511,9 @@ class _AccessCard extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        RepeaterFormatHelper.formatFrequency(repeater.frequencyHz),
+                        RepeaterFormatHelper.formatFrequency(
+                          repeater.frequencyHz,
+                        ),
                         style: theme.textTheme.labelSmall?.copyWith(
                           fontFeatures: const [FontFeature.tabularFigures()],
                           fontSize: 10,

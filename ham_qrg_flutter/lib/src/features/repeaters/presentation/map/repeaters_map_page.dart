@@ -19,7 +19,7 @@ import 'package:ham_qrg/src/features/repeaters/presentation/widgets/info_banner.
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/map_access_mode_filter_chips.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/permission_banner.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/cluster_repeaters_sheet.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/summary_chip.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
@@ -636,11 +636,6 @@ class RepeatersMapPage extends HookConsumerWidget {
       final currentState = ref.read(repeatersMapControllerProvider).value;
       if (currentState == null) return;
 
-      final repeater = currentState.repeaters.firstWhere(
-        (r) => r.id == repeaterId,
-        orElse: () => throw StateError('Repeater not found'),
-      );
-
       // Center on the point
       final geometry = featureMap['geometry'] as Map<dynamic, dynamic>?;
       if (geometry != null) {
@@ -661,7 +656,7 @@ class RepeatersMapPage extends HookConsumerWidget {
       }
 
       if (context.mounted) {
-        await showRepeaterDetailsSheet(context, repeater);
+        await showRepeaterDetailsSheet(context, repeaterId);
       }
     } catch (e) {
       log('Error handling point tap: $e');

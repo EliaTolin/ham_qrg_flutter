@@ -37,7 +37,6 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       if (data is! List) {
         return [];
       }
-
       return data.map((e) => RepeaterModel.fromJson(e as Map<String, dynamic>)).toList();
     } catch (error, stackTrace) {
       log('Error fetching repeaters_in_bounds: $error', stackTrace: stackTrace);

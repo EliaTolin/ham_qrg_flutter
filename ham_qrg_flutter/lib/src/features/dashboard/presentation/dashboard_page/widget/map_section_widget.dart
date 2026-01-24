@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -117,15 +116,7 @@ class MapSectionWidget extends HookConsumerWidget {
         // Single repeater marker
         final repeaterId = annotation.customData?['repeaterId'] as String?;
         if (repeaterId != null) {
-          try {
-            final repeater = nearbyRepeaters.firstWhere(
-              (r) => r.id == repeaterId,
-            );
-            showRepeaterDetails(context, repeater);
-          } catch (e) {
-            log('ERROR: $e');
-            // Repeater not found, ignore
-          }
+          showRepeaterDetails(context, repeaterId);
         }
       },
     );

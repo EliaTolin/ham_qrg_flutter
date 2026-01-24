@@ -4,7 +4,7 @@ import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/common/widgets/icons/repeater_icon.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet.dart';
+import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
 
 class RepeaterListItem extends StatelessWidget {
   const RepeaterListItem({
@@ -142,6 +142,6 @@ class RepeaterListItem extends StatelessWidget {
   }
 
   void _showRepeaterDetails(BuildContext context, Repeater repeater) {
-    showRepeaterDetailsSheet(context, repeater);
+    showRepeaterDetailsSheet(context, repeater.id);
   }
 }
