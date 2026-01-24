@@ -1,0 +1,12 @@
+{
+  "id": "repeaters-same-location-cluster",
+  "type": "circle",
+  "source": "repeaters-source",
+  "filter": ["==", ["get", "is_same_location_cluster"], true],
+  "paint": {
+    "circle-color": "#F97316",
+    "circle-radius": 18,
+    "circle-stroke-width": 3,
+    "circle-stroke-color": "#FFFFFF"
+  }
+}

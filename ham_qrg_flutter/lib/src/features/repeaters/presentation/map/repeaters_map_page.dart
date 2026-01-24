@@ -33,6 +33,26 @@ const int _cameraDebounceMs = 500;
 /// Zoom increment when clicking on a cluster
 const double _clusterZoomIncrement = 1.5;
 
+/// Maximum zoom level at which clustering is enabled.
+/// Above this zoom level, all points are shown individually.
+/// Lower value = less clustering (individual points shown earlier)
+/// Higher value = more clustering (clusters persist longer when zooming)
+///
+/// Zoom level reference:
+/// - 0-3: World/Continent view
+/// - 4-6: Country view
+/// - 7-9: Region/State view
+/// - 10-12: City view
+/// - 13-15: Neighborhood view
+/// - 16-18: Street view
+/// - 19+: Building view
+const double _clusterMaxZoom = 6;
+
+/// Radius in pixels within which points are clustered together.
+/// Smaller value = tighter clusters (more clusters visible)
+/// Larger value = looser clusters (fewer, bigger clusters)
+const double _clusterRadius = 50;
+
 @RoutePage()
 class RepeatersMapPage extends HookConsumerWidget {
   const RepeatersMapPage({super.key});
@@ -282,8 +302,13 @@ class RepeatersMapPage extends HookConsumerWidget {
 
       if (!clusterExists) {
         await Future.wait([
+          // Native Mapbox clusters
           _addLayerFromAsset(mapboxMap, MapLayers.clusterLayer),
           _addLayerFromAsset(mapboxMap, MapLayers.clusterCountLayer),
+          // Synthetic same-location clusters
+          _addLayerFromAsset(mapboxMap, MapLayers.sameLocationClusterLayer),
+          _addLayerFromAsset(mapboxMap, MapLayers.sameLocationClusterCountLayer),
+          // Individual points
           _addLayerFromAsset(mapboxMap, MapLayers.unclusteredPointLayer),
         ]);
       }
@@ -319,14 +344,13 @@ class RepeatersMapPage extends HookConsumerWidget {
           GeoJsonSource(
             id: MapKeys.repeatersSource,
             cluster: true,
-            clusterRadius: 50,
-            clusterMaxZoom: 14,
+            clusterRadius: _clusterRadius,
+            clusterMaxZoom: _clusterMaxZoom,
             data: geoJson,
           ),
         );
       } else {
-        final source = await mapboxMap.style.getSource(MapKeys.repeatersSource)
-            as GeoJsonSource?;
+        final source = await mapboxMap.style.getSource(MapKeys.repeatersSource) as GeoJsonSource?;
         if (source != null) {
           await source.updateGeoJSON(geoJson);
         }
@@ -336,31 +360,69 @@ class RepeatersMapPage extends HookConsumerWidget {
     }
   }
 
-  /// Convert repeaters to GeoJSON format
+  /// Convert repeaters to GeoJSON format.
+  /// Groups repeaters at identical coordinates into synthetic clusters.
   String _repeatersToGeoJson(List<Repeater> repeaters) {
+    final validRepeaters =
+        repeaters.where((r) => r.latitude != null && r.longitude != null);
+
+    // Group repeaters by exact coordinates
+    final groupedByCoords = <String, List<Repeater>>{};
+    for (final repeater in validRepeaters) {
+      final key = '${repeater.latitude}_${repeater.longitude}';
+      groupedByCoords.putIfAbsent(key, () => []).add(repeater);
+    }
+
+    final features = <Map<String, dynamic>>[];
+
+    for (final entry in groupedByCoords.entries) {
+      final repeatersAtLocation = entry.value;
+      final first = repeatersAtLocation.first;
+
+      if (repeatersAtLocation.length == 1) {
+        // Single repeater - normal feature
+        features.add({
+          'type': 'Feature',
+          'geometry': {
+            'type': 'Point',
+            'coordinates': [first.longitude, first.latitude],
+          },
+          'properties': {
+            'id': first.id,
+            'callsign': first.callsign,
+            'locality': first.locality,
+            'frequencyHz': first.frequencyHz,
+            'mode': first.mode.name,
+            'latitude': first.latitude,
+            'longitude': first.longitude,
+          },
+        });
+      } else {
+        // Multiple repeaters at same location - create synthetic cluster
+        features.add({
+          'type': 'Feature',
+          'geometry': {
+            'type': 'Point',
+            'coordinates': [first.longitude, first.latitude],
+          },
+          'properties': {
+            // These properties make Mapbox render it as a cluster
+            'point_count': repeatersAtLocation.length,
+            'point_count_abbreviated': repeatersAtLocation.length.toString(),
+            // Custom properties for tap handling
+            'is_same_location_cluster': true,
+            'cluster_repeater_ids':
+                repeatersAtLocation.map((r) => r.id).toList(),
+            'latitude': first.latitude,
+            'longitude': first.longitude,
+          },
+        });
+      }
+    }
+
     return jsonEncode({
       'type': 'FeatureCollection',
-      'features': repeaters
-          .where((r) => r.latitude != null && r.longitude != null)
-          .map(
-            (repeater) => {
-              'type': 'Feature',
-              'geometry': {
-                'type': 'Point',
-                'coordinates': [repeater.longitude, repeater.latitude],
-              },
-              'properties': {
-                'id': repeater.id,
-                'callsign': repeater.callsign,
-                'locality': repeater.locality,
-                'frequencyHz': repeater.frequencyHz,
-                'mode': repeater.mode.name,
-                'latitude': repeater.latitude,
-                'longitude': repeater.longitude,
-              },
-            },
-          )
-          .toList(),
+      'features': features,
     });
   }
 
@@ -398,7 +460,7 @@ class RepeatersMapPage extends HookConsumerWidget {
     }
   }
 
-  /// Handle tap on a cluster
+  /// Handle tap on a cluster (native Mapbox cluster or synthetic same-location cluster)
   Future<bool> _handleClusterTap(
     MapboxMap mapboxMap,
     ScreenCoordinate screenCoordinate,
@@ -406,6 +468,36 @@ class RepeatersMapPage extends HookConsumerWidget {
     BuildContext context,
   ) async {
     try {
+      // First check for synthetic same-location clusters
+      final sameLocationFeatures = await mapboxMap.queryRenderedFeatures(
+        RenderedQueryGeometry.fromScreenCoordinate(screenCoordinate),
+        RenderedQueryOptions(layerIds: [MapKeys.sameLocationClusterLayer]),
+      );
+
+      if (sameLocationFeatures.isNotEmpty) {
+        final feature = sameLocationFeatures.first;
+        if (feature != null) {
+          final featureMap =
+              feature.queriedFeature.feature as Map<dynamic, dynamic>;
+          final properties =
+              featureMap['properties'] as Map<dynamic, dynamic>?;
+          final clusterIds =
+              properties?['cluster_repeater_ids'] as List<dynamic>?;
+
+          if (clusterIds != null && clusterIds.isNotEmpty) {
+            final repeaters = _extractRepeatersFromIds(
+              clusterIds.cast<String>(),
+              ref,
+            );
+            if (repeaters.isNotEmpty && context.mounted) {
+              showClusterRepeatersSheet(context, repeaters);
+            }
+          }
+          return true;
+        }
+      }
+
+      // Then check for native Mapbox clusters
       final features = await mapboxMap.queryRenderedFeatures(
         RenderedQueryGeometry.fromScreenCoordinate(screenCoordinate),
         RenderedQueryOptions(layerIds: [MapKeys.clusterLayer]),
@@ -416,7 +508,10 @@ class RepeatersMapPage extends HookConsumerWidget {
       final feature = features.first;
       if (feature == null) return false;
 
-      // Get cluster leaves to check if all points are at same location
+      final featureMap =
+          feature.queriedFeature.feature as Map<dynamic, dynamic>;
+
+      // Native Mapbox cluster - use getGeoJsonClusterLeaves
       final clusterLeaves = await mapboxMap.getGeoJsonClusterLeaves(
         feature.queriedFeature.source,
         feature.queriedFeature.feature,
@@ -450,8 +545,6 @@ class RepeatersMapPage extends HookConsumerWidget {
       } else {
         // Different locations - zoom in
         final cameraState = await mapboxMap.getCameraState();
-        final featureMap =
-            feature.queriedFeature.feature as Map<dynamic, dynamic>;
         final geometry = featureMap['geometry'] as Map<dynamic, dynamic>?;
         if (geometry != null) {
           final coords = geometry['coordinates'] as List<dynamic>?;
@@ -478,6 +571,19 @@ class RepeatersMapPage extends HookConsumerWidget {
     }
   }
 
+  /// Extract repeaters from a list of IDs
+  List<Repeater> _extractRepeatersFromIds(
+    List<String> ids,
+    WidgetRef ref,
+  ) {
+    final currentState = ref.read(repeatersMapControllerProvider).value;
+    if (currentState == null) return [];
+
+    return currentState.repeaters
+        .where((r) => ids.contains(r.id))
+        .toList();
+  }
+
   /// Extract repeaters from cluster leaves
   List<Repeater> _extractRepeatersFromLeaves(
     List<Map<dynamic, dynamic>?> leaves,
@@ -499,9 +605,7 @@ class RepeatersMapPage extends HookConsumerWidget {
       }
     }
 
-    return currentState.repeaters
-        .where((r) => repeaterIds.contains(r.id))
-        .toList();
+    return currentState.repeaters.where((r) => repeaterIds.contains(r.id)).toList();
   }
 
   /// Handle tap on a single point
@@ -522,8 +626,7 @@ class RepeatersMapPage extends HookConsumerWidget {
       final feature = features.first;
       if (feature == null) return;
 
-      final featureMap =
-          feature.queriedFeature.feature as Map<dynamic, dynamic>;
+      final featureMap = feature.queriedFeature.feature as Map<dynamic, dynamic>;
       final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
       if (properties == null) return;
 

@@ -9,6 +9,14 @@ abstract final class MapKeys {
   /// Layer ID for cluster count text
   static const String clusterCountLayer = 'repeaters-cluster-count';
 
+  /// Layer ID for same-location cluster circles (synthetic clusters)
+  static const String sameLocationClusterLayer =
+      'repeaters-same-location-cluster';
+
+  /// Layer ID for same-location cluster count text
+  static const String sameLocationClusterCountLayer =
+      'repeaters-same-location-cluster-count';
+
   /// Layer ID for unclustered repeater points
   static const String unclusteredPointLayer = 'repeaters-unclustered';
 

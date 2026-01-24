@@ -2,7 +2,12 @@
   "id": "repeaters-cluster",
   "type": "circle",
   "source": "repeaters-source",
-  "filter": ["has", "point_count"],
+  "filter": [
+    "all",
+    ["has", "point_count"],
+    ["!", ["has", "is_same_location_cluster"]]
+  ],
+  "maxzoom": 14,
   "paint": {
     "circle-color": [
       "step",
