@@ -6,11 +6,13 @@ class UserTypeSelectionStep extends StatelessWidget {
   const UserTypeSelectionStep({
     required this.onLicensedSelected,
     required this.onListenerSelected,
+    this.isSubmitting = false,
     super.key,
   });
 
   final VoidCallback onLicensedSelected;
   final VoidCallback onListenerSelected;
+  final bool isSubmitting;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +99,7 @@ class UserTypeSelectionStep extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: FilledButton.icon(
-                onPressed: onLicensedSelected,
+                onPressed: isSubmitting ? null : onLicensedSelected,
                 style: FilledButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -119,7 +121,7 @@ class UserTypeSelectionStep extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: onListenerSelected,
+                onPressed: isSubmitting ? null : onListenerSelected,
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   side: BorderSide(color: color.primary.withValues(alpha: .6)),
@@ -127,7 +129,16 @@ class UserTypeSelectionStep extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                icon: Icon(Icons.headphones, color: color.primary),
+                icon: isSubmitting
+                    ? SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: color.primary,
+                        ),
+                      )
+                    : Icon(Icons.headphones, color: color.primary),
                 label: Text(
                   context.localization.postLoginOnboardingNoListener,
                   style: theme.textTheme.titleMedium?.copyWith(

@@ -164,17 +164,17 @@ class UserSettingsScreen extends HookConsumerWidget {
                     ),
 
                     const Gap(10),
-                    // Cambio Password
-                    Card(
-                      elevation: 2,
-                      child: ListTile(
-                        leading: const Icon(Icons.lock_outline),
-                        title: Text('Cambia Password'.hardcoded),
-                        onTap: () {
-                          context.router.push(const ChangePasswordRoute());
-                        },
-                      ),
-                    ),
+                    // // Cambio Password
+                    // Card(
+                    //   elevation: 2,
+                    //   child: ListTile(
+                    //     leading: const Icon(Icons.lock_outline),
+                    //     title: Text('Cambia Password'.hardcoded),
+                    //     onTap: () {
+                    //       context.router.push(const ChangePasswordRoute());
+                    //     },
+                    //   ),
+                    // ),
                     // Pulsante Elimina Account
                     Card(
                       elevation: 2,

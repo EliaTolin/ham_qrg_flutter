@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -7,12 +8,15 @@ import 'package:ham_qrg/clients/package_info/package_info.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:ham_qrg/config/app_configs.dart';
+import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
 import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
+import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
 import 'package:ham_qrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
+import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,18 +35,40 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
       if (isLoading.value) return;
       isLoading.value = true;
 
+      // Capture router BEFORE any async operations that might unmount the widget
+      final router = ref.read(appRouterProvider);
+
       try {
         await ref.read(signInWithAppleProvider.future);
+
+        // First, invalidate ONLY profile providers (not isAnonymous - that would rebuild the widget)
         ref
-          ..invalidate(getUserIdProvider)
-          ..invalidate(isAnonymousProvider)
-          ..invalidate(profileControllerProvider);
+          ..invalidate(getProfileProvider)
+          ..invalidate(checkNeedsPostLoginOnboardingProvider);
+
+        // Check onboarding BEFORE invalidating isAnonymousProvider
+        final needsOnboarding =
+            await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+        log('UnregisteredProfile Apple: needsOnboarding=$needsOnboarding');
+
+        if (needsOnboarding) {
+          log('UnregisteredProfile Apple: navigating to onboarding...');
+          await router.pushAndPopUntil(
+            const PostLoginOnboardingRoute(),
+            predicate: (_) => false,
+          );
+        } else {
+          // No onboarding needed - now invalidate all providers to refresh UI
+          log('UnregisteredProfile Apple: no onboarding needed');
+          ref
+            ..invalidate(getUserIdProvider)
+            ..invalidate(isAnonymousProvider)
+            ..invalidate(profileControllerProvider);
+        }
       } catch (e) {
+        log('Apple sign in error: $e');
         if (context.mounted) {
           showErrorSnackbar(context, l10n.authUnexpectedError);
-        }
-      } finally {
-        if (context.mounted) {
           isLoading.value = false;
         }
       }
@@ -52,18 +78,40 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
       if (isLoading.value) return;
       isLoading.value = true;
 
+      // Capture router BEFORE any async operations that might unmount the widget
+      final router = ref.read(appRouterProvider);
+
       try {
         await ref.read(signInWithGoogleProvider.future);
+
+        // First, invalidate ONLY profile providers (not isAnonymous - that would rebuild the widget)
         ref
-          ..invalidate(getUserIdProvider)
-          ..invalidate(isAnonymousProvider)
-          ..invalidate(profileControllerProvider);
+          ..invalidate(getProfileProvider)
+          ..invalidate(checkNeedsPostLoginOnboardingProvider);
+
+        // Check onboarding BEFORE invalidating isAnonymousProvider
+        final needsOnboarding =
+            await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+        log('UnregisteredProfile Google: needsOnboarding=$needsOnboarding');
+
+        if (needsOnboarding) {
+          log('UnregisteredProfile Google: navigating to onboarding...');
+          await router.pushAndPopUntil(
+            const PostLoginOnboardingRoute(),
+            predicate: (_) => false,
+          );
+        } else {
+          // No onboarding needed - now invalidate all providers to refresh UI
+          log('UnregisteredProfile Google: no onboarding needed');
+          ref
+            ..invalidate(getUserIdProvider)
+            ..invalidate(isAnonymousProvider)
+            ..invalidate(profileControllerProvider);
+        }
       } catch (e) {
+        log('Google sign in error: $e');
         if (context.mounted) {
           showErrorSnackbar(context, l10n.authUnexpectedError);
-        }
-      } finally {
-        if (context.mounted) {
           isLoading.value = false;
         }
       }

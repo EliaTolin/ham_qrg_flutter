@@ -102,12 +102,17 @@ class PostLoginOnboardingPage extends HookConsumerWidget {
                             physics: const NeverScrollableScrollPhysics(),
                             children: [
                               UserTypeSelectionStep(
+                                isSubmitting: controllerState.isSubmitting,
                                 onLicensedSelected: () {
                                   controller.selectUserType(UserType.licensed);
                                 },
-                                onListenerSelected: () {
+                                onListenerSelected: () async {
                                   controller.selectUserType(UserType.listener);
-                                  _navigateToHome(context);
+                                  final success =
+                                      await controller.setListenerCallsign();
+                                  if (success && context.mounted) {
+                                    _navigateToHome(context);
+                                  }
                                 },
                               ),
                               CallsignEntryStep(

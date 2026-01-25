@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,7 +11,7 @@ import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/si
 import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
-import 'package:ham_qrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
+import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:ham_qrg/src/features/splashscreen/provider/set_onboarding_seen/set_onboarding_seen_provider.dart';
 
 @RoutePage()
@@ -55,21 +57,31 @@ class AuthScreen extends ConsumerWidget {
                 // Sezione Social Login
                 SignInButtons(
                   onSignInComplete: () async {
+                    log('AuthScreen: onSignInComplete called');
+
+                    // Invalidate auth providers first
                     ref
                       ..invalidate(getUserIdProvider)
                       ..invalidate(isAnonymousProvider)
-                      ..invalidate(profileControllerProvider);
+                      ..invalidate(getProfileProvider)
+                      ..invalidate(checkNeedsPostLoginOnboardingProvider);
+
                     await ref.read(setOnboardingSeenProvider.future);
 
+                    log('AuthScreen: checking needsOnboarding...');
                     final needsOnboarding =
                         await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+                    log('AuthScreen: needsOnboarding=$needsOnboarding');
+
                     if (context.mounted) {
                       if (needsOnboarding) {
+                        log('AuthScreen: navigating to PostLoginOnboardingRoute');
                         await context.router.pushAndPopUntil(
                           const PostLoginOnboardingRoute(),
                           predicate: (_) => false,
                         );
                       } else {
+                        log('AuthScreen: navigating to HomeRoute');
                         await context.router.pushAndPopUntil(
                           const HomeRoute(),
                           predicate: (_) => false,

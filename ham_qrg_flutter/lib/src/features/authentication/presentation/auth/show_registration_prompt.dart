@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -9,10 +8,11 @@ import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
-import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
+import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
+import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:ham_qrg/themes/app_colors.dart';
 
 /// Shows the registration prompt modal when an anonymous user tries to access
@@ -64,28 +64,43 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
     if (_isLoading) return;
     setState(() => _isLoading = true);
 
+    // Capture router BEFORE any async operations
+    final router = ref.read(appRouterProvider);
+
     try {
       await ref.read(signInWithAppleProvider.future);
+
+      // First, invalidate ONLY profile providers (not isAnonymous)
       ref
-        ..invalidate(getUserIdProvider)
-        ..invalidate(isAnonymousProvider);
+        ..invalidate(getProfileProvider)
+        ..invalidate(checkNeedsPostLoginOnboardingProvider);
+
+      // Close the bottom sheet
       if (mounted) {
         Navigator.of(context).pop(true);
+      }
+
+      // Check onboarding and navigate
+      final needsOnboarding =
+          await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+      log('Registration prompt Apple: needsOnboarding=$needsOnboarding');
+
+      if (needsOnboarding) {
+        await router.pushAndPopUntil(
+          const PostLoginOnboardingRoute(),
+          predicate: (_) => false,
+        );
+      } else {
+        await router.pushAndPopUntil(
+          const HomeRoute(),
+          predicate: (_) => false,
+        );
       }
     } on Exception catch (e) {
       log('Apple sign in error: $e');
       if (mounted) {
         showErrorSnackbar(context, context.localization.authUnexpectedError);
-      }
-    } finally {
-      if (mounted) {
         setState(() => _isLoading = false);
-      }
-      if (mounted) {
-        await context.router.pushAndPopUntil(
-          const HomeRoute(),
-          predicate: (_) => false,
-        );
       }
     }
   }
@@ -94,28 +109,43 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
     if (_isLoading) return;
     setState(() => _isLoading = true);
 
+    // Capture router BEFORE any async operations
+    final router = ref.read(appRouterProvider);
+
     try {
       await ref.read(signInWithGoogleProvider.future);
+
+      // First, invalidate ONLY profile providers (not isAnonymous)
       ref
-        ..invalidate(getUserIdProvider)
-        ..invalidate(isAnonymousProvider);
+        ..invalidate(getProfileProvider)
+        ..invalidate(checkNeedsPostLoginOnboardingProvider);
+
+      // Close the bottom sheet
       if (mounted) {
         Navigator.of(context).pop(true);
+      }
+
+      // Check onboarding and navigate
+      final needsOnboarding =
+          await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+      log('Registration prompt Google: needsOnboarding=$needsOnboarding');
+
+      if (needsOnboarding) {
+        await router.pushAndPopUntil(
+          const PostLoginOnboardingRoute(),
+          predicate: (_) => false,
+        );
+      } else {
+        await router.pushAndPopUntil(
+          const HomeRoute(),
+          predicate: (_) => false,
+        );
       }
     } on Exception catch (e) {
       log('Google sign in error: $e');
       if (mounted) {
         showErrorSnackbar(context, context.localization.authUnexpectedError);
-      }
-    } finally {
-      if (mounted) {
         setState(() => _isLoading = false);
-      }
-      if (mounted) {
-        await context.router.pushAndPopUntil(
-          const HomeRoute(),
-          predicate: (_) => false,
-        );
       }
     }
   }

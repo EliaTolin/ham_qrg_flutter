@@ -15,7 +15,7 @@ class SignInButtons extends ConsumerWidget {
     required this.onSignInComplete,
     super.key,
   });
-  final VoidCallback onSignInComplete;
+  final Future<void> Function() onSignInComplete;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,7 +30,7 @@ class SignInButtons extends ConsumerWidget {
               onPressed: () async {
                 try {
                   await ref.read(signInWithAppleProvider.future);
-                  onSignInComplete();
+                  await onSignInComplete();
                 } on Exception catch (e) {
                   if (context.mounted) {
                     showErrorSnackbar(context, 'Errore durante il login');
@@ -46,7 +46,7 @@ class SignInButtons extends ConsumerWidget {
             onPressed: () async {
               try {
                 await ref.read(signInWithGoogleProvider.future);
-                onSignInComplete();
+                await onSignInComplete();
               } on Exception catch (e) {
                 if (context.mounted) {
                   showErrorSnackbar(context, 'Errore durante il login');

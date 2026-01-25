@@ -9,7 +9,9 @@ import 'package:ham_qrg/config/app_configs.dart';
 import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/provider/anonymous_signin/anonymous_signin_provider.dart';
 import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:ham_qrg/src/features/params/provider/get_params/get_params_provider.dart';
+import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
 import 'package:ham_qrg/src/features/splashscreen/errors/update_required_exception.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -44,6 +46,15 @@ class SplashController extends _$SplashController {
 
       log('userId: $userId');
       _configureSentryUser(userId);
+
+      // // Check if user is not anonymous and needs onboarding
+      final isAnonymous = await ref.read(isAnonymousProvider.future);
+      if (!isAnonymous) {
+        final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+        if (needsOnboarding) {
+          return const SplashAction.navigate(PostLoginOnboardingRoute());
+        }
+      }
 
       return const SplashAction.navigate(HomeRoute());
     } catch (error, stackTrace) {

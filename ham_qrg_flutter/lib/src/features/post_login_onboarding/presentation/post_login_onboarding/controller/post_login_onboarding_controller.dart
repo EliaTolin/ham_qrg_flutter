@@ -20,6 +20,23 @@ class PostLoginOnboardingController extends _$PostLoginOnboardingController {
     }
   }
 
+  /// Set callsign to "UNKNOWN" for listeners and return success
+  Future<bool> setListenerCallsign() async {
+    state = state.copyWith(isSubmitting: true);
+
+    try {
+      final profile = await ref.read(getProfileProvider.future);
+      final updatedProfile = profile.copyWith(callsign: 'UNKNOWN');
+      await ref.read(updateProfileProvider(updatedProfile).future);
+      ref.invalidate(getProfileProvider);
+      state = state.copyWith(isSubmitting: false);
+      return true;
+    } catch (e) {
+      state = state.copyWith(isSubmitting: false);
+      return false;
+    }
+  }
+
   void updateCallsign(String callsign) {
     state = state.copyWith(callsign: callsign.toUpperCase());
   }
