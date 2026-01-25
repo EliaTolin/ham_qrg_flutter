@@ -21,6 +21,8 @@ mixin _$ProfileModel {
   String get lastName;
   String? get callsign;
   String? get propic;
+  @JsonKey(name: 'user_type')
+  UserType? get userType;
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -45,17 +47,19 @@ mixin _$ProfileModel {
                 other.lastName == lastName) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
-            (identical(other.propic, propic) || other.propic == propic));
+            (identical(other.propic, propic) || other.propic == propic) &&
+            (identical(other.userType, userType) ||
+                other.userType == userType));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, firstName, lastName, callsign, propic);
+  int get hashCode => Object.hash(
+      runtimeType, id, firstName, lastName, callsign, propic, userType);
 
   @override
   String toString() {
-    return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, callsign: $callsign, propic: $propic)';
+    return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, callsign: $callsign, propic: $propic, userType: $userType)';
   }
 }
 
@@ -70,7 +74,8 @@ abstract mixin class $ProfileModelCopyWith<$Res> {
       @JsonKey(name: 'first_name', defaultValue: '') String firstName,
       @JsonKey(name: 'last_name', defaultValue: '') String lastName,
       String? callsign,
-      String? propic});
+      String? propic,
+      @JsonKey(name: 'user_type') UserType? userType});
 }
 
 /// @nodoc
@@ -90,6 +95,7 @@ class _$ProfileModelCopyWithImpl<$Res> implements $ProfileModelCopyWith<$Res> {
     Object? lastName = null,
     Object? callsign = freezed,
     Object? propic = freezed,
+    Object? userType = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -112,6 +118,10 @@ class _$ProfileModelCopyWithImpl<$Res> implements $ProfileModelCopyWith<$Res> {
           ? _self.propic
           : propic // ignore: cast_nullable_to_non_nullable
               as String?,
+      userType: freezed == userType
+          ? _self.userType
+          : userType // ignore: cast_nullable_to_non_nullable
+              as UserType?,
     ));
   }
 }
@@ -214,7 +224,8 @@ extension ProfileModelPatterns on ProfileModel {
             @JsonKey(name: 'first_name', defaultValue: '') String firstName,
             @JsonKey(name: 'last_name', defaultValue: '') String lastName,
             String? callsign,
-            String? propic)?
+            String? propic,
+            @JsonKey(name: 'user_type') UserType? userType)?
         $default, {
     required TResult orElse(),
   }) {
@@ -222,7 +233,7 @@ extension ProfileModelPatterns on ProfileModel {
     switch (_that) {
       case _ProfileModel() when $default != null:
         return $default(_that.id, _that.firstName, _that.lastName,
-            _that.callsign, _that.propic);
+            _that.callsign, _that.propic, _that.userType);
       case _:
         return orElse();
     }
@@ -248,14 +259,15 @@ extension ProfileModelPatterns on ProfileModel {
             @JsonKey(name: 'first_name', defaultValue: '') String firstName,
             @JsonKey(name: 'last_name', defaultValue: '') String lastName,
             String? callsign,
-            String? propic)
+            String? propic,
+            @JsonKey(name: 'user_type') UserType? userType)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ProfileModel():
         return $default(_that.id, _that.firstName, _that.lastName,
-            _that.callsign, _that.propic);
+            _that.callsign, _that.propic, _that.userType);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -280,14 +292,15 @@ extension ProfileModelPatterns on ProfileModel {
             @JsonKey(name: 'first_name', defaultValue: '') String firstName,
             @JsonKey(name: 'last_name', defaultValue: '') String lastName,
             String? callsign,
-            String? propic)?
+            String? propic,
+            @JsonKey(name: 'user_type') UserType? userType)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ProfileModel() when $default != null:
         return $default(_that.id, _that.firstName, _that.lastName,
-            _that.callsign, _that.propic);
+            _that.callsign, _that.propic, _that.userType);
       case _:
         return null;
     }
@@ -302,7 +315,8 @@ class _ProfileModel implements ProfileModel {
       @JsonKey(name: 'first_name', defaultValue: '') required this.firstName,
       @JsonKey(name: 'last_name', defaultValue: '') required this.lastName,
       required this.callsign,
-      required this.propic});
+      required this.propic,
+      @JsonKey(name: 'user_type') this.userType});
   factory _ProfileModel.fromJson(Map<String, dynamic> json) =>
       _$ProfileModelFromJson(json);
 
@@ -318,6 +332,9 @@ class _ProfileModel implements ProfileModel {
   final String? callsign;
   @override
   final String? propic;
+  @override
+  @JsonKey(name: 'user_type')
+  final UserType? userType;
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -346,17 +363,19 @@ class _ProfileModel implements ProfileModel {
                 other.lastName == lastName) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
-            (identical(other.propic, propic) || other.propic == propic));
+            (identical(other.propic, propic) || other.propic == propic) &&
+            (identical(other.userType, userType) ||
+                other.userType == userType));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, firstName, lastName, callsign, propic);
+  int get hashCode => Object.hash(
+      runtimeType, id, firstName, lastName, callsign, propic, userType);
 
   @override
   String toString() {
-    return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, callsign: $callsign, propic: $propic)';
+    return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, callsign: $callsign, propic: $propic, userType: $userType)';
   }
 }
 
@@ -373,7 +392,8 @@ abstract mixin class _$ProfileModelCopyWith<$Res>
       @JsonKey(name: 'first_name', defaultValue: '') String firstName,
       @JsonKey(name: 'last_name', defaultValue: '') String lastName,
       String? callsign,
-      String? propic});
+      String? propic,
+      @JsonKey(name: 'user_type') UserType? userType});
 }
 
 /// @nodoc
@@ -394,6 +414,7 @@ class __$ProfileModelCopyWithImpl<$Res>
     Object? lastName = null,
     Object? callsign = freezed,
     Object? propic = freezed,
+    Object? userType = freezed,
   }) {
     return _then(_ProfileModel(
       id: null == id
@@ -416,6 +437,10 @@ class __$ProfileModelCopyWithImpl<$Res>
           ? _self.propic
           : propic // ignore: cast_nullable_to_non_nullable
               as String?,
+      userType: freezed == userType
+          ? _self.userType
+          : userType // ignore: cast_nullable_to_non_nullable
+              as UserType?,
     ));
   }
 }

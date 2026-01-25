@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ham_qrg/src/features/post_login_onboarding/domain/user_type.dart';
 
 part 'profile.freezed.dart';
 
@@ -10,5 +11,6 @@ abstract class Profile with _$Profile {
     required String surname,
     required String? callsign,
     required String? propic,
+    UserType? userType,
   }) = _Profile;
 }

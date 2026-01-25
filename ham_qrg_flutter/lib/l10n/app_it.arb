@@ -309,5 +309,12 @@
   "postLoginOnboardingCallsignHint": "Es. IU2XYZ",
   "postLoginOnboardingComplete": "Completa profilo",
   "postLoginOnboardingBack": "Indietro",
-  "postLoginOnboardingChangeInSettings": "Puoi modificarlo in seguito nelle impostazioni."
+  "postLoginOnboardingChangeInSettings": "Puoi modificarlo in seguito nelle impostazioni.",
+  "postLoginOnboardingSwlTitle": "Nominativo SWL",
+  "postLoginOnboardingSwlQuestion": "Hai un nominativo SWL ufficiale?",
+  "postLoginOnboardingSwlHelpText": "I nominativi degli ascoltatori d'onda corta aiutano a identificarti nella community globale di monitoraggio.",
+  "postLoginOnboardingSwlYes": "Si, ne ho uno",
+  "postLoginOnboardingSwlNo": "No, non ne ho uno",
+  "postLoginOnboardingSwlEnterCallsign": "Inserisci nominativo",
+  "postLoginOnboardingSwlCallsignHint": "Es. I1-12345-SWL"
 }

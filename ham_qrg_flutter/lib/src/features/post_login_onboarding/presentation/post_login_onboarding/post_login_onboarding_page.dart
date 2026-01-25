@@ -7,6 +7,7 @@ import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/post_login_onboarding/domain/user_type.dart';
 import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/controller/post_login_onboarding_controller.dart';
 import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/callsign_entry_step.dart';
+import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/swl_callsign_step.dart';
 import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/user_type_selection_step.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -106,28 +107,46 @@ class PostLoginOnboardingPage extends HookConsumerWidget {
                                 onLicensedSelected: () {
                                   controller.selectUserType(UserType.licensed);
                                 },
-                                onListenerSelected: () async {
-                                  controller.selectUserType(UserType.listener);
-                                  final success =
-                                      await controller.setListenerCallsign();
-                                  if (success && context.mounted) {
-                                    _navigateToHome(context);
-                                  }
+                                onListenerSelected: () {
+                                  controller.selectUserType(UserType.swl);
                                 },
                               ),
-                              CallsignEntryStep(
-                                callsign: controllerState.callsign,
-                                isSubmitting: controllerState.isSubmitting,
-                                onCallsignChanged: controller.updateCallsign,
-                                onSubmit: () async {
-                                  final success =
-                                      await controller.submitCallsign();
-                                  if (success && context.mounted) {
-                                    _navigateToHome(context);
-                                  }
-                                },
-                                onBack: controller.goBack,
-                              ),
+                              // Step 1: depends on user type
+                              if (controllerState.selectedUserType ==
+                                  UserType.swl)
+                                SwlCallsignStep(
+                                  hasCallsign: controllerState.hasSwlCallsign,
+                                  callsign: controllerState.callsign,
+                                  isSubmitting: controllerState.isSubmitting,
+                                  onHasCallsignChanged: (hasCallsign) {
+                                    controller.setHasSwlCallsign(
+                                      hasCallsign: hasCallsign,
+                                    );
+                                  },
+                                  onCallsignChanged: controller.updateCallsign,
+                                  onSubmit: () async {
+                                    final success =
+                                        await controller.submitOnboarding();
+                                    if (success && context.mounted) {
+                                      _navigateToHome(context);
+                                    }
+                                  },
+                                  onBack: controller.goBack,
+                                )
+                              else
+                                CallsignEntryStep(
+                                  callsign: controllerState.callsign,
+                                  isSubmitting: controllerState.isSubmitting,
+                                  onCallsignChanged: controller.updateCallsign,
+                                  onSubmit: () async {
+                                    final success =
+                                        await controller.submitOnboarding();
+                                    if (success && context.mounted) {
+                                      _navigateToHome(context);
+                                    }
+                                  },
+                                  onBack: controller.goBack,
+                                ),
                             ],
                           ),
                         ),

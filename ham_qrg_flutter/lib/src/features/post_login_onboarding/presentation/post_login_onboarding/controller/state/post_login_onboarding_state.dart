@@ -10,5 +10,7 @@ abstract class PostLoginOnboardingState with _$PostLoginOnboardingState {
     UserType? selectedUserType,
     @Default('') String callsign,
     @Default(false) bool isSubmitting,
+    /// For SWL users: whether they have a callsign (null = not yet chosen)
+    bool? hasSwlCallsign,
   }) = _PostLoginOnboardingState;
 }

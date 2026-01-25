@@ -693,4 +693,27 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get postLoginOnboardingChangeInSettings =>
       'Puoi modificarlo in seguito nelle impostazioni.';
+
+  @override
+  String get postLoginOnboardingSwlTitle => 'Nominativo SWL';
+
+  @override
+  String get postLoginOnboardingSwlQuestion =>
+      'Hai un nominativo SWL ufficiale?';
+
+  @override
+  String get postLoginOnboardingSwlHelpText =>
+      'I nominativi degli ascoltatori d\'onda corta aiutano a identificarti nella community globale di monitoraggio.';
+
+  @override
+  String get postLoginOnboardingSwlYes => 'Si, ne ho uno';
+
+  @override
+  String get postLoginOnboardingSwlNo => 'No, non ne ho uno';
+
+  @override
+  String get postLoginOnboardingSwlEnterCallsign => 'Inserisci nominativo';
+
+  @override
+  String get postLoginOnboardingSwlCallsignHint => 'Es. I1-12345-SWL';
 }

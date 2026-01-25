@@ -1359,6 +1359,48 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Puoi modificarlo in seguito nelle impostazioni.'**
   String get postLoginOnboardingChangeInSettings;
+
+  /// No description provided for @postLoginOnboardingSwlTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Nominativo SWL'**
+  String get postLoginOnboardingSwlTitle;
+
+  /// No description provided for @postLoginOnboardingSwlQuestion.
+  ///
+  /// In it, this message translates to:
+  /// **'Hai un nominativo SWL ufficiale?'**
+  String get postLoginOnboardingSwlQuestion;
+
+  /// No description provided for @postLoginOnboardingSwlHelpText.
+  ///
+  /// In it, this message translates to:
+  /// **'I nominativi degli ascoltatori d\'onda corta aiutano a identificarti nella community globale di monitoraggio.'**
+  String get postLoginOnboardingSwlHelpText;
+
+  /// No description provided for @postLoginOnboardingSwlYes.
+  ///
+  /// In it, this message translates to:
+  /// **'Si, ne ho uno'**
+  String get postLoginOnboardingSwlYes;
+
+  /// No description provided for @postLoginOnboardingSwlNo.
+  ///
+  /// In it, this message translates to:
+  /// **'No, non ne ho uno'**
+  String get postLoginOnboardingSwlNo;
+
+  /// No description provided for @postLoginOnboardingSwlEnterCallsign.
+  ///
+  /// In it, this message translates to:
+  /// **'Inserisci nominativo'**
+  String get postLoginOnboardingSwlEnterCallsign;
+
+  /// No description provided for @postLoginOnboardingSwlCallsignHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. I1-12345-SWL'**
+  String get postLoginOnboardingSwlCallsignHint;
 }
 
 class _AppLocalizationsDelegate

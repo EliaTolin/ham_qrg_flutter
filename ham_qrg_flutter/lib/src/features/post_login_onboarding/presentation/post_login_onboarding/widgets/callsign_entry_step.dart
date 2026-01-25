@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
+import 'package:ham_qrg/common/utils/callsign_validator.dart';
 
 class CallsignEntryStep extends StatelessWidget {
   const CallsignEntryStep({
@@ -24,7 +25,7 @@ class CallsignEntryStep extends StatelessWidget {
     final theme = Theme.of(context);
     final color = theme.colorScheme;
 
-    final isValid = callsign.trim().length >= 3;
+    final isValid = CallsignValidator.isValidLicensedCallsign(callsign);
 
     return SingleChildScrollView(
       child: Padding(

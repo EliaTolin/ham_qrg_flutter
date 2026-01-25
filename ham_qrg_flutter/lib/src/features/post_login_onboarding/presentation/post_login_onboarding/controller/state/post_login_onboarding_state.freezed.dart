@@ -19,6 +19,9 @@ mixin _$PostLoginOnboardingState {
   String get callsign;
   bool get isSubmitting;
 
+  /// For SWL users: whether they have a callsign (null = not yet chosen)
+  bool? get hasSwlCallsign;
+
   /// Create a copy of PostLoginOnboardingState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -39,16 +42,18 @@ mixin _$PostLoginOnboardingState {
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
             (identical(other.isSubmitting, isSubmitting) ||
-                other.isSubmitting == isSubmitting));
+                other.isSubmitting == isSubmitting) &&
+            (identical(other.hasSwlCallsign, hasSwlCallsign) ||
+                other.hasSwlCallsign == hasSwlCallsign));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, currentStep, selectedUserType, callsign, isSubmitting);
+  int get hashCode => Object.hash(runtimeType, currentStep, selectedUserType,
+      callsign, isSubmitting, hasSwlCallsign);
 
   @override
   String toString() {
-    return 'PostLoginOnboardingState(currentStep: $currentStep, selectedUserType: $selectedUserType, callsign: $callsign, isSubmitting: $isSubmitting)';
+    return 'PostLoginOnboardingState(currentStep: $currentStep, selectedUserType: $selectedUserType, callsign: $callsign, isSubmitting: $isSubmitting, hasSwlCallsign: $hasSwlCallsign)';
   }
 }
 
@@ -62,7 +67,8 @@ abstract mixin class $PostLoginOnboardingStateCopyWith<$Res> {
       {int currentStep,
       UserType? selectedUserType,
       String callsign,
-      bool isSubmitting});
+      bool isSubmitting,
+      bool? hasSwlCallsign});
 }
 
 /// @nodoc
@@ -82,6 +88,7 @@ class _$PostLoginOnboardingStateCopyWithImpl<$Res>
     Object? selectedUserType = freezed,
     Object? callsign = null,
     Object? isSubmitting = null,
+    Object? hasSwlCallsign = freezed,
   }) {
     return _then(_self.copyWith(
       currentStep: null == currentStep
@@ -100,6 +107,10 @@ class _$PostLoginOnboardingStateCopyWithImpl<$Res>
           ? _self.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
+      hasSwlCallsign: freezed == hasSwlCallsign
+          ? _self.hasSwlCallsign
+          : hasSwlCallsign // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -198,7 +209,7 @@ extension PostLoginOnboardingStatePatterns on PostLoginOnboardingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(int currentStep, UserType? selectedUserType,
-            String callsign, bool isSubmitting)?
+            String callsign, bool isSubmitting, bool? hasSwlCallsign)?
         $default, {
     required TResult orElse(),
   }) {
@@ -206,7 +217,7 @@ extension PostLoginOnboardingStatePatterns on PostLoginOnboardingState {
     switch (_that) {
       case _PostLoginOnboardingState() when $default != null:
         return $default(_that.currentStep, _that.selectedUserType,
-            _that.callsign, _that.isSubmitting);
+            _that.callsign, _that.isSubmitting, _that.hasSwlCallsign);
       case _:
         return orElse();
     }
@@ -228,14 +239,14 @@ extension PostLoginOnboardingStatePatterns on PostLoginOnboardingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(int currentStep, UserType? selectedUserType,
-            String callsign, bool isSubmitting)
+            String callsign, bool isSubmitting, bool? hasSwlCallsign)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _PostLoginOnboardingState():
         return $default(_that.currentStep, _that.selectedUserType,
-            _that.callsign, _that.isSubmitting);
+            _that.callsign, _that.isSubmitting, _that.hasSwlCallsign);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -256,14 +267,14 @@ extension PostLoginOnboardingStatePatterns on PostLoginOnboardingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(int currentStep, UserType? selectedUserType,
-            String callsign, bool isSubmitting)?
+            String callsign, bool isSubmitting, bool? hasSwlCallsign)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _PostLoginOnboardingState() when $default != null:
         return $default(_that.currentStep, _that.selectedUserType,
-            _that.callsign, _that.isSubmitting);
+            _that.callsign, _that.isSubmitting, _that.hasSwlCallsign);
       case _:
         return null;
     }
@@ -277,7 +288,8 @@ class _PostLoginOnboardingState implements PostLoginOnboardingState {
       {this.currentStep = 0,
       this.selectedUserType,
       this.callsign = '',
-      this.isSubmitting = false});
+      this.isSubmitting = false,
+      this.hasSwlCallsign});
 
   @override
   @JsonKey()
@@ -290,6 +302,10 @@ class _PostLoginOnboardingState implements PostLoginOnboardingState {
   @override
   @JsonKey()
   final bool isSubmitting;
+
+  /// For SWL users: whether they have a callsign (null = not yet chosen)
+  @override
+  final bool? hasSwlCallsign;
 
   /// Create a copy of PostLoginOnboardingState
   /// with the given fields replaced by the non-null parameter values.
@@ -312,16 +328,18 @@ class _PostLoginOnboardingState implements PostLoginOnboardingState {
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
             (identical(other.isSubmitting, isSubmitting) ||
-                other.isSubmitting == isSubmitting));
+                other.isSubmitting == isSubmitting) &&
+            (identical(other.hasSwlCallsign, hasSwlCallsign) ||
+                other.hasSwlCallsign == hasSwlCallsign));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, currentStep, selectedUserType, callsign, isSubmitting);
+  int get hashCode => Object.hash(runtimeType, currentStep, selectedUserType,
+      callsign, isSubmitting, hasSwlCallsign);
 
   @override
   String toString() {
-    return 'PostLoginOnboardingState(currentStep: $currentStep, selectedUserType: $selectedUserType, callsign: $callsign, isSubmitting: $isSubmitting)';
+    return 'PostLoginOnboardingState(currentStep: $currentStep, selectedUserType: $selectedUserType, callsign: $callsign, isSubmitting: $isSubmitting, hasSwlCallsign: $hasSwlCallsign)';
   }
 }
 
@@ -337,7 +355,8 @@ abstract mixin class _$PostLoginOnboardingStateCopyWith<$Res>
       {int currentStep,
       UserType? selectedUserType,
       String callsign,
-      bool isSubmitting});
+      bool isSubmitting,
+      bool? hasSwlCallsign});
 }
 
 /// @nodoc
@@ -357,6 +376,7 @@ class __$PostLoginOnboardingStateCopyWithImpl<$Res>
     Object? selectedUserType = freezed,
     Object? callsign = null,
     Object? isSubmitting = null,
+    Object? hasSwlCallsign = freezed,
   }) {
     return _then(_PostLoginOnboardingState(
       currentStep: null == currentStep
@@ -375,6 +395,10 @@ class __$PostLoginOnboardingStateCopyWithImpl<$Res>
           ? _self.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
+      hasSwlCallsign: freezed == hasSwlCallsign
+          ? _self.hasSwlCallsign
+          : hasSwlCallsign // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }

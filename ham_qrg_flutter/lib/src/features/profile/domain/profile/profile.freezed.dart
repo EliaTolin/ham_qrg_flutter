@@ -19,6 +19,7 @@ mixin _$Profile {
   String get surname;
   String? get callsign;
   String? get propic;
+  UserType? get userType;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -37,16 +38,18 @@ mixin _$Profile {
             (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
-            (identical(other.propic, propic) || other.propic == propic));
+            (identical(other.propic, propic) || other.propic == propic) &&
+            (identical(other.userType, userType) ||
+                other.userType == userType));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, surname, callsign, propic);
+      Object.hash(runtimeType, id, name, surname, callsign, propic, userType);
 
   @override
   String toString() {
-    return 'Profile(id: $id, name: $name, surname: $surname, callsign: $callsign, propic: $propic)';
+    return 'Profile(id: $id, name: $name, surname: $surname, callsign: $callsign, propic: $propic, userType: $userType)';
   }
 }
 
@@ -60,7 +63,8 @@ abstract mixin class $ProfileCopyWith<$Res> {
       String name,
       String surname,
       String? callsign,
-      String? propic});
+      String? propic,
+      UserType? userType});
 }
 
 /// @nodoc
@@ -80,6 +84,7 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
     Object? surname = null,
     Object? callsign = freezed,
     Object? propic = freezed,
+    Object? userType = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -102,6 +107,10 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
           ? _self.propic
           : propic // ignore: cast_nullable_to_non_nullable
               as String?,
+      userType: freezed == userType
+          ? _self.userType
+          : userType // ignore: cast_nullable_to_non_nullable
+              as UserType?,
     ));
   }
 }
@@ -200,15 +209,15 @@ extension ProfilePatterns on Profile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String id, String name, String surname, String? callsign,
-            String? propic)?
+            String? propic, UserType? userType)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _Profile() when $default != null:
-        return $default(
-            _that.id, _that.name, _that.surname, _that.callsign, _that.propic);
+        return $default(_that.id, _that.name, _that.surname, _that.callsign,
+            _that.propic, _that.userType);
       case _:
         return orElse();
     }
@@ -230,14 +239,14 @@ extension ProfilePatterns on Profile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String id, String name, String surname, String? callsign,
-            String? propic)
+            String? propic, UserType? userType)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Profile():
-        return $default(
-            _that.id, _that.name, _that.surname, _that.callsign, _that.propic);
+        return $default(_that.id, _that.name, _that.surname, _that.callsign,
+            _that.propic, _that.userType);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -258,14 +267,14 @@ extension ProfilePatterns on Profile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String id, String name, String surname, String? callsign,
-            String? propic)?
+            String? propic, UserType? userType)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Profile() when $default != null:
-        return $default(
-            _that.id, _that.name, _that.surname, _that.callsign, _that.propic);
+        return $default(_that.id, _that.name, _that.surname, _that.callsign,
+            _that.propic, _that.userType);
       case _:
         return null;
     }
@@ -280,7 +289,8 @@ class _Profile implements Profile {
       required this.name,
       required this.surname,
       required this.callsign,
-      required this.propic});
+      required this.propic,
+      this.userType});
 
   @override
   final String id;
@@ -292,6 +302,8 @@ class _Profile implements Profile {
   final String? callsign;
   @override
   final String? propic;
+  @override
+  final UserType? userType;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -311,16 +323,18 @@ class _Profile implements Profile {
             (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
-            (identical(other.propic, propic) || other.propic == propic));
+            (identical(other.propic, propic) || other.propic == propic) &&
+            (identical(other.userType, userType) ||
+                other.userType == userType));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, surname, callsign, propic);
+      Object.hash(runtimeType, id, name, surname, callsign, propic, userType);
 
   @override
   String toString() {
-    return 'Profile(id: $id, name: $name, surname: $surname, callsign: $callsign, propic: $propic)';
+    return 'Profile(id: $id, name: $name, surname: $surname, callsign: $callsign, propic: $propic, userType: $userType)';
   }
 }
 
@@ -335,7 +349,8 @@ abstract mixin class _$ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String name,
       String surname,
       String? callsign,
-      String? propic});
+      String? propic,
+      UserType? userType});
 }
 
 /// @nodoc
@@ -355,6 +370,7 @@ class __$ProfileCopyWithImpl<$Res> implements _$ProfileCopyWith<$Res> {
     Object? surname = null,
     Object? callsign = freezed,
     Object? propic = freezed,
+    Object? userType = freezed,
   }) {
     return _then(_Profile(
       id: null == id
@@ -377,6 +393,10 @@ class __$ProfileCopyWithImpl<$Res> implements _$ProfileCopyWith<$Res> {
           ? _self.propic
           : propic // ignore: cast_nullable_to_non_nullable
               as String?,
+      userType: freezed == userType
+          ? _self.userType
+          : userType // ignore: cast_nullable_to_non_nullable
+              as UserType?,
     ));
   }
 }

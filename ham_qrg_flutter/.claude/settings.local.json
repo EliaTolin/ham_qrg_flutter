@@ -8,7 +8,8 @@
       "Bash(flutter pub run build_runner build:*)",
       "Bash(flutter build:*)",
       "Bash(xargs ls:*)",
-      "Bash(flutter clean:*)"
+      "Bash(flutter clean:*)",
+      "Bash(flutter test:*)"
     ]
   }
 }

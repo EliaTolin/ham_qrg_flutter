@@ -12,6 +12,7 @@ class ProfileMappers implements Mapper<Profile, ProfileModel> {
       surname: user.lastName,
       callsign: user.callsign,
       propic: user.propic.clearedValue(),
+      userType: user.userType,
     );
   }
 
@@ -23,6 +24,7 @@ class ProfileMappers implements Mapper<Profile, ProfileModel> {
       lastName: user.surname,
       callsign: user.callsign,
       propic: user.propic.clearedValue(),
+      userType: user.userType,
     );
   }
 }

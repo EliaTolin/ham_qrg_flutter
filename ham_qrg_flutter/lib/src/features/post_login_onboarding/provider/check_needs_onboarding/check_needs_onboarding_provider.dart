@@ -9,13 +9,19 @@ part 'check_needs_onboarding_provider.g.dart';
 Future<bool> checkNeedsPostLoginOnboarding(Ref ref) async {
   try {
     final profile = await ref.read(getProfileProvider.future);
-    final needsOnboarding =
-        profile.callsign == null || profile.callsign!.trim().isEmpty;
-    log('checkNeedsPostLoginOnboarding: callsign=${profile.callsign}, needsOnboarding=$needsOnboarding');
+    // Show onboarding if userType is not set
+    final needsOnboarding = profile.userType == null;
+    log(
+      'checkNeedsPostLoginOnboarding: userType=${profile.userType}, '
+      'needsOnboarding=$needsOnboarding',
+    );
     return needsOnboarding;
   } catch (e) {
     // If we can't fetch profile, assume user needs onboarding (new user)
-    log('checkNeedsPostLoginOnboarding: error fetching profile: $e, returning true');
+    log(
+      'checkNeedsPostLoginOnboarding: error fetching profile: $e, '
+      'returning true',
+    );
     return true;
   }
 }
