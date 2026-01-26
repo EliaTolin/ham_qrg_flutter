@@ -29,171 +29,240 @@ class ProfileScreen extends HookConsumerWidget {
 
               // Show registered profile screen
               final profile = state.profile;
+              final hasCallsign =
+                  profile.callsign != null && profile.callsign!.isNotEmpty;
+              final fullName = '${profile.name} ${profile.surname}'.trim();
+              final theme = Theme.of(context);
+              final colorScheme = theme.colorScheme;
+
               return Scaffold(
                 appBar: AppBar(title: Text(l10n.profile)),
                 body: SingleChildScrollView(
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     children: [
+                      // Avatar
                       ProfileAvatar(
                         imageProfileUrl: state.imageProfileUrl,
-                        size: 200,
+                        size: 160,
                       ),
                       const Gap(20),
+                      // Callsign or Name (primary)
                       Text(
-                        '${profile.name} ${profile.surname}',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                        hasCallsign ? profile.callsign! : fullName,
+                        style: theme.textTheme.headlineMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.onSurface,
+                        ),
                         textAlign: TextAlign.center,
                       ),
-                      const Gap(10),
-                      if (state.email != null) ...[
+                      // Name (secondary) - only if callsign is shown
+                      if (hasCallsign && fullName.isNotEmpty) ...[
+                        const Gap(4),
                         Text(
-                          state.email!,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          fullName,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: colorScheme.onSurface.withValues(alpha: .7),
+                          ),
                           textAlign: TextAlign.center,
                         ),
-                        const Gap(20),
                       ],
-                      // Impostazioni
-                      Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: ListTile(
-                          leading: const Icon(
-                            Icons.settings,
-                            color: Colors.blueAccent,
+                      const Gap(20),
+                      // Edit Profile button
+                      OutlinedButton.icon(
+                        onPressed: () {
+                          context.router.push(const UserSettingsRoute());
+                        },
+                        icon: const Icon(Icons.tune),
+                        label: Text(l10n.profileEditProfile),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 12,
                           ),
-                          title: Text(
-                            l10n.settings,
-                            style: Theme.of(context).textTheme.bodyLarge,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
                           ),
-                          trailing: const Icon(Icons.arrow_forward_ios),
-                          onTap: () {
-                            context.router.push(const UserSettingsRoute());
-                          },
                         ),
                       ),
-                      const Gap(10),
-                      // Logout
-                      Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: ListTile(
-                          leading: const Icon(Icons.logout, color: Colors.redAccent),
-                          title: Text(
-                            l10n.logout,
-                            style: Theme.of(context).textTheme.bodyLarge,
+                      const Gap(32),
+                      // Section header
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          l10n.profileSectionCommunity.toUpperCase(),
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            color: colorScheme.primary,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 1.2,
                           ),
-                          trailing: const Icon(Icons.arrow_forward_ios),
-                          onTap: () async {
-                            await ref.read(profileControllerProvider.notifier).logout();
-                            if (context.mounted) {
-                              await context.router.pushAndPopUntil(
-                                const HomeRoute(),
-                                predicate: (_) => false,
-                              );
-                            }
-                          },
                         ),
                       ),
-                      const Gap(10),
-                      // Contattaci
+                      const Gap(12),
+                      // Community & Support card
                       Card(
-                        elevation: 2,
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: ListTile(
-                          leading: const Icon(Icons.email, color: Colors.greenAccent),
-                          title: Text(
-                            l10n.contact_us,
-                            style: Theme.of(context).textTheme.bodyLarge,
+                          borderRadius: BorderRadius.circular(16),
+                          side: BorderSide(
+                            color: colorScheme.outlineVariant.withValues(
+                              alpha: .3,
+                            ),
                           ),
-                          trailing: const Icon(Icons.arrow_forward_ios),
-                          onTap: () async {
-                            final emailLaunchUri = Uri(
-                              scheme: 'mailto',
-                              path: 'info@auroradigital.it',
-                              queryParameters: {
-                                'subject': 'HamQRG-Support',
+                        ),
+                        child: Column(
+                          children: [
+                            // Telegram
+                            ListTile(
+                              leading: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Icon(
+                                  Icons.telegram,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                              title: Text(l10n.profileJoinTelegramCommunity),
+                              trailing: Icon(
+                                Icons.chevron_right,
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: .5,
+                                ),
+                              ),
+                              onTap: () async {
+                                try {
+                                  final telegramUrl =
+                                      AppConfigs.getTelegramLink();
+                                  final uri = Uri.parse(telegramUrl);
+                                  if (await canLaunchUrl(uri)) {
+                                    await launchUrl(uri);
+                                  } else {
+                                    if (context.mounted) {
+                                      showErrorSnackbar(
+                                        context,
+                                        l10n.errorOpenTelegram,
+                                      );
+                                    }
+                                  }
+                                } catch (e) {
+                                  if (context.mounted) {
+                                    showErrorSnackbar(
+                                      context,
+                                      l10n.errorOpenTelegram,
+                                    );
+                                  }
+                                }
                               },
-                            );
-                            if (await canLaunchUrl(emailLaunchUri)) {
-                              await launchUrl(emailLaunchUri);
-                            } else {
-                              if (context.mounted) {
-                                showErrorSnackbar(
-                                  context,
-                                  l10n.profileErrorOpeningEmail,
+                            ),
+                            Divider(
+                              height: 1,
+                              indent: 16,
+                              endIndent: 16,
+                              color: colorScheme.outlineVariant.withValues(
+                                alpha: .3,
+                              ),
+                            ),
+                            // Contact Us
+                            ListTile(
+                              leading: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Icon(
+                                  Icons.email,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                              title: Text(l10n.contact_us),
+                              trailing: Icon(
+                                Icons.chevron_right,
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: .5,
+                                ),
+                              ),
+                              onTap: () async {
+                                final emailLaunchUri = Uri(
+                                  scheme: 'mailto',
+                                  path: 'info@auroradigital.it',
+                                  queryParameters: {
+                                    'subject': 'HamQRG-Support',
+                                  },
                                 );
-                              }
-                            }
-                          },
-                        ),
-                      ),
-
-                      // Telegram
-                      Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: ListTile(
-                          leading: const Icon(
-                            Icons.telegram,
-                            color: Colors.blueAccent,
-                          ),
-                          title: Text(
-                            l10n.profileJoinTelegramCommunity,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                          trailing: const Icon(Icons.arrow_forward_ios),
-                          onTap: () async {
-                            try {
-                              final telegramUrl = AppConfigs.getTelegramLink();
-                              final uri = Uri.parse(telegramUrl);
-                              if (await canLaunchUrl(uri)) {
-                                await launchUrl(uri);
-                              } else {
+                                if (await canLaunchUrl(emailLaunchUri)) {
+                                  await launchUrl(emailLaunchUri);
+                                } else {
+                                  if (context.mounted) {
+                                    showErrorSnackbar(
+                                      context,
+                                      l10n.profileErrorOpeningEmail,
+                                    );
+                                  }
+                                }
+                              },
+                            ),
+                            Divider(
+                              height: 1,
+                              indent: 16,
+                              endIndent: 16,
+                              color: colorScheme.outlineVariant.withValues(
+                                alpha: .3,
+                              ),
+                            ),
+                            // Log Out
+                            ListTile(
+                              leading: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.red.withValues(alpha: .1),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Icon(
+                                  Icons.logout,
+                                  color: Colors.red[400],
+                                  size: 20,
+                                ),
+                              ),
+                              title: Text(
+                                l10n.logout,
+                                style: TextStyle(color: Colors.red[400]),
+                              ),
+                              onTap: () async {
+                                await ref
+                                    .read(profileControllerProvider.notifier)
+                                    .logout();
                                 if (context.mounted) {
-                                  showErrorSnackbar(
-                                    context,
-                                    l10n.errorOpenTelegram,
+                                  await context.router.pushAndPopUntil(
+                                    const HomeRoute(),
+                                    predicate: (_) => false,
                                   );
                                 }
-                              }
-                            } catch (e) {
-                              if (context.mounted) {
-                                showErrorSnackbar(
-                                  context,
-                                  l10n.errorOpenTelegram,
-                                );
-                              }
-                            }
-                          },
+                              },
+                            ),
+                          ],
                         ),
                       ),
-
-                      const Gap(30),
-
-                      // Versione dell'app
+                      const Gap(32),
+                      // App version
                       HookConsumer(
                         builder: (context, ref, _) {
                           return ref.watch(packageInfoProvider).when(
                                 data: (packageInfo) => Text(
-                                  l10n.profileVersion(
+                                  l10n.profileVersionFormat(
                                     packageInfo.version,
                                     packageInfo.buildNumber,
                                   ),
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    color: colorScheme.onSurface.withValues(
+                                      alpha: .5,
+                                    ),
+                                  ),
                                 ),
                                 loading: () => const SizedBox.shrink(),
                                 error: (error, _) => Text(

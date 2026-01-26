@@ -97,7 +97,32 @@
   "profileJoinTelegramCommunity": "Entra nella community Telegram",
   "profileWelcomeTitle": "Benvenuto su HamQRG",
   "profileWelcomeDescription": "Unisciti alla nostra community di radioamatori in Italia.",
-  "profileSectionCommunity": "Community",
+  "profileEditProfile": "Modifica Profilo",
+  "profileChangePhoto": "Cambia Foto",
+  "profileFirstName": "Nome",
+  "profileLastName": "Cognome",
+  "profileCallsign": "Nominativo",
+  "profileRestartIdentificationTitle": "Devi cambiare il tuo stato? Puoi riavviare il processo di identificazione per passare da Operatore Autorizzato a SWL Listener.",
+  "profileRestartIdentificationButton": "Riavvia Processo di Identificazione",
+  "profileSaveChanges": "Salva Modifiche",
+  "profileDangerZone": "Zona Pericolosa",
+  "profileDeleteAccount": "Elimina Account",
+  "profileDeleteAccountConfirmTitle": "Elimina Account",
+  "profileDeleteAccountConfirmMessage": "Sei sicuro di voler eliminare il tuo account? Questa azione è irreversibile.",
+  "profileDeleteAccountCancel": "Annulla",
+  "profileDeleteAccountConfirm": "Elimina",
+  "profileAppVersion": "App Version {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Community & Support",
   "profileSectionSupport": "Support",
   "profileVersion": "Versione: {version}+{buildNumber}",
   "@profileVersion": {

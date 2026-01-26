@@ -556,10 +556,100 @@ abstract class AppLocalizations {
   /// **'Unisciti alla nostra community di radioamatori in Italia.'**
   String get profileWelcomeDescription;
 
+  /// No description provided for @profileEditProfile.
+  ///
+  /// In it, this message translates to:
+  /// **'Modifica Profilo'**
+  String get profileEditProfile;
+
+  /// No description provided for @profileChangePhoto.
+  ///
+  /// In it, this message translates to:
+  /// **'Cambia Foto'**
+  String get profileChangePhoto;
+
+  /// No description provided for @profileFirstName.
+  ///
+  /// In it, this message translates to:
+  /// **'Nome'**
+  String get profileFirstName;
+
+  /// No description provided for @profileLastName.
+  ///
+  /// In it, this message translates to:
+  /// **'Cognome'**
+  String get profileLastName;
+
+  /// No description provided for @profileCallsign.
+  ///
+  /// In it, this message translates to:
+  /// **'Nominativo'**
+  String get profileCallsign;
+
+  /// No description provided for @profileRestartIdentificationTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Devi cambiare il tuo stato? Puoi riavviare il processo di identificazione per passare da Operatore Autorizzato a SWL Listener.'**
+  String get profileRestartIdentificationTitle;
+
+  /// No description provided for @profileRestartIdentificationButton.
+  ///
+  /// In it, this message translates to:
+  /// **'Riavvia Processo di Identificazione'**
+  String get profileRestartIdentificationButton;
+
+  /// No description provided for @profileSaveChanges.
+  ///
+  /// In it, this message translates to:
+  /// **'Salva Modifiche'**
+  String get profileSaveChanges;
+
+  /// No description provided for @profileDangerZone.
+  ///
+  /// In it, this message translates to:
+  /// **'Zona Pericolosa'**
+  String get profileDangerZone;
+
+  /// No description provided for @profileDeleteAccount.
+  ///
+  /// In it, this message translates to:
+  /// **'Elimina Account'**
+  String get profileDeleteAccount;
+
+  /// No description provided for @profileDeleteAccountConfirmTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Elimina Account'**
+  String get profileDeleteAccountConfirmTitle;
+
+  /// No description provided for @profileDeleteAccountConfirmMessage.
+  ///
+  /// In it, this message translates to:
+  /// **'Sei sicuro di voler eliminare il tuo account? Questa azione è irreversibile.'**
+  String get profileDeleteAccountConfirmMessage;
+
+  /// No description provided for @profileDeleteAccountCancel.
+  ///
+  /// In it, this message translates to:
+  /// **'Annulla'**
+  String get profileDeleteAccountCancel;
+
+  /// No description provided for @profileDeleteAccountConfirm.
+  ///
+  /// In it, this message translates to:
+  /// **'Elimina'**
+  String get profileDeleteAccountConfirm;
+
+  /// No description provided for @profileAppVersion.
+  ///
+  /// In it, this message translates to:
+  /// **'App Version {version} (Build {buildNumber})'**
+  String profileAppVersion(String version, String buildNumber);
+
   /// No description provided for @profileSectionCommunity.
   ///
   /// In it, this message translates to:
-  /// **'Community'**
+  /// **'Community & Support'**
   String get profileSectionCommunity;
 
   /// No description provided for @profileSectionSupport.

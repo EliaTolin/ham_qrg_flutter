@@ -257,7 +257,57 @@ class AppLocalizationsIt extends AppLocalizations {
       'Unisciti alla nostra community di radioamatori in Italia.';
 
   @override
-  String get profileSectionCommunity => 'Community';
+  String get profileEditProfile => 'Modifica Profilo';
+
+  @override
+  String get profileChangePhoto => 'Cambia Foto';
+
+  @override
+  String get profileFirstName => 'Nome';
+
+  @override
+  String get profileLastName => 'Cognome';
+
+  @override
+  String get profileCallsign => 'Nominativo';
+
+  @override
+  String get profileRestartIdentificationTitle =>
+      'Devi cambiare il tuo stato? Puoi riavviare il processo di identificazione per passare da Operatore Autorizzato a SWL Listener.';
+
+  @override
+  String get profileRestartIdentificationButton =>
+      'Riavvia Processo di Identificazione';
+
+  @override
+  String get profileSaveChanges => 'Salva Modifiche';
+
+  @override
+  String get profileDangerZone => 'Zona Pericolosa';
+
+  @override
+  String get profileDeleteAccount => 'Elimina Account';
+
+  @override
+  String get profileDeleteAccountConfirmTitle => 'Elimina Account';
+
+  @override
+  String get profileDeleteAccountConfirmMessage =>
+      'Sei sicuro di voler eliminare il tuo account? Questa azione è irreversibile.';
+
+  @override
+  String get profileDeleteAccountCancel => 'Annulla';
+
+  @override
+  String get profileDeleteAccountConfirm => 'Elimina';
+
+  @override
+  String profileAppVersion(String version, String buildNumber) {
+    return 'App Version $version (Build $buildNumber)';
+  }
+
+  @override
+  String get profileSectionCommunity => 'Community & Support';
 
   @override
   String get profileSectionSupport => 'Support';

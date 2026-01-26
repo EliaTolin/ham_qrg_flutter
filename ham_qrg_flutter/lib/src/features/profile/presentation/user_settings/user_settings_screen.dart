@@ -4,8 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/common/extension/hard_coded_string.dart';
-import 'package:ham_qrg/common/widgets/button/save_button.dart';
+import 'package:ham_qrg/clients/package_info/package_info.dart';
+import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/widgets/profile/profile_avatar.dart';
 import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/profile/presentation/user_settings/controller/user_settings_controller.dart';
@@ -18,213 +18,415 @@ class UserSettingsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.localization;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     final nameController = useTextEditingController();
     final surnameController = useTextEditingController();
     final picker = ImagePicker();
-    final formKey = GlobalKey<FormState>();
+
+    final hasChanges = useState(false);
+    final initialName = useRef<String?>(null);
+    final initialSurname = useRef<String?>(null);
+
+    void checkForChanges() {
+      hasChanges.value = nameController.text != initialName.value ||
+          surnameController.text != initialSurname.value;
+    }
+
+    useEffect(
+      () {
+        nameController.addListener(checkForChanges);
+        surnameController.addListener(checkForChanges);
+        return () {
+          nameController.removeListener(checkForChanges);
+          surnameController.removeListener(checkForChanges);
+        };
+      },
+      [nameController, surnameController],
+    );
 
     return Scaffold(
-      appBar: AppBar(title: Text('Impostazioni'.hardcoded)),
+      appBar: AppBar(
+        title: Text(l10n.profileEditProfile),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.router.maybePop(),
+        ),
+      ),
       body: ref.watch(userSettingsControllerProvider).when(
             data: (state) {
               final profile = state.profile;
-              nameController.text = profile.name;
-              surnameController.text = profile.surname;
+
+              // Initialize controllers only once
+              if (initialName.value == null) {
+                initialName.value = profile.name;
+                initialSurname.value = profile.surname;
+                nameController.text = profile.name;
+                surnameController.text = profile.surname;
+              }
 
               return SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(20),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // Immagine del profilo
-                    Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        ProfileAvatar(
-                          imageProfileUrl: state.imageProfileUrl,
-                          size: 200,
-                        ),
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.red),
-                              onPressed: () {
-                                ref
-                                    .read(
-                                      userSettingsControllerProvider.notifier,
-                                    )
-                                    .deleteImageProfile();
-                              },
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: IconButton(
-                              icon: const Icon(
-                                Icons.camera_alt,
-                                color: Colors.blue,
-                              ),
-                              onPressed: () async {
-                                final pickedFile = await picker.pickImage(
-                                  source: ImageSource.gallery,
-                                );
-                                if (pickedFile != null) {
-                                  await ref
-                                      .read(
-                                        userSettingsControllerProvider.notifier,
-                                      )
-                                      .updateImageProfile(
-                                        File(pickedFile.path),
-                                      );
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Gap(20),
-
-                    // Form per nome e cognome
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Form(
-                          key: formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    // Avatar section
+                    Center(
+                      child: Column(
+                        children: [
+                          Stack(
                             children: [
-                              // Campo Nome
-                              TextFormField(
-                                controller: nameController,
-                                decoration: InputDecoration(
-                                  labelText: 'Nome'.hardcoded,
-                                  hintText: 'Inserisci il tuo nome'.hardcoded,
-                                  prefixIcon: const Icon(Icons.person),
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Il nome è obbligatorio'.hardcoded;
-                                  }
-                                  return null;
-                                },
+                              ProfileAvatar(
+                                imageProfileUrl: state.imageProfileUrl,
+                                size: 140,
                               ),
-                              const Gap(20),
-
-                              // Campo Cognome
-                              TextFormField(
-                                controller: surnameController,
-                                decoration: InputDecoration(
-                                  labelText: 'Cognome'.hardcoded,
-                                  hintText: 'Inserisci il tuo cognome'.hardcoded,
-                                  prefixIcon: const Icon(Icons.person_outline),
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Il cognome è obbligatorio'.hardcoded;
-                                  }
-                                  return null;
-                                },
-                              ),
-                              const Gap(30),
-
-                              // Pulsante Salva
-                              Center(
-                                child: SaveButton(
-                                  onSave: () {
-                                    if (!formKey.currentState!.validate()) {
-                                      return;
-                                    }
-                                    final updatedProfile = profile.copyWith(
-                                      name: nameController.text,
-                                      surname: surnameController.text,
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    final pickedFile = await picker.pickImage(
+                                      source: ImageSource.gallery,
                                     );
-                                    ref
-                                        .read(
-                                          userSettingsControllerProvider.notifier,
-                                        )
-                                        .updateProfile(updatedProfile);
+                                    if (pickedFile != null) {
+                                      await ref
+                                          .read(
+                                            userSettingsControllerProvider
+                                                .notifier,
+                                          )
+                                          .updateImageProfile(
+                                            File(pickedFile.path),
+                                          );
+                                    }
                                   },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: colorScheme.primary,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: colorScheme.surface,
+                                        width: 3,
+                                      ),
+                                    ),
+                                    child: Icon(
+                                      Icons.camera_alt,
+                                      color: colorScheme.onPrimary,
+                                      size: 20,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
                           ),
+                          const Gap(8),
+                          GestureDetector(
+                            onTap: () async {
+                              final pickedFile = await picker.pickImage(
+                                source: ImageSource.gallery,
+                              );
+                              if (pickedFile != null) {
+                                await ref
+                                    .read(
+                                      userSettingsControllerProvider.notifier,
+                                    )
+                                    .updateImageProfile(
+                                      File(pickedFile.path),
+                                    );
+                              }
+                            },
+                            child: Text(
+                              l10n.profileChangePhoto,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: colorScheme.primary,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Gap(32),
+
+                    // First Name field
+                    _buildFieldLabel(l10n.profileFirstName, theme, colorScheme),
+                    const Gap(8),
+                    _buildTextField(
+                      controller: nameController,
+                      icon: Icons.person,
+                      colorScheme: colorScheme,
+                    ),
+                    const Gap(20),
+
+                    // Last Name field
+                    _buildFieldLabel(l10n.profileLastName, theme, colorScheme),
+                    const Gap(8),
+                    _buildTextField(
+                      controller: surnameController,
+                      icon: Icons.person,
+                      colorScheme: colorScheme,
+                    ),
+                    const Gap(20),
+
+                    // Callsign field (read-only)
+                    _buildFieldLabel(
+                      '${l10n.profileCallsign} (Nominativo)',
+                      theme,
+                      colorScheme,
+                    ),
+                    const Gap(8),
+                    _buildReadOnlyField(
+                      value: profile.callsign ?? '-',
+                      icon: Icons.lock,
+                      colorScheme: colorScheme,
+                      theme: theme,
+                    ),
+                    const Gap(24),
+
+                    // Restart identification card
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: colorScheme.surfaceContainerHighest
+                            .withValues(alpha: .3),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: colorScheme.outlineVariant.withValues(
+                            alpha: .5,
+                          ),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            l10n.profileRestartIdentificationTitle,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color:
+                                  colorScheme.onSurface.withValues(alpha: .8),
+                            ),
+                          ),
+                          const Gap(16),
+                          SizedBox(
+                            width: double.infinity,
+                            child: OutlinedButton.icon(
+                              onPressed: () {
+                                context.router
+                                    .push(const PostLoginOnboardingRoute());
+                              },
+                              icon: const Icon(Icons.refresh),
+                              label: Text(l10n.profileRestartIdentificationButton),
+                              style: OutlinedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Gap(24),
+
+                    // Save Changes button
+                    FilledButton.icon(
+                      onPressed: hasChanges.value
+                          ? () {
+                              final updatedProfile = profile.copyWith(
+                                name: nameController.text,
+                                surname: surnameController.text,
+                              );
+                              ref
+                                  .read(
+                                    userSettingsControllerProvider.notifier,
+                                  )
+                                  .updateProfile(updatedProfile);
+                              // Reset initial values after save
+                              initialName.value = nameController.text;
+                              initialSurname.value = surnameController.text;
+                              hasChanges.value = false;
+                            }
+                          : null,
+                      icon: const Icon(Icons.save),
+                      label: Text(l10n.profileSaveChanges),
+                      style: FilledButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                     ),
+                    const Gap(32),
 
-                    const Gap(10),
-                    // // Cambio Password
-                    // Card(
-                    //   elevation: 2,
-                    //   child: ListTile(
-                    //     leading: const Icon(Icons.lock_outline),
-                    //     title: Text('Cambia Password'.hardcoded),
-                    //     onTap: () {
-                    //       context.router.push(const ChangePasswordRoute());
-                    //     },
-                    //   ),
-                    // ),
-                    // Pulsante Elimina Account
-                    Card(
-                      elevation: 2,
-                      child: ListTile(
-                        leading: const Icon(Icons.delete_forever),
-                        title: Text('Elimina Account'.hardcoded),
-                        onTap: () async {
-                          final shouldDelete = await showDialog<bool>(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text('Elimina Account'.hardcoded),
-                              content: Text(
-                                'Sei sicuro di voler eliminare il tuo account?'.hardcoded,
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop(false);
-                                  },
-                                  child: Text('Annulla'.hardcoded),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop(true);
-                                  },
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: Theme.of(context).colorScheme.error,
-                                  ),
-                                  child: Text('Elimina'.hardcoded),
-                                ),
-                              ],
-                            ),
-                          );
-
-                          if (shouldDelete ?? false) {
-                            await ref.read(userSettingsControllerProvider.notifier).deleteAccount();
-                            if (context.mounted) {
-                              await context.router.replace(const AuthRoute());
-                            }
-                          }
-                        },
+                    // Danger Zone
+                    Divider(
+                      color: colorScheme.outlineVariant.withValues(alpha: .3),
+                    ),
+                    const Gap(16),
+                    Text(
+                      l10n.profileDangerZone.toUpperCase(),
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: colorScheme.error,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 1.2,
                       ),
                     ),
+                    const Gap(12),
+                    OutlinedButton.icon(
+                      onPressed: () async {
+                        final shouldDelete = await showDialog<bool>(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text(l10n.profileDeleteAccountConfirmTitle),
+                            content:
+                                Text(l10n.profileDeleteAccountConfirmMessage),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.of(context).pop(false),
+                                child: Text(l10n.profileDeleteAccountCancel),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.of(context).pop(true),
+                                style: TextButton.styleFrom(
+                                  foregroundColor: colorScheme.error,
+                                ),
+                                child: Text(l10n.profileDeleteAccountConfirm),
+                              ),
+                            ],
+                          ),
+                        );
+
+                        if (shouldDelete ?? false) {
+                          await ref
+                              .read(userSettingsControllerProvider.notifier)
+                              .deleteAccount();
+                          if (context.mounted) {
+                            await context.router.replace(const AuthRoute());
+                          }
+                        }
+                      },
+                      icon: Icon(Icons.warning_amber, color: colorScheme.error),
+                      label: Text(
+                        l10n.profileDeleteAccount,
+                        style: TextStyle(color: colorScheme.error),
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        side: BorderSide(
+                          color: colorScheme.error.withValues(alpha: .5),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                    const Gap(32),
+
+                    // App version
+                    Center(
+                      child: ref.watch(packageInfoProvider).when(
+                            data: (packageInfo) => Text(
+                              l10n.profileAppVersion(
+                                packageInfo.version,
+                                packageInfo.buildNumber,
+                              ),
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color:
+                                    colorScheme.onSurface.withValues(alpha: .5),
+                              ),
+                            ),
+                            loading: () => const SizedBox.shrink(),
+                            error: (_, __) => const SizedBox.shrink(),
+                          ),
+                    ),
+                    const Gap(20),
                   ],
                 ),
               );
             },
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, _) => Center(child: Text('Errore: $error'.hardcoded)),
+            error: (error, _) => Center(
+              child: Text(l10n.profileError(error.toString())),
+            ),
           ),
+    );
+  }
+
+  Widget _buildFieldLabel(
+    String label,
+    ThemeData theme,
+    ColorScheme colorScheme,
+  ) {
+    return Text(
+      label.toUpperCase(),
+      style: theme.textTheme.labelSmall?.copyWith(
+        color: colorScheme.onSurface.withValues(alpha: .6),
+        fontWeight: FontWeight.w600,
+        letterSpacing: 1.1,
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required IconData icon,
+    required ColorScheme colorScheme,
+  }) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon, color: colorScheme.onSurface.withValues(alpha: .5)),
+        filled: true,
+        fillColor: colorScheme.surfaceContainerHighest.withValues(alpha: .3),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: colorScheme.primary),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildReadOnlyField({
+    required String value,
+    required IconData icon,
+    required ColorScheme colorScheme,
+    required ThemeData theme,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: .3),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            color: colorScheme.onSurface.withValues(alpha: .4),
+            size: 22,
+          ),
+          const Gap(12),
+          Text(
+            value,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: .5),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
