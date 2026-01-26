@@ -62,8 +62,8 @@ class AuthSupabaseDatasource implements AuthDatasource {
 
   @override
   Future<bool> signInGoogle() async {
-    const webClientId = '575450791015-9kqi6742sh1cmumnvvemhrbbvr2s2ocg.apps.googleusercontent.com';
-    const iosClientId = '575450791015-c0abr4rmjpbjt9pmvd5l1ufunhmh888k.apps.googleusercontent.com';
+    const webClientId = '45512016232-j0l5f9b3tnf1hp2p60c3pn6g473h0nqv.apps.googleusercontent.com';
+    const iosClientId = '45512016232-48r7t9ek849c1dm2mkghlqv1o3l883kj.apps.googleusercontent.com';
 
     final googleSignIn = GoogleSignIn(
       clientId: iosClientId,

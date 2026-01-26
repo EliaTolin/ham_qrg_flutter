@@ -1,4 +1,4 @@
-package it.auroradigital.ham_qrg
+package it.auroradigital.hamqrg
 
 import io.flutter.embedding.android.FlutterActivity
 
