@@ -668,6 +668,41 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get repeaterDetailInteractive => 'Interattivo';
+
+  @override
+  String get repeaterDetailLogYourSignal => 'Registra il tuo segnale';
+
+  @override
+  String get repeaterDetailUsedEquipment => 'Attrezzatura usata';
+
+  @override
+  String get repeaterDetailYourLocation => 'La tua posizione';
+
+  @override
+  String get repeaterDetailLocationPlaceholder => 'Dove eri? (es. Roma)';
+
+  @override
+  String get repeaterDetailSelectAccessInstance =>
+      'Seleziona istanza di accesso';
+
+  @override
+  String get repeaterDetailSignalObservations => 'Osservazioni sul segnale';
+
+  @override
+  String get repeaterDetailSignalObservationsPlaceholder =>
+      'Com\'era la qualità audio?';
+
+  @override
+  String get repeaterDetailSendLike => 'Invia Like';
+
+  @override
+  String get repeaterDetailReportIssue => 'Segnala Problema';
+
+  @override
+  String get repeaterDetailRecentActivity => 'Attività recente';
+
+  @override
   String get registrationPromptTitle => 'Sblocca tutto il potenziale';
 
   @override

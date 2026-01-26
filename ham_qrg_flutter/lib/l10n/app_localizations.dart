@@ -1312,6 +1312,72 @@ abstract class AppLocalizations {
   /// **'Devi essere entro {distance} km dal ripetitore per inviare un feedback.'**
   String repeaterDetailDistanceWarning(int distance);
 
+  /// No description provided for @repeaterDetailInteractive.
+  ///
+  /// In it, this message translates to:
+  /// **'Interattivo'**
+  String get repeaterDetailInteractive;
+
+  /// No description provided for @repeaterDetailLogYourSignal.
+  ///
+  /// In it, this message translates to:
+  /// **'Registra il tuo segnale'**
+  String get repeaterDetailLogYourSignal;
+
+  /// No description provided for @repeaterDetailUsedEquipment.
+  ///
+  /// In it, this message translates to:
+  /// **'Attrezzatura usata'**
+  String get repeaterDetailUsedEquipment;
+
+  /// No description provided for @repeaterDetailYourLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'La tua posizione'**
+  String get repeaterDetailYourLocation;
+
+  /// No description provided for @repeaterDetailLocationPlaceholder.
+  ///
+  /// In it, this message translates to:
+  /// **'Dove eri? (es. Roma)'**
+  String get repeaterDetailLocationPlaceholder;
+
+  /// No description provided for @repeaterDetailSelectAccessInstance.
+  ///
+  /// In it, this message translates to:
+  /// **'Seleziona istanza di accesso'**
+  String get repeaterDetailSelectAccessInstance;
+
+  /// No description provided for @repeaterDetailSignalObservations.
+  ///
+  /// In it, this message translates to:
+  /// **'Osservazioni sul segnale'**
+  String get repeaterDetailSignalObservations;
+
+  /// No description provided for @repeaterDetailSignalObservationsPlaceholder.
+  ///
+  /// In it, this message translates to:
+  /// **'Com\'era la qualità audio?'**
+  String get repeaterDetailSignalObservationsPlaceholder;
+
+  /// No description provided for @repeaterDetailSendLike.
+  ///
+  /// In it, this message translates to:
+  /// **'Invia Like'**
+  String get repeaterDetailSendLike;
+
+  /// No description provided for @repeaterDetailReportIssue.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnala Problema'**
+  String get repeaterDetailReportIssue;
+
+  /// No description provided for @repeaterDetailRecentActivity.
+  ///
+  /// In it, this message translates to:
+  /// **'Attività recente'**
+  String get repeaterDetailRecentActivity;
+
   /// No description provided for @registrationPromptTitle.
   ///
   /// In it, this message translates to:

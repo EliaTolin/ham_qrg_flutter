@@ -312,6 +312,17 @@
       }
     }
   },
+  "repeaterDetailInteractive": "Interattivo",
+  "repeaterDetailLogYourSignal": "Registra il tuo segnale",
+  "repeaterDetailUsedEquipment": "Attrezzatura usata",
+  "repeaterDetailYourLocation": "La tua posizione",
+  "repeaterDetailLocationPlaceholder": "Dove eri? (es. Roma)",
+  "repeaterDetailSelectAccessInstance": "Seleziona istanza di accesso",
+  "repeaterDetailSignalObservations": "Osservazioni sul segnale",
+  "repeaterDetailSignalObservationsPlaceholder": "Com'era la qualità audio?",
+  "repeaterDetailSendLike": "Invia Like",
+  "repeaterDetailReportIssue": "Segnala Problema",
+  "repeaterDetailRecentActivity": "Attività recente",
   "registrationPromptTitle": "Sblocca tutto il potenziale",
   "registrationPromptDescription": "Unisciti alla community italiana dei radioamatori e porta la tua esperienza al livello successivo.",
   "registrationBenefitInteractTitle": "Interagisci",

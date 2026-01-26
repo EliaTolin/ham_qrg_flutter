@@ -67,16 +67,28 @@ class CommunityReportsSection extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Feedback form first (if there are accesses without feedback)
+        if (availableAccesses.isNotEmpty) ...[
+          FeedbackFormCard(
+            state: state,
+            availableAccesses: availableAccesses,
+            locationController: locationText,
+            commentController: comment,
+            controller: controller,
+          ),
+          const SizedBox(height: 24),
+        ],
+        // Recent Activity header
         Row(
           children: [
             Icon(
-              Icons.forum,
+              Icons.history,
               color: colorScheme.primary,
               size: 20,
             ),
             const SizedBox(width: 8),
             Text(
-              l10n.repeaterDetailCommunityReports,
+              l10n.repeaterDetailRecentActivity,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -110,30 +122,6 @@ class CommunityReportsSection extends HookConsumerWidget {
             ),
           ),
           const SizedBox(height: 8),
-        ],
-        // Feedback form (only if there are accesses without feedback)
-        if (availableAccesses.isNotEmpty) ...[
-          if (state.myFeedbacks.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(left: 4, bottom: 8),
-              child: Text(
-                l10n.repeaterDetailAddFeedback.toUpperCase(),
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                  fontSize: 10,
-                ),
-              ),
-            ),
-          FeedbackFormCard(
-            state: state,
-            availableAccesses: availableAccesses,
-            locationController: locationText,
-            commentController: comment,
-            controller: controller,
-          ),
-          const SizedBox(height: 16),
         ],
         // Others reports section header
         if (communityFeedbacks.isNotEmpty) ...[

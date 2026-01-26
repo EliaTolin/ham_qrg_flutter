@@ -50,9 +50,50 @@ class FeedbackFormCard extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Header section
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.repeaterDetailInteractive.toUpperCase(),
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                      fontSize: 10,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n.repeaterDetailLogYourSignal.toUpperCase(),
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: colorScheme.primary.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  Icons.tune,
+                  color: colorScheme.primary,
+                  size: 24,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
           // Equipment selection label
           Text(
-            l10n.repeaterDetailEquipment.toUpperCase(),
+            l10n.repeaterDetailUsedEquipment.toUpperCase(),
             style: theme.textTheme.labelSmall?.copyWith(
               color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.bold,
@@ -124,7 +165,7 @@ class FeedbackFormCard extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          l10n.repeaterDetailLocationRequired.toUpperCase(),
+          l10n.repeaterDetailYourLocation.toUpperCase(),
           style: theme.textTheme.labelSmall?.copyWith(
             color: colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,
@@ -141,7 +182,7 @@ class FeedbackFormCard extends ConsumerWidget {
               ..searchLocationSuggestions(value);
           },
           decoration: InputDecoration(
-            hintText: 'City or Area (e.g. Rome)',
+            hintText: l10n.repeaterDetailLocationPlaceholder,
             prefixIcon: const Icon(Icons.location_on, size: 20),
             filled: true,
             fillColor: colorScheme.surfaceContainerHighest,
@@ -222,7 +263,7 @@ class FeedbackFormCard extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          l10n.repeaterDetailSelectAccess.toUpperCase(),
+          l10n.repeaterDetailSelectAccessInstance.toUpperCase(),
           style: theme.textTheme.labelSmall?.copyWith(
             color: colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,
@@ -330,7 +371,7 @@ class FeedbackFormCard extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          l10n.repeaterDetailCommentOptional.toUpperCase(),
+          l10n.repeaterDetailSignalObservations.toUpperCase(),
           style: theme.textTheme.labelSmall?.copyWith(
             color: colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,
@@ -344,7 +385,7 @@ class FeedbackFormCard extends ConsumerWidget {
           onChanged: controller.setComment,
           maxLines: 3,
           decoration: InputDecoration(
-            hintText: l10n.repeaterDetailCommentPlaceholder,
+            hintText: l10n.repeaterDetailSignalObservationsPlaceholder,
             filled: true,
             fillColor: colorScheme.surfaceContainerHighest,
             border: OutlineInputBorder(
@@ -423,7 +464,7 @@ class FeedbackFormCard extends ConsumerWidget {
                     ),
                   )
                 : const Icon(Icons.thumb_up, size: 18),
-            label: Text(l10n.repeaterDetailLike.toUpperCase()),
+            label: Text(l10n.repeaterDetailSendLike.toUpperCase()),
             style: FilledButton.styleFrom(
               backgroundColor: Colors.green,
               foregroundColor: Colors.white,
@@ -454,7 +495,7 @@ class FeedbackFormCard extends ConsumerWidget {
                     ),
                   )
                 : const Icon(Icons.warning_amber_rounded, size: 18),
-            label: Text(l10n.repeaterDetailReportDown.toUpperCase()),
+            label: Text(l10n.repeaterDetailReportIssue.toUpperCase()),
             style: FilledButton.styleFrom(
               backgroundColor: Colors.amber.shade700,
               foregroundColor: Colors.white,
