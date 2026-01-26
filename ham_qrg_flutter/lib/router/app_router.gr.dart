@@ -202,6 +202,53 @@ class RepeatersMapRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ReportIssuePage]
+class ReportIssueRoute extends PageRouteInfo<ReportIssueRouteArgs> {
+  ReportIssueRoute({
+    required String repeaterId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ReportIssueRoute.name,
+          args: ReportIssueRouteArgs(repeaterId: repeaterId, key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'ReportIssueRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ReportIssueRouteArgs>();
+      return ReportIssuePage(repeaterId: args.repeaterId, key: args.key);
+    },
+  );
+}
+
+class ReportIssueRouteArgs {
+  const ReportIssueRouteArgs({required this.repeaterId, this.key});
+
+  final String repeaterId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ReportIssueRouteArgs{repeaterId: $repeaterId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ReportIssueRouteArgs) return false;
+    return repeaterId == other.repeaterId && key == other.key;
+  }
+
+  @override
+  int get hashCode => repeaterId.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})

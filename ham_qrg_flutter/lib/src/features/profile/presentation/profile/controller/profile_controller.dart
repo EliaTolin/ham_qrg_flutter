@@ -18,7 +18,7 @@ class ProfileController extends _$ProfileController {
   FutureOr<UserState> build() async {
     state = const AsyncLoading();
     try {
-      final profile = await ref.watch(getProfileProvider.future);
+      final profile = await ref.read(getProfileProvider.future);
       String? imageUrl;
       if (profile.propic != null) {
         imageUrl = await ref.read(getImageProfileProvider(profile.propic!).future);

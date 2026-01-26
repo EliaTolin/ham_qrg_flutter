@@ -171,6 +171,19 @@ class RepeatersRepository {
     );
     return data.map(_feedbackMapper.fromModel).toList();
   }
+
+  // Report methods
+  Future<void> submitRepeaterReport({
+    required String userId,
+    required String repeaterId,
+    required String description,
+  }) async {
+    return _datasource.submitRepeaterReport(
+      userId: userId,
+      repeaterId: repeaterId,
+      description: description,
+    );
+  }
 }
 
 @riverpod

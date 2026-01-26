@@ -49,7 +49,7 @@ class DashboardPage extends HookConsumerWidget {
               top: MediaQuery.of(context).padding.top + 16,
               right: 16,
               child: ProfileChip(
-                imageProfileUrl: state.profile?.propic,
+                imageProfilePath: state.profile?.propic,
                 callSign: state.profile?.callsign,
               ),
             ),

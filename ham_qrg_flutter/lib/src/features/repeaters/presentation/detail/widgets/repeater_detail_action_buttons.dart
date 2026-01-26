@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
+import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
@@ -70,7 +72,7 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
             child: _ActionButton(
               icon: Icons.flag_outlined,
               label: l10n.repeaterDetailReport,
-              onTap: () => _onReportTap(context),
+              onTap: () => _onReportTap(context, ref),
             ),
           ),
         ],
@@ -104,54 +106,13 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
     await SharePlus.instance.share(ShareParams(text: shareText));
   }
 
-  void _onReportTap(BuildContext context) {
-    final l10n = context.localization;
-    final colorScheme = Theme.of(context).colorScheme;
+  Future<void> _onReportTap(BuildContext context, WidgetRef ref) async {
+    final isAuthenticated = await requireAuthentication(context, ref);
+    if (!isAuthenticated) return;
 
-    showModalBottomSheet<void>(
-      context: context,
-      builder: (context) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.flag_outlined,
-                    color: colorScheme.error,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    l10n.repeaterDetailReport,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Text(
-                l10n.repeaterDetailReportDescription,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                    ),
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text(l10n.commonClose),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+    if (context.mounted) {
+      await context.router.push(ReportIssueRoute(repeaterId: repeater.id));
+    }
   }
 }
 

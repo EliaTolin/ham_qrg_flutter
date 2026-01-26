@@ -43,7 +43,7 @@ final class PostLoginOnboardingControllerProvider extends $NotifierProvider<
 }
 
 String _$postLoginOnboardingControllerHash() =>
-    r'39f9b9e71068943894e786ca4d7eac1698160784';
+    r'dd10bb5b288c6e50950b33a3e6cfa62fe7341d35';
 
 abstract class _$PostLoginOnboardingController
     extends $Notifier<PostLoginOnboardingState> {

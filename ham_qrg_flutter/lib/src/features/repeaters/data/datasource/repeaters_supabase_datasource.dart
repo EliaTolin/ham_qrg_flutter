@@ -430,6 +430,26 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       rethrow;
     }
   }
+  @override
+  Future<void> submitRepeaterReport({
+    required String userId,
+    required String repeaterId,
+    required String description,
+  }) async {
+    try {
+      if (userId.isEmpty) {
+        throw Exception('User not authenticated');
+      }
+      await _client.from('repeater_reports').insert({
+        'user_id': userId,
+        'repeater_id': repeaterId,
+        'description': description.trim(),
+      });
+    } catch (error, stackTrace) {
+      log('Error submitting repeater report: $error', stackTrace: stackTrace);
+      rethrow;
+    }
+  }
 }
 
 @riverpod

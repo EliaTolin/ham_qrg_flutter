@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/widgets/profile/profile_avatar.dart';
 
 class ProfileChip extends StatelessWidget {
-  const ProfileChip({required this.imageProfileUrl, required this.callSign, super.key});
-  final String? imageProfileUrl;
+  const ProfileChip({required this.imageProfilePath, required this.callSign, super.key});
+  final String? imageProfilePath;
   final String? callSign;
 
   @override
@@ -24,7 +24,7 @@ class ProfileChip extends StatelessWidget {
         spacing: 8,
         mainAxisSize: MainAxisSize.min,
         children: [
-          ProfileAvatar(imageProfileUrl: imageProfileUrl, size: 24),
+          ProfileAvatar(imageProfilePath: imageProfilePath, size: 24),
           if (callSign != null)
             Text(
               callSign!,

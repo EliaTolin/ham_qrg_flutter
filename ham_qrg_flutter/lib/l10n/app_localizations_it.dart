@@ -703,6 +703,49 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterDetailRecentActivity => 'Attività recente';
 
   @override
+  String get reportIssueTitle => 'Segnala Problema';
+
+  @override
+  String get reportIssueHeadline => 'Aiutaci a mantenere i dati accurati';
+
+  @override
+  String get reportIssueDescription =>
+      'Hai trovato qualcosa di sbagliato in questo ripetitore? Facci sapere cosa deve essere modificato e lo verificheremo.';
+
+  @override
+  String get reportIssueWhatToCorrect => 'Cosa vorresti correggere?';
+
+  @override
+  String get reportIssuePlaceholder =>
+      'Es. Il tono CTCSS è cambiato a 88.5Hz, o la posizione è leggermente più a nord...';
+
+  @override
+  String get reportIssueVerifiedTitle => 'Invii Verificati';
+
+  @override
+  String get reportIssueVerifiedDescription =>
+      'La tua segnalazione sarà revisionata dal coordinatore regionale prima che il database pubblico venga aggiornato. Grazie per il tuo contributo alla community.';
+
+  @override
+  String get reportIssueConfirmCheckbox =>
+      'Confermo che queste informazioni sono corrette in base alla mia osservazione.';
+
+  @override
+  String get reportIssueSubmit => 'Invia';
+
+  @override
+  String get reportIssueMinChars => 'Minimo 10 caratteri richiesti';
+
+  @override
+  String get reportIssueMaxChars => 'Massimo 2000 caratteri';
+
+  @override
+  String get reportIssueSuccess => 'Segnalazione inviata con successo';
+
+  @override
+  String get reportIssueError => 'Errore durante l\'invio della segnalazione';
+
+  @override
   String get registrationPromptTitle => 'Sblocca tutto il potenziale';
 
   @override

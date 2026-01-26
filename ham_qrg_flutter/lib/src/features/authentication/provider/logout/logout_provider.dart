@@ -6,10 +6,13 @@ part 'logout_provider.g.dart';
 
 @riverpod
 Future<void> logout(Ref ref) async {
+  // Read all providers upfront before any async gaps
   final imageService = await ref.read(imageCachingServiceProvider.future);
-  await imageService.deleteAllCachedImages();
   final authRepository = await ref.read(authRepositoryProvider.future);
+
+  // Now perform async operations without using ref
+  await imageService.deleteAllCachedImages();
   await authRepository.logout();
-  // I need to sign in again as anonymous
+  // Sign in again as anonymous
   await authRepository.anonymousSignIn();
 }

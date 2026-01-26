@@ -70,4 +70,11 @@ abstract interface class RepeatersDatasource {
     required String userId,
     required String repeaterId,
   });
+
+  // Report methods
+  Future<void> submitRepeaterReport({
+    required String userId,
+    required String repeaterId,
+    required String description,
+  });
 }

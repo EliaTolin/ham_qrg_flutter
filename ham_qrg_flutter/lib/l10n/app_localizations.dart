@@ -1378,6 +1378,84 @@ abstract class AppLocalizations {
   /// **'Attività recente'**
   String get repeaterDetailRecentActivity;
 
+  /// No description provided for @reportIssueTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnala Problema'**
+  String get reportIssueTitle;
+
+  /// No description provided for @reportIssueHeadline.
+  ///
+  /// In it, this message translates to:
+  /// **'Aiutaci a mantenere i dati accurati'**
+  String get reportIssueHeadline;
+
+  /// No description provided for @reportIssueDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Hai trovato qualcosa di sbagliato in questo ripetitore? Facci sapere cosa deve essere modificato e lo verificheremo.'**
+  String get reportIssueDescription;
+
+  /// No description provided for @reportIssueWhatToCorrect.
+  ///
+  /// In it, this message translates to:
+  /// **'Cosa vorresti correggere?'**
+  String get reportIssueWhatToCorrect;
+
+  /// No description provided for @reportIssuePlaceholder.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. Il tono CTCSS è cambiato a 88.5Hz, o la posizione è leggermente più a nord...'**
+  String get reportIssuePlaceholder;
+
+  /// No description provided for @reportIssueVerifiedTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Invii Verificati'**
+  String get reportIssueVerifiedTitle;
+
+  /// No description provided for @reportIssueVerifiedDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'La tua segnalazione sarà revisionata dal coordinatore regionale prima che il database pubblico venga aggiornato. Grazie per il tuo contributo alla community.'**
+  String get reportIssueVerifiedDescription;
+
+  /// No description provided for @reportIssueConfirmCheckbox.
+  ///
+  /// In it, this message translates to:
+  /// **'Confermo che queste informazioni sono corrette in base alla mia osservazione.'**
+  String get reportIssueConfirmCheckbox;
+
+  /// No description provided for @reportIssueSubmit.
+  ///
+  /// In it, this message translates to:
+  /// **'Invia'**
+  String get reportIssueSubmit;
+
+  /// No description provided for @reportIssueMinChars.
+  ///
+  /// In it, this message translates to:
+  /// **'Minimo 10 caratteri richiesti'**
+  String get reportIssueMinChars;
+
+  /// No description provided for @reportIssueMaxChars.
+  ///
+  /// In it, this message translates to:
+  /// **'Massimo 2000 caratteri'**
+  String get reportIssueMaxChars;
+
+  /// No description provided for @reportIssueSuccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazione inviata con successo'**
+  String get reportIssueSuccess;
+
+  /// No description provided for @reportIssueError.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore durante l\'invio della segnalazione'**
+  String get reportIssueError;
+
   /// No description provided for @registrationPromptTitle.
   ///
   /// In it, this message translates to:

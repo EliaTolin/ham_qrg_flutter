@@ -52,7 +52,7 @@ class PostLoginOnboardingController extends _$PostLoginOnboardingController {
     if (userType == null) return false;
 
     // Determine the callsign to save
-    String callsignToSave;
+    String? callsignToSave;
     if (userType == UserType.licensed) {
       // Licensed user must have a callsign
       callsignToSave = state.callsign.trim();
@@ -63,9 +63,6 @@ class PostLoginOnboardingController extends _$PostLoginOnboardingController {
         // SWL with callsign
         callsignToSave = state.callsign.trim();
         if (callsignToSave.isEmpty) return false;
-      } else {
-        // SWL without callsign
-        callsignToSave = 'UNKNOWN';
       }
     }
 
