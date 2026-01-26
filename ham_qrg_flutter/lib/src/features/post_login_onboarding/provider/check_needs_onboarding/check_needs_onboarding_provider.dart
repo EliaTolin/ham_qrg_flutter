@@ -8,7 +8,7 @@ part 'check_needs_onboarding_provider.g.dart';
 @riverpod
 Future<bool> checkNeedsPostLoginOnboarding(Ref ref) async {
   try {
-    final profile = await ref.read(getProfileProvider.future);
+    final profile = await ref.refresh(getProfileProvider.future);
     // Show onboarding if userType is not set
     final needsOnboarding = profile.userType == null;
     log(

@@ -68,9 +68,8 @@ class UserTypeSelectionStep extends StatelessWidget {
                     text: 'Ham',
                     style: TextStyle(color: color.primary),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: 'QRG',
-                    style: TextStyle(color: color.secondary),
                   ),
                 ],
               ),

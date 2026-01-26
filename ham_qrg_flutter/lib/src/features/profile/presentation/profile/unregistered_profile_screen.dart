@@ -31,7 +31,7 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
     final isDark = theme.brightness == Brightness.dark;
     final isLoading = useState<bool>(false);
 
-    Future<void> handleAppleSignIn() async {
+    Future<void> handleSignIn(Future<void> Function() signInMethod) async {
       if (isLoading.value) return;
       isLoading.value = true;
 
@@ -39,77 +39,33 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
       final router = ref.read(appRouterProvider);
 
       try {
-        await ref.read(signInWithAppleProvider.future);
+        await signInMethod();
 
-        // First, invalidate ONLY profile providers (not isAnonymous - that would rebuild the widget)
+        // Invalidate user ID first (to get the NEW user after login)
+        // then profile providers
         ref
+          ..invalidate(getUserIdProvider)
           ..invalidate(getProfileProvider)
           ..invalidate(checkNeedsPostLoginOnboardingProvider);
 
-        // Check onboarding BEFORE invalidating isAnonymousProvider
+        // Check onboarding with fresh user ID and profile
         final needsOnboarding =
             await ref.read(checkNeedsPostLoginOnboardingProvider.future);
-        log('UnregisteredProfile Apple: needsOnboarding=$needsOnboarding');
 
         if (needsOnboarding) {
-          log('UnregisteredProfile Apple: navigating to onboarding...');
           await router.pushAndPopUntil(
             const PostLoginOnboardingRoute(),
             predicate: (_) => false,
           );
         } else {
-          // No onboarding needed - now invalidate all providers to refresh UI
-          log('UnregisteredProfile Apple: no onboarding needed');
+          // No onboarding needed - invalidate all providers to refresh UI
           ref
             ..invalidate(getUserIdProvider)
             ..invalidate(isAnonymousProvider)
             ..invalidate(profileControllerProvider);
         }
       } catch (e) {
-        log('Apple sign in error: $e');
-        if (context.mounted) {
-          showErrorSnackbar(context, l10n.authUnexpectedError);
-          isLoading.value = false;
-        }
-      }
-    }
-
-    Future<void> handleGoogleSignIn() async {
-      if (isLoading.value) return;
-      isLoading.value = true;
-
-      // Capture router BEFORE any async operations that might unmount the widget
-      final router = ref.read(appRouterProvider);
-
-      try {
-        await ref.read(signInWithGoogleProvider.future);
-
-        // First, invalidate ONLY profile providers (not isAnonymous - that would rebuild the widget)
-        ref
-          ..invalidate(getProfileProvider)
-          ..invalidate(checkNeedsPostLoginOnboardingProvider);
-
-        // Check onboarding BEFORE invalidating isAnonymousProvider
-        final needsOnboarding =
-            await ref.read(checkNeedsPostLoginOnboardingProvider.future);
-        log('UnregisteredProfile Google: needsOnboarding=$needsOnboarding');
-
-        if (needsOnboarding) {
-          log('UnregisteredProfile Google: navigating to onboarding...');
-          await router.pushAndPopUntil(
-            const PostLoginOnboardingRoute(),
-            predicate: (_) => false,
-          );
-        } else {
-          // No onboarding needed - now invalidate all providers to refresh UI
-          log('UnregisteredProfile Google: no onboarding needed');
-          ref
-            ..invalidate(getUserIdProvider)
-            ..invalidate(isAnonymousProvider)
-            ..invalidate(profileControllerProvider);
-        }
-      } catch (e) {
-        log('Google sign in error: $e');
+        log('Sign in error: $e');
         if (context.mounted) {
           showErrorSnackbar(context, l10n.authUnexpectedError);
           isLoading.value = false;
@@ -154,13 +110,17 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
                       children: [
                         if (Platform.isIOS) ...[
                           AppleSignInButton(
-                            onPressed: handleAppleSignIn,
+                            onPressed: () => handleSignIn(
+                              () => ref.read(signInWithAppleProvider.future),
+                            ),
                             isLoading: isLoading.value,
                           ),
                           const Gap(12),
                         ],
                         GoogleSignInButton(
-                          onPressed: handleGoogleSignIn,
+                          onPressed: () => handleSignIn(
+                            () => ref.read(signInWithGoogleProvider.future),
+                          ),
                           isLoading: isLoading.value,
                         ),
                       ],
