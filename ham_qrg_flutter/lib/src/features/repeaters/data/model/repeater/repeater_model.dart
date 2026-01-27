@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ham_qrg/src/features/repeaters/data/model/access/repeater_access_model.dart';
 
@@ -45,7 +47,8 @@ List<RepeaterAccessModel>? _accessesFromJson(dynamic json) {
         final accessMap = Map<String, dynamic>.from(e);
         try {
           return RepeaterAccessModel.fromJson(accessMap);
-        } catch (_) {
+        } catch (e) {
+          log('Error parsing repeater access: $e');
           return null;
         }
       })

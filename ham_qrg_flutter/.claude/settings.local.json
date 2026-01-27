@@ -9,7 +9,8 @@
       "Bash(flutter build:*)",
       "Bash(xargs ls:*)",
       "Bash(flutter clean:*)",
-      "Bash(flutter test:*)"
+      "Bash(flutter test:*)",
+      "Bash(dart format:*)"
     ]
   }
 }

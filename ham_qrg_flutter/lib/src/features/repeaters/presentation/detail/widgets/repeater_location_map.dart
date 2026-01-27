@@ -43,7 +43,10 @@ class RepeaterLocationMap extends HookConsumerWidget {
           child: Icon(
             Icons.map,
             size: 48,
-            color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
+            color: Theme.of(context)
+                .colorScheme
+                .onSurfaceVariant
+                .withValues(alpha: 0.3),
           ),
         ),
       );
@@ -58,7 +61,8 @@ class RepeaterLocationMap extends HookConsumerWidget {
             MapWidget(
               cameraOptions: CameraOptions(
                 center: Point(
-                  coordinates: Position(repeater.longitude!, repeater.latitude!),
+                  coordinates:
+                      Position(repeater.longitude!, repeater.latitude!),
                 ),
                 zoom: 13,
                 bearing: 0,
@@ -93,7 +97,10 @@ class RepeaterLocationMap extends HookConsumerWidget {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withValues(alpha: 0.3),
                       blurRadius: 8,
                       spreadRadius: 4,
                     ),
@@ -142,7 +149,11 @@ class RepeaterLocationMap extends HookConsumerWidget {
       await manager.deleteAll();
       if (repeater.latitude == null || repeater.longitude == null) return;
 
-      final iconBytes = await RepeaterModeHelper.generateRepeaterIcon(repeater.mode);
+      final accessModes = repeater.accesses.map((a) => a.mode).toList();
+      final iconBytes =
+          await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+        accessModes,
+      );
       await manager.create(
         PointAnnotationOptions(
           geometry: Point(
@@ -150,7 +161,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
           ),
           image: iconBytes,
           iconSize: 1.2,
-          iconAnchor: IconAnchor.BOTTOM,
+          iconAnchor: IconAnchor.CENTER,
         ),
       );
     } catch (e) {

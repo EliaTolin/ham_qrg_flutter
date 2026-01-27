@@ -1,26 +1,14 @@
+import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:ham_qrg/common/utils/access_mode_helper.dart';
 import 'package:ham_qrg/l10n/app_localizations.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 class RepeaterModeHelper {
-  /// Returns the color associated with a repeater mode
-  /// Colors are represented as ARGB integers (0xAARRGGBB)
-  static int getModeColor(RepeaterMode mode) {
-    return switch (mode) {
-      RepeaterMode.analog => 0xFF00C853, // Bright Green
-      RepeaterMode.digital => 0xFF2962FF, // Vibrant Blue
-      RepeaterMode.mixed => 0xFF00B8D4, // Bright Cyan
-    };
-  }
-
-  /// Returns the Flutter Color object for a repeater mode
-  static Color getModeColorObject(RepeaterMode mode) {
-    return Color(getModeColor(mode));
-  }
-
   /// Returns the localized label for a repeater mode
   static String getModeLabel(RepeaterMode mode, AppLocalizations l10n) {
     return switch (mode) {
@@ -30,38 +18,71 @@ class RepeaterModeHelper {
     };
   }
 
-  /// Generates a custom icon bitmap for a repeater mode using Icons.radio
-  /// Returns Uint8List representing a PNG image
-  static Future<Uint8List> generateRepeaterIcon(RepeaterMode mode) async {
+  /// Generates a unique key for a combination of access modes
+  /// Used to cache and identify marker images
+  static String getAccessModesKey(List<AccessMode> modes) {
+    if (modes.isEmpty) return 'default';
+    final sortedModes = modes.toList()..sort((a, b) => a.index.compareTo(b.index));
+    return sortedModes.map((m) => m.name).join('-');
+  }
+
+  /// Generates a custom icon bitmap with colored segments for each access mode.
+  /// Each access mode is represented as a colored arc segment on the border.
+  /// Returns Uint8List representing a PNG image.
+  static Future<Uint8List> generateRepeaterIconWithAccessModes(
+    List<AccessMode> accessModes,
+  ) async {
     const size = 72.0;
-    const iconSize = 44.0;
+    const iconSize = 32.0;
+    const strokeWidth = 6.0;
+    const radius = size / 2 - strokeWidth / 2 - 2;
+    const center = Offset(size / 2, size / 2);
 
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
-    final color = getModeColorObject(mode);
 
-    // Draw outer circle with color
-    final outerPaint = Paint()
-      ..color = color
+    // Dark background circle
+    final bgPaint = Paint()
+      ..color = const Color(0xFF1F2937) // Dark gray
       ..style = PaintingStyle.fill;
-    canvas.drawCircle(
-      const Offset(size / 2, size / 2),
-      size / 2 - 2,
-      outerPaint,
-    );
+    canvas.drawCircle(center, size / 2 - 2, bgPaint);
 
-    // Draw white border
-    final borderPaint = Paint()
-      ..color = Colors.white
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 3;
-    canvas.drawCircle(
-      const Offset(size / 2, size / 2),
-      size / 2 - 2,
-      borderPaint,
-    );
+    // Draw colored segments for each access mode
+    if (accessModes.isNotEmpty) {
+      final uniqueModes = accessModes.toSet().toList();
+      final segmentAngle = (2 * math.pi) / uniqueModes.length;
+      const startAngle = -math.pi / 2; // Start from top
 
-    // Draw Icons.radio icon using TextPainter
+      for (var i = 0; i < uniqueModes.length; i++) {
+        final mode = uniqueModes[i];
+        final color = AccessModeHelper.getAccessModeColorObject(mode);
+
+        final segmentPaint = Paint()
+          ..color = color
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = strokeWidth
+          ..strokeCap = StrokeCap.butt;
+
+        final rect = Rect.fromCircle(center: center, radius: radius);
+        final sweep = segmentAngle - 0.02; // Small gap between segments
+        canvas.drawArc(
+          rect,
+          startAngle + (i * segmentAngle),
+          sweep,
+          false,
+          segmentPaint,
+        );
+      }
+    } else {
+      // Default gray border if no access modes
+      final defaultPaint = Paint()
+        ..color = const Color(0xFF6B7280)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = strokeWidth;
+      canvas.drawCircle(center, radius, defaultPaint);
+    }
+
+    // Draw cell tower icon
     final textPainter = TextPainter(
       text: TextSpan(
         text: String.fromCharCode(Icons.cell_tower_rounded.codePoint),
@@ -75,12 +96,10 @@ class RepeaterModeHelper {
       textDirection: TextDirection.ltr,
     )..layout();
 
-    // Center the icon
     final iconOffset = Offset(
       (size - textPainter.width) / 2,
       (size - textPainter.height) / 2,
     );
-
     textPainter.paint(canvas, iconOffset);
 
     // Convert to image

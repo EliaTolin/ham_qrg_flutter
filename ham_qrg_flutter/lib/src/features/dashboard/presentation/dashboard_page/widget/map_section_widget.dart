@@ -67,7 +67,9 @@ class MapSectionWidget extends HookConsumerWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Theme.of(context).scaffoldBackgroundColor.withValues(alpha: 0.6),
+                Theme.of(context)
+                    .scaffoldBackgroundColor
+                    .withValues(alpha: 0.6),
                 Colors.transparent,
                 Colors.transparent,
                 Theme.of(context).scaffoldBackgroundColor,
@@ -163,22 +165,27 @@ class MapSectionWidget extends HookConsumerWidget {
         final lon = firstRepeater.longitude!;
 
         if (repeatersAtLocation.length == 1) {
-          // Single repeater - use normal marker
+          // Single repeater - use marker with access mode segments
+          final accessModes =
+              firstRepeater.accesses.map((a) => a.mode).toList();
           final iconBytes =
-              await RepeaterModeHelper.generateRepeaterIcon(firstRepeater.mode);
+              await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+            accessModes,
+          );
           annotations.add(
             PointAnnotationOptions(
               geometry: Point(coordinates: Position(lon, lat)),
               image: iconBytes,
               iconSize: 1.2,
-              iconAnchor: IconAnchor.BOTTOM,
+              iconAnchor: IconAnchor.CENTER,
               customData: {'repeaterId': firstRepeater.id},
             ),
           );
         } else {
           // Multiple repeaters - use cluster marker
-          final iconBytes =
-              await RepeaterModeHelper.generateClusterIcon(repeatersAtLocation.length);
+          final iconBytes = await RepeaterModeHelper.generateClusterIcon(
+            repeatersAtLocation.length,
+          );
           annotations.add(
             PointAnnotationOptions(
               geometry: Point(coordinates: Position(lon, lat)),

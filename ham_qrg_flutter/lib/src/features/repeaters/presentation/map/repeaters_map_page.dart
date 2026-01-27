@@ -11,6 +11,7 @@ import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
 import 'package:ham_qrg/config/constants/map_keys.dart';
 import 'package:ham_qrg/config/constants/map_layers.dart';
+import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/repeaters_map_controller.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
@@ -238,58 +239,58 @@ class RepeatersMapPage extends HookConsumerWidget {
     }
   }
 
-  /// Add marker images to the map style
+  /// Add marker images to the map style.
+  /// This is now a no-op since images are generated dynamically.
   Future<void> _addMarkerImages(MapboxMap mapboxMap) async {
+    // Images are now generated dynamically based on access modes
+    // in _addMarkerImagesForRepeaters
+  }
+
+  /// Add marker images for a list of repeaters based on their access modes
+  Future<void> _addMarkerImagesForRepeaters(
+    MapboxMap mapboxMap,
+    List<Repeater> repeaters,
+  ) async {
     try {
-      // Generate and add marker images for each mode
-      await _addMarkerImage(
-        mapboxMap,
-        MapKeys.analogMarker,
-        RepeaterMode.analog,
-      );
-      await _addMarkerImage(
-        mapboxMap,
-        MapKeys.digitalMarker,
-        RepeaterMode.digital,
-      );
-      await _addMarkerImage(
-        mapboxMap,
-        MapKeys.mixedMarker,
-        RepeaterMode.mixed,
-      );
+      // Collect unique access mode combinations
+      final accessModeKeys = <String, List<AccessMode>>{};
+      for (final repeater in repeaters) {
+        final modes = repeater.accesses.map((a) => a.mode).toList();
+        final key = RepeaterModeHelper.getAccessModesKey(modes);
+        accessModeKeys.putIfAbsent(key, () => modes);
+      }
+
+      // Generate and add images for each unique combination
+      for (final entry in accessModeKeys.entries) {
+        final imageId = 'marker-${entry.key}';
+        final exists = await mapboxMap.style.hasStyleImage(imageId);
+        if (exists) continue;
+
+        final iconBytes =
+            await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+          entry.value,
+        );
+
+        final buffer = await ui.ImmutableBuffer.fromUint8List(iconBytes);
+        final descriptor = await ui.ImageDescriptor.encoded(buffer);
+
+        await mapboxMap.style.addStyleImage(
+          imageId,
+          1,
+          MbxImage(
+            width: descriptor.width,
+            height: descriptor.height,
+            data: iconBytes,
+          ),
+          false,
+          [],
+          [],
+          null,
+        );
+      }
     } catch (e) {
       log('Error adding marker images: $e');
     }
-  }
-
-  /// Add a single marker image to the map style
-  Future<void> _addMarkerImage(
-    MapboxMap mapboxMap,
-    String imageId,
-    RepeaterMode mode,
-  ) async {
-    final exists = await mapboxMap.style.hasStyleImage(imageId);
-    if (exists) return;
-
-    final iconBytes = await RepeaterModeHelper.generateRepeaterIcon(mode);
-
-    // Get image dimensions
-    final buffer = await ui.ImmutableBuffer.fromUint8List(iconBytes);
-    final descriptor = await ui.ImageDescriptor.encoded(buffer);
-
-    await mapboxMap.style.addStyleImage(
-      imageId,
-      1,
-      MbxImage(
-        width: descriptor.width,
-        height: descriptor.height,
-        data: iconBytes,
-      ),
-      false,
-      [],
-      [],
-      null,
-    );
   }
 
   /// Add style layers for clusters and points
@@ -307,7 +308,10 @@ class RepeatersMapPage extends HookConsumerWidget {
           _addLayerFromAsset(mapboxMap, MapLayers.clusterCountLayer),
           // Synthetic same-location clusters
           _addLayerFromAsset(mapboxMap, MapLayers.sameLocationClusterLayer),
-          _addLayerFromAsset(mapboxMap, MapLayers.sameLocationClusterCountLayer),
+          _addLayerFromAsset(
+            mapboxMap,
+            MapLayers.sameLocationClusterCountLayer,
+          ),
           // Individual points
           _addLayerFromAsset(mapboxMap, MapLayers.unclusteredPointLayer),
         ]);
@@ -333,6 +337,9 @@ class RepeatersMapPage extends HookConsumerWidget {
     List<Repeater> repeaters,
   ) async {
     try {
+      // Generate marker images for unique access mode combinations
+      await _addMarkerImagesForRepeaters(mapboxMap, repeaters);
+
       final geoJson = _repeatersToGeoJson(repeaters);
 
       final sourceExists = await mapboxMap.style.styleSourceExists(
@@ -350,7 +357,8 @@ class RepeatersMapPage extends HookConsumerWidget {
           ),
         );
       } else {
-        final source = await mapboxMap.style.getSource(MapKeys.repeatersSource) as GeoJsonSource?;
+        final source = await mapboxMap.style.getSource(MapKeys.repeatersSource)
+            as GeoJsonSource?;
         if (source != null) {
           await source.updateGeoJSON(geoJson);
         }
@@ -380,6 +388,14 @@ class RepeatersMapPage extends HookConsumerWidget {
       final first = repeatersAtLocation.first;
 
       if (repeatersAtLocation.length == 1) {
+        // Generate marker key based on access modes
+        final accessModes = first.accesses.map((a) => a.mode).toList();
+        final markerKey =
+            'marker-${RepeaterModeHelper.getAccessModesKey(accessModes)}';
+
+        // Use callsign as label, fallback to name
+        final label = first.callsign ?? first.name ?? '';
+
         // Single repeater - normal feature
         features.add({
           'type': 'Feature',
@@ -395,6 +411,8 @@ class RepeatersMapPage extends HookConsumerWidget {
             'mode': first.mode.name,
             'latitude': first.latitude,
             'longitude': first.longitude,
+            'marker_key': markerKey,
+            'label': label,
           },
         });
       } else {
@@ -479,8 +497,7 @@ class RepeatersMapPage extends HookConsumerWidget {
         if (feature != null) {
           final featureMap =
               feature.queriedFeature.feature as Map<dynamic, dynamic>;
-          final properties =
-              featureMap['properties'] as Map<dynamic, dynamic>?;
+          final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
           final clusterIds =
               properties?['cluster_repeater_ids'] as List<dynamic>?;
 
@@ -579,9 +596,7 @@ class RepeatersMapPage extends HookConsumerWidget {
     final currentState = ref.read(repeatersMapControllerProvider).value;
     if (currentState == null) return [];
 
-    return currentState.repeaters
-        .where((r) => ids.contains(r.id))
-        .toList();
+    return currentState.repeaters.where((r) => ids.contains(r.id)).toList();
   }
 
   /// Extract repeaters from cluster leaves
@@ -605,7 +620,9 @@ class RepeatersMapPage extends HookConsumerWidget {
       }
     }
 
-    return currentState.repeaters.where((r) => repeaterIds.contains(r.id)).toList();
+    return currentState.repeaters
+        .where((r) => repeaterIds.contains(r.id))
+        .toList();
   }
 
   /// Handle tap on a single point
@@ -626,7 +643,8 @@ class RepeatersMapPage extends HookConsumerWidget {
       final feature = features.first;
       if (feature == null) return;
 
-      final featureMap = feature.queriedFeature.feature as Map<dynamic, dynamic>;
+      final featureMap =
+          feature.queriedFeature.feature as Map<dynamic, dynamic>;
       final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
       if (properties == null) return;
 
@@ -784,7 +802,8 @@ class RepeatersMapPage extends HookConsumerWidget {
   }
 }
 
-Future<({double lat1, double lon1, double lat2, double lon2})> _getVisibleBounds(
+Future<({double lat1, double lon1, double lat2, double lon2})>
+    _getVisibleBounds(
   MapboxMap map,
 ) async {
   final bounds = await map.coordinateBoundsForCamera(

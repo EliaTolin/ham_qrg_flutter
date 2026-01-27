@@ -10,6 +10,7 @@ import 'package:ham_qrg/src/features/favorites/presentation/widgets/favorite_rep
 import 'package:ham_qrg/src/features/favorites/presentation/widgets/mode_filter_chips_horizontal.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Debounce delay for search (milliseconds)
@@ -193,7 +194,8 @@ class FavoritesPage extends HookConsumerWidget {
           child: filteredFavorites.isEmpty
               ? _buildEmptyState(context)
               : ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   itemCount: filteredFavorites.length + 1,
                   itemBuilder: (context, index) {
                     if (index == filteredFavorites.length) {
@@ -214,14 +216,11 @@ class FavoritesPage extends HookConsumerWidget {
                       );
                     }
                     final repeater = filteredFavorites[index];
-                    // TO-DO: Fetch feedback stats for each repeater
-                    // For now, we'll pass null and add TO-DO
-                    return FavoriteRepeaterItem(
+                    return _FavoriteRepeaterItemWithStats(
                       repeater: repeater,
                       onRemoveFavorite: () {
                         notifier.removeFavorite(repeater.id);
                       },
-                      // feedbackStats: ref.watch(getRepeaterFeedbackStatsProvider(repeater.id)),
                     );
                   },
                 ),
@@ -293,10 +292,35 @@ class FavoritesPage extends HookConsumerWidget {
     // Apply mode filter - check if repeater has any access with selected mode
     if (selectedModes.isNotEmpty) {
       filtered = filtered.where((repeater) {
-        return repeater.accesses.any((access) => selectedModes.contains(access.mode));
+        return repeater.accesses
+            .any((access) => selectedModes.contains(access.mode));
       }).toList();
     }
 
     return filtered;
+  }
+}
+
+/// Wrapper widget that loads feedback stats for a favorite repeater item.
+class _FavoriteRepeaterItemWithStats extends ConsumerWidget {
+  const _FavoriteRepeaterItemWithStats({
+    required this.repeater,
+    required this.onRemoveFavorite,
+  });
+
+  final Repeater repeater;
+  final VoidCallback onRemoveFavorite;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final feedbackStatsAsync = ref.watch(
+      getRepeaterFeedbackStatsProvider(repeater.id),
+    );
+
+    return FavoriteRepeaterItem(
+      repeater: repeater,
+      onRemoveFavorite: onRemoveFavorite,
+      feedbackStats: feedbackStatsAsync.value,
+    );
   }
 }

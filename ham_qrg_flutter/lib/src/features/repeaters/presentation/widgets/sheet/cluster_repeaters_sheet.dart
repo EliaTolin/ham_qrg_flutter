@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
-import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
+import 'package:ham_qrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
 
@@ -111,23 +111,10 @@ class _RepeaterListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final modeColor = RepeaterModeHelper.getModeColorObject(repeater.mode);
 
     return ListTile(
       onTap: onTap,
-      leading: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: modeColor.withValues(alpha: 0.15),
-          shape: BoxShape.circle,
-        ),
-        child: Icon(
-          Icons.cell_tower_rounded,
-          color: modeColor,
-          size: 22,
-        ),
-      ),
+      leading: RepeaterAccessIcon(accesses: repeater.accesses),
       title: Text(
         repeater.callsign ?? repeater.locality ?? 'Repeater',
         style: theme.textTheme.bodyLarge?.copyWith(

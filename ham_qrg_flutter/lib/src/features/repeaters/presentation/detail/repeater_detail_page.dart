@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
+import 'package:ham_qrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
 import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
@@ -73,7 +73,8 @@ class _RepeaterDetailContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorMode = RepeaterModeHelper.getModeColorObject(state.repeater.mode);
+    final colorMode =
+        RepeaterAccessIcon.getPrimaryColor(state.repeater.accesses);
 
     return CustomScrollView(
       slivers: [

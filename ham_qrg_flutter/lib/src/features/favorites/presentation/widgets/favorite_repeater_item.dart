@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/access_mode_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
+import 'package:ham_qrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
 
@@ -25,12 +25,6 @@ class FavoriteRepeaterItem extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
-
-    // Get primary access mode for icon color
-    final primaryAccessMode =
-        repeater.accesses.isNotEmpty ? repeater.accesses.first.mode : AccessMode.analog;
-    final iconColor = AccessModeHelper.getAccessModeColorObject(primaryAccessMode);
-    final iconData = AccessModeHelper.getAccessModeIcon(primaryAccessMode);
 
     final likesTotal = feedbackStats?.likesTotal ?? 0;
     final downTotal = feedbackStats?.downTotal ?? 0;
@@ -71,30 +65,8 @@ class FavoriteRepeaterItem extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Icon with gradient
-                      Container(
-                        width: 48,
-                        height: 48,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              iconColor.withValues(alpha: 0.2),
-                              iconColor.withValues(alpha: 0.1),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: iconColor.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: Icon(
-                          iconData,
-                          color: iconColor,
-                          size: 24,
-                        ),
-                      ),
+                      // Repeater icon with access mode segments
+                      RepeaterAccessIcon(accesses: repeater.accesses),
                       const SizedBox(width: 12),
                       // Info section
                       Expanded(
@@ -109,7 +81,8 @@ class FavoriteRepeaterItem extends StatelessWidget {
                               ),
                             ),
                             // Location
-                            if (repeater.locality != null || repeater.region != null) ...[
+                            if (repeater.locality != null ||
+                                repeater.region != null) ...[
                               const SizedBox(height: 4),
                               Text(
                                 [
@@ -178,28 +151,41 @@ class FavoriteRepeaterItem extends StatelessWidget {
                   ),
                   // Chips row
                   const SizedBox(height: 16),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+                  Row(
                     children: [
-                      // Frequency chip
-                      _InfoChip(
-                        icon: Icons.graphic_eq,
-                        label: RepeaterFormatHelper.formatFrequency(repeater.frequencyHz),
-                        isFrequency: true,
+                      Expanded(
+                        child: Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            // Frequency chip
+                            _InfoChip(
+                              icon: Icons.graphic_eq,
+                              label: RepeaterFormatHelper.formatFrequency(
+                                repeater.frequencyHz,
+                              ),
+                              isFrequency: true,
+                            ),
+                            // Access mode chips
+                            ...repeater.accesses.map((access) {
+                              final accessColor =
+                                  AccessModeHelper.getAccessModeColorObject(
+                                access.mode,
+                              );
+                              return _InfoChip(
+                                label: AccessModeHelper.getAccessModeLabel(
+                                  access.mode,
+                                ),
+                                isAccessMode: true,
+                                color: accessColor,
+                              );
+                            }),
+                          ],
+                        ),
                       ),
-                      // Access mode chips
-                      ...repeater.accesses.map((access) {
-                        final accessColor = AccessModeHelper.getAccessModeColorObject(access.mode);
-                        return _InfoChip(
-                          label: AccessModeHelper.getAccessModeLabel(access.mode),
-                          isAccessMode: true,
-                          color: accessColor,
-                        );
-                      }),
-                      // Distance chip (aligned to right using Spacer)
+                      // Distance chip (aligned to right)
                       if (repeater.distanceMeters != null) ...[
-                        const Spacer(),
+                        const SizedBox(width: 8),
                         _InfoChip(
                           icon: Icons.near_me,
                           label: _formatDistance(repeater.distanceMeters!),
@@ -328,7 +314,8 @@ class _InfoChip extends StatelessWidget {
               color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
               fontSize: 12,
-              fontFeatures: isFrequency ? const [FontFeature.tabularFigures()] : null,
+              fontFeatures:
+                  isFrequency ? const [FontFeature.tabularFigures()] : null,
             ),
           ),
         ],

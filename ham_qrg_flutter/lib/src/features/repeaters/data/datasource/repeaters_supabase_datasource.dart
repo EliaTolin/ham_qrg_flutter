@@ -37,7 +37,15 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       if (data is! List) {
         return [];
       }
-      return data.map((e) => RepeaterModel.fromJson(e as Map<String, dynamic>)).toList();
+      return data.map((e) {
+        final row = e as Map<String, dynamic>;
+        final repeaterData = Map<String, dynamic>.from(row['repeater'] as Map);
+        // Add distance_m to repeater data
+        repeaterData['distance_m'] = row['distance_m'];
+        repeaterData['accesses'] = row['accesses'];
+        final re = RepeaterModel.fromJson(repeaterData);
+        return re;
+      }).toList();
     } catch (error, stackTrace) {
       log('Error fetching repeaters_in_bounds: $error', stackTrace: stackTrace);
       rethrow;
@@ -72,7 +80,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         final repeaterData = Map<String, dynamic>.from(row['repeater'] as Map);
         // Add distance_m to repeater data
         repeaterData['distance_m'] = row['distance_m'];
-        return RepeaterModel.fromJson(repeaterData);
+        repeaterData['accesses'] = row['accesses'];
+        final re = RepeaterModel.fromJson(repeaterData);
+        return re;
       }).toList();
     } catch (error, stackTrace) {
       log('Error fetching repeaters_nearby: $error', stackTrace: stackTrace);
@@ -430,6 +440,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       rethrow;
     }
   }
+
   @override
   Future<void> submitRepeaterReport({
     required String userId,

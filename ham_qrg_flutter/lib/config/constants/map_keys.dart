@@ -19,16 +19,4 @@ abstract final class MapKeys {
 
   /// Layer ID for unclustered repeater points
   static const String unclusteredPointLayer = 'repeaters-unclustered';
-
-  /// Image ID for repeater marker
-  static const String repeaterMarker = 'repeater-marker';
-
-  /// Image ID for analog repeater marker
-  static const String analogMarker = 'analog-marker';
-
-  /// Image ID for digital repeater marker
-  static const String digitalMarker = 'digital-marker';
-
-  /// Image ID for mixed repeater marker
-  static const String mixedMarker = 'mixed-marker';
 }

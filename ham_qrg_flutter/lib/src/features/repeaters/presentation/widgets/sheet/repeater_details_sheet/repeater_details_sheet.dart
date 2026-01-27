@@ -4,6 +4,7 @@ import 'package:ham_qrg/common/extension/l10n_extension.dart';
 import 'package:ham_qrg/common/utils/access_mode_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
 import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
+import 'package:ham_qrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:ham_qrg/router/app_router.dart';
 import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
@@ -129,7 +130,7 @@ class _RepeaterDetailsContent extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final repeater = state.repeater;
-    final colorMode = RepeaterModeHelper.getModeColorObject(repeater.mode);
+    final colorMode = RepeaterAccessIcon.getPrimaryColor(repeater.accesses);
     final likesTotal = state.feedbackStats?.likesTotal ?? 0;
 
     final content = Column(
