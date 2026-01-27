@@ -1,12 +1,12 @@
 import 'dart:developer';
 
-import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/logout/logout_provider.dart';
-import 'package:ham_qrg/src/features/profile/domain/state/user_state/user_state.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_email_profile/get_email_profile_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_image_profile/get_image_profile_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/logout/logout_provider.dart';
+import 'package:hamqrg/src/features/profile/domain/state/user_state/user_state.dart';
+import 'package:hamqrg/src/features/profile/provider/get_email_profile/get_email_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/get_image_profile/get_image_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 

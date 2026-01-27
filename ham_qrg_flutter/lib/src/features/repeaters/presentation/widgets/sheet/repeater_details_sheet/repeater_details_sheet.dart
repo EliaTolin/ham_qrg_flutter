@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/access_mode_helper.dart';
-import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
-import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
-import 'package:ham_qrg/common/widgets/icons/repeater_access_icon.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/controller/repeater_details_sheet_controller.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/controller/state/repeater_details_sheet_state.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
+import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/controller/repeater_details_sheet_controller.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/controller/state/repeater_details_sheet_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Shows a modal bottom sheet with repeater details.
@@ -168,8 +168,7 @@ class _RepeaterDetailsContent extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      RepeaterModeHelper.getModeLabel(repeater.mode, l10n)
-                          .toUpperCase(),
+                      RepeaterModeHelper.getModeLabel(repeater.mode, l10n).toUpperCase(),
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: colorMode,
                         fontWeight: FontWeight.bold,

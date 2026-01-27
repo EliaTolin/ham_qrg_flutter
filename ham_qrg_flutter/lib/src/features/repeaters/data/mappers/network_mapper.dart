@@ -1,7 +1,7 @@
-import 'package:ham_qrg/common/abstracts/mapper.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/network/network_model.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/network/network.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/network/network_kind.dart';
+import 'package:hamqrg/common/abstracts/mapper.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/network/network_model.dart';
+import 'package:hamqrg/src/features/repeaters/domain/network/network.dart';
+import 'package:hamqrg/src/features/repeaters/domain/network/network_kind.dart';
 
 class NetworkMapper implements Mapper<Network, NetworkModel> {
   @override

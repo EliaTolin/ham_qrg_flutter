@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:ham_qrg/common/service/messaging/model/received_notification/received_notification.dart';
+import 'package:hamqrg/common/service/messaging/model/received_notification/received_notification.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class LocalPushNotification {

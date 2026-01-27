@@ -1,8 +1,8 @@
-import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/service/location_service.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
+import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'repeaters_list_controller.g.dart';

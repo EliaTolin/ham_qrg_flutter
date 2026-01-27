@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/utils/access_mode_helper.dart';
-import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
-import 'package:ham_qrg/common/widgets/icons/repeater_access_icon.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
 
 class RepeaterListItem extends StatelessWidget {
   const RepeaterListItem({
@@ -64,8 +64,7 @@ class RepeaterListItem extends StatelessWidget {
                             ),
                           ),
                           // Location
-                          if (repeater.locality != null ||
-                              repeater.region != null) ...[
+                          if (repeater.locality != null || repeater.region != null) ...[
                             const SizedBox(height: 4),
                             Text(
                               [
@@ -102,8 +101,7 @@ class RepeaterListItem extends StatelessWidget {
                           ),
                           // Access mode chips
                           ...repeater.accesses.map((access) {
-                            final accessColor =
-                                AccessModeHelper.getAccessModeColorObject(
+                            final accessColor = AccessModeHelper.getAccessModeColorObject(
                               access.mode,
                             );
                             return _InfoChip(
@@ -251,8 +249,7 @@ class _InfoChip extends StatelessWidget {
               color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
               fontSize: 12,
-              fontFeatures:
-                  isFrequency ? const [FontFeature.tabularFigures()] : null,
+              fontFeatures: isFrequency ? const [FontFeature.tabularFigures()] : null,
             ),
           ),
         ],

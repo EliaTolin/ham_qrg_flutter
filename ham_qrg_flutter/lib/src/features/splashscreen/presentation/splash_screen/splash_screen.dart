@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ham_qrg/clients/package_info/package_info.dart';
-import 'package:ham_qrg/common/dialogs/show_update_required_dialog.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/splashscreen/presentation/splash_screen/controller/splash_controller.dart';
+import 'package:hamqrg/clients/package_info/package_info.dart';
+import 'package:hamqrg/common/dialogs/show_update_required_dialog.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/splashscreen/presentation/splash_screen/controller/splash_controller.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 @RoutePage()

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/access_mode_helper.dart';
-import 'package:ham_qrg/config/app_configs.dart';
-import 'package:ham_qrg/l10n/app_localizations.dart';
-import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/community/equipment_button.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/l10n/app_localizations.dart';
+import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/equipment_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FeedbackFormCard extends ConsumerWidget {

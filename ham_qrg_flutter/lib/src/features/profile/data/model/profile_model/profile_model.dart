@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/domain/user_type.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/domain/user_type.dart';
 
 part 'profile_model.freezed.dart';
 part 'profile_model.g.dart';
@@ -15,6 +15,5 @@ abstract class ProfileModel with _$ProfileModel {
     @JsonKey(name: 'user_type') UserType? userType,
   }) = _ProfileModel;
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$ProfileModelFromJson(json);
+  factory ProfileModel.fromJson(Map<String, dynamic> json) => _$ProfileModelFromJson(json);
 }

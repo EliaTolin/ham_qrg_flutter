@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 

@@ -7,21 +7,21 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
-import 'package:ham_qrg/config/constants/map_keys.dart';
-import 'package:ham_qrg/config/constants/map_layers.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/repeaters_map_controller.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/utils/map_utils.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/info_banner.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/map_access_mode_filter_chips.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/permission_banner.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/cluster_repeaters_sheet.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/summary_chip.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
+import 'package:hamqrg/config/constants/map_keys.dart';
+import 'package:hamqrg/config/constants/map_layers.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/map/controller/repeaters_map_controller.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/utils/map_utils.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/info_banner.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/map_access_mode_filter_chips.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/permission_banner.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/cluster_repeaters_sheet.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/summary_chip.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
@@ -266,8 +266,7 @@ class RepeatersMapPage extends HookConsumerWidget {
         final exists = await mapboxMap.style.hasStyleImage(imageId);
         if (exists) continue;
 
-        final iconBytes =
-            await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+        final iconBytes = await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
           entry.value,
         );
 
@@ -357,8 +356,7 @@ class RepeatersMapPage extends HookConsumerWidget {
           ),
         );
       } else {
-        final source = await mapboxMap.style.getSource(MapKeys.repeatersSource)
-            as GeoJsonSource?;
+        final source = await mapboxMap.style.getSource(MapKeys.repeatersSource) as GeoJsonSource?;
         if (source != null) {
           await source.updateGeoJSON(geoJson);
         }
@@ -371,8 +369,7 @@ class RepeatersMapPage extends HookConsumerWidget {
   /// Convert repeaters to GeoJSON format.
   /// Groups repeaters at identical coordinates into synthetic clusters.
   String _repeatersToGeoJson(List<Repeater> repeaters) {
-    final validRepeaters =
-        repeaters.where((r) => r.latitude != null && r.longitude != null);
+    final validRepeaters = repeaters.where((r) => r.latitude != null && r.longitude != null);
 
     // Group repeaters by exact coordinates
     final groupedByCoords = <String, List<Repeater>>{};
@@ -390,8 +387,7 @@ class RepeatersMapPage extends HookConsumerWidget {
       if (repeatersAtLocation.length == 1) {
         // Generate marker key based on access modes
         final accessModes = first.accesses.map((a) => a.mode).toList();
-        final markerKey =
-            'marker-${RepeaterModeHelper.getAccessModesKey(accessModes)}';
+        final markerKey = 'marker-${RepeaterModeHelper.getAccessModesKey(accessModes)}';
 
         // Use callsign as label, fallback to name
         final label = first.callsign ?? first.name ?? '';
@@ -429,8 +425,7 @@ class RepeatersMapPage extends HookConsumerWidget {
             'point_count_abbreviated': repeatersAtLocation.length.toString(),
             // Custom properties for tap handling
             'is_same_location_cluster': true,
-            'cluster_repeater_ids':
-                repeatersAtLocation.map((r) => r.id).toList(),
+            'cluster_repeater_ids': repeatersAtLocation.map((r) => r.id).toList(),
             'latitude': first.latitude,
             'longitude': first.longitude,
           },
@@ -495,11 +490,9 @@ class RepeatersMapPage extends HookConsumerWidget {
       if (sameLocationFeatures.isNotEmpty) {
         final feature = sameLocationFeatures.first;
         if (feature != null) {
-          final featureMap =
-              feature.queriedFeature.feature as Map<dynamic, dynamic>;
+          final featureMap = feature.queriedFeature.feature as Map<dynamic, dynamic>;
           final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
-          final clusterIds =
-              properties?['cluster_repeater_ids'] as List<dynamic>?;
+          final clusterIds = properties?['cluster_repeater_ids'] as List<dynamic>?;
 
           if (clusterIds != null && clusterIds.isNotEmpty) {
             final repeaters = _extractRepeatersFromIds(
@@ -525,8 +518,7 @@ class RepeatersMapPage extends HookConsumerWidget {
       final feature = features.first;
       if (feature == null) return false;
 
-      final featureMap =
-          feature.queriedFeature.feature as Map<dynamic, dynamic>;
+      final featureMap = feature.queriedFeature.feature as Map<dynamic, dynamic>;
 
       // Native Mapbox cluster - use getGeoJsonClusterLeaves
       final clusterLeaves = await mapboxMap.getGeoJsonClusterLeaves(
@@ -620,9 +612,7 @@ class RepeatersMapPage extends HookConsumerWidget {
       }
     }
 
-    return currentState.repeaters
-        .where((r) => repeaterIds.contains(r.id))
-        .toList();
+    return currentState.repeaters.where((r) => repeaterIds.contains(r.id)).toList();
   }
 
   /// Handle tap on a single point
@@ -643,8 +633,7 @@ class RepeatersMapPage extends HookConsumerWidget {
       final feature = features.first;
       if (feature == null) return;
 
-      final featureMap =
-          feature.queriedFeature.feature as Map<dynamic, dynamic>;
+      final featureMap = feature.queriedFeature.feature as Map<dynamic, dynamic>;
       final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
       if (properties == null) return;
 
@@ -802,8 +791,7 @@ class RepeatersMapPage extends HookConsumerWidget {
   }
 }
 
-Future<({double lat1, double lon1, double lat2, double lon2})>
-    _getVisibleBounds(
+Future<({double lat1, double lon1, double lat2, double lon2})> _getVisibleBounds(
   MapboxMap map,
 ) async {
   final bounds = await map.coordinateBoundsForCamera(

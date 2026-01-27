@@ -3,8 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ham_qrg/config/app_configs.dart';
-import 'package:ham_qrg/src/app.dart';
+import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/src/app.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';

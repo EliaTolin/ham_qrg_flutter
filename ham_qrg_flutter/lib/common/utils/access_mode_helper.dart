@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 
 class AccessModeHelper {
   /// Returns the color associated with an access mode

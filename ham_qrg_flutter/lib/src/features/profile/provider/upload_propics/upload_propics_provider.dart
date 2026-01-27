@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
-import 'package:ham_qrg/src/features/profile/data/repository/profile_repository.dart';
+import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:hamqrg/src/features/profile/data/repository/profile_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'upload_propics_provider.g.dart';

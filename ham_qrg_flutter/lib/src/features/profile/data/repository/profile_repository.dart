@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:ham_qrg/common/service/image_caching/image_caching_service/image_caching_service.dart';
-import 'package:ham_qrg/src/features/profile/data/datasource/profile_datasource.dart';
-import 'package:ham_qrg/src/features/profile/data/datasource/profile_supabase_datasource.dart';
-import 'package:ham_qrg/src/features/profile/data/mappers/profile_mappers.dart';
-import 'package:ham_qrg/src/features/profile/domain/profile/profile.dart';
+import 'package:hamqrg/common/service/image_caching/image_caching_service/image_caching_service.dart';
+import 'package:hamqrg/src/features/profile/data/datasource/profile_datasource.dart';
+import 'package:hamqrg/src/features/profile/data/datasource/profile_supabase_datasource.dart';
+import 'package:hamqrg/src/features/profile/data/mappers/profile_mappers.dart';
+import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_repository.g.dart';

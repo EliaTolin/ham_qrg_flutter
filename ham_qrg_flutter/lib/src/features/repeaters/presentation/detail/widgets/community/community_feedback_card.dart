@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/time_helper.dart';
-import 'package:ham_qrg/l10n/app_localizations.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/shared_widgets.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/time_helper.dart';
+import 'package:hamqrg/l10n/app_localizations.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/shared_widgets.dart';
 
 class CommunityFeedbackCard extends StatelessWidget {
   const CommunityFeedbackCard({
@@ -21,10 +21,8 @@ class CommunityFeedbackCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final borderColor =
-        feedback.type == FeedbackType.like ? Colors.green : Colors.amber;
-    final avatarColor =
-        feedback.type == FeedbackType.like ? Colors.indigo : Colors.amber;
+    final borderColor = feedback.type == FeedbackType.like ? Colors.green : Colors.amber;
+    final avatarColor = feedback.type == FeedbackType.like ? Colors.indigo : Colors.amber;
     final initials = feedback.userId.substring(0, 3).toUpperCase();
 
     return Container(
@@ -128,9 +126,7 @@ class CommunityFeedbackCard extends StatelessWidget {
               const SizedBox(width: 8),
               InfoChip(
                 icon: Icons.location_on,
-                label: feedback.comment.isNotEmpty
-                    ? feedback.comment.split('\n').first
-                    : 'Unknown',
+                label: feedback.comment.isNotEmpty ? feedback.comment.split('\n').first : 'Unknown',
               ),
             ],
           ),

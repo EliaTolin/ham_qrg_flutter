@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ham_qrg/common/dialogs/show_telegram_invite_dialog.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/home/presentation/home_page/controller/home_controller.dart';
+import 'package:hamqrg/common/dialogs/show_telegram_invite_dialog.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/home/presentation/home_page/controller/home_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()

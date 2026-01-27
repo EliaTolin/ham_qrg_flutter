@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_image_profile/get_image_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/get_image_profile/get_image_profile_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileAvatar extends ConsumerWidget {

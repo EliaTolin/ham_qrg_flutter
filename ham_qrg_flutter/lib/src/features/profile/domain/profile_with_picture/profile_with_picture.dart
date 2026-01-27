@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ham_qrg/src/features/profile/domain/profile/profile.dart';
+import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 
 part 'profile_with_picture.freezed.dart';
 

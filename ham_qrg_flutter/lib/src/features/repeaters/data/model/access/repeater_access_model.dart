@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/network/network_model.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/network/network_model.dart';
 
 part 'repeater_access_model.freezed.dart';
 part 'repeater_access_model.g.dart';

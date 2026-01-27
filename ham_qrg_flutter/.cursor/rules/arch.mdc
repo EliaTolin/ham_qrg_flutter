@@ -53,7 +53,7 @@ lib/src/features/[feature_name]/
 ### Interfaccia Astratta (`[feature]_datasource.dart`)
 
 ```dart
-import 'package:quiz_radioamatori/src/features/[feature]/data/model/[model_name]/[model_name].dart';
+import 'package:hamqrg/src/features/[feature]/data/model/[model_name]/[model_name].dart';
 
 abstract interface class [Feature]Datasource {
   Future<List<[Model]>> getAll[Models]();
@@ -73,9 +73,9 @@ abstract interface class [Feature]Datasource {
 ```dart
 import 'dart:developer';
 
-import 'package:quiz_radioamatori/clients/[client]/[client]_client.dart';
-import 'package:quiz_radioamatori/src/features/[feature]/data/datasource/[feature]_datasource.dart';
-import 'package:quiz_radioamatori/src/features/[feature]/data/model/[model_name]/[model_name].dart';
+import 'package:hamqrg/clients/[client]/[client]_client.dart';
+import 'package:hamqrg/src/features/[feature]/data/datasource/[feature]_datasource.dart';
+import 'package:hamqrg/src/features/[feature]/data/model/[model_name]/[model_name].dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part '[feature]_[type]_datasource.g.dart';
@@ -168,9 +168,9 @@ abstract class [Model] with _$[Model] {
 ### Struttura Mapper (`[feature]_mappers.dart`)
 
 ```dart
-import 'package:quiz_radioamatori/common/abstracts/mapper.dart';
-import 'package:quiz_radioamatori/src/features/[feature]/data/model/[model_name]/[model_name].dart';
-import 'package:quiz_radioamatori/src/features/[feature]/domain/[entity_name]/[entity_name].dart';
+import 'package:hamqrg/common/abstracts/mapper.dart';
+import 'package:hamqrg/src/features/[feature]/data/model/[model_name]/[model_name].dart';
+import 'package:hamqrg/src/features/[feature]/domain/[entity_name]/[entity_name].dart';
 
 class [Feature]Mappers implements Mapper<[Entity], [Model]> {
   @override
@@ -208,10 +208,10 @@ class [Feature]Mappers implements Mapper<[Entity], [Model]> {
 ### Struttura Repository (`[feature]_repository.dart`)
 
 ```dart
-import 'package:quiz_radioamatori/src/features/[feature]/data/datasource/[feature]_datasource.dart';
-import 'package:quiz_radioamatori/src/features/[feature]/data/datasource/[feature]_[type]_datasource.dart';
-import 'package:quiz_radioamatori/src/features/[feature]/data/mappers/[feature]_mappers.dart';
-import 'package:quiz_radioamatori/src/features/[feature]/domain/[entity_name]/[entity_name].dart';
+import 'package:hamqrg/src/features/[feature]/data/datasource/[feature]_datasource.dart';
+import 'package:hamqrg/src/features/[feature]/data/datasource/[feature]_[type]_datasource.dart';
+import 'package:hamqrg/src/features/[feature]/data/mappers/[feature]_mappers.dart';
+import 'package:hamqrg/src/features/[feature]/domain/[entity_name]/[entity_name].dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part '[feature]_repository.g.dart';
@@ -293,8 +293,8 @@ abstract class [Entity] with _$[Entity] {
 ### Struttura Provider (`[action_name]_provider.dart`)
 
 ```dart
-import 'package:quiz_radioamatori/src/features/[feature]/data/repository/[feature]_repository.dart';
-import 'package:quiz_radioamatori/src/features/[feature]/domain/[entity_name]/[entity_name].dart';
+import 'package:hamqrg/src/features/[feature]/data/repository/[feature]_repository.dart';
+import 'package:hamqrg/src/features/[feature]/domain/[entity_name]/[entity_name].dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part '[action_name]_provider.g.dart';
@@ -381,7 +381,7 @@ presentation/
 ### Struttura Controller (`[page_name]_controller.dart`)
 
 ```dart
-import 'package:quiz_radioamatori/src/features/[feature]/presentation/[page_name]/controller/state/[page_name]_state.dart';
+import 'package:hamqrg/src/features/[feature]/presentation/[page_name]/controller/state/[page_name]_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part '[page_name]_controller.g.dart';
@@ -472,8 +472,8 @@ abstract class [PageName]State with _$[PageName]State {
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:quiz_radioamatori/src/features/[feature]/presentation/[page_name]/controller/[page_name]_controller.dart';
-import 'package:quiz_radioamatori/src/shared/widgets/error_card.dart';
+import 'package:hamqrg/src/features/[feature]/presentation/[page_name]/controller/[page_name]_controller.dart';
+import 'package:hamqrg/src/shared/widgets/error_card.dart';
 
 @RoutePage()
 class [PageName]Page extends HookConsumerWidget {

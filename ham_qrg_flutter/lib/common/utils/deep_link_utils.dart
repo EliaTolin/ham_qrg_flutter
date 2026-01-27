@@ -1,4 +1,4 @@
-import 'package:ham_qrg/config/app_configs.dart';
+import 'package:hamqrg/config/app_configs.dart';
 
 class DeepLinkUtils {
   static String buildDeepLink(String path) {

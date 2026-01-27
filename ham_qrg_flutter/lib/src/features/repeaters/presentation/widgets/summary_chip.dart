@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 
 class SummaryChip extends StatelessWidget {
   const SummaryChip({

@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
-import 'package:ham_qrg/common/widgets/snackbars/show_success_snackbar.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/report_issue/controller/report_issue_controller.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
+import 'package:hamqrg/common/widgets/snackbars/show_success_snackbar.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/report_issue/controller/report_issue_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -251,8 +251,7 @@ class ReportIssuePage extends HookConsumerWidget {
                   children: [
                     Checkbox(
                       value: state.isConfirmed,
-                      onChanged: (value) =>
-                          controller.setConfirmed(confirmed: value ?? false),
+                      onChanged: (value) => controller.setConfirmed(confirmed: value ?? false),
                     ),
                     Expanded(
                       child: GestureDetector(

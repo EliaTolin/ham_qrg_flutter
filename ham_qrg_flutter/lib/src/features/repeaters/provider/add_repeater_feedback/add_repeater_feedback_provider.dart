@@ -1,7 +1,7 @@
-import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/data/repository/repeaters_repository.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
+import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:hamqrg/src/features/repeaters/data/repository/repeaters_repository.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'add_repeater_feedback_provider.g.dart';

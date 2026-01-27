@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:ham_qrg/clients/supabase/supabase_client/supabase_client.dart';
-import 'package:ham_qrg/src/features/repeaters/data/datasource/repeaters_datasource.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/feedback/repeater_feedback_model.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/feedback/repeater_feedback_stats_model.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
+import 'package:hamqrg/clients/supabase/supabase_client/supabase_client.dart';
+import 'package:hamqrg/src/features/repeaters/data/datasource/repeaters_datasource.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/feedback/repeater_feedback_model.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/feedback/repeater_feedback_stats_model.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

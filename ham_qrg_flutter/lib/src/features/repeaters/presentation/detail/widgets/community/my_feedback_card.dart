@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/access_mode_helper.dart';
-import 'package:ham_qrg/common/utils/time_helper.dart';
-import 'package:ham_qrg/l10n/app_localizations.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/shared_widgets.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/common/utils/time_helper.dart';
+import 'package:hamqrg/l10n/app_localizations.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/shared_widgets.dart';
 
 class MyFeedbackCard extends StatelessWidget {
   const MyFeedbackCard({
@@ -29,12 +29,10 @@ class MyFeedbackCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final displayCallsign =
-        userCallsign ?? feedback.userId.substring(0, 6).toUpperCase();
+    final displayCallsign = userCallsign ?? feedback.userId.substring(0, 6).toUpperCase();
     final isLike = feedback.type == FeedbackType.like;
     final badgeColor = isLike ? Colors.green : Colors.amber;
-    final accessColor =
-        AccessModeHelper.getAccessModeColorObject(feedback.repeaterAccess.mode);
+    final accessColor = AccessModeHelper.getAccessModeColorObject(feedback.repeaterAccess.mode);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -116,9 +114,7 @@ class MyFeedbackCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      isLike
-                          ? l10n.repeaterDetailLike
-                          : l10n.repeaterDetailReportLabel,
+                      isLike ? l10n.repeaterDetailLike : l10n.repeaterDetailReportLabel,
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: badgeColor,
                         fontWeight: FontWeight.bold,

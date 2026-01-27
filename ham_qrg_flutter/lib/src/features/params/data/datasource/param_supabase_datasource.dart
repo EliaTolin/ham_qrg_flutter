@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:ham_qrg/clients/supabase/supabase_client/supabase_client.dart';
-import 'package:ham_qrg/src/features/params/data/datasource/param_datasource.dart';
-import 'package:ham_qrg/src/features/params/data/model/param_model/param_model.dart';
+import 'package:hamqrg/clients/supabase/supabase_client/supabase_client.dart';
+import 'package:hamqrg/src/features/params/data/datasource/param_datasource.dart';
+import 'package:hamqrg/src/features/params/data/model/param_model/param_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

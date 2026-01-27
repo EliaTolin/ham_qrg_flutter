@@ -4,19 +4,19 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/clients/package_info/package_info.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
-import 'package:ham_qrg/config/app_configs.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
-import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
-import 'package:ham_qrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/clients/package_info/package_info.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
+import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
+import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
+import 'package:hamqrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
+import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -49,8 +49,7 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
           ..invalidate(checkNeedsPostLoginOnboardingProvider);
 
         // Check onboarding with fresh user ID and profile
-        final needsOnboarding =
-            await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+        final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
 
         if (needsOnboarding) {
           await router.pushAndPopUntil(

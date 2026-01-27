@@ -1,5 +1,5 @@
-import 'package:ham_qrg/src/features/repeaters/data/repository/repeaters_repository.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
+import 'package:hamqrg/src/features/repeaters/data/repository/repeaters_repository.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'get_repeater_feedbacks_provider.g.dart';

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:ham_qrg/src/features/profile/data/model/profile_model/profile_model.dart';
+import 'package:hamqrg/src/features/profile/data/model/profile_model/profile_model.dart';
 
 abstract interface class ProfileDatasource {
   Future<ProfileModel> getProfile(String userId);

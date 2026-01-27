@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:ham_qrg/config/app_configs.dart';
+import 'package:hamqrg/config/app_configs.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'geocoding_service.g.dart';

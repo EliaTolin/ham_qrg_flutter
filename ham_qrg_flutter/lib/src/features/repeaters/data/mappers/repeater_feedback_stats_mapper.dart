@@ -1,6 +1,6 @@
-import 'package:ham_qrg/common/abstracts/mapper.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/feedback/repeater_feedback_stats_model.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
+import 'package:hamqrg/common/abstracts/mapper.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/feedback/repeater_feedback_stats_model.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 
 class RepeaterFeedbackStatsMapper
     implements Mapper<RepeaterFeedbackStats, RepeaterFeedbackStatsModel> {

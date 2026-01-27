@@ -49,7 +49,7 @@ class AppConfigs {
   }
 
   static String getTelegramLink() {
-    return 'https://t.me/ham_qrg';
+    return 'https://t.me/hamqrg';
   }
 
   static String getAppStoreId() {

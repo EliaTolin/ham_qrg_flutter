@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/list/controller/repeaters_list_controller.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/mode_filter_chips.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/repeater_list_item.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/search_repeaters/search_repeaters_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/service/location_service.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/list/controller/repeaters_list_controller.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/mode_filter_chips.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/repeater_list_item.dart';
+import 'package:hamqrg/src/features/repeaters/provider/search_repeaters/search_repeaters_provider.dart';
+import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Debounce delay for search (milliseconds)

@@ -1,10 +1,10 @@
-import 'package:ham_qrg/common/abstracts/mapper.dart';
-import 'package:ham_qrg/src/features/repeaters/data/mappers/repeater_access_mapper.dart';
-import 'package:ham_qrg/src/features/repeaters/data/mappers/repeaters_mappers.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/feedback/repeater_feedback_model.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
+import 'package:hamqrg/common/abstracts/mapper.dart';
+import 'package:hamqrg/src/features/repeaters/data/mappers/repeater_access_mapper.dart';
+import 'package:hamqrg/src/features/repeaters/data/mappers/repeaters_mappers.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/feedback/repeater_feedback_model.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
 
 class RepeaterFeedbackMapper implements Mapper<RepeaterFeedback, RepeaterFeedbackModel> {
   @override

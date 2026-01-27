@@ -1,14 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/clients/package_info/package_info.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/widgets/profile/profile_avatar.dart';
-import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
-import 'package:ham_qrg/config/app_configs.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
-import 'package:ham_qrg/src/features/profile/presentation/profile/unregistered_profile_screen.dart';
+import 'package:hamqrg/clients/package_info/package_info.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/profile/profile_avatar.dart';
+import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
+import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
+import 'package:hamqrg/src/features/profile/presentation/profile/unregistered_profile_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 

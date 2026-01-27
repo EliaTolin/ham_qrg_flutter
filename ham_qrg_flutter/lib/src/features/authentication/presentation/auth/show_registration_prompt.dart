@@ -4,16 +4,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
-import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
-import 'package:ham_qrg/themes/app_colors.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
+import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/themes/app_colors.dart';
 
 /// Shows the registration prompt modal when an anonymous user tries to access
 /// a feature that requires authentication.
@@ -81,8 +81,7 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
       }
 
       // Check onboarding and navigate
-      final needsOnboarding =
-          await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+      final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
       log('Registration prompt Apple: needsOnboarding=$needsOnboarding');
 
       if (needsOnboarding) {
@@ -126,8 +125,7 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
       }
 
       // Check onboarding and navigate
-      final needsOnboarding =
-          await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+      final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
       log('Registration prompt Google: needsOnboarding=$needsOnboarding');
 
       if (needsOnboarding) {

@@ -1,9 +1,9 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/utils/access_mode_helper.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
 
 /// A widget that displays a repeater icon with colored segments
 /// representing each access mode.
@@ -155,7 +155,6 @@ class _AccessModeSegmentsPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _AccessModeSegmentsPainter oldDelegate) {
-    return modes != oldDelegate.modes ||
-        backgroundColor != oldDelegate.backgroundColor;
+    return modes != oldDelegate.modes || backgroundColor != oldDelegate.backgroundColor;
   }
 }

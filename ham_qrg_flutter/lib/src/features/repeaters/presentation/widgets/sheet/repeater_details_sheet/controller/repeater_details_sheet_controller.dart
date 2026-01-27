@@ -1,7 +1,7 @@
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/controller/state/repeater_details_sheet_state.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_by_id/get_repeater_by_id_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/controller/state/repeater_details_sheet_state.dart';
+import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeater_by_id/get_repeater_by_id_provider.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'repeater_details_sheet_controller.g.dart';

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/access/repeater_access_model.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/access/repeater_access_model.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
 
 part 'repeater_feedback_model.freezed.dart';
 part 'repeater_feedback_model.g.dart';

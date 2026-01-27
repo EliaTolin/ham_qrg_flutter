@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
+import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> showUpdateRequiredDialog(

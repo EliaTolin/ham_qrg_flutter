@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/hard_coded_string.dart';
-import 'package:ham_qrg/common/widgets/form/base_field.dart';
+import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/widgets/form/base_field.dart';
 
 class AddressField extends StatelessWidget {
   const AddressField({

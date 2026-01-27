@@ -1,4 +1,4 @@
-import 'package:ham_qrg/src/features/profile/data/repository/profile_repository.dart';
+import 'package:hamqrg/src/features/profile/data/repository/profile_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'get_image_profile_provider.g.dart';

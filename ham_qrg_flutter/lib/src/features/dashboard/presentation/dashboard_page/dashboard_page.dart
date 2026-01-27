@@ -1,15 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/repeater_format_helper.dart';
-import 'package:ham_qrg/common/widgets/icons/repeater_access_icon.dart';
-import 'package:ham_qrg/common/widgets/profile/profile_chip.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
-import 'package:ham_qrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
-import 'package:ham_qrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
-import 'package:ham_qrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/common/widgets/profile/profile_chip.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
+import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
+import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
+import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -78,8 +78,7 @@ class DashboardPage extends HookConsumerWidget {
             ),
             const SizedBox(height: 16),
             FilledButton(
-              onPressed: () =>
-                  ref.read(dashboardControllerProvider.notifier).reload(),
+              onPressed: () => ref.read(dashboardControllerProvider.notifier).reload(),
               child: Text(l10n.retry),
             ),
           ],
@@ -209,8 +208,7 @@ class _QuickAccessSection extends ConsumerWidget {
                   title: l10n.homeMyFavorites,
                   subtitle: l10n.homeSaved(statistics.favoritesCount ?? 0),
                   onTap: () async {
-                    final isAuthenticated =
-                        await requireAuthentication(context, ref);
+                    final isAuthenticated = await requireAuthentication(context, ref);
                     if (!isAuthenticated || !context.mounted) return;
                     await context.router.push(const FavoritesRoute());
                   },

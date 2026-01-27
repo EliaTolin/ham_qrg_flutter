@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 
 class ErrorWidgetWithBack extends StatelessWidget {
   const ErrorWidgetWithBack({super.key});

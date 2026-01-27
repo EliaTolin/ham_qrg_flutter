@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/widgets/icons/repeater_access_icon.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/community/community_reports_section.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/location_section.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/performance_metrics_section.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/repeater_detail_action_buttons.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/repeater_header.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/technical_data_section.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/community_reports_section.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/location_section.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/performance_metrics_section.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_detail_action_buttons.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_header.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/technical_data_section.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -73,8 +73,7 @@ class _RepeaterDetailContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorMode =
-        RepeaterAccessIcon.getPrimaryColor(state.repeater.accesses);
+    final colorMode = RepeaterAccessIcon.getPrimaryColor(state.repeater.accesses);
 
     return CustomScrollView(
       slivers: [

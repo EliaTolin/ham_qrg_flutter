@@ -1,5 +1,5 @@
-import 'package:ham_qrg/src/features/authentication/data/datasource/auth_datasource.dart';
-import 'package:ham_qrg/src/features/authentication/data/datasource/auth_supabase_datasource.dart';
+import 'package:hamqrg/src/features/authentication/data/datasource/auth_datasource.dart';
+import 'package:hamqrg/src/features/authentication/data/datasource/auth_supabase_datasource.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_repository.g.dart';

@@ -1,4 +1,4 @@
-import 'package:ham_qrg/src/features/authentication/provider/change_password/change_password_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/change_password/change_password_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'change_password_controller.g.dart';

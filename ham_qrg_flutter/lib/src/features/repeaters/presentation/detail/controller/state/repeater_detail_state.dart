@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/service/geocoding_service.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/service/geocoding_service.dart';
 
 part 'repeater_detail_state.freezed.dart';
 

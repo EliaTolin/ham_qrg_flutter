@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'check_needs_onboarding_provider.g.dart';

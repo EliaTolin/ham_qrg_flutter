@@ -1,5 +1,5 @@
-import 'package:ham_qrg/src/features/params/data/repository/param_repository.dart';
-import 'package:ham_qrg/src/features/params/domain/param/param.dart';
+import 'package:hamqrg/src/features/params/data/repository/param_repository.dart';
+import 'package:hamqrg/src/features/params/domain/param/param.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'get_params_provider.g.dart';

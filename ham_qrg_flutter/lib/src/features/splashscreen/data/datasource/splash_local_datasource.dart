@@ -1,6 +1,6 @@
-import 'package:ham_qrg/clients/storage/impl/shared_pref_storage_client/shared_pref_storage_client.dart';
-import 'package:ham_qrg/clients/storage/storage_client.dart';
-import 'package:ham_qrg/src/features/splashscreen/data/datasource/splash_datasource.dart';
+import 'package:hamqrg/clients/storage/impl/shared_pref_storage_client/shared_pref_storage_client.dart';
+import 'package:hamqrg/clients/storage/storage_client.dart';
+import 'package:hamqrg/src/features/splashscreen/data/datasource/splash_datasource.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'splash_local_datasource.g.dart';

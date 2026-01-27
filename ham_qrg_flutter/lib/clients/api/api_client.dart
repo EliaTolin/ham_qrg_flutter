@@ -1,5 +1,5 @@
-import 'package:ham_qrg/clients/api/model/mappers/response_mappers.dart';
-import 'package:ham_qrg/clients/api/model/response_model/response_model.dart';
+import 'package:hamqrg/clients/api/model/mappers/response_mappers.dart';
+import 'package:hamqrg/clients/api/model/response_model/response_model.dart';
 
 abstract class ApiClient {
   ApiClient({required this.responseMappers});

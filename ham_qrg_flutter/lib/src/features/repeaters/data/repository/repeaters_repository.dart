@@ -1,14 +1,14 @@
-import 'package:ham_qrg/src/features/repeaters/data/datasource/repeaters_datasource.dart';
-import 'package:ham_qrg/src/features/repeaters/data/datasource/repeaters_supabase_datasource.dart';
-import 'package:ham_qrg/src/features/repeaters/data/mappers/repeater_feedback_mapper.dart';
-import 'package:ham_qrg/src/features/repeaters/data/mappers/repeater_feedback_stats_mapper.dart';
-import 'package:ham_qrg/src/features/repeaters/data/mappers/repeaters_mappers.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/data/datasource/repeaters_datasource.dart';
+import 'package:hamqrg/src/features/repeaters/data/datasource/repeaters_supabase_datasource.dart';
+import 'package:hamqrg/src/features/repeaters/data/mappers/repeater_feedback_mapper.dart';
+import 'package:hamqrg/src/features/repeaters/data/mappers/repeater_feedback_stats_mapper.dart';
+import 'package:hamqrg/src/features/repeaters/data/mappers/repeaters_mappers.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'repeaters_repository.g.dart';

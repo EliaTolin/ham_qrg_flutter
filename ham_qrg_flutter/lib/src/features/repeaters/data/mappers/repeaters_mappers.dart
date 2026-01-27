@@ -1,8 +1,8 @@
-import 'package:ham_qrg/common/abstracts/mapper.dart';
-import 'package:ham_qrg/src/features/repeaters/data/mappers/repeater_access_mapper.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/common/abstracts/mapper.dart';
+import 'package:hamqrg/src/features/repeaters/data/mappers/repeater_access_mapper.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
   RepeatersMappers() : _accessMapper = RepeaterAccessMapper();

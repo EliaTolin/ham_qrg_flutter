@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/utils/map_utils.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/widgets/sheet/cluster_repeaters_sheet.dart';
+import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/utils/map_utils.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/cluster_repeaters_sheet.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
@@ -67,9 +67,7 @@ class MapSectionWidget extends HookConsumerWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Theme.of(context)
-                    .scaffoldBackgroundColor
-                    .withValues(alpha: 0.6),
+                Theme.of(context).scaffoldBackgroundColor.withValues(alpha: 0.6),
                 Colors.transparent,
                 Colors.transparent,
                 Theme.of(context).scaffoldBackgroundColor,
@@ -161,17 +159,16 @@ class MapSectionWidget extends HookConsumerWidget {
       for (final entry in groupedRepeaters.entries) {
         final repeatersAtLocation = entry.value;
         final firstRepeater = repeatersAtLocation.first;
-        final lat = firstRepeater.latitude!;
-        final lon = firstRepeater.longitude!;
+        final lat = firstRepeater.latitude;
+        final lon = firstRepeater.longitude;
 
         if (repeatersAtLocation.length == 1) {
           // Single repeater - use marker with access mode segments
-          final accessModes =
-              firstRepeater.accesses.map((a) => a.mode).toList();
-          final iconBytes =
-              await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+          final accessModes = firstRepeater.accesses.map((a) => a.mode).toList();
+          final iconBytes = await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
             accessModes,
           );
+          if (lon == null || lat == null) return;
           annotations.add(
             PointAnnotationOptions(
               geometry: Point(coordinates: Position(lon, lat)),
@@ -186,6 +183,7 @@ class MapSectionWidget extends HookConsumerWidget {
           final iconBytes = await RepeaterModeHelper.generateClusterIcon(
             repeatersAtLocation.length,
           );
+          if (lon == null || lat == null) return;
           annotations.add(
             PointAnnotationOptions(
               geometry: Point(coordinates: Position(lon, lat)),

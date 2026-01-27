@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:ham_qrg/clients/api/api_client.dart';
-import 'package:ham_qrg/clients/api/model/mappers/impl/dio_response_mapper.dart';
-import 'package:ham_qrg/clients/api/model/mappers/response_mappers.dart';
-import 'package:ham_qrg/clients/api/model/response_model/response_model.dart';
-import 'package:ham_qrg/log/talker_service/talker_service.dart';
+import 'package:hamqrg/clients/api/api_client.dart';
+import 'package:hamqrg/clients/api/model/mappers/impl/dio_response_mapper.dart';
+import 'package:hamqrg/clients/api/model/mappers/response_mappers.dart';
+import 'package:hamqrg/clients/api/model/response_model/response_model.dart';
+import 'package:hamqrg/log/talker_service/talker_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 

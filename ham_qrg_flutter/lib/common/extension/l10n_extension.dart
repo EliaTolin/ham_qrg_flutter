@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/l10n/app_localizations.dart';
+import 'package:hamqrg/l10n/app_localizations.dart';
 
 extension BuildContextEntension<T> on BuildContext {
   AppLocalizations get localization =>

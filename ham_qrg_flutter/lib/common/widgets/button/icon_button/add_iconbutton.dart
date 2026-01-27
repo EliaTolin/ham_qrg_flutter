@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/widgets/button/icon_button/generic_iconbutton.dart';
+import 'package:hamqrg/common/widgets/button/icon_button/generic_iconbutton.dart';
 
 class AddIconButton extends StatelessWidget {
   const AddIconButton({required this.onPressed, super.key});

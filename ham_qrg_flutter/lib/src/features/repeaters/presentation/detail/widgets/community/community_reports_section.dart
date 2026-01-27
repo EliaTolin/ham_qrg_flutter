@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/community/community_feedback_card.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/community/feedback_form_card.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/widgets/community/my_feedback_card.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/community_feedback_card.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/feedback_form_card.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/my_feedback_card.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CommunityReportsSection extends HookConsumerWidget {

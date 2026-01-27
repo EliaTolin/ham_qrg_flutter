@@ -4,15 +4,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/common/extension/hard_coded_string.dart';
-import 'package:ham_qrg/common/widgets/logo_icon.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
-import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
-import 'package:ham_qrg/src/features/splashscreen/provider/set_onboarding_seen/set_onboarding_seen_provider.dart';
+import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/widgets/logo_icon.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
+import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/src/features/splashscreen/provider/set_onboarding_seen/set_onboarding_seen_provider.dart';
 
 @RoutePage()
 class AuthScreen extends ConsumerWidget {

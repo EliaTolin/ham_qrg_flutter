@@ -1,9 +1,9 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/time_helper.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/time_helper.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 
 class PerformanceMetricsSection extends StatelessWidget {
   const PerformanceMetricsSection({

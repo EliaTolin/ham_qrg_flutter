@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/src/features/favorites/presentation/favorites_page/controller/favorites_controller.dart';
-import 'package:ham_qrg/src/features/favorites/presentation/favorites_page/controller/state/favorites_state.dart';
-import 'package:ham_qrg/src/features/favorites/presentation/widgets/favorite_repeater_item.dart';
-import 'package:ham_qrg/src/features/favorites/presentation/widgets/mode_filter_chips_horizontal.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/src/features/favorites/presentation/favorites_page/controller/favorites_controller.dart';
+import 'package:hamqrg/src/features/favorites/presentation/favorites_page/controller/state/favorites_state.dart';
+import 'package:hamqrg/src/features/favorites/presentation/widgets/favorite_repeater_item.dart';
+import 'package:hamqrg/src/features/favorites/presentation/widgets/mode_filter_chips_horizontal.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Debounce delay for search (milliseconds)
@@ -194,8 +194,7 @@ class FavoritesPage extends HookConsumerWidget {
           child: filteredFavorites.isEmpty
               ? _buildEmptyState(context)
               : ListView.builder(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   itemCount: filteredFavorites.length + 1,
                   itemBuilder: (context, index) {
                     if (index == filteredFavorites.length) {
@@ -292,8 +291,7 @@ class FavoritesPage extends HookConsumerWidget {
     // Apply mode filter - check if repeater has any access with selected mode
     if (selectedModes.isNotEmpty) {
       filtered = filtered.where((repeater) {
-        return repeater.accesses
-            .any((access) => selectedModes.contains(access.mode));
+        return repeater.accesses.any((access) => selectedModes.contains(access.mode));
       }).toList();
     }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/resources/resources.dart';
+import 'package:hamqrg/resources/resources.dart';
 
 class LogoIcon extends StatelessWidget {
   const LogoIcon({super.key, this.size = 64});

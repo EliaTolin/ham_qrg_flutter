@@ -2,19 +2,19 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:geolocator/geolocator.dart';
-import 'package:ham_qrg/config/app_configs.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/repeater_access.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/feedback_type.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/feedback/station_kind.dart';
-import 'package:ham_qrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/add_repeater_feedback/add_repeater_feedback_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/delete_repeater_feedback/delete_repeater_feedback_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_my_repeater_feedbacks/get_my_repeater_feedbacks_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_by_id/get_repeater_by_id_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/get_repeater_feedbacks/get_repeater_feedbacks_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/service/geocoding_service.dart';
-import 'package:ham_qrg/src/features/repeaters/service/location_service.dart';
+import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
+import 'package:hamqrg/src/features/repeaters/provider/add_repeater_feedback/add_repeater_feedback_provider.dart';
+import 'package:hamqrg/src/features/repeaters/provider/delete_repeater_feedback/delete_repeater_feedback_provider.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_my_repeater_feedbacks/get_my_repeater_feedbacks_provider.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeater_by_id/get_repeater_by_id_provider.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeater_feedbacks/get_repeater_feedbacks_provider.dart';
+import 'package:hamqrg/src/features/repeaters/service/geocoding_service.dart';
+import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'repeater_detail_controller.g.dart';
@@ -58,8 +58,7 @@ class RepeaterDetailController extends _$RepeaterDetailController {
     final currentState = state.value;
     if (currentState == null) return [];
 
-    final feedbackAccessIds =
-        currentState.myFeedbacks.map((f) => f.repeaterAccess.id).toSet();
+    final feedbackAccessIds = currentState.myFeedbacks.map((f) => f.repeaterAccess.id).toSet();
 
     return currentState.repeater.accesses
         .where((access) => !feedbackAccessIds.contains(access.id))

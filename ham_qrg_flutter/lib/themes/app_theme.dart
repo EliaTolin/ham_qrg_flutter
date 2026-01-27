@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ham_qrg/themes/app_colors.dart';
+import 'package:hamqrg/themes/app_colors.dart';
 
 /// App Theme Configuration
 class AppTheme {

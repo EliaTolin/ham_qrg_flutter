@@ -1,7 +1,7 @@
-import 'package:ham_qrg/src/features/params/data/datasource/param_datasource.dart';
-import 'package:ham_qrg/src/features/params/data/datasource/param_supabase_datasource.dart';
-import 'package:ham_qrg/src/features/params/data/mappers/param_mappers.dart';
-import 'package:ham_qrg/src/features/params/domain/param/param.dart';
+import 'package:hamqrg/src/features/params/data/datasource/param_datasource.dart';
+import 'package:hamqrg/src/features/params/data/datasource/param_supabase_datasource.dart';
+import 'package:hamqrg/src/features/params/data/mappers/param_mappers.dart';
+import 'package:hamqrg/src/features/params/domain/param/param.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'param_repository.g.dart';

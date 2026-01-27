@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/widgets/snackbars/show_error_snackbar.dart';
-import 'package:ham_qrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
+import 'package:hamqrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
 import 'package:social_auth_buttons/social_auth_buttons.dart';
 
 class SignInButtons extends ConsumerWidget {

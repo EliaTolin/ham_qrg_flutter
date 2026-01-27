@@ -1,6 +1,6 @@
-import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
-import 'package:ham_qrg/src/features/repeaters/data/repository/repeaters_repository.dart';
-import 'package:ham_qrg/src/features/repeaters/provider/favorite_repeaters_notifier/state/favorite_repeaters_state.dart';
+import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:hamqrg/src/features/repeaters/data/repository/repeaters_repository.dart';
+import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifier/state/favorite_repeaters_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'favorite_repeaters_notifier.g.dart';
@@ -53,9 +53,7 @@ class FavoriteRepeatersNotifier extends _$FavoriteRepeatersNotifier {
     state.whenData((currentState) {
       state = AsyncData(
         currentState.copyWith(
-          repeaters: currentState.repeaters
-              .where((r) => r.id != repeaterId)
-              .toList(),
+          repeaters: currentState.repeaters.where((r) => r.id != repeaterId).toList(),
           ids: currentState.ids.where((id) => id != repeaterId).toList(),
           count: (currentState.count - 1).clamp(0, currentState.count),
         ),

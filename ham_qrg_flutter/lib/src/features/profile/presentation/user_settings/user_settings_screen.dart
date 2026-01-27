@@ -4,11 +4,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/clients/package_info/package_info.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/widgets/profile/profile_avatar.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/profile/presentation/user_settings/controller/user_settings_controller.dart';
+import 'package:hamqrg/clients/package_info/package_info.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/profile/profile_avatar.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/profile/presentation/user_settings/controller/user_settings_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -93,8 +93,7 @@ class UserSettingsScreen extends HookConsumerWidget {
                                     if (pickedFile != null) {
                                       await ref
                                           .read(
-                                            userSettingsControllerProvider
-                                                .notifier,
+                                            userSettingsControllerProvider.notifier,
                                           )
                                           .updateImageProfile(
                                             File(pickedFile.path),
@@ -189,8 +188,7 @@ class UserSettingsScreen extends HookConsumerWidget {
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: colorScheme.surfaceContainerHighest
-                            .withValues(alpha: .3),
+                        color: colorScheme.surfaceContainerHighest.withValues(alpha: .3),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: colorScheme.outlineVariant.withValues(
@@ -204,8 +202,7 @@ class UserSettingsScreen extends HookConsumerWidget {
                           Text(
                             l10n.profileRestartIdentificationTitle,
                             style: theme.textTheme.bodyMedium?.copyWith(
-                              color:
-                                  colorScheme.onSurface.withValues(alpha: .8),
+                              color: colorScheme.onSurface.withValues(alpha: .8),
                             ),
                           ),
                           const Gap(16),
@@ -213,8 +210,7 @@ class UserSettingsScreen extends HookConsumerWidget {
                             width: double.infinity,
                             child: OutlinedButton.icon(
                               onPressed: () {
-                                context.router
-                                    .push(const PostLoginOnboardingRoute());
+                                context.router.push(const PostLoginOnboardingRoute());
                               },
                               icon: const Icon(Icons.refresh),
                               label: Text(l10n.profileRestartIdentificationButton),
@@ -283,8 +279,7 @@ class UserSettingsScreen extends HookConsumerWidget {
                           context: context,
                           builder: (context) => AlertDialog(
                             title: Text(l10n.profileDeleteAccountConfirmTitle),
-                            content:
-                                Text(l10n.profileDeleteAccountConfirmMessage),
+                            content: Text(l10n.profileDeleteAccountConfirmMessage),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.of(context).pop(false),
@@ -302,9 +297,7 @@ class UserSettingsScreen extends HookConsumerWidget {
                         );
 
                         if (shouldDelete ?? false) {
-                          await ref
-                              .read(userSettingsControllerProvider.notifier)
-                              .deleteAccount();
+                          await ref.read(userSettingsControllerProvider.notifier).deleteAccount();
                           if (context.mounted) {
                             await context.router.replace(const AuthRoute());
                           }
@@ -336,8 +329,7 @@ class UserSettingsScreen extends HookConsumerWidget {
                                 packageInfo.buildNumber,
                               ),
                               style: theme.textTheme.bodySmall?.copyWith(
-                                color:
-                                    colorScheme.onSurface.withValues(alpha: .5),
+                                color: colorScheme.onSurface.withValues(alpha: .5),
                               ),
                             ),
                             loading: () => const SizedBox.shrink(),

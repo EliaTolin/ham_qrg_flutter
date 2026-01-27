@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/common/dialogs/show_year_picker.dart';
-import 'package:ham_qrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/dialogs/show_year_picker.dart';
+import 'package:hamqrg/common/extension/hard_coded_string.dart';
 
 class YearPickerField extends StatelessWidget {
   const YearPickerField({

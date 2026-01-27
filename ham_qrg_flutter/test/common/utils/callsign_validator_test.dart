@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ham_qrg/common/utils/callsign_validator.dart';
+import 'package:hamqrg/common/utils/callsign_validator.dart';
 
 void main() {
   group('CallsignValidator', () {

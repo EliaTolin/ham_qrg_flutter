@@ -1,7 +1,7 @@
-import 'package:ham_qrg/common/abstracts/mapper.dart';
-import 'package:ham_qrg/common/extension/string_cleared_value_extension.dart';
-import 'package:ham_qrg/src/features/profile/data/model/profile_model/profile_model.dart';
-import 'package:ham_qrg/src/features/profile/domain/profile/profile.dart';
+import 'package:hamqrg/common/abstracts/mapper.dart';
+import 'package:hamqrg/common/extension/string_cleared_value_extension.dart';
+import 'package:hamqrg/src/features/profile/data/model/profile_model/profile_model.dart';
+import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 
 class ProfileMappers implements Mapper<Profile, ProfileModel> {
   @override

@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ham_qrg/router/app_router.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/domain/user_type.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/controller/post_login_onboarding_controller.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/callsign_entry_step.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/swl_callsign_step.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/user_type_selection_step.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/domain/user_type.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/controller/post_login_onboarding_controller.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/callsign_entry_step.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/swl_callsign_step.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/user_type_selection_step.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -22,8 +22,7 @@ class PostLoginOnboardingPage extends HookConsumerWidget {
     final color = theme.colorScheme;
 
     final controllerState = ref.watch(postLoginOnboardingControllerProvider);
-    final controller =
-        ref.read(postLoginOnboardingControllerProvider.notifier);
+    final controller = ref.read(postLoginOnboardingControllerProvider.notifier);
 
     ref.listen(postLoginOnboardingControllerProvider, (previous, next) {
       if (previous?.currentStep != next.currentStep) {
@@ -80,11 +79,8 @@ class PostLoginOnboardingPage extends HookConsumerWidget {
                               2,
                               (index) => AnimatedContainer(
                                 duration: const Duration(milliseconds: 300),
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 4),
-                                width: controllerState.currentStep == index
-                                    ? 16
-                                    : 8,
+                                margin: const EdgeInsets.symmetric(horizontal: 4),
+                                width: controllerState.currentStep == index ? 16 : 8,
                                 height: 8,
                                 decoration: BoxDecoration(
                                   color: controllerState.currentStep == index
@@ -112,8 +108,7 @@ class PostLoginOnboardingPage extends HookConsumerWidget {
                                 },
                               ),
                               // Step 1: depends on user type
-                              if (controllerState.selectedUserType ==
-                                  UserType.swl)
+                              if (controllerState.selectedUserType == UserType.swl)
                                 SwlCallsignStep(
                                   hasCallsign: controllerState.hasSwlCallsign,
                                   callsign: controllerState.callsign,
@@ -125,8 +120,7 @@ class PostLoginOnboardingPage extends HookConsumerWidget {
                                   },
                                   onCallsignChanged: controller.updateCallsign,
                                   onSubmit: () async {
-                                    final success =
-                                        await controller.submitOnboarding();
+                                    final success = await controller.submitOnboarding();
                                     if (success && context.mounted) {
                                       _navigateToHome(context);
                                     }
@@ -139,8 +133,7 @@ class PostLoginOnboardingPage extends HookConsumerWidget {
                                   isSubmitting: controllerState.isSubmitting,
                                   onCallsignChanged: controller.updateCallsign,
                                   onSubmit: () async {
-                                    final success =
-                                        await controller.submitOnboarding();
+                                    final success = await controller.submitOnboarding();
                                     if (success && context.mounted) {
                                       _navigateToHome(context);
                                     }

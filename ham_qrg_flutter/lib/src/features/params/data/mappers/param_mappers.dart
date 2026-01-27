@@ -1,6 +1,6 @@
-import 'package:ham_qrg/common/abstracts/mapper.dart';
-import 'package:ham_qrg/src/features/params/data/model/param_model/param_model.dart';
-import 'package:ham_qrg/src/features/params/domain/param/param.dart';
+import 'package:hamqrg/common/abstracts/mapper.dart';
+import 'package:hamqrg/src/features/params/data/model/param_model/param_model.dart';
+import 'package:hamqrg/src/features/params/domain/param/param.dart';
 
 class ParamMappers implements Mapper<Param, ParamModel> {
   @override

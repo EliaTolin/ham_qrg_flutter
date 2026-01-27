@@ -1,5 +1,5 @@
-import 'package:ham_qrg/src/features/profile/data/repository/profile_repository.dart';
-import 'package:ham_qrg/src/features/profile/domain/profile_with_picture/profile_with_picture.dart';
+import 'package:hamqrg/src/features/profile/data/repository/profile_repository.dart';
+import 'package:hamqrg/src/features/profile/domain/profile_with_picture/profile_with_picture.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'get_profile_with_picture_provider.g.dart';

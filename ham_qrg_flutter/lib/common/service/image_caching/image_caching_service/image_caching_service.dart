@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:ham_qrg/clients/storage/impl/shared_pref_storage_client/shared_pref_storage_client.dart';
-import 'package:ham_qrg/clients/storage/storage_client.dart';
-import 'package:ham_qrg/common/entity/image_entity.dart';
-import 'package:ham_qrg/common/service/image_caching/model/image_cached/image_cached.dart';
-import 'package:ham_qrg/config/app_configs.dart';
+import 'package:hamqrg/clients/storage/impl/shared_pref_storage_client/shared_pref_storage_client.dart';
+import 'package:hamqrg/clients/storage/storage_client.dart';
+import 'package:hamqrg/common/entity/image_entity.dart';
+import 'package:hamqrg/common/service/image_caching/model/image_cached/image_cached.dart';
+import 'package:hamqrg/config/app_configs.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'image_caching_service.g.dart';

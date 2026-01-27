@@ -1,5 +1,5 @@
-import 'package:ham_qrg/src/features/splashscreen/data/datasource/splash_datasource.dart';
-import 'package:ham_qrg/src/features/splashscreen/data/datasource/splash_local_datasource.dart';
+import 'package:hamqrg/src/features/splashscreen/data/datasource/splash_datasource.dart';
+import 'package:hamqrg/src/features/splashscreen/data/datasource/splash_local_datasource.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'splash_repository.g.dart';

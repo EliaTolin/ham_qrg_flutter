@@ -1,4 +1,4 @@
-import 'package:ham_qrg/src/features/home/data/repository/home_repository.dart';
+import 'package:hamqrg/src/features/home/data/repository/home_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'set_telegram_group_member_provider.g.dart';

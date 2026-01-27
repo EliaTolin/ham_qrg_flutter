@@ -1,7 +1,7 @@
-import 'package:ham_qrg/src/features/post_login_onboarding/domain/user_type.dart';
-import 'package:ham_qrg/src/features/post_login_onboarding/presentation/post_login_onboarding/controller/state/post_login_onboarding_state.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/domain/user_type.dart';
+import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/controller/state/post_login_onboarding_state.dart';
+import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'post_login_onboarding_controller.g.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/utils/access_mode_helper.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ModeFilterChips extends ConsumerWidget {
@@ -51,16 +51,12 @@ class ModeFilterChips extends ConsumerWidget {
                 selectedColor: modeColor.withValues(alpha: 0.2),
                 checkmarkColor: modeColor,
                 labelStyle: TextStyle(
-                  color: isSelected
-                      ? modeColor
-                      : colorScheme.onSurface.withValues(alpha: 0.7),
+                  color: isSelected ? modeColor : colorScheme.onSurface.withValues(alpha: 0.7),
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                 ),
                 onSelected: (_) => onModeToggled(mode),
                 side: BorderSide(
-                  color: isSelected
-                      ? modeColor
-                      : colorScheme.outline.withValues(alpha: 0.3),
+                  color: isSelected ? modeColor : colorScheme.outline.withValues(alpha: 0.3),
                   width: isSelected ? 1.5 : 1,
                 ),
               ),

@@ -1,4 +1,4 @@
-import 'package:ham_qrg/src/features/params/data/model/param_model/param_model.dart';
+import 'package:hamqrg/src/features/params/data/model/param_model/param_model.dart';
 
 abstract interface class ParamDatasource {
   Future<List<ParamModel>> getAllParams();

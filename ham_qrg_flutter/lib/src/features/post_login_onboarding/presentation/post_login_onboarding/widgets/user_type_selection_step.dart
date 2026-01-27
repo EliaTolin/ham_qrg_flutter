@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 
 class UserTypeSelectionStep extends StatelessWidget {
   const UserTypeSelectionStep({

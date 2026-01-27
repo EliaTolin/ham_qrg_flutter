@@ -1,4 +1,4 @@
-import 'package:ham_qrg/clients/storage/storage_client.dart';
+import 'package:hamqrg/clients/storage/storage_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/callsign_validator.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/callsign_validator.dart';
 
 class CallsignEntryStep extends StatelessWidget {
   const CallsignEntryStep({
@@ -95,8 +95,7 @@ class CallsignEntryStep extends StatelessWidget {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide:
-                      BorderSide(color: color.primary.withValues(alpha: .4)),
+                  borderSide: BorderSide(color: color.primary.withValues(alpha: .4)),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),

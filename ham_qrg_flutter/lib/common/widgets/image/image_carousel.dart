@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/dialogs/are_you_sure_to_delete_dialog.dart';
-import 'package:ham_qrg/common/widgets/image/image_card.dart';
+import 'package:hamqrg/common/dialogs/are_you_sure_to_delete_dialog.dart';
+import 'package:hamqrg/common/widgets/image/image_card.dart';
 
 class ImageCarousel extends StatelessWidget {
   const ImageCarousel({required this.imageUrls, this.onDeleteImage, super.key});

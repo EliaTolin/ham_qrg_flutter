@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/clients/image_picker/image_picker.dart';
-import 'package:ham_qrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/clients/image_picker/image_picker.dart';
+import 'package:hamqrg/common/extension/hard_coded_string.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';

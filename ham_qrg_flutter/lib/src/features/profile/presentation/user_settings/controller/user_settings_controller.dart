@@ -1,16 +1,16 @@
 import 'dart:io';
 
-import 'package:ham_qrg/src/features/authentication/provider/delete_account/delete_account_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
-import 'package:ham_qrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
-import 'package:ham_qrg/src/features/profile/domain/profile/profile.dart';
-import 'package:ham_qrg/src/features/profile/domain/state/user_state/user_state.dart';
-import 'package:ham_qrg/src/features/profile/provider/delete_image_profile/delete_image_profile_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_email_profile/get_email_profile_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_image_profile/get_image_profile_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
-import 'package:ham_qrg/src/features/profile/provider/upload_propics/upload_propics_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/delete_account/delete_account_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
+import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
+import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
+import 'package:hamqrg/src/features/profile/domain/state/user_state/user_state.dart';
+import 'package:hamqrg/src/features/profile/provider/delete_image_profile/delete_image_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/get_email_profile/get_email_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/get_image_profile/get_image_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/upload_propics/upload_propics_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'user_settings_controller.g.dart';

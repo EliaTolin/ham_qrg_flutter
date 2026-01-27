@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:ham_qrg/common/extension/l10n_extension.dart';
-import 'package:ham_qrg/common/utils/callsign_validator.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/callsign_validator.dart';
 
 class SwlCallsignStep extends StatelessWidget {
   const SwlCallsignStep({
@@ -110,9 +110,7 @@ class SwlCallsignStep extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            context
-                                .localization.postLoginOnboardingSwlEnterCallsign
-                                .toUpperCase(),
+                            context.localization.postLoginOnboardingSwlEnterCallsign.toUpperCase(),
                             style: theme.textTheme.labelSmall?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: color.onSurface.withValues(alpha: .6),
@@ -130,11 +128,9 @@ class SwlCallsignStep extends StatelessWidget {
                               _UpperCaseTextFormatter(),
                             ],
                             decoration: InputDecoration(
-                              hintText: context
-                                  .localization.postLoginOnboardingSwlCallsignHint,
+                              hintText: context.localization.postLoginOnboardingSwlCallsignHint,
                               filled: true,
-                              fillColor:
-                                  color.surfaceContainerHighest.withValues(
+                              fillColor: color.surfaceContainerHighest.withValues(
                                 alpha: .5,
                               ),
                               border: OutlineInputBorder(
@@ -250,9 +246,7 @@ class _OptionCard extends StatelessWidget {
         color: color.surfaceContainerHighest.withValues(alpha: .3),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isSelected
-              ? color.primary
-              : color.onSurface.withValues(alpha: .12),
+          color: isSelected ? color.primary : color.onSurface.withValues(alpha: .12),
           width: isSelected ? 2 : 1,
         ),
       ),
@@ -290,9 +284,7 @@ class _OptionCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: isSelected
-                              ? color.primary
-                              : color.onSurface.withValues(alpha: .3),
+                          color: isSelected ? color.primary : color.onSurface.withValues(alpha: .3),
                           width: 2,
                         ),
                         color: isSelected ? color.primary : Colors.transparent,

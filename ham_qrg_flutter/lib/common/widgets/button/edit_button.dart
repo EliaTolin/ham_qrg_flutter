@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ham_qrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/hard_coded_string.dart';
 
 class EditButton extends StatelessWidget {
   const EditButton({required this.onEdit, this.text, super.key});

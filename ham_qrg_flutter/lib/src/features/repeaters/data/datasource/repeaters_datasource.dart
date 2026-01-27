@@ -1,6 +1,6 @@
-import 'package:ham_qrg/src/features/repeaters/data/model/feedback/repeater_feedback_model.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/feedback/repeater_feedback_stats_model.dart';
-import 'package:ham_qrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/feedback/repeater_feedback_model.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/feedback/repeater_feedback_stats_model.dart';
+import 'package:hamqrg/src/features/repeaters/data/model/repeater/repeater_model.dart';
 
 abstract interface class RepeatersDatasource {
   Future<List<RepeaterModel>> getRepeatersInBounds({

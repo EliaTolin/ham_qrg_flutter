@@ -1,4 +1,4 @@
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 /// Helper class for formatting repeater-related data
 class RepeaterFormatHelper {

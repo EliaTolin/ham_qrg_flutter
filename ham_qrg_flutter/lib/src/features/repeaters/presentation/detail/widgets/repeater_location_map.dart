@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:ham_qrg/common/utils/repeater_mode_helper.dart';
-import 'package:ham_qrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
@@ -43,10 +43,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
           child: Icon(
             Icons.map,
             size: 48,
-            color: Theme.of(context)
-                .colorScheme
-                .onSurfaceVariant
-                .withValues(alpha: 0.3),
+            color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
           ),
         ),
       );
@@ -61,8 +58,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
             MapWidget(
               cameraOptions: CameraOptions(
                 center: Point(
-                  coordinates:
-                      Position(repeater.longitude!, repeater.latitude!),
+                  coordinates: Position(repeater.longitude!, repeater.latitude!),
                 ),
                 zoom: 13,
                 bearing: 0,
@@ -97,10 +93,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primary
-                          .withValues(alpha: 0.3),
+                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
                       blurRadius: 8,
                       spreadRadius: 4,
                     ),
@@ -150,8 +143,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
       if (repeater.latitude == null || repeater.longitude == null) return;
 
       final accessModes = repeater.accesses.map((a) => a.mode).toList();
-      final iconBytes =
-          await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+      final iconBytes = await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
         accessModes,
       );
       await manager.create(

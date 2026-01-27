@@ -1,4 +1,4 @@
-import 'package:ham_qrg/src/features/splashscreen/data/repository/splash_repository.dart';
+import 'package:hamqrg/src/features/splashscreen/data/repository/splash_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'get_has_seen_onboarding_provider.g.dart';
