@@ -29,7 +29,9 @@
       "Bash(git init:*)",
       "Bash(git -C /Users/eliatolin/Desktop/Aurora/Progetti/HamQRG/ham_qrg_flutter branch -m main)",
       "Bash(git -C /Users/eliatolin/Desktop/Aurora/Progetti/HamQRG/ham_qrg_flutter remote add:*)",
-      "Bash(pip3 show:*)"
+      "Bash(pip3 show:*)",
+      "Bash(git -C /Users/eliatolin/Desktop/Aurora/Progetti/HamQRG/ham_qrg_flutter push origin main)",
+      "Bash(git -C /Users/eliatolin/Desktop/Aurora/Progetti/HamQRG/ham_qrg_flutter push --force origin main)"
     ]
   }
 }

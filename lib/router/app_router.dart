@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/auth_screen.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/change_password/change_password_screen.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashboard_page.dart';
-import 'package:hamqrg/src/features/favorites/presentation/favorites_page/favorites_page.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/favorites_page.dart';
 import 'package:hamqrg/src/features/home/presentation/home_page/home_page.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/post_login_onboarding_page.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/profile_screen.dart';
