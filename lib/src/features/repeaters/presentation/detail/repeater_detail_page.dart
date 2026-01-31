@@ -78,50 +78,53 @@ class _RepeaterDetailContent extends HookConsumerWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: CustomScrollView(
-      slivers: [
-        // Header
-        RepeaterHeader(
-          repeater: state.repeater,
-          colorMode: colorMode,
-        ),
-        // Action buttons
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: RepeaterDetailActionButtons(repeater: state.repeater),
+        slivers: [
+          // Header
+          RepeaterHeader(
+            repeater: state.repeater,
+            colorMode: colorMode,
           ),
-        ),
-        // Content
-        SliverPadding(
-          padding: const EdgeInsets.all(16),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              // Performance Metrics
-              PerformanceMetricsSection(
-                stats: state.feedbackStats,
-              ),
-              const SizedBox(height: 16),
-              // Technical Data
-              TechnicalDataSection(repeater: state.repeater),
-              const SizedBox(height: 16),
-              // Access Modes
-              AccessModesSection(repeater: state.repeater),
-              const SizedBox(height: 16),
-              // Location
-              LocationSection(
-                repeater: state.repeater,
-                calculatedDistanceKm: controller.getDistanceToRepeater(),
-              ),
-              const SizedBox(height: 16),
-              // Community Reports
-              CommunityReportsSection(
-                state: state,
-                controller: controller,
-              ),
-            ]),
+          // Action buttons
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: RepeaterDetailActionButtons(repeater: state.repeater),
+            ),
           ),
-        ),
-      ],
+          // Content
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Performance Metrics
+                  PerformanceMetricsSection(
+                    stats: state.feedbackStats,
+                  ),
+                  const SizedBox(height: 16),
+                  // Technical Data
+                  TechnicalDataSection(repeater: state.repeater),
+                  const SizedBox(height: 16),
+                  // Access Modes
+                  AccessModesSection(repeater: state.repeater),
+                  const SizedBox(height: 16),
+                  // Location
+                  LocationSection(
+                    repeater: state.repeater,
+                    calculatedDistanceKm: controller.getDistanceToRepeater(),
+                  ),
+                  const SizedBox(height: 16),
+                  // Community Reports
+                  CommunityReportsSection(
+                    state: state,
+                    controller: controller,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -20,8 +20,8 @@ class LocationSection extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final effectiveDistanceMeters =
-        repeater.distanceMeters ?? (calculatedDistanceKm != null ? calculatedDistanceKm! * 1000 : null);
+    final effectiveDistanceMeters = repeater.distanceMeters ??
+        (calculatedDistanceKm != null ? calculatedDistanceKm! * 1000 : null);
 
     final distanceText = effectiveDistanceMeters != null
         ? RepeaterFormatHelper.formatDistance(effectiveDistanceMeters).replaceAll(' away', '')

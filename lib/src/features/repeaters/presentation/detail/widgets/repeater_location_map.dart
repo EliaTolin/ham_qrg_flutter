@@ -21,6 +21,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final mapController = useState<MapboxMap?>(null);
     final pointManager = useState<PointAnnotationManager?>(null);
+    log('BUILD');
 
     useEffect(
       () {
@@ -49,64 +50,66 @@ class RepeaterLocationMap extends HookConsumerWidget {
       );
     }
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: SizedBox(
-        height: height,
-        child: Stack(
-          children: [
-            MapWidget(
-              cameraOptions: CameraOptions(
-                center: Point(
-                  coordinates: Position(repeater.longitude!, repeater.latitude!),
-                ),
-                zoom: 13,
-                bearing: 0,
-                pitch: 0,
-              ),
-              styleUri: MapboxStyles.OUTDOORS,
-              onMapCreated: (mapboxMap) async {
-                await _initializeMap(
-                  mapboxMap,
-                  mapController,
-                  pointManager,
-                );
-              },
-            ),
-            // Dark overlay
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.black.withValues(alpha: 0.2),
-              ),
-            ),
-            // Repeater marker
-            Center(
-              child: Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 3,
+    return RepaintBoundary(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: SizedBox(
+          height: height,
+          child: Stack(
+            children: [
+              MapWidget(
+                cameraOptions: CameraOptions(
+                  center: Point(
+                    coordinates: Position(repeater.longitude!, repeater.latitude!),
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
-                      blurRadius: 8,
-                      spreadRadius: 4,
-                    ),
-                  ],
+                  zoom: 13,
+                  bearing: 0,
+                  pitch: 0,
                 ),
-                child: const Icon(
-                  Icons.settings_input_antenna,
-                  color: Colors.white,
-                  size: 18,
+                styleUri: MapboxStyles.OUTDOORS,
+                onMapCreated: (mapboxMap) async {
+                  await _initializeMap(
+                    mapboxMap,
+                    mapController,
+                    pointManager,
+                  );
+                },
+              ),
+              // Dark overlay
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.2),
                 ),
               ),
-            ),
-          ],
+              // Repeater marker
+              Center(
+                child: Container(
+                  width: 32,
+                  height: 32,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 3,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                        blurRadius: 8,
+                        spreadRadius: 4,
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.settings_input_antenna,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
