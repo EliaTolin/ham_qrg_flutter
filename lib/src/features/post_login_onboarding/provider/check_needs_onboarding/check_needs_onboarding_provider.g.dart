@@ -42,4 +42,4 @@ final class CheckNeedsPostLoginOnboardingProvider
 }
 
 String _$checkNeedsPostLoginOnboardingHash() =>
-    r'50bb1c6681aad884bf486472c19b34d81b8bfd38';
+    r'48f6c2b5fe26f06719e968756e9200e56d8a4841';

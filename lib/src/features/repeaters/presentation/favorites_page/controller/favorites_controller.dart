@@ -1,5 +1,5 @@
-import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/controller/state/favorites_state.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/controller/state/favorites_state.dart';
 import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
