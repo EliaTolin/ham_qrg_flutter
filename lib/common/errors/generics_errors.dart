@@ -1,0 +1,1 @@
+class GenericError implements Exception {}

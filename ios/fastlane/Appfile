@@ -1,0 +1,8 @@
+app_identifier("it.auroradigital.hamqrg") # The bundle identifier of your app
+apple_id("mail@auroradigital.it") # Your Apple Developer Portal username
+
+itc_team_id("124967403") # App Store Connect Team ID
+team_id("X6QYJ2NQ5M") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

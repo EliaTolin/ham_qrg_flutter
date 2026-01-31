@@ -1,0 +1,33 @@
+{
+  "id": "repeaters-cluster",
+  "type": "circle",
+  "source": "repeaters-source",
+  "filter": [
+    "all",
+    ["has", "point_count"],
+    ["!", ["has", "is_same_location_cluster"]]
+  ],
+  "maxzoom": 14,
+  "paint": {
+    "circle-color": [
+      "step",
+      ["get", "point_count"],
+      "#7C3AED",
+      10,
+      "#6D28D9",
+      30,
+      "#5B21B6"
+    ],
+    "circle-radius": [
+      "step",
+      ["get", "point_count"],
+      20,
+      10,
+      25,
+      30,
+      30
+    ],
+    "circle-stroke-width": 3,
+    "circle-stroke-color": "#FFFFFF"
+  }
+}

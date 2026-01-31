@@ -1,0 +1,438 @@
+{
+  "error": "Errore",
+  "error_message": "Si è verificato un errore durante il caricamento",
+  "error_message_retry": "Si è verificato un errore durante il caricamento. Riprova più tardi",
+  "retry": "Riprova",
+  "back": "Indietro",
+  "loading": "Caricamento",
+  "details": "Dettagli",
+  "pages_number": "{number} pagine d'approfondire",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "Gennaio",
+  "february": "Febbraio",
+  "march": "Marzo",
+  "april": "Aprile",
+  "may": "Maggio",
+  "june": "Giugno",
+  "july": "Luglio",
+  "august": "Agosto",
+  "september": "Settembre",
+  "october": "Ottobre",
+  "november": "Novembre",
+  "december": "Dicembre",
+  "logout": "Esci",
+  "profile": "Profilo",
+  "settings": "Impostazioni",
+  "contact_us": "Contattaci",
+  "error_opening_email": "Si è verificato un errore durante l'apertura dell'email",
+  "register_now": "Registrati ora",
+  "tracking_permission_title": "Supporta l'App",
+  "tracking_permission_message": "Per migliorare la tua esperienza e mostrarti contenuti più rilevanti, aiutaci a mantenere gratuita l'app.\n\nClicca su Consenti per supportarci.",
+  "tracking_permission_next": "Avanti",
+  "skip": "Salta",
+  "done": "Fatto",
+  "next": "Avanti",
+  "joinCommunityTitle": "Unisciti alla nostra Community!",
+  "joinCommunityDescription": "Scopri i vantaggi di entrare nella community Telegram:",
+  "benefitSupportMembers": "Supporto dai membri",
+  "benefitSuggestFeatures": "Proponi nuove funzionalità",
+  "benefitContactDevelopers": "Contatto con gli sviluppatori",
+  "benefitActiveCommunity": "Community attiva",
+  "joinNowButton": "Unisciti ora!",
+  "laterButton": "Più tardi",
+  "errorOpenTelegram": "Errore durante l'apertura di Telegram",
+  "repeatersMapTitle": "Mappa ripetitori",
+  "repeatersListTitle": "Lista ripetitori",
+  "repeatersMapLoading": "Caricamento mappa dei ripetitori…",
+  "repeatersMapGenericError": "Impossibile caricare i ripetitori.",
+  "repeatersMapEmpty": "Nessun ripetitore trovato vicino a te.",
+  "repeatersSearchHint": "Cerca ripetitori…",
+  "repeatersSearchEmpty": "Nessun ripetitore trovato.",
+  "repeatersMapRetry": "Riprova",
+  "repeatersMapOpenSettings": "Apri impostazioni",
+  "repeatersMapPermissionMessage": "Consenti l'accesso alla posizione per mostrare i ripetitori vicino a te.",
+  "repeatersMapPermissionPermanentlyDenied": "Permesso posizione negato in modo permanente. Abilitalo dalle impostazioni di sistema.",
+  "repeatersMapLocationServicesDisabled": "Attiva i servizi di localizzazione per trovare i ripetitori vicini.",
+  "repeatersMapFound": "{count} ripetitori trovati",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Modalità",
+  "repeaterModeAnalog": "Analogico",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "Tutti i modi",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frequenza",
+  "repeaterShift": "Shift",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Posizione",
+  "repeaterDistance": "Distanza",
+  "repeaterViewFullDetails": "Vedi dettagli completi",
+  "repeatersMapReturnToLocation": "Torna alla mia posizione",
+  "clusterRepeatersTitle": "{count} ripetitori in questa posizione",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Sblocca tutte le funzionalità",
+  "profileUnlockFeaturesDescription": "Registrati per utilizzare le funzioni di recensione, salvataggio preferiti e accedere a statistiche dettagliate.",
+  "profileSignUpOrLogin": "Registrati o Accedi",
+  "profileErrorOpeningEmail": "Errore durante l'apertura della mail",
+  "profileJoinTelegramCommunity": "Entra nella community Telegram",
+  "profileWelcomeTitle": "Benvenuto su HamQRG",
+  "profileWelcomeDescription": "Unisciti alla nostra community di radioamatori in Italia.",
+  "profileEditProfile": "Modifica Profilo",
+  "profileChangePhoto": "Cambia Foto",
+  "profileFirstName": "Nome",
+  "profileLastName": "Cognome",
+  "profileCallsign": "Nominativo",
+  "profileRestartIdentificationTitle": "Devi cambiare il tuo stato? Puoi riavviare il processo di identificazione per passare da Operatore Autorizzato a SWL Listener.",
+  "profileRestartIdentificationButton": "Riavvia Processo di Identificazione",
+  "profileSaveChanges": "Salva Modifiche",
+  "profileDangerZone": "Zona Pericolosa",
+  "profileDeleteAccount": "Elimina Account",
+  "profileDeleteAccountConfirmTitle": "Elimina Account",
+  "profileDeleteAccountConfirmMessage": "Sei sicuro di voler eliminare il tuo account? Questa azione è irreversibile.",
+  "profileDeleteAccountCancel": "Annulla",
+  "profileDeleteAccountConfirm": "Elimina",
+  "profileAppVersion": "App Version {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Community & Support",
+  "profileSectionSupport": "Support",
+  "profileVersion": "Versione: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Version {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Errore: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "Unisciti a HamQRG",
+  "authUnlockFeatures": "Accedi per sbloccare tutte le funzionalità!",
+  "authWhatYouGet": "Cosa otterrai:",
+  "authBenefitStatsTitle": "Statistiche dettagliate",
+  "authBenefitStatsDescription": "Monitora i tuoi progressi e migliora",
+  "authBenefitQuizTitle": "Diverse modalità di quiz",
+  "authBenefitQuizDescription": "Allenati in modalità maratona, argomenti e altro.",
+  "authBenefitSyncTitle": "Sincronizzazione",
+  "authBenefitSyncDescription": "Accedi da qualsiasi dispositivo",
+  "authOrSignInWithEmail": "Oppure accedi con email",
+  "authEnterEmail": "Inserisci l'email",
+  "authEnterPassword": "Inserisci la password",
+  "authForgotPassword": "Password dimenticata?",
+  "authSignIn": "Accedi",
+  "authSignUp": "Registrati",
+  "authPasswordLengthError": "La password deve essere più lunga",
+  "authDontHaveAccount": "Non hai un account? Registrati",
+  "authHaveAccount": "Hai già un account? Accedi",
+  "authBackToSignIn": "Torna all'accesso",
+  "authUnexpectedError": "Errore inaspettato",
+  "authValidEmailError": "Inserisci un'email valida",
+  "authSendPasswordReset": "Invia reset password",
+  "authPasswordResetSent": "Reset password inviato",
+  "authVerifyEmailMessage": "Verifica la tua email per completare la registrazione, controlla la tua casella.",
+  "authInvalidCredentials": "Email o password errati",
+  "authEmailNotConfirmed": "Verifica la tua email per accedere",
+  "authFirstName": "Nome",
+  "authFirstNameRequired": "Il nome è obbligatorio",
+  "authLastName": "Cognome",
+  "authLastNameRequired": "Il cognome è obbligatorio",
+  "authContinueAsGuest": "Continua come ospite",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Scopri i ripetitori che ti circondano",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Accesso rapido",
+  "homeRepeaterList": "Lista ripetitori",
+  "homeMyFavorites": "I miei preferiti",
+  "homeNearby": "Vicino a te",
+  "homeViewAll": "Vedi tutto",
+  "homeStations": "{count} stazioni",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} salvati",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Attivo",
+  "homeIdle": "Inattivo",
+  "homeNavHome": "Home",
+  "homeNavList": "Lista",
+  "homeNavFavorites": "Preferiti",
+  "homeNavProfile": "Profilo",
+  "favoritesTitle": "I miei preferiti",
+  "favoritesSearchHint": "Cerca ripetitori salvati...",
+  "favoritesFilterAllSaved": "Tutti salvati",
+  "favoritesEmpty": "Nessun ripetitore salvato",
+  "favoritesEmptyDescription": "Aggiungi ripetitori ai preferiti per vederli qui",
+  "favoritesShowing": "Mostrando {showing} di {total} stazioni preferite",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Rimuovi dai preferiti",
+  "favoritesAdd": "Aggiungi ai preferiti",
+  "repeaterDetailSave": "Salva",
+  "repeaterDetailShare": "Condividi",
+  "repeaterDetailReport": "Segnala",
+  "repeaterDetailTotalLikes": "Mi piace totali",
+  "repeaterDetailReports1Yr": "Segnalazioni (1 anno)",
+  "repeaterDetailHealthScore": "Punteggio salute",
+  "repeaterDetailExcellent": "Eccellente",
+  "repeaterDetailGood": "Buono",
+  "repeaterDetailFair": "Discreto",
+  "repeaterDetailToVerify": "Da verificare",
+  "repeaterDetailScoreCalculated": "Punteggio calcolato da {count} segnalazioni negative nell'ultimo anno",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Ultimo mi piace",
+  "repeaterDetailLastDownReport": "Ultima segnalazione negativa",
+  "repeaterDetailTechnicalData": "Dati tecnici",
+  "repeaterDetailFrequency": "Frequenza",
+  "repeaterDetailShift": "Shift",
+  "repeaterDetailSubtone": "Sottotono (SQL)",
+  "repeaterDetailMode": "Modalità",
+  "repeaterDetailLocation": "Posizione",
+  "repeaterDetailAway": "{distance} di distanza",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Segnalazioni community",
+  "repeaterDetailUpdateStatusFeedback": "Aggiorna stato e feedback",
+  "repeaterDetailEquipment": "Attrezzatura",
+  "repeaterDetailEquipmentRequired": "Attrezzatura *",
+  "repeaterDetailAccessModes": "Modalità di accesso",
+  "repeaterDetailNetwork": "Rete",
+  "repeaterDetailLocationField": "Luogo",
+  "repeaterDetailLocationRequired": "Luogo *",
+  "repeaterDetailComment": "Commento",
+  "repeaterDetailCommentOptional": "Commento (Opzionale)",
+  "repeaterDetailCommentPlaceholder": "Qualità del segnale, rapporto audio o commenti generali...",
+  "repeaterDetailReportDown": "Segnala problema",
+  "repeaterDetailCheckinLike": "Check-in e mi piace",
+  "repeaterDetailYourFeedback": "Il tuo feedback",
+  "repeaterDetailPostedJustNow": "Pubblicato adesso",
+  "repeaterDetailDeleteEntry": "Elimina voce",
+  "repeaterDetailViewAllReports": "Vedi tutte le {count} segnalazioni",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Portatile",
+  "repeaterDetailStationMobile": "Mobile",
+  "repeaterDetailStationFixed": "Fisso",
+  "repeaterDetailLike": "Mi piace",
+  "repeaterDetailReportLabel": "Segnalazione",
+  "repeaterDetailSaved": "Salvato",
+  "repeaterDetailShareMessage": "Scopri questo ripetitore su HamQRG!",
+  "repeaterDetailReportDescription": "La funzionalità di segnalazione sarà disponibile a breve. Potrai segnalare informazioni errate o problemi con questo ripetitore.",
+  "commonClose": "Chiudi",
+  "favorite": "Preferito",
+  "accessConfiguration": "Configurazione accesso",
+  "noAccessConfiguration": "Nessuna configurazione disponibile",
+  "repeaterDetailAddFeedback": "Aggiungi feedback",
+  "repeaterDetailOthersReports": "Segnalazioni altri utenti",
+  "repeaterDetailRemove": "Rimuovi",
+  "repeaterDetailSelectAccess": "Seleziona accesso",
+  "repeaterDetailDistanceWarning": "Devi essere entro {distance} km dal ripetitore per inviare un feedback.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interattivo",
+  "repeaterDetailLogYourSignal": "Registra il tuo segnale",
+  "repeaterDetailUsedEquipment": "Attrezzatura usata",
+  "repeaterDetailYourLocation": "La tua posizione",
+  "repeaterDetailLocationPlaceholder": "Dove eri? (es. Roma)",
+  "repeaterDetailLocationSelectHint": "Seleziona un luogo dai suggerimenti",
+  "feedbackDistanceConfirmTitle": "Conferma invio",
+  "feedbackDistanceConfirmMessage": "Il luogo selezionato si trova a {distance} km dal ripetitore. Confermi di voler inviare questo feedback sotto la tua responsabilità?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Conferma",
+  "feedbackDistanceConfirmCancel": "Annulla",
+  "repeaterDetailSelectAccessInstance": "Seleziona istanza di accesso",
+  "repeaterDetailSignalObservations": "Osservazioni sul segnale",
+  "repeaterDetailSignalObservationsPlaceholder": "Com'era la qualità audio?",
+  "repeaterDetailSendLike": "Invia Like",
+  "repeaterDetailReportIssue": "Segnala Problema",
+  "repeaterDetailRecentActivity": "Attività recente",
+  "reportIssueTitle": "Segnala Problema",
+  "reportIssueHeadline": "Aiutaci a mantenere i dati accurati",
+  "reportIssueDescription": "Hai trovato qualcosa di sbagliato in questo ripetitore? Facci sapere cosa deve essere modificato e lo verificheremo.",
+  "reportIssueWhatToCorrect": "Cosa vorresti correggere?",
+  "reportIssuePlaceholder": "Es. Il tono CTCSS è cambiato a 88.5Hz, o la posizione è leggermente più a nord...",
+  "reportIssueVerifiedTitle": "Invii Verificati",
+  "reportIssueVerifiedDescription": "La tua segnalazione sarà revisionata dal coordinatore regionale prima che il database pubblico venga aggiornato. Grazie per il tuo contributo alla community.",
+  "reportIssueConfirmCheckbox": "Confermo che queste informazioni sono corrette in base alla mia osservazione.",
+  "reportIssueSubmit": "Invia",
+  "reportIssueMinChars": "Minimo 10 caratteri richiesti",
+  "reportIssueMaxChars": "Massimo 2000 caratteri",
+  "reportIssueSuccess": "Segnalazione inviata con successo",
+  "reportIssueError": "Errore durante l'invio della segnalazione",
+  "registrationPromptTitle": "Sblocca tutto il potenziale",
+  "registrationPromptDescription": "Unisciti alla community italiana dei radioamatori e porta la tua esperienza al livello successivo.",
+  "registrationBenefitInteractTitle": "Interagisci",
+  "registrationBenefitInteractDescription": "Valuta i ripetitori e lascia commenti per gli altri.",
+  "registrationBenefitFavoritesTitle": "Preferiti",
+  "registrationBenefitFavoritesDescription": "Salva le tue frequenze e ripetitori più usati.",
+  "registrationBenefitLogbookTitle": "Logbook",
+  "registrationBenefitLogbookDescription": "Tieni traccia dei tuoi QSO e mantieni uno storico personale.",
+  "registrationSignInApple": "Accedi con Apple",
+  "registrationSignInGoogle": "Accedi con Google",
+  "registrationPromptFooter": "Registrazione gratuita. Nessuna licenza richiesta per consultare i dati pubblici.",
+  "postLoginOnboardingWelcome": "Benvenuto in",
+  "postLoginOnboardingQuestion": "Sei un radioamatore con licenza?",
+  "postLoginOnboardingHelpText": "Ci aiuta a personalizzare la tua esperienza e mostrarti le frequenze giuste.",
+  "postLoginOnboardingYesLicensed": "Sì, lo sono",
+  "postLoginOnboardingNoListener": "No, sono solo un ascoltatore",
+  "postLoginOnboardingCallsignTitle": "Identificati",
+  "postLoginOnboardingCallsignSubtitle": "Inserisci il tuo nominativo ufficiale per accedere alle funzionalità di rete.",
+  "postLoginOnboardingCallsignLabel": "Nominativo (Callsign)",
+  "postLoginOnboardingCallsignHint": "Es. IU2XYZ",
+  "postLoginOnboardingComplete": "Completa profilo",
+  "postLoginOnboardingBack": "Indietro",
+  "postLoginOnboardingChangeInSettings": "Puoi modificarlo in seguito nelle impostazioni.",
+  "postLoginOnboardingSwlTitle": "Nominativo SWL",
+  "postLoginOnboardingSwlQuestion": "Hai un nominativo SWL ufficiale?",
+  "postLoginOnboardingSwlHelpText": "I nominativi degli ascoltatori d'onda corta aiutano a identificarti nella community globale di monitoraggio.",
+  "postLoginOnboardingSwlYes": "Si, ne ho uno",
+  "postLoginOnboardingSwlNo": "No, non ne ho uno",
+  "postLoginOnboardingSwlEnterCallsign": "Inserisci nominativo",
+  "postLoginOnboardingSwlCallsignHint": "Es. I1-12345-SWL",
+  "timeAgoJustNow": "adesso",
+  "timeAgoMinutes": "{count, plural, one{1 minuto fa} other{{count} minuti fa}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{1 ora fa} other{{count} ore fa}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{1 giorno fa} other{{count} giorni fa}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{1 settimana fa} other{{count} settimane fa}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{1 mese fa} other{{count} mesi fa}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{1 anno fa} other{{count} anni fa}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Tema",
+  "profileThemeModeSystem": "Sistema",
+  "profileThemeModeLight": "Chiaro",
+  "profileThemeModeDark": "Scuro"
+}

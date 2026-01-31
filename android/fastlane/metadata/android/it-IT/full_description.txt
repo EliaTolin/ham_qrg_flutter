@@ -1,0 +1,32 @@
+HamQRG è l'app definitiva per radioamatori e ascoltatori in Italia. Trova facilmente i ripetitori vicino a te, consulta le frequenze e unisciti alla community.
+
+**MAPPA INTERATTIVA**
+• Visualizza tutti i ripetitori italiani su una mappa interattiva
+• Trova i ripetitori più vicini alla tua posizione
+• Filtra per modalità: Analogico, DMR, C4FM, D-STAR, Echolink
+• Cluster intelligente per aree con molti ripetitori
+
+**DATI TECNICI COMPLETI**
+• Frequenza TX/RX e shift
+• Toni CTCSS/DCS
+• Color Code e Talk Group per DMR
+• Reti digitali (BrandMeister, TGIF, e altre)
+• Posizione precisa e distanza
+
+**PREFERITI E FEEDBACK**
+• Salva i tuoi ripetitori preferiti per accesso rapido
+• Lascia feedback sulla qualità del segnale
+• Segnala problemi o aggiornamenti ai coordinatori
+• Consulta i report della community
+
+**PER RADIOAMATORI E ASCOLTATORI**
+• Profilo personalizzato con nominativo
+• Supporto per operatori con licenza e SWL
+• Accesso gratuito a tutti i dati pubblici
+
+**COMMUNITY ATTIVA**
+• Unisciti al gruppo Telegram
+• Proponi nuove funzionalità
+• Contatta direttamente gli sviluppatori
+
+Scarica HamQRG e scopri il mondo dei ripetitori radioamatoriali italiani!

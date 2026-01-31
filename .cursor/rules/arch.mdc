@@ -1,0 +1,775 @@
+---
+alwaysApply: false
+---
+
+# Struttura Generale delle Feature
+
+Ogni nuova feature DEVE seguire questa struttura gerarchica:
+
+```
+lib/src/features/[feature_name]/
+├── data/
+│   ├── datasource/
+│   │   ├── [feature]_datasource.dart          # Interfaccia astratta
+│   │   ├── [feature]_[type]_datasource.dart    # Implementazione concreta
+│   │   └── [feature]_[type]_datasource.g.dart   # Generato da Riverpod
+│   ├── model/
+│   │   └── [model_name]/                       # Modelli dati (DTO)
+│   │       ├── [model_name].dart
+│   │       └── [model_name].freezed.dart       # Generato da Freezed
+│   ├── mappers/
+│   │   └── [feature]_mappers.dart              # Convertitori Model ↔ Domain
+│   └── repository/
+│       ├── [feature]_repository.dart
+│       └── [feature]_repository.g.dart         # Generato da Riverpod
+├── domain/
+│   └── [entity_name]/                          # Entità di dominio
+│       ├── [entity_name].dart
+│       └── [entity_name].freezed.dart          # Generato da Freezed
+├── presentation/
+│   ├── [page_name]/                            # Cartella per ogni pagina
+│   │   ├── controller/
+│   │   │   ├── [page_name]_controller.dart
+│   │   │   ├── [page_name]_controller.g.dart   # Generato da Riverpod
+│   │   │   └── state/
+│   │   │       ├── [page_name]_state.dart
+│   │   │       └── [page_name]_state.freezed.dart
+│   │   └── [page_name]_page.dart
+│   ├── widgets/                                # Widget condivisi tra pagine
+│   ├── hooks/                                  # Hook custom (se necessario)
+│   └── utils/                                  # Utility condivise (se necessario)
+├── provider/
+│   └── [action_name]/                          # Provider per azioni specifiche
+│       ├── [action_name]_provider.dart
+│       └── [action_name]_provider.g.dart
+└── errors/                                      # Errori specifici della feature
+    └── [feature]_errors.dart
+```
+
+---
+
+## 1. Datasource
+
+### Interfaccia Astratta (`[feature]_datasource.dart`)
+
+```dart
+import 'package:hamqrg/src/features/[feature]/data/model/[model_name]/[model_name].dart';
+
+abstract interface class [Feature]Datasource {
+  Future<List<[Model]>> getAll[Models]();
+  Future<[Model]?> get[Model]ById(String id);
+  // Altri metodi specifici
+}
+```
+
+**Regole:**
+- Usa `abstract interface class` per l'interfaccia
+- I metodi devono restituire `Future` o `FutureOr`
+- I tipi di ritorno devono essere `Model` (non entità di dominio)
+- I parametri devono essere primitivi o modelli, non entità di dominio
+
+### Implementazione Concreta (`[feature]_[type]_datasource.dart`)
+
+```dart
+import 'dart:developer';
+
+import 'package:hamqrg/clients/[client]/[client]_client.dart';
+import 'package:hamqrg/src/features/[feature]/data/datasource/[feature]_datasource.dart';
+import 'package:hamqrg/src/features/[feature]/data/model/[model_name]/[model_name].dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part '[feature]_[type]_datasource.g.dart';
+
+class [Feature][Type]Datasource implements [Feature]Datasource {
+  [Feature][Type]Datasource(this._client);
+  final [Client] _client;
+
+  @override
+  Future<List<[Model]>> getAll[Models]() async {
+    try {
+      final data = await _client.from('[table]').select();
+      return (data as List)
+          .map((e) => [Model].fromJson(e as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      log('Error to fetch [models]: $e');
+      rethrow;
+    }
+  }
+
+  @override
+  Future<[Model]?> get[Model]ById(String id) async {
+    try {
+      final data = await _client
+          .from('[table]')
+          .select()
+          .eq('id', id)
+          .maybeSingle();
+      if (data == null) {
+        return null;
+      }
+      return [Model].fromJson(Map<String, dynamic>.from(data));
+    } catch (e) {
+      log('Error to fetch [model] by id: $e');
+      rethrow;
+    }
+  }
+}
+
+@riverpod
+[Feature]Datasource [feature][Type]Datasource(Ref ref) {
+  return [Feature][Type]Datasource(ref.read([client]Provider));
+}
+```
+
+**Regole:**
+- Implementa l'interfaccia `[Feature]Datasource`
+- Usa `dart:developer` per il logging degli errori
+- Gestisci gli errori con `try-catch` e rilancia con `rethrow`
+- Aggiungi sempre un provider Riverpod con `@riverpod` annotation
+- Il provider deve leggere il client necessario (es. `supabaseClientProvider`)
+- Naming: `[feature][Type]Datasource` (es. `ParamSupabaseDatasource`)
+
+---
+
+## 2. Model (Data Transfer Objects)
+
+### Struttura Model (`[model_name].dart`)
+
+```dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '[model_name].freezed.dart';
+part '[model_name].g.dart';
+
+@freezed
+abstract class [Model] with _$[Model] {
+  const factory [Model]({
+    required String id,
+    required String createdAt,
+    // Altri campi
+  }) = _[Model];
+
+  factory [Model].fromJson(Map<String, dynamic> json) => _$[Model]FromJson(json);
+}
+```
+
+**Regole:**
+- Usa `@freezed` per modelli immutabili
+- Include sempre `part` per `.freezed.dart` e `.g.dart`
+- Implementa `fromJson` per la deserializzazione
+- I campi DateTime devono essere gestiti come stringhe ISO nel JSON
+- I nomi dei campi devono corrispondere alle colonne del database
+
+---
+
+## 3. Mappers
+
+### Struttura Mapper (`[feature]_mappers.dart`)
+
+```dart
+import 'package:hamqrg/common/abstracts/mapper.dart';
+import 'package:hamqrg/src/features/[feature]/data/model/[model_name]/[model_name].dart';
+import 'package:hamqrg/src/features/[feature]/domain/[entity_name]/[entity_name].dart';
+
+class [Feature]Mappers implements Mapper<[Entity], [Model]> {
+  @override
+  [Entity] fromModel([Model] model) {
+    return [Entity](
+      id: model.id,
+      createdAt: DateTime.parse(model.createdAt),
+      // Conversioni da Model a Entity
+    );
+  }
+
+  @override
+  [Model] toModel([Entity] entity) {
+    return [Model](
+      id: entity.id,
+      createdAt: entity.createdAt.toIso8601String(),
+      // Conversioni da Entity a Model
+    );
+  }
+}
+```
+
+**Regole:**
+- Implementa sempre `Mapper<Entity, Model>` da `lib/common/abstracts/mapper.dart`
+- `fromModel`: converte Model → Domain Entity
+- `toModel`: converte Domain Entity → Model
+- Gestisci le conversioni di tipo (es. DateTime ↔ String)
+- Usa un'istanza per mapper o crea istanze quando necessario (vedi pattern repository)
+- Se ci sono più mappers, organizzarli in file separati o in una classe con metodi statici
+
+---
+
+## 4. Repository
+
+### Struttura Repository (`[feature]_repository.dart`)
+
+```dart
+import 'package:hamqrg/src/features/[feature]/data/datasource/[feature]_datasource.dart';
+import 'package:hamqrg/src/features/[feature]/data/datasource/[feature]_[type]_datasource.dart';
+import 'package:hamqrg/src/features/[feature]/data/mappers/[feature]_mappers.dart';
+import 'package:hamqrg/src/features/[feature]/domain/[entity_name]/[entity_name].dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part '[feature]_repository.g.dart';
+
+class [Feature]Repository {
+  [Feature]Repository(this._[feature]Datasource);
+  final [Feature]Datasource _[feature]Datasource;
+
+  final _mapper = [Feature]Mappers();
+
+  Future<List<[Entity]>> getAll[Entities]() async {
+    final models = await _[feature]Datasource.getAll[Models]();
+    return models.map(_mapper.fromModel).toList();
+  }
+
+  Future<[Entity]?> get[Entity]ById(String id) async {
+    final model = await _[feature]Datasource.get[Model]ById(id);
+    if (model == null) {
+      return null;
+    }
+    return _mapper.fromModel(model);
+  }
+
+  Future<void> update[Entity]([Entity] entity) async {
+    return _[feature]Datasource.update[Model](_mapper.toModel(entity));
+  }
+}
+
+@riverpod
+[Feature]Repository [feature]Repository(Ref ref) {
+  final datasource = ref.read([feature][Type]DatasourceProvider);
+  return [Feature]Repository(datasource);
+}
+```
+
+**Regole:**
+- Il repository riceve il datasource nel costruttore (dependency injection)
+- Crea un'istanza del mapper (o più istanze se necessario)
+- I metodi del repository devono:
+  - Chiamare il datasource per ottenere i modelli
+  - Convertire i modelli in entità di dominio usando il mapper
+  - Restituire sempre entità di dominio, mai modelli
+- Aggiungi sempre un provider Riverpod che legge il datasource provider
+- Il repository NON deve conoscere i dettagli di implementazione del datasource (supabase, local, ecc.)
+- Gestisci i casi null con controlli espliciti
+
+---
+
+## 5. Domain Entities
+
+### Struttura Entity (`[entity_name].dart`)
+
+```dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '[entity_name].freezed.dart';
+
+@freezed
+abstract class [Entity] with _$[Entity] {
+  const factory [Entity]({
+    required String id,
+    required DateTime createdAt,
+    // Altri campi del dominio
+  }) = _[Entity];
+}
+```
+
+**Regole:**
+- Usa `@freezed` per entità immutabili
+- Le entità devono rappresentare il dominio dell'applicazione, non la struttura del database
+- Usa `abstract class` per le entità di dominio
+- I campi devono essere tipi Dart nativi (DateTime, String, int, ecc.), non stringhe JSON
+- NON includere metodi `fromJson` nelle entità di dominio (solo nei modelli)
+
+---
+
+## 6. Providers
+
+### Struttura Provider (`[action_name]_provider.dart`)
+
+```dart
+import 'package:hamqrg/src/features/[feature]/data/repository/[feature]_repository.dart';
+import 'package:hamqrg/src/features/[feature]/domain/[entity_name]/[entity_name].dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part '[action_name]_provider.g.dart';
+
+@riverpod
+Future<[Entity]> get[Entity](
+  Ref ref, {
+  required String id,
+}) async {
+  final repository = ref.read([feature]RepositoryProvider);
+  final result = await repository.get[Entity]ById(id);
+  
+  if (result == null) {
+    throw Exception('[Entity] not found');
+  }
+  
+  return result;
+}
+
+// Per liste
+@riverpod
+Future<List<[Entity]>> getAll[Entities](
+  Ref ref,
+) async {
+  final repository = ref.read([feature]RepositoryProvider);
+  return await repository.getAll[Entities]();
+}
+
+// Per operazioni di scrittura
+@riverpod
+Future<void> update[Entity](
+  Ref ref, {
+  required [Entity] entity,
+}) async {
+  final repository = ref.read([feature]RepositoryProvider);
+  await repository.update[Entity](entity);
+}
+```
+
+**Regole:**
+- Usa `@riverpod` annotation per tutti i provider
+- Il primo parametro deve essere sempre `Ref ref`
+- I parametri aggiuntivi devono essere passati come named parameters
+- Il provider legge il repository dal `ref.read([feature]RepositoryProvider)`
+- Gestisci i casi null con eccezioni appropriate
+- Naming: `[action][Entity]` (es. `getProfile`, `updateProfile`, `getAllUsers`)
+- I provider devono restituire `Future` o `FutureOr`
+- Per operazioni di scrittura, restituisci `Future<void>`
+
+---
+
+## 7. Controllers e States
+
+### Struttura: Ogni Pagina ha il suo Controller e State
+
+**IMPORTANTE**: Ogni pagina nella feature DEVE avere:
+- La sua cartella dedicata in `presentation/[page_name]/`
+- Il suo controller in `presentation/[page_name]/controller/[page_name]_controller.dart`
+- Il suo state in `presentation/[page_name]/controller/state/[page_name]_state.dart`
+- La sua pagina in `presentation/[page_name]/[page_name]_page.dart`
+
+**Esempio di struttura:**
+```
+presentation/
+├── list/
+│   ├── controller/
+│   │   ├── repeaters_list_controller.dart
+│   │   ├── repeaters_list_controller.g.dart
+│   │   └── state/
+│   │       ├── repeaters_list_state.dart
+│   │       └── repeaters_list_state.freezed.dart
+│   └── repeaters_list_page.dart
+├── map/
+│   ├── controller/
+│   │   ├── repeaters_map_controller.dart
+│   │   ├── repeaters_map_controller.g.dart
+│   │   └── state/
+│   │       ├── repeaters_map_state.dart
+│   │       └── repeaters_map_state.freezed.dart
+│   └── repeaters_map_page.dart
+└── widgets/  # Widget condivisi tra pagine
+```
+
+### Struttura Controller (`[page_name]_controller.dart`)
+
+```dart
+import 'package:hamqrg/src/features/[feature]/presentation/[page_name]/controller/state/[page_name]_state.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part '[page_name]_controller.g.dart';
+
+@riverpod
+class [PageName]Controller extends _$[PageName]Controller {
+  @override
+  FutureOr<[PageName]State> build() async {
+    // Inizializzazione dello stato
+    final data = await ref.read(someProvider.future);
+    return [PageName]State(
+      // Valori iniziali
+    );
+  }
+
+  Future<void> performAction() async {
+    final currentState = state.value;
+    state = await AsyncValue.guard(() async {
+      // Logica dell'azione
+      await ref.read(someActionProvider.future);
+      return currentState?.copyWith(
+        // Nuovo stato
+      ) ?? const [PageName]State(/* default */);
+    });
+  }
+
+  Future<void> anotherAction() async {
+    try {
+      state = await AsyncValue.guard(() async {
+        // Logica
+        return state.value ?? const [PageName]State(/* default */);
+      });
+    } catch (e) {
+      state = AsyncError(e, StackTrace.current);
+    }
+  }
+}
+```
+
+**Regole:**
+- **Ogni pagina ha il suo controller dedicato** - NON condividere controller tra pagine diverse
+- Estendi sempre `_$[PageName]Controller` (generato da Riverpod)
+- Override `build()` per inizializzare lo stato
+- `build()` deve restituire `FutureOr<[PageName]State>`
+- Usa `AsyncValue.guard()` per gestire errori e loading automaticamente
+- Per aggiornare lo stato, usa `state = await AsyncValue.guard(...)`
+- Accedi allo stato corrente con `state.value`
+- Usa `copyWith()` per aggiornare lo stato immutabile
+- Gestisci gli errori con `AsyncError` se necessario
+- I metodi delle azioni devono essere `Future<void>`
+- Il controller deve essere nella stessa cartella della pagina: `presentation/[page_name]/controller/`
+
+### State (`[page_name]_state.dart`)
+
+```dart
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '[page_name]_state.freezed.dart';
+
+@freezed
+abstract class [PageName]State with _$[PageName]State {
+  const factory [PageName]State({
+    required bool isLoading,
+    String? errorMessage,
+    // Altri campi dello stato specifici per questa pagina
+  }) = _[PageName]State;
+}
+```
+
+**Regole:**
+- **Ogni controller ha il suo state dedicato** - NON condividere state tra controller diversi
+- Usa `@freezed` per lo stato immutabile
+- Lo stato deve contenere solo i dati necessari per la UI di quella specifica pagina
+- Usa `copyWith()` per aggiornare lo stato
+- Include campi per loading ed errori se necessario
+- Lo state deve essere nella cartella `controller/state/` del controller: `presentation/[page_name]/controller/state/`
+- Usa `abstract class` per lo state (non solo `class`)
+
+---
+
+## 8. Pages
+
+### Struttura Page (`[page_name]_page.dart`)
+
+**IMPORTANTE**: Ogni pagina deve essere nella sua cartella dedicata: `presentation/[page_name]/[page_name]_page.dart`
+
+```dart
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:hamqrg/src/features/[feature]/presentation/[page_name]/controller/[page_name]_controller.dart';
+import 'package:hamqrg/src/shared/widgets/error_card.dart';
+
+@RoutePage()
+class [PageName]Page extends HookConsumerWidget {
+  const [PageName]Page({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch([pageName]ControllerProvider);
+
+    return controller.when(
+      data: (state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('[Page Name]'),
+          ),
+          body: // UI basata su state
+        );
+      },
+      error: (error, stackTrace) => Center(
+        child: ErrorCard(error: error),
+      ),
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+}
+```
+
+**Regole:**
+- **Ogni pagina ha la sua cartella dedicata** in `presentation/[page_name]/`
+- Usa `HookConsumerWidget` per combinare Hooks e Riverpod
+- Aggiungi `@RoutePage()` annotation per auto_route
+- Usa `ref.watch()` per osservare il controller della pagina specifica
+- Il controller deve essere quello della stessa pagina: `[pageName]ControllerProvider`
+- Gestisci i tre stati: `data`, `error`, `loading`
+- In caso di errore mostra sempre il widget `ErrorCard` in modo centralizzato
+- Accedi al notifier con `ref.read([pageName]ControllerProvider.notifier)` per chiamare metodi
+- Usa `context.mounted` prima di navigare o mostrare dialog dopo operazioni async
+- **NON condividere controller tra pagine diverse** - ogni pagina deve avere il suo controller
+- **IMPORTANTE: Le pagine NON devono mai ricevere modelli/entità come parametri** - ricevono solo ID primitivi (String, int, ecc.) e il controller fa la fetch dei dati necessari tramite provider
+
+---
+
+## 9. Router
+
+### Aggiunta al Router (`lib/router/app_router.dart`)
+
+Quando aggiungi una nuova pagina, aggiungi la route in `app_router.dart`:
+
+```dart
+AutoRoute(
+  page: [Feature]Route.page,
+  guards: [this], // Se richiede autenticazione
+),
+```
+
+**Regole:**
+- Importa la pagina nel router
+- Aggiungi `AutoRoute` nella lista `routes`
+- Usa `guards: [this]` se la pagina richiede autenticazione
+- Usa `initial: true` solo per la pagina iniziale (splash)
+
+---
+
+## 10. Naming Conventions
+
+### File e Directory
+- File: `snake_case.dart` (es. `quiz_controller.dart`)
+- Directory: `snake_case` (es. `quiz_page/`)
+
+### Classi
+- Classi: `UpperCamelCase` (es. `QuizController`)
+- Provider functions: `lowerCamelCase` (es. `getQuizSet`)
+- Costanti: `lowerCamelCase` (es. `defaultQuizType`)
+
+### Variabili e Parametri
+- Variabili: `lowerCamelCase` (es. `quizState`)
+- Parametri: `lowerCamelCase` (es. `userId`)
+
+### Enumerazioni
+- Enum: `UpperCamelCase` (es. `ExamType`)
+- Valori enum: `lowerCamelCase` (es. `examTypeA`)
+
+---
+
+## 11. Localizzazione e Traduzioni
+
+### File di Traduzione (`lib/l10n/app_it.arb`)
+
+**REGOLE FONDAMENTALI:**
+- **Chiavi (`key`)**: SEMPRE in inglese
+- **Valori (`value`)**: SEMPRE in italiano
+
+**Esempio corretto:**
+```json
+{
+  "homeQuickAccess": "Accesso Rapido",
+  "homeRepeaterList": "Lista Ripetitori",
+  "homeMyFavorites": "I Miei Preferiti",
+  "error": "Errore",
+  "retry": "Riprova"
+}
+```
+
+**Esempio ERRATO:**
+```json
+{
+  "accessoRapido": "Accesso Rapido",  // ❌ Chiave in italiano
+  "homeQuickAccess": "Quick Access"    // ❌ Valore in inglese
+}
+```
+
+**Regole:**
+- Le chiavi devono essere in `camelCase` in inglese
+- I valori devono essere sempre in italiano
+- Usa nomi descrittivi per le chiavi che riflettono il contesto (es. `homeQuickAccess`, `profileSettings`, `repeaterDetails`)
+- Per placeholder, usa la sintassi ARB standard con `@key` e `placeholders`
+- Quando aggiungi nuove traduzioni, mantieni la coerenza con le chiavi esistenti
+
+**Pattern di naming per le chiavi:**
+- Prefisso con il contesto: `[feature][element]` (es. `homeQuickAccess`, `profileSettings`)
+- Per azioni: `[feature][action]` (es. `repeaterAddFavorite`, `profileUpdate`)
+- Per messaggi di errore: `error[Description]` (es. `errorMessage`, `errorRetry`)
+
+---
+
+## 12. Error Handling
+
+### Errori Specifici (`errors/[feature]_errors.dart`)
+
+```dart
+class [Feature]Exception implements Exception {
+  final String message;
+  const [Feature]Exception(this.message);
+  
+  @override
+  String toString() => '[Feature]Exception: $message';
+}
+
+class [Feature]NotFoundException extends [Feature]Exception {
+  const [Feature]NotFoundException(super.message);
+}
+```
+
+**Regole:**
+- Crea classi di errore specifiche per la feature
+- Estendi `Exception` o crea una gerarchia di errori
+- Usa messaggi descrittivi
+
+---
+
+## 13. Best Practices
+
+### Dependency Injection
+- Usa sempre Riverpod per la dependency injection
+- Il repository dipende dal datasource (interfaccia, non implementazione)
+- Il provider dipende dal repository
+- Il controller dipende dai provider
+
+### Separazione delle Responsabilità
+- **Datasource**: Interazione con la sorgente dati (API, DB locale)
+- **Repository**: Logica di business e conversione Model → Entity
+- **Provider**: Accesso ai dati per la UI
+- **Controller**: Gestione dello stato della UI
+- **Page**: Presentazione e layout
+
+### Testing
+- I datasource possono essere mockati facilmente (interfaccia)
+- I repository possono essere testati con fake datasource
+- I provider possono essere testati con fake repository
+- I controller possono essere testati con fake provider
+
+### Performance
+- Usa `ref.watch()` solo quando necessario (rebuild automatici)
+- Usa `ref.read()` per azioni one-time o nel `build()` dei provider
+- Usa `ref.future` per ottenere il valore futuro senza rebuild
+
+### Code Generation
+- Esegui sempre `dart run build_runner build --delete-conflicting-outputs` dopo aver aggiunto/modificato:
+  - `@riverpod` annotations
+  - `@freezed` classes
+  - `part` files
+
+### Riduzione del Codice Duplicato
+- **Riduci al minimo il codice boilerplate o duplicato**, specialmente per widget e helper
+- Quando ci sono componenti UI in comune tra più pagine o widget, crea un widget separato riutilizzabile
+- Posiziona i widget condivisi in `presentation/widgets/` della feature specifica, o in `lib/common/widgets/` se condivisi tra più features
+- Per funzioni di utilità comuni (es. formattazione, conversioni), crea helper classi o metodi statici in `lib/common/utils/`
+- **NON duplicare**: metodi helper, widget UI, logica di formattazione, funzioni di validazione
+- Se un widget o metodo viene usato in più di un posto, estrailo in un componente riutilizzabile
+- Esempi di codice che DEVE essere estratto:
+  - Widget che compaiono identici in più pagine (es. `_RepeaterDetailsSheet`)
+  - Metodi di formattazione duplicati (es. `_formatFrequency`, `_getModeLabel`)
+  - Logica di validazione ripetuta
+  - Helper functions usate in più controller o pagine
+
+---
+
+## 14. Checklist per Nuova Feature
+
+- [ ] Struttura cartelle creata (`data/`, `domain/`, `presentation/`, `provider/`)
+- [ ] Interfaccia datasource creata
+- [ ] Implementazione datasource creata con provider
+- [ ] Modelli dati creati con `@freezed`
+- [ ] Mapper implementato (`Mapper<Entity, Model>`)
+- [ ] Repository creato con dependency injection del datasource
+- [ ] Provider repository creato
+- [ ] Entità di dominio create con `@freezed`
+- [ ] Provider per azioni creati
+- [ ] Controller creato (se necessario per gestione stato complessa)
+- [ ] State creato con `@freezed`
+- [ ] Page creata con `HookConsumerWidget` e `@RoutePage()`
+- [ ] Route aggiunta al router
+- [ ] Errori specifici creati (se necessario)
+- [ ] Code generation eseguita (`build_runner`)
+- [ ] Test creati (se richiesto)
+
+---
+
+## 15. Esempi di Pattern Comuni
+
+### Pattern: Lista con Loading/Error
+```dart
+@riverpod
+class ListController extends _$ListController {
+  @override
+  FutureOr<ListState> build() async {
+    final items = await ref.read(getAllItemsProvider.future);
+    return ListState(items: items);
+  }
+
+  Future<void> refresh() async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final items = await ref.read(getAllItemsProvider.future);
+      return ListState(items: items);
+    });
+  }
+}
+```
+
+### Pattern: Form con Validazione
+```dart
+@riverpod
+class FormController extends _$FormController {
+  @override
+  FormState build() => const FormState();
+
+  Future<void> submit() async {
+    if (!_validate()) {
+      state = state.copyWith(hasError: true);
+      return;
+    }
+    
+    state = await AsyncValue.guard(() async {
+      await ref.read(updateItemProvider(entity: state.toEntity()).future);
+      return state.copyWith(isSubmitted: true);
+    });
+  }
+}
+```
+
+### Pattern: Paginazione
+```dart
+@riverpod
+class PaginatedController extends _$PaginatedController {
+  @override
+  FutureOr<PaginatedState> build() async {
+    final firstPage = await ref.read(getItemsProvider(page: 0).future);
+    return PaginatedState(items: firstPage, currentPage: 0);
+  }
+
+  Future<void> loadMore() async {
+    final currentState = state.value!;
+    state = await AsyncValue.guard(() async {
+      final nextPage = await ref.read(
+        getItemsProvider(page: currentState.currentPage + 1).future,
+      );
+      return currentState.copyWith(
+        items: [...currentState.items, ...nextPage],
+        currentPage: currentState.currentPage + 1,
+      );
+    });
+  }
+}
+```
+
+---
+
+## Note Finali
+
+- Segui sempre questa architettura per mantenere la coerenza del codice
+- Quando in dubbio, guarda esempi esistenti nel progetto (es. `params`, `profile`, `quiz`)
+- Mantieni le dipendenze unidirezionali: Datasource → Repository → Provider → Controller → Page
+- Non saltare livelli: una Page non deve chiamare direttamente un Repository
+- Usa sempre code generation per Riverpod e Freezed
+- Esegui `flutter analyze` e `dart format` prima di committare
+

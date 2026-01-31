@@ -1,0 +1,193 @@
+{
+  "error": "Errore",
+  "error_message": "Si è verificato un errore durante il caricamento",
+  "error_message_retry": "Si è verificato un errore durante il caricamento. Riprova più tardi",
+  "retry": "Riprova",
+  "back": "Indietro",
+  "loading": "Caricamento",
+  "details": "Dettagli",
+  "pages_number": "{number} pagine d'approfondire",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      
+    
+  },
+  "january": "Gennaio",
+  "february": "Febbraio",
+  "march": "Marzo",
+  "april": "Aprile",
+  "may": "Maggio",
+  "june": "Giugno",
+  "july": "Luglio",
+  "august": "Agosto",
+  "september": "Settembre",
+  "october": "Ottobre",
+  "november": "Novembre",
+  "december": "Dicembre",
+  "logout": "Logout",
+  "profile": "Profilo",
+  "settings": "Impostazioni",
+  "contact_us": "Contattaci",
+  "error_opening_email": "Si è verificato un errore durante l'apertura dell'email",
+  "register_now": "Registrati ora",
+  "tracking_permission_title": "Supporta l'App",
+  "tracking_permission_message": "Per migliorare la tua esperienza e mostrarti contenuti più rilevanti, aiutaci a mantenere gratuita l'app.\n\nClicca su Allow per supportarci.",
+  "tracking_permission_next": "Avanti",
+  "skip": "Salta",
+  "done": "Fatto",
+  "next": "Avanti",
+  "joinCommunityTitle": "Unisciti alla nostra Community!",
+  "joinCommunityDescription": "Scopri i vantaggi di entrare nella community Telegram:",
+  "benefitSupportMembers": "Supporto dai membri",
+  "benefitSuggestFeatures": "Proponi nuove funzionalità",
+  "benefitContactDevelopers": "Contatto con gli sviluppatori",
+  "benefitActiveCommunity": "Community attiva",
+  "joinNowButton": "Unisciti ora!",
+  "laterButton": "Più tardi",
+  "errorOpenTelegram": "Errore durante l'apertura di Telegram",
+  "repeatersMapTitle": "Mappa ripetitori",
+  "repeatersListTitle": "Lista ripetitori",
+  "repeatersMapLoading": "Caricamento mappa dei ripetitori…",
+  "repeatersMapGenericError": "Impossibile caricare i ripetitori.",
+  "repeatersMapEmpty": "Nessun ripetitore trovato vicino a te.",
+  "repeatersSearchHint": "Cerca ripetitori…",
+  "repeatersSearchEmpty": "Nessun ripetitore trovato.",
+  "repeatersMapRetry": "Riprova",
+  "repeatersMapOpenSettings": "Apri impostazioni",
+  "repeatersMapPermissionMessage": "Consenti l'accesso alla posizione per mostrare i ripetitori vicino a te.",
+  "repeatersMapPermissionPermanentlyDenied": "Permesso posizione negato in modo permanente. Abilitalo dalle impostazioni di sistema.",
+  "repeatersMapLocationServicesDisabled": "Attiva i servizi di localizzazione per trovare i ripetitori vicini.",
+  "repeatersMapFound": "{count} ripetitori trovati",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      
+    
+  },
+  "repeaterMode": "Modalità",
+  "repeaterModeAnalog": "Analog",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "ALLMODE",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frequenza",
+  "repeaterShift": "Shift",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Posizione",
+  "repeaterDistance": "Distanza",
+  "repeaterViewFullDetails": "Vedi dettagli completi",
+  "repeatersMapReturnToLocation": "Torna alla mia posizione",
+  "profileUnlockFeatures": "Sblocca tutte le funzionalità",
+  "profileUnlockFeaturesDescription": "Registrati per utilizzare le funzioni di recensione, salvataggio preferiti e accedere a statistiche dettagliate.",
+  "profileSignUpOrLogin": "Registrati o Accedi",
+  "profileErrorOpeningEmail": "Errore durante l'apertura della mail",
+  "profileJoinTelegramCommunity": "Entra nella community Telegram",
+  "profileVersion": "Versione: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      
+    
+  },
+  "profileError": "Errore: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      
+    
+  },
+  "authJoinTitle": "Unisciti a HamQRG",
+  "authUnlockFeatures": "Accedi per sbloccare tutte le funzionalità!",
+  "authWhatYouGet": "Cosa otterrai:",
+  "authBenefitStatsTitle": "Statistiche dettagliate",
+  "authBenefitStatsDescription": "Monitora i tuoi progressi e migliora",
+  "authBenefitQuizTitle": "Diverse modalità di quiz",
+  "authBenefitQuizDescription": "Allenati in modalità maratona, topics e altro.",
+  "authBenefitSyncTitle": "Sincronizzazione",
+  "authBenefitSyncDescription": "Accedi da qualsiasi dispositivo",
+  "authOrSignInWithEmail": "Oppure accedi con email",
+  "authEnterEmail": "Inserisci l'email",
+  "authEnterPassword": "Inserisci la password",
+  "authForgotPassword": "Password dimenticata?",
+  "authSignIn": "Accedi",
+  "authSignUp": "Registrati",
+  "authPasswordLengthError": "La password deve essere più lunga",
+  "authDontHaveAccount": "Non hai un account? Registrati",
+  "authHaveAccount": "Hai già un account? Accedi",
+  "authBackToSignIn": "Torna all'accesso",
+  "authUnexpectedError": "Errore inaspettato",
+  "authValidEmailError": "Inserisci un'email valida",
+  "authSendPasswordReset": "Invia reset password",
+  "authPasswordResetSent": "Reset password inviato",
+  "authVerifyEmailMessage": "Verifica la tua email per completare la registrazione, controlla la tua casella.",
+  "authInvalidCredentials": "Email o password errati",
+  "authEmailNotConfirmed": "Verifica la tua email per accedere",
+  "authFirstName": "Nome",
+  "authFirstNameRequired": "Il nome è obbligatorio",
+  "authLastName": "Cognome",
+  "authLastNameRequired": "Il cognome è obbligatorio",
+  "authContinueAsGuest": "Continua come ospite",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Repeater Network",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Quick Access",
+  "homeRepeaterList": "Repeater List",
+  "homeMyFavorites": "My Favorites",
+  "homeNearby": "Nearby",
+  "homeViewAll": "View All",
+  "homeStations": "{count} Stations",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} Saved",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Active",
+  "homeIdle": "Idle",
+  "homeNavHome": "Home",
+  "homeNavList": "List",
+  "homeNavFavorites": "Favorites",
+  "homeNavProfile": "Profile"
+
+  "homeQuickAccess": "Quick Access",
+  "homeRepeaterList": "Repeater List",
+  "homeMyFavorites": "My Favorites",
+  "homeStations": "Stations",
+  "homeSaved": "Saved",
+  "homeNearby": "Nearby",
+  "homeViewAll": "View All",
+  "homeActive": "Active",
+  "homeIdle": "Idle",
+  "homeAway": "{distance}km away",
+  "@homeAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      
+    
+  },
+  "homeBottomNavHome": "Home",
+  "homeBottomNavList": "List",
+  "homeBottomNavFavorites": "Favorites",
+  "homeBottomNavProfile": "Profile"
+}

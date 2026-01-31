@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "it.auroradigital.hamqrg",
+      "sha256_cert_fingerprints": [
+        "10:BA:D4:49:E4:4C:4B:BA:04:18:51:E2:CF:EF:01:E6:07:36:10:CC:D8:43:3F:B7:FC:B7:57:19:9D:EE:4F:9A"
+      ]
+    }
+  }
+]

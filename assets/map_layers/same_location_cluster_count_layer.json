@@ -1,0 +1,15 @@
+{
+  "id": "repeaters-same-location-cluster-count",
+  "type": "symbol",
+  "source": "repeaters-source",
+  "filter": ["==", ["get", "is_same_location_cluster"], true],
+  "layout": {
+    "text-field": ["to-string", ["get", "point_count"]],
+    "text-font": ["DIN Pro Medium", "Arial Unicode MS Bold"],
+    "text-size": 14,
+    "text-allow-overlap": true
+  },
+  "paint": {
+    "text-color": "#FFFFFF"
+  }
+}

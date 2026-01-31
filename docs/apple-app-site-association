@@ -1,0 +1,11 @@
+{
+  "applinks": {
+      "apps": [],
+      "details": [
+      {
+        "appID": "X6QYJ2NQ5M.it.auroradigital.hamqrg",
+        "paths": ["/app-deeplink/*"]
+      }
+    ]
+  }
+}
