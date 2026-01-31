@@ -21,7 +21,6 @@ class RepeaterLocationMap extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final mapController = useState<MapboxMap?>(null);
     final pointManager = useState<PointAnnotationManager?>(null);
-    log('BUILD');
 
     useEffect(
       () {

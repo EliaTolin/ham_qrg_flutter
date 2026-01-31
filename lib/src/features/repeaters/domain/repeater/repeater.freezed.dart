@@ -18,7 +18,6 @@ mixin _$Repeater {
   DateTime get createdAt;
   DateTime get updatedAt;
   int get frequencyHz;
-  RepeaterMode get mode;
   String get source;
   String? get callsign;
   String? get name;
@@ -53,7 +52,6 @@ mixin _$Repeater {
                 other.updatedAt == updatedAt) &&
             (identical(other.frequencyHz, frequencyHz) ||
                 other.frequencyHz == frequencyHz) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
@@ -78,32 +76,30 @@ mixin _$Repeater {
   }
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        createdAt,
-        updatedAt,
-        frequencyHz,
-        mode,
-        source,
-        callsign,
-        name,
-        manager,
-        shiftHz,
-        shiftRaw,
-        region,
-        provinceCode,
-        locality,
-        locator,
-        latitude,
-        longitude,
-        distanceMeters,
-        const DeepCollectionEquality().hash(accesses)
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      createdAt,
+      updatedAt,
+      frequencyHz,
+      source,
+      callsign,
+      name,
+      manager,
+      shiftHz,
+      shiftRaw,
+      region,
+      provinceCode,
+      locality,
+      locator,
+      latitude,
+      longitude,
+      distanceMeters,
+      const DeepCollectionEquality().hash(accesses));
 
   @override
   String toString() {
-    return 'Repeater(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, latitude: $latitude, longitude: $longitude, distanceMeters: $distanceMeters, accesses: $accesses)';
+    return 'Repeater(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, latitude: $latitude, longitude: $longitude, distanceMeters: $distanceMeters, accesses: $accesses)';
   }
 }
 
@@ -117,7 +113,6 @@ abstract mixin class $RepeaterCopyWith<$Res> {
       DateTime createdAt,
       DateTime updatedAt,
       int frequencyHz,
-      RepeaterMode mode,
       String source,
       String? callsign,
       String? name,
@@ -150,7 +145,6 @@ class _$RepeaterCopyWithImpl<$Res> implements $RepeaterCopyWith<$Res> {
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? frequencyHz = null,
-    Object? mode = null,
     Object? source = null,
     Object? callsign = freezed,
     Object? name = freezed,
@@ -183,10 +177,6 @@ class _$RepeaterCopyWithImpl<$Res> implements $RepeaterCopyWith<$Res> {
           ? _self.frequencyHz
           : frequencyHz // ignore: cast_nullable_to_non_nullable
               as int,
-      mode: null == mode
-          ? _self.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as RepeaterMode,
       source: null == source
           ? _self.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -345,7 +335,6 @@ extension RepeaterPatterns on Repeater {
             DateTime createdAt,
             DateTime updatedAt,
             int frequencyHz,
-            RepeaterMode mode,
             String source,
             String? callsign,
             String? name,
@@ -371,7 +360,6 @@ extension RepeaterPatterns on Repeater {
             _that.createdAt,
             _that.updatedAt,
             _that.frequencyHz,
-            _that.mode,
             _that.source,
             _that.callsign,
             _that.name,
@@ -411,7 +399,6 @@ extension RepeaterPatterns on Repeater {
             DateTime createdAt,
             DateTime updatedAt,
             int frequencyHz,
-            RepeaterMode mode,
             String source,
             String? callsign,
             String? name,
@@ -436,7 +423,6 @@ extension RepeaterPatterns on Repeater {
             _that.createdAt,
             _that.updatedAt,
             _that.frequencyHz,
-            _that.mode,
             _that.source,
             _that.callsign,
             _that.name,
@@ -475,7 +461,6 @@ extension RepeaterPatterns on Repeater {
             DateTime createdAt,
             DateTime updatedAt,
             int frequencyHz,
-            RepeaterMode mode,
             String source,
             String? callsign,
             String? name,
@@ -500,7 +485,6 @@ extension RepeaterPatterns on Repeater {
             _that.createdAt,
             _that.updatedAt,
             _that.frequencyHz,
-            _that.mode,
             _that.source,
             _that.callsign,
             _that.name,
@@ -529,7 +513,6 @@ class _Repeater implements Repeater {
       required this.createdAt,
       required this.updatedAt,
       required this.frequencyHz,
-      required this.mode,
       required this.source,
       this.callsign,
       this.name,
@@ -554,8 +537,6 @@ class _Repeater implements Repeater {
   final DateTime updatedAt;
   @override
   final int frequencyHz;
-  @override
-  final RepeaterMode mode;
   @override
   final String source;
   @override
@@ -611,7 +592,6 @@ class _Repeater implements Repeater {
                 other.updatedAt == updatedAt) &&
             (identical(other.frequencyHz, frequencyHz) ||
                 other.frequencyHz == frequencyHz) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
@@ -636,32 +616,30 @@ class _Repeater implements Repeater {
   }
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        createdAt,
-        updatedAt,
-        frequencyHz,
-        mode,
-        source,
-        callsign,
-        name,
-        manager,
-        shiftHz,
-        shiftRaw,
-        region,
-        provinceCode,
-        locality,
-        locator,
-        latitude,
-        longitude,
-        distanceMeters,
-        const DeepCollectionEquality().hash(_accesses)
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      createdAt,
+      updatedAt,
+      frequencyHz,
+      source,
+      callsign,
+      name,
+      manager,
+      shiftHz,
+      shiftRaw,
+      region,
+      provinceCode,
+      locality,
+      locator,
+      latitude,
+      longitude,
+      distanceMeters,
+      const DeepCollectionEquality().hash(_accesses));
 
   @override
   String toString() {
-    return 'Repeater(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, latitude: $latitude, longitude: $longitude, distanceMeters: $distanceMeters, accesses: $accesses)';
+    return 'Repeater(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, latitude: $latitude, longitude: $longitude, distanceMeters: $distanceMeters, accesses: $accesses)';
   }
 }
 
@@ -677,7 +655,6 @@ abstract mixin class _$RepeaterCopyWith<$Res>
       DateTime createdAt,
       DateTime updatedAt,
       int frequencyHz,
-      RepeaterMode mode,
       String source,
       String? callsign,
       String? name,
@@ -710,7 +687,6 @@ class __$RepeaterCopyWithImpl<$Res> implements _$RepeaterCopyWith<$Res> {
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? frequencyHz = null,
-    Object? mode = null,
     Object? source = null,
     Object? callsign = freezed,
     Object? name = freezed,
@@ -743,10 +719,6 @@ class __$RepeaterCopyWithImpl<$Res> implements _$RepeaterCopyWith<$Res> {
           ? _self.frequencyHz
           : frequencyHz // ignore: cast_nullable_to_non_nullable
               as int,
-      mode: null == mode
-          ? _self.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as RepeaterMode,
       source: null == source
           ? _self.source
           : source // ignore: cast_nullable_to_non_nullable

@@ -404,7 +404,6 @@ class RepeatersMapPage extends HookConsumerWidget {
             'callsign': first.callsign,
             'locality': first.locality,
             'frequencyHz': first.frequencyHz,
-            'mode': first.mode.name,
             'latitude': first.latitude,
             'longitude': first.longitude,
             'marker_key': markerKey,

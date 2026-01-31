@@ -5,9 +5,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
-import 'package:hamqrg/l10n/app_localizations.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
-import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 class RepeaterModeHelper {
   static final Map<String, Uint8List> _iconCache = {};
@@ -17,15 +15,6 @@ class RepeaterModeHelper {
   static void clearCache() {
     _iconCache.clear();
     _clusterIconCache.clear();
-  }
-
-  /// Returns the localized label for a repeater mode
-  static String getModeLabel(RepeaterMode mode, AppLocalizations l10n) {
-    return switch (mode) {
-      RepeaterMode.analog => l10n.repeaterModeAnalog,
-      RepeaterMode.digital => 'Digital', // TO-DO: Add translation
-      RepeaterMode.mixed => 'Mixed', // TO-DO: Add translation
-    };
   }
 
   /// Generates a unique key for a combination of access modes

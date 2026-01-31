@@ -21,10 +21,7 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       frequencyHz: model.frequencyHz,
       shiftHz: model.shiftHz,
       shiftRaw: model.shiftRaw,
-      mode: RepeaterMode.values.firstWhere(
-        (e) => e.name.toLowerCase() == model.mode.toLowerCase(),
-        orElse: () => RepeaterMode.analog,
-      ),
+      
       region: model.region,
       provinceCode: model.provinceCode,
       locality: model.locality,
@@ -49,7 +46,6 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       frequencyHz: entity.frequencyHz,
       shiftHz: entity.shiftHz,
       shiftRaw: entity.shiftRaw,
-      mode: entity.mode.name,
       region: entity.region,
       provinceCode: entity.provinceCode,
       locality: entity.locality,

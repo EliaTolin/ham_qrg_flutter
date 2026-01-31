@@ -13,7 +13,6 @@ abstract class RepeaterModel with _$RepeaterModel {
     @JsonKey(name: 'created_at') required String createdAt,
     @JsonKey(name: 'updated_at') required String updatedAt,
     @JsonKey(name: 'frequency_hz') required int frequencyHz,
-    required String mode,
     required String source,
     String? callsign,
     String? name,

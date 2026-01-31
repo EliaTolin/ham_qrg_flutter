@@ -8,4 +8,5 @@ enum AccessMode {
   aprs,
   beacon,
   atv,
+  nxdn,
 }

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
-import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
-import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
@@ -130,7 +128,6 @@ class _RepeaterDetailsContent extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final repeater = state.repeater;
-    final colorMode = RepeaterAccessIcon.getPrimaryColor(repeater.accesses);
     final likesTotal = state.feedbackStats?.likesTotal ?? 0;
 
     final content = Column(
@@ -151,28 +148,6 @@ class _RepeaterDetailsContent extends StatelessWidget {
                       repeater.callsign ?? repeater.name ?? 'Unknown',
                       style: theme.textTheme.headlineLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: colorMode.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(
-                        color: colorMode.withValues(alpha: 0.3),
-                      ),
-                    ),
-                    child: Text(
-                      RepeaterModeHelper.getModeLabel(repeater.mode, l10n).toUpperCase(),
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: colorMode,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
-                        letterSpacing: 0.5,
                       ),
                     ),
                   ),

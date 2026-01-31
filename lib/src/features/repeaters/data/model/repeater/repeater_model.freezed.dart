@@ -21,7 +21,6 @@ mixin _$RepeaterModel {
   String get updatedAt;
   @JsonKey(name: 'frequency_hz')
   int get frequencyHz;
-  String get mode;
   String get source;
   String? get callsign;
   String? get name;
@@ -65,7 +64,6 @@ mixin _$RepeaterModel {
                 other.updatedAt == updatedAt) &&
             (identical(other.frequencyHz, frequencyHz) ||
                 other.frequencyHz == frequencyHz) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
@@ -89,32 +87,30 @@ mixin _$RepeaterModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        createdAt,
-        updatedAt,
-        frequencyHz,
-        mode,
-        source,
-        callsign,
-        name,
-        manager,
-        shiftHz,
-        shiftRaw,
-        region,
-        provinceCode,
-        locality,
-        locator,
-        lat,
-        lon,
-        distanceM,
-        const DeepCollectionEquality().hash(accesses)
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      createdAt,
+      updatedAt,
+      frequencyHz,
+      source,
+      callsign,
+      name,
+      manager,
+      shiftHz,
+      shiftRaw,
+      region,
+      provinceCode,
+      locality,
+      locator,
+      lat,
+      lon,
+      distanceM,
+      const DeepCollectionEquality().hash(accesses));
 
   @override
   String toString() {
-    return 'RepeaterModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, lat: $lat, lon: $lon, distanceM: $distanceM, accesses: $accesses)';
+    return 'RepeaterModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, lat: $lat, lon: $lon, distanceM: $distanceM, accesses: $accesses)';
   }
 }
 
@@ -129,7 +125,6 @@ abstract mixin class $RepeaterModelCopyWith<$Res> {
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String updatedAt,
       @JsonKey(name: 'frequency_hz') int frequencyHz,
-      String mode,
       String source,
       String? callsign,
       String? name,
@@ -164,7 +159,6 @@ class _$RepeaterModelCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? frequencyHz = null,
-    Object? mode = null,
     Object? source = null,
     Object? callsign = freezed,
     Object? name = freezed,
@@ -197,10 +191,6 @@ class _$RepeaterModelCopyWithImpl<$Res>
           ? _self.frequencyHz
           : frequencyHz // ignore: cast_nullable_to_non_nullable
               as int,
-      mode: null == mode
-          ? _self.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as String,
       source: null == source
           ? _self.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -359,7 +349,6 @@ extension RepeaterModelPatterns on RepeaterModel {
             @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'updated_at') String updatedAt,
             @JsonKey(name: 'frequency_hz') int frequencyHz,
-            String mode,
             String source,
             String? callsign,
             String? name,
@@ -386,7 +375,6 @@ extension RepeaterModelPatterns on RepeaterModel {
             _that.createdAt,
             _that.updatedAt,
             _that.frequencyHz,
-            _that.mode,
             _that.source,
             _that.callsign,
             _that.name,
@@ -426,7 +414,6 @@ extension RepeaterModelPatterns on RepeaterModel {
             @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'updated_at') String updatedAt,
             @JsonKey(name: 'frequency_hz') int frequencyHz,
-            String mode,
             String source,
             String? callsign,
             String? name,
@@ -452,7 +439,6 @@ extension RepeaterModelPatterns on RepeaterModel {
             _that.createdAt,
             _that.updatedAt,
             _that.frequencyHz,
-            _that.mode,
             _that.source,
             _that.callsign,
             _that.name,
@@ -491,7 +477,6 @@ extension RepeaterModelPatterns on RepeaterModel {
             @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'updated_at') String updatedAt,
             @JsonKey(name: 'frequency_hz') int frequencyHz,
-            String mode,
             String source,
             String? callsign,
             String? name,
@@ -517,7 +502,6 @@ extension RepeaterModelPatterns on RepeaterModel {
             _that.createdAt,
             _that.updatedAt,
             _that.frequencyHz,
-            _that.mode,
             _that.source,
             _that.callsign,
             _that.name,
@@ -546,7 +530,6 @@ class _RepeaterModel implements RepeaterModel {
       @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'updated_at') required this.updatedAt,
       @JsonKey(name: 'frequency_hz') required this.frequencyHz,
-      required this.mode,
       required this.source,
       this.callsign,
       this.name,
@@ -577,8 +560,6 @@ class _RepeaterModel implements RepeaterModel {
   @override
   @JsonKey(name: 'frequency_hz')
   final int frequencyHz;
-  @override
-  final String mode;
   @override
   final String source;
   @override
@@ -647,7 +628,6 @@ class _RepeaterModel implements RepeaterModel {
                 other.updatedAt == updatedAt) &&
             (identical(other.frequencyHz, frequencyHz) ||
                 other.frequencyHz == frequencyHz) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.callsign, callsign) ||
                 other.callsign == callsign) &&
@@ -671,32 +651,30 @@ class _RepeaterModel implements RepeaterModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        createdAt,
-        updatedAt,
-        frequencyHz,
-        mode,
-        source,
-        callsign,
-        name,
-        manager,
-        shiftHz,
-        shiftRaw,
-        region,
-        provinceCode,
-        locality,
-        locator,
-        lat,
-        lon,
-        distanceM,
-        const DeepCollectionEquality().hash(_accesses)
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      createdAt,
+      updatedAt,
+      frequencyHz,
+      source,
+      callsign,
+      name,
+      manager,
+      shiftHz,
+      shiftRaw,
+      region,
+      provinceCode,
+      locality,
+      locator,
+      lat,
+      lon,
+      distanceM,
+      const DeepCollectionEquality().hash(_accesses));
 
   @override
   String toString() {
-    return 'RepeaterModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, mode: $mode, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, lat: $lat, lon: $lon, distanceM: $distanceM, accesses: $accesses)';
+    return 'RepeaterModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, frequencyHz: $frequencyHz, source: $source, callsign: $callsign, name: $name, manager: $manager, shiftHz: $shiftHz, shiftRaw: $shiftRaw, region: $region, provinceCode: $provinceCode, locality: $locality, locator: $locator, lat: $lat, lon: $lon, distanceM: $distanceM, accesses: $accesses)';
   }
 }
 
@@ -713,7 +691,6 @@ abstract mixin class _$RepeaterModelCopyWith<$Res>
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String updatedAt,
       @JsonKey(name: 'frequency_hz') int frequencyHz,
-      String mode,
       String source,
       String? callsign,
       String? name,
@@ -748,7 +725,6 @@ class __$RepeaterModelCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? frequencyHz = null,
-    Object? mode = null,
     Object? source = null,
     Object? callsign = freezed,
     Object? name = freezed,
@@ -781,10 +757,6 @@ class __$RepeaterModelCopyWithImpl<$Res>
           ? _self.frequencyHz
           : frequencyHz // ignore: cast_nullable_to_non_nullable
               as int,
-      mode: null == mode
-          ? _self.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as String,
       source: null == source
           ? _self.source
           : source // ignore: cast_nullable_to_non_nullable

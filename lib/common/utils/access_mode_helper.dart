@@ -15,6 +15,7 @@ class AccessModeHelper {
       AccessMode.aprs => 0xFFF59E0B, // Amber
       AccessMode.beacon => 0xFF6366F1, // Indigo
       AccessMode.atv => 0xFFEF4444, // Red
+      AccessMode.nxdn => 0xFF94A3B8, // Slate
     };
   }
 
@@ -35,6 +36,7 @@ class AccessModeHelper {
       AccessMode.aprs => 'APRS',
       AccessMode.beacon => 'Beacon',
       AccessMode.atv => 'ATV',
+      AccessMode.nxdn => 'NXDN',
     };
   }
 
@@ -50,6 +52,7 @@ class AccessModeHelper {
       AccessMode.aprs => Icons.map,
       AccessMode.beacon => Icons.light,
       AccessMode.atv => Icons.tv,
+      AccessMode.nxdn => Icons.abc,
     };
   }
 }

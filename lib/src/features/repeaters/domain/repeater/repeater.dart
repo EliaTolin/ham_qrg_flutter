@@ -3,11 +3,6 @@ import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart
 
 part 'repeater.freezed.dart';
 
-enum RepeaterMode {
-  analog,
-  digital,
-  mixed,
-}
 
 @freezed
 abstract class Repeater with _$Repeater {
@@ -16,7 +11,6 @@ abstract class Repeater with _$Repeater {
     required DateTime createdAt,
     required DateTime updatedAt,
     required int frequencyHz,
-    required RepeaterMode mode,
     required String source,
     String? callsign,
     String? name,
