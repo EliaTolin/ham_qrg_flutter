@@ -46,4 +46,4 @@ final class AuthSupabaseDatasourceProvider extends $FunctionalProvider<
 }
 
 String _$authSupabaseDatasourceHash() =>
-    r'e2943e871554551e70a4066750f20847f9f3217f';
+    r'27a3cc27f09180ca0234eda8d73e2b9426d7d1a1';

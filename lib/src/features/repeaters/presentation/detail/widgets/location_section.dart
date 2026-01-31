@@ -7,10 +7,12 @@ import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeat
 class LocationSection extends StatelessWidget {
   const LocationSection({
     required this.repeater,
+    this.calculatedDistanceKm,
     super.key,
   });
 
   final Repeater repeater;
+  final double? calculatedDistanceKm;
 
   @override
   Widget build(BuildContext context) {
@@ -18,39 +20,30 @@ class LocationSection extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final distanceText = repeater.distanceMeters != null
-        ? RepeaterFormatHelper.formatDistance(repeater.distanceMeters).replaceAll(' away', '')
+    final effectiveDistanceMeters =
+        repeater.distanceMeters ?? (calculatedDistanceKm != null ? calculatedDistanceKm! * 1000 : null);
+
+    final distanceText = effectiveDistanceMeters != null
+        ? RepeaterFormatHelper.formatDistance(effectiveDistanceMeters).replaceAll(' away', '')
         : null;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.map,
-                  color: colorScheme.primary,
-                  size: 20,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  l10n.repeaterDetailLocation,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+            Icon(
+              Icons.map,
+              color: colorScheme.primary,
+              size: 20,
             ),
-            if (distanceText != null)
-              Text(
-                distanceText,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+            const SizedBox(width: 8),
+            Text(
+              l10n.repeaterDetailLocation,
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
               ),
+            ),
           ],
         ),
         const SizedBox(height: 12),
@@ -80,6 +73,42 @@ class LocationSection extends StatelessWidget {
                     ),
                   ),
                 ],
+              ],
+            ),
+          ),
+        ],
+        if (distanceText != null) ...[
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: colorScheme.surface,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: colorScheme.outline.withValues(alpha: 0.1),
+              ),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.straighten,
+                  size: 18,
+                  color: colorScheme.primary,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  l10n.repeaterDetailDistanceFromYou,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  distanceText,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ],
             ),
           ),

@@ -108,7 +108,10 @@ class _RepeaterDetailContent extends HookConsumerWidget {
               AccessModesSection(repeater: state.repeater),
               const SizedBox(height: 16),
               // Location
-              LocationSection(repeater: state.repeater),
+              LocationSection(
+                repeater: state.repeater,
+                calculatedDistanceKm: controller.getDistanceToRepeater(),
+              ),
               const SizedBox(height: 16),
               // Community Reports
               CommunityReportsSection(

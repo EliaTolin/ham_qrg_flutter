@@ -955,4 +955,14 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get profileThemeModeDark => 'Scuro';
+
+  @override
+  String get repeaterDetailBeFirstFeedback =>
+      'Sii il primo a lasciare un feedback su questo ripetitore!';
+
+  @override
+  String get repeaterDetailDistanceFromYou => 'Distanza da te';
+
+  @override
+  String get repeaterDetailNever => 'Mai';
 }

@@ -336,6 +336,7 @@ class LastActivityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -365,7 +366,7 @@ class LastActivityCard extends StatelessWidget {
               Icon(icon, size: 16, color: iconColor),
               const SizedBox(width: 4),
               Text(
-                timeAgo ?? 'Never',
+                timeAgo ?? l10n.repeaterDetailNever,
                 style: theme.textTheme.bodySmall?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),

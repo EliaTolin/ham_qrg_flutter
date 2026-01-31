@@ -97,6 +97,37 @@ class CommunityReportsSection extends HookConsumerWidget {
           ],
         ),
         const SizedBox(height: 16),
+        // Empty state CTA
+        if (state.myFeedbacks.isEmpty && communityFeedbacks.isEmpty) ...[
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: colorScheme.surface,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: colorScheme.outline.withValues(alpha: 0.1),
+              ),
+            ),
+            child: Column(
+              children: [
+                Icon(
+                  Icons.forum_outlined,
+                  size: 32,
+                  color: colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  l10n.repeaterDetailBeFirstFeedback,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
         // User's feedbacks section
         if (state.myFeedbacks.isNotEmpty) ...[
           Padding(

@@ -434,5 +434,8 @@
   "profileThemeMode": "Tema",
   "profileThemeModeSystem": "Sistema",
   "profileThemeModeLight": "Chiaro",
-  "profileThemeModeDark": "Scuro"
+  "profileThemeModeDark": "Scuro",
+  "repeaterDetailBeFirstFeedback": "Sii il primo a lasciare un feedback su questo ripetitore!",
+  "repeaterDetailDistanceFromYou": "Distanza da te",
+  "repeaterDetailNever": "Mai"
 }

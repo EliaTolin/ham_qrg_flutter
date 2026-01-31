@@ -1755,6 +1755,24 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Scuro'**
   String get profileThemeModeDark;
+
+  /// No description provided for @repeaterDetailBeFirstFeedback.
+  ///
+  /// In it, this message translates to:
+  /// **'Sii il primo a lasciare un feedback su questo ripetitore!'**
+  String get repeaterDetailBeFirstFeedback;
+
+  /// No description provided for @repeaterDetailDistanceFromYou.
+  ///
+  /// In it, this message translates to:
+  /// **'Distanza da te'**
+  String get repeaterDetailDistanceFromYou;
+
+  /// No description provided for @repeaterDetailNever.
+  ///
+  /// In it, this message translates to:
+  /// **'Mai'**
+  String get repeaterDetailNever;
 }
 
 class _AppLocalizationsDelegate

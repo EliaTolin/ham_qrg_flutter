@@ -337,7 +337,7 @@ class _RepeaterDetailsContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: SizedBox(
             width: double.infinity,
-            height: 48,
+            height: 60,
             child: FilledButton.icon(
               onPressed: () {
                 context.router.push(
