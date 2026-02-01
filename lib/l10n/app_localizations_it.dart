@@ -204,6 +204,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterModeEcholink => 'Echolink';
 
   @override
+  String get repeaterModeAllstar => 'AllStar';
+
+  @override
   String get repeaterModeWinlink => 'Winlink';
 
   @override

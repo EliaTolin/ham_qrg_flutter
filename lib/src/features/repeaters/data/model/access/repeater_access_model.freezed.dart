@@ -34,8 +34,8 @@ mixin _$RepeaterAccessModel {
   int? get dcsCode;
   @JsonKey(name: 'color_code')
   int? get colorCode;
-  @JsonKey(name: 'dmr_id')
-  int? get dmrId;
+  @JsonKey(name: 'talkgroup')
+  int? get talkgroup;
   @JsonKey(name: 'dg_id')
   int? get dgId;
   String? get notes;
@@ -75,7 +75,8 @@ mixin _$RepeaterAccessModel {
             (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
             (identical(other.colorCode, colorCode) ||
                 other.colorCode == colorCode) &&
-            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
+            (identical(other.talkgroup, talkgroup) ||
+                other.talkgroup == talkgroup) &&
             (identical(other.dgId, dgId) || other.dgId == dgId) &&
             (identical(other.notes, notes) || other.notes == notes));
   }
@@ -96,13 +97,13 @@ mixin _$RepeaterAccessModel {
       ctcssRxHz,
       dcsCode,
       colorCode,
-      dmrId,
+      talkgroup,
       dgId,
       notes);
 
   @override
   String toString() {
-    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
+    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, talkgroup: $talkgroup, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -125,7 +126,7 @@ abstract mixin class $RepeaterAccessModelCopyWith<$Res> {
       @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
       @JsonKey(name: 'dcs_code') int? dcsCode,
       @JsonKey(name: 'color_code') int? colorCode,
-      @JsonKey(name: 'dmr_id') int? dmrId,
+      @JsonKey(name: 'talkgroup') int? talkgroup,
       @JsonKey(name: 'dg_id') int? dgId,
       String? notes});
 
@@ -157,7 +158,7 @@ class _$RepeaterAccessModelCopyWithImpl<$Res>
     Object? ctcssRxHz = freezed,
     Object? dcsCode = freezed,
     Object? colorCode = freezed,
-    Object? dmrId = freezed,
+    Object? talkgroup = freezed,
     Object? dgId = freezed,
     Object? notes = freezed,
   }) {
@@ -210,9 +211,9 @@ class _$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.colorCode
           : colorCode // ignore: cast_nullable_to_non_nullable
               as int?,
-      dmrId: freezed == dmrId
-          ? _self.dmrId
-          : dmrId // ignore: cast_nullable_to_non_nullable
+      talkgroup: freezed == talkgroup
+          ? _self.talkgroup
+          : talkgroup // ignore: cast_nullable_to_non_nullable
               as int?,
       dgId: freezed == dgId
           ? _self.dgId
@@ -346,7 +347,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
             @JsonKey(name: 'dcs_code') int? dcsCode,
             @JsonKey(name: 'color_code') int? colorCode,
-            @JsonKey(name: 'dmr_id') int? dmrId,
+            @JsonKey(name: 'talkgroup') int? talkgroup,
             @JsonKey(name: 'dg_id') int? dgId,
             String? notes)?
         $default, {
@@ -368,7 +369,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             _that.ctcssRxHz,
             _that.dcsCode,
             _that.colorCode,
-            _that.dmrId,
+            _that.talkgroup,
             _that.dgId,
             _that.notes);
       case _:
@@ -404,7 +405,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
             @JsonKey(name: 'dcs_code') int? dcsCode,
             @JsonKey(name: 'color_code') int? colorCode,
-            @JsonKey(name: 'dmr_id') int? dmrId,
+            @JsonKey(name: 'talkgroup') int? talkgroup,
             @JsonKey(name: 'dg_id') int? dgId,
             String? notes)
         $default,
@@ -425,7 +426,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             _that.ctcssRxHz,
             _that.dcsCode,
             _that.colorCode,
-            _that.dmrId,
+            _that.talkgroup,
             _that.dgId,
             _that.notes);
       case _:
@@ -460,7 +461,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
             @JsonKey(name: 'dcs_code') int? dcsCode,
             @JsonKey(name: 'color_code') int? colorCode,
-            @JsonKey(name: 'dmr_id') int? dmrId,
+            @JsonKey(name: 'talkgroup') int? talkgroup,
             @JsonKey(name: 'dg_id') int? dgId,
             String? notes)?
         $default,
@@ -481,7 +482,7 @@ extension RepeaterAccessModelPatterns on RepeaterAccessModel {
             _that.ctcssRxHz,
             _that.dcsCode,
             _that.colorCode,
-            _that.dmrId,
+            _that.talkgroup,
             _that.dgId,
             _that.notes);
       case _:
@@ -506,7 +507,7 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
       @JsonKey(name: 'ctcss_rx_hz') this.ctcssRxHz,
       @JsonKey(name: 'dcs_code') this.dcsCode,
       @JsonKey(name: 'color_code') this.colorCode,
-      @JsonKey(name: 'dmr_id') this.dmrId,
+      @JsonKey(name: 'talkgroup') this.talkgroup,
       @JsonKey(name: 'dg_id') this.dgId,
       this.notes});
   factory _RepeaterAccessModel.fromJson(Map<String, dynamic> json) =>
@@ -545,8 +546,8 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
   @JsonKey(name: 'color_code')
   final int? colorCode;
   @override
-  @JsonKey(name: 'dmr_id')
-  final int? dmrId;
+  @JsonKey(name: 'talkgroup')
+  final int? talkgroup;
   @override
   @JsonKey(name: 'dg_id')
   final int? dgId;
@@ -593,7 +594,8 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
             (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
             (identical(other.colorCode, colorCode) ||
                 other.colorCode == colorCode) &&
-            (identical(other.dmrId, dmrId) || other.dmrId == dmrId) &&
+            (identical(other.talkgroup, talkgroup) ||
+                other.talkgroup == talkgroup) &&
             (identical(other.dgId, dgId) || other.dgId == dgId) &&
             (identical(other.notes, notes) || other.notes == notes));
   }
@@ -614,13 +616,13 @@ class _RepeaterAccessModel implements RepeaterAccessModel {
       ctcssRxHz,
       dcsCode,
       colorCode,
-      dmrId,
+      talkgroup,
       dgId,
       notes);
 
   @override
   String toString() {
-    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, dmrId: $dmrId, dgId: $dgId, notes: $notes)';
+    return 'RepeaterAccessModel(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, talkgroup: $talkgroup, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -645,7 +647,7 @@ abstract mixin class _$RepeaterAccessModelCopyWith<$Res>
       @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
       @JsonKey(name: 'dcs_code') int? dcsCode,
       @JsonKey(name: 'color_code') int? colorCode,
-      @JsonKey(name: 'dmr_id') int? dmrId,
+      @JsonKey(name: 'talkgroup') int? talkgroup,
       @JsonKey(name: 'dg_id') int? dgId,
       String? notes});
 
@@ -678,7 +680,7 @@ class __$RepeaterAccessModelCopyWithImpl<$Res>
     Object? ctcssRxHz = freezed,
     Object? dcsCode = freezed,
     Object? colorCode = freezed,
-    Object? dmrId = freezed,
+    Object? talkgroup = freezed,
     Object? dgId = freezed,
     Object? notes = freezed,
   }) {
@@ -731,9 +733,9 @@ class __$RepeaterAccessModelCopyWithImpl<$Res>
           ? _self.colorCode
           : colorCode // ignore: cast_nullable_to_non_nullable
               as int?,
-      dmrId: freezed == dmrId
-          ? _self.dmrId
-          : dmrId // ignore: cast_nullable_to_non_nullable
+      talkgroup: freezed == talkgroup
+          ? _self.talkgroup
+          : talkgroup // ignore: cast_nullable_to_non_nullable
               as int?,
       dgId: freezed == dgId
           ? _self.dgId

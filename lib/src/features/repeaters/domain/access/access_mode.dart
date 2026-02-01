@@ -9,4 +9,6 @@ enum AccessMode {
   beacon,
   atv,
   nxdn,
+  allstar,
+  winlink,
 }

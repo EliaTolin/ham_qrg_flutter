@@ -665,8 +665,11 @@ class FeedbackFormCard extends ConsumerWidget {
     if (access.colorCode != null) {
       parts.add('CC: ${access.colorCode}');
     }
-    if (access.dmrId != null) {
-      parts.add('ID: ${access.dmrId}');
+    if (access.talkgroup != null) {
+      final tgLabel = AccessModeHelper.getTalkgroupLabel(access.mode);
+      if (tgLabel != null) {
+        parts.add('$tgLabel: ${access.talkgroup}');
+      }
     }
     if (access.ctcssRxHz != null && access.ctcssTxHz != access.ctcssRxHz) {
       parts.add('Rx: ${access.ctcssRxHz!.toStringAsFixed(1)}Hz');

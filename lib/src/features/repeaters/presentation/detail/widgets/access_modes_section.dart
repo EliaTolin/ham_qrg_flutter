@@ -259,7 +259,7 @@ class AccessModeCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'DMR ID',
+                    AccessModeHelper.getTalkgroupLabel(access.mode)?.toUpperCase() ?? 'TALKGROUP',
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.bold,
@@ -269,7 +269,7 @@ class AccessModeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    access.dmrId?.toString() ?? '-',
+                    access.talkgroup?.toString() ?? '-',
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       fontFeatures: const [FontFeature.tabularFigures()],
@@ -289,6 +289,14 @@ class AccessModeCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     final details = <Widget>[];
+
+    // Talkgroup (shown for modes that have a talkgroup-like identifier)
+    final talkgroupLabel = AccessModeHelper.getTalkgroupLabel(access.mode);
+    if (talkgroupLabel != null && access.talkgroup != null) {
+      details.add(
+        _buildDetailRow(context, talkgroupLabel.toUpperCase(), access.talkgroup.toString()),
+      );
+    }
 
     // C4FM specific
     if (access.mode == AccessMode.c4fm && access.dgId != null) {

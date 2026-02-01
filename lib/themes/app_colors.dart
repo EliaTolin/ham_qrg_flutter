@@ -57,6 +57,7 @@ class AppColors {
   static const Color modeC4FM = Color(0xFFF97316); // orange-500
   static const Color modeAllMode = Color(0xFF6366F1); // indigo-500
   static const Color modeEcholink = Color(0xFFEC4899); // pink-500
+  static const Color modeAllStar = Color(0xFF22C55E); // green-500
   static const Color modeWinlink = Color(0xFF8B5CF6); // violet-500
 
   // Favorite/Heart Color

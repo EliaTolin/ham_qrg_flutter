@@ -460,6 +460,12 @@ abstract class AppLocalizations {
   /// **'Echolink'**
   String get repeaterModeEcholink;
 
+  /// No description provided for @repeaterModeAllstar.
+  ///
+  /// In it, this message translates to:
+  /// **'AllStar'**
+  String get repeaterModeAllstar;
+
   /// No description provided for @repeaterModeWinlink.
   ///
   /// In it, this message translates to:

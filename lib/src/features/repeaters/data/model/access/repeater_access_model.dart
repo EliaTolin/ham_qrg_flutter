@@ -19,7 +19,7 @@ abstract class RepeaterAccessModel with _$RepeaterAccessModel {
     @JsonKey(name: 'ctcss_rx_hz') double? ctcssRxHz,
     @JsonKey(name: 'dcs_code') int? dcsCode,
     @JsonKey(name: 'color_code') int? colorCode,
-    @JsonKey(name: 'dmr_id') int? dmrId,
+    @JsonKey(name: 'talkgroup') int? talkgroup,
     @JsonKey(name: 'dg_id') int? dgId,
     String? notes,
   }) = _RepeaterAccessModel;

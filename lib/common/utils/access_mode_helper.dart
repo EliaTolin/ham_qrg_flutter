@@ -16,6 +16,8 @@ class AccessModeHelper {
       AccessMode.beacon => 0xFF6366F1, // Indigo
       AccessMode.atv => 0xFFEF4444, // Red
       AccessMode.nxdn => 0xFF94A3B8, // Slate
+      AccessMode.allstar => 0xFF22C55E, // Green
+      AccessMode.winlink => 0xFF8B5CF6, // Violet
     };
   }
 
@@ -37,6 +39,8 @@ class AccessModeHelper {
       AccessMode.beacon => 'Beacon',
       AccessMode.atv => 'ATV',
       AccessMode.nxdn => 'NXDN',
+      AccessMode.allstar => 'AllStar',
+      AccessMode.winlink => 'Winlink',
     };
   }
 
@@ -53,6 +57,22 @@ class AccessModeHelper {
       AccessMode.beacon => Icons.light,
       AccessMode.atv => Icons.tv,
       AccessMode.nxdn => Icons.abc,
+      AccessMode.allstar => Icons.hub,
+      AccessMode.winlink => Icons.email,
+    };
+  }
+
+  /// Returns the label for the talkgroup field based on the access mode.
+  /// Returns null if the mode does not use a talkgroup-like identifier.
+  static String? getTalkgroupLabel(AccessMode mode) {
+    return switch (mode) {
+      AccessMode.dmr => 'Talkgroup',
+      AccessMode.echolink => 'Node',
+      AccessMode.c4fm => 'Room',
+      AccessMode.allstar => 'Node',
+      AccessMode.dstar => 'Reflector',
+      AccessMode.svx => 'Node',
+      _ => null,
     };
   }
 }

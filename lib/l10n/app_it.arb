@@ -74,6 +74,7 @@
   "repeaterModeDmr": "DMR",
   "repeaterModeAllmode": "Tutti i modi",
   "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
   "repeaterModeWinlink": "Winlink",
   "repeaterFrequency": "Frequenza",
   "repeaterShift": "Shift",
