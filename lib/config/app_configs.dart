@@ -60,6 +60,10 @@ class AppConfigs {
     return 'pk.eyJ1IjoiZWxpYXRvbGluIiwiYSI6ImNtOTh3aWRweTA3ZTMybHNic3NoeGI1dmcifQ.e4bCIdcgXs0iddLhEbhhiA';
   }
 
+  static String getOneSignalAppId() {
+    return 'b25acb1c-1194-4f0d-8d7a-346e6deb747b';
+  }
+
   /// Distance in kilometers beyond which a confirmation dialog is shown.
   static double get feedbackDistanceWarningKm => 100;
 

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/src/app.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 
@@ -28,6 +29,14 @@ Future<void> main() async {
   );
 
   MapboxOptions.setAccessToken(AppConfigs.getMapboxAccessToken());
+
+  // Enable verbose logging for debugging (remove in production)
+  await OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  // Initialize with your OneSignal App ID
+  OneSignal.initialize(AppConfigs.getOneSignalAppId());
+  // Use this method to prompt for push notifications.
+  // We recommend removing this method after testing and instead use In-App Messages to prompt for notification permission.
+  await OneSignal.Notifications.requestPermission(false);
 
   await SentryFlutter.init(
     (options) {
