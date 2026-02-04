@@ -340,11 +340,11 @@
   "repeaterDetailSendLike": "Invia Like",
   "repeaterDetailReportIssue": "Segnala Problema",
   "repeaterDetailRecentActivity": "Attività recente",
-  "reportIssueTitle": "Segnala Problema",
+  "reportIssueTitle": "Segnalazione",
   "reportIssueHeadline": "Aiutaci a mantenere i dati accurati",
-  "reportIssueDescription": "Hai trovato qualcosa di sbagliato in questo ripetitore? Facci sapere cosa deve essere modificato e lo verificheremo.",
-  "reportIssueWhatToCorrect": "Cosa vorresti correggere?",
-  "reportIssuePlaceholder": "Es. Il tono CTCSS è cambiato a 88.5Hz, o la posizione è leggermente più a nord...",
+  "reportIssueDescription": "Hai trovato qualcosa di sbagliato o mancante in questo ripetitore? Facci sapere cosa deve essere modificato e lo verificheremo.",
+  "reportIssueWhatToCorrect": "Cosa vorresti correggere o inserire?",
+  "reportIssuePlaceholder": "Es. Il tono CTCSS è cambiato a 88.5Hz, o la posizione è leggermente più a nord, il gestore è...",
   "reportIssueVerifiedTitle": "Invii Verificati",
   "reportIssueVerifiedDescription": "La tua segnalazione sarà revisionata dal coordinatore regionale prima che il database pubblico venga aggiornato. Grazie per il tuo contributo alla community.",
   "reportIssueConfirmCheckbox": "Confermo che queste informazioni sono corrette in base alla mia osservazione.",
@@ -441,5 +441,6 @@
   "repeaterDetailNever": "Mai",
   "repeaterDetailInfo": "Informazioni",
   "repeaterDetailSource": "Fonte",
-  "repeaterDetailManager": "Gestore"
+  "repeaterDetailManager": "Gestore",
+  "repeaterDetailSuggestManager": "Conosci il gestore? Segnalalo!"
 }

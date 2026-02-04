@@ -1441,7 +1441,7 @@ abstract class AppLocalizations {
   /// No description provided for @reportIssueTitle.
   ///
   /// In it, this message translates to:
-  /// **'Segnala Problema'**
+  /// **'Segnalazione'**
   String get reportIssueTitle;
 
   /// No description provided for @reportIssueHeadline.
@@ -1453,19 +1453,19 @@ abstract class AppLocalizations {
   /// No description provided for @reportIssueDescription.
   ///
   /// In it, this message translates to:
-  /// **'Hai trovato qualcosa di sbagliato in questo ripetitore? Facci sapere cosa deve essere modificato e lo verificheremo.'**
+  /// **'Hai trovato qualcosa di sbagliato o mancante in questo ripetitore? Facci sapere cosa deve essere modificato e lo verificheremo.'**
   String get reportIssueDescription;
 
   /// No description provided for @reportIssueWhatToCorrect.
   ///
   /// In it, this message translates to:
-  /// **'Cosa vorresti correggere?'**
+  /// **'Cosa vorresti correggere o inserire?'**
   String get reportIssueWhatToCorrect;
 
   /// No description provided for @reportIssuePlaceholder.
   ///
   /// In it, this message translates to:
-  /// **'Es. Il tono CTCSS è cambiato a 88.5Hz, o la posizione è leggermente più a nord...'**
+  /// **'Es. Il tono CTCSS è cambiato a 88.5Hz, o la posizione è leggermente più a nord, il gestore è...'**
   String get reportIssuePlaceholder;
 
   /// No description provided for @reportIssueVerifiedTitle.
@@ -1797,6 +1797,12 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Gestore'**
   String get repeaterDetailManager;
+
+  /// No description provided for @repeaterDetailSuggestManager.
+  ///
+  /// In it, this message translates to:
+  /// **'Conosci il gestore? Segnalalo!'**
+  String get repeaterDetailSuggestManager;
 }
 
 class _AppLocalizationsDelegate

@@ -736,21 +736,21 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterDetailRecentActivity => 'Attività recente';
 
   @override
-  String get reportIssueTitle => 'Segnala Problema';
+  String get reportIssueTitle => 'Segnalazione';
 
   @override
   String get reportIssueHeadline => 'Aiutaci a mantenere i dati accurati';
 
   @override
   String get reportIssueDescription =>
-      'Hai trovato qualcosa di sbagliato in questo ripetitore? Facci sapere cosa deve essere modificato e lo verificheremo.';
+      'Hai trovato qualcosa di sbagliato o mancante in questo ripetitore? Facci sapere cosa deve essere modificato e lo verificheremo.';
 
   @override
-  String get reportIssueWhatToCorrect => 'Cosa vorresti correggere?';
+  String get reportIssueWhatToCorrect => 'Cosa vorresti correggere o inserire?';
 
   @override
   String get reportIssuePlaceholder =>
-      'Es. Il tono CTCSS è cambiato a 88.5Hz, o la posizione è leggermente più a nord...';
+      'Es. Il tono CTCSS è cambiato a 88.5Hz, o la posizione è leggermente più a nord, il gestore è...';
 
   @override
   String get reportIssueVerifiedTitle => 'Invii Verificati';
@@ -977,4 +977,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get repeaterDetailManager => 'Gestore';
+
+  @override
+  String get repeaterDetailSuggestManager => 'Conosci il gestore? Segnalalo!';
 }
