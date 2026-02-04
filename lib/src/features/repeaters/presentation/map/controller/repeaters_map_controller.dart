@@ -97,34 +97,42 @@ class RepeatersMapController extends _$RepeatersMapController {
     final currentState = state.value;
     final modesToFilter = selectedModes ?? currentState?.selectedModes.toList();
 
-    state = await AsyncValue.guard(() async {
-      try {
-        final repeaters = await _fetchRepeatersFromBounds(
-          lat1: lat1,
-          lon1: lon1,
-          lat2: lat2,
-          lon2: lon2,
-          accessModes: modesToFilter,
-        );
+    try {
+      final repeaters = await _fetchRepeatersFromBounds(
+        lat1: lat1,
+        lon1: lon1,
+        lat2: lat2,
+        lon2: lon2,
+        accessModes: modesToFilter,
+      );
 
-        return RepeatersMapState(
+      state = AsyncData(
+        RepeatersMapState(
           repeaters: repeaters,
           latitude: currentState?.latitude,
           longitude: currentState?.longitude,
           selectedModes: modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
           selectedRepeater: currentState?.selectedRepeater,
-        );
-      } on LocationException catch (error) {
-        return RepeatersMapState(
+        ),
+      );
+    } on LocationException catch (error) {
+      state = AsyncData(
+        RepeatersMapState(
           locationError: error.type,
           repeaters: currentState?.repeaters ?? const [],
           latitude: currentState?.latitude,
           longitude: currentState?.longitude,
           selectedModes: currentState?.selectedModes ?? (modesToFilter?.toSet() ?? {}),
           selectedRepeater: currentState?.selectedRepeater,
-        );
-      }
-    });
+        ),
+      );
+    } catch (_) {
+      state = AsyncData(
+        (currentState ?? const RepeatersMapState()).copyWith(
+          hasLoadError: true,
+        ),
+      );
+    }
   }
 
   /// Load initial repeaters, trying to get user location first

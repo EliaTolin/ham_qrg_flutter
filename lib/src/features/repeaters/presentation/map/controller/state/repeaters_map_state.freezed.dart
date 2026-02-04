@@ -18,6 +18,7 @@ mixin _$RepeatersMapState {
   double? get latitude;
   double? get longitude;
   LocationErrorType? get locationError;
+  bool get hasLoadError;
   Set<AccessMode> get selectedModes;
   Repeater? get selectedRepeater;
 
@@ -41,6 +42,8 @@ mixin _$RepeatersMapState {
                 other.longitude == longitude) &&
             (identical(other.locationError, locationError) ||
                 other.locationError == locationError) &&
+            (identical(other.hasLoadError, hasLoadError) ||
+                other.hasLoadError == hasLoadError) &&
             const DeepCollectionEquality()
                 .equals(other.selectedModes, selectedModes) &&
             (identical(other.selectedRepeater, selectedRepeater) ||
@@ -54,12 +57,13 @@ mixin _$RepeatersMapState {
       latitude,
       longitude,
       locationError,
+      hasLoadError,
       const DeepCollectionEquality().hash(selectedModes),
       selectedRepeater);
 
   @override
   String toString() {
-    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater)';
+    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater)';
   }
 }
 
@@ -74,6 +78,7 @@ abstract mixin class $RepeatersMapStateCopyWith<$Res> {
       double? latitude,
       double? longitude,
       LocationErrorType? locationError,
+      bool hasLoadError,
       Set<AccessMode> selectedModes,
       Repeater? selectedRepeater});
 
@@ -97,6 +102,7 @@ class _$RepeatersMapStateCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? locationError = freezed,
+    Object? hasLoadError = null,
     Object? selectedModes = null,
     Object? selectedRepeater = freezed,
   }) {
@@ -117,6 +123,10 @@ class _$RepeatersMapStateCopyWithImpl<$Res>
           ? _self.locationError
           : locationError // ignore: cast_nullable_to_non_nullable
               as LocationErrorType?,
+      hasLoadError: null == hasLoadError
+          ? _self.hasLoadError
+          : hasLoadError // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectedModes: null == selectedModes
           ? _self.selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable
@@ -241,6 +251,7 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             double? latitude,
             double? longitude,
             LocationErrorType? locationError,
+            bool hasLoadError,
             Set<AccessMode> selectedModes,
             Repeater? selectedRepeater)?
         $default, {
@@ -249,8 +260,14 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
     final _that = this;
     switch (_that) {
       case _RepeatersMapState() when $default != null:
-        return $default(_that.repeaters, _that.latitude, _that.longitude,
-            _that.locationError, _that.selectedModes, _that.selectedRepeater);
+        return $default(
+            _that.repeaters,
+            _that.latitude,
+            _that.longitude,
+            _that.locationError,
+            _that.hasLoadError,
+            _that.selectedModes,
+            _that.selectedRepeater);
       case _:
         return orElse();
     }
@@ -276,6 +293,7 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             double? latitude,
             double? longitude,
             LocationErrorType? locationError,
+            bool hasLoadError,
             Set<AccessMode> selectedModes,
             Repeater? selectedRepeater)
         $default,
@@ -283,8 +301,14 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
     final _that = this;
     switch (_that) {
       case _RepeatersMapState():
-        return $default(_that.repeaters, _that.latitude, _that.longitude,
-            _that.locationError, _that.selectedModes, _that.selectedRepeater);
+        return $default(
+            _that.repeaters,
+            _that.latitude,
+            _that.longitude,
+            _that.locationError,
+            _that.hasLoadError,
+            _that.selectedModes,
+            _that.selectedRepeater);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -309,6 +333,7 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             double? latitude,
             double? longitude,
             LocationErrorType? locationError,
+            bool hasLoadError,
             Set<AccessMode> selectedModes,
             Repeater? selectedRepeater)?
         $default,
@@ -316,8 +341,14 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
     final _that = this;
     switch (_that) {
       case _RepeatersMapState() when $default != null:
-        return $default(_that.repeaters, _that.latitude, _that.longitude,
-            _that.locationError, _that.selectedModes, _that.selectedRepeater);
+        return $default(
+            _that.repeaters,
+            _that.latitude,
+            _that.longitude,
+            _that.locationError,
+            _that.hasLoadError,
+            _that.selectedModes,
+            _that.selectedRepeater);
       case _:
         return null;
     }
@@ -332,6 +363,7 @@ class _RepeatersMapState implements RepeatersMapState {
       this.latitude,
       this.longitude,
       this.locationError,
+      this.hasLoadError = false,
       final Set<AccessMode> selectedModes = const <AccessMode>{},
       this.selectedRepeater})
       : _repeaters = repeaters,
@@ -352,6 +384,9 @@ class _RepeatersMapState implements RepeatersMapState {
   final double? longitude;
   @override
   final LocationErrorType? locationError;
+  @override
+  @JsonKey()
+  final bool hasLoadError;
   final Set<AccessMode> _selectedModes;
   @override
   @JsonKey()
@@ -385,6 +420,8 @@ class _RepeatersMapState implements RepeatersMapState {
                 other.longitude == longitude) &&
             (identical(other.locationError, locationError) ||
                 other.locationError == locationError) &&
+            (identical(other.hasLoadError, hasLoadError) ||
+                other.hasLoadError == hasLoadError) &&
             const DeepCollectionEquality()
                 .equals(other._selectedModes, _selectedModes) &&
             (identical(other.selectedRepeater, selectedRepeater) ||
@@ -398,12 +435,13 @@ class _RepeatersMapState implements RepeatersMapState {
       latitude,
       longitude,
       locationError,
+      hasLoadError,
       const DeepCollectionEquality().hash(_selectedModes),
       selectedRepeater);
 
   @override
   String toString() {
-    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater)';
+    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater)';
   }
 }
 
@@ -420,6 +458,7 @@ abstract mixin class _$RepeatersMapStateCopyWith<$Res>
       double? latitude,
       double? longitude,
       LocationErrorType? locationError,
+      bool hasLoadError,
       Set<AccessMode> selectedModes,
       Repeater? selectedRepeater});
 
@@ -444,6 +483,7 @@ class __$RepeatersMapStateCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? locationError = freezed,
+    Object? hasLoadError = null,
     Object? selectedModes = null,
     Object? selectedRepeater = freezed,
   }) {
@@ -464,6 +504,10 @@ class __$RepeatersMapStateCopyWithImpl<$Res>
           ? _self.locationError
           : locationError // ignore: cast_nullable_to_non_nullable
               as LocationErrorType?,
+      hasLoadError: null == hasLoadError
+          ? _self.hasLoadError
+          : hasLoadError // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectedModes: null == selectedModes
           ? _self._selectedModes
           : selectedModes // ignore: cast_nullable_to_non_nullable

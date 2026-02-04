@@ -12,6 +12,7 @@ abstract class RepeatersMapState with _$RepeatersMapState {
     double? latitude,
     double? longitude,
     LocationErrorType? locationError,
+    @Default(false) bool hasLoadError,
     @Default(<AccessMode>{}) Set<AccessMode> selectedModes,
     Repeater? selectedRepeater,
   }) = _RepeatersMapState;

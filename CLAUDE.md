@@ -51,10 +51,43 @@ lib/src/features/[feature]/
 
 ### Key Patterns
 
-**State Management**: Riverpod with annotations
+**State Management**: Riverpod 3.x with annotations (`riverpod_annotation: ^4.0`)
 - Controllers extend `_$[PageName]Controller` (generated)
-- Use `AsyncValue.guard()` for error/loading handling
+- Use `AsyncValue.guard()` for initial loads and simple operations
 - Each page has its own controller and state (no sharing)
+
+**Error handling in AsyncNotifier (Riverpod best practices)**:
+- **Initial load** (`build()`): Let exceptions propagate — Riverpod sets `AsyncError` automatically.
+- **Mutations/refreshes** (methods that update data while the page is visible):
+  - NEVER let the state go to `AsyncError` if the page must remain usable (e.g., map, lists with data).
+  - Catch errors inside try/catch, keep `AsyncData` with previous data, and set an error flag in the `@freezed` state (e.g., `hasLoadError`, same pattern as `locationError`).
+  - Clear the error flag on the next successful load.
+  - NEVER use `AsyncValue.copyWithPrevious` — it is `@internal` in Riverpod 3.x.
+  - NEVER wrap `AsyncValue.guard()` around code that already has try/catch — pick one.
+- **In the UI**: use the state error flag (e.g., `mapState?.hasLoadError ?? false`) to show a retry banner, NOT `asyncState.hasError`.
+- **After modifying `@freezed` state classes**: ALWAYS run `dart run build_runner build --delete-conflicting-outputs` before analyzing.
+
+```dart
+// GOOD: mutation preserves state on error
+Future<void> loadData() async {
+  final currentState = state.value;
+  try {
+    final result = await _fetch();
+    state = AsyncData(MyState(data: result));
+  } catch (_) {
+    state = AsyncData(
+      (currentState ?? const MyState()).copyWith(hasLoadError: true),
+    );
+  }
+}
+
+// BAD: mutation wipes the page
+Future<void> loadData() async {
+  state = await AsyncValue.guard(() async {
+    return MyState(data: await _fetch()); // error → AsyncError → page gone
+  });
+}
+```
 
 **Data Flow**: Datasource → Repository → Provider → Controller → Page
 - Datasources return Models (DTOs)

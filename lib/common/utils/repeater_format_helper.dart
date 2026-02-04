@@ -98,18 +98,40 @@ class RepeaterFormatHelper {
 
   /// Formats a shift in hertz to a human-readable string.
   ///
-  /// Returns a string representation with one decimal place and the "kHz" suffix,
-  /// for example: 1000 -> "1.0 kHz". If [shiftHz] is null, returns "-".
+  /// Examples:
+  /// - 7600000 -> "7.6 MHz"
+  /// - 600000 -> "600.0 kHz"
+  /// - 500 -> "500 Hz"
+  /// - null -> "-"
   static String formatShift(int? shiftHz, String? shiftRaw) {
-    if (shiftRaw != null && shiftRaw.isNotEmpty) {
-      return shiftRaw;
-    }
     if (shiftHz != null) {
-      if (shiftHz >= 1000) {
+      final abs = shiftHz.abs();
+      if (abs >= 1000000) {
+        return '${(shiftHz / 1000000).toStringAsFixed(1)} MHz';
+      }
+      if (abs >= 1000) {
         return '${(shiftHz / 1000).toStringAsFixed(1)} kHz';
       }
       return '$shiftHz Hz';
     }
+    if (shiftRaw != null && shiftRaw.isNotEmpty) {
+      return _stripTrailingZeros(shiftRaw);
+    }
     return '-';
+  }
+
+  /// Strips trailing zeros from decimal numbers in a string.
+  ///
+  /// Examples:
+  /// - "1.600000" -> "1.6"
+  /// - "-7.6000" -> "-7.6"
+  /// - "+1.0" -> "+1.0" (keeps at least one decimal)
+  /// - "600" -> "600" (no decimal, unchanged)
+  /// - "1.00" -> "1.0"
+  static String _stripTrailingZeros(String value) {
+    return value.replaceFirstMapped(
+      RegExp(r'(\.\d+?)0+(\s|$)'),
+      (m) => '${m[1]}${m[2]}',
+    );
   }
 }

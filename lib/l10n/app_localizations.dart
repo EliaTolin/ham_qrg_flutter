@@ -1779,6 +1779,24 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Mai'**
   String get repeaterDetailNever;
+
+  /// No description provided for @repeaterDetailInfo.
+  ///
+  /// In it, this message translates to:
+  /// **'Informazioni'**
+  String get repeaterDetailInfo;
+
+  /// No description provided for @repeaterDetailSource.
+  ///
+  /// In it, this message translates to:
+  /// **'Fonte'**
+  String get repeaterDetailSource;
+
+  /// No description provided for @repeaterDetailManager.
+  ///
+  /// In it, this message translates to:
+  /// **'Gestore'**
+  String get repeaterDetailManager;
 }
 
 class _AppLocalizationsDelegate

@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/health_score_helper.dart';
 import 'package:hamqrg/common/utils/time_helper.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 
@@ -21,7 +22,8 @@ class PerformanceMetricsSection extends StatelessWidget {
 
     final likesTotal = stats?.likesTotal ?? 0;
     final downTotal = stats?.downTotal ?? 0;
-    final healthScore = _calculateHealthScore(likesTotal, downTotal);
+    final healthScore =
+        HealthScoreHelper.calculateHealthScore(likesTotal, downTotal);
     final status = _healthStatus(healthScore, context);
     final lastLikeAt = stats?.lastLikeAt;
     final lastDownAt = stats?.lastDownAt;
@@ -162,13 +164,6 @@ class PerformanceMetricsSection extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  int _calculateHealthScore(int likes, int downs) {
-    if (likes + downs == 0) return 100;
-    final total = likes + downs;
-    final score = ((likes / total) * 100).round();
-    return math.max(0, math.min(100, score));
   }
 
   static ({String label, Color color}) _healthStatus(

@@ -65,8 +65,8 @@ class AccessModeCard extends StatelessWidget {
     final accessLabel = AccessModeHelper.getAccessModeLabel(access.mode);
     final accessIcon = AccessModeHelper.getAccessModeIcon(access.mode);
 
-    final isAnalog = access.mode == AccessMode.analog;
     final isDmr = access.mode == AccessMode.dmr;
+    final isAnalog = access.mode == AccessMode.analog;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -74,7 +74,7 @@ class AccessModeCard extends StatelessWidget {
         color: colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.1),
+          color: accessColor.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -90,20 +90,16 @@ class AccessModeCard extends StatelessWidget {
                   vertical: 4,
                 ),
                 decoration: BoxDecoration(
-                  color: isAnalog
-                      ? colorScheme.surfaceContainerHighest
-                      : accessColor.withValues(alpha: 0.1),
+                  color: accessColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(4),
                   border: Border.all(
-                    color: isAnalog
-                        ? colorScheme.outline.withValues(alpha: 0.2)
-                        : accessColor.withValues(alpha: 0.2),
+                    color: accessColor.withValues(alpha: 0.2),
                   ),
                 ),
                 child: Text(
                   accessLabel.toUpperCase(),
                   style: theme.textTheme.labelSmall?.copyWith(
-                    color: isAnalog ? colorScheme.onSurfaceVariant : accessColor,
+                    color: accessColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 10,
                     letterSpacing: 0.5,
@@ -112,9 +108,7 @@ class AccessModeCard extends StatelessWidget {
               ),
               Icon(
                 accessIcon,
-                color: isAnalog
-                    ? colorScheme.outline.withValues(alpha: 0.5)
-                    : accessColor.withValues(alpha: 0.5),
+                color: accessColor.withValues(alpha: 0.5),
                 size: 20,
               ),
             ],

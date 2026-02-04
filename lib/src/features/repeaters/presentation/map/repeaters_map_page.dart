@@ -31,6 +31,9 @@ const double _initialZoom = 8;
 /// Debounce delay for camera changes (milliseconds)
 const int _cameraDebounceMs = 500;
 
+/// Minimum zoom level (prevents zooming out beyond a region)
+const double _minZoom = 6;
+
 /// Zoom increment when clicking on a cluster
 const double _clusterZoomIncrement = 1.5;
 
@@ -71,12 +74,6 @@ class RepeatersMapPage extends HookConsumerWidget {
     if (asyncState.isLoading) {
       return const Center(
         child: CircularProgressIndicator.adaptive(),
-      );
-    }
-
-    if (asyncState.hasError) {
-      return Center(
-        child: Text(asyncState.error.toString()),
       );
     }
 
@@ -201,6 +198,7 @@ class RepeatersMapPage extends HookConsumerWidget {
           showAccuracyRing: true,
         ),
       ),
+      mapboxMap.setBounds(CameraBoundsOptions(minZoom: _minZoom)),
     ]);
 
     // If we have user location, center map on it
@@ -750,7 +748,7 @@ class RepeatersMapPage extends HookConsumerWidget {
               ),
             ),
           ),
-        if (asyncState.hasError && mapState?.locationError == null)
+        if (mapState?.hasLoadError ?? false)
           Positioned(
             top: 50,
             left: 16,
@@ -759,10 +757,21 @@ class RepeatersMapPage extends HookConsumerWidget {
               child: InfoBanner(
                 icon: const Icon(Icons.warning_amber_rounded),
                 label: context.localization.repeatersMapGenericError,
+                trailing: TextButton(
+                  onPressed: () async {
+                    if (mapController != null) {
+                      await _loadRepeatersForVisibleBounds(ref, mapController);
+                    }
+                  },
+                  child: Text(context.localization.repeatersMapRetry),
+                ),
               ),
             ),
           ),
-        if (!asyncState.isLoading && (mapState?.repeaters.isEmpty ?? false))
+        if (!asyncState.isLoading &&
+            !(mapState?.hasLoadError ?? false) &&
+            mapState?.locationError == null &&
+            (mapState?.repeaters.isEmpty ?? false))
           Positioned(
             top: 50,
             left: 16,
@@ -775,7 +784,9 @@ class RepeatersMapPage extends HookConsumerWidget {
             ),
           ),
         // Summary chip
-        if (mapState?.repeaters.isNotEmpty ?? false)
+        if (!(mapState?.hasLoadError ?? false) &&
+            mapState?.locationError == null &&
+            (mapState?.repeaters.isNotEmpty ?? false))
           Positioned(
             top: 50,
             left: 16,

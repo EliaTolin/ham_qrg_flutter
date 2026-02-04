@@ -6,6 +6,7 @@ import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/rep
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/community_reports_section.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/info_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/location_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/performance_metrics_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_detail_action_buttons.dart';
@@ -108,6 +109,9 @@ class _RepeaterDetailContent extends HookConsumerWidget {
                   const SizedBox(height: 16),
                   // Access Modes
                   AccessModesSection(repeater: state.repeater),
+                  const SizedBox(height: 16),
+                  // Info
+                  InfoSection(repeater: state.repeater),
                   const SizedBox(height: 16),
                   // Location
                   LocationSection(

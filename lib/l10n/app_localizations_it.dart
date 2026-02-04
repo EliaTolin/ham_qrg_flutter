@@ -968,4 +968,13 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get repeaterDetailNever => 'Mai';
+
+  @override
+  String get repeaterDetailInfo => 'Informazioni';
+
+  @override
+  String get repeaterDetailSource => 'Fonte';
+
+  @override
+  String get repeaterDetailManager => 'Gestore';
 }
