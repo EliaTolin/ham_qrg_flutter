@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
 
@@ -142,7 +144,11 @@ class RepeaterListItem extends StatelessWidget {
   }
 
   void _showRepeaterDetails(BuildContext context, Repeater repeater) {
-    showRepeaterDetailsSheet(context, repeater.id);
+    context.router.push(
+      RepeaterDetailRoute(
+        repeaterId: repeater.id,
+      ),
+    );
   }
 }
 

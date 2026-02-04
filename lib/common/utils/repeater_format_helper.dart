@@ -1,3 +1,6 @@
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 /// Helper class for formatting repeater-related data
@@ -10,11 +13,12 @@ class RepeaterFormatHelper {
 
     // Callsign/Name
     final name = repeater.callsign ?? repeater.name ?? 'Repeater';
-    buffer.writeln(name);
+    buffer.writeln('📡 $name');
 
-    // Frequency
+    // Frequency & Shift
     final frequency = formatFrequency(repeater.frequencyHz);
-    buffer.writeln(frequency);
+    final shift = formatShift(repeater.shiftHz, repeater.shiftRaw);
+    buffer.writeln('📻 $frequency | Shift: $shift');
 
     // Location if available
     final location = [repeater.locality, repeater.region]
@@ -22,7 +26,12 @@ class RepeaterFormatHelper {
         .where((s) => s.isNotEmpty)
         .join(', ');
     if (location.isNotEmpty) {
-      buffer.writeln(location);
+      buffer.writeln('📍 $location');
+    }
+
+    // Access modes
+    for (final access in repeater.accesses) {
+      buffer.writeln('⚙️ ${_formatAccessSummary(access)}');
     }
 
     // App message
@@ -31,6 +40,45 @@ class RepeaterFormatHelper {
       ..write(appMessage);
 
     return buffer.toString();
+  }
+
+  /// Formats a single access mode into a compact summary line.
+  static String _formatAccessSummary(RepeaterAccess access) {
+    final label = AccessModeHelper.getAccessModeLabel(access.mode);
+    final parts = <String>[label];
+
+    if (access.mode == AccessMode.analog) {
+      if (access.ctcssTxHz != null) {
+        parts.add('CTCSS Tx: ${access.ctcssTxHz!.toStringAsFixed(1)} Hz');
+      }
+      if (access.ctcssRxHz != null) {
+        parts.add('CTCSS Rx: ${access.ctcssRxHz!.toStringAsFixed(1)} Hz');
+      }
+      if (access.dcsCode != null) {
+        parts.add('DCS: ${access.dcsCode}');
+      }
+    } else if (access.mode == AccessMode.dmr) {
+      if (access.colorCode != null) {
+        parts.add('CC: ${access.colorCode}');
+      }
+      if (access.talkgroup != null) {
+        parts.add('TG: ${access.talkgroup}');
+      }
+    } else {
+      final tgLabel = AccessModeHelper.getTalkgroupLabel(access.mode);
+      if (tgLabel != null && access.talkgroup != null) {
+        parts.add('$tgLabel: ${access.talkgroup}');
+      }
+      if (access.dgId != null) {
+        parts.add('DG-ID: ${access.dgId}');
+      }
+    }
+
+    if (access.network != null) {
+      parts.add('Rete: ${access.network!.name}');
+    }
+
+    return parts.join(' — ');
   }
 
   /// Formats frequency in Hz to a human-readable string
