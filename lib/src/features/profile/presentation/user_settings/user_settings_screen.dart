@@ -80,7 +80,7 @@ class UserSettingsScreen extends HookConsumerWidget {
                           Stack(
                             children: [
                               ProfileAvatar(
-                                imageProfileUrl: state.imageProfileUrl,
+                                imageProfileUrl: state.imageProfilePath,
                                 size: 140,
                               ),
                               Positioned(
@@ -258,13 +258,10 @@ class UserSettingsScreen extends HookConsumerWidget {
                           ),
                         ],
                         selected: {
-                          ref.watch(themeModeProvider).value ??
-                              ThemeMode.system,
+                          ref.watch(themeModeProvider).value ?? ThemeMode.system,
                         },
                         onSelectionChanged: (selected) {
-                          ref
-                              .read(themeModeProvider.notifier)
-                              .setThemeMode(selected.first);
+                          ref.read(themeModeProvider.notifier).setThemeMode(selected.first);
                         },
                       ),
                     ),

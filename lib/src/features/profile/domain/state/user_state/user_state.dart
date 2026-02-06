@@ -8,7 +8,7 @@ abstract class UserState with _$UserState {
   factory UserState({
     required Profile profile,
     required String? email,
-    required String? imageProfileUrl,
+    required String? imageProfilePath,
     required bool isAnonymous,
   }) = _UserState;
 }

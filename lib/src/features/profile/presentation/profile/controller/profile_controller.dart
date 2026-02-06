@@ -19,15 +19,15 @@ class ProfileController extends _$ProfileController {
     state = const AsyncLoading();
     try {
       final profile = await ref.read(getProfileProvider.future);
-      String? imageUrl;
+      String? imagePath;
       if (profile.propic != null) {
-        imageUrl = await ref.read(getImageProfileProvider(profile.propic!).future);
+        imagePath = await ref.read(getImageProfileProvider(profile.propic!).future);
       }
       final isAnonymous = await ref.read(isAnonymousProvider.future);
       final email = await ref.read(getEmailProfileProvider.future);
       return UserState(
         profile: profile,
-        imageProfileUrl: imageUrl,
+        imageProfilePath: imagePath,
         email: email,
         isAnonymous: isAnonymous,
       );

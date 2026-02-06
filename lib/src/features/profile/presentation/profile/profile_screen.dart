@@ -42,7 +42,7 @@ class ProfileScreen extends HookConsumerWidget {
                       children: [
                         // Avatar
                         ProfileAvatar(
-                          imageProfileUrl: state.imageProfileUrl,
+                          imageProfileUrl: state.imageProfilePath,
                           size: 160,
                         ),
                         const Gap(20),

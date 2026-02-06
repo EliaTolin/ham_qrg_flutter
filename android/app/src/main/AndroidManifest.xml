@@ -18,7 +18,7 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="http" android:host="quizradiomatori.it"/>
+        <data android:scheme="http" android:host="hamqrg.com"/>
         <data android:scheme="https"/>
       </intent-filter>
     </activity>
@@ -27,6 +27,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+    <meta-data
+        android:name="com.onesignal.NotificationDefaultSmallIcon"
+        android:resource="@drawable/ic_stat_onesignal_default" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

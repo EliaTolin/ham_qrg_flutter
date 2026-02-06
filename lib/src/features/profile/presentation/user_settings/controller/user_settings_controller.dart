@@ -26,15 +26,15 @@ class UserSettingsController extends _$UserSettingsController {
 
   Future<UserState> getProfile(Profile profile) async {
     state = const AsyncLoading();
-    String? imageUrl;
+    String? imagePath;
     if (profile.propic != null) {
-      imageUrl = await ref.read(getImageProfileProvider(profile.propic!).future);
+      imagePath = await ref.read(getImageProfileProvider(profile.propic!).future);
     }
     final email = await ref.read(getEmailProfileProvider.future);
     final isAnonymous = await ref.read(isAnonymousProvider.future);
     return UserState(
       profile: profile,
-      imageProfileUrl: imageUrl,
+      imageProfilePath: imagePath,
       email: email,
       isAnonymous: isAnonymous,
     );
