@@ -154,7 +154,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeatersMapEmpty => 'Nessun ripetitore trovato vicino a te.';
 
   @override
-  String get repeatersSearchHint => 'Cerca ripetitori…';
+  String get repeatersSearchHint =>
+      'Cerca per nome, nominativo o frequenza MHz…';
 
   @override
   String get repeatersSearchEmpty => 'Nessun ripetitore trovato.';

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:hamqrg/clients/supabase/supabase_client/supabase_client.dart';
 import 'package:hamqrg/log/talker_service/talker_service.dart';
 import 'package:hamqrg/src/features/repeaters/data/datasource/repeaters_datasource.dart';
@@ -107,6 +109,23 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     }
   }
 
+  /// Builds a PostgREST OR sub-condition for frequency range search.
+  /// Returns `null` when [query] does not look like a frequency in MHz.
+  String? _buildFrequencyCondition(String query) {
+    final freqRegex = RegExp(r'^\d{1,4}(\.\d{1,6})?$');
+    if (!freqRegex.hasMatch(query)) return null;
+
+    final mhz = double.tryParse(query);
+    if (mhz == null || mhz < 1 || mhz >= 10000) return null;
+
+    final decimals = query.contains('.') ? query.split('.')[1].length : 0;
+    final stepHz = pow(10, 6 - decimals).toInt();
+    final minHz = (mhz * 1000000).round();
+    final maxHz = minHz + stepHz - 1;
+
+    return 'and(frequency_hz.gte.$minHz,frequency_hz.lte.$maxHz)';
+  }
+
   @override
   Future<List<RepeaterModel>> searchRepeaters({
     required String query,
@@ -116,8 +135,13 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     final sw = Stopwatch()..start();
     try {
       final searchPattern = '%$query%';
-      final orConditions =
+      var orConditions =
           'callsign.ilike.$searchPattern,name.ilike.$searchPattern,locality.ilike.$searchPattern,region.ilike.$searchPattern,locator.ilike.$searchPattern,manager.ilike.$searchPattern';
+
+      final freqCondition = _buildFrequencyCondition(query);
+      if (freqCondition != null) {
+        orConditions = '$orConditions,$freqCondition';
+      }
 
       final hasAccessModeFilter = accessModes != null && accessModes.isNotEmpty;
 

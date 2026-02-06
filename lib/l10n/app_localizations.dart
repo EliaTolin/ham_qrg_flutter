@@ -373,7 +373,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeatersSearchHint.
   ///
   /// In it, this message translates to:
-  /// **'Cerca ripetitori…'**
+  /// **'Cerca per nome, nominativo o frequenza MHz…'**
   String get repeatersSearchHint;
 
   /// No description provided for @repeatersSearchEmpty.

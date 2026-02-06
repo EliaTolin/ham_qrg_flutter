@@ -52,7 +52,7 @@
   "repeatersMapLoading": "Caricamento mappa dei ripetitori…",
   "repeatersMapGenericError": "Impossibile caricare i ripetitori.",
   "repeatersMapEmpty": "Nessun ripetitore trovato vicino a te.",
-  "repeatersSearchHint": "Cerca ripetitori…",
+  "repeatersSearchHint": "Cerca per nome, nominativo o frequenza MHz…",
   "repeatersSearchEmpty": "Nessun ripetitore trovato.",
   "repeatersMapRetry": "Riprova",
   "repeatersMapOpenSettings": "Apri impostazioni",
