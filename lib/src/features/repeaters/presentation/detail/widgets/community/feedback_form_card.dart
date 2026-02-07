@@ -36,6 +36,9 @@ class FeedbackFormCard extends ConsumerWidget {
 
     final isFormValid = controller.isFormValid();
     final isWithinDistance = controller.isWithinAllowedDistance();
+    final canSubmit = state.selectedStation != null &&
+        state.selectedAccessId != null &&
+        state.comment.trim().length >= _minCommentChars;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -148,7 +151,7 @@ class FeedbackFormCard extends ConsumerWidget {
           ],
           const SizedBox(height: 16),
           // Action buttons
-          _buildActionButtons(context, ref, theme, l10n),
+          _buildActionButtons(context, ref, theme, l10n, canSubmit: canSubmit),
         ],
       ),
     );
@@ -408,7 +411,7 @@ class FeedbackFormCard extends ConsumerWidget {
     );
   }
 
-  static const int _minCommentChars = 3;
+  static const int _minCommentChars = 10;
 
   Widget _buildCommentField(
     BuildContext context,
@@ -582,15 +585,16 @@ class FeedbackFormCard extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     ThemeData theme,
-    AppLocalizations l10n,
-  ) {
+    AppLocalizations l10n, {
+    required bool canSubmit,
+  }) {
     return Row(
       children: [
         Expanded(
           child: FilledButton(
-            onPressed: state.isSubmittingFeedback
-                ? null
-                : () => _handleSubmit(context, ref, FeedbackType.like),
+            onPressed: canSubmit && !state.isSubmittingFeedback
+                ? () => _handleSubmit(context, ref, FeedbackType.like)
+                : null,
             style: FilledButton.styleFrom(
               backgroundColor: Colors.green,
               foregroundColor: Colors.white,
@@ -629,9 +633,9 @@ class FeedbackFormCard extends ConsumerWidget {
         const SizedBox(width: 12),
         Expanded(
           child: FilledButton(
-            onPressed: state.isSubmittingFeedback
-                ? null
-                : () => _handleSubmit(context, ref, FeedbackType.down),
+            onPressed: canSubmit && !state.isSubmittingFeedback
+                ? () => _handleSubmit(context, ref, FeedbackType.down)
+                : null,
             style: FilledButton.styleFrom(
               backgroundColor: Colors.amber.shade700,
               foregroundColor: Colors.white,

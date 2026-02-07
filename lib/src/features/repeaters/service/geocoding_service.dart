@@ -104,12 +104,14 @@ class GeocodingService {
     }
   }
 
-  /// Extracts a short city name from a full place name.
-  /// e.g., "Rome, Lazio, Italy" -> "Rome"
+  /// Extracts city and province from a full place name.
+  /// e.g., "Rome, Lazio, Italy" -> "Rome, Lazio"
   String _extractCityName(String fullName) {
-    final parts = fullName.split(',');
-    if (parts.isEmpty) return fullName;
-    return parts.first.trim();
+    final parts = fullName.split(',').map((p) => p.trim()).toList();
+    if (parts.length >= 2) {
+      return '${parts[0]}, ${parts[1]}';
+    }
+    return parts.firstOrNull ?? fullName;
   }
 }
 

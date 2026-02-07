@@ -45,11 +45,18 @@ class RepeaterDetailController extends _$RepeaterDetailController {
       ).future,
     );
 
+    // Pre-select access if only one is available
+    final feedbackAccessIds = myFeedbacks.map((f) => f.repeaterAccess.id).toSet();
+    final availableAccesses =
+        repeater.accesses.where((access) => !feedbackAccessIds.contains(access.id)).toList();
+    final preSelectedAccessId = availableAccesses.length == 1 ? availableAccesses.first.id : null;
+
     return RepeaterDetailState(
       repeater: repeater,
       feedbackStats: feedbackStats,
       myFeedbacks: myFeedbacks,
       communityFeedbacks: communityFeedbacks,
+      selectedAccessId: preSelectedAccessId,
     );
   }
 
@@ -240,7 +247,7 @@ class RepeaterDetailController extends _$RepeaterDetailController {
         currentState.isFeedbackLocationValidated &&
         currentState.userLatitude != null &&
         currentState.userLongitude != null &&
-        currentState.comment.trim().length >= 3;
+        currentState.comment.trim().length >= 10;
   }
 
   Future<void> submitFeedback({

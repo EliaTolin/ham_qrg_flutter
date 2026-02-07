@@ -49,9 +49,7 @@ class HomePage extends HookConsumerWidget {
           ],
           bottomNavigationBuilder: (_, tabsRouter) {
             final isAnonymous = ref.watch(isAnonymousProvider).value ?? true;
-            final profile = isAnonymous
-                ? null
-                : ref.watch(getProfileProvider).value;
+            final profile = isAnonymous ? null : ref.watch(getProfileProvider).value;
 
             final String profileLabel;
             final Widget profileIcon;
