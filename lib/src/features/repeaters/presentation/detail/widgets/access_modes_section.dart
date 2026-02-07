@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/src/features/brandmeister/presentation/widgets/bm_talkgroups_widget.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
@@ -56,6 +57,9 @@ class AccessModeCard extends StatelessWidget {
   });
 
   final RepeaterAccess access;
+
+  bool get _isBrandmeister =>
+      access.network?.name.toLowerCase().contains('brandmeister') ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +122,11 @@ class AccessModeCard extends StatelessWidget {
           if (isAnalog) _buildAnalogContent(context),
           if (isDmr) _buildDmrContent(context),
           if (!isAnalog && !isDmr) _buildGenericContent(context),
+          // BrandMeister talkgroups (DMR with nodeId on BrandMeister network)
+          if (isDmr && access.nodeId != null && _isBrandmeister) ...[
+            const SizedBox(height: 12),
+            BmTalkgroupsWidget(deviceId: access.nodeId!),
+          ],
           // Network (shown for all access modes)
           if (access.network != null) _buildNetworkSection(context),
         ],

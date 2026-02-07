@@ -39,7 +39,11 @@
       "Bash(dart run:*)",
       "Bash(tee:*)",
       "Bash(awk:*)",
-      "Bash(dart pub deps:*)"
+      "Bash(dart pub deps:*)",
+      "WebFetch(domain:api.brandmeister.network)",
+      "Bash(curl:*)",
+      "Bash(python3:*)",
+      "Bash(flutter pub add:*)"
     ]
   }
 }
