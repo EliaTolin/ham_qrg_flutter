@@ -34,7 +34,9 @@
       "Bash(git -C /Users/eliatolin/Desktop/Aurora/Progetti/HamQRG/ham_qrg_flutter push --force origin main)",
       "Bash(git -C /Users/eliatolin/Desktop/Aurora/Progetti/HamQRG/ham_qrg_flutter remote set-url:*)",
       "Bash(pod install)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(/private/tmp/claude-501/-Users-eliatolin-Desktop-Aurora-Progetti-HamQRG-ham-qrg-flutter/1259a7df-72c1-4909-afc5-a73fe0162787/scratchpad/test_locator.dart << 'EOF'\n// Inline the logic for testing\nvoid main\\(\\) {\n  print\\('Rome: ${fromCoordinates\\(latitude: 41.9028, longitude: 12.4964\\)}'\\);\n  print\\('Bologna: ${fromCoordinates\\(latitude: 44.4949, longitude: 11.3426\\)}'\\);\n  print\\('London: ${fromCoordinates\\(latitude: 51.5074, longitude: -0.1278\\)}'\\);\n}\n\nString fromCoordinates\\({required double latitude, required double longitude}\\) {\n  var lon = longitude + 180.0;\n  var lat = latitude + 90.0;\n\n  final fieldLon = \\(lon / 20\\).floor\\(\\);\n  final fieldLat = \\(lat / 10\\).floor\\(\\);\n  lon -= fieldLon * 20;\n  lat -= fieldLat * 10;\n\n  final squareLon = \\(lon / 2\\).floor\\(\\);\n  final squareLat = lat.floor\\(\\);\n  lon -= squareLon * 2;\n  lat -= squareLat;\n\n  final subLon = \\(lon / \\(2 / 24\\)\\).floor\\(\\).clamp\\(0, 23\\);\n  final subLat = \\(lat / \\(1 / 24\\)\\).floor\\(\\).clamp\\(0, 23\\);\n\n  return String.fromCharCodes\\([\n    0x41 + fieldLon,\n    0x41 + fieldLat,\n    0x30 + squareLon,\n    0x30 + squareLat,\n    0x41 + subLon,\n    0x41 + subLat,\n  ]\\);\n}\nEOF)",
+      "Bash(dart run:*)"
     ]
   }
 }

@@ -445,5 +445,7 @@
   "repeaterDetailInfo": "Informazioni",
   "repeaterDetailSource": "Fonte",
   "repeaterDetailManager": "Gestore",
-  "repeaterDetailSuggestManager": "Conosci il gestore? Segnalalo!"
+  "repeaterDetailSuggestManager": "Conosci il gestore? Segnalalo!",
+  "repeaterDetailViewFeedbackMap": "Esplora la mappa dei feedback",
+  "repeaterDetailViewFeedbackMapSubtitle": "Visualizza dove sono stati registrati i like e le segnalazioni"
 }

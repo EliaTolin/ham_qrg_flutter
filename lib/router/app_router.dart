@@ -43,7 +43,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(path: 'favorites', page: FavoritesRoute.page),
                 AutoRoute(path: 'repeater/:repeaterId', page: RepeaterDetailRoute.page),
                 AutoRoute(path: 'repeater/:repeaterId/report', page: ReportIssueRoute.page),
-                AutoRoute(path: 'repeater/detail-map', page: RepeaterDetailMapRoute.page),
+                AutoRoute(path: 'repeater/:repeaterId/map', page: RepeaterDetailMapRoute.page),
               ],
             ),
             AutoRoute(

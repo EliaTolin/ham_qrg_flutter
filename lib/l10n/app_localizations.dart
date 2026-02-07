@@ -1821,6 +1821,18 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Conosci il gestore? Segnalalo!'**
   String get repeaterDetailSuggestManager;
+
+  /// No description provided for @repeaterDetailViewFeedbackMap.
+  ///
+  /// In it, this message translates to:
+  /// **'Esplora la mappa dei feedback'**
+  String get repeaterDetailViewFeedbackMap;
+
+  /// No description provided for @repeaterDetailViewFeedbackMapSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Visualizza dove sono stati registrati i like e le segnalazioni'**
+  String get repeaterDetailViewFeedbackMapSubtitle;
 }
 
 class _AppLocalizationsDelegate

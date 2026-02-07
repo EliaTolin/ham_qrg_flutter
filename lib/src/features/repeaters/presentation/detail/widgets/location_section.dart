@@ -52,14 +52,7 @@ class LocationSection extends StatelessWidget {
         GestureDetector(
           onTap: repeater.latitude != null && repeater.longitude != null
               ? () => context.router.push(
-                    RepeaterDetailMapRoute(
-                      repeaterLatitude: repeater.latitude!,
-                      repeaterLongitude: repeater.longitude!,
-                      repeaterName:
-                          repeater.callsign ?? repeater.name ?? '',
-                      repeaterLocality: repeater.locality,
-                      repeaterLocator: repeater.locator,
-                    ),
+                    RepeaterDetailMapRoute(repeaterId: repeater.id),
                   )
               : null,
           child: RepeaterLocationMap(repeater: repeater),
@@ -124,6 +117,59 @@ class LocationSection extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+        ],
+        if (repeater.latitude != null && repeater.longitude != null) ...[
+          const SizedBox(height: 12),
+          GestureDetector(
+            onTap: () => context.router.push(
+              RepeaterDetailMapRoute(repeaterId: repeater.id),
+            ),
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: colorScheme.primaryContainer.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: colorScheme.primary.withValues(alpha: 0.2),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.explore,
+                    size: 20,
+                    color: colorScheme.primary,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.repeaterDetailViewFeedbackMap,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: colorScheme.primary,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          l10n.repeaterDetailViewFeedbackMapSubtitle,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.chevron_right,
+                    color: colorScheme.primary,
+                  ),
+                ],
+              ),
             ),
           ),
         ],

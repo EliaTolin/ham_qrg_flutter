@@ -86,8 +86,7 @@ void main() {
     test('score always between 0 and 100', () {
       for (var likes = 0; likes <= 100; likes++) {
         for (var downs = 0; downs <= 100; downs++) {
-          final score =
-              HealthScoreHelper.calculateHealthScore(likes, downs);
+          final score = HealthScoreHelper.calculateHealthScore(likes, downs);
           expect(score, greaterThanOrEqualTo(0));
           expect(score, lessThanOrEqualTo(100));
         }

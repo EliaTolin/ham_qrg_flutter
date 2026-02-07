@@ -1,6 +1,8 @@
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -57,8 +59,11 @@ class RepeatersListController extends _$RepeatersListController {
         accessModes: modesToFilter?.isEmpty ?? true ? null : modesToFilter,
       );
 
+      final stats = await _fetchFeedbackStats(repeaters);
+
       return RepeatersListState(
         repeaters: repeaters,
+        feedbackStats: stats,
         selectedModes: modesToFilter?.toSet() ?? {},
       );
     } on LocationException catch (error) {
@@ -74,7 +79,7 @@ class RepeatersListController extends _$RepeatersListController {
     required double longitude,
     List<AccessMode>? accessModes,
   }) async {
-    return await ref.read(
+    return ref.read(
       getRepeatersNearbyProvider(
         latitude: latitude,
         longitude: longitude,
@@ -82,5 +87,23 @@ class RepeatersListController extends _$RepeatersListController {
         radiusKm: 100,
       ).future,
     );
+  }
+
+  /// Fetch feedback stats for all repeaters in parallel.
+  Future<Map<String, RepeaterFeedbackStats>> _fetchFeedbackStats(
+    List<Repeater> repeaters,
+  ) async {
+    final results = await Future.wait(
+      repeaters.map(
+        (r) => ref.read(getRepeaterFeedbackStatsProvider(r.id).future),
+      ),
+    );
+    final stats = <String, RepeaterFeedbackStats>{};
+    for (final result in results) {
+      if (result != null) {
+        stats[result.repeaterId] = result;
+      }
+    }
+    return stats;
   }
 }

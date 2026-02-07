@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:hamqrg/router/app_router.dart';
@@ -43,15 +44,34 @@ class DashboardPage extends HookConsumerWidget {
                 ),
               ),
             ),
-            // // Profile Chip
-            // Positioned(
-            //   top: MediaQuery.paddingOf(context).top + 16,
-            //   right: 16,
-            //   child: ProfileChip(
-            //     imageProfilePath: state.profile?.propic,
-            //     callSign: state.profile?.callsign,
-            //   ),
-            // ),
+            // Locator Chip
+            Positioned(
+              top: MediaQuery.paddingOf(context).top + 16,
+              right: 16,
+              child: Chip(
+                avatar: Icon(
+                  Icons.grid_on,
+                  size: 16,
+                  color: colorScheme.primary,
+                ),
+                label: Text(
+                  MaidenheadLocator.fromCoordinates(
+                    latitude: state.initialPosition.lat,
+                    longitude: state.initialPosition.lon,
+                  ),
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+                backgroundColor: colorScheme.surface,
+                side: BorderSide(
+                  color: colorScheme.outline.withValues(alpha: 0.2),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+            ),
             // Draggable Content Sheet
             DraggableScrollableSheet(
               initialChildSize: 0.42,

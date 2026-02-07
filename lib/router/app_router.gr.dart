@@ -126,23 +126,13 @@ class ProfileRoute extends PageRouteInfo<void> {
 /// [RepeaterDetailMapPage]
 class RepeaterDetailMapRoute extends PageRouteInfo<RepeaterDetailMapRouteArgs> {
   RepeaterDetailMapRoute({
-    required double repeaterLatitude,
-    required double repeaterLongitude,
-    required String repeaterName,
-    String? repeaterLocality,
-    String? repeaterLocator,
+    required String repeaterId,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
           RepeaterDetailMapRoute.name,
-          args: RepeaterDetailMapRouteArgs(
-            repeaterLatitude: repeaterLatitude,
-            repeaterLongitude: repeaterLongitude,
-            repeaterName: repeaterName,
-            repeaterLocality: repeaterLocality,
-            repeaterLocator: repeaterLocator,
-            key: key,
-          ),
+          args: RepeaterDetailMapRouteArgs(repeaterId: repeaterId, key: key),
+          rawPathParams: {'repeaterId': repeaterId},
           initialChildren: children,
         );
 
@@ -151,66 +141,38 @@ class RepeaterDetailMapRoute extends PageRouteInfo<RepeaterDetailMapRouteArgs> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<RepeaterDetailMapRouteArgs>();
-      return RepeaterDetailMapPage(
-        repeaterLatitude: args.repeaterLatitude,
-        repeaterLongitude: args.repeaterLongitude,
-        repeaterName: args.repeaterName,
-        repeaterLocality: args.repeaterLocality,
-        repeaterLocator: args.repeaterLocator,
-        key: args.key,
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<RepeaterDetailMapRouteArgs>(
+        orElse: () => RepeaterDetailMapRouteArgs(
+          repeaterId: pathParams.getString('repeaterId'),
+        ),
       );
+      return RepeaterDetailMapPage(repeaterId: args.repeaterId, key: args.key);
     },
   );
 }
 
 class RepeaterDetailMapRouteArgs {
-  const RepeaterDetailMapRouteArgs({
-    required this.repeaterLatitude,
-    required this.repeaterLongitude,
-    required this.repeaterName,
-    this.repeaterLocality,
-    this.repeaterLocator,
-    this.key,
-  });
+  const RepeaterDetailMapRouteArgs({required this.repeaterId, this.key});
 
-  final double repeaterLatitude;
-
-  final double repeaterLongitude;
-
-  final String repeaterName;
-
-  final String? repeaterLocality;
-
-  final String? repeaterLocator;
+  final String repeaterId;
 
   final Key? key;
 
   @override
   String toString() {
-    return 'RepeaterDetailMapRouteArgs{repeaterLatitude: $repeaterLatitude, repeaterLongitude: $repeaterLongitude, repeaterName: $repeaterName, repeaterLocality: $repeaterLocality, repeaterLocator: $repeaterLocator, key: $key}';
+    return 'RepeaterDetailMapRouteArgs{repeaterId: $repeaterId, key: $key}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! RepeaterDetailMapRouteArgs) return false;
-    return repeaterLatitude == other.repeaterLatitude &&
-        repeaterLongitude == other.repeaterLongitude &&
-        repeaterName == other.repeaterName &&
-        repeaterLocality == other.repeaterLocality &&
-        repeaterLocator == other.repeaterLocator &&
-        key == other.key;
+    return repeaterId == other.repeaterId && key == other.key;
   }
 
   @override
-  int get hashCode =>
-      repeaterLatitude.hashCode ^
-      repeaterLongitude.hashCode ^
-      repeaterName.hashCode ^
-      repeaterLocality.hashCode ^
-      repeaterLocator.hashCode ^
-      key.hashCode;
+  int get hashCode => repeaterId.hashCode ^ key.hashCode;
 }
 
 /// generated route for

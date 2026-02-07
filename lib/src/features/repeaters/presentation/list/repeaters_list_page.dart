@@ -316,9 +316,13 @@ class RepeatersListPage extends HookConsumerWidget {
     return ListView.builder(
       padding: const EdgeInsets.all(16),
       itemCount: listState.repeaters.length,
-      itemBuilder: (context, index) => RepeaterListItem(
-        repeater: listState.repeaters[index],
-      ),
+      itemBuilder: (context, index) {
+        final repeater = listState.repeaters[index];
+        return RepeaterListItem(
+          repeater: repeater,
+          likesTotal: listState.feedbackStats[repeater.id]?.likesTotal,
+        );
+      },
     );
   }
 

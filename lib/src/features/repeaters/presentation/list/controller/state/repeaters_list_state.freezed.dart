@@ -15,6 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RepeatersListState {
   List<Repeater> get repeaters;
+  Map<String, RepeaterFeedbackStats> get feedbackStats;
   LocationErrorType? get locationError;
   Set<AccessMode> get selectedModes;
   double get radiusKm;
@@ -33,6 +34,8 @@ mixin _$RepeatersListState {
         (other.runtimeType == runtimeType &&
             other is RepeatersListState &&
             const DeepCollectionEquality().equals(other.repeaters, repeaters) &&
+            const DeepCollectionEquality()
+                .equals(other.feedbackStats, feedbackStats) &&
             (identical(other.locationError, locationError) ||
                 other.locationError == locationError) &&
             const DeepCollectionEquality()
@@ -45,13 +48,14 @@ mixin _$RepeatersListState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(repeaters),
+      const DeepCollectionEquality().hash(feedbackStats),
       locationError,
       const DeepCollectionEquality().hash(selectedModes),
       radiusKm);
 
   @override
   String toString() {
-    return 'RepeatersListState(repeaters: $repeaters, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm)';
+    return 'RepeatersListState(repeaters: $repeaters, feedbackStats: $feedbackStats, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm)';
   }
 }
 
@@ -63,6 +67,7 @@ abstract mixin class $RepeatersListStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<Repeater> repeaters,
+      Map<String, RepeaterFeedbackStats> feedbackStats,
       LocationErrorType? locationError,
       Set<AccessMode> selectedModes,
       double radiusKm});
@@ -82,6 +87,7 @@ class _$RepeatersListStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? repeaters = null,
+    Object? feedbackStats = null,
     Object? locationError = freezed,
     Object? selectedModes = null,
     Object? radiusKm = null,
@@ -91,6 +97,10 @@ class _$RepeatersListStateCopyWithImpl<$Res>
           ? _self.repeaters
           : repeaters // ignore: cast_nullable_to_non_nullable
               as List<Repeater>,
+      feedbackStats: null == feedbackStats
+          ? _self.feedbackStats
+          : feedbackStats // ignore: cast_nullable_to_non_nullable
+              as Map<String, RepeaterFeedbackStats>,
       locationError: freezed == locationError
           ? _self.locationError
           : locationError // ignore: cast_nullable_to_non_nullable
@@ -200,16 +210,20 @@ extension RepeatersListStatePatterns on RepeatersListState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Repeater> repeaters, LocationErrorType? locationError,
-            Set<AccessMode> selectedModes, double radiusKm)?
+    TResult Function(
+            List<Repeater> repeaters,
+            Map<String, RepeaterFeedbackStats> feedbackStats,
+            LocationErrorType? locationError,
+            Set<AccessMode> selectedModes,
+            double radiusKm)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _RepeatersListState() when $default != null:
-        return $default(_that.repeaters, _that.locationError,
-            _that.selectedModes, _that.radiusKm);
+        return $default(_that.repeaters, _that.feedbackStats,
+            _that.locationError, _that.selectedModes, _that.radiusKm);
       case _:
         return orElse();
     }
@@ -230,15 +244,19 @@ extension RepeatersListStatePatterns on RepeatersListState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Repeater> repeaters, LocationErrorType? locationError,
-            Set<AccessMode> selectedModes, double radiusKm)
+    TResult Function(
+            List<Repeater> repeaters,
+            Map<String, RepeaterFeedbackStats> feedbackStats,
+            LocationErrorType? locationError,
+            Set<AccessMode> selectedModes,
+            double radiusKm)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _RepeatersListState():
-        return $default(_that.repeaters, _that.locationError,
-            _that.selectedModes, _that.radiusKm);
+        return $default(_that.repeaters, _that.feedbackStats,
+            _that.locationError, _that.selectedModes, _that.radiusKm);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -260,6 +278,7 @@ extension RepeatersListStatePatterns on RepeatersListState {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             List<Repeater> repeaters,
+            Map<String, RepeaterFeedbackStats> feedbackStats,
             LocationErrorType? locationError,
             Set<AccessMode> selectedModes,
             double radiusKm)?
@@ -268,8 +287,8 @@ extension RepeatersListStatePatterns on RepeatersListState {
     final _that = this;
     switch (_that) {
       case _RepeatersListState() when $default != null:
-        return $default(_that.repeaters, _that.locationError,
-            _that.selectedModes, _that.radiusKm);
+        return $default(_that.repeaters, _that.feedbackStats,
+            _that.locationError, _that.selectedModes, _that.radiusKm);
       case _:
         return null;
     }
@@ -281,10 +300,13 @@ extension RepeatersListStatePatterns on RepeatersListState {
 class _RepeatersListState implements RepeatersListState {
   const _RepeatersListState(
       {final List<Repeater> repeaters = const <Repeater>[],
+      final Map<String, RepeaterFeedbackStats> feedbackStats =
+          const <String, RepeaterFeedbackStats>{},
       this.locationError,
       final Set<AccessMode> selectedModes = const <AccessMode>{},
       this.radiusKm = 100})
       : _repeaters = repeaters,
+        _feedbackStats = feedbackStats,
         _selectedModes = selectedModes;
 
   final List<Repeater> _repeaters;
@@ -294,6 +316,15 @@ class _RepeatersListState implements RepeatersListState {
     if (_repeaters is EqualUnmodifiableListView) return _repeaters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_repeaters);
+  }
+
+  final Map<String, RepeaterFeedbackStats> _feedbackStats;
+  @override
+  @JsonKey()
+  Map<String, RepeaterFeedbackStats> get feedbackStats {
+    if (_feedbackStats is EqualUnmodifiableMapView) return _feedbackStats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_feedbackStats);
   }
 
   @override
@@ -326,6 +357,8 @@ class _RepeatersListState implements RepeatersListState {
             other is _RepeatersListState &&
             const DeepCollectionEquality()
                 .equals(other._repeaters, _repeaters) &&
+            const DeepCollectionEquality()
+                .equals(other._feedbackStats, _feedbackStats) &&
             (identical(other.locationError, locationError) ||
                 other.locationError == locationError) &&
             const DeepCollectionEquality()
@@ -338,13 +371,14 @@ class _RepeatersListState implements RepeatersListState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_repeaters),
+      const DeepCollectionEquality().hash(_feedbackStats),
       locationError,
       const DeepCollectionEquality().hash(_selectedModes),
       radiusKm);
 
   @override
   String toString() {
-    return 'RepeatersListState(repeaters: $repeaters, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm)';
+    return 'RepeatersListState(repeaters: $repeaters, feedbackStats: $feedbackStats, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm)';
   }
 }
 
@@ -358,6 +392,7 @@ abstract mixin class _$RepeatersListStateCopyWith<$Res>
   @useResult
   $Res call(
       {List<Repeater> repeaters,
+      Map<String, RepeaterFeedbackStats> feedbackStats,
       LocationErrorType? locationError,
       Set<AccessMode> selectedModes,
       double radiusKm});
@@ -377,6 +412,7 @@ class __$RepeatersListStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? repeaters = null,
+    Object? feedbackStats = null,
     Object? locationError = freezed,
     Object? selectedModes = null,
     Object? radiusKm = null,
@@ -386,6 +422,10 @@ class __$RepeatersListStateCopyWithImpl<$Res>
           ? _self._repeaters
           : repeaters // ignore: cast_nullable_to_non_nullable
               as List<Repeater>,
+      feedbackStats: null == feedbackStats
+          ? _self._feedbackStats
+          : feedbackStats // ignore: cast_nullable_to_non_nullable
+              as Map<String, RepeaterFeedbackStats>,
       locationError: freezed == locationError
           ? _self.locationError
           : locationError // ignore: cast_nullable_to_non_nullable
