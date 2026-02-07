@@ -2,7 +2,7 @@ import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
-import 'package:hamqrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_feedback_stats_from_ids/get_repeaters_feedback_stats_from_ids_provider.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -89,21 +89,11 @@ class RepeatersListController extends _$RepeatersListController {
     );
   }
 
-  /// Fetch feedback stats for all repeaters in parallel.
+  /// Fetch feedback stats for all repeaters in a single batch query.
   Future<Map<String, RepeaterFeedbackStats>> _fetchFeedbackStats(
     List<Repeater> repeaters,
   ) async {
-    final results = await Future.wait(
-      repeaters.map(
-        (r) => ref.read(getRepeaterFeedbackStatsProvider(r.id).future),
-      ),
-    );
-    final stats = <String, RepeaterFeedbackStats>{};
-    for (final result in results) {
-      if (result != null) {
-        stats[result.repeaterId] = result;
-      }
-    }
-    return stats;
+    final ids = repeaters.map((r) => r.id).toList();
+    return ref.read(getRepeatersFeedbackStatsFromIdsProvider(ids).future);
   }
 }

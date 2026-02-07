@@ -10,7 +10,7 @@ import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/repeaters_list_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
-import 'package:hamqrg/src/features/repeaters/presentation/widgets/repeater_list_item.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/repeater_card.dart';
 import 'package:hamqrg/src/features/repeaters/provider/search_repeaters/search_repeaters_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -161,12 +161,16 @@ class RepeatersListPage extends HookConsumerWidget {
                   newModes.add(mode);
                 }
                 selectedModes.value = newModes;
-                listNotifier.loadWithModes(newModes);
+                if (!isSearchMode) {
+                  listNotifier.loadWithModes(newModes);
+                }
               },
               onAllSelected: () {
                 if (selectedModes.value.isEmpty) return;
                 selectedModes.value = const {};
-                listNotifier.loadWithModes(const {});
+                if (!isSearchMode) {
+                  listNotifier.loadWithModes(const {});
+                }
               },
             ),
           ),
@@ -225,7 +229,7 @@ class RepeatersListPage extends HookConsumerWidget {
         return ListView.builder(
           padding: const EdgeInsets.all(16),
           itemCount: repeaters.length,
-          itemBuilder: (context, index) => RepeaterListItem(
+          itemBuilder: (context, index) => RepeaterCard(
             repeater: repeaters[index],
           ),
         );
@@ -318,9 +322,9 @@ class RepeatersListPage extends HookConsumerWidget {
       itemCount: listState.repeaters.length,
       itemBuilder: (context, index) {
         final repeater = listState.repeaters[index];
-        return RepeaterListItem(
+        return RepeaterCard(
           repeater: repeater,
-          likesTotal: listState.feedbackStats[repeater.id]?.likesTotal,
+          feedbackStats: listState.feedbackStats[repeater.id],
         );
       },
     );

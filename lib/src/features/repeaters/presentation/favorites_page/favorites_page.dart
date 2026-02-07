@@ -9,7 +9,7 @@ import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/controller/favorites_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/controller/state/favorites_state.dart';
-import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/widgets/favorite_repeater_item.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/widgets/repeater_card.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeater_feedback_stats/get_repeater_feedback_stats_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -316,9 +316,9 @@ class _FavoriteRepeaterItemWithStats extends ConsumerWidget {
       getRepeaterFeedbackStatsProvider(repeater.id),
     );
 
-    return FavoriteRepeaterItem(
+    return RepeaterCard(
       repeater: repeater,
-      onRemoveFavorite: onRemoveFavorite,
+      onFavoritePressed: onRemoveFavorite,
       feedbackStats: feedbackStatsAsync.value,
     );
   }

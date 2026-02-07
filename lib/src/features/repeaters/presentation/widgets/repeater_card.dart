@@ -5,23 +5,30 @@ import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/repeaters/domain/band/frequency_band.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 
-class RepeaterListItem extends StatelessWidget {
-  const RepeaterListItem({
+/// Shared card widget for displaying a repeater in both the list and
+/// favorites pages.
+///
+/// When [onFavoritePressed] is non-null a filled red heart button is shown
+/// in the header instead of the frequency-band badge.
+class RepeaterCard extends StatelessWidget {
+  const RepeaterCard({
     required this.repeater,
-    this.likesTotal,
+    this.feedbackStats,
+    this.onFavoritePressed,
     super.key,
   });
 
   final Repeater repeater;
-  final int? likesTotal;
+  final RepeaterFeedbackStats? feedbackStats;
+  final VoidCallback? onFavoritePressed;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final band = FrequencyBand.fromFrequency(repeater.frequencyHz);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -51,12 +58,15 @@ class RepeaterListItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _Header(repeater: repeater, band: band),
+                _Header(
+                  repeater: repeater,
+                  onFavoritePressed: onFavoritePressed,
+                ),
                 const SizedBox(height: 12),
                 _FrequencyRow(repeater: repeater),
                 const SizedBox(height: 12),
                 _AccessModes(repeater: repeater),
-                if (_hasFooterContent) ...[
+                if (_hasFooter) ...[
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Divider(
@@ -64,9 +74,9 @@ class RepeaterListItem extends StatelessWidget {
                       color: colorScheme.outline.withValues(alpha: 0.08),
                     ),
                   ),
-                  _SocialFooter(
+                  _StatsFooter(
                     repeater: repeater,
-                    likesTotal: likesTotal,
+                    feedbackStats: feedbackStats,
                   ),
                 ],
               ],
@@ -77,24 +87,24 @@ class RepeaterListItem extends StatelessWidget {
     );
   }
 
-  bool get _hasFooterContent =>
-      (likesTotal != null && likesTotal! > 0) ||
-      repeater.distanceMeters != null;
+  bool get _hasFooter =>
+      feedbackStats != null || repeater.distanceMeters != null;
 }
 
 // ---------------------------------------------------------------------------
-// Header: Icon + Callsign + Location + Band badge
+// Header: Icon + Callsign + Location + Band badge / Favorite button
 // ---------------------------------------------------------------------------
 class _Header extends StatelessWidget {
-  const _Header({required this.repeater, required this.band});
+  const _Header({required this.repeater, this.onFavoritePressed});
 
   final Repeater repeater;
-  final FrequencyBand? band;
+  final VoidCallback? onFavoritePressed;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final band = FrequencyBand.fromFrequency(repeater.frequencyHz);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,7 +151,18 @@ class _Header extends StatelessWidget {
             ],
           ),
         ),
-        if (band != null) ...[
+        if (onFavoritePressed != null)
+          IconButton(
+            icon: const Icon(
+              Icons.favorite,
+              color: Colors.red,
+              size: 24,
+            ),
+            onPressed: onFavoritePressed,
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+          )
+        else if (band != null) ...[
           const SizedBox(width: 8),
           Container(
             padding: const EdgeInsets.symmetric(
@@ -153,7 +174,7 @@ class _Header extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              band!.label,
+              band.label,
               style: theme.textTheme.labelSmall?.copyWith(
                 color: colorScheme.onPrimaryContainer,
                 fontWeight: FontWeight.bold,
@@ -267,32 +288,53 @@ class _AccessModes extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Social footer: likes (left) + distance (right)
+// Stats footer: likes + reports (left) + distance (right)
 // ---------------------------------------------------------------------------
-class _SocialFooter extends StatelessWidget {
-  const _SocialFooter({required this.repeater, this.likesTotal});
+class _StatsFooter extends StatelessWidget {
+  const _StatsFooter({required this.repeater, this.feedbackStats});
 
   final Repeater repeater;
-  final int? likesTotal;
+  final RepeaterFeedbackStats? feedbackStats;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
+    final likesTotal = feedbackStats?.likesTotal ?? 0;
+    final downTotal = feedbackStats?.downTotal ?? 0;
+
     return Row(
       children: [
-        if (likesTotal != null && likesTotal! > 0) ...[
+        if (feedbackStats != null) ...[
           Icon(
             Icons.thumb_up_rounded,
             size: 16,
-            color: colorScheme.primary,
+            color: likesTotal > 0 ? Colors.green : colorScheme.outlineVariant,
           ),
-          const SizedBox(width: 6),
+          const SizedBox(width: 4),
           Text(
             '$likesTotal',
             style: theme.textTheme.bodySmall?.copyWith(
-              color: colorScheme.primary,
+              color: likesTotal > 0
+                  ? Colors.green
+                  : colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Icon(
+            Icons.flag_rounded,
+            size: 16,
+            color: downTotal > 0 ? Colors.amber : colorScheme.outlineVariant,
+          ),
+          const SizedBox(width: 4),
+          Text(
+            '$downTotal',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: downTotal > 0
+                  ? Colors.amber
+                  : colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
             ),
           ),

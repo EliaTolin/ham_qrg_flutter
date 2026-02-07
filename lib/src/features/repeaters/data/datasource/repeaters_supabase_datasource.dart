@@ -421,6 +421,93 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
+  Future<List<RepeaterFeedbackStatsModel>> getRepeatersFeedbackStatsFromIds(
+    List<String> repeaterIds,
+  ) async {
+    final sw = Stopwatch()..start();
+    try {
+      if (repeaterIds.isEmpty) {
+        _logTiming(
+          'getRepeatersFeedbackStatsFromIds',
+          sw,
+          extra: '⚠️ empty ids',
+        );
+        return [];
+      }
+
+      final data = await _client
+          .from('repeater_feedback')
+          .select('repeater_id, type, created_at')
+          .inFilter('repeater_id', repeaterIds);
+
+      final rows = data as List;
+      if (rows.isEmpty) {
+        _logTiming(
+          'getRepeatersFeedbackStatsFromIds',
+          sw,
+          extra: '⚠️ no feedbacks',
+        );
+        return [];
+      }
+
+      // Aggregate per repeater in Dart
+      final statsMap = <String, _FeedbackAgg>{};
+      for (final row in rows) {
+        final r = row as Map<String, dynamic>;
+        final repeaterId = r['repeater_id'] as String;
+        final type = r['type'] as String;
+        final createdAt = r['created_at'] as String;
+
+        final agg = statsMap.putIfAbsent(repeaterId, _FeedbackAgg.new);
+        if (type == 'like') {
+          agg.likesTotal++;
+          if (agg.lastLikeAt == null ||
+              createdAt.compareTo(agg.lastLikeAt!) > 0) {
+            agg.lastLikeAt = createdAt;
+          }
+        } else if (type == 'down') {
+          agg.downTotal++;
+          if (agg.lastDownAt == null ||
+              createdAt.compareTo(agg.lastDownAt!) > 0) {
+            agg.lastDownAt = createdAt;
+          }
+        }
+      }
+
+      final results = statsMap.entries
+          .map(
+            (e) => RepeaterFeedbackStatsModel.fromJson({
+              'repeater_id': e.key,
+              'likes_total': e.value.likesTotal,
+              'down_total': e.value.downTotal,
+              'last_like_at': e.value.lastLikeAt,
+              'last_down_at': e.value.lastDownAt,
+            }),
+          )
+          .toList();
+
+      _logTiming(
+        'getRepeatersFeedbackStatsFromIds',
+        sw,
+        extra: '✅ ${rows.length} feedbacks → ${results.length} repeaters',
+      );
+      return results;
+    } catch (error, stackTrace) {
+      _logTiming(
+        'getRepeatersFeedbackStatsFromIds',
+        sw,
+        extra: '❌ error',
+      );
+      _talker.handle(
+        error,
+        stackTrace,
+        'Error fetching batch repeater feedback stats',
+      );
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> addRepeaterFeedback({
     required String userId,
     required String repeaterId,
@@ -589,6 +676,13 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       rethrow;
     }
   }
+}
+
+class _FeedbackAgg {
+  int likesTotal = 0;
+  int downTotal = 0;
+  String? lastLikeAt;
+  String? lastDownAt;
 }
 
 @riverpod

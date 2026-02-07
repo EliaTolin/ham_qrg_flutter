@@ -110,6 +110,19 @@ class RepeatersRepository {
     return _feedbackStatsMapper.fromModel(model);
   }
 
+  Future<Map<String, RepeaterFeedbackStats>> getRepeatersFeedbackStatsFromIds(
+    List<String> repeaterIds,
+  ) async {
+    final models =
+        await _datasource.getRepeatersFeedbackStatsFromIds(repeaterIds);
+    final stats = <String, RepeaterFeedbackStats>{};
+    for (final model in models) {
+      final entity = _feedbackStatsMapper.fromModel(model);
+      stats[entity.repeaterId] = entity;
+    }
+    return stats;
+  }
+
   Future<void> addRepeaterFeedback({
     required String userId,
     required String repeaterId,
