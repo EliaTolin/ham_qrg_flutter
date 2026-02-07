@@ -8,6 +8,7 @@ import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_logi
 import 'package:hamqrg/src/features/profile/presentation/profile/profile_screen.dart';
 import 'package:hamqrg/src/features/profile/presentation/user_settings/user_settings_screen.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/repeater_detail_page.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/distance_map/repeater_detail_map_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/favorites_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/repeaters_list_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/map/repeaters_map_page.dart';
@@ -42,6 +43,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(path: 'favorites', page: FavoritesRoute.page),
                 AutoRoute(path: 'repeater/:repeaterId', page: RepeaterDetailRoute.page),
                 AutoRoute(path: 'repeater/:repeaterId/report', page: ReportIssueRoute.page),
+                AutoRoute(path: 'repeater/detail-map', page: RepeaterDetailMapRoute.page),
               ],
             ),
             AutoRoute(

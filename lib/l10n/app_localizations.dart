@@ -1786,6 +1786,12 @@ abstract class AppLocalizations {
   /// **'Distanza da te'**
   String get repeaterDetailDistanceFromYou;
 
+  /// No description provided for @repeaterDistanceMapNoLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'Posizione non disponibile'**
+  String get repeaterDistanceMapNoLocation;
+
   /// No description provided for @repeaterDetailNever.
   ///
   /// In it, this message translates to:

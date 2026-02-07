@@ -974,6 +974,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterDetailDistanceFromYou => 'Distanza da te';
 
   @override
+  String get repeaterDistanceMapNoLocation => 'Posizione non disponibile';
+
+  @override
   String get repeaterDetailNever => 'Mai';
 
   @override

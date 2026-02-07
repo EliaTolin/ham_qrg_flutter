@@ -797,6 +797,33 @@ class RepeatersMapPage extends HookConsumerWidget {
               ),
             ),
           ),
+        // My location button
+        if (mapController != null &&
+            mapState?.latitude != null &&
+            mapState?.longitude != null &&
+            mapState?.locationError == null)
+          Positioned(
+            right: 16,
+            bottom: MediaQuery.of(context).padding.bottom + 32,
+            child: FloatingActionButton.small(
+              heroTag: 'myLocation',
+              onPressed: () async {
+                await mapController.flyTo(
+                  CameraOptions(
+                    center: Point(
+                      coordinates: Position(
+                        mapState!.longitude!,
+                        mapState.latitude!,
+                      ),
+                    ),
+                    zoom: 10,
+                  ),
+                  MapAnimationOptions(duration: 1000),
+                );
+              },
+              child: const Icon(Icons.my_location),
+            ),
+          ),
       ],
     );
   }

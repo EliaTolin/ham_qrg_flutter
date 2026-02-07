@@ -123,6 +123,97 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RepeaterDetailMapPage]
+class RepeaterDetailMapRoute extends PageRouteInfo<RepeaterDetailMapRouteArgs> {
+  RepeaterDetailMapRoute({
+    required double repeaterLatitude,
+    required double repeaterLongitude,
+    required String repeaterName,
+    String? repeaterLocality,
+    String? repeaterLocator,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RepeaterDetailMapRoute.name,
+          args: RepeaterDetailMapRouteArgs(
+            repeaterLatitude: repeaterLatitude,
+            repeaterLongitude: repeaterLongitude,
+            repeaterName: repeaterName,
+            repeaterLocality: repeaterLocality,
+            repeaterLocator: repeaterLocator,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RepeaterDetailMapRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RepeaterDetailMapRouteArgs>();
+      return RepeaterDetailMapPage(
+        repeaterLatitude: args.repeaterLatitude,
+        repeaterLongitude: args.repeaterLongitude,
+        repeaterName: args.repeaterName,
+        repeaterLocality: args.repeaterLocality,
+        repeaterLocator: args.repeaterLocator,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class RepeaterDetailMapRouteArgs {
+  const RepeaterDetailMapRouteArgs({
+    required this.repeaterLatitude,
+    required this.repeaterLongitude,
+    required this.repeaterName,
+    this.repeaterLocality,
+    this.repeaterLocator,
+    this.key,
+  });
+
+  final double repeaterLatitude;
+
+  final double repeaterLongitude;
+
+  final String repeaterName;
+
+  final String? repeaterLocality;
+
+  final String? repeaterLocator;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RepeaterDetailMapRouteArgs{repeaterLatitude: $repeaterLatitude, repeaterLongitude: $repeaterLongitude, repeaterName: $repeaterName, repeaterLocality: $repeaterLocality, repeaterLocator: $repeaterLocator, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! RepeaterDetailMapRouteArgs) return false;
+    return repeaterLatitude == other.repeaterLatitude &&
+        repeaterLongitude == other.repeaterLongitude &&
+        repeaterName == other.repeaterName &&
+        repeaterLocality == other.repeaterLocality &&
+        repeaterLocator == other.repeaterLocator &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode =>
+      repeaterLatitude.hashCode ^
+      repeaterLongitude.hashCode ^
+      repeaterName.hashCode ^
+      repeaterLocality.hashCode ^
+      repeaterLocator.hashCode ^
+      key.hashCode;
+}
+
+/// generated route for
 /// [RepeaterDetailPage]
 class RepeaterDetailRoute extends PageRouteInfo<RepeaterDetailRouteArgs> {
   RepeaterDetailRoute({

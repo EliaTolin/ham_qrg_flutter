@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_location_map.dart';
 
@@ -47,8 +49,20 @@ class LocationSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        RepeaterLocationMap(
-          repeater: repeater,
+        GestureDetector(
+          onTap: repeater.latitude != null && repeater.longitude != null
+              ? () => context.router.push(
+                    RepeaterDetailMapRoute(
+                      repeaterLatitude: repeater.latitude!,
+                      repeaterLongitude: repeater.longitude!,
+                      repeaterName:
+                          repeater.callsign ?? repeater.name ?? '',
+                      repeaterLocality: repeater.locality,
+                      repeaterLocator: repeater.locator,
+                    ),
+                  )
+              : null,
+          child: RepeaterLocationMap(repeater: repeater),
         ),
         if (repeater.locality != null || repeater.locator != null) ...[
           const SizedBox(height: 12),
