@@ -8,6 +8,7 @@ import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
+import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:hamqrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
 import 'package:hamqrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
@@ -73,7 +74,9 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
       // First, invalidate ONLY profile providers (not isAnonymous)
       ref
         ..invalidate(getProfileProvider)
-        ..invalidate(checkNeedsPostLoginOnboardingProvider);
+        ..invalidate(checkNeedsPostLoginOnboardingProvider)
+        ..invalidate(getUserIdProvider)
+        ..invalidate(isAnonymousProvider);
 
       // Close the bottom sheet
       if (mounted) {
