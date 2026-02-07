@@ -32,7 +32,11 @@ class ModeFilterChipsHorizontal extends StatelessWidget {
             isPrimary: true,
           ),
           const SizedBox(width: 8),
-          ...AccessMode.values.map((mode) {
+          ...[
+            // Selected modes first, then unselected
+            ...AccessMode.values.where(selectedModes.contains),
+            ...AccessMode.values.where((m) => !selectedModes.contains(m)),
+          ].map((mode) {
             final isSelected = selectedModes.contains(mode);
             final modeColor = AccessModeHelper.getAccessModeColorObject(mode);
 
