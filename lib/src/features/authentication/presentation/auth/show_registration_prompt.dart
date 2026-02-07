@@ -170,6 +170,7 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
               children: [
                 // Scrollable content
                 SingleChildScrollView(
+                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                   child: Column(
                     children: [
                       // Spacer to push content below hero

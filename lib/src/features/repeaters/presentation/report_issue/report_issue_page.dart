@@ -105,6 +105,7 @@ class ReportIssuePage extends HookConsumerWidget {
           }
 
           return SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,16 +177,35 @@ class ReportIssuePage extends HookConsumerWidget {
                 ),
                 const Gap(8),
 
-                // Character count
+                // Character count with min indicator
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    '${state.description.length}/${ReportIssueController.maxChars}',
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: state.description.length > ReportIssueController.maxChars
-                          ? colorScheme.error
-                          : colorScheme.onSurface.withValues(alpha: .5),
-                    ),
+                  child: Builder(
+                    builder: (context) {
+                      final length = state.description.length;
+                      final hasStartedTyping = length > 0;
+                      final isBelowMin = length < ReportIssueController.minChars;
+                      final isAboveMax = length > ReportIssueController.maxChars;
+
+                      if (hasStartedTyping && isBelowMin) {
+                        return Text(
+                          '$length/${ReportIssueController.minChars} min',
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: colorScheme.error,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        );
+                      }
+
+                      return Text(
+                        '$length/${ReportIssueController.maxChars}',
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: isAboveMax
+                              ? colorScheme.error
+                              : colorScheme.onSurface.withValues(alpha: .5),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 const Gap(24),

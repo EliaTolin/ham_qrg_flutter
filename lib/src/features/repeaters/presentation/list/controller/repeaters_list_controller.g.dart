@@ -34,7 +34,7 @@ final class RepeatersListControllerProvider extends $AsyncNotifierProvider<
 }
 
 String _$repeatersListControllerHash() =>
-    r'9f2fd1045c88f9445e44e72d5af82dd126864483';
+    r'7bd34df0befb88dc785bb8a26efab4ab8ebcc306';
 
 abstract class _$RepeatersListController
     extends $AsyncNotifier<RepeatersListState> {

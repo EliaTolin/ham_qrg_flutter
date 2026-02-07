@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/repeaters_list_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
@@ -25,6 +27,12 @@ class RepeatersListPage extends HookConsumerWidget {
     final searchController = useTextEditingController();
     final searchQuery = useState<String>('');
     final debounceTimer = useRef<Timer?>(null);
+
+    // Local selected modes (source of truth for filter chips + search)
+    final selectedModes = useState<Set<AccessMode>>(const {});
+
+    // Stable list reference for the search provider (avoids new List identity each build)
+    final stableAccessModes = useRef<List<AccessMode>?>(null);
 
     final listAsyncState = ref.watch(repeatersListControllerProvider);
     final listNotifier = ref.read(repeatersListControllerProvider.notifier);
@@ -56,6 +64,15 @@ class RepeatersListPage extends HookConsumerWidget {
       [searchController],
     );
 
+    // Keep stable access modes list in sync with selectedModes
+    final currentModes = selectedModes.value;
+    if (currentModes.isEmpty) {
+      stableAccessModes.value = null;
+    } else if (stableAccessModes.value == null ||
+        !setEquals(stableAccessModes.value!.toSet(), currentModes)) {
+      stableAccessModes.value = currentModes.toList();
+    }
+
     // Determine search mode
     final currentSearchText = searchController.text.trim();
     final isSearchMode = currentSearchText.isNotEmpty;
@@ -67,14 +84,12 @@ class RepeatersListPage extends HookConsumerWidget {
         ? ref.watch(
             searchRepeatersProvider(
               query: debouncedQuery,
-              accessModes: listAsyncState.value?.selectedModes.isEmpty ?? true
-                  ? null
-                  : listAsyncState.value!.selectedModes.toList(),
+              accessModes: stableAccessModes.value,
             ),
           )
         : null;
 
-    // Handle loading state
+    // Handle loading state (only when not searching)
     if (listAsyncState.isLoading && !isSearchMode) {
       return Scaffold(
         appBar: AppBar(
@@ -86,7 +101,7 @@ class RepeatersListPage extends HookConsumerWidget {
       );
     }
 
-    // Handle error state
+    // Handle error state (only when not searching)
     if (listAsyncState.hasError && !isSearchMode && listAsyncState.error != null) {
       return Scaffold(
         appBar: AppBar(
@@ -97,10 +112,11 @@ class RepeatersListPage extends HookConsumerWidget {
     }
 
     final listState = listAsyncState.value;
+    final l10n = context.localization;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.localization.repeatersListTitle),
+        title: Text(l10n.repeatersListTitle),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: Padding(
@@ -108,7 +124,7 @@ class RepeatersListPage extends HookConsumerWidget {
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
-                hintText: context.localization.repeatersSearchHint,
+                hintText: l10n.repeatersSearchHint,
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: currentSearchText.isNotEmpty
                     ? IconButton(
@@ -129,18 +145,39 @@ class RepeatersListPage extends HookConsumerWidget {
           ),
         ),
       ),
-      body: isSearchMode
-          ? _buildSearchResults(
-              context,
-              searchAsyncState,
-              isTyping,
-            )
-          : _buildNearbyResults(
-              context,
-              ref,
-              listState,
-              listNotifier,
+      body: Column(
+        children: [
+          // Filter chips – always visible
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: ModeFilterChipsHorizontal(
+              allLabel: l10n.repeaterModeAllmode,
+              selectedModes: selectedModes.value,
+              onModeToggled: (mode) {
+                final newModes = Set<AccessMode>.from(selectedModes.value);
+                if (newModes.contains(mode)) {
+                  newModes.remove(mode);
+                } else {
+                  newModes.add(mode);
+                }
+                selectedModes.value = newModes;
+                listNotifier.loadWithModes(newModes);
+              },
+              onAllSelected: () {
+                if (selectedModes.value.isEmpty) return;
+                selectedModes.value = const {};
+                listNotifier.loadWithModes(const {});
+              },
             ),
+          ),
+          // Content
+          Expanded(
+            child: isSearchMode
+                ? _buildSearchResults(context, searchAsyncState, isTyping)
+                : _buildNearbyContent(context, ref, listState),
+          ),
+        ],
+      ),
     );
   }
 
@@ -200,12 +237,11 @@ class RepeatersListPage extends HookConsumerWidget {
     );
   }
 
-  /// Build nearby results view
-  Widget _buildNearbyResults(
+  /// Build nearby content (without filter chips – they are in the parent Column)
+  Widget _buildNearbyContent(
     BuildContext context,
     WidgetRef ref,
     RepeatersListState? listState,
-    RepeatersListController notifier,
   ) {
     final l10n = context.localization;
     final theme = Theme.of(context);
@@ -217,30 +253,7 @@ class RepeatersListPage extends HookConsumerWidget {
       );
     }
 
-    // Show empty state
-    if (listState.repeaters.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.location_off_outlined,
-              size: 64,
-              color: colorScheme.onSurface.withValues(alpha: 0.3),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              l10n.repeatersMapEmpty,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.6),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    // Show location error banner if present
+    // Show location error
     if (listState.locationError != null) {
       return Center(
         child: Padding(
@@ -277,28 +290,35 @@ class RepeatersListPage extends HookConsumerWidget {
       );
     }
 
-    // Show list with filters
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: ModeFilterChipsHorizontal(
-            allLabel: l10n.repeaterModeAllmode,
-            selectedModes: listState.selectedModes,
-            onModeToggled: notifier.toggleModeFilter,
-            onAllSelected: notifier.clearAllModeFilters,
-          ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: listState.repeaters.length,
-            itemBuilder: (context, index) => RepeaterListItem(
-              repeater: listState.repeaters[index],
+    // Empty state
+    if (listState.repeaters.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.search_off,
+              size: 64,
+              color: colorScheme.onSurface.withValues(alpha: 0.3),
             ),
-          ),
+            const SizedBox(height: 16),
+            Text(
+              l10n.repeatersSearchEmpty,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+            ),
+          ],
         ),
-      ],
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: listState.repeaters.length,
+      itemBuilder: (context, index) => RepeaterListItem(
+        repeater: listState.repeaters[index],
+      ),
     );
   }
 

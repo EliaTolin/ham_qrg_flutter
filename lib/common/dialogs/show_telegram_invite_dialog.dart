@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -9,21 +8,26 @@ Future<void> showTelegramInviteDialog(
   BuildContext context, {
   VoidCallback? onAlreadyTelegramMember,
 }) async {
-  await showDialog(
+  await showDialog<void>(
     barrierDismissible: false,
     context: context,
-    builder: (BuildContext context) {
+    builder: (context) {
+      final l10n = context.localization;
+      final theme = Theme.of(context);
+      final colorScheme = theme.colorScheme;
+
       return Dialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
         child: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Icon with rounded background
+                // Icon
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -32,108 +36,70 @@ Future<void> showTelegramInviteDialog(
                   ),
                   child: const Icon(
                     Icons.telegram,
-                    size: 50,
+                    size: 48,
                     color: Colors.blueAccent,
                   ),
                 ),
                 const SizedBox(height: 20),
                 // Title
-                RichText(
+                Text(
+                  l10n.joinCommunityTitle,
                   textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: 'Unisciti alla nostra ',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Community!',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                      ),
-                    ],
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
                 // Description
                 Text(
-                  'Scopri i vantaggi di entrare nella community Telegram:',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  l10n.joinCommunityDescription,
                   textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 ),
                 const SizedBox(height: 20),
-                // Benefits List
-                Column(
-                  children: [
-                    _buildBenefitItem(
-                      context,
-                      Icons.group,
-                      'Supporto dai membri',
-                    ),
-                    _buildBenefitItem(
-                      context,
-                      Icons.lightbulb_outline,
-                      'Proponi nuove funzionalità',
-                    ),
-                    _buildBenefitItem(
-                      context,
-                      Icons.developer_mode,
-                      'Contatto con gli sviluppatori',
-                    ),
-                    _buildBenefitItem(
-                      context,
-                      Icons.star,
-                      'Anteprime e beta esclusive',
-                    ),
-                    _buildBenefitItem(
-                      context,
-                      Icons.chat_bubble,
-                      'Community attiva',
-                    ),
-                    const Gap(8),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 12,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      onPressed: () async {
-                        try {
-                          final telegramUrl = AppConfigs.getTelegramLink();
-                          final uri = Uri.parse(telegramUrl);
-                          if (await canLaunchUrl(uri)) {
-                            await launchUrl(uri);
-                          } else {
-                            if (context.mounted) {
-                              showErrorSnackbar(
-                                context,
-                                "Errore durante l'apertura di Telegram".hardcoded,
-                              );
-                            }
-                          }
-                        } catch (e) {
-                          if (context.mounted) {
-                            showErrorSnackbar(
-                              context,
-                              "Errore durante l'apertura di Telegram".hardcoded,
-                            );
-                          }
-                        }
-                      },
-                      child: const Text('Unisciti ora!'),
-                    ),
-                  ],
+                // Benefits
+                _BenefitItem(
+                  icon: Icons.group,
+                  text: l10n.benefitSupportMembers,
                 ),
-                const Gap(20),
-                // Actions
+                _BenefitItem(
+                  icon: Icons.lightbulb_outline,
+                  text: l10n.benefitSuggestFeatures,
+                ),
+                _BenefitItem(
+                  icon: Icons.developer_mode,
+                  text: l10n.benefitContactDevelopers,
+                ),
+                _BenefitItem(
+                  icon: Icons.star,
+                  text: l10n.benefitExclusivePreviews,
+                ),
+                _BenefitItem(
+                  icon: Icons.chat_bubble,
+                  text: l10n.benefitActiveCommunity,
+                ),
+                const SizedBox(height: 20),
+                // Join button
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton.icon(
+                    onPressed: () => _openTelegram(context),
+                    icon: const Icon(Icons.open_in_new, size: 18),
+                    label: Text(l10n.joinNowButton),
+                    style: FilledButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Secondary actions
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (onAlreadyTelegramMember != null)
                       TextButton(
@@ -141,17 +107,13 @@ Future<void> showTelegramInviteDialog(
                           onAlreadyTelegramMember.call();
                           Navigator.of(context).pop();
                         },
-                        child: const Text('Sono già membro'),
+                        child: Text(l10n.alreadyMemberButton),
                       ),
                     TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text(
-                        'Più tardi',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text(
+                        l10n.laterButton,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -165,25 +127,54 @@ Future<void> showTelegramInviteDialog(
   );
 }
 
-Widget _buildBenefitItem(BuildContext context, IconData icon, String text) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16),
-    child: Row(
-      children: [
-        Icon(
-          icon,
-          color: Colors.blue,
-        ),
-        const Gap(
-          12,
-        ),
-        Expanded(
-          child: Text(
-            text,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(),
+Future<void> _openTelegram(BuildContext context) async {
+  try {
+    final uri = Uri.parse(AppConfigs.getTelegramLink());
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else if (context.mounted) {
+      showErrorSnackbar(context, context.localization.errorOpenTelegram);
+    }
+  } catch (_) {
+    if (context.mounted) {
+      showErrorSnackbar(context, context.localization.errorOpenTelegram);
+    }
+  }
+}
+
+class _BenefitItem extends StatelessWidget {
+  const _BenefitItem({required this.icon, required this.text});
+
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        children: [
+          Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: colorScheme.primary.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(icon, color: colorScheme.primary, size: 20),
           ),
-        ),
-      ],
-    ),
-  );
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              text,
+              style: theme.textTheme.bodyMedium,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

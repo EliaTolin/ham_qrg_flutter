@@ -61,13 +61,13 @@ class RepeaterFormatHelper {
       if (access.colorCode != null) {
         parts.add('CC: ${access.colorCode}');
       }
-      if (access.talkgroup != null) {
-        parts.add('TG: ${access.talkgroup}');
+      if (access.nodeId != null) {
+        parts.add('Node ID: ${access.nodeId}');
       }
     } else {
-      final tgLabel = AccessModeHelper.getTalkgroupLabel(access.mode);
-      if (tgLabel != null && access.talkgroup != null) {
-        parts.add('$tgLabel: ${access.talkgroup}');
+      final nodeLabel = AccessModeHelper.getNodeIdLabel(access.mode);
+      if (nodeLabel != null && access.nodeId != null) {
+        parts.add('$nodeLabel: ${access.nodeId}');
       }
       if (access.dgId != null) {
         parts.add('DG-ID: ${access.dgId}');

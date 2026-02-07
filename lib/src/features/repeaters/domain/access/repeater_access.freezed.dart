@@ -26,7 +26,7 @@ mixin _$RepeaterAccess {
   double? get ctcssRxHz;
   int? get dcsCode;
   int? get colorCode;
-  int? get talkgroup;
+  int? get nodeId;
   int? get dgId;
   String? get notes;
 
@@ -62,8 +62,7 @@ mixin _$RepeaterAccess {
             (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
             (identical(other.colorCode, colorCode) ||
                 other.colorCode == colorCode) &&
-            (identical(other.talkgroup, talkgroup) ||
-                other.talkgroup == talkgroup) &&
+            (identical(other.nodeId, nodeId) || other.nodeId == nodeId) &&
             (identical(other.dgId, dgId) || other.dgId == dgId) &&
             (identical(other.notes, notes) || other.notes == notes));
   }
@@ -83,13 +82,13 @@ mixin _$RepeaterAccess {
       ctcssRxHz,
       dcsCode,
       colorCode,
-      talkgroup,
+      nodeId,
       dgId,
       notes);
 
   @override
   String toString() {
-    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, talkgroup: $talkgroup, dgId: $dgId, notes: $notes)';
+    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, nodeId: $nodeId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -112,7 +111,7 @@ abstract mixin class $RepeaterAccessCopyWith<$Res> {
       double? ctcssRxHz,
       int? dcsCode,
       int? colorCode,
-      int? talkgroup,
+      int? nodeId,
       int? dgId,
       String? notes});
 
@@ -144,7 +143,7 @@ class _$RepeaterAccessCopyWithImpl<$Res>
     Object? ctcssRxHz = freezed,
     Object? dcsCode = freezed,
     Object? colorCode = freezed,
-    Object? talkgroup = freezed,
+    Object? nodeId = freezed,
     Object? dgId = freezed,
     Object? notes = freezed,
   }) {
@@ -197,9 +196,9 @@ class _$RepeaterAccessCopyWithImpl<$Res>
           ? _self.colorCode
           : colorCode // ignore: cast_nullable_to_non_nullable
               as int?,
-      talkgroup: freezed == talkgroup
-          ? _self.talkgroup
-          : talkgroup // ignore: cast_nullable_to_non_nullable
+      nodeId: freezed == nodeId
+          ? _self.nodeId
+          : nodeId // ignore: cast_nullable_to_non_nullable
               as int?,
       dgId: freezed == dgId
           ? _self.dgId
@@ -333,7 +332,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             double? ctcssRxHz,
             int? dcsCode,
             int? colorCode,
-            int? talkgroup,
+            int? nodeId,
             int? dgId,
             String? notes)?
         $default, {
@@ -355,7 +354,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             _that.ctcssRxHz,
             _that.dcsCode,
             _that.colorCode,
-            _that.talkgroup,
+            _that.nodeId,
             _that.dgId,
             _that.notes);
       case _:
@@ -391,7 +390,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             double? ctcssRxHz,
             int? dcsCode,
             int? colorCode,
-            int? talkgroup,
+            int? nodeId,
             int? dgId,
             String? notes)
         $default,
@@ -412,7 +411,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             _that.ctcssRxHz,
             _that.dcsCode,
             _that.colorCode,
-            _that.talkgroup,
+            _that.nodeId,
             _that.dgId,
             _that.notes);
       case _:
@@ -447,7 +446,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             double? ctcssRxHz,
             int? dcsCode,
             int? colorCode,
-            int? talkgroup,
+            int? nodeId,
             int? dgId,
             String? notes)?
         $default,
@@ -468,7 +467,7 @@ extension RepeaterAccessPatterns on RepeaterAccess {
             _that.ctcssRxHz,
             _that.dcsCode,
             _that.colorCode,
-            _that.talkgroup,
+            _that.nodeId,
             _that.dgId,
             _that.notes);
       case _:
@@ -493,7 +492,7 @@ class _RepeaterAccess implements RepeaterAccess {
       this.ctcssRxHz,
       this.dcsCode,
       this.colorCode,
-      this.talkgroup,
+      this.nodeId,
       this.dgId,
       this.notes});
 
@@ -522,7 +521,7 @@ class _RepeaterAccess implements RepeaterAccess {
   @override
   final int? colorCode;
   @override
-  final int? talkgroup;
+  final int? nodeId;
   @override
   final int? dgId;
   @override
@@ -560,8 +559,7 @@ class _RepeaterAccess implements RepeaterAccess {
             (identical(other.dcsCode, dcsCode) || other.dcsCode == dcsCode) &&
             (identical(other.colorCode, colorCode) ||
                 other.colorCode == colorCode) &&
-            (identical(other.talkgroup, talkgroup) ||
-                other.talkgroup == talkgroup) &&
+            (identical(other.nodeId, nodeId) || other.nodeId == nodeId) &&
             (identical(other.dgId, dgId) || other.dgId == dgId) &&
             (identical(other.notes, notes) || other.notes == notes));
   }
@@ -581,13 +579,13 @@ class _RepeaterAccess implements RepeaterAccess {
       ctcssRxHz,
       dcsCode,
       colorCode,
-      talkgroup,
+      nodeId,
       dgId,
       notes);
 
   @override
   String toString() {
-    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, talkgroup: $talkgroup, dgId: $dgId, notes: $notes)';
+    return 'RepeaterAccess(id: $id, repeaterId: $repeaterId, mode: $mode, source: $source, createdAt: $createdAt, updatedAt: $updatedAt, networkId: $networkId, network: $network, ctcssTxHz: $ctcssTxHz, ctcssRxHz: $ctcssRxHz, dcsCode: $dcsCode, colorCode: $colorCode, nodeId: $nodeId, dgId: $dgId, notes: $notes)';
   }
 }
 
@@ -612,7 +610,7 @@ abstract mixin class _$RepeaterAccessCopyWith<$Res>
       double? ctcssRxHz,
       int? dcsCode,
       int? colorCode,
-      int? talkgroup,
+      int? nodeId,
       int? dgId,
       String? notes});
 
@@ -645,7 +643,7 @@ class __$RepeaterAccessCopyWithImpl<$Res>
     Object? ctcssRxHz = freezed,
     Object? dcsCode = freezed,
     Object? colorCode = freezed,
-    Object? talkgroup = freezed,
+    Object? nodeId = freezed,
     Object? dgId = freezed,
     Object? notes = freezed,
   }) {
@@ -698,9 +696,9 @@ class __$RepeaterAccessCopyWithImpl<$Res>
           ? _self.colorCode
           : colorCode // ignore: cast_nullable_to_non_nullable
               as int?,
-      talkgroup: freezed == talkgroup
-          ? _self.talkgroup
-          : talkgroup // ignore: cast_nullable_to_non_nullable
+      nodeId: freezed == nodeId
+          ? _self.nodeId
+          : nodeId // ignore: cast_nullable_to_non_nullable
               as int?,
       dgId: freezed == dgId
           ? _self.dgId

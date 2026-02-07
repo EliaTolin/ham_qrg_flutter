@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
-import 'package:hamqrg/common/widgets/profile/profile_chip.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
@@ -44,19 +43,21 @@ class DashboardPage extends HookConsumerWidget {
                 ),
               ),
             ),
-            // Profile Chip
-            Positioned(
-              top: MediaQuery.paddingOf(context).top + 16,
-              right: 16,
-              child: ProfileChip(
-                imageProfilePath: state.profile?.propic,
-                callSign: state.profile?.callsign,
-              ),
-            ),
+            // // Profile Chip
+            // Positioned(
+            //   top: MediaQuery.paddingOf(context).top + 16,
+            //   right: 16,
+            //   child: ProfileChip(
+            //     imageProfilePath: state.profile?.propic,
+            //     callSign: state.profile?.callsign,
+            //   ),
+            // ),
             // Draggable Content Sheet
             DraggableScrollableSheet(
               initialChildSize: 0.42,
               minChildSize: 0.42,
+              maxChildSize:
+                  1.0 - (MediaQuery.paddingOf(context).top / MediaQuery.sizeOf(context).height),
               builder: (context, scrollController) => _ContentSection(
                 statistics: state.statistics,
                 nearbyRepeaters: state.nearbyRepeaters,
@@ -134,6 +135,7 @@ class _ContentSection extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 controller: scrollController,
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

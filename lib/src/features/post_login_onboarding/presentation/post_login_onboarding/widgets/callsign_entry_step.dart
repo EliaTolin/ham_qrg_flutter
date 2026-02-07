@@ -28,6 +28,7 @@ class CallsignEntryStep extends StatelessWidget {
     final isValid = CallsignValidator.isValidLicensedCallsign(callsign);
 
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
         child: Column(

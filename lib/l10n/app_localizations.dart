@@ -316,6 +316,12 @@ abstract class AppLocalizations {
   /// **'Contatto con gli sviluppatori'**
   String get benefitContactDevelopers;
 
+  /// No description provided for @benefitExclusivePreviews.
+  ///
+  /// In it, this message translates to:
+  /// **'Anteprime e beta esclusive'**
+  String get benefitExclusivePreviews;
+
   /// No description provided for @benefitActiveCommunity.
   ///
   /// In it, this message translates to:
@@ -327,6 +333,12 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Unisciti ora!'**
   String get joinNowButton;
+
+  /// No description provided for @alreadyMemberButton.
+  ///
+  /// In it, this message translates to:
+  /// **'Sono già membro'**
+  String get alreadyMemberButton;
 
   /// No description provided for @laterButton.
   ///

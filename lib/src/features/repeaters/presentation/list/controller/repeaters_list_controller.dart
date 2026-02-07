@@ -14,33 +14,13 @@ class RepeatersListController extends _$RepeatersListController {
     return _loadInitialRepeaters();
   }
 
-  Future<void> toggleModeFilter(AccessMode mode) async {
-    final currentState = state.value;
-    if (currentState == null) {
-      return;
-    }
-
-    final newSelectedModes = Set<AccessMode>.from(currentState.selectedModes);
-    if (newSelectedModes.contains(mode)) {
-      newSelectedModes.remove(mode);
-    } else {
-      newSelectedModes.add(mode);
-    }
-
-    // Reload with current location if available
+  /// Reload the nearby list with the given [modes].
+  Future<void> loadWithModes(Set<AccessMode> modes) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(
       () => _loadInitialRepeaters(
-        selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
+        selectedModes: modes.isEmpty ? [] : modes.toList(),
       ),
-    );
-  }
-
-  /// Clear all mode filters and reload
-  Future<void> clearAllModeFilters() async {
-    state = const AsyncLoading();
-    state = await AsyncValue.guard(
-      () => _loadInitialRepeaters(selectedModes: []),
     );
   }
 

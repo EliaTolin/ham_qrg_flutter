@@ -22,7 +22,7 @@ _RepeaterAccessModel _$RepeaterAccessModelFromJson(Map<String, dynamic> json) =>
       ctcssRxHz: (json['ctcss_rx_hz'] as num?)?.toDouble(),
       dcsCode: (json['dcs_code'] as num?)?.toInt(),
       colorCode: (json['color_code'] as num?)?.toInt(),
-      talkgroup: (json['talkgroup'] as num?)?.toInt(),
+      nodeId: (json['node_id'] as num?)?.toInt(),
       dgId: (json['dg_id'] as num?)?.toInt(),
       notes: json['notes'] as String?,
     );
@@ -42,7 +42,7 @@ Map<String, dynamic> _$RepeaterAccessModelToJson(
       'ctcss_rx_hz': instance.ctcssRxHz,
       'dcs_code': instance.dcsCode,
       'color_code': instance.colorCode,
-      'talkgroup': instance.talkgroup,
+      'node_id': instance.nodeId,
       'dg_id': instance.dgId,
       'notes': instance.notes,
     };

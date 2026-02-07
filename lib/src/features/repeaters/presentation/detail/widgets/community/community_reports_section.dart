@@ -43,6 +43,7 @@ class CommunityReportsSection extends HookConsumerWidget {
 
     // Get user info from profile
     final userCallsign = profileAsync.value?.callsign;
+    final userName = profileAsync.value?.name;
     final userAvatarUrl = profileAsync.value?.propic;
 
     // Prefill location on mount
@@ -54,15 +55,27 @@ class CommunityReportsSection extends HookConsumerWidget {
       [],
     );
 
-    // Sync location text with state
+    // Sync location text with state (including reset to empty)
     useEffect(
       () {
-        if (state.locationText != null && locationText.text != state.locationText) {
-          locationText.text = state.locationText!;
+        final stateText = state.locationText ?? '';
+        if (locationText.text != stateText) {
+          locationText.text = stateText;
         }
         return null;
       },
       [state.locationText],
+    );
+
+    // Sync comment with state (including reset to empty)
+    useEffect(
+      () {
+        if (comment.text != state.comment) {
+          comment.text = state.comment;
+        }
+        return null;
+      },
+      [state.comment],
     );
 
     return Column(
@@ -148,6 +161,7 @@ class CommunityReportsSection extends HookConsumerWidget {
               child: MyFeedbackCard(
                 feedback: feedback,
                 userCallsign: userCallsign,
+                userName: userName,
                 userAvatarUrl: userAvatarUrl,
                 onDelete: () => controller.deleteFeedback(feedback.id),
                 isLoading: state.isDeletingFeedback,

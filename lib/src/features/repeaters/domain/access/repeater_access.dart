@@ -19,7 +19,7 @@ abstract class RepeaterAccess with _$RepeaterAccess {
     double? ctcssRxHz,
     int? dcsCode,
     int? colorCode,
-    int? talkgroup,
+    int? nodeId,
     int? dgId,
     String? notes,
   }) = _RepeaterAccess;

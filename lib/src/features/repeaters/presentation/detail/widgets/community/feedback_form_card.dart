@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
@@ -38,8 +36,6 @@ class FeedbackFormCard extends ConsumerWidget {
 
     final isFormValid = controller.isFormValid();
     final isWithinDistance = controller.isWithinAllowedDistance();
-    log('isWithinDistance: $isWithinDistance');
-    final canSubmit = isFormValid && isWithinDistance && !state.isSubmittingFeedback;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -152,7 +148,7 @@ class FeedbackFormCard extends ConsumerWidget {
           ],
           const SizedBox(height: 16),
           // Action buttons
-          _buildActionButtons(context, ref, theme, l10n, canSubmit),
+          _buildActionButtons(context, ref, theme, l10n),
         ],
       ),
     );
@@ -412,12 +408,18 @@ class FeedbackFormCard extends ConsumerWidget {
     );
   }
 
+  static const int _minCommentChars = 3;
+
   Widget _buildCommentField(
     BuildContext context,
     ThemeData theme,
     ColorScheme colorScheme,
     AppLocalizations l10n,
   ) {
+    final charCount = state.comment.trim().length;
+    final hasStartedTyping = state.comment.isNotEmpty;
+    final isBelowMin = charCount < _minCommentChars;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -446,6 +448,19 @@ class FeedbackFormCard extends ConsumerWidget {
             contentPadding: const EdgeInsets.all(12),
           ),
         ),
+        if (hasStartedTyping && isBelowMin) ...[
+          const SizedBox(height: 4),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              '$charCount/$_minCommentChars min',
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: colorScheme.error,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
       ],
     );
   }
@@ -492,8 +507,14 @@ class FeedbackFormCard extends ConsumerWidget {
     WidgetRef ref,
     FeedbackType type,
   ) async {
+    // Auth gate first – anonymous users see the registration prompt
     final isAuthenticated = await requireAuthentication(context, ref);
     if (!isAuthenticated) return;
+
+    // Then validate the form
+    if (!controller.isFormValid()) return;
+
+    if (!controller.isWithinAllowedDistance()) return;
 
     final distance = controller.getDistanceToRepeater();
     if (distance != null && distance > AppConfigs.feedbackDistanceWarningKm && context.mounted) {
@@ -502,7 +523,6 @@ class FeedbackFormCard extends ConsumerWidget {
     }
 
     await controller.submitFeedback(type: type);
-    
   }
 
   Future<bool> _showDistanceConfirmDialog(
@@ -563,13 +583,14 @@ class FeedbackFormCard extends ConsumerWidget {
     WidgetRef ref,
     ThemeData theme,
     AppLocalizations l10n,
-    bool canSubmit,
   ) {
     return Row(
       children: [
         Expanded(
           child: FilledButton(
-            onPressed: canSubmit ? () => _handleSubmit(context, ref, FeedbackType.like) : null,
+            onPressed: state.isSubmittingFeedback
+                ? null
+                : () => _handleSubmit(context, ref, FeedbackType.like),
             style: FilledButton.styleFrom(
               backgroundColor: Colors.green,
               foregroundColor: Colors.white,
@@ -608,7 +629,9 @@ class FeedbackFormCard extends ConsumerWidget {
         const SizedBox(width: 12),
         Expanded(
           child: FilledButton(
-            onPressed: canSubmit ? () => _handleSubmit(context, ref, FeedbackType.down) : null,
+            onPressed: state.isSubmittingFeedback
+                ? null
+                : () => _handleSubmit(context, ref, FeedbackType.down),
             style: FilledButton.styleFrom(
               backgroundColor: Colors.amber.shade700,
               foregroundColor: Colors.white,
@@ -665,10 +688,10 @@ class FeedbackFormCard extends ConsumerWidget {
     if (access.colorCode != null) {
       parts.add('CC: ${access.colorCode}');
     }
-    if (access.talkgroup != null) {
-      final tgLabel = AccessModeHelper.getTalkgroupLabel(access.mode);
-      if (tgLabel != null) {
-        parts.add('$tgLabel: ${access.talkgroup}');
+    if (access.nodeId != null) {
+      final nodeLabel = AccessModeHelper.getNodeIdLabel(access.mode);
+      if (nodeLabel != null) {
+        parts.add('$nodeLabel: ${access.nodeId}');
       }
     }
     if (access.ctcssRxHz != null && access.ctcssTxHz != access.ctcssRxHz) {

@@ -69,6 +69,7 @@ class UserSettingsScreen extends HookConsumerWidget {
               }
 
               return SingleChildScrollView(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,

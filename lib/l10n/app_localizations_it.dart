@@ -127,10 +127,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get benefitContactDevelopers => 'Contatto con gli sviluppatori';
 
   @override
+  String get benefitExclusivePreviews => 'Anteprime e beta esclusive';
+
+  @override
   String get benefitActiveCommunity => 'Community attiva';
 
   @override
   String get joinNowButton => 'Unisciti ora!';
+
+  @override
+  String get alreadyMemberButton => 'Sono già membro';
 
   @override
   String get laterButton => 'Più tardi';

@@ -37,6 +37,7 @@ class ProfileScreen extends HookConsumerWidget {
               return SafeArea(
                 child: Scaffold(
                   body: SingleChildScrollView(
+                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                     padding: const EdgeInsets.all(16),
                     child: Column(
                       children: [

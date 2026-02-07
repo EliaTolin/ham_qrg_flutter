@@ -20,6 +20,7 @@ class UserTypeSelectionStep extends StatelessWidget {
     final color = theme.colorScheme;
 
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
         child: Column(

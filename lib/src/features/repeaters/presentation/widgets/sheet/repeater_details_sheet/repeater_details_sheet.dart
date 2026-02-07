@@ -522,11 +522,11 @@ class _AccessCard extends StatelessWidget {
                         label: 'CC',
                         value: access.colorCode.toString(),
                       ),
-                    if (access.talkgroup != null &&
-                        AccessModeHelper.getTalkgroupLabel(access.mode) != null)
+                    if (access.nodeId != null &&
+                        AccessModeHelper.getNodeIdLabel(access.mode) != null)
                       _AccessDetailItem(
-                        label: AccessModeHelper.getTalkgroupLabel(access.mode)!.toUpperCase(),
-                        value: access.talkgroup.toString(),
+                        label: AccessModeHelper.getNodeIdLabel(access.mode)!.toUpperCase(),
+                        value: access.nodeId.toString(),
                       ),
                   ],
                 ),

@@ -16,12 +16,14 @@ class MyFeedbackCard extends StatelessWidget {
     required this.onDelete,
     required this.isLoading,
     this.userCallsign,
+    this.userName,
     this.userAvatarUrl,
     super.key,
   });
 
   final RepeaterFeedback feedback;
   final String? userCallsign;
+  final String? userName;
   final String? userAvatarUrl;
   final VoidCallback onDelete;
   final bool isLoading;
@@ -32,7 +34,7 @@ class MyFeedbackCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final displayCallsign = userCallsign ?? feedback.userId.substring(0, 6).toUpperCase();
+    final displayCallsign = userCallsign ?? userName ?? feedback.userId.substring(0, 6).toUpperCase();
     final isLike = feedback.type == FeedbackType.like;
     final badgeColor = isLike ? Colors.green : Colors.amber;
     final accessColor = AccessModeHelper.getAccessModeColorObject(feedback.repeaterAccess.mode);

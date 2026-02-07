@@ -62,11 +62,11 @@ class AccessModeHelper {
     };
   }
 
-  /// Returns the label for the talkgroup field based on the access mode.
-  /// Returns null if the mode does not use a talkgroup-like identifier.
-  static String? getTalkgroupLabel(AccessMode mode) {
+  /// Returns the label for the node ID field based on the access mode.
+  /// Returns null if the mode does not use a node-like identifier.
+  static String? getNodeIdLabel(AccessMode mode) {
     return switch (mode) {
-      AccessMode.dmr => 'Talkgroup',
+      AccessMode.dmr => 'Node ID',
       AccessMode.echolink => 'Node',
       AccessMode.c4fm => 'Room',
       AccessMode.allstar => 'Node',

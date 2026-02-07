@@ -253,7 +253,7 @@ class AccessModeCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    AccessModeHelper.getTalkgroupLabel(access.mode)?.toUpperCase() ?? 'TALKGROUP',
+                    AccessModeHelper.getNodeIdLabel(access.mode)?.toUpperCase() ?? 'NODE ID',
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.bold,
@@ -263,7 +263,7 @@ class AccessModeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    access.talkgroup?.toString() ?? '-',
+                    access.nodeId?.toString() ?? '-',
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       fontFeatures: const [FontFeature.tabularFigures()],
@@ -284,11 +284,11 @@ class AccessModeCard extends StatelessWidget {
 
     final details = <Widget>[];
 
-    // Talkgroup (shown for modes that have a talkgroup-like identifier)
-    final talkgroupLabel = AccessModeHelper.getTalkgroupLabel(access.mode);
-    if (talkgroupLabel != null && access.talkgroup != null) {
+    // Node ID (shown for modes that have a node-like identifier)
+    final nodeIdLabel = AccessModeHelper.getNodeIdLabel(access.mode);
+    if (nodeIdLabel != null && access.nodeId != null) {
       details.add(
-        _buildDetailRow(context, talkgroupLabel.toUpperCase(), access.talkgroup.toString()),
+        _buildDetailRow(context, nodeIdLabel.toUpperCase(), access.nodeId.toString()),
       );
     }
 
