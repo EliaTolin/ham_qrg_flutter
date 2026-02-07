@@ -87,8 +87,7 @@ class RepeaterCard extends StatelessWidget {
     );
   }
 
-  bool get _hasFooter =>
-      feedbackStats != null || repeater.distanceMeters != null;
+  bool get _hasFooter => feedbackStats != null || repeater.distanceMeters != null;
 }
 
 // ---------------------------------------------------------------------------
@@ -122,8 +121,7 @@ class _Header extends StatelessWidget {
                   color: colorScheme.onSurface,
                 ),
               ),
-              if (repeater.locality != null ||
-                  repeater.region != null) ...[
+              if (repeater.locality != null || repeater.region != null) ...[
                 const SizedBox(height: 2),
                 Row(
                   children: [
@@ -135,9 +133,7 @@ class _Header extends StatelessWidget {
                     const SizedBox(width: 2),
                     Expanded(
                       child: Text(
-                        [repeater.locality, repeater.region]
-                            .whereType<String>()
-                            .join(', '),
+                        [repeater.locality, repeater.region].whereType<String>().join(', '),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: colorScheme.onSurfaceVariant,
                         ),
@@ -309,32 +305,28 @@ class _StatsFooter extends StatelessWidget {
         if (feedbackStats != null) ...[
           Icon(
             Icons.thumb_up_rounded,
-            size: 16,
+            size: 24,
             color: likesTotal > 0 ? Colors.green : colorScheme.outlineVariant,
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: 6),
           Text(
             '$likesTotal',
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: likesTotal > 0
-                  ? Colors.green
-                  : colorScheme.onSurfaceVariant,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: likesTotal > 0 ? Colors.green : colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
             ),
           ),
           const SizedBox(width: 16),
           Icon(
             Icons.flag_rounded,
-            size: 16,
+            size: 24,
             color: downTotal > 0 ? Colors.amber : colorScheme.outlineVariant,
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: 6),
           Text(
             '$downTotal',
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: downTotal > 0
-                  ? Colors.amber
-                  : colorScheme.onSurfaceVariant,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: downTotal > 0 ? Colors.amber : colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -343,13 +335,13 @@ class _StatsFooter extends StatelessWidget {
         if (repeater.distanceMeters != null) ...[
           Icon(
             Icons.near_me_outlined,
-            size: 16,
+            size: 24,
             color: colorScheme.onSurfaceVariant,
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: 6),
           Text(
             _formatDistance(repeater.distanceMeters!),
-            style: theme.textTheme.bodySmall?.copyWith(
+            style: theme.textTheme.bodyMedium?.copyWith(
               color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
             ),

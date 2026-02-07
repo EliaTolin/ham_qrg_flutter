@@ -56,6 +56,8 @@
   "repeatersMapEmpty": "Nessun ripetitore trovato vicino a te.",
   "repeatersSearchHint": "Cerca per nome, nominativo o frequenza MHz…",
   "repeatersSearchEmpty": "Nessun ripetitore trovato.",
+  "repeatersSortDistance": "Distanza",
+  "repeatersSortLikes": "Likes",
   "repeatersMapRetry": "Riprova",
   "repeatersMapOpenSettings": "Apri impostazioni",
   "repeatersMapPermissionMessage": "Consenti l'accesso alla posizione per mostrare i ripetitori vicino a te.",

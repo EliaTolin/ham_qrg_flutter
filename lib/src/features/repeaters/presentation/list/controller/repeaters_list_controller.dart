@@ -2,6 +2,7 @@ import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_sort_order.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_feedback_stats_from_ids/get_repeaters_feedback_stats_from_ids_provider.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
@@ -23,6 +24,21 @@ class RepeatersListController extends _$RepeatersListController {
       () => _loadInitialRepeaters(
         selectedModes: modes.isEmpty ? [] : modes.toList(),
       ),
+    );
+  }
+
+  /// Re-sort the current repeater list without re-fetching.
+  void setSortOrder(RepeatersSortOrder order) {
+    final currentState = state.value;
+    if (currentState == null || currentState.sortOrder == order) return;
+
+    final sorted = _sortRepeaters(
+      currentState.repeaters,
+      currentState.feedbackStats,
+      order,
+    );
+    state = AsyncData(
+      currentState.copyWith(repeaters: sorted, sortOrder: order),
     );
   }
 
@@ -52,6 +68,7 @@ class RepeatersListController extends _$RepeatersListController {
       // Use a reasonable default bounds around user location
       final lat = position.latitude;
       final lon = position.longitude;
+      final sortOrder = currentState?.sortOrder ?? RepeatersSortOrder.distance;
 
       final repeaters = await _fetchRepeatersFromRadius(
         latitude: lat,
@@ -60,11 +77,13 @@ class RepeatersListController extends _$RepeatersListController {
       );
 
       final stats = await _fetchFeedbackStats(repeaters);
+      final sorted = _sortRepeaters(repeaters, stats, sortOrder);
 
       return RepeatersListState(
-        repeaters: repeaters,
+        repeaters: sorted,
         feedbackStats: stats,
         selectedModes: modesToFilter?.toSet() ?? {},
+        sortOrder: sortOrder,
       );
     } on LocationException catch (error) {
       return RepeatersListState(
@@ -95,5 +114,29 @@ class RepeatersListController extends _$RepeatersListController {
   ) async {
     final ids = repeaters.map((r) => r.id).toList();
     return ref.read(getRepeatersFeedbackStatsFromIdsProvider(ids).future);
+  }
+
+  /// Sort repeaters according to the given [order].
+  List<Repeater> _sortRepeaters(
+    List<Repeater> repeaters,
+    Map<String, RepeaterFeedbackStats> stats,
+    RepeatersSortOrder order,
+  ) {
+    final sorted = List<Repeater>.of(repeaters);
+    switch (order) {
+      case RepeatersSortOrder.distance:
+        sorted.sort((a, b) {
+          final da = a.distanceMeters ?? double.infinity;
+          final db = b.distanceMeters ?? double.infinity;
+          return da.compareTo(db);
+        });
+      case RepeatersSortOrder.likes:
+        sorted.sort((a, b) {
+          final la = stats[a.id]?.likesTotal ?? 0;
+          final lb = stats[b.id]?.likesTotal ?? 0;
+          return lb.compareTo(la); // descending
+        });
+    }
+    return sorted;
   }
 }

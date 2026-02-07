@@ -112,6 +112,33 @@ File: `lib/l10n/app_it.arb` (template)
 - **Supabase**: Database, authentication (Google, Apple, Anonymous)
 - **Mapbox**: Interactive maps with repeater markers
 - **Sentry**: Error tracking
+- **Backend repo**: `ham_qrg_supabase/supabase/` — migrations, RPC functions, RLS policies
+
+### Supabase Query Patterns
+
+- **Prefer RPC functions** over complex PostgREST queries with `!inner` joins + `inFilter` — PostgREST joins are fragile and can silently drop related data (e.g., `network:networks(*)` gets lost when switching to `!inner`).
+- Complex queries (search with fuzzy match, filters, joins) should be PostgreSQL functions called via `_client.rpc('function_name', params: {...})`.
+- RPC functions use the **LATERAL JOIN pattern** for loading accesses with their networks consistently.
+- **pg_trgm extension** is enabled: use `similarity()` for fuzzy ranking and `ILIKE` with trigram GIN indexes for filtering.
+
+### Authentication Provider Invalidation
+
+When auth state changes (e.g., anonymous → authenticated via registration prompt), **ALL** auth-related providers must be invalidated:
+```dart
+ref
+  ..invalidate(getProfileProvider)
+  ..invalidate(checkNeedsPostLoginOnboardingProvider)
+  ..invalidate(getUserIdProvider)
+  ..invalidate(isAnonymousProvider);
+```
+Missing any of these causes stale cached values → RLS violations when the JWT token no longer matches the cached `userId`.
+
+### Auth Gate Pattern (`requireAuthentication`)
+
+`requireAuthentication(context, ref)` is used as an auth gate before protected actions (feedback, favorites, reports). The registration prompt shown to anonymous users must:
+- Only close the modal (`Navigator.pop(true)`) after sign-in
+- **NOT navigate away** (`pushAndPopUntil`) — that would destroy the caller's page mid-action
+- Invalidate all auth providers before closing so the caller gets fresh state
 
 ## Repeater Domain Model
 
@@ -161,6 +188,21 @@ provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart
 # Provider (simple action/fetch)
 provider/get_profile/get_profile_provider.dart
 ```
+
+## Testing Conventions
+
+### Integration Tests (real Supabase)
+- File naming: **flat** `test/FEATURE_provider_test.dart` (e.g., `test/repeaters_provider_test.dart`)
+- Do NOT mirror `src/features/` folder structure in tests
+- Use `@Tags(['integration'])` at file level to separate from unit tests
+- Use `ProviderContainer` with real datasource/repository overrides
+- Authenticate with `_client.auth.signInAnonymously()` for RLS permissions
+- Run with: `flutter test --tags integration`
+- Note: without `dart_test.yaml`, `flutter test` runs everything including integration tests
+
+### Unit Tests
+- Place in `test/common/` or `test/` root
+- Mock dependencies when testing pure logic
 
 ## Commit Convention
 

@@ -394,6 +394,18 @@ abstract class AppLocalizations {
   /// **'Nessun ripetitore trovato.'**
   String get repeatersSearchEmpty;
 
+  /// No description provided for @repeatersSortDistance.
+  ///
+  /// In it, this message translates to:
+  /// **'Distanza'**
+  String get repeatersSortDistance;
+
+  /// No description provided for @repeatersSortLikes.
+  ///
+  /// In it, this message translates to:
+  /// **'Likes'**
+  String get repeatersSortLikes;
+
   /// No description provided for @repeatersMapRetry.
   ///
   /// In it, this message translates to:

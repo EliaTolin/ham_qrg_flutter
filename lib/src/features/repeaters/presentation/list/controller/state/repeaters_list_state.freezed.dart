@@ -19,6 +19,7 @@ mixin _$RepeatersListState {
   LocationErrorType? get locationError;
   Set<AccessMode> get selectedModes;
   double get radiusKm;
+  RepeatersSortOrder get sortOrder;
 
   /// Create a copy of RepeatersListState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,7 +42,9 @@ mixin _$RepeatersListState {
             const DeepCollectionEquality()
                 .equals(other.selectedModes, selectedModes) &&
             (identical(other.radiusKm, radiusKm) ||
-                other.radiusKm == radiusKm));
+                other.radiusKm == radiusKm) &&
+            (identical(other.sortOrder, sortOrder) ||
+                other.sortOrder == sortOrder));
   }
 
   @override
@@ -51,11 +54,12 @@ mixin _$RepeatersListState {
       const DeepCollectionEquality().hash(feedbackStats),
       locationError,
       const DeepCollectionEquality().hash(selectedModes),
-      radiusKm);
+      radiusKm,
+      sortOrder);
 
   @override
   String toString() {
-    return 'RepeatersListState(repeaters: $repeaters, feedbackStats: $feedbackStats, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm)';
+    return 'RepeatersListState(repeaters: $repeaters, feedbackStats: $feedbackStats, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm, sortOrder: $sortOrder)';
   }
 }
 
@@ -70,7 +74,8 @@ abstract mixin class $RepeatersListStateCopyWith<$Res> {
       Map<String, RepeaterFeedbackStats> feedbackStats,
       LocationErrorType? locationError,
       Set<AccessMode> selectedModes,
-      double radiusKm});
+      double radiusKm,
+      RepeatersSortOrder sortOrder});
 }
 
 /// @nodoc
@@ -91,6 +96,7 @@ class _$RepeatersListStateCopyWithImpl<$Res>
     Object? locationError = freezed,
     Object? selectedModes = null,
     Object? radiusKm = null,
+    Object? sortOrder = null,
   }) {
     return _then(_self.copyWith(
       repeaters: null == repeaters
@@ -113,6 +119,10 @@ class _$RepeatersListStateCopyWithImpl<$Res>
           ? _self.radiusKm
           : radiusKm // ignore: cast_nullable_to_non_nullable
               as double,
+      sortOrder: null == sortOrder
+          ? _self.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as RepeatersSortOrder,
     ));
   }
 }
@@ -215,15 +225,21 @@ extension RepeatersListStatePatterns on RepeatersListState {
             Map<String, RepeaterFeedbackStats> feedbackStats,
             LocationErrorType? locationError,
             Set<AccessMode> selectedModes,
-            double radiusKm)?
+            double radiusKm,
+            RepeatersSortOrder sortOrder)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _RepeatersListState() when $default != null:
-        return $default(_that.repeaters, _that.feedbackStats,
-            _that.locationError, _that.selectedModes, _that.radiusKm);
+        return $default(
+            _that.repeaters,
+            _that.feedbackStats,
+            _that.locationError,
+            _that.selectedModes,
+            _that.radiusKm,
+            _that.sortOrder);
       case _:
         return orElse();
     }
@@ -249,14 +265,20 @@ extension RepeatersListStatePatterns on RepeatersListState {
             Map<String, RepeaterFeedbackStats> feedbackStats,
             LocationErrorType? locationError,
             Set<AccessMode> selectedModes,
-            double radiusKm)
+            double radiusKm,
+            RepeatersSortOrder sortOrder)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _RepeatersListState():
-        return $default(_that.repeaters, _that.feedbackStats,
-            _that.locationError, _that.selectedModes, _that.radiusKm);
+        return $default(
+            _that.repeaters,
+            _that.feedbackStats,
+            _that.locationError,
+            _that.selectedModes,
+            _that.radiusKm,
+            _that.sortOrder);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -281,14 +303,20 @@ extension RepeatersListStatePatterns on RepeatersListState {
             Map<String, RepeaterFeedbackStats> feedbackStats,
             LocationErrorType? locationError,
             Set<AccessMode> selectedModes,
-            double radiusKm)?
+            double radiusKm,
+            RepeatersSortOrder sortOrder)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _RepeatersListState() when $default != null:
-        return $default(_that.repeaters, _that.feedbackStats,
-            _that.locationError, _that.selectedModes, _that.radiusKm);
+        return $default(
+            _that.repeaters,
+            _that.feedbackStats,
+            _that.locationError,
+            _that.selectedModes,
+            _that.radiusKm,
+            _that.sortOrder);
       case _:
         return null;
     }
@@ -304,7 +332,8 @@ class _RepeatersListState implements RepeatersListState {
           const <String, RepeaterFeedbackStats>{},
       this.locationError,
       final Set<AccessMode> selectedModes = const <AccessMode>{},
-      this.radiusKm = 100})
+      this.radiusKm = 100,
+      this.sortOrder = RepeatersSortOrder.distance})
       : _repeaters = repeaters,
         _feedbackStats = feedbackStats,
         _selectedModes = selectedModes;
@@ -341,6 +370,9 @@ class _RepeatersListState implements RepeatersListState {
   @override
   @JsonKey()
   final double radiusKm;
+  @override
+  @JsonKey()
+  final RepeatersSortOrder sortOrder;
 
   /// Create a copy of RepeatersListState
   /// with the given fields replaced by the non-null parameter values.
@@ -364,7 +396,9 @@ class _RepeatersListState implements RepeatersListState {
             const DeepCollectionEquality()
                 .equals(other._selectedModes, _selectedModes) &&
             (identical(other.radiusKm, radiusKm) ||
-                other.radiusKm == radiusKm));
+                other.radiusKm == radiusKm) &&
+            (identical(other.sortOrder, sortOrder) ||
+                other.sortOrder == sortOrder));
   }
 
   @override
@@ -374,11 +408,12 @@ class _RepeatersListState implements RepeatersListState {
       const DeepCollectionEquality().hash(_feedbackStats),
       locationError,
       const DeepCollectionEquality().hash(_selectedModes),
-      radiusKm);
+      radiusKm,
+      sortOrder);
 
   @override
   String toString() {
-    return 'RepeatersListState(repeaters: $repeaters, feedbackStats: $feedbackStats, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm)';
+    return 'RepeatersListState(repeaters: $repeaters, feedbackStats: $feedbackStats, locationError: $locationError, selectedModes: $selectedModes, radiusKm: $radiusKm, sortOrder: $sortOrder)';
   }
 }
 
@@ -395,7 +430,8 @@ abstract mixin class _$RepeatersListStateCopyWith<$Res>
       Map<String, RepeaterFeedbackStats> feedbackStats,
       LocationErrorType? locationError,
       Set<AccessMode> selectedModes,
-      double radiusKm});
+      double radiusKm,
+      RepeatersSortOrder sortOrder});
 }
 
 /// @nodoc
@@ -416,6 +452,7 @@ class __$RepeatersListStateCopyWithImpl<$Res>
     Object? locationError = freezed,
     Object? selectedModes = null,
     Object? radiusKm = null,
+    Object? sortOrder = null,
   }) {
     return _then(_RepeatersListState(
       repeaters: null == repeaters
@@ -438,6 +475,10 @@ class __$RepeatersListStateCopyWithImpl<$Res>
           ? _self.radiusKm
           : radiusKm // ignore: cast_nullable_to_non_nullable
               as double,
+      sortOrder: null == sortOrder
+          ? _self.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as RepeatersSortOrder,
     ));
   }
 }

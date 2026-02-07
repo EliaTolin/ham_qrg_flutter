@@ -10,6 +10,7 @@ import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/repeaters_list_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_sort_order.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/repeater_card.dart';
 import 'package:hamqrg/src/features/repeaters/provider/search_repeaters/search_repeaters_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
@@ -174,6 +175,16 @@ class RepeatersListPage extends HookConsumerWidget {
               },
             ),
           ),
+          // Sort order – only in nearby mode
+          if (!isSearchMode && listState != null) ...[
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 16, bottom: 4),
+              child: _SortOrderRow(
+                current: listState.sortOrder,
+                onChanged: listNotifier.setSortOrder,
+              ),
+            ),
+          ],
           // Content
           Expanded(
             child: isSearchMode
@@ -381,6 +392,95 @@ class RepeatersListPage extends HookConsumerWidget {
               l10n.repeatersMapGenericError,
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyLarge,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Sort order chip row — mirrors the filter chip style
+// ---------------------------------------------------------------------------
+class _SortOrderRow extends StatelessWidget {
+  const _SortOrderRow({required this.current, required this.onChanged});
+
+  final RepeatersSortOrder current;
+  final ValueChanged<RepeatersSortOrder> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.localization;
+    final theme = Theme.of(context);
+    //final colorScheme = theme.colorScheme;
+
+    return Row(
+      spacing: 8,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        //Icon(Icons.sort, size: 16, color: colorScheme.onSurfaceVariant),
+        _SortChip(
+          label: l10n.repeatersSortDistance,
+          icon: Icons.near_me_outlined,
+          isSelected: current == RepeatersSortOrder.distance,
+          onTap: () => onChanged(RepeatersSortOrder.distance),
+        ),
+        _SortChip(
+          label: l10n.repeatersSortLikes,
+          icon: Icons.thumb_up_rounded,
+          isSelected: current == RepeatersSortOrder.likes,
+          onTap: () => onChanged(RepeatersSortOrder.likes),
+        ),
+      ],
+    );
+  }
+}
+
+class _SortChip extends StatelessWidget {
+  const _SortChip({
+    required this.label,
+    required this.icon,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String label;
+  final IconData icon;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    final backgroundColor = isSelected ? colorScheme.primary : colorScheme.surfaceContainerHighest;
+    final foregroundColor = isSelected ? colorScheme.onPrimary : colorScheme.onSurface;
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isSelected ? Colors.transparent : colorScheme.outline,
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 14, color: foregroundColor),
+            const SizedBox(width: 4),
+            Text(
+              label,
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: foregroundColor,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+              ),
             ),
           ],
         ),

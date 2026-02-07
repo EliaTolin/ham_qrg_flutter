@@ -167,6 +167,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeatersSearchEmpty => 'Nessun ripetitore trovato.';
 
   @override
+  String get repeatersSortDistance => 'Distanza';
+
+  @override
+  String get repeatersSortLikes => 'Likes';
+
+  @override
   String get repeatersMapRetry => 'Riprova';
 
   @override
