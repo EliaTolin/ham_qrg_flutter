@@ -116,69 +116,38 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }) async {
     final sw = Stopwatch()..start();
     try {
-      final searchPattern = '%$query%';
-      var orConditions =
-          'callsign.ilike.$searchPattern,name.ilike.$searchPattern,locality.ilike.$searchPattern,region.ilike.$searchPattern,locator.ilike.$searchPattern,manager.ilike.$searchPattern';
-
       final freqRange = parseFrequencyRange(query);
-      if (freqRange != null) {
-        orConditions =
-            '$orConditions,and(frequency_hz.gte.${freqRange.minHz},frequency_hz.lte.${freqRange.maxHz})';
-      }
-
       final hasAccessModeFilter = accessModes != null && accessModes.isNotEmpty;
 
-      final selectQuery = hasAccessModeFilter
-          ? '*, accesses:repeater_access!inner(*)'
-          : '*, accesses:repeater_access(*, network:networks(*))';
+      final data = await _client.rpc(
+        'search_repeaters',
+        params: <String, dynamic>{
+          'p_query': query,
+          'p_limit': limit,
+          if (hasAccessModeFilter) 'p_access_modes': accessModes,
+          if (freqRange != null) 'p_freq_min_hz': freqRange.minHz,
+          if (freqRange != null) 'p_freq_max_hz': freqRange.maxHz,
+        },
+      );
 
-      var request = _client.from('repeaters').select(selectQuery).or(orConditions);
-
-      if (hasAccessModeFilter) {
-        request = request.inFilter('accesses.mode', accessModes);
+      if (data is! List) {
+        _logTiming('searchRepeaters', sw, extra: '"$query" → 0 results');
+        return [];
       }
 
-      final data = await request.limit(limit);
+      final results = data.map((e) {
+        final row = e as Map<String, dynamic>;
+        final repeaterData = Map<String, dynamic>.from(row['repeater'] as Map);
+        repeaterData['accesses'] = row['accesses'];
+        return RepeaterModel.fromJson(repeaterData);
+      }).toList();
 
-      final dataList = data as List;
-      final results =
-          dataList.map((e) => RepeaterModel.fromJson(e as Map<String, dynamic>)).toList();
       _logTiming('searchRepeaters', sw, extra: '"$query" → ${results.length} results');
       return results;
     } catch (error, stackTrace) {
+      _logTiming('searchRepeaters', sw, extra: '❌ error');
       _talker.handle(error, stackTrace, 'Error searching repeaters');
-      try {
-        final hasAccessModeFilter = accessModes != null && accessModes.isNotEmpty;
-        final selectQuery = hasAccessModeFilter
-            ? '*, accesses:repeater_access!inner(*)'
-            : '*, accesses:repeater_access(*, network:networks(*))';
-
-        var request = _client.from('repeaters').select(selectQuery).ilike('callsign', '%$query%');
-
-        if (hasAccessModeFilter) {
-          request = request.inFilter('accesses.mode', accessModes);
-        }
-
-        final data = await request.limit(limit);
-        final dataList = data as List;
-        final results = dataList
-            .map(
-              (e) => RepeaterModel.fromJson(
-                Map<String, dynamic>.from(e as Map<dynamic, dynamic>),
-              ),
-            )
-            .toList();
-        _logTiming(
-          'searchRepeaters',
-          sw,
-          extra: '⚠️ fallback "$query" → ${results.length} results',
-        );
-        return results;
-      } catch (fallbackError, fallbackStack) {
-        _logTiming('searchRepeaters', sw, extra: '❌ fallback error');
-        _talker.handle(fallbackError, fallbackStack, 'Error with fallback search');
-        return [];
-      }
+      rethrow;
     }
   }
 
