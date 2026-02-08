@@ -43,7 +43,8 @@
       "WebFetch(domain:api.brandmeister.network)",
       "Bash(curl:*)",
       "Bash(python3:*)",
-      "Bash(flutter pub add:*)"
+      "Bash(flutter pub add:*)",
+      "WebFetch(domain:brandmeister.network)"
     ]
   }
 }

@@ -33,6 +33,14 @@ class BrandmeisterApiDatasource implements BrandmeisterDatasource {
         .map(BmTalkgroupModel.fromJson)
         .toList();
   }
+  @override
+  Future<Map<String, String>> getTalkgroupNames() async {
+    final response = await _dio.get<Map<String, dynamic>>(
+      '$_baseUrl/talkgroup/',
+    );
+    if (response.data == null) return {};
+    return response.data!.map((key, value) => MapEntry(key, value.toString()));
+  }
 }
 
 @riverpod

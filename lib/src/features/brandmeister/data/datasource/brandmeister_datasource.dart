@@ -8,4 +8,7 @@ abstract interface class BrandmeisterDatasource {
 
   /// Fetches all static talkgroups for a device.
   Future<List<BmTalkgroupModel>> getDeviceTalkgroups(int deviceId);
+
+  /// Fetches the full talkgroup name registry: `{tgId: name}`.
+  Future<Map<String, String>> getTalkgroupNames();
 }

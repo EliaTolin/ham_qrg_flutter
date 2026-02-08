@@ -22,6 +22,10 @@ class BrandmeisterRepository {
     final models = await _datasource.getDeviceTalkgroups(deviceId);
     return models.map(_mapper.talkgroupFromModel).toList();
   }
+
+  Future<Map<String, String>> getTalkgroupNames() async {
+    return _datasource.getTalkgroupNames();
+  }
 }
 
 @riverpod
