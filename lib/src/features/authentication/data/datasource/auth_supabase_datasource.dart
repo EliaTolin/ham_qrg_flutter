@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -66,7 +67,7 @@ class AuthSupabaseDatasource implements AuthDatasource {
     const iosClientId = '45512016232-48r7t9ek849c1dm2mkghlqv1o3l883kj.apps.googleusercontent.com';
 
     final googleSignIn = GoogleSignIn(
-      clientId: iosClientId,
+      clientId: Platform.isIOS ? iosClientId : null,
       serverClientId: webClientId,
     );
 
@@ -119,9 +120,9 @@ class AuthSupabaseDatasource implements AuthDatasource {
         'updated_at': DateTime.now().toIso8601String(),
       }).eq('id', user.id);
       return true;
-    } catch (e) {
-      log('Error during Google Sign-In: $e');
-      return false;
+    } catch (e, st) {
+      log('Error during Google Sign-In: $e\n$st');
+      rethrow;
     }
   }
 

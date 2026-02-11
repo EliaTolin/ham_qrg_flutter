@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "45512016232",
+    "project_id": "hamqrg",
+    "storage_bucket": "hamqrg.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45512016232:android:44fc04cb6839838ad316dd",
+        "android_client_info": {
+          "package_name": "it.auroradigital.hamqrg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45512016232-apghu87ce08qc2ba3eo4jojhgq66rgsm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.auroradigital.hamqrg",
+            "certificate_hash": "e7335dad08ba4a16015344ae3a9ad51cd2ca83b0"
+          }
+        },
+        {
+          "client_id": "45512016232-d4as41cdh9j20d4lekmmj7mubfvct7e2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.auroradigital.hamqrg",
+            "certificate_hash": "7decfb59980fec2997fd3015637bf2261c0b36b5"
+          }
+        },
+        {
+          "client_id": "45512016232-j0l5f9b3tnf1hp2p60c3pn6g473h0nqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzlLf646z5u4eO138QPXjFf9aeVh1yTOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45512016232-j0l5f9b3tnf1hp2p60c3pn6g473h0nqv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "45512016232-48r7t9ek849c1dm2mkghlqv1o3l883kj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "it.auroradigital.hamqrg"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

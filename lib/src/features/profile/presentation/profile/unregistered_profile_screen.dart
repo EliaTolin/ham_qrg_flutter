@@ -66,7 +66,7 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
       } catch (e) {
         log('Sign in error: $e');
         if (context.mounted) {
-          showErrorSnackbar(context, l10n.authUnexpectedError);
+          showErrorSnackbar(context, '${l10n.authUnexpectedError} $e');
           isLoading.value = false;
         }
       }
