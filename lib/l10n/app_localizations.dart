@@ -823,7 +823,7 @@ abstract class AppLocalizations {
   /// No description provided for @authUnexpectedError.
   ///
   /// In it, this message translates to:
-  /// **'Errore inaspettato'**
+  /// **'Errore nell\'autenticazione: '**
   String get authUnexpectedError;
 
   /// No description provided for @authValidEmailError.

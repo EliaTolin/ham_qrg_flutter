@@ -404,7 +404,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get authBackToSignIn => 'Torna all\'accesso';
 
   @override
-  String get authUnexpectedError => 'Errore inaspettato';
+  String get authUnexpectedError => 'Errore nell\'autenticazione: ';
 
   @override
   String get authValidEmailError => 'Inserisci un\'email valida';

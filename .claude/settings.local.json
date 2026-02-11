@@ -47,7 +47,8 @@
       "WebFetch(domain:brandmeister.network)",
       "Bash(for:*)",
       "Bash(done)",
-      "Bash(./gradlew signingReport:*)"
+      "Bash(./gradlew signingReport:*)",
+      "Bash(keytool -list:*)"
     ]
   }
 }
