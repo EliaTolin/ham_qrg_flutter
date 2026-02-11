@@ -22,13 +22,35 @@ flutter analyze
 dart format lib test
 
 # Testing
-flutter test
+flutter test                                    # all tests (unit + integration)
+flutter test test/common/utils/                 # all unit tests in a directory
+flutter test test/repeaters_provider_test.dart   # single test file
+flutter test --tags integration                 # only integration tests
 flutter test --coverage
 ```
+
+**Package name**: `package:hamqrg/...` (use this prefix for all imports)
 
 ## Architecture Overview
 
 This is a Flutter app for ham radio repeater discovery using **Clean Architecture** with **Riverpod** for state management.
+
+### Features
+`lib/src/features/`: authentication, brandmeister, dashboard, favorites, home, params, post_login_onboarding, profile, repeaters, splashscreen
+
+### Supporting Modules
+- `lib/clients/` — External service abstractions: supabase, api (Dio), storage (SharedPreferences + SecureStorage), image_picker, package_info, in_app_review
+- `lib/common/` — Shared code: abstracts, dialogs, entity, errors, extension, provider, service (location), utils, widgets (17 categories: buttons, forms, cards, loading, snackbars, etc.)
+- `lib/router/` — auto_route configuration
+- `lib/config/` — App config + constants (map keys, map layers)
+- `lib/themes/` — Material theme, colors, light theme variant
+- `lib/l10n/` — Localization (Italian template)
+- `lib/log/` — Talker + Sentry logging
+
+### Route Structure
+`AppRouter` (auto_route) with auth guard. Tab navigation via `HomeRoute`:
+- **MainRouter**: dashboard, map, list, favorites, repeater detail (`/repeater/:repeaterId`), report, repeater map
+- **ProfileRouter**: profile, user settings
 
 ### Feature Structure
 Each feature follows this strict hierarchy:

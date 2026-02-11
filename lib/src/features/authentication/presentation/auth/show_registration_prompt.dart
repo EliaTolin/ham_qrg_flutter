@@ -117,10 +117,11 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
     try {
       await ref.read(signInWithGoogleProvider.future);
 
-      // First, invalidate ONLY profile providers (not isAnonymous)
       ref
         ..invalidate(getProfileProvider)
-        ..invalidate(checkNeedsPostLoginOnboardingProvider);
+        ..invalidate(checkNeedsPostLoginOnboardingProvider)
+        ..invalidate(getUserIdProvider)
+        ..invalidate(isAnonymousProvider);
 
       // Close the bottom sheet
       if (mounted) {
@@ -142,10 +143,10 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
           predicate: (_) => false,
         );
       }
-    } on Exception catch (e) {
-      log('Google sign in error: $e');
+    } on Exception catch (e, st) {
+      log('Google sign in error: $e\n$st');
       if (mounted) {
-        showErrorSnackbar(context, context.localization.authUnexpectedError);
+        showErrorSnackbar(context, 'Google sign in error: $e');
         setState(() => _isLoading = false);
       }
     }

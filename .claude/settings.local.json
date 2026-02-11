@@ -44,7 +44,10 @@
       "Bash(curl:*)",
       "Bash(python3:*)",
       "Bash(flutter pub add:*)",
-      "WebFetch(domain:brandmeister.network)"
+      "WebFetch(domain:brandmeister.network)",
+      "Bash(for:*)",
+      "Bash(done)",
+      "Bash(./gradlew signingReport:*)"
     ]
   }
 }

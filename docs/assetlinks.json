@@ -4,9 +4,8 @@
     "target": {
       "namespace": "android_app",
       "package_name": "it.auroradigital.hamqrg",
-      "sha256_cert_fingerprints": [
-        "10:BA:D4:49:E4:4C:4B:BA:04:18:51:E2:CF:EF:01:E6:07:36:10:CC:D8:43:3F:B7:FC:B7:57:19:9D:EE:4F:9A"
-      ]
+      "sha256_cert_fingerprints":
+        ["12:00:B8:BF:49:F2:40:AC:E6:22:A9:80:CB:0C:FA:FE:66:40:76:F2:FE:7E:F8:3B:7E:AE:20:C3:5A:96:74:38"]
     }
   }
 ]
