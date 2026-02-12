@@ -125,7 +125,7 @@
   "authDontHaveAccount": "Non hai un account? Registrati",
   "authHaveAccount": "Hai già un account? Accedi",
   "authBackToSignIn": "Torna all'accesso",
-  "authUnexpectedError": "Errore inaspettato",
+  "authUnexpectedError": "Si è verificato un problema",
   "authValidEmailError": "Inserisci un'email valida",
   "authSendPasswordReset": "Invia reset password",
   "authPasswordResetSent": "Reset password inviato",
