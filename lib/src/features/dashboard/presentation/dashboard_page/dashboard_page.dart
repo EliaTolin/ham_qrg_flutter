@@ -28,13 +28,10 @@ class DashboardPage extends HookConsumerWidget {
       data: (state) => Scaffold(
         body: Stack(
           children: [
-            // Map Section (full screen)
+            // Map Section (full screen, non-interactive preview)
             SizedBox(
               height: MediaQuery.sizeOf(context).height * 0.6,
-              child: GestureDetector(
-                onTap: () {
-                  AutoTabsRouter.of(context).setActiveIndex(2);
-                },
+              child: IgnorePointer(
                 child: MapSectionWidget(
                   nearbyRepeaters: state.nearbyRepeaters,
                   initialPosition: (
@@ -83,6 +80,19 @@ class DashboardPage extends HookConsumerWidget {
                 statistics: state.statistics,
                 nearbyRepeaters: state.nearbyRepeaters,
                 scrollController: scrollController,
+              ),
+            ),
+            // Map tap target — above the sheet, on top of the stack
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: MediaQuery.sizeOf(context).height * 0.42,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  AutoTabsRouter.of(context).setActiveIndex(2);
+                },
               ),
             ),
           ],
