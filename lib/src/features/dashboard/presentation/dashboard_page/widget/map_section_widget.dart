@@ -138,6 +138,8 @@ class MapSectionWidget extends HookConsumerWidget {
         enabled: true,
         pulsingEnabled: true,
         showAccuracyRing: true,
+        puckBearingEnabled: true,
+        puckBearing: PuckBearing.HEADING,
       ),
     );
 

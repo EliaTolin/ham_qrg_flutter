@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
@@ -206,11 +207,10 @@ class _QuickAccessSection extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(
-              child: AspectRatio(
-                aspectRatio: 4 / 3,
+        IntrinsicHeight(
+          child: Row(
+            children: [
+              Expanded(
                 child: _QuickAccessCard(
                   icon: Icons.list_alt,
                   iconColor: colorScheme.primary,
@@ -221,11 +221,8 @@ class _QuickAccessSection extends ConsumerWidget {
                   },
                 ),
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: AspectRatio(
-                aspectRatio: 4 / 3,
+              const SizedBox(width: 12),
+              Expanded(
                 child: _QuickAccessCard(
                   icon: Icons.favorite,
                   iconColor: Colors.amber,
@@ -238,8 +235,8 @@ class _QuickAccessSection extends ConsumerWidget {
                   },
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
@@ -280,7 +277,6 @@ class _QuickAccessCard extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               width: 40,
@@ -296,12 +292,10 @@ class _QuickAccessCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            Flexible(
-              child: Text(
-                title,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            Text(
+              title,
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 4),
@@ -458,6 +452,40 @@ class _NearbyRepeaterItem extends StatelessWidget {
                       ],
                     ],
                   ),
+                  if (repeater.accesses.isNotEmpty) ...[
+                    const SizedBox(height: 6),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 4,
+                      children: repeater.accesses.map((access) {
+                        final color =
+                            AccessModeHelper.getAccessModeColorObject(
+                          access.mode,
+                        );
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 3,
+                          ),
+                          decoration: BoxDecoration(
+                            color: color.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(
+                              color: color.withValues(alpha: 0.2),
+                            ),
+                          ),
+                          child: Text(
+                            AccessModeHelper.getAccessModeLabel(access.mode),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: color,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 10,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
                 ],
               ),
             ),

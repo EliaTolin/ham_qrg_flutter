@@ -16,8 +16,24 @@
 default_platform(:ios)
 
 platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    ENV.delete('GEM_PATH')
+    ENV.delete('GEM_HOME')
+    shorebird_release(platform: "ios")
+    upload_to_testflight(
+      distribute_external: false,
+      notify_external_testers: false,
+      submission_information: {
+        export_compliance_uses_encryption: false,
+      }
+    )
+  end
+
   desc "Push a new release build to the App Store"
   lane :release do
+    ENV.delete('GEM_PATH')
+    ENV.delete('GEM_HOME')
     shorebird_release(platform: "ios")
     upload_to_app_store(
       submit_for_review: true,

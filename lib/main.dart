@@ -46,6 +46,7 @@ Future<void> main() async {
         ..sendDefaultPii = true
         ..enableLogs = true
         ..tracesSampleRate = 1.0
+        // ignore: experimental_member_use
         ..profilesSampleRate = 1.0;
     },
     appRunner: () {

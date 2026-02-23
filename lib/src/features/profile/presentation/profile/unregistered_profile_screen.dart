@@ -66,7 +66,7 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
       } catch (e) {
         log('Sign in error: $e');
         if (context.mounted) {
-          showErrorSnackbar(context, '${l10n.authUnexpectedError} $e');
+          showErrorSnackbar(context, '!!${l10n.authUnexpectedError} $e');
           isLoading.value = false;
         }
       }
@@ -173,10 +173,10 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
           height: 160,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: colorScheme.primary.withValues(alpha: 0.1),
+            color: Colors.deepPurple.withValues(alpha: 0.1),
             boxShadow: [
               BoxShadow(
-                color: colorScheme.primary.withValues(alpha: 0.3),
+                color: Colors.deepPurple.withValues(alpha: 0.3),
                 blurRadius: 32,
                 spreadRadius: 8,
               ),

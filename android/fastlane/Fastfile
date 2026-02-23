@@ -30,13 +30,22 @@ platform :android do
   #   # You can also use other beta testing services here
   # end
 
+  desc "Deploy a new beta build to Google Play Closed Testing"
+  lane :beta do
+    shorebird_release(platform: "android")
+    upload_to_play_store(
+      aab: "../build/app/outputs/bundle/release/app-release.aab",
+      track: "alpha"
+    )
+  end
+
   desc "Deploy a new version to the Google Play"
   lane :deploy do
     shorebird_release(platform: "android")
     upload_to_play_store(
       aab: "../build/app/outputs/bundle/release/app-release.aab",
-      track: "production",              
-      track_promote_to: "production"                
+      track: "production",
+      track_promote_to: "production"
     )
   end
 end

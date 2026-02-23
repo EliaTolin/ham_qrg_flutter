@@ -153,6 +153,8 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
                     enabled: true,
                     pulsingEnabled: true,
                     showAccuracyRing: true,
+                    puckBearingEnabled: true,
+                    puckBearing: PuckBearing.HEADING,
                   ),
                 ),
               ]);
