@@ -7,11 +7,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/repeaters_list_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_sort_order.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/repeater_card.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_feedback_stats_from_ids/get_repeaters_feedback_stats_from_ids_provider.dart';
 import 'package:hamqrg/src/features/repeaters/provider/search_repeaters/search_repeaters_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -80,15 +82,45 @@ class RepeatersListPage extends HookConsumerWidget {
     final debouncedQuery = searchQuery.value.trim();
     final isTyping = isSearchMode && currentSearchText != debouncedQuery;
 
-    // Get search results if in search mode
+    // Get user position for server-side distance calculation on search results
+    final userPositionFuture = useMemoized(
+      () => ref.read(locationServiceProvider).getCurrentPositionOrDefault(),
+    );
+    final userPosition = useFuture(userPositionFuture).data;
+
+    // Get search results if in search mode (pass user position for server-side distance)
     final searchAsyncState = debouncedQuery.isNotEmpty
         ? ref.watch(
             searchRepeatersProvider(
               query: debouncedQuery,
               accessModes: stableAccessModes.value,
+              latitude: userPosition?.latitude,
+              longitude: userPosition?.longitude,
             ),
           )
         : null;
+
+    // Memoize search result IDs for stable provider key (List == is reference-based)
+    final searchRepeaters = switch (searchAsyncState) {
+      AsyncData(:final value) => value,
+      _ => null,
+    };
+    final searchResultIds = useMemoized(
+      () => searchRepeaters?.map((r) => r.id).toList(),
+      [searchRepeaters],
+    );
+
+    // Fetch feedback stats for search results
+    final searchFeedbackStatsAsync =
+        searchResultIds != null && searchResultIds.isNotEmpty
+            ? ref.watch(
+                getRepeatersFeedbackStatsFromIdsProvider(searchResultIds),
+              )
+            : null;
+    final searchFeedbackStats = switch (searchFeedbackStatsAsync) {
+      AsyncData(:final value) => value,
+      _ => const <String, RepeaterFeedbackStats>{},
+    };
 
     // Handle loading state (only when not searching)
     if (listAsyncState.isLoading && !isSearchMode) {
@@ -175,8 +207,8 @@ class RepeatersListPage extends HookConsumerWidget {
               },
             ),
           ),
-          // Sort order – only in nearby mode
-          if (!isSearchMode && listState != null) ...[
+          // Sort order
+          if (listState != null) ...[
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 16, bottom: 4),
               child: _SortOrderRow(
@@ -188,7 +220,14 @@ class RepeatersListPage extends HookConsumerWidget {
           // Content
           Expanded(
             child: isSearchMode
-                ? _buildSearchResults(context, searchAsyncState, isTyping)
+                ? _buildSearchResults(
+                    context,
+                    searchAsyncState,
+                    isTyping,
+                    sortOrder:
+                        listState?.sortOrder ?? RepeatersSortOrder.distance,
+                    feedbackStats: searchFeedbackStats,
+                  )
                 : _buildNearbyContent(context, ref, listState),
           ),
         ],
@@ -200,8 +239,10 @@ class RepeatersListPage extends HookConsumerWidget {
   Widget _buildSearchResults(
     BuildContext context,
     AsyncValue<List<Repeater>>? searchAsyncState,
-    bool isTyping,
-  ) {
+    bool isTyping, {
+    required RepeatersSortOrder sortOrder,
+    required Map<String, RepeaterFeedbackStats> feedbackStats,
+  }) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -237,12 +278,35 @@ class RepeatersListPage extends HookConsumerWidget {
           );
         }
 
+        // Sort (distance comes from server, likes from feedback stats)
+        final sorted = List<Repeater>.of(repeaters);
+        switch (sortOrder) {
+          case RepeatersSortOrder.distance:
+            sorted.sort((a, b) {
+              final da = a.distanceMeters ?? double.infinity;
+              final db = b.distanceMeters ?? double.infinity;
+              return da.compareTo(db);
+            });
+          case RepeatersSortOrder.likes:
+            sorted.sort((a, b) {
+              final la = feedbackStats[a.id]?.likesTotal ?? 0;
+              final lb = feedbackStats[b.id]?.likesTotal ?? 0;
+              return lb.compareTo(la);
+            });
+          case RepeatersSortOrder.frequency:
+            sorted.sort((a, b) => a.frequencyHz.compareTo(b.frequencyHz));
+        }
+
         return ListView.builder(
           padding: const EdgeInsets.all(16),
-          itemCount: repeaters.length,
-          itemBuilder: (context, index) => RepeaterCard(
-            repeater: repeaters[index],
-          ),
+          itemCount: sorted.length,
+          itemBuilder: (context, index) {
+            final repeater = sorted[index];
+            return RepeaterCard(
+              repeater: repeater,
+              feedbackStats: feedbackStats[repeater.id],
+            );
+          },
         );
       },
       loading: () => const Center(
@@ -431,6 +495,12 @@ class _SortOrderRow extends StatelessWidget {
           icon: Icons.thumb_up_rounded,
           isSelected: current == RepeatersSortOrder.likes,
           onTap: () => onChanged(RepeatersSortOrder.likes),
+        ),
+        _SortChip(
+          label: l10n.repeatersSortFrequency,
+          icon: Icons.radio_outlined,
+          isSelected: current == RepeatersSortOrder.frequency,
+          onTap: () => onChanged(RepeatersSortOrder.frequency),
         ),
       ],
     );

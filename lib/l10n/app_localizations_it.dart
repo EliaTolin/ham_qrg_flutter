@@ -173,6 +173,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeatersSortLikes => 'Likes';
 
   @override
+  String get repeatersSortFrequency => 'Frequenza';
+
+  @override
   String get repeatersMapRetry => 'Riprova';
 
   @override

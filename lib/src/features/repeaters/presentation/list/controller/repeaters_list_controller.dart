@@ -136,6 +136,8 @@ class RepeatersListController extends _$RepeatersListController {
           final lb = stats[b.id]?.likesTotal ?? 0;
           return lb.compareTo(la); // descending
         });
+      case RepeatersSortOrder.frequency:
+        sorted.sort((a, b) => a.frequencyHz.compareTo(b.frequencyHz));
     }
     return sorted;
   }

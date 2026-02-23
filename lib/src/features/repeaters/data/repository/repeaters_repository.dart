@@ -57,11 +57,15 @@ class RepeatersRepository {
     required String query,
     int limit = 100,
     List<AccessMode>? accessModes,
+    double? latitude,
+    double? longitude,
   }) async {
     final data = await _datasource.searchRepeaters(
       query: query,
       limit: limit,
       accessModes: _mapper.mapAccessModesToValues(accessModes),
+      latitude: latitude,
+      longitude: longitude,
     );
     return data.map(_mapper.fromModel).toList();
   }

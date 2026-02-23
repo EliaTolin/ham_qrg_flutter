@@ -173,10 +173,10 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
           height: 160,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.deepPurple.withValues(alpha: 0.1),
+            color: colorScheme.primary.withValues(alpha: 0.1),
             boxShadow: [
               BoxShadow(
-                color: Colors.deepPurple.withValues(alpha: 0.3),
+                color: colorScheme.primary.withValues(alpha: 0.3),
                 blurRadius: 32,
                 spreadRadius: 8,
               ),

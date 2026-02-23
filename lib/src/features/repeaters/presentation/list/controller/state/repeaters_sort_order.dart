@@ -5,4 +5,7 @@ enum RepeatersSortOrder {
 
   /// Sort by number of likes (most liked first).
   likes,
+
+  /// Sort by frequency ascending (lowest first).
+  frequency,
 }

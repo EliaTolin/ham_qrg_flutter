@@ -207,8 +207,8 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
       // Draw feedback lines
       for (final feedback in feedbacks) {
         final lineColor = switch (feedback.type) {
-          FeedbackType.like => Colors.green.toARGB32(),
-          FeedbackType.down => Colors.red.toARGB32(),
+          FeedbackType.like => const Color(0xFF1A3A6B).toARGB32(),
+          FeedbackType.down => const Color(0xFFE67E22).toARGB32(),
         };
 
         await polylineManager.create(
@@ -220,8 +220,8 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
               ],
             ),
             lineColor: lineColor,
-            lineWidth: 1.5,
-            lineOpacity: 0.6,
+            lineWidth: 3,
+            lineOpacity: 0.8,
           ),
         );
       }

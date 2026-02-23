@@ -21,6 +21,8 @@ final class SearchRepeatersProvider extends $FunctionalProvider<
         String query,
         int limit,
         List<AccessMode>? accessModes,
+        double? latitude,
+        double? longitude,
       })
           super.argument})
       : super(
@@ -53,12 +55,16 @@ final class SearchRepeatersProvider extends $FunctionalProvider<
       String query,
       int limit,
       List<AccessMode>? accessModes,
+      double? latitude,
+      double? longitude,
     });
     return searchRepeaters(
       ref,
       query: argument.query,
       limit: argument.limit,
       accessModes: argument.accessModes,
+      latitude: argument.latitude,
+      longitude: argument.longitude,
     );
   }
 
@@ -73,7 +79,7 @@ final class SearchRepeatersProvider extends $FunctionalProvider<
   }
 }
 
-String _$searchRepeatersHash() => r'e7b7801388af747b861471b01dae47540b5c9ae0';
+String _$searchRepeatersHash() => r'dbe3a16a43a5239d85a873366fba62891c849546';
 
 final class SearchRepeatersFamily extends $Family
     with
@@ -83,6 +89,8 @@ final class SearchRepeatersFamily extends $Family
               String query,
               int limit,
               List<AccessMode>? accessModes,
+              double? latitude,
+              double? longitude,
             })> {
   SearchRepeatersFamily._()
       : super(
@@ -97,11 +105,15 @@ final class SearchRepeatersFamily extends $Family
     required String query,
     int limit = 100,
     List<AccessMode>? accessModes,
+    double? latitude,
+    double? longitude,
   }) =>
       SearchRepeatersProvider._(argument: (
         query: query,
         limit: limit,
         accessModes: accessModes,
+        latitude: latitude,
+        longitude: longitude,
       ), from: this);
 
   @override

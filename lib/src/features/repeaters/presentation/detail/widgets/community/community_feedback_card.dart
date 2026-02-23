@@ -116,9 +116,11 @@ class CommunityFeedbackCard extends StatelessWidget {
                 label: _getStationLabel(feedback.station, l10n),
               ),
               const SizedBox(width: 8),
-              InfoChip(
-                icon: Icons.location_on,
-                label: feedback.comment.isNotEmpty ? feedback.comment.split('\n').first : 'Unknown',
+              Flexible(
+                child: InfoChip(
+                  icon: Icons.location_on,
+                  label: feedback.comment.isNotEmpty ? feedback.comment.split('\n').first : 'Unknown',
+                ),
               ),
             ],
           ),

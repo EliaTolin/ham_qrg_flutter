@@ -22,6 +22,8 @@ abstract interface class RepeatersDatasource {
     required String query,
     int limit,
     List<String>? accessModes,
+    double? latitude,
+    double? longitude,
   });
 
   Future<int> getTotalRepeatersCount();

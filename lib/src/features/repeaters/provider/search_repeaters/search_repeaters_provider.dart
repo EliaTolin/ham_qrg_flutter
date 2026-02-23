@@ -11,6 +11,8 @@ Future<List<Repeater>> searchRepeaters(
   required String query,
   int limit = 100,
   List<AccessMode>? accessModes,
+  double? latitude,
+  double? longitude,
 }) async {
   if (query.trim().isEmpty) {
     return [];
@@ -21,5 +23,7 @@ Future<List<Repeater>> searchRepeaters(
     query: query.trim(),
     limit: limit,
     accessModes: accessModes,
+    latitude: latitude,
+    longitude: longitude,
   );
 }

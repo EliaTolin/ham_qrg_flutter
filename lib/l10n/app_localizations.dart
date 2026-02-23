@@ -406,6 +406,12 @@ abstract class AppLocalizations {
   /// **'Likes'**
   String get repeatersSortLikes;
 
+  /// No description provided for @repeatersSortFrequency.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza'**
+  String get repeatersSortFrequency;
+
   /// No description provided for @repeatersMapRetry.
   ///
   /// In it, this message translates to:

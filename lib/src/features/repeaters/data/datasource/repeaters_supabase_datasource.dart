@@ -113,11 +113,14 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     required String query,
     int limit = 100,
     List<String>? accessModes,
+    double? latitude,
+    double? longitude,
   }) async {
     final sw = Stopwatch()..start();
     try {
       final freqRange = parseFrequencyRange(query);
       final hasAccessModeFilter = accessModes != null && accessModes.isNotEmpty;
+      final hasLocation = latitude != null && longitude != null;
 
       final data = await _client.rpc(
         'search_repeaters',
@@ -127,6 +130,8 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
           if (hasAccessModeFilter) 'p_access_modes': accessModes,
           if (freqRange != null) 'p_freq_min_hz': freqRange.minHz,
           if (freqRange != null) 'p_freq_max_hz': freqRange.maxHz,
+          if (hasLocation) 'p_lat': latitude,
+          if (hasLocation) 'p_lon': longitude,
         },
       );
 
@@ -139,6 +144,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         final row = e as Map<String, dynamic>;
         final repeaterData = Map<String, dynamic>.from(row['repeater'] as Map);
         repeaterData['accesses'] = row['accesses'];
+        if (row['distance_m'] != null) {
+          repeaterData['distance_m'] = row['distance_m'];
+        }
         return RepeaterModel.fromJson(repeaterData);
       }).toList();
 
