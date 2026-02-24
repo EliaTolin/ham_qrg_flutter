@@ -1837,7 +1837,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterDetailSuggestManager.
   ///
   /// In it, this message translates to:
-  /// **'Conosci il gestore? Segnalalo!'**
+  /// **'Conosci il gestore del ponte? Segnalalo!'**
   String get repeaterDetailSuggestManager;
 
   /// No description provided for @repeaterDetailViewFeedbackMap.

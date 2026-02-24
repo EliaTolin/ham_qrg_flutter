@@ -123,8 +123,7 @@ class RepeaterHeader extends StatelessWidget {
                         Text(
                           '(${repeater.locator})',
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant
-                                .withValues(alpha: 0.7),
+                            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
                           ),
                         ),
                       ],
@@ -176,9 +175,9 @@ class _GrainGradientPainter extends CustomPainter {
         center: alignment,
         radius: colors.length == 1 ? 1.2 : 0.9,
         colors: [
-          color.withValues(alpha: 0.55),
-          color.withValues(alpha: 0.20),
-          Colors.transparent,
+          color.withValues(alpha: 0.9),
+          color.withValues(alpha: 0.50),
+          Colors.white.withValues(alpha: 0),
         ],
         stops: const [0.0, 0.5, 1.0],
       );
@@ -208,6 +207,5 @@ class _GrainGradientPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _GrainGradientPainter oldDelegate) =>
-      colors != oldDelegate.colors;
+  bool shouldRepaint(covariant _GrainGradientPainter oldDelegate) => colors != oldDelegate.colors;
 }

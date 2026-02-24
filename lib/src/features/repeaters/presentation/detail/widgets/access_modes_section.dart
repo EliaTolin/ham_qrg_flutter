@@ -65,8 +65,7 @@ class AccessModeCard extends StatelessWidget {
 
   final RepeaterAccess access;
 
-  bool get _isBrandmeister =>
-      access.network?.name.toLowerCase().contains('brandmeister') ?? false;
+  bool get _isBrandmeister => access.network?.name.toLowerCase().contains('brandmeister') ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +79,7 @@ class AccessModeCard extends StatelessWidget {
     final isAnalog = access.mode == AccessMode.analog;
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
@@ -88,54 +87,82 @@ class AccessModeCard extends StatelessWidget {
           color: accessColor.withValues(alpha: 0.3),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          // Header with badge and icon
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 4,
-                ),
-                decoration: BoxDecoration(
-                  color: accessColor.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                    color: accessColor.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Text(
-                  accessLabel.toUpperCase(),
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: accessColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 10,
-                    letterSpacing: 0.5,
-                  ),
+          // Gradient glow in bottom-right corner
+          Positioned(
+            bottom: -80,
+            right: -80,
+            child: Container(
+              width: 280,
+              height: 280,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    accessColor.withValues(alpha: 0.25),
+                    accessColor.withValues(alpha: 0.08),
+                    accessColor.withValues(alpha: 0),
+                  ],
+                  stops: const [0.0, 0.5, 1.0],
                 ),
               ),
-              Icon(
-                accessIcon,
-                color: accessColor.withValues(alpha: 0.5),
-                size: 20,
-              ),
-            ],
+            ),
           ),
-          const SizedBox(height: 16),
-          // Content based on access mode
-          if (isAnalog) _buildAnalogContent(context),
-          if (isDmr) _buildDmrContent(context),
-          if (!isAnalog && !isDmr) _buildGenericContent(context),
-          // BrandMeister talkgroups (DMR with nodeId on BrandMeister network)
-          if (isDmr && access.nodeId != null && _isBrandmeister) ...[
-            const SizedBox(height: 12),
-            BmTalkgroupsWidget(deviceId: access.nodeId!),
-          ],
-          // Network (shown for all access modes)
-          if (access.network != null) _buildNetworkSection(context),
+          // Content
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header with badge and icon
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: accessColor.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(
+                          color: accessColor.withValues(alpha: 0.2),
+                        ),
+                      ),
+                      child: Text(
+                        accessLabel.toUpperCase(),
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: accessColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      accessIcon,
+                      color: accessColor.withValues(alpha: 0.5),
+                      size: 32,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                // Content based on access mode
+                if (isAnalog) _buildAnalogContent(context),
+                if (isDmr) _buildDmrContent(context),
+                if (!isAnalog && !isDmr) _buildGenericContent(context),
+                // BrandMeister talkgroups (DMR with nodeId on BrandMeister network)
+                if (isDmr && access.nodeId != null && _isBrandmeister) ...[
+                  const SizedBox(height: 12),
+                  BmTalkgroupsWidget(deviceId: access.nodeId!),
+                ],
+                // Network (shown for all access modes)
+                if (access.network != null) _buildNetworkSection(context),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -314,7 +341,6 @@ class AccessModeCard extends StatelessWidget {
         _buildDetailRow(context, 'DG-ID', access.dgId.toString()),
       );
     }
-
 
     // CTCSS/DCS if present
     if (access.ctcssTxHz != null || access.ctcssRxHz != null) {

@@ -998,7 +998,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterDetailManager => 'Gestore';
 
   @override
-  String get repeaterDetailSuggestManager => 'Conosci il gestore? Segnalalo!';
+  String get repeaterDetailSuggestManager =>
+      'Conosci il gestore del ponte? Segnalalo!';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Mappa feedback';
