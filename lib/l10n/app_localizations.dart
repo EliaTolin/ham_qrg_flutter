@@ -1843,7 +1843,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterDetailViewFeedbackMap.
   ///
   /// In it, this message translates to:
-  /// **'Esplora la mappa dei feedback'**
+  /// **'Mappa feedback'**
   String get repeaterDetailViewFeedbackMap;
 
   /// No description provided for @repeaterDetailViewFeedbackMapSubtitle.

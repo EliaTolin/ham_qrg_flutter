@@ -1001,7 +1001,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterDetailSuggestManager => 'Conosci il gestore? Segnalalo!';
 
   @override
-  String get repeaterDetailViewFeedbackMap => 'Esplora la mappa dei feedback';
+  String get repeaterDetailViewFeedbackMap => 'Mappa feedback';
 
   @override
   String get repeaterDetailViewFeedbackMapSubtitle =>
