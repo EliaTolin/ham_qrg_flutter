@@ -1006,4 +1006,40 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get repeaterDetailViewFeedbackMapSubtitle =>
       'Visualizza dove sono stati registrati i like e le segnalazioni';
+
+  @override
+  String get repeaterDetailAltimetricProfile => 'Profilo altimetrico';
+
+  @override
+  String get repeaterDetailAltimetricProfileSubtitle =>
+      'Visualizza il profilo del terreno tra te e il ripetitore';
+
+  @override
+  String get repeaterDetailLosClear =>
+      'Visione ottica libera tra te e il ripetitore';
+
+  @override
+  String get repeaterDetailLosObstructed =>
+      'Visione ottica ostruita dal terreno';
+
+  @override
+  String get repeaterDetailTerrainProfile => 'Profilo terreno';
+
+  @override
+  String get repeaterDetailLineOfSight => 'Visione ottica';
+
+  @override
+  String get repeaterDetailTotalDistance => 'Distanza';
+
+  @override
+  String get repeaterDetailRepeaterElevation => 'Quota ripetitore';
+
+  @override
+  String get repeaterDetailYourElevation => 'Quota tua';
+
+  @override
+  String get repeaterDetailYou => 'Tu';
+
+  @override
+  String get repeaterDetailRepeaterLabel => 'Ripetitore';
 }

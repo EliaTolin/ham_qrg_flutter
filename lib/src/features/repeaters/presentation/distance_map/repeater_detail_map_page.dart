@@ -7,8 +7,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:geolocator/geolocator.dart' hide Position;
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/distance_map/controller/repeater_detail_map_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/distance_map/controller/state/repeater_detail_map_state.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
@@ -141,7 +143,6 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
             ),
             styleUri: MapboxStyles.OUTDOORS,
             onMapCreated: (mapboxMap) async {
-              mapController.value = mapboxMap;
               await Future.wait([
                 mapboxMap.scaleBar.updateSettings(ScaleBarSettings(enabled: false)),
                 mapboxMap.compass.updateSettings(CompassSettings(enabled: false)),
@@ -158,6 +159,8 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
                   ),
                 ),
               ]);
+              await _addRepeaterMarker(mapboxMap, repeater);
+              mapController.value = mapboxMap;
             },
           ),
           // Bottom card
@@ -177,6 +180,33 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _addRepeaterMarker(
+    MapboxMap map,
+    Repeater repeater,
+  ) async {
+    try {
+      final accessModes = repeater.accesses.map((a) => a.mode).toList();
+      final iconBytes =
+          await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+        accessModes,
+      );
+      final pointManager =
+          await map.annotations.createPointAnnotationManager();
+      await pointManager.create(
+        PointAnnotationOptions(
+          geometry: Point(
+            coordinates: Position(repeater.longitude!, repeater.latitude!),
+          ),
+          image: iconBytes,
+          iconSize: 1.5,
+          iconAnchor: IconAnchor.CENTER,
+        ),
+      );
+    } catch (e) {
+      log('Error adding repeater marker: $e');
+    }
   }
 
   Future<void> _drawLineAndFitCamera(
@@ -225,18 +255,6 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
           ),
         );
       }
-
-      // Add repeater marker
-      final pointManager = await map.annotations.createPointAnnotationManager();
-      await pointManager.create(
-        PointAnnotationOptions(
-          geometry: Point(
-            coordinates: Position(repeaterLongitude, repeaterLatitude),
-          ),
-          iconSize: 1.5,
-          iconColor: colorScheme.primary.toARGB32(),
-        ),
-      );
 
       // Fit camera to show both points with padding
       final minLat = math.min(user.latitude, repeaterLatitude);

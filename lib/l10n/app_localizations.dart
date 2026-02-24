@@ -1851,6 +1851,72 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Visualizza dove sono stati registrati i like e le segnalazioni'**
   String get repeaterDetailViewFeedbackMapSubtitle;
+
+  /// No description provided for @repeaterDetailAltimetricProfile.
+  ///
+  /// In it, this message translates to:
+  /// **'Profilo altimetrico'**
+  String get repeaterDetailAltimetricProfile;
+
+  /// No description provided for @repeaterDetailAltimetricProfileSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Visualizza il profilo del terreno tra te e il ripetitore'**
+  String get repeaterDetailAltimetricProfileSubtitle;
+
+  /// No description provided for @repeaterDetailLosClear.
+  ///
+  /// In it, this message translates to:
+  /// **'Visione ottica libera tra te e il ripetitore'**
+  String get repeaterDetailLosClear;
+
+  /// No description provided for @repeaterDetailLosObstructed.
+  ///
+  /// In it, this message translates to:
+  /// **'Visione ottica ostruita dal terreno'**
+  String get repeaterDetailLosObstructed;
+
+  /// No description provided for @repeaterDetailTerrainProfile.
+  ///
+  /// In it, this message translates to:
+  /// **'Profilo terreno'**
+  String get repeaterDetailTerrainProfile;
+
+  /// No description provided for @repeaterDetailLineOfSight.
+  ///
+  /// In it, this message translates to:
+  /// **'Visione ottica'**
+  String get repeaterDetailLineOfSight;
+
+  /// No description provided for @repeaterDetailTotalDistance.
+  ///
+  /// In it, this message translates to:
+  /// **'Distanza'**
+  String get repeaterDetailTotalDistance;
+
+  /// No description provided for @repeaterDetailRepeaterElevation.
+  ///
+  /// In it, this message translates to:
+  /// **'Quota ripetitore'**
+  String get repeaterDetailRepeaterElevation;
+
+  /// No description provided for @repeaterDetailYourElevation.
+  ///
+  /// In it, this message translates to:
+  /// **'Quota tua'**
+  String get repeaterDetailYourElevation;
+
+  /// No description provided for @repeaterDetailYou.
+  ///
+  /// In it, this message translates to:
+  /// **'Tu'**
+  String get repeaterDetailYou;
+
+  /// No description provided for @repeaterDetailRepeaterLabel.
+  ///
+  /// In it, this message translates to:
+  /// **'Ripetitore'**
+  String get repeaterDetailRepeaterLabel;
 }
 
 class _AppLocalizationsDelegate

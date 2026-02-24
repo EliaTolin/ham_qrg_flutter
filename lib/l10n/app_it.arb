@@ -450,5 +450,16 @@
   "repeaterDetailManager": "Gestore",
   "repeaterDetailSuggestManager": "Conosci il gestore? Segnalalo!",
   "repeaterDetailViewFeedbackMap": "Esplora la mappa dei feedback",
-  "repeaterDetailViewFeedbackMapSubtitle": "Visualizza dove sono stati registrati i like e le segnalazioni"
+  "repeaterDetailViewFeedbackMapSubtitle": "Visualizza dove sono stati registrati i like e le segnalazioni",
+  "repeaterDetailAltimetricProfile": "Profilo altimetrico",
+  "repeaterDetailAltimetricProfileSubtitle": "Visualizza il profilo del terreno tra te e il ripetitore",
+  "repeaterDetailLosClear": "Visione ottica libera tra te e il ripetitore",
+  "repeaterDetailLosObstructed": "Visione ottica ostruita dal terreno",
+  "repeaterDetailTerrainProfile": "Profilo terreno",
+  "repeaterDetailLineOfSight": "Visione ottica",
+  "repeaterDetailTotalDistance": "Distanza",
+  "repeaterDetailRepeaterElevation": "Quota ripetitore",
+  "repeaterDetailYourElevation": "Quota tua",
+  "repeaterDetailYou": "Tu",
+  "repeaterDetailRepeaterLabel": "Ripetitore"
 }

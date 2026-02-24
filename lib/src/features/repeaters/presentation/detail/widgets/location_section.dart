@@ -4,6 +4,7 @@ import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/altimetric_profile_bottom_sheet.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_location_map.dart';
 
 class LocationSection extends StatelessWidget {
@@ -151,7 +152,7 @@ class LocationSection extends StatelessWidget {
                           l10n.repeaterDetailViewFeedbackMap,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
-                            color: colorScheme.primary,
+                            color: colorScheme.onSurface,
                           ),
                         ),
                         const SizedBox(height: 2),
@@ -172,8 +173,71 @@ class LocationSection extends StatelessWidget {
               ),
             ),
           ),
+          // Altimetric profile button
+          const SizedBox(height: 8),
+          GestureDetector(
+            onTap: () => _showAltimetricProfile(context),
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: colorScheme.primaryContainer.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: colorScheme.primary.withValues(alpha: 0.2),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.terrain,
+                    size: 20,
+                    color: colorScheme.primary,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.repeaterDetailAltimetricProfile,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: colorScheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          l10n.repeaterDetailAltimetricProfileSubtitle,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.chevron_right,
+                    color: colorScheme.primary,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ],
+    );
+  }
+
+  void _showAltimetricProfile(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => AltimetricProfileBottomSheet(
+        repeaterLat: repeater.latitude!,
+        repeaterLon: repeater.longitude!,
+        repeaterName: repeater.callsign ?? repeater.name ?? '',
+      ),
     );
   }
 }
