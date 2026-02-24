@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
-import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
@@ -74,8 +73,6 @@ class _RepeaterDetailContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorMode = RepeaterAccessIcon.getPrimaryColor(state.repeater.accesses);
-
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: CustomScrollView(
@@ -84,7 +81,6 @@ class _RepeaterDetailContent extends HookConsumerWidget {
           // Header
           RepeaterHeader(
             repeater: state.repeater,
-            colorMode: colorMode,
           ),
           // Action buttons
           SliverToBoxAdapter(

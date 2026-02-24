@@ -72,17 +72,75 @@ class LocationSection extends StatelessWidget {
             child: Column(
               children: [
                 RepeaterLocationMap(repeater: repeater),
+                // Locality / locator / distance row
+                if (repeater.locality != null ||
+                    repeater.locator != null ||
+                    distanceText != null)
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 10,
+                    ),
+                    color: colorScheme.surfaceContainerHighest,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          size: 16,
+                          color: colorScheme.onSurfaceVariant,
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(
+                            [
+                              repeater.locality,
+                              repeater.locator,
+                            ].whereType<String>().join(' \u2022 '),
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                        if (distanceText != null) ...[
+                          const SizedBox(width: 8),
+                          Icon(
+                            Icons.straighten,
+                            size: 14,
+                            color: colorScheme.primary,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            distanceText,
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                // Feedback map action
                 if (hasCoordinates)
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(12),
-                    color: colorScheme.surfaceContainerHighest,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color:
+                              colorScheme.outline.withValues(alpha: 0.08),
+                        ),
+                      ),
+                      color: colorScheme.surfaceContainerHighest,
+                    ),
                     child: Row(
                       children: [
                         Container(
                           padding: const EdgeInsets.all(6),
                           decoration: BoxDecoration(
-                            color: colorScheme.primary.withValues(alpha: 0.1),
+                            color:
+                                colorScheme.primary.withValues(alpha: 0.1),
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
@@ -98,14 +156,17 @@ class LocationSection extends StatelessWidget {
                             children: [
                               Text(
                                 l10n.repeaterDetailViewFeedbackMap,
-                                style: theme.textTheme.bodyMedium?.copyWith(
+                                style:
+                                    theme.textTheme.bodyMedium?.copyWith(
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                               const SizedBox(height: 2),
                               Text(
-                                l10n.repeaterDetailViewFeedbackMapSubtitle,
-                                style: theme.textTheme.labelSmall?.copyWith(
+                                l10n
+                                    .repeaterDetailViewFeedbackMapSubtitle,
+                                style:
+                                    theme.textTheme.labelSmall?.copyWith(
                                   color: colorScheme.onSurfaceVariant,
                                 ),
                               ),
@@ -125,43 +186,6 @@ class LocationSection extends StatelessWidget {
             ),
           ),
         ),
-
-        if (distanceText != null) ...[
-          const SizedBox(height: 12),
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: colorScheme.surface,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: colorScheme.outline.withValues(alpha: 0.1),
-              ),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.straighten,
-                  size: 18,
-                  color: colorScheme.primary,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  l10n.repeaterDetailDistanceFromYou,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                const Spacer(),
-                Text(
-                  distanceText,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
         // Altimetric profile preview card
         if (hasCoordinates) ...[
           const SizedBox(height: 16),
