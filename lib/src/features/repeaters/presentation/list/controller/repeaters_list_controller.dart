@@ -10,7 +10,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'repeaters_list_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class RepeatersListController extends _$RepeatersListController {
   @override
   FutureOr<RepeatersListState> build() async {
@@ -62,7 +62,7 @@ class RepeatersListController extends _$RepeatersListController {
     final currentState = state.value;
     final modesToFilter = selectedModes ?? currentState?.selectedModes.toList();
 
-    final position = await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
+    final position = await ref.read(cachedUserPositionProvider.future);
 
     try {
       // Use a reasonable default bounds around user location

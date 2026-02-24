@@ -51,7 +51,19 @@ class LocationService {
       );
     }
 
-    final position = await Geolocator.getCurrentPosition();
+    // Try last known position first for instant results
+    final lastKnown = await Geolocator.getLastKnownPosition();
+    if (lastKnown != null) {
+      return (latitude: lastKnown.latitude, longitude: lastKnown.longitude);
+    }
+
+    // Fall back to current position with timeout to avoid hanging forever
+    final position = await Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.medium,
+        timeLimit: Duration(seconds: 10),
+      ),
+    );
 
     return (latitude: position.latitude, longitude: position.longitude);
   }
@@ -59,3 +71,11 @@ class LocationService {
 
 @riverpod
 LocationService locationService(Ref ref) => LocationService();
+
+/// Cached user position — fetched once and shared across providers/pages.
+@Riverpod(keepAlive: true)
+Future<({double latitude, double longitude})> cachedUserPosition(
+  Ref ref,
+) async {
+  return ref.read(locationServiceProvider).getCurrentPositionOrDefault();
+}

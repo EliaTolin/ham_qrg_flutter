@@ -82,11 +82,11 @@ class RepeatersListPage extends HookConsumerWidget {
     final debouncedQuery = searchQuery.value.trim();
     final isTyping = isSearchMode && currentSearchText != debouncedQuery;
 
-    // Get user position for server-side distance calculation on search results
-    final userPositionFuture = useMemoized(
-      () => ref.read(locationServiceProvider).getCurrentPositionOrDefault(),
-    );
-    final userPosition = useFuture(userPositionFuture).data;
+    // User position from shared cached provider (no duplicate GPS request)
+    final userPosition = switch (ref.watch(cachedUserPositionProvider)) {
+      AsyncData(:final value) => value,
+      _ => null,
+    };
 
     // Get search results if in search mode (pass user position for server-side distance)
     final searchAsyncState = debouncedQuery.isNotEmpty
