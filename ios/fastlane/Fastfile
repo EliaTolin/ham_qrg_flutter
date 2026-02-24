@@ -16,34 +16,26 @@
 default_platform(:ios)
 
 platform :ios do
+  root = File.expand_path("../..", __dir__)
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    ENV.delete('GEM_PATH')
-    ENV.delete('GEM_HOME')
-    # build_app(
-    #   workspace: "Runner.xcworkspace",
-    #   scheme: "Runner",
-    #   export_method: "app-store",
-    # )
+    Dir.chdir(root) { sh("flutter", "build", "ipa", "--release") }
     upload_to_testflight(
-      distribute_external: false,
-      notify_external_testers: false,
-      submission_information: {
-        export_compliance_uses_encryption: false,
-      }
+      ipa: Dir["#{root}/build/ios/ipa/*.ipa"].first,
+      distribute_external: true,
+      notify_external_testers: true,
+      groups: ["Tester Esterni"],
+      uses_non_exempt_encryption: false,
+      changelog: "Migliorata stabilità dell'app e sistemati fastidiosi bugs!",
     )
   end
 
   desc "Push a new release build to the App Store"
   lane :release do
-    ENV.delete('GEM_PATH')
-    ENV.delete('GEM_HOME')
-    build_app(
-      workspace: "Runner.xcworkspace",
-      scheme: "Runner",
-      export_method: "app-store",
-    )
+    Dir.chdir(root) { sh("flutter", "build", "ipa", "--release") }
     upload_to_app_store(
+      ipa: Dir["#{root}/build/ios/ipa/*.ipa"].first,
       submit_for_review: true,
       automatic_release: true,
       force: true,

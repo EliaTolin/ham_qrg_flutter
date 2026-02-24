@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/time_helper.dart';
 import 'package:hamqrg/common/widgets/profile/profile_avatar.dart';
 import 'package:hamqrg/l10n/app_localizations.dart';
@@ -7,8 +9,9 @@ import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart
 import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/shared_widgets.dart';
+import 'package:hamqrg/src/features/repeaters/service/geocoding_service.dart';
 
-class CommunityFeedbackCard extends StatelessWidget {
+class CommunityFeedbackCard extends ConsumerWidget {
   const CommunityFeedbackCard({
     required this.feedback,
     super.key,
@@ -17,7 +20,7 @@ class CommunityFeedbackCard extends StatelessWidget {
   final RepeaterFeedback feedback;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -109,19 +112,23 @@ class CommunityFeedbackCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          Row(
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
               InfoChip(
                 icon: _getStationIcon(feedback.station),
                 label: _getStationLabel(feedback.station, l10n),
               ),
-              const SizedBox(width: 8),
-              Flexible(
-                child: InfoChip(
-                  icon: Icons.location_on,
-                  label: feedback.comment.isNotEmpty ? feedback.comment.split('\n').first : 'Unknown',
+              InfoChip(
+                icon: AccessModeHelper.getAccessModeIcon(
+                  feedback.repeaterAccess.mode,
+                ),
+                label: AccessModeHelper.getAccessModeLabel(
+                  feedback.repeaterAccess.mode,
                 ),
               ),
+              _buildLocationChip(ref),
             ],
           ),
           if (feedback.comment.isNotEmpty) ...[
@@ -171,6 +178,25 @@ class CommunityFeedbackCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildLocationChip(WidgetRef ref) {
+    final localityAsync = ref.watch(
+      reverseGeocodeLocationProvider(
+        latitude: feedback.latitude,
+        longitude: feedback.longitude,
+      ),
+    );
+    final locality = switch (localityAsync) {
+      AsyncData(:final value) => value,
+      _ => null,
+    };
+    return InfoChip(
+      icon: Icons.location_on,
+      label: locality ??
+          '${feedback.latitude.toStringAsFixed(2)}, '
+              '${feedback.longitude.toStringAsFixed(2)}',
     );
   }
 

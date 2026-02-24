@@ -119,3 +119,17 @@ class GeocodingService {
 GeocodingService geocodingService(Ref ref) {
   return GeocodingService(Dio());
 }
+
+@riverpod
+Future<String?> reverseGeocodeLocation(
+  Ref ref, {
+  required double latitude,
+  required double longitude,
+}) async {
+  final service = ref.read(geocodingServiceProvider);
+  final result = await service.reverseGeocode(
+    latitude: latitude,
+    longitude: longitude,
+  );
+  return result?.placeName;
+}
