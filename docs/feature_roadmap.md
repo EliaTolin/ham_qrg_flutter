@@ -274,6 +274,235 @@ CREATE TABLE repeater_photos (
 
 ---
 
+## Funzionalità fisiche e curiosità sul ripetitore
+
+Idee focalizzate sugli aspetti fisici, scientifici e di curiosità del singolo ripetitore, da integrare nella pagina dettaglio.
+
+---
+
+### F1. Scheda fisica del sito
+
+Nuova sezione nella pagina dettaglio che mostra le caratteristiche fisiche del sito dove è installato il ripetitore.
+
+**Dati mostrati**:
+- **Quota s.l.m.** del ripetitore (da Open-Meteo Elevation API, già usata per il profilo altimetrico)
+- **Altezza antenna** e **potenza TX** (da BrandMeister API, campi `antennaHeightM` e `powerWatts` già nel model `BmDevice`)
+- **Lunghezza d'onda** della frequenza operativa (calcolabile lato client: λ = c / f)
+- **Banda operativa** con nome colloquiale (es. "2 metri", "70 centimetri") dall'enum `FrequencyBand` già nel dominio
+
+**Implementazione**: Calcoli puramente lato client. L'unica chiamata aggiuntiva è l'elevation del punto ripetitore (singola richiesta Open-Meteo, oppure riuso del primo/ultimo punto del profilo altimetrico già calcolato).
+
+---
+
+### F2. Meteo in tempo reale al sito del ripetitore
+
+Il meteo al sito è rilevante: ghiaccio sulle antenne, vento forte, nebbia e umidità influenzano direttamente il funzionamento e la propagazione.
+
+**Dati mostrati**:
+- Temperatura attuale, percepita
+- Vento (velocità, direzione, raffiche)
+- Umidità relativa
+- Visibilità
+- Precipitazioni
+- Icona condizioni meteo
+
+**API**: Open-Meteo Forecast API (gratuita, senza API key, stessa infrastruttura già usata per l'elevation)
+- `https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,visibility`
+
+**UI suggerita**: Card compatta con icona meteo, temperatura prominente, e dettagli vento/umidità in riga sotto. Sfondo che cambia colore in base alle condizioni (azzurro sereno, grigio nuvole, ecc.).
+
+---
+
+### F3. Alba, tramonto e condizioni di luce
+
+Utile per capire le condizioni di propagazione (inversioni termiche all'alba/tramonto favoriscono il tropo-ducting VHF/UHF) e per pianificare attivazioni in portatile.
+
+**Dati mostrati**:
+- Orario alba e tramonto al sito del ripetitore (non alla posizione dell'utente)
+- Durata del giorno
+- Crepuscolo civile (inizio/fine) — rilevante per attivazioni SOTA/POTA
+- Indicatore "ora" sulla timeline giornaliera (barra visuale giorno/notte)
+
+**API**: Open-Meteo (`&daily=sunrise,sunset`) oppure calcolo locale con formula astronomica (nessuna API necessaria, le coordinate bastano).
+
+---
+
+### F4. Bearing e azimut verso il ripetitore
+
+L'utente vuole sapere dove puntare la propria antenna direzionale (Yagi, direttiva).
+
+**Dati mostrati**:
+- **Azimut** (gradi dal Nord) dall'utente al ripetitore
+- **Bussola visuale**: indicatore rotante che punta verso il ripetitore
+- **Angolo di elevazione**: inclinazione verticale ottimale dell'antenna (calcolabile da distanza + differenza di quota)
+- **Direzione cardinale** testuale (es. "Nord-Est", "Sud-Ovest")
+
+**Implementazione**: Tutto lato client.
+- Bearing: formula haversine inversa `atan2(sin(Δlon)·cos(lat2), cos(lat1)·sin(lat2) − sin(lat1)·cos(lat2)·cos(Δlon))`
+- Elevazione: `atan2(Δh, distanza)`
+- Widget bussola con `Transform.rotate` e `Geolocator.getPositionStream()` per aggiornamento real-time
+
+---
+
+### F5. Link budget e stima del segnale
+
+Calcolo di radiofrequenza che risponde alla domanda: "Il mio segnale arriverà a questo ripetitore?"
+
+**Dati mostrati**:
+- **Free Space Path Loss (FSPL)**: attenuazione in spazio libero in dB (`20·log10(d) + 20·log10(f) + 20·log10(4π/c)`)
+- **Clearance zona di Fresnel**: la prima zona di Fresnel è libera da ostacoli? (dati dal profilo altimetrico già disponibile)
+- **Stima potenza ricevuta**: dato un TX power tipico (5W portatile, 25W mobile, 50W base) e guadagno antenna tipico
+- **Verdetto visuale**: semaforo verde/giallo/rosso con spiegazione testuale
+
+**UI suggerita**: Card con slider per selezionare la propria potenza TX e tipo di antenna, con il verdetto che si aggiorna in tempo reale. Barra visuale che mostra il "budget" in dB con le varie voci (TX power → guadagno antenna → FSPL → sensibilità RX).
+
+**Implementazione**: Calcoli lato client. La Fresnel zone richiede i dati del profilo altimetrico (già disponibili dopo la prima chiamata).
+
+---
+
+### F6. Radio horizon e copertura teorica
+
+Quanto "lontano" può arrivare il segnale di questo ripetitore?
+
+**Dati mostrati**:
+- **Radio horizon** in km: `d = 4.12 × √(h)` dove h è l'altezza antenna in metri s.l.m.
+- **Copertura teorica sulla mappa**: cerchio (o poligono se si considera il terreno) attorno al ripetitore
+- **Confronto**: "Questo ripetitore copre teoricamente un raggio di X km — tu sei a Y km" con indicazione dentro/fuori
+
+**UI suggerita**: Overlay sulla mini-mappa del dettaglio, attivabile con toggle. Cerchio semitrasparente colorato in verde (entro il 60% del raggio), giallo (60-90%), rosso (>90%).
+
+---
+
+### F7. Curiosità sulla frequenza e la banda
+
+Sezione "Lo sapevi?" con fatti interessanti calcolati dalla frequenza del ripetitore.
+
+**Contenuti generabili**:
+- **Lunghezza d'onda fisica**: "La lunghezza d'onda di questo ripetitore è 2.06 m — circa l'altezza di una porta"
+- **Quante volte il segnale oscilla al secondo**: "145.600.000 volte al secondo"
+- **Tempo di propagazione** utente→ripetitore: "Il tuo segnale impiega X microsecondi ad arrivare" (`d / c`)
+- **Caratteristiche della banda**: propagazione tipica (tropo, sporadic-E, rain scatter per le microonde), range tipico, uso comune
+- **Confronto dimensionale**: la lunghezza d'onda paragonata a oggetti quotidiani (2m ≈ porta, 70cm ≈ ombrello, 23cm ≈ foglio A4)
+- **Numero di rimbalzi**: quanti cicli completi compie l'onda nel tragitto utente→ripetitore
+
+**Implementazione**: Completamente lato client, nessuna API. Testi localizzati in `app_it.arb` con placeholder per i valori calcolati.
+
+**UI suggerita**: Card con icona lampadina, un fatto alla volta con possibilità di scorrere (PageView dots) o un fatto random ogni volta che si apre il dettaglio.
+
+---
+
+### F8. Storia e attività del ripetitore
+
+Timeline temporale del ripetitore costruita dai dati già disponibili.
+
+**Dati mostrati**:
+- **Data di inserimento** nel database (`createdAt` del ripetitore)
+- **Ultimo aggiornamento dati** (`updatedAt`)
+- **Ultimo feedback positivo** e **ultimo down report** (già in `RepeaterFeedbackStats`)
+- **Andamento nel tempo**: grafico sparkline dell'health score negli ultimi N mesi
+- **"Attivo da X giorni/mesi/anni"** — calcolato da `createdAt`
+
+**Backend**: Nuova tabella o vista materializzata per health score storico (snapshot periodico). Oppure aggregazione dei feedback per mese via RPC.
+
+**UI suggerita**: Timeline verticale compatta con icone e date, oppure grafico sparkline nell'area performance metrics.
+
+---
+
+### F9. Confronto con la media
+
+Contestualizzare i dati del ripetitore rispetto agli altri nella stessa regione/banda.
+
+**Dati mostrati**:
+- "Questo ripetitore è a **X m s.l.m.**, più alto del **Y%** dei ripetitori nella regione"
+- "Health score **Z%** — sopra/sotto la media regionale di **W%**"
+- "Frequenza nella banda **2m** — la banda più/meno comune in questa regione"
+- "È uno dei **N** ripetitori con accesso **DMR + Analogico** nella provincia"
+
+**Backend**: RPC che calcola statistiche aggregate per regione/provincia (count, media quota, media health score). Cacheable lato server.
+
+---
+
+### F10. Panorama 360° e vista dal sito
+
+Mostrare cosa si vede dalla posizione del ripetitore. Utile per capire intuitivamente la copertura.
+
+**Opzioni di implementazione**:
+- **Google Street View** (se disponibile nelle vicinanze): embed con `google_maps_flutter` o deep link all'app
+- **Mappa di elevazione a raggiera**: vista top-down con raggi colorati in base alla distanza dell'orizzonte per ogni direzione (ogni 5°)
+- **Foto della community**: galleria crowdsourced del sito (vedi feature "Community avanzata" nella sezione precedente)
+
+---
+
+### F11. "Portami là" — Navigazione al sito
+
+Per radioamatori che vogliono visitare il sito del ripetitore (manutenzione, curiosità, attivazione portatile nelle vicinanze).
+
+**Funzionalità**:
+- Pulsante che apre Google Maps / Apple Maps / Waze con le coordinate
+- Tempo di percorrenza stimato (a piedi e in auto)
+- Indicazione se il sito è raggiungibile su strada o solo a piedi (basato su dati OSM o semplicemente sulla distanza dalla strada più vicina)
+
+**Implementazione**: `url_launcher` (già presente) con schema `geo:` o URL diretti Maps.
+
+---
+
+### F12. Indice di propagazione in tempo reale
+
+Condizioni solari e geomagnetiche che influenzano la propagazione radio, contestualizzate per la banda del ripetitore.
+
+**Dati mostrati**:
+- **Solar Flux Index (SFI)**: attività solare
+- **K-index / A-index**: disturbi geomagnetici
+- **Previsione propagazione** per la banda specifica (VHF è diverso da UHF)
+- **Alert**: se le condizioni sono particolarmente buone (apertura tropo, sporadic-E) o cattive (tempesta geomagnetica)
+
+**API**: NOAA Space Weather (`https://services.swpc.noaa.gov/json/`) oppure HamQSL Solar XML (`https://www.hamqsl.com/solarxml.php`) — entrambe gratuite.
+
+**UI suggerita**: Badge colorato nell'header o nella sezione tecnica: "Propagazione: Buona" con icona sole/nuvola. Espandibile per i dettagli.
+
+---
+
+### Riepilogo priorità - Funzionalità fisiche
+
+| # | Feature | Complessità | API esterna necessaria | Valore per l'utente |
+|---|---------|-------------|----------------------|---------------------|
+| F1 | Scheda fisica del sito | Bassa | No (riuso Open-Meteo) | Alto |
+| F2 | Meteo al sito | Bassa | Open-Meteo (gratuita) | Alto |
+| F3 | Alba/tramonto | Bassa | No (calcolo locale) | Medio |
+| F4 | Bearing e bussola | Media | No (calcolo locale) | Alto |
+| F5 | Link budget | Media | No (riuso profilo altim.) | Alto |
+| F6 | Radio horizon | Media | Open-Meteo elevation | Medio-Alto |
+| F7 | Curiosità frequenza | Bassa | No | Medio |
+| F8 | Storia ripetitore | Media | No (dati interni) | Medio |
+| F9 | Confronto con la media | Media | No (nuova RPC) | Medio |
+| F10 | Panorama 360° | Alta | Google/OSM | Medio-Basso |
+| F11 | Navigazione al sito | Bassa | No (url_launcher) | Alto |
+| F12 | Indice propagazione | Bassa | NOAA/HamQSL (gratuita) | Alto |
+
+### Ordine consigliato di implementazione
+
+**Sprint 1** (bassa complessità, alto impatto):
+1. F1 — Scheda fisica (quota, potenza, lunghezza d'onda)
+2. F7 — Curiosità frequenza ("Lo sapevi?")
+3. F11 — Navigazione al sito
+
+**Sprint 2** (API gratuite, alto impatto):
+4. F2 — Meteo al sito
+5. F4 — Bearing e bussola
+6. F12 — Indice propagazione
+
+**Sprint 3** (calcoli avanzati):
+7. F5 — Link budget
+8. F3 — Alba/tramonto
+9. F6 — Radio horizon su mappa
+
+**Sprint 4** (dati aggregati):
+10. F8 — Storia ripetitore
+11. F9 — Confronto con la media
+12. F10 — Panorama 360°
+
+---
+
 ## Roadmap suggerita
 
 ### Fase 1 - Quick wins
