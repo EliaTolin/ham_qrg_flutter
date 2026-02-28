@@ -352,6 +352,36 @@ abstract class AppLocalizations {
   /// **'Errore durante l\'apertura di Telegram'**
   String get errorOpenTelegram;
 
+  /// No description provided for @disclaimerTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Fonte dei dati'**
+  String get disclaimerTitle;
+
+  /// No description provided for @disclaimerDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'I dati dei ponti radio presenti in questa app provengono da IZ8WNH.\n\nPer informazioni aggiuntive, scaricare i file CSV per programmare le radio o consultare dati non presenti in quest\'app, visita il sito ufficiale.'**
+  String get disclaimerDescription;
+
+  /// No description provided for @disclaimerVisitSite.
+  ///
+  /// In it, this message translates to:
+  /// **'Visita iz8wnh.it'**
+  String get disclaimerVisitSite;
+
+  /// No description provided for @disclaimerUnderstood.
+  ///
+  /// In it, this message translates to:
+  /// **'Ho capito'**
+  String get disclaimerUnderstood;
+
+  /// No description provided for @errorOpenDisclaimerSite.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore durante l\'apertura del sito'**
+  String get errorOpenDisclaimerSite;
+
   /// No description provided for @repeatersMapTitle.
   ///
   /// In it, this message translates to:

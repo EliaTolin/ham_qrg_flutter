@@ -6,6 +6,7 @@ part 'home_state.freezed.dart';
 abstract class HomeState with _$HomeState {
   const factory HomeState({
     required bool showTelegram,
+    required bool showDisclaimer,
     required bool needToExtraConfig,
   }) = _HomeState;
 }

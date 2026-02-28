@@ -810,12 +810,13 @@ class RepeatersMapPage extends HookConsumerWidget {
             child: FloatingActionButton.small(
               heroTag: 'myLocation',
               onPressed: () async {
+                final position = await notifier.refreshUserPosition();
                 await mapController.flyTo(
                   CameraOptions(
                     center: Point(
                       coordinates: Position(
-                        mapState!.longitude!,
-                        mapState.latitude!,
+                        position.longitude,
+                        position.latitude,
                       ),
                     ),
                     zoom: 10,

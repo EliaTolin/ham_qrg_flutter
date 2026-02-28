@@ -145,6 +145,22 @@ class AppLocalizationsIt extends AppLocalizations {
   String get errorOpenTelegram => 'Errore durante l\'apertura di Telegram';
 
   @override
+  String get disclaimerTitle => 'Fonte dei dati';
+
+  @override
+  String get disclaimerDescription =>
+      'I dati dei ponti radio presenti in questa app provengono da IZ8WNH.\n\nPer informazioni aggiuntive, scaricare i file CSV per programmare le radio o consultare dati non presenti in quest\'app, visita il sito ufficiale.';
+
+  @override
+  String get disclaimerVisitSite => 'Visita iz8wnh.it';
+
+  @override
+  String get disclaimerUnderstood => 'Ho capito';
+
+  @override
+  String get errorOpenDisclaimerSite => 'Errore durante l\'apertura del sito';
+
+  @override
   String get repeatersMapTitle => 'Mappa ripetitori';
 
   @override

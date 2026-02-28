@@ -159,6 +159,21 @@ class RepeatersMapController extends _$RepeatersMapController {
     }
   }
 
+  /// Refreshes the cached user position and updates the state.
+  Future<({double latitude, double longitude})> refreshUserPosition() async {
+    final position = await ref.refresh(cachedUserPositionProvider.future);
+    final currentState = state.value;
+    if (currentState != null) {
+      state = AsyncData(
+        currentState.copyWith(
+          latitude: position.latitude,
+          longitude: position.longitude,
+        ),
+      );
+    }
+    return position;
+  }
+
   Future<List<Repeater>> _fetchRepeatersFromBounds({
     required double lat1,
     required double lon1,

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hamqrg/common/dialogs/show_disclaimer_dialog.dart';
 import 'package:hamqrg/common/dialogs/show_telegram_invite_dialog.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/profile/profile_avatar.dart';
@@ -25,8 +26,16 @@ class HomePage extends HookConsumerWidget {
             WidgetsBinding.instance.addPostFrameCallback(
               (_) async {
                 await Future.delayed(const Duration(seconds: 2));
+                if (!context.mounted) return;
+
+                final controller = ref.read(homeControllerProvider.notifier);
+
+                if (state.showDisclaimer) {
+                  await showDisclaimerDialog(context);
+                  await controller.setDisclaimerSeen();
+                }
+
                 if (state.showTelegram && context.mounted) {
-                  final controller = ref.read(homeControllerProvider.notifier);
                   await showTelegramInviteDialog(
                     context,
                     onAlreadyTelegramMember: () async {

@@ -52,6 +52,10 @@ class AppConfigs {
     return 'https://t.me/hamqrg';
   }
 
+  static String getIz8wnhSite() {
+    return 'https://www.iz8wnh.it';
+  }
+
   static String getAppStoreId() {
     return '6754508610';
   }

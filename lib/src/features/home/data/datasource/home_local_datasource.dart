@@ -43,6 +43,21 @@ class HomeLocalDatasource implements HomeDatasource {
       time.toIso8601String(),
     );
   }
+
+  @override
+  Future<bool> hasSeenDisclaimer() async {
+    try {
+      final value = await sharedPreferences.read('hasSeenDisclaimer');
+      return value != null;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<void> setDisclaimerSeen() {
+    return sharedPreferences.write('hasSeenDisclaimer', 'true');
+  }
 }
 
 @riverpod

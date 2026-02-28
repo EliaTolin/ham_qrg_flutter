@@ -29,6 +29,15 @@ class HomeRepository {
   Future<void> setLastTelegramInviteShow() {
     return dataSource.setTelegramInviteLastShownDate(DateTime.now());
   }
+
+  Future<bool> needToShowDisclaimer() async {
+    final hasSeen = await dataSource.hasSeenDisclaimer();
+    return !hasSeen;
+  }
+
+  Future<void> setDisclaimerSeen() {
+    return dataSource.setDisclaimerSeen();
+  }
 }
 
 @riverpod
