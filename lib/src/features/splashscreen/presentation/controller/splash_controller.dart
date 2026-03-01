@@ -18,6 +18,7 @@ import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifi
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hamqrg/src/features/splashscreen/errors/update_required_exception.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -32,6 +33,7 @@ class SplashController extends _$SplashController {
       final startWatch = Stopwatch()..start();
       var userId = await ref.read(getUserIdProvider.future);
       userId ??= await ref.read(anonymousSignInProvider.future);
+      if (userId != null) await OneSignal.login(userId);
       final packageInfo = await ref.read(packageInfoProvider.future);
       try {
         await _ensureMinimumVersion(packageInfo);

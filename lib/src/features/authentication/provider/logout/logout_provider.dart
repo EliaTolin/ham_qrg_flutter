@@ -1,5 +1,6 @@
 import 'package:hamqrg/common/service/image_caching/image_caching_service/image_caching_service.dart';
 import 'package:hamqrg/src/features/authentication/data/repository/auth_repository.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'logout_provider.g.dart';
@@ -15,4 +16,5 @@ Future<void> logout(Ref ref) async {
   await authRepository.logout();
   // Sign in again as anonymous
   await authRepository.anonymousSignIn();
+  await OneSignal.logout();
 }
