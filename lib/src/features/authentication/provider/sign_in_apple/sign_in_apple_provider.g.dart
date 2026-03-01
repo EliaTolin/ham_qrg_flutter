@@ -40,4 +40,4 @@ final class SignInWithAppleProvider
   }
 }
 
-String _$signInWithAppleHash() => r'4a5cd4b7136d538bf1a341d8f1428f3cfc87ae9b';
+String _$signInWithAppleHash() => r'1ab28367f9b590ddc22a0740a1504430f70d2d35';

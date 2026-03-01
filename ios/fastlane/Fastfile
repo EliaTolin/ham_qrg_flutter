@@ -20,6 +20,8 @@ platform :ios do
 
   desc "Push a new beta build to TestFlight"
   lane :beta do
+    ENV.delete('GEM_PATH')
+    ENV.delete('GEM_HOME')
     Dir.chdir(root) { sh("flutter", "build", "ipa", "--release") }
     upload_to_testflight(
       ipa: Dir["#{root}/build/ios/ipa/*.ipa"].first,
@@ -33,6 +35,8 @@ platform :ios do
 
   desc "Push a new release build to the App Store"
   lane :release do
+    ENV.delete('GEM_PATH')
+    ENV.delete('GEM_HOME')
     Dir.chdir(root) { sh("flutter", "build", "ipa", "--release") }
     upload_to_app_store(
       ipa: Dir["#{root}/build/ios/ipa/*.ipa"].first,

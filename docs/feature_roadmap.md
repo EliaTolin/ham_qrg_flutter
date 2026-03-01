@@ -80,9 +80,79 @@ CREATE TABLE qso_logs (
 
 ---
 
-### 2. Push Notifications intelligenti
+### 2. I miei report — Storico segnalazioni utente
 
-**Priorità**: Alta (OneSignal già configurato)
+**Priorità**: Alta (infrastruttura di invio già presente in `ReportIssuePage`)
+
+L'utente può già inviare segnalazioni su ripetitori con dati errati, ma non ha modo di vedere lo storico dei propri report né il loro stato di lavorazione. Questa pagina colma il gap.
+
+**Funzionalità**:
+- Lista dei report inviati dall'utente con stato (in attesa, in lavorazione, risolto, rifiutato)
+- Dettaglio singolo report: ripetitore segnalato, descrizione, data invio, stato attuale, eventuale risposta del coordinatore
+- Badge/indicatore nella pagina impostazioni se ci sono aggiornamenti non letti
+- Filtro per stato (tutti, aperti, chiusi)
+
+**Navigazione**: Raggiungibile dalla pagina **Impostazioni utente** (`UserSettingsRoute`) come voce dedicata.
+
+**Architettura suggerita**:
+```
+lib/src/features/user_reports/
+├── data/
+│   ├── datasource/        # Abstract + Supabase implementation
+│   ├── model/             # UserReportModel (DTO)
+│   ├── mappers/           # Model ↔ Entity
+│   └── repository/        # UserReportsRepository
+├── domain/
+│   └── user_report.dart   # UserReport entity (@freezed)
+├── presentation/
+│   └── user_reports_page/
+│       ├── user_reports_page.dart
+│       └── controller/
+│           ├── user_reports_controller.dart
+│           └── state/
+│               └── user_reports_state.dart
+└── provider/
+    └── get_user_reports/  # Provider per fetch lista
+```
+
+**Entità dominio**:
+```dart
+@freezed
+class UserReport with _$UserReport {
+  const factory UserReport({
+    required String id,
+    required String repeaterId,
+    required String repeaterCallsign,
+    required String? repeaterName,
+    required String description,
+    required UserReportStatus status,
+    required String? coordinatorResponse,
+    required DateTime createdAt,
+    required DateTime? resolvedAt,
+  }) = _UserReport;
+}
+
+enum UserReportStatus { pending, inProgress, resolved, rejected }
+```
+
+**Backend (Supabase)**:
+- Aggiungere colonne alla tabella report esistente: `status` (enum), `coordinator_response` (text), `resolved_at` (timestamptz)
+- RPC `get_user_reports(p_user_id uuid)` che restituisce i report con join sul ripetitore per callsign e nome
+- RLS policy: l'utente può leggere solo i propri report
+
+**Route**: Nuova rotta figlia di `ProfileRouter`:
+```
+ProfileRouter
+├── ProfileRoute
+├── UserSettingsRoute
+└── UserReportsRoute  ← nuova
+```
+
+---
+
+### 3. Push Notifications intelligenti
+
+**Priorità**: Alta (OneSignal già configurato, si collegano anche ai report: notifica quando un report cambia stato)
 
 **Scenari**:
 - Ripetitore preferito segnalato come down/up dalla community
@@ -97,7 +167,7 @@ CREATE TABLE qso_logs (
 
 ---
 
-### 3. Copertura RF stimata
+### 4. Copertura RF stimata
 
 **Priorità**: Media-Alta (il profilo altimetrico e il LOS esistono già)
 
@@ -113,7 +183,7 @@ CREATE TABLE qso_logs (
 
 ---
 
-### 4. Modalità offline
+### 5. Modalità offline
 
 **Priorità**: Media-Alta (uso tipico in montagna/zone senza copertura)
 
@@ -131,7 +201,7 @@ CREATE TABLE qso_logs (
 
 ---
 
-### 5. Ricerca avanzata e filtri
+### 6. Ricerca avanzata e filtri
 
 **Priorità**: Media
 
@@ -148,7 +218,7 @@ CREATE TABLE qso_logs (
 
 ---
 
-### 6. Navigazione verso il ripetitore
+### 7. Navigazione verso il ripetitore
 
 **Priorità**: Media
 
@@ -164,7 +234,7 @@ CREATE TABLE qso_logs (
 
 ---
 
-### 7. Widget e complicazioni
+### 8. Widget e complicazioni
 
 **Priorità**: Media-Bassa
 
@@ -180,7 +250,7 @@ CREATE TABLE qso_logs (
 
 ---
 
-### 8. Confronto ripetitori
+### 9. Confronto ripetitori
 
 **Priorità**: Media-Bassa
 
@@ -196,7 +266,7 @@ CREATE TABLE qso_logs (
 
 ---
 
-### 9. Community avanzata
+### 10. Community avanzata
 
 **Priorità**: Media-Bassa
 
@@ -229,7 +299,7 @@ CREATE TABLE repeater_photos (
 
 ---
 
-### 10. Integrazione servizi radioamatoriali esterni
+### 11. Integrazione servizi radioamatoriali esterni
 
 **Priorità**: Bassa
 
@@ -245,7 +315,7 @@ CREATE TABLE repeater_photos (
 
 ---
 
-### 11. Monetizzazione
+### 12. Monetizzazione
 
 **Priorità**: Da definire (unit ID ads già configurati)
 
@@ -262,7 +332,7 @@ CREATE TABLE repeater_photos (
 
 ---
 
-### 12. Onboarding migliorato
+### 13. Onboarding migliorato
 
 **Priorità**: Bassa (package `introduction_screen` già installato)
 
@@ -510,19 +580,20 @@ Condizioni solari e geomagnetiche che influenzano la propagazione radio, contest
 2. Collegare `BmTalkgroupsWidget` al dettaglio ripetitore
 3. Implementare "Vedi tutti i feedback"
 4. Handler push notifications OneSignal
+5. I miei report — Storico segnalazioni utente (pagina in Impostazioni)
 
 ### Fase 2 - Core features
-5. Logbook QSO (base: inserimento + lista)
-6. Filtro per banda nella ricerca/lista
-7. Navigazione verso ripetitore ("Portami là")
+6. Logbook QSO (base: inserimento + lista)
+7. Filtro per banda nella ricerca/lista
+8. Navigazione verso ripetitore ("Portami là")
 
 ### Fase 3 - Esperienza avanzata
-8. Modalità offline (cache ripetitori + mappe)
-9. Copertura RF stimata
-10. Logbook QSO (export ADIF + statistiche)
+9. Modalità offline (cache ripetitori + mappe)
+10. Copertura RF stimata
+11. Logbook QSO (export ADIF + statistiche)
 
 ### Fase 4 - Community e crescita
-11. Community avanzata (commenti, foto)
-12. Confronto ripetitori
-13. Monetizzazione
-14. Widget home screen
+12. Community avanzata (commenti, foto)
+13. Confronto ripetitori
+14. Monetizzazione
+15. Widget home screen
