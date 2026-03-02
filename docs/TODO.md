@@ -6,8 +6,6 @@ Checklist completa delle funzionalità da implementare, organizzata per fase.
 
 ## Fase 1 - Quick Wins (infrastruttura già presente)
 
-- [ ] **Auth guard** — Attivare il codice commentato in `app_router.dart`
-- [ ] **BrandMeister talkgroups nel dettaglio** — Collegare `BmTalkgroupsWidget` alla pagina dettaglio ripetitore
 - [ ] **"Vedi tutti i feedback"** — Implementare navigazione dal pulsante esistente
 - [ ] **Push notifications (handler)** — Handler OneSignal in Flutter per notifiche in-app e background
   - [ ] Voce in pagina Impostazioni
