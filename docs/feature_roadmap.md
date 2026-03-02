@@ -448,11 +448,9 @@ Quanto "lontano" può arrivare il segnale di questo ripetitore?
 Sezione "Lo sapevi?" con fatti interessanti calcolati dalla frequenza del ripetitore.
 
 **Contenuti generabili**:
-- **Lunghezza d'onda fisica**: "La lunghezza d'onda di questo ripetitore è 2.06 m — circa l'altezza di una porta"
+- **Lunghezza d'onda fisica**: "La lunghezza d'onda di questo ripetitore è 2.06 m"
 - **Quante volte il segnale oscilla al secondo**: "145.600.000 volte al secondo"
 - **Tempo di propagazione** utente→ripetitore: "Il tuo segnale impiega X microsecondi ad arrivare" (`d / c`)
-- **Caratteristiche della banda**: propagazione tipica (tropo, sporadic-E, rain scatter per le microonde), range tipico, uso comune
-- **Confronto dimensionale**: la lunghezza d'onda paragonata a oggetti quotidiani (2m ≈ porta, 70cm ≈ ombrello, 23cm ≈ foglio A4)
 - **Numero di rimbalzi**: quanti cicli completi compie l'onda nel tragitto utente→ripetitore
 
 **Implementazione**: Completamente lato client, nessuna API. Testi localizzati in `app_it.arb` con placeholder per i valori calcolati.

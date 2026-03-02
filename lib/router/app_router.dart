@@ -14,6 +14,7 @@ import 'package:hamqrg/src/features/repeaters/presentation/list/repeaters_list_p
 import 'package:hamqrg/src/features/repeaters/presentation/map/repeaters_map_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/report_issue/report_issue_page.dart';
 import 'package:hamqrg/src/features/splashscreen/presentation/splash_screen.dart';
+import 'package:hamqrg/src/features/user_reports/presentation/user_reports_page/user_reports_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.g.dart';
@@ -41,9 +42,18 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(path: 'map', page: RepeatersMapRoute.page),
                 AutoRoute(path: 'list', page: RepeatersListRoute.page),
                 AutoRoute(path: 'favorites', page: FavoritesRoute.page),
-                AutoRoute(path: 'repeater/:repeaterId', page: RepeaterDetailRoute.page),
-                AutoRoute(path: 'repeater/:repeaterId/report', page: ReportIssueRoute.page),
-                AutoRoute(path: 'repeater/:repeaterId/map', page: RepeaterDetailMapRoute.page),
+                AutoRoute(
+                  path: 'repeater/:repeaterId',
+                  page: RepeaterDetailRoute.page,
+                ),
+                AutoRoute(
+                  path: 'repeater/:repeaterId/report',
+                  page: ReportIssueRoute.page,
+                ),
+                AutoRoute(
+                  path: 'repeater/:repeaterId/map',
+                  page: RepeaterDetailMapRoute.page,
+                ),
               ],
             ),
             AutoRoute(
@@ -51,6 +61,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
               children: [
                 AutoRoute(page: ProfileRoute.page),
                 AutoRoute(page: UserSettingsRoute.page),
+                AutoRoute(page: UserReportsRoute.page),
               ],
             ),
           ],

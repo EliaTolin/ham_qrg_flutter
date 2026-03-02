@@ -29,7 +29,8 @@ class ProfileScreen extends HookConsumerWidget {
 
               // Show registered profile screen
               final profile = state.profile;
-              final hasCallsign = profile.callsign != null && profile.callsign!.isNotEmpty;
+              final hasCallsign =
+                  profile.callsign != null && profile.callsign!.isNotEmpty;
               final fullName = '${profile.name} ${profile.surname}'.trim();
               final theme = Theme.of(context);
               final colorScheme = theme.colorScheme;
@@ -37,7 +38,8 @@ class ProfileScreen extends HookConsumerWidget {
               return SafeArea(
                 child: Scaffold(
                   body: SingleChildScrollView(
-                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     padding: const EdgeInsets.all(16),
                     child: Column(
                       children: [
@@ -62,7 +64,8 @@ class ProfileScreen extends HookConsumerWidget {
                           Text(
                             fullName,
                             style: theme.textTheme.titleMedium?.copyWith(
-                              color: colorScheme.onSurface.withValues(alpha: .7),
+                              color:
+                                  colorScheme.onSurface.withValues(alpha: .7),
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -131,7 +134,8 @@ class ProfileScreen extends HookConsumerWidget {
                                 ),
                                 onTap: () async {
                                   try {
-                                    final telegramUrl = AppConfigs.getTelegramLink();
+                                    final telegramUrl =
+                                        AppConfigs.getTelegramLink();
                                     final uri = Uri.parse(telegramUrl);
                                     if (await canLaunchUrl(uri)) {
                                       await launchUrl(uri);
@@ -151,6 +155,45 @@ class ProfileScreen extends HookConsumerWidget {
                                       );
                                     }
                                   }
+                                },
+                              ),
+                              Divider(
+                                height: 1,
+                                indent: 16,
+                                endIndent: 16,
+                                color: colorScheme.outlineVariant.withValues(
+                                  alpha: .3,
+                                ),
+                              ),
+                              // My Reports
+                              ListTile(
+                                leading: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.orange,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: const Icon(
+                                    Icons.assignment_outlined,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                                ),
+                                title: Text(l10n.userReportsProfileTile),
+                                subtitle: Text(
+                                  l10n.userReportsProfileTileSubtitle,
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    color: colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                                trailing: Icon(
+                                  Icons.chevron_right,
+                                  color: colorScheme.onSurface.withValues(
+                                    alpha: .5,
+                                  ),
+                                ),
+                                onTap: () {
+                                  context.router.push(const UserReportsRoute());
                                 },
                               ),
                               Divider(
@@ -229,7 +272,9 @@ class ProfileScreen extends HookConsumerWidget {
                                   style: TextStyle(color: Colors.red[400]),
                                 ),
                                 onTap: () async {
-                                  await ref.read(profileControllerProvider.notifier).logout();
+                                  await ref
+                                      .read(profileControllerProvider.notifier)
+                                      .logout();
                                   if (context.mounted) {
                                     await context.router.pushAndPopUntil(
                                       const HomeRoute(),

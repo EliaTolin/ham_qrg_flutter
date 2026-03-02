@@ -466,5 +466,21 @@
   "repeaterDetailRepeaterElevation": "Quota ripetitore",
   "repeaterDetailYourElevation": "Quota tua",
   "repeaterDetailYou": "Tu",
-  "repeaterDetailRepeaterLabel": "Ripetitore"
+  "repeaterDetailRepeaterLabel": "Ripetitore",
+
+  "userReportsTitle": "I miei report",
+  "userReportsFilterAll": "Tutti",
+  "userReportsFilterOpen": "Aperte",
+  "userReportsFilterClosed": "Chiuse",
+  "userReportsEmpty": "Nessuna segnalazione inviata",
+  "userReportsEmptyDescription": "Le tue segnalazioni sui ripetitori appariranno qui",
+  "userReportsEmptyFiltered": "Nessuna segnalazione con questo filtro",
+  "userReportsStatusPending": "In attesa",
+  "userReportsStatusReviewed": "In revisione",
+  "userReportsStatusResolved": "Risolto",
+  "userReportsStatusRejected": "Rifiutato",
+  "userReportsRetryBanner": "Impossibile aggiornare l'elenco",
+  "userReportsProfileTile": "I miei report",
+  "userReportsProfileTileSubtitle": "Visualizza lo stato delle tue segnalazioni",
+  "userReportsError": "Errore durante il caricamento dei report"
 }

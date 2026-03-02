@@ -1059,4 +1059,52 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get repeaterDetailRepeaterLabel => 'Ripetitore';
+
+  @override
+  String get userReportsTitle => 'I miei report';
+
+  @override
+  String get userReportsFilterAll => 'Tutti';
+
+  @override
+  String get userReportsFilterOpen => 'Aperte';
+
+  @override
+  String get userReportsFilterClosed => 'Chiuse';
+
+  @override
+  String get userReportsEmpty => 'Nessuna segnalazione inviata';
+
+  @override
+  String get userReportsEmptyDescription =>
+      'Le tue segnalazioni sui ripetitori appariranno qui';
+
+  @override
+  String get userReportsEmptyFiltered =>
+      'Nessuna segnalazione con questo filtro';
+
+  @override
+  String get userReportsStatusPending => 'In attesa';
+
+  @override
+  String get userReportsStatusReviewed => 'In revisione';
+
+  @override
+  String get userReportsStatusResolved => 'Risolto';
+
+  @override
+  String get userReportsStatusRejected => 'Rifiutato';
+
+  @override
+  String get userReportsRetryBanner => 'Impossibile aggiornare l\'elenco';
+
+  @override
+  String get userReportsProfileTile => 'I miei report';
+
+  @override
+  String get userReportsProfileTileSubtitle =>
+      'Visualizza lo stato delle tue segnalazioni';
+
+  @override
+  String get userReportsError => 'Errore durante il caricamento dei report';
 }

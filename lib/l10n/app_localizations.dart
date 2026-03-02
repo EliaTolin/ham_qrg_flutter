@@ -1947,6 +1947,96 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Ripetitore'**
   String get repeaterDetailRepeaterLabel;
+
+  /// No description provided for @userReportsTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'I miei report'**
+  String get userReportsTitle;
+
+  /// No description provided for @userReportsFilterAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Tutti'**
+  String get userReportsFilterAll;
+
+  /// No description provided for @userReportsFilterOpen.
+  ///
+  /// In it, this message translates to:
+  /// **'Aperte'**
+  String get userReportsFilterOpen;
+
+  /// No description provided for @userReportsFilterClosed.
+  ///
+  /// In it, this message translates to:
+  /// **'Chiuse'**
+  String get userReportsFilterClosed;
+
+  /// No description provided for @userReportsEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuna segnalazione inviata'**
+  String get userReportsEmpty;
+
+  /// No description provided for @userReportsEmptyDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Le tue segnalazioni sui ripetitori appariranno qui'**
+  String get userReportsEmptyDescription;
+
+  /// No description provided for @userReportsEmptyFiltered.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuna segnalazione con questo filtro'**
+  String get userReportsEmptyFiltered;
+
+  /// No description provided for @userReportsStatusPending.
+  ///
+  /// In it, this message translates to:
+  /// **'In attesa'**
+  String get userReportsStatusPending;
+
+  /// No description provided for @userReportsStatusReviewed.
+  ///
+  /// In it, this message translates to:
+  /// **'In revisione'**
+  String get userReportsStatusReviewed;
+
+  /// No description provided for @userReportsStatusResolved.
+  ///
+  /// In it, this message translates to:
+  /// **'Risolto'**
+  String get userReportsStatusResolved;
+
+  /// No description provided for @userReportsStatusRejected.
+  ///
+  /// In it, this message translates to:
+  /// **'Rifiutato'**
+  String get userReportsStatusRejected;
+
+  /// No description provided for @userReportsRetryBanner.
+  ///
+  /// In it, this message translates to:
+  /// **'Impossibile aggiornare l\'elenco'**
+  String get userReportsRetryBanner;
+
+  /// No description provided for @userReportsProfileTile.
+  ///
+  /// In it, this message translates to:
+  /// **'I miei report'**
+  String get userReportsProfileTile;
+
+  /// No description provided for @userReportsProfileTileSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Visualizza lo stato delle tue segnalazioni'**
+  String get userReportsProfileTileSubtitle;
+
+  /// No description provided for @userReportsError.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore durante il caricamento dei report'**
+  String get userReportsError;
 }
 
 class _AppLocalizationsDelegate
