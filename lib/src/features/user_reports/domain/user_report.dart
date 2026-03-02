@@ -13,7 +13,9 @@ abstract class UserReport with _$UserReport {
     required String? repeaterName,
     required String description,
     required UserReportStatus status,
+    required String? coordinatorResponse,
     required DateTime createdAt,
     required DateTime updatedAt,
+    required DateTime? resolvedAt,
   }) = _UserReport;
 }

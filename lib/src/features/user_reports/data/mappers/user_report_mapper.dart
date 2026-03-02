@@ -16,8 +16,11 @@ class UserReportMapper implements Mapper<UserReport, UserReportModel> {
         (e) => e.name == model.status,
         orElse: () => UserReportStatus.pending,
       ),
+      coordinatorResponse: model.coordinatorResponse,
       createdAt: DateTime.parse(model.createdAt),
       updatedAt: DateTime.parse(model.updatedAt),
+      resolvedAt:
+          model.resolvedAt != null ? DateTime.parse(model.resolvedAt!) : null,
     );
   }
 

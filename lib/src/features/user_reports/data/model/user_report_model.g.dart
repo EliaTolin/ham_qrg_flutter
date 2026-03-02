@@ -14,6 +14,8 @@ _UserReportModel _$UserReportModelFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       createdAt: json['created_at'] as String,
       updatedAt: json['updated_at'] as String,
+      coordinatorResponse: json['coordinator_response'] as String?,
+      resolvedAt: json['resolved_at'] as String?,
       repeater: json['repeater'] as Map<String, dynamic>?,
     );
 
@@ -25,5 +27,7 @@ Map<String, dynamic> _$UserReportModelToJson(_UserReportModel instance) =>
       'status': instance.status,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
+      'coordinator_response': instance.coordinatorResponse,
+      'resolved_at': instance.resolvedAt,
       'repeater': instance.repeater,
     };

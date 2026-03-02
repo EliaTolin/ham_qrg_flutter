@@ -1142,4 +1142,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get userReportsError => 'Errore durante il caricamento dei report';
+
+  @override
+  String get userReportsCoordinatorResponse => 'Risposta coordinatore';
 }

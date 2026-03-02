@@ -2091,6 +2091,12 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Errore durante il caricamento dei report'**
   String get userReportsError;
+
+  /// No description provided for @userReportsCoordinatorResponse.
+  ///
+  /// In it, this message translates to:
+  /// **'Risposta coordinatore'**
+  String get userReportsCoordinatorResponse;
 }
 
 class _AppLocalizationsDelegate

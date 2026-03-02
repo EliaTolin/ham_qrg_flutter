@@ -20,8 +20,10 @@ mixin _$UserReport {
   String? get repeaterName;
   String get description;
   UserReportStatus get status;
+  String? get coordinatorResponse;
   DateTime get createdAt;
   DateTime get updatedAt;
+  DateTime? get resolvedAt;
 
   /// Create a copy of UserReport
   /// with the given fields replaced by the non-null parameter values.
@@ -45,19 +47,33 @@ mixin _$UserReport {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.coordinatorResponse, coordinatorResponse) ||
+                other.coordinatorResponse == coordinatorResponse) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.resolvedAt, resolvedAt) ||
+                other.resolvedAt == resolvedAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, repeaterId, repeaterCallsign,
-      repeaterName, description, status, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      repeaterId,
+      repeaterCallsign,
+      repeaterName,
+      description,
+      status,
+      coordinatorResponse,
+      createdAt,
+      updatedAt,
+      resolvedAt);
 
   @override
   String toString() {
-    return 'UserReport(id: $id, repeaterId: $repeaterId, repeaterCallsign: $repeaterCallsign, repeaterName: $repeaterName, description: $description, status: $status, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserReport(id: $id, repeaterId: $repeaterId, repeaterCallsign: $repeaterCallsign, repeaterName: $repeaterName, description: $description, status: $status, coordinatorResponse: $coordinatorResponse, createdAt: $createdAt, updatedAt: $updatedAt, resolvedAt: $resolvedAt)';
   }
 }
 
@@ -74,8 +90,10 @@ abstract mixin class $UserReportCopyWith<$Res> {
       String? repeaterName,
       String description,
       UserReportStatus status,
+      String? coordinatorResponse,
       DateTime createdAt,
-      DateTime updatedAt});
+      DateTime updatedAt,
+      DateTime? resolvedAt});
 }
 
 /// @nodoc
@@ -96,8 +114,10 @@ class _$UserReportCopyWithImpl<$Res> implements $UserReportCopyWith<$Res> {
     Object? repeaterName = freezed,
     Object? description = null,
     Object? status = null,
+    Object? coordinatorResponse = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? resolvedAt = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -124,6 +144,10 @@ class _$UserReportCopyWithImpl<$Res> implements $UserReportCopyWith<$Res> {
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as UserReportStatus,
+      coordinatorResponse: freezed == coordinatorResponse
+          ? _self.coordinatorResponse
+          : coordinatorResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -132,6 +156,10 @@ class _$UserReportCopyWithImpl<$Res> implements $UserReportCopyWith<$Res> {
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      resolvedAt: freezed == resolvedAt
+          ? _self.resolvedAt
+          : resolvedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -236,8 +264,10 @@ extension UserReportPatterns on UserReport {
             String? repeaterName,
             String description,
             UserReportStatus status,
+            String? coordinatorResponse,
             DateTime createdAt,
-            DateTime updatedAt)?
+            DateTime updatedAt,
+            DateTime? resolvedAt)?
         $default, {
     required TResult orElse(),
   }) {
@@ -251,8 +281,10 @@ extension UserReportPatterns on UserReport {
             _that.repeaterName,
             _that.description,
             _that.status,
+            _that.coordinatorResponse,
             _that.createdAt,
-            _that.updatedAt);
+            _that.updatedAt,
+            _that.resolvedAt);
       case _:
         return orElse();
     }
@@ -280,8 +312,10 @@ extension UserReportPatterns on UserReport {
             String? repeaterName,
             String description,
             UserReportStatus status,
+            String? coordinatorResponse,
             DateTime createdAt,
-            DateTime updatedAt)
+            DateTime updatedAt,
+            DateTime? resolvedAt)
         $default,
   ) {
     final _that = this;
@@ -294,8 +328,10 @@ extension UserReportPatterns on UserReport {
             _that.repeaterName,
             _that.description,
             _that.status,
+            _that.coordinatorResponse,
             _that.createdAt,
-            _that.updatedAt);
+            _that.updatedAt,
+            _that.resolvedAt);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -322,8 +358,10 @@ extension UserReportPatterns on UserReport {
             String? repeaterName,
             String description,
             UserReportStatus status,
+            String? coordinatorResponse,
             DateTime createdAt,
-            DateTime updatedAt)?
+            DateTime updatedAt,
+            DateTime? resolvedAt)?
         $default,
   ) {
     final _that = this;
@@ -336,8 +374,10 @@ extension UserReportPatterns on UserReport {
             _that.repeaterName,
             _that.description,
             _that.status,
+            _that.coordinatorResponse,
             _that.createdAt,
-            _that.updatedAt);
+            _that.updatedAt,
+            _that.resolvedAt);
       case _:
         return null;
     }
@@ -354,8 +394,10 @@ class _UserReport implements UserReport {
       required this.repeaterName,
       required this.description,
       required this.status,
+      required this.coordinatorResponse,
       required this.createdAt,
-      required this.updatedAt});
+      required this.updatedAt,
+      required this.resolvedAt});
 
   @override
   final String id;
@@ -370,9 +412,13 @@ class _UserReport implements UserReport {
   @override
   final UserReportStatus status;
   @override
+  final String? coordinatorResponse;
+  @override
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
+  @override
+  final DateTime? resolvedAt;
 
   /// Create a copy of UserReport
   /// with the given fields replaced by the non-null parameter values.
@@ -397,19 +443,33 @@ class _UserReport implements UserReport {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.coordinatorResponse, coordinatorResponse) ||
+                other.coordinatorResponse == coordinatorResponse) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.resolvedAt, resolvedAt) ||
+                other.resolvedAt == resolvedAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, repeaterId, repeaterCallsign,
-      repeaterName, description, status, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      repeaterId,
+      repeaterCallsign,
+      repeaterName,
+      description,
+      status,
+      coordinatorResponse,
+      createdAt,
+      updatedAt,
+      resolvedAt);
 
   @override
   String toString() {
-    return 'UserReport(id: $id, repeaterId: $repeaterId, repeaterCallsign: $repeaterCallsign, repeaterName: $repeaterName, description: $description, status: $status, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserReport(id: $id, repeaterId: $repeaterId, repeaterCallsign: $repeaterCallsign, repeaterName: $repeaterName, description: $description, status: $status, coordinatorResponse: $coordinatorResponse, createdAt: $createdAt, updatedAt: $updatedAt, resolvedAt: $resolvedAt)';
   }
 }
 
@@ -428,8 +488,10 @@ abstract mixin class _$UserReportCopyWith<$Res>
       String? repeaterName,
       String description,
       UserReportStatus status,
+      String? coordinatorResponse,
       DateTime createdAt,
-      DateTime updatedAt});
+      DateTime updatedAt,
+      DateTime? resolvedAt});
 }
 
 /// @nodoc
@@ -450,8 +512,10 @@ class __$UserReportCopyWithImpl<$Res> implements _$UserReportCopyWith<$Res> {
     Object? repeaterName = freezed,
     Object? description = null,
     Object? status = null,
+    Object? coordinatorResponse = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? resolvedAt = freezed,
   }) {
     return _then(_UserReport(
       id: null == id
@@ -478,6 +542,10 @@ class __$UserReportCopyWithImpl<$Res> implements _$UserReportCopyWith<$Res> {
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as UserReportStatus,
+      coordinatorResponse: freezed == coordinatorResponse
+          ? _self.coordinatorResponse
+          : coordinatorResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -486,6 +554,10 @@ class __$UserReportCopyWithImpl<$Res> implements _$UserReportCopyWith<$Res> {
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      resolvedAt: freezed == resolvedAt
+          ? _self.resolvedAt
+          : resolvedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }

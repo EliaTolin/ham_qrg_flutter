@@ -12,6 +12,8 @@ abstract class UserReportModel with _$UserReportModel {
     required String status,
     @JsonKey(name: 'created_at') required String createdAt,
     @JsonKey(name: 'updated_at') required String updatedAt,
+    @JsonKey(name: 'coordinator_response') String? coordinatorResponse,
+    @JsonKey(name: 'resolved_at') String? resolvedAt,
     Map<String, dynamic>? repeater,
   }) = _UserReportModel;
 

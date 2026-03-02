@@ -520,5 +520,6 @@
   "userReportsRetryBanner": "Impossibile aggiornare l'elenco",
   "userReportsProfileTile": "I miei report",
   "userReportsProfileTileSubtitle": "Visualizza lo stato delle tue segnalazioni",
-  "userReportsError": "Errore durante il caricamento dei report"
+  "userReportsError": "Errore durante il caricamento dei report",
+  "userReportsCoordinatorResponse": "Risposta coordinatore"
 }

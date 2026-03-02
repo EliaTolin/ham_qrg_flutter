@@ -23,6 +23,10 @@ mixin _$UserReportModel {
   String get createdAt;
   @JsonKey(name: 'updated_at')
   String get updatedAt;
+  @JsonKey(name: 'coordinator_response')
+  String? get coordinatorResponse;
+  @JsonKey(name: 'resolved_at')
+  String? get resolvedAt;
   Map<String, dynamic>? get repeater;
 
   /// Create a copy of UserReportModel
@@ -51,6 +55,10 @@ mixin _$UserReportModel {
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
+            (identical(other.coordinatorResponse, coordinatorResponse) ||
+                other.coordinatorResponse == coordinatorResponse) &&
+            (identical(other.resolvedAt, resolvedAt) ||
+                other.resolvedAt == resolvedAt) &&
             const DeepCollectionEquality().equals(other.repeater, repeater));
   }
 
@@ -64,11 +72,13 @@ mixin _$UserReportModel {
       status,
       createdAt,
       updatedAt,
+      coordinatorResponse,
+      resolvedAt,
       const DeepCollectionEquality().hash(repeater));
 
   @override
   String toString() {
-    return 'UserReportModel(id: $id, repeaterId: $repeaterId, description: $description, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, repeater: $repeater)';
+    return 'UserReportModel(id: $id, repeaterId: $repeaterId, description: $description, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, coordinatorResponse: $coordinatorResponse, resolvedAt: $resolvedAt, repeater: $repeater)';
   }
 }
 
@@ -85,6 +95,8 @@ abstract mixin class $UserReportModelCopyWith<$Res> {
       String status,
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String updatedAt,
+      @JsonKey(name: 'coordinator_response') String? coordinatorResponse,
+      @JsonKey(name: 'resolved_at') String? resolvedAt,
       Map<String, dynamic>? repeater});
 }
 
@@ -107,6 +119,8 @@ class _$UserReportModelCopyWithImpl<$Res>
     Object? status = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? coordinatorResponse = freezed,
+    Object? resolvedAt = freezed,
     Object? repeater = freezed,
   }) {
     return _then(_self.copyWith(
@@ -134,6 +148,14 @@ class _$UserReportModelCopyWithImpl<$Res>
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String,
+      coordinatorResponse: freezed == coordinatorResponse
+          ? _self.coordinatorResponse
+          : coordinatorResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+      resolvedAt: freezed == resolvedAt
+          ? _self.resolvedAt
+          : resolvedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       repeater: freezed == repeater
           ? _self.repeater
           : repeater // ignore: cast_nullable_to_non_nullable
@@ -242,6 +264,8 @@ extension UserReportModelPatterns on UserReportModel {
             String status,
             @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'updated_at') String updatedAt,
+            @JsonKey(name: 'coordinator_response') String? coordinatorResponse,
+            @JsonKey(name: 'resolved_at') String? resolvedAt,
             Map<String, dynamic>? repeater)?
         $default, {
     required TResult orElse(),
@@ -249,8 +273,16 @@ extension UserReportModelPatterns on UserReportModel {
     final _that = this;
     switch (_that) {
       case _UserReportModel() when $default != null:
-        return $default(_that.id, _that.repeaterId, _that.description,
-            _that.status, _that.createdAt, _that.updatedAt, _that.repeater);
+        return $default(
+            _that.id,
+            _that.repeaterId,
+            _that.description,
+            _that.status,
+            _that.createdAt,
+            _that.updatedAt,
+            _that.coordinatorResponse,
+            _that.resolvedAt,
+            _that.repeater);
       case _:
         return orElse();
     }
@@ -278,14 +310,24 @@ extension UserReportModelPatterns on UserReportModel {
             String status,
             @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'updated_at') String updatedAt,
+            @JsonKey(name: 'coordinator_response') String? coordinatorResponse,
+            @JsonKey(name: 'resolved_at') String? resolvedAt,
             Map<String, dynamic>? repeater)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserReportModel():
-        return $default(_that.id, _that.repeaterId, _that.description,
-            _that.status, _that.createdAt, _that.updatedAt, _that.repeater);
+        return $default(
+            _that.id,
+            _that.repeaterId,
+            _that.description,
+            _that.status,
+            _that.createdAt,
+            _that.updatedAt,
+            _that.coordinatorResponse,
+            _that.resolvedAt,
+            _that.repeater);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -312,14 +354,24 @@ extension UserReportModelPatterns on UserReportModel {
             String status,
             @JsonKey(name: 'created_at') String createdAt,
             @JsonKey(name: 'updated_at') String updatedAt,
+            @JsonKey(name: 'coordinator_response') String? coordinatorResponse,
+            @JsonKey(name: 'resolved_at') String? resolvedAt,
             Map<String, dynamic>? repeater)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserReportModel() when $default != null:
-        return $default(_that.id, _that.repeaterId, _that.description,
-            _that.status, _that.createdAt, _that.updatedAt, _that.repeater);
+        return $default(
+            _that.id,
+            _that.repeaterId,
+            _that.description,
+            _that.status,
+            _that.createdAt,
+            _that.updatedAt,
+            _that.coordinatorResponse,
+            _that.resolvedAt,
+            _that.repeater);
       case _:
         return null;
     }
@@ -336,6 +388,8 @@ class _UserReportModel implements UserReportModel {
       required this.status,
       @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'updated_at') required this.updatedAt,
+      @JsonKey(name: 'coordinator_response') this.coordinatorResponse,
+      @JsonKey(name: 'resolved_at') this.resolvedAt,
       final Map<String, dynamic>? repeater})
       : _repeater = repeater;
   factory _UserReportModel.fromJson(Map<String, dynamic> json) =>
@@ -356,6 +410,12 @@ class _UserReportModel implements UserReportModel {
   @override
   @JsonKey(name: 'updated_at')
   final String updatedAt;
+  @override
+  @JsonKey(name: 'coordinator_response')
+  final String? coordinatorResponse;
+  @override
+  @JsonKey(name: 'resolved_at')
+  final String? resolvedAt;
   final Map<String, dynamic>? _repeater;
   @override
   Map<String, dynamic>? get repeater {
@@ -396,6 +456,10 @@ class _UserReportModel implements UserReportModel {
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
+            (identical(other.coordinatorResponse, coordinatorResponse) ||
+                other.coordinatorResponse == coordinatorResponse) &&
+            (identical(other.resolvedAt, resolvedAt) ||
+                other.resolvedAt == resolvedAt) &&
             const DeepCollectionEquality().equals(other._repeater, _repeater));
   }
 
@@ -409,11 +473,13 @@ class _UserReportModel implements UserReportModel {
       status,
       createdAt,
       updatedAt,
+      coordinatorResponse,
+      resolvedAt,
       const DeepCollectionEquality().hash(_repeater));
 
   @override
   String toString() {
-    return 'UserReportModel(id: $id, repeaterId: $repeaterId, description: $description, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, repeater: $repeater)';
+    return 'UserReportModel(id: $id, repeaterId: $repeaterId, description: $description, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, coordinatorResponse: $coordinatorResponse, resolvedAt: $resolvedAt, repeater: $repeater)';
   }
 }
 
@@ -432,6 +498,8 @@ abstract mixin class _$UserReportModelCopyWith<$Res>
       String status,
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'updated_at') String updatedAt,
+      @JsonKey(name: 'coordinator_response') String? coordinatorResponse,
+      @JsonKey(name: 'resolved_at') String? resolvedAt,
       Map<String, dynamic>? repeater});
 }
 
@@ -454,6 +522,8 @@ class __$UserReportModelCopyWithImpl<$Res>
     Object? status = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? coordinatorResponse = freezed,
+    Object? resolvedAt = freezed,
     Object? repeater = freezed,
   }) {
     return _then(_UserReportModel(
@@ -481,6 +551,14 @@ class __$UserReportModelCopyWithImpl<$Res>
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String,
+      coordinatorResponse: freezed == coordinatorResponse
+          ? _self.coordinatorResponse
+          : coordinatorResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+      resolvedAt: freezed == resolvedAt
+          ? _self.resolvedAt
+          : resolvedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       repeater: freezed == repeater
           ? _self._repeater
           : repeater // ignore: cast_nullable_to_non_nullable
