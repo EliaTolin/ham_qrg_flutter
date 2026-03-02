@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 
 class AppConfigs {
@@ -21,26 +19,6 @@ class AppConfigs {
     } else {
       return 'https://dhmzkhipxvxtbbchvquc.supabase.co';
     }
-  }
-
-  static String bannerAdUnitId() {
-    if (kDebugMode) {
-      return Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/6300978111'
-          : 'ca-app-pub-3940256099942544/2934735716';
-    }
-    return Platform.isAndroid ? 'banner_ad_unit_id_android' : 'banner_ad_unit_id_ios';
-  }
-
-  static String interstitialAdUnitId() {
-    if (kDebugMode) {
-      return Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/1033173712'
-          : 'ca-app-pub-3940256099942544/4411468910';
-    }
-    return Platform.isAndroid
-        ? 'ca-app-pub-7500053685536877/3774719396'
-        : 'ca-app-pub-7500053685536877/6707068711';
   }
 
   static int defaultExpiresInSecondsImage() {

@@ -22,8 +22,6 @@ Funzionalità con codice già parzialmente implementato o dipendenze già instal
 | "Vedi tutti i feedback" | Pulsante presente, navigazione TODO | Basso |
 | Filtro per banda nella lista | Enum `FrequencyBand` esiste nel dominio | Medio |
 | Onboarding interattivo | Package `introduction_screen` installato | Medio |
-| Banner ads | Unit ID definiti in `AppConfigs` | Medio |
-
 ---
 
 ## Nuove funzionalità proposte
@@ -315,24 +313,7 @@ CREATE TABLE repeater_photos (
 
 ---
 
-### 12. Monetizzazione
-
-**Priorità**: Da definire (unit ID ads già configurati)
-
-**Modelli possibili**:
-- Banner non invasivi nella lista ripetitori (ogni N elementi)
-- Interstitial prima di funzionalità premium
-- Freemium: logbook illimitato, export ADIF, mappe offline come features premium
-- Rimozione ads con abbonamento o acquisto una tantum
-
-**Implementazione**:
-- Google Mobile Ads SDK (package `google_mobile_ads`)
-- RevenueCat per gestione abbonamenti cross-platform
-- Feature flags per abilitare/disabilitare funzionalità premium
-
----
-
-### 13. Onboarding migliorato
+### 12. Onboarding migliorato
 
 **Priorità**: Bassa (package `introduction_screen` già installato)
 
@@ -593,5 +574,4 @@ Condizioni solari e geomagnetiche che influenzano la propagazione radio, contest
 ### Fase 4 - Community e crescita
 12. Community avanzata (commenti, foto)
 13. Confronto ripetitori
-14. Monetizzazione
-15. Widget home screen
+14. Widget home screen

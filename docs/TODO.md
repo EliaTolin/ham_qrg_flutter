@@ -10,17 +10,9 @@ Checklist completa delle funzionalità da implementare, organizzata per fase.
 - [ ] **BrandMeister talkgroups nel dettaglio** — Collegare `BmTalkgroupsWidget` alla pagina dettaglio ripetitore
 - [ ] **"Vedi tutti i feedback"** — Implementare navigazione dal pulsante esistente
 - [ ] **Push notifications (handler)** — Handler OneSignal in Flutter per notifiche in-app e background
-- [ ] **I miei report** — Pagina storico segnalazioni utente raggiungibile da Impostazioni
-  - [ ] Backend: aggiungere `status`, `coordinator_response`, `resolved_at` alla tabella report
-  - [ ] Backend: RPC `get_user_reports` con join ripetitore
-  - [ ] Backend: RLS policy (utente legge solo i propri)
-  - [ ] Feature `user_reports/` con Clean Architecture completa
-  - [ ] Rotta `UserReportsRoute` in `ProfileRouter`
   - [ ] Voce in pagina Impostazioni
 - [ ] **Filtro per banda nella lista** — Usare enum `FrequencyBand` già nel dominio
 - [ ] **Onboarding interattivo** — Package `introduction_screen` già installato
-- [ ] **Banner ads** — Unit ID definiti in `AppConfigs`
-
 ---
 
 ## Fase 2 - Core Features
@@ -63,29 +55,11 @@ Checklist completa delle funzionalità da implementare, organizzata per fase.
   - [ ] Segnalazione QRM/QRN
   - [ ] Classifica contributori (gamification)
 - [ ] **Confronto ripetitori** — Side-by-side 2-3 ripetitori
-- [ ] **Monetizzazione**
-  - [ ] Banner nella lista ripetitori
-  - [ ] Freemium (logbook, export, offline come premium)
-  - [ ] RevenueCat per abbonamenti
 - [ ] **Widget home screen** — Widget iOS/Android ripetitore più vicino
 
 ---
 
 ## Funzionalità Fisiche — Pagina Dettaglio Ripetitore
-
-### Sprint 1 (bassa complessità, alto impatto)
-
-- [ ] **F1 — Scheda fisica del sito**
-  - [ ] Quota s.l.m. (Open-Meteo Elevation API)
-  - [ ] Altezza antenna e potenza TX (da BrandMeister)
-  - [ ] Lunghezza d'onda (calcolo client: λ = c / f)
-  - [ ] Banda operativa con nome colloquiale
-- [ ] **F7 — Curiosità sulla frequenza ("Lo sapevi?")**
-  - [ ] Lunghezza d'onda con confronto dimensionale
-  - [ ] Oscillazioni al secondo
-  - [ ] Tempo di propagazione utente → ripetitore
-  - [ ] Caratteristiche della banda
-- [ ] **F11 — Navigazione al sito** (incluso in Fase 2)
 
 ### Sprint 2 (API gratuite, alto impatto)
 
