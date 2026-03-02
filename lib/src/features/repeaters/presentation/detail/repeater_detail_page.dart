@@ -5,6 +5,7 @@ import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/rep
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/community_reports_section.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/frequency_fun_facts_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/info_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/location_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/performance_metrics_section.dart';
@@ -114,6 +115,12 @@ class _RepeaterDetailContent extends HookConsumerWidget {
                   LocationSection(
                     repeater: state.repeater,
                     calculatedDistanceKm: controller.getDistanceToRepeater(),
+                  ),
+                  const SizedBox(height: 16),
+                  // Fun Facts
+                  FrequencyFunFactsSection(
+                    repeater: state.repeater,
+                    distanceKm: controller.getDistanceToRepeater(),
                   ),
                   const SizedBox(height: 16),
                   // Community Reports

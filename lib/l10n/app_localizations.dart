@@ -1948,6 +1948,60 @@ abstract class AppLocalizations {
   /// **'Ripetitore'**
   String get repeaterDetailRepeaterLabel;
 
+  /// No description provided for @repeaterDetailFunFacts.
+  ///
+  /// In it, this message translates to:
+  /// **'Lo sapevi?'**
+  String get repeaterDetailFunFacts;
+
+  /// No description provided for @repeaterDetailWavelength.
+  ///
+  /// In it, this message translates to:
+  /// **'Lunghezza d\'onda'**
+  String get repeaterDetailWavelength;
+
+  /// No description provided for @repeaterDetailWavelengthValue.
+  ///
+  /// In it, this message translates to:
+  /// **'La lunghezza d\'onda di questo ripetitore è {value}'**
+  String repeaterDetailWavelengthValue(String value);
+
+  /// No description provided for @repeaterDetailOscillations.
+  ///
+  /// In it, this message translates to:
+  /// **'Oscillazioni al secondo'**
+  String get repeaterDetailOscillations;
+
+  /// No description provided for @repeaterDetailOscillationsValue.
+  ///
+  /// In it, this message translates to:
+  /// **'Il segnale oscilla {value} volte al secondo'**
+  String repeaterDetailOscillationsValue(String value);
+
+  /// No description provided for @repeaterDetailPropagationTime.
+  ///
+  /// In it, this message translates to:
+  /// **'Tempo di propagazione'**
+  String get repeaterDetailPropagationTime;
+
+  /// No description provided for @repeaterDetailPropagationTimeValue.
+  ///
+  /// In it, this message translates to:
+  /// **'Il tuo segnale impiega {value} ad arrivare al ripetitore'**
+  String repeaterDetailPropagationTimeValue(String value);
+
+  /// No description provided for @repeaterDetailWaveCycles.
+  ///
+  /// In it, this message translates to:
+  /// **'Cicli nel tragitto'**
+  String get repeaterDetailWaveCycles;
+
+  /// No description provided for @repeaterDetailWaveCyclesValue.
+  ///
+  /// In it, this message translates to:
+  /// **'L\'onda compie {value} cicli completi nel tragitto'**
+  String repeaterDetailWaveCyclesValue(String value);
+
   /// No description provided for @userReportsTitle.
   ///
   /// In it, this message translates to:

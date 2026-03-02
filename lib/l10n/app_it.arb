@@ -468,6 +468,44 @@
   "repeaterDetailYou": "Tu",
   "repeaterDetailRepeaterLabel": "Ripetitore",
 
+  "repeaterDetailFunFacts": "Lo sapevi?",
+  "repeaterDetailWavelength": "Lunghezza d'onda",
+  "repeaterDetailWavelengthValue": "La lunghezza d'onda di questo ripetitore è {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Oscillazioni al secondo",
+  "repeaterDetailOscillationsValue": "Il segnale oscilla {value} volte al secondo",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Tempo di propagazione",
+  "repeaterDetailPropagationTimeValue": "Il tuo segnale impiega {value} ad arrivare al ripetitore",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Cicli nel tragitto",
+  "repeaterDetailWaveCyclesValue": "L'onda compie {value} cicli completi nel tragitto",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
   "userReportsTitle": "I miei report",
   "userReportsFilterAll": "Tutti",
   "userReportsFilterOpen": "Aperte",

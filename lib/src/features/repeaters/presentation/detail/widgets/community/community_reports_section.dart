@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hamqrg/common/dialogs/are_you_sure_to_delete_dialog.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
@@ -163,7 +164,13 @@ class CommunityReportsSection extends HookConsumerWidget {
                 userCallsign: userCallsign,
                 userName: userName,
                 userAvatarUrl: userAvatarUrl,
-                onDelete: () => controller.deleteFeedback(feedback.id),
+                onDelete: () async {
+                  final confirmed =
+                      await showAreYouSureToDeleteDialog(context);
+                  if (confirmed) {
+                    await controller.deleteFeedback(feedback.id);
+                  }
+                },
                 isLoading: state.isDeletingFeedback,
               ),
             ),

@@ -1061,6 +1061,41 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeaterDetailRepeaterLabel => 'Ripetitore';
 
   @override
+  String get repeaterDetailFunFacts => 'Lo sapevi?';
+
+  @override
+  String get repeaterDetailWavelength => 'Lunghezza d\'onda';
+
+  @override
+  String repeaterDetailWavelengthValue(String value) {
+    return 'La lunghezza d\'onda di questo ripetitore è $value';
+  }
+
+  @override
+  String get repeaterDetailOscillations => 'Oscillazioni al secondo';
+
+  @override
+  String repeaterDetailOscillationsValue(String value) {
+    return 'Il segnale oscilla $value volte al secondo';
+  }
+
+  @override
+  String get repeaterDetailPropagationTime => 'Tempo di propagazione';
+
+  @override
+  String repeaterDetailPropagationTimeValue(String value) {
+    return 'Il tuo segnale impiega $value ad arrivare al ripetitore';
+  }
+
+  @override
+  String get repeaterDetailWaveCycles => 'Cicli nel tragitto';
+
+  @override
+  String repeaterDetailWaveCyclesValue(String value) {
+    return 'L\'onda compie $value cicli completi nel tragitto';
+  }
+
+  @override
   String get userReportsTitle => 'I miei report';
 
   @override

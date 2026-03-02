@@ -2,7 +2,7 @@ name: hamqrg
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.11+23
+version: 1.0.12+24
 
 environment:
   sdk: '>=3.2.2 <4.0.0'
@@ -59,6 +59,9 @@ dependencies:
   flutter_markdown: ^0.7.7+1
   fl_chart: ^0.70.2
 
+dependency_overrides:
+  path_provider_foundation: 2.5.1
+  
 dev_dependencies:
   sentry_dart_plugin: ^3.1.1
   flutter_test:
