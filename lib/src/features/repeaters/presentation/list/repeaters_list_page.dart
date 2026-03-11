@@ -227,6 +227,10 @@ class RepeatersListPage extends HookConsumerWidget {
                     sortOrder:
                         listState?.sortOrder ?? RepeatersSortOrder.distance,
                     feedbackStats: searchFeedbackStats,
+                    onRefresh: () async {
+                      ref.invalidate(cachedUserPositionProvider);
+                      await ref.read(cachedUserPositionProvider.future);
+                    },
                   )
                 : _buildNearbyContent(context, ref, listState),
           ),
@@ -242,6 +246,7 @@ class RepeatersListPage extends HookConsumerWidget {
     bool isTyping, {
     required RepeatersSortOrder sortOrder,
     required Map<String, RepeaterFeedbackStats> feedbackStats,
+    required RefreshCallback onRefresh,
   }) {
     final l10n = context.localization;
     final theme = Theme.of(context);
@@ -297,16 +302,19 @@ class RepeatersListPage extends HookConsumerWidget {
             sorted.sort((a, b) => a.frequencyHz.compareTo(b.frequencyHz));
         }
 
-        return ListView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: sorted.length,
-          itemBuilder: (context, index) {
-            final repeater = sorted[index];
-            return RepeaterCard(
-              repeater: repeater,
-              feedbackStats: feedbackStats[repeater.id],
-            );
-          },
+        return RefreshIndicator(
+          onRefresh: onRefresh,
+          child: ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: sorted.length,
+            itemBuilder: (context, index) {
+              final repeater = sorted[index];
+              return RepeaterCard(
+                repeater: repeater,
+                feedbackStats: feedbackStats[repeater.id],
+              );
+            },
+          ),
         );
       },
       loading: () => const Center(
@@ -392,16 +400,21 @@ class RepeatersListPage extends HookConsumerWidget {
       );
     }
 
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: listState.repeaters.length,
-      itemBuilder: (context, index) {
-        final repeater = listState.repeaters[index];
-        return RepeaterCard(
-          repeater: repeater,
-          feedbackStats: listState.feedbackStats[repeater.id],
-        );
-      },
+    return RefreshIndicator(
+      onRefresh: () => ref
+          .read(repeatersListControllerProvider.notifier)
+          .refreshAndReload(),
+      child: ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemCount: listState.repeaters.length,
+        itemBuilder: (context, index) {
+          final repeater = listState.repeaters[index];
+          return RepeaterCard(
+            repeater: repeater,
+            feedbackStats: listState.feedbackStats[repeater.id],
+          );
+        },
+      ),
     );
   }
 

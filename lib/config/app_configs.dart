@@ -27,7 +27,7 @@ class AppConfigs {
   }
 
   static String getTelegramLink() {
-    return 'https://t.me/hamqrg';
+    return 'https://t.me/ham_ita';
   }
 
   static String getIz8wnhSite() {

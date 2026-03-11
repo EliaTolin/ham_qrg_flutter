@@ -55,6 +55,25 @@ class RepeatersListController extends _$RepeatersListController {
     );
   }
 
+  /// Refresh GPS position and reload repeaters (pull-to-refresh).
+  Future<void> refreshAndReload() async {
+    final currentState = state.value;
+    try {
+      ref.invalidate(cachedUserPositionProvider);
+      final repeaters = await _loadInitialRepeaters(
+        selectedModes: currentState?.selectedModes.isEmpty ?? true
+            ? null
+            : currentState!.selectedModes.toList(),
+      );
+      state = AsyncData(repeaters);
+    } catch (_) {
+      // Keep current data visible on error
+      if (currentState != null) {
+        state = AsyncData(currentState);
+      }
+    }
+  }
+
   /// Load initial repeaters, trying to get user location first
   Future<RepeatersListState> _loadInitialRepeaters({
     List<AccessMode>? selectedModes,
