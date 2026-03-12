@@ -15,6 +15,7 @@ import 'package:hamqrg/src/features/authentication/provider/sign_in_google/sign_
 import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hamqrg/themes/app_colors.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 /// Shows the registration prompt modal when an anonymous user tries to access
 /// a feature that requires authentication.
@@ -71,12 +72,17 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
     try {
       await ref.read(signInWithAppleProvider.future);
 
-      // First, invalidate ONLY profile providers (not isAnonymous)
+      // Invalidate profile providers
       ref
         ..invalidate(getProfileProvider)
         ..invalidate(checkNeedsPostLoginOnboardingProvider)
-        ..invalidate(getUserIdProvider)
         ..invalidate(isAnonymousProvider);
+
+      // Register with OneSignal using the new user ID
+      final userId = await ref.refresh(getUserIdProvider.future);
+      if (userId != null) {
+        await OneSignal.login(userId);
+      }
 
       // Close the bottom sheet
       if (mounted) {
@@ -120,8 +126,13 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
       ref
         ..invalidate(getProfileProvider)
         ..invalidate(checkNeedsPostLoginOnboardingProvider)
-        ..invalidate(getUserIdProvider)
         ..invalidate(isAnonymousProvider);
+
+      // Register with OneSignal using the new user ID
+      final googleUserId = await ref.refresh(getUserIdProvider.future);
+      if (googleUserId != null) {
+        await OneSignal.login(googleUserId);
+      }
 
       // Close the bottom sheet
       if (mounted) {

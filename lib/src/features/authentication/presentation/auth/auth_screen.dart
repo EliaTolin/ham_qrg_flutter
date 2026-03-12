@@ -13,6 +13,7 @@ import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anon
 import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hamqrg/src/features/splashscreen/provider/set_onboarding_seen/set_onboarding_seen_provider.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 @RoutePage()
 class AuthScreen extends ConsumerWidget {
@@ -62,10 +63,16 @@ class AuthScreen extends ConsumerWidget {
 
                     // Invalidate auth providers first
                     ref
-                      ..invalidate(getUserIdProvider)
                       ..invalidate(isAnonymousProvider)
                       ..invalidate(getProfileProvider)
                       ..invalidate(checkNeedsPostLoginOnboardingProvider);
+
+                    // Register with OneSignal using the new user ID
+                    final userId =
+                        await ref.refresh(getUserIdProvider.future);
+                    if (userId != null) {
+                      await OneSignal.login(userId);
+                    }
 
                     await ref.read(setOnboardingSeenProvider.future);
 

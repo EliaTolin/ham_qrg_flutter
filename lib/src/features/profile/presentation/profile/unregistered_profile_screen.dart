@@ -18,6 +18,7 @@ import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_o
 import 'package:hamqrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UnregisteredProfileScreen extends HookConsumerWidget {
@@ -41,12 +42,16 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
       try {
         await signInMethod();
 
-        // Invalidate user ID first (to get the NEW user after login)
-        // then profile providers
+        // Invalidate profile providers
         ref
-          ..invalidate(getUserIdProvider)
           ..invalidate(getProfileProvider)
           ..invalidate(checkNeedsPostLoginOnboardingProvider);
+
+        // Register with OneSignal using the new user ID
+        final userId = await ref.refresh(getUserIdProvider.future);
+        if (userId != null) {
+          await OneSignal.login(userId);
+        }
 
         // Check onboarding with fresh user ID and profile
         final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
