@@ -2,7 +2,7 @@ name: hamqrg
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.13+25
+version: 1.0.14+26
 
 environment:
   sdk: '>=3.2.2 <4.0.0'
