@@ -74,21 +74,22 @@ class HomePage extends HookConsumerWidget {
               );
             }
 
+            final l10n = context.localization;
             return NavigationBar(
               selectedIndex: tabsRouter.activeIndex,
               onDestinationSelected: tabsRouter.setActiveIndex,
               destinations: [
-                const NavigationDestination(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
+                NavigationDestination(
+                  icon: const Icon(Icons.home),
+                  label: l10n.homeNavHome,
                 ),
-                const NavigationDestination(
-                  icon: Icon(Icons.list),
-                  label: 'Lista',
+                NavigationDestination(
+                  icon: const Icon(Icons.list),
+                  label: l10n.homeNavList,
                 ),
-                const NavigationDestination(
-                  icon: Icon(Icons.map),
-                  label: 'Map',
+                NavigationDestination(
+                  icon: const Icon(Icons.map),
+                  label: l10n.homeNavMap,
                 ),
                 NavigationDestination(
                   icon: profileIcon,

@@ -1,0 +1,1249 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for French (`fr`).
+class AppLocalizationsFr extends AppLocalizations {
+  AppLocalizationsFr([String locale = 'fr']) : super(locale);
+
+  @override
+  String get error => 'Erreur';
+
+  @override
+  String get error_message => 'Une erreur est survenue lors du chargement';
+
+  @override
+  String get error_message_retry =>
+      'Une erreur est survenue lors du chargement. Réessayez plus tard';
+
+  @override
+  String get retry => 'Réessayer';
+
+  @override
+  String get back => 'Retour';
+
+  @override
+  String get loading => 'Chargement';
+
+  @override
+  String get details => 'Détails';
+
+  @override
+  String pages_number(Object number) {
+    return '$number pages à explorer';
+  }
+
+  @override
+  String get january => 'Janvier';
+
+  @override
+  String get february => 'Février';
+
+  @override
+  String get march => 'Mars';
+
+  @override
+  String get april => 'Avril';
+
+  @override
+  String get may => 'Mai';
+
+  @override
+  String get june => 'Juin';
+
+  @override
+  String get july => 'Juillet';
+
+  @override
+  String get august => 'Août';
+
+  @override
+  String get september => 'Septembre';
+
+  @override
+  String get october => 'Octobre';
+
+  @override
+  String get november => 'Novembre';
+
+  @override
+  String get december => 'Décembre';
+
+  @override
+  String get logout => 'Déconnexion';
+
+  @override
+  String get profile => 'Profil';
+
+  @override
+  String get settings => 'Paramètres';
+
+  @override
+  String get contact_us => 'Contactez-nous';
+
+  @override
+  String get error_opening_email =>
+      'Une erreur est survenue lors de l\'ouverture de l\'e-mail';
+
+  @override
+  String get register_now => 'Inscrivez-vous maintenant';
+
+  @override
+  String get tracking_permission_title => 'Soutenez l\'appli';
+
+  @override
+  String get tracking_permission_message =>
+      'Pour améliorer votre expérience et vous montrer du contenu plus pertinent, aidez-nous à maintenir l\'appli gratuite.\n\nAppuyez sur Autoriser pour nous soutenir.';
+
+  @override
+  String get tracking_permission_next => 'Suivant';
+
+  @override
+  String get skip => 'Passer';
+
+  @override
+  String get done => 'Terminé';
+
+  @override
+  String get next => 'Suivant';
+
+  @override
+  String get joinCommunityTitle => 'Rejoignez notre Communauté !';
+
+  @override
+  String get joinCommunityDescription =>
+      'Découvrez les avantages de rejoindre la communauté Telegram :';
+
+  @override
+  String get benefitSupportMembers => 'Soutien des membres';
+
+  @override
+  String get benefitSuggestFeatures => 'Proposez de nouvelles fonctionnalités';
+
+  @override
+  String get benefitContactDevelopers => 'Contact avec les développeurs';
+
+  @override
+  String get benefitExclusivePreviews => 'Aperçus et bêtas exclusifs';
+
+  @override
+  String get benefitActiveCommunity => 'Communauté active';
+
+  @override
+  String get joinNowButton => 'Rejoindre maintenant !';
+
+  @override
+  String get alreadyMemberButton => 'Je suis déjà membre';
+
+  @override
+  String get laterButton => 'Plus tard';
+
+  @override
+  String get errorOpenTelegram => 'Erreur lors de l\'ouverture de Telegram';
+
+  @override
+  String get disclaimerTitle => 'Source des données';
+
+  @override
+  String get disclaimerDescription =>
+      'Les données des relais de cette appli proviennent de IZ8WNH.\n\nPour des informations supplémentaires, télécharger des fichiers CSV pour programmer les radios ou consulter des données non disponibles dans cette appli, visitez le site officiel.';
+
+  @override
+  String get disclaimerVisitSite => 'Visiter iz8wnh.it';
+
+  @override
+  String get disclaimerUnderstood => 'Compris';
+
+  @override
+  String get errorOpenDisclaimerSite => 'Erreur lors de l\'ouverture du site';
+
+  @override
+  String get repeatersMapTitle => 'Carte des relais';
+
+  @override
+  String get repeatersListTitle => 'Liste des relais';
+
+  @override
+  String get repeatersMapLoading => 'Chargement de la carte des relais…';
+
+  @override
+  String get repeatersMapGenericError => 'Impossible de charger les relais.';
+
+  @override
+  String get repeatersMapEmpty => 'Aucun relais trouvé près de vous.';
+
+  @override
+  String get repeatersSearchHint =>
+      'Rechercher par nom, indicatif ou fréquence MHz…';
+
+  @override
+  String get repeatersSearchEmpty => 'Aucun relais trouvé.';
+
+  @override
+  String get repeatersSortDistance => 'Distance';
+
+  @override
+  String get repeatersSortLikes => 'J\'aime';
+
+  @override
+  String get repeatersSortFrequency => 'Fréquence';
+
+  @override
+  String get repeatersMapRetry => 'Réessayer';
+
+  @override
+  String get repeatersMapOpenSettings => 'Ouvrir les paramètres';
+
+  @override
+  String get repeatersMapPermissionMessage =>
+      'Autorisez l\'accès à la localisation pour afficher les relais près de vous.';
+
+  @override
+  String get repeatersMapPermissionPermanentlyDenied =>
+      'Permission de localisation refusée définitivement. Activez-la dans les paramètres système.';
+
+  @override
+  String get repeatersMapLocationServicesDisabled =>
+      'Activez les services de localisation pour trouver les relais à proximité.';
+
+  @override
+  String repeatersMapFound(int count) {
+    return '$count relais trouvés';
+  }
+
+  @override
+  String get repeaterMode => 'Mode';
+
+  @override
+  String get repeaterModeAnalog => 'Analogique';
+
+  @override
+  String get repeaterModeC4fm => 'C4FM';
+
+  @override
+  String get repeaterModeDstar => 'D-STAR';
+
+  @override
+  String get repeaterModeDmr => 'DMR';
+
+  @override
+  String get repeaterModeAllmode => 'Tous les modes';
+
+  @override
+  String get repeaterModeEcholink => 'Echolink';
+
+  @override
+  String get repeaterModeAllstar => 'AllStar';
+
+  @override
+  String get repeaterModeWinlink => 'Winlink';
+
+  @override
+  String get repeaterFrequency => 'Fréquence';
+
+  @override
+  String get repeaterShift => 'Décalage';
+
+  @override
+  String get repeaterCtcss => 'CTCSS';
+
+  @override
+  String get repeaterLocation => 'Position';
+
+  @override
+  String get repeaterDistance => 'Distance';
+
+  @override
+  String get repeaterViewFullDetails => 'Voir tous les détails';
+
+  @override
+  String get repeatersMapReturnToLocation => 'Retour à ma position';
+
+  @override
+  String clusterRepeatersTitle(int count) {
+    return '$count relais à cet emplacement';
+  }
+
+  @override
+  String get profileUnlockFeatures => 'Débloquez toutes les fonctionnalités';
+
+  @override
+  String get profileUnlockFeaturesDescription =>
+      'Inscrivez-vous pour utiliser les avis, sauvegarder vos favoris et accéder aux statistiques détaillées.';
+
+  @override
+  String get profileSignUpOrLogin => 'S\'inscrire ou Se connecter';
+
+  @override
+  String get profileErrorOpeningEmail =>
+      'Erreur lors de l\'ouverture de l\'e-mail';
+
+  @override
+  String get profileJoinTelegramCommunity => 'Rejoindre la communauté Telegram';
+
+  @override
+  String get profileWelcomeTitle => 'Bienvenue sur HamQRG';
+
+  @override
+  String get profileWelcomeDescription =>
+      'Rejoignez notre communauté de radioamateurs en Italie.';
+
+  @override
+  String get profileEditProfile => 'Modifier le Profil';
+
+  @override
+  String get profileChangePhoto => 'Changer la Photo';
+
+  @override
+  String get profileFirstName => 'Prénom';
+
+  @override
+  String get profileLastName => 'Nom';
+
+  @override
+  String get profileCallsign => 'Indicatif';
+
+  @override
+  String get profileRestartIdentificationTitle =>
+      'Besoin de changer votre statut ? Vous pouvez redémarrer le processus d\'identification pour passer d\'Opérateur Autorisé à Écouteur SWL.';
+
+  @override
+  String get profileRestartIdentificationButton =>
+      'Redémarrer le Processus d\'Identification';
+
+  @override
+  String get profileSaveChanges => 'Enregistrer les Modifications';
+
+  @override
+  String get profileDangerZone => 'Zone Dangereuse';
+
+  @override
+  String get profileDeleteAccount => 'Supprimer le Compte';
+
+  @override
+  String get profileDeleteAccountConfirmTitle => 'Supprimer le Compte';
+
+  @override
+  String get profileDeleteAccountConfirmMessage =>
+      'Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.';
+
+  @override
+  String get profileDeleteAccountCancel => 'Annuler';
+
+  @override
+  String get profileDeleteAccountConfirm => 'Supprimer';
+
+  @override
+  String profileAppVersion(String version, String buildNumber) {
+    return 'Version $version (Build $buildNumber)';
+  }
+
+  @override
+  String get profileSectionCommunity => 'Communauté et Support';
+
+  @override
+  String get profileSectionSupport => 'Support';
+
+  @override
+  String profileVersion(String version, String buildNumber) {
+    return 'Version : $version+$buildNumber';
+  }
+
+  @override
+  String profileVersionFormat(String version, String buildNumber) {
+    return 'Version $version (Build $buildNumber)';
+  }
+
+  @override
+  String profileError(String error) {
+    return 'Erreur : $error';
+  }
+
+  @override
+  String get authJoinTitle => 'Rejoignez HamQRG';
+
+  @override
+  String get authUnlockFeatures =>
+      'Connectez-vous pour débloquer toutes les fonctionnalités !';
+
+  @override
+  String get authWhatYouGet => 'Ce que vous obtiendrez :';
+
+  @override
+  String get authBenefitStatsTitle => 'Statistiques détaillées';
+
+  @override
+  String get authBenefitStatsDescription =>
+      'Suivez vos progrès et améliorez-vous';
+
+  @override
+  String get authBenefitQuizTitle => 'Différents modes de quiz';
+
+  @override
+  String get authBenefitQuizDescription =>
+      'Entraînez-vous en mode marathon, par thèmes et plus.';
+
+  @override
+  String get authBenefitSyncTitle => 'Synchronisation';
+
+  @override
+  String get authBenefitSyncDescription =>
+      'Accédez depuis n\'importe quel appareil';
+
+  @override
+  String get authOrSignInWithEmail => 'Ou connectez-vous par e-mail';
+
+  @override
+  String get authEnterEmail => 'Entrez l\'e-mail';
+
+  @override
+  String get authEnterPassword => 'Entrez le mot de passe';
+
+  @override
+  String get authForgotPassword => 'Mot de passe oublié ?';
+
+  @override
+  String get authSignIn => 'Se connecter';
+
+  @override
+  String get authSignUp => 'S\'inscrire';
+
+  @override
+  String get authPasswordLengthError => 'Le mot de passe doit être plus long';
+
+  @override
+  String get authDontHaveAccount => 'Pas de compte ? Inscrivez-vous';
+
+  @override
+  String get authHaveAccount => 'Déjà un compte ? Connectez-vous';
+
+  @override
+  String get authBackToSignIn => 'Retour à la connexion';
+
+  @override
+  String get authUnexpectedError => 'Erreur d\'authentification : ';
+
+  @override
+  String get authValidEmailError => 'Entrez un e-mail valide';
+
+  @override
+  String get authSendPasswordReset => 'Envoyer la réinitialisation';
+
+  @override
+  String get authPasswordResetSent => 'Réinitialisation envoyée';
+
+  @override
+  String get authVerifyEmailMessage =>
+      'Vérifiez votre e-mail pour compléter l\'inscription, consultez votre boîte de réception.';
+
+  @override
+  String get authInvalidCredentials => 'E-mail ou mot de passe incorrect';
+
+  @override
+  String get authEmailNotConfirmed =>
+      'Vérifiez votre e-mail pour vous connecter';
+
+  @override
+  String get authFirstName => 'Prénom';
+
+  @override
+  String get authFirstNameRequired => 'Le prénom est obligatoire';
+
+  @override
+  String get authLastName => 'Nom';
+
+  @override
+  String get authLastNameRequired => 'Le nom est obligatoire';
+
+  @override
+  String get authContinueAsGuest => 'Continuer en tant qu\'invité';
+
+  @override
+  String get commonAppNamePart1 => 'Ham';
+
+  @override
+  String get commonAppNamePart2 => 'QRG';
+
+  @override
+  String get commonAppTagline => 'Découvrez les relais autour de vous';
+
+  @override
+  String get commonPoweredBy => 'POWERED BY IU4VRB';
+
+  @override
+  String get homeQuickAccess => 'Accès rapide';
+
+  @override
+  String get homeRepeaterList => 'Liste des relais';
+
+  @override
+  String get homeMyFavorites => 'Mes favoris';
+
+  @override
+  String get homeNearby => 'Près de vous';
+
+  @override
+  String get homeViewAll => 'Voir tout';
+
+  @override
+  String homeStations(int count) {
+    return '$count stations';
+  }
+
+  @override
+  String homeSaved(int count) {
+    return '$count enregistrés';
+  }
+
+  @override
+  String get homeActive => 'Actif';
+
+  @override
+  String get homeIdle => 'Inactif';
+
+  @override
+  String get homeNavHome => 'Accueil';
+
+  @override
+  String get homeNavList => 'Liste';
+
+  @override
+  String get homeNavFavorites => 'Favoris';
+
+  @override
+  String get homeNavMap => 'Carte';
+
+  @override
+  String get homeNavProfile => 'Profil';
+
+  @override
+  String get favoritesTitle => 'Mes favoris';
+
+  @override
+  String get favoritesSearchHint => 'Rechercher des relais enregistrés...';
+
+  @override
+  String get favoritesFilterAllSaved => 'Tous enregistrés';
+
+  @override
+  String get favoritesEmpty => 'Aucun relais enregistré';
+
+  @override
+  String get favoritesEmptyDescription =>
+      'Ajoutez des relais aux favoris pour les voir ici';
+
+  @override
+  String favoritesShowing(int showing, int total) {
+    return 'Affichage de $showing sur $total stations favorites';
+  }
+
+  @override
+  String get favoritesRemove => 'Retirer des favoris';
+
+  @override
+  String get favoritesAdd => 'Ajouter aux favoris';
+
+  @override
+  String get repeaterDetailSave => 'Enregistrer';
+
+  @override
+  String get repeaterDetailShare => 'Partager';
+
+  @override
+  String get repeaterDetailReport => 'Signaler';
+
+  @override
+  String get repeaterDetailTotalLikes => 'J\'aime totaux';
+
+  @override
+  String get repeaterDetailReports1Yr => 'Signalements (1 an)';
+
+  @override
+  String get repeaterDetailHealthScore => 'Score de santé';
+
+  @override
+  String get repeaterDetailExcellent => 'Excellent';
+
+  @override
+  String get repeaterDetailGood => 'Bon';
+
+  @override
+  String get repeaterDetailFair => 'Moyen';
+
+  @override
+  String get repeaterDetailToVerify => 'À vérifier';
+
+  @override
+  String repeaterDetailScoreCalculated(int count) {
+    return 'Score calculé à partir de $count signalements négatifs au cours de la dernière année';
+  }
+
+  @override
+  String get repeaterDetailLastLike => 'Dernier j\'aime';
+
+  @override
+  String get repeaterDetailLastDownReport => 'Dernier signalement négatif';
+
+  @override
+  String get repeaterDetailTechnicalData => 'Données techniques';
+
+  @override
+  String get repeaterDetailFrequency => 'Fréquence';
+
+  @override
+  String get repeaterDetailShift => 'Décalage';
+
+  @override
+  String get repeaterDetailSubtone => 'Sous-ton (SQL)';
+
+  @override
+  String get repeaterDetailMode => 'Mode';
+
+  @override
+  String get repeaterDetailLocation => 'Position';
+
+  @override
+  String repeaterDetailAway(String distance) {
+    return 'à $distance';
+  }
+
+  @override
+  String get repeaterDetailCommunityReports => 'Signalements de la communauté';
+
+  @override
+  String get repeaterDetailUpdateStatusFeedback =>
+      'Mettre à jour le statut et le feedback';
+
+  @override
+  String get repeaterDetailEquipment => 'Équipement';
+
+  @override
+  String get repeaterDetailEquipmentRequired => 'Équipement *';
+
+  @override
+  String get repeaterDetailAccessModes => 'Modes d\'accès';
+
+  @override
+  String get repeaterDetailNetwork => 'Réseau';
+
+  @override
+  String get repeaterDetailLocationField => 'Lieu';
+
+  @override
+  String get repeaterDetailLocationRequired => 'Lieu *';
+
+  @override
+  String get repeaterDetailComment => 'Commentaire';
+
+  @override
+  String get repeaterDetailCommentOptional => 'Commentaire (Optionnel)';
+
+  @override
+  String get repeaterDetailCommentPlaceholder =>
+      'Qualité du signal, rapport audio ou commentaires généraux...';
+
+  @override
+  String get repeaterDetailReportDown => 'Signaler un problème';
+
+  @override
+  String get repeaterDetailCheckinLike => 'Check-in et j\'aime';
+
+  @override
+  String get repeaterDetailYourFeedback => 'Votre feedback';
+
+  @override
+  String get repeaterDetailPostedJustNow => 'Publié à l\'instant';
+
+  @override
+  String get repeaterDetailDeleteEntry => 'Supprimer l\'entrée';
+
+  @override
+  String repeaterDetailViewAllReports(int count) {
+    return 'Voir les $count signalements';
+  }
+
+  @override
+  String get repeaterDetailStationPortable => 'Portable';
+
+  @override
+  String get repeaterDetailStationMobile => 'Mobile';
+
+  @override
+  String get repeaterDetailStationFixed => 'Fixe';
+
+  @override
+  String get repeaterDetailLike => 'J\'aime';
+
+  @override
+  String get repeaterDetailReportLabel => 'Signalement';
+
+  @override
+  String get repeaterDetailSaved => 'Enregistré';
+
+  @override
+  String get repeaterDetailShareMessage => 'Découvrez ce relais sur HamQRG !';
+
+  @override
+  String get repeaterDetailReportDescription =>
+      'La fonctionnalité de signalement sera bientôt disponible. Vous pourrez signaler des informations incorrectes ou des problèmes avec ce relais.';
+
+  @override
+  String get commonClose => 'Fermer';
+
+  @override
+  String get favorite => 'Favori';
+
+  @override
+  String get accessConfiguration => 'Configuration d\'accès';
+
+  @override
+  String get noAccessConfiguration => 'Aucune configuration disponible';
+
+  @override
+  String get repeaterDetailAddFeedback => 'Ajouter un feedback';
+
+  @override
+  String get repeaterDetailOthersReports =>
+      'Signalements d\'autres utilisateurs';
+
+  @override
+  String get repeaterDetailRemove => 'Supprimer';
+
+  @override
+  String get repeaterDetailSelectAccess => 'Sélectionner l\'accès';
+
+  @override
+  String repeaterDetailDistanceWarning(int distance) {
+    return 'Vous devez être à moins de $distance km du relais pour envoyer un feedback.';
+  }
+
+  @override
+  String get repeaterDetailInteractive => 'Interactif';
+
+  @override
+  String get repeaterDetailLogYourSignal => 'Enregistrez votre signal';
+
+  @override
+  String get repeaterDetailUsedEquipment => 'Équipement utilisé';
+
+  @override
+  String get repeaterDetailYourLocation => 'Votre position';
+
+  @override
+  String get repeaterDetailLocationPlaceholder => 'Où étiez-vous ? (ex. Paris)';
+
+  @override
+  String get repeaterDetailLocationSelectHint =>
+      'Sélectionnez un lieu parmi les suggestions';
+
+  @override
+  String get feedbackDistanceConfirmTitle => 'Confirmer l\'envoi';
+
+  @override
+  String feedbackDistanceConfirmMessage(String distance) {
+    return 'Le lieu sélectionné est à $distance km du relais. Confirmez-vous vouloir envoyer ce feedback sous votre responsabilité ?';
+  }
+
+  @override
+  String get feedbackDistanceConfirmButton => 'Confirmer';
+
+  @override
+  String get feedbackDistanceConfirmCancel => 'Annuler';
+
+  @override
+  String get repeaterDetailSelectAccessInstance =>
+      'Sélectionner l\'instance d\'accès';
+
+  @override
+  String get repeaterDetailSignalObservations => 'Observations du signal';
+
+  @override
+  String get repeaterDetailSignalObservationsPlaceholder =>
+      'Comment était la qualité audio ?';
+
+  @override
+  String get repeaterDetailSendLike => 'Envoyer J\'aime';
+
+  @override
+  String get repeaterDetailReportIssue => 'Signaler un Problème';
+
+  @override
+  String get repeaterDetailRecentActivity => 'Activité récente';
+
+  @override
+  String get reportIssueTitle => 'Signalement';
+
+  @override
+  String get reportIssueHeadline =>
+      'Aidez-nous à maintenir des données précises';
+
+  @override
+  String get reportIssueDescription =>
+      'Avez-vous trouvé quelque chose d\'incorrect ou de manquant dans ce relais ? Dites-nous ce qui doit être modifié et nous le vérifierons.';
+
+  @override
+  String get reportIssueWhatToCorrect =>
+      'Que souhaitez-vous corriger ou ajouter ?';
+
+  @override
+  String get reportIssuePlaceholder =>
+      'Ex. Le ton CTCSS a changé à 88.5Hz, ou la position est légèrement plus au nord, le gestionnaire est...';
+
+  @override
+  String get reportIssueVerifiedTitle => 'Soumissions Vérifiées';
+
+  @override
+  String get reportIssueVerifiedDescription =>
+      'Votre signalement sera examiné par le coordinateur régional avant la mise à jour de la base de données publique. Merci pour votre contribution à la communauté.';
+
+  @override
+  String get reportIssueConfirmCheckbox =>
+      'Je confirme que ces informations sont correctes selon mon observation.';
+
+  @override
+  String get reportIssueSubmit => 'Envoyer';
+
+  @override
+  String get reportIssueMinChars => 'Minimum 10 caractères requis';
+
+  @override
+  String get reportIssueMaxChars => 'Maximum 2000 caractères';
+
+  @override
+  String get reportIssueSuccess => 'Signalement envoyé avec succès';
+
+  @override
+  String get reportIssueError => 'Erreur lors de l\'envoi du signalement';
+
+  @override
+  String get registrationPromptTitle => 'Débloquez tout le potentiel';
+
+  @override
+  String get registrationPromptDescription =>
+      'Rejoignez la communauté italienne de radioamateurs et passez au niveau supérieur.';
+
+  @override
+  String get registrationBenefitInteractTitle => 'Interagissez';
+
+  @override
+  String get registrationBenefitInteractDescription =>
+      'Évaluez les relais et laissez des commentaires pour les autres.';
+
+  @override
+  String get registrationBenefitFavoritesTitle => 'Favoris';
+
+  @override
+  String get registrationBenefitFavoritesDescription =>
+      'Enregistrez vos fréquences et relais les plus utilisés.';
+
+  @override
+  String get registrationBenefitLogbookTitle => 'Logbook';
+
+  @override
+  String get registrationBenefitLogbookDescription =>
+      'Gardez une trace de vos QSOs et maintenez un historique personnel.';
+
+  @override
+  String get registrationSignInApple => 'Se connecter avec Apple';
+
+  @override
+  String get registrationSignInGoogle => 'Se connecter avec Google';
+
+  @override
+  String get registrationPromptFooter =>
+      'Inscription gratuite. Aucune licence requise pour consulter les données publiques.';
+
+  @override
+  String get postLoginOnboardingWelcome => 'Bienvenue sur';
+
+  @override
+  String get postLoginOnboardingQuestion =>
+      'Êtes-vous un radioamateur licencié ?';
+
+  @override
+  String get postLoginOnboardingHelpText =>
+      'Cela nous aide à personnaliser votre expérience et à vous montrer les bonnes fréquences.';
+
+  @override
+  String get postLoginOnboardingYesLicensed => 'Oui, je le suis';
+
+  @override
+  String get postLoginOnboardingNoListener => 'Non, je suis juste un auditeur';
+
+  @override
+  String get postLoginOnboardingCallsignTitle => 'Identifiez-vous';
+
+  @override
+  String get postLoginOnboardingCallsignSubtitle =>
+      'Entrez votre indicatif officiel pour accéder aux fonctionnalités réseau.';
+
+  @override
+  String get postLoginOnboardingCallsignLabel => 'Indicatif (Callsign)';
+
+  @override
+  String get postLoginOnboardingCallsignHint => 'Ex. F4XYZ';
+
+  @override
+  String get postLoginOnboardingComplete => 'Compléter le profil';
+
+  @override
+  String get postLoginOnboardingBack => 'Retour';
+
+  @override
+  String get postLoginOnboardingChangeInSettings =>
+      'Vous pouvez le modifier plus tard dans les paramètres.';
+
+  @override
+  String get postLoginOnboardingSwlTitle => 'Indicatif SWL';
+
+  @override
+  String get postLoginOnboardingSwlQuestion =>
+      'Avez-vous un indicatif SWL officiel ?';
+
+  @override
+  String get postLoginOnboardingSwlHelpText =>
+      'Les indicatifs d\'écoute d\'ondes courtes aident à vous identifier dans la communauté mondiale de surveillance.';
+
+  @override
+  String get postLoginOnboardingSwlYes => 'Oui, j\'en ai un';
+
+  @override
+  String get postLoginOnboardingSwlNo => 'Non, je n\'en ai pas';
+
+  @override
+  String get postLoginOnboardingSwlEnterCallsign => 'Entrer l\'indicatif';
+
+  @override
+  String get postLoginOnboardingSwlCallsignHint => 'Ex. F1-12345-SWL';
+
+  @override
+  String get timeAgoJustNow => 'à l\'instant';
+
+  @override
+  String timeAgoMinutes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a $count minutes',
+      one: 'il y a 1 minute',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a $count heures',
+      one: 'il y a 1 heure',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a $count jours',
+      one: 'il y a 1 jour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a $count semaines',
+      one: 'il y a 1 semaine',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a $count mois',
+      one: 'il y a 1 mois',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a $count ans',
+      one: 'il y a 1 an',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get profileThemeMode => 'Thème';
+
+  @override
+  String get profileThemeModeSystem => 'Système';
+
+  @override
+  String get profileThemeModeLight => 'Clair';
+
+  @override
+  String get profileThemeModeDark => 'Sombre';
+
+  @override
+  String get repeaterDetailBeFirstFeedback =>
+      'Soyez le premier à laisser un feedback sur ce relais !';
+
+  @override
+  String get repeaterDetailDistanceFromYou => 'Distance depuis vous';
+
+  @override
+  String get repeaterDistanceMapNoLocation => 'Position non disponible';
+
+  @override
+  String get repeaterDetailNever => 'Jamais';
+
+  @override
+  String get repeaterDetailInfo => 'Informations';
+
+  @override
+  String get repeaterDetailSource => 'Source';
+
+  @override
+  String get repeaterDetailManager => 'Gestionnaire';
+
+  @override
+  String get repeaterDetailSuggestManager =>
+      'Vous connaissez le gestionnaire du relais ? Signalez-le !';
+
+  @override
+  String get repeaterDetailViewFeedbackMap => 'Carte des feedbacks';
+
+  @override
+  String get repeaterDetailViewFeedbackMapSubtitle =>
+      'Visualisez où les j\'aime et signalements ont été enregistrés';
+
+  @override
+  String get repeaterDetailAltimetricProfile => 'Profil altimétrique';
+
+  @override
+  String get repeaterDetailAltimetricProfileSubtitle =>
+      'Visualisez le profil du terrain entre vous et le relais';
+
+  @override
+  String get repeaterDetailLosClear =>
+      'Ligne de vue dégagée entre vous et le relais';
+
+  @override
+  String get repeaterDetailLosObstructed =>
+      'Ligne de vue obstruée par le terrain';
+
+  @override
+  String get repeaterDetailTerrainProfile => 'Profil du terrain';
+
+  @override
+  String get repeaterDetailLineOfSight => 'Ligne de vue';
+
+  @override
+  String get repeaterDetailTotalDistance => 'Distance';
+
+  @override
+  String get repeaterDetailRepeaterElevation => 'Altitude du relais';
+
+  @override
+  String get repeaterDetailYourElevation => 'Votre altitude';
+
+  @override
+  String get repeaterDetailYou => 'Vous';
+
+  @override
+  String get repeaterDetailRepeaterLabel => 'Relais';
+
+  @override
+  String get repeaterDetailFunFacts => 'Le saviez-vous ?';
+
+  @override
+  String get repeaterDetailWavelength => 'Longueur d\'onde';
+
+  @override
+  String repeaterDetailWavelengthValue(String value) {
+    return 'La longueur d\'onde de ce relais est $value';
+  }
+
+  @override
+  String get repeaterDetailOscillations => 'Oscillations par seconde';
+
+  @override
+  String repeaterDetailOscillationsValue(String value) {
+    return 'Le signal oscille $value fois par seconde';
+  }
+
+  @override
+  String get repeaterDetailPropagationTime => 'Temps de propagation';
+
+  @override
+  String repeaterDetailPropagationTimeValue(String value) {
+    return 'Votre signal met $value pour atteindre le relais';
+  }
+
+  @override
+  String get repeaterDetailWaveCycles => 'Cycles d\'onde en transit';
+
+  @override
+  String repeaterDetailWaveCyclesValue(String value) {
+    return 'L\'onde effectue $value cycles complets en transit';
+  }
+
+  @override
+  String get userReportsTitle => 'Mes signalements';
+
+  @override
+  String get userReportsFilterAll => 'Tous';
+
+  @override
+  String get userReportsFilterOpen => 'Ouverts';
+
+  @override
+  String get userReportsFilterClosed => 'Fermés';
+
+  @override
+  String get userReportsEmpty => 'Aucun signalement envoyé';
+
+  @override
+  String get userReportsEmptyDescription =>
+      'Vos signalements de relais apparaîtront ici';
+
+  @override
+  String get userReportsEmptyFiltered => 'Aucun signalement avec ce filtre';
+
+  @override
+  String get userReportsStatusPending => 'En attente';
+
+  @override
+  String get userReportsStatusReviewed => 'En cours d\'examen';
+
+  @override
+  String get userReportsStatusResolved => 'Résolu';
+
+  @override
+  String get userReportsStatusRejected => 'Rejeté';
+
+  @override
+  String get userReportsRetryBanner => 'Impossible de mettre à jour la liste';
+
+  @override
+  String get userReportsProfileTile => 'Mes signalements';
+
+  @override
+  String get userReportsProfileTileSubtitle =>
+      'Voir le statut de vos signalements';
+
+  @override
+  String get userReportsError => 'Erreur lors du chargement des signalements';
+
+  @override
+  String get userReportsCoordinatorResponse => 'Réponse du coordinateur';
+
+  @override
+  String get potaTitle => 'POTA Spots';
+
+  @override
+  String get potaSearchHint => 'Rechercher par activateur, parc ou mode…';
+
+  @override
+  String get potaNoSpots => 'Aucun spot POTA actif pour le moment.';
+
+  @override
+  String get potaLoadError => 'Impossible de charger les spots POTA';
+
+  @override
+  String get potaRetry => 'Réessayer';
+
+  @override
+  String get potaViewAll => 'Voir tout';
+
+  @override
+  String get potaActivator => 'Activateur';
+
+  @override
+  String get potaFrequency => 'Fréquence';
+
+  @override
+  String get potaMode => 'Mode';
+
+  @override
+  String get potaPark => 'Parc';
+
+  @override
+  String get potaReference => 'Référence';
+
+  @override
+  String get potaSpotter => 'Repéré par';
+
+  @override
+  String get potaComments => 'Commentaires';
+
+  @override
+  String get potaLastSpotted => 'Dernier repérage';
+
+  @override
+  String get potaOpenQrz => 'QRZ.com';
+
+  @override
+  String get potaQrzError => 'Impossible d\'ouvrir QRZ.com';
+
+  @override
+  String get potaParkWebsite => 'Site du parc';
+
+  @override
+  String get potaParkType => 'Type de parc';
+
+  @override
+  String get potaLocation => 'Position';
+
+  @override
+  String get potaCountry => 'Pays';
+
+  @override
+  String get potaFirstActivation => 'Première activation';
+
+  @override
+  String get potaBand => 'Bande';
+
+  @override
+  String potaDistanceAway(String distance) {
+    return 'à $distance';
+  }
+
+  @override
+  String potaSpotsCount(int count) {
+    return '$count spots actifs';
+  }
+
+  @override
+  String get profileLanguage => 'Langue';
+
+  @override
+  String get profileLanguageSystem => 'Système';
+
+  @override
+  String get profileLanguageItalian => 'Italiano';
+
+  @override
+  String get profileLanguageEnglish => 'English';
+
+  @override
+  String get profileLanguageSpanish => 'Español';
+
+  @override
+  String get profileLanguageFrench => 'Français';
+}

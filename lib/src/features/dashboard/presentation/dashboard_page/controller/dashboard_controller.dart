@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/state/dashboard_state.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
+import 'package:hamqrg/src/features/pota/provider/get_pota_spots/get_pota_spots_provider.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
@@ -28,6 +30,12 @@ class DashboardController extends _$DashboardController {
     final position =
         await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
 
+    // Load POTA spots (non-blocking)
+    final potaFuture = ref.read(getPotaSpotsProvider.future).then(
+          (spots) => (spots: spots, error: false),
+          onError: (_) => (spots: <PotaSpot>[], error: true),
+        );
+
     try {
       // Load nearby repeaters
       final nearbyRepeaters = await ref.read(
@@ -37,6 +45,8 @@ class DashboardController extends _$DashboardController {
         ).future,
       );
 
+      final potaResult = await potaFuture;
+
       return DashboardState(
         statistics: DashboardStatistics(
           totalRepeaters: countRepeaters,
@@ -45,8 +55,12 @@ class DashboardController extends _$DashboardController {
         initialPosition: (lat: position.latitude, lon: position.longitude),
         nearbyRepeaters: nearbyRepeaters,
         profile: profile,
+        potaSpots: potaResult.spots,
+        hasPotaError: potaResult.error,
       );
     } on LocationException catch (error) {
+      final potaResult = await potaFuture;
+
       return DashboardState(
         statistics: DashboardStatistics(
           totalRepeaters: countRepeaters,
@@ -56,6 +70,8 @@ class DashboardController extends _$DashboardController {
         nearbyRepeaters: [],
         locationError: error.type,
         profile: profile,
+        potaSpots: potaResult.spots,
+        hasPotaError: potaResult.error,
       );
     }
   }

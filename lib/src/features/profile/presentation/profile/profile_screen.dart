@@ -229,13 +229,11 @@ class ProfileScreen extends HookConsumerWidget {
                                   final emailLaunchUri = Uri(
                                     scheme: 'mailto',
                                     path: 'info@auroradigital.it',
-                                    queryParameters: {
-                                      'subject': 'HamQRG-Support',
-                                    },
+                                    query: 'subject=HamQRG-Support',
                                   );
-                                  if (await canLaunchUrl(emailLaunchUri)) {
+                                  try {
                                     await launchUrl(emailLaunchUri);
-                                  } else {
+                                  } catch (_) {
                                     if (context.mounted) {
                                       showErrorSnackbar(
                                         context,

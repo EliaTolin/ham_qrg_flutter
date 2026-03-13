@@ -107,6 +107,93 @@ class PostLoginOnboardingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PotaSpotDetailPage]
+class PotaSpotDetailRoute extends PageRouteInfo<PotaSpotDetailRouteArgs> {
+  PotaSpotDetailRoute({
+    required int spotId,
+    required String reference,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PotaSpotDetailRoute.name,
+          args: PotaSpotDetailRouteArgs(
+            spotId: spotId,
+            reference: reference,
+            key: key,
+          ),
+          rawPathParams: {'spotId': spotId, 'reference': reference},
+          initialChildren: children,
+        );
+
+  static const String name = 'PotaSpotDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<PotaSpotDetailRouteArgs>(
+        orElse: () => PotaSpotDetailRouteArgs(
+          spotId: pathParams.getInt('spotId'),
+          reference: pathParams.getString('reference'),
+        ),
+      );
+      return PotaSpotDetailPage(
+        spotId: args.spotId,
+        reference: args.reference,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class PotaSpotDetailRouteArgs {
+  const PotaSpotDetailRouteArgs({
+    required this.spotId,
+    required this.reference,
+    this.key,
+  });
+
+  final int spotId;
+
+  final String reference;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PotaSpotDetailRouteArgs{spotId: $spotId, reference: $reference, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PotaSpotDetailRouteArgs) return false;
+    return spotId == other.spotId &&
+        reference == other.reference &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode => spotId.hashCode ^ reference.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [PotaSpotsPage]
+class PotaSpotsRoute extends PageRouteInfo<void> {
+  const PotaSpotsRoute({List<PageRouteInfo>? children})
+      : super(PotaSpotsRoute.name, initialChildren: children);
+
+  static const String name = 'PotaSpotsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PotaSpotsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ProfileScreen]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})

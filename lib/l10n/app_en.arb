@@ -1,0 +1,572 @@
+{
+  "@@locale": "en",
+  "error": "Error",
+  "error_message": "An error occurred while loading",
+  "error_message_retry": "An error occurred while loading. Please try again later",
+  "retry": "Retry",
+  "back": "Back",
+  "loading": "Loading",
+  "details": "Details",
+  "pages_number": "{number} pages to explore",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December",
+  "logout": "Log out",
+  "profile": "Profile",
+  "settings": "Settings",
+  "contact_us": "Contact us",
+  "error_opening_email": "An error occurred while opening the email",
+  "register_now": "Register now",
+  "tracking_permission_title": "Support the App",
+  "tracking_permission_message": "To improve your experience and show you more relevant content, help us keep the app free.\n\nTap Allow to support us.",
+  "tracking_permission_next": "Next",
+  "skip": "Skip",
+  "done": "Done",
+  "next": "Next",
+  "joinCommunityTitle": "Join our Community!",
+  "joinCommunityDescription": "Discover the benefits of joining the Telegram community:",
+  "benefitSupportMembers": "Support from members",
+  "benefitSuggestFeatures": "Suggest new features",
+  "benefitContactDevelopers": "Contact with developers",
+  "benefitExclusivePreviews": "Exclusive previews and betas",
+  "benefitActiveCommunity": "Active community",
+  "joinNowButton": "Join now!",
+  "alreadyMemberButton": "I'm already a member",
+  "laterButton": "Later",
+  "errorOpenTelegram": "Error opening Telegram",
+  "disclaimerTitle": "Data source",
+  "disclaimerDescription": "The repeater data in this app comes from IZ8WNH.\n\nFor additional information, to download CSV files for programming radios, or to consult data not available in this app, visit the official website.",
+  "disclaimerVisitSite": "Visit iz8wnh.it",
+  "disclaimerUnderstood": "Got it",
+  "errorOpenDisclaimerSite": "Error opening the website",
+  "repeatersMapTitle": "Repeater map",
+  "repeatersListTitle": "Repeater list",
+  "repeatersMapLoading": "Loading repeater map…",
+  "repeatersMapGenericError": "Unable to load repeaters.",
+  "repeatersMapEmpty": "No repeaters found near you.",
+  "repeatersSearchHint": "Search by name, callsign or frequency MHz…",
+  "repeatersSearchEmpty": "No repeaters found.",
+  "repeatersSortDistance": "Distance",
+  "repeatersSortLikes": "Likes",
+  "repeatersSortFrequency": "Frequency",
+  "repeatersMapRetry": "Retry",
+  "repeatersMapOpenSettings": "Open settings",
+  "repeatersMapPermissionMessage": "Allow location access to show repeaters near you.",
+  "repeatersMapPermissionPermanentlyDenied": "Location permission permanently denied. Enable it from system settings.",
+  "repeatersMapLocationServicesDisabled": "Enable location services to find nearby repeaters.",
+  "repeatersMapFound": "{count} repeaters found",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Mode",
+  "repeaterModeAnalog": "Analog",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "All modes",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frequency",
+  "repeaterShift": "Shift",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Location",
+  "repeaterDistance": "Distance",
+  "repeaterViewFullDetails": "View full details",
+  "repeatersMapReturnToLocation": "Return to my location",
+  "clusterRepeatersTitle": "{count} repeaters at this location",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Unlock all features",
+  "profileUnlockFeaturesDescription": "Register to use review, favorite saving, and access detailed statistics.",
+  "profileSignUpOrLogin": "Sign up or Log in",
+  "profileErrorOpeningEmail": "Error opening email",
+  "profileJoinTelegramCommunity": "Join the Telegram community",
+  "profileWelcomeTitle": "Welcome to HamQRG",
+  "profileWelcomeDescription": "Join our community of ham radio operators in Italy.",
+  "profileEditProfile": "Edit Profile",
+  "profileChangePhoto": "Change Photo",
+  "profileFirstName": "First Name",
+  "profileLastName": "Last Name",
+  "profileCallsign": "Callsign",
+  "profileRestartIdentificationTitle": "Need to change your status? You can restart the identification process to switch from Licensed Operator to SWL Listener.",
+  "profileRestartIdentificationButton": "Restart Identification Process",
+  "profileSaveChanges": "Save Changes",
+  "profileDangerZone": "Danger Zone",
+  "profileDeleteAccount": "Delete Account",
+  "profileDeleteAccountConfirmTitle": "Delete Account",
+  "profileDeleteAccountConfirmMessage": "Are you sure you want to delete your account? This action is irreversible.",
+  "profileDeleteAccountCancel": "Cancel",
+  "profileDeleteAccountConfirm": "Delete",
+  "profileAppVersion": "App Version {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Community & Support",
+  "profileSectionSupport": "Support",
+  "profileVersion": "Version: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Version {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Error: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "Join HamQRG",
+  "authUnlockFeatures": "Sign in to unlock all features!",
+  "authWhatYouGet": "What you'll get:",
+  "authBenefitStatsTitle": "Detailed statistics",
+  "authBenefitStatsDescription": "Monitor your progress and improve",
+  "authBenefitQuizTitle": "Various quiz modes",
+  "authBenefitQuizDescription": "Practice in marathon, topic-based and other modes.",
+  "authBenefitSyncTitle": "Synchronization",
+  "authBenefitSyncDescription": "Access from any device",
+  "authOrSignInWithEmail": "Or sign in with email",
+  "authEnterEmail": "Enter email",
+  "authEnterPassword": "Enter password",
+  "authForgotPassword": "Forgot password?",
+  "authSignIn": "Sign in",
+  "authSignUp": "Sign up",
+  "authPasswordLengthError": "Password must be longer",
+  "authDontHaveAccount": "Don't have an account? Sign up",
+  "authHaveAccount": "Already have an account? Sign in",
+  "authBackToSignIn": "Back to sign in",
+  "authUnexpectedError": "Authentication error: ",
+  "authValidEmailError": "Enter a valid email",
+  "authSendPasswordReset": "Send password reset",
+  "authPasswordResetSent": "Password reset sent",
+  "authVerifyEmailMessage": "Verify your email to complete registration, check your inbox.",
+  "authInvalidCredentials": "Invalid email or password",
+  "authEmailNotConfirmed": "Verify your email to sign in",
+  "authFirstName": "First Name",
+  "authFirstNameRequired": "First name is required",
+  "authLastName": "Last Name",
+  "authLastNameRequired": "Last name is required",
+  "authContinueAsGuest": "Continue as guest",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Discover the repeaters around you",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Quick access",
+  "homeRepeaterList": "Repeater list",
+  "homeMyFavorites": "My favorites",
+  "homeNearby": "Near you",
+  "homeViewAll": "View all",
+  "homeStations": "{count} stations",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} saved",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Active",
+  "homeIdle": "Idle",
+  "homeNavHome": "Home",
+  "homeNavList": "List",
+  "homeNavFavorites": "Favorites",
+  "homeNavMap": "Map",
+  "homeNavProfile": "Profile",
+  "favoritesTitle": "My favorites",
+  "favoritesSearchHint": "Search saved repeaters...",
+  "favoritesFilterAllSaved": "All saved",
+  "favoritesEmpty": "No saved repeaters",
+  "favoritesEmptyDescription": "Add repeaters to favorites to see them here",
+  "favoritesShowing": "Showing {showing} of {total} favorite stations",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Remove from favorites",
+  "favoritesAdd": "Add to favorites",
+  "repeaterDetailSave": "Save",
+  "repeaterDetailShare": "Share",
+  "repeaterDetailReport": "Report",
+  "repeaterDetailTotalLikes": "Total likes",
+  "repeaterDetailReports1Yr": "Reports (1 year)",
+  "repeaterDetailHealthScore": "Health score",
+  "repeaterDetailExcellent": "Excellent",
+  "repeaterDetailGood": "Good",
+  "repeaterDetailFair": "Fair",
+  "repeaterDetailToVerify": "To verify",
+  "repeaterDetailScoreCalculated": "Score calculated from {count} negative reports in the last year",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Last like",
+  "repeaterDetailLastDownReport": "Last negative report",
+  "repeaterDetailTechnicalData": "Technical data",
+  "repeaterDetailFrequency": "Frequency",
+  "repeaterDetailShift": "Shift",
+  "repeaterDetailSubtone": "Subtone (SQL)",
+  "repeaterDetailMode": "Mode",
+  "repeaterDetailLocation": "Location",
+  "repeaterDetailAway": "{distance} away",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Community reports",
+  "repeaterDetailUpdateStatusFeedback": "Update status and feedback",
+  "repeaterDetailEquipment": "Equipment",
+  "repeaterDetailEquipmentRequired": "Equipment *",
+  "repeaterDetailAccessModes": "Access modes",
+  "repeaterDetailNetwork": "Network",
+  "repeaterDetailLocationField": "Location",
+  "repeaterDetailLocationRequired": "Location *",
+  "repeaterDetailComment": "Comment",
+  "repeaterDetailCommentOptional": "Comment (Optional)",
+  "repeaterDetailCommentPlaceholder": "Signal quality, audio report or general comments...",
+  "repeaterDetailReportDown": "Report issue",
+  "repeaterDetailCheckinLike": "Check-in and like",
+  "repeaterDetailYourFeedback": "Your feedback",
+  "repeaterDetailPostedJustNow": "Posted just now",
+  "repeaterDetailDeleteEntry": "Delete entry",
+  "repeaterDetailViewAllReports": "View all {count} reports",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Portable",
+  "repeaterDetailStationMobile": "Mobile",
+  "repeaterDetailStationFixed": "Fixed",
+  "repeaterDetailLike": "Like",
+  "repeaterDetailReportLabel": "Report",
+  "repeaterDetailSaved": "Saved",
+  "repeaterDetailShareMessage": "Check out this repeater on HamQRG!",
+  "repeaterDetailReportDescription": "The reporting feature will be available soon. You will be able to report incorrect information or issues with this repeater.",
+  "commonClose": "Close",
+  "favorite": "Favorite",
+  "accessConfiguration": "Access configuration",
+  "noAccessConfiguration": "No configuration available",
+  "repeaterDetailAddFeedback": "Add feedback",
+  "repeaterDetailOthersReports": "Other users' reports",
+  "repeaterDetailRemove": "Remove",
+  "repeaterDetailSelectAccess": "Select access",
+  "repeaterDetailDistanceWarning": "You must be within {distance} km of the repeater to send feedback.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interactive",
+  "repeaterDetailLogYourSignal": "Log your signal",
+  "repeaterDetailUsedEquipment": "Equipment used",
+  "repeaterDetailYourLocation": "Your location",
+  "repeaterDetailLocationPlaceholder": "Where were you? (e.g. Rome)",
+  "repeaterDetailLocationSelectHint": "Select a place from suggestions",
+  "feedbackDistanceConfirmTitle": "Confirm submission",
+  "feedbackDistanceConfirmMessage": "The selected location is {distance} km from the repeater. Do you confirm you want to send this feedback under your responsibility?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Confirm",
+  "feedbackDistanceConfirmCancel": "Cancel",
+  "repeaterDetailSelectAccessInstance": "Select access instance",
+  "repeaterDetailSignalObservations": "Signal observations",
+  "repeaterDetailSignalObservationsPlaceholder": "How was the audio quality?",
+  "repeaterDetailSendLike": "Send Like",
+  "repeaterDetailReportIssue": "Report Issue",
+  "repeaterDetailRecentActivity": "Recent activity",
+  "reportIssueTitle": "Report",
+  "reportIssueHeadline": "Help us keep the data accurate",
+  "reportIssueDescription": "Did you find something wrong or missing in this repeater? Let us know what needs to be changed and we'll verify it.",
+  "reportIssueWhatToCorrect": "What would you like to correct or add?",
+  "reportIssuePlaceholder": "E.g. The CTCSS tone has changed to 88.5Hz, or the location is slightly further north, the manager is...",
+  "reportIssueVerifiedTitle": "Verified Submissions",
+  "reportIssueVerifiedDescription": "Your report will be reviewed by the regional coordinator before the public database is updated. Thank you for your contribution to the community.",
+  "reportIssueConfirmCheckbox": "I confirm that this information is correct based on my observation.",
+  "reportIssueSubmit": "Submit",
+  "reportIssueMinChars": "Minimum 10 characters required",
+  "reportIssueMaxChars": "Maximum 2000 characters",
+  "reportIssueSuccess": "Report submitted successfully",
+  "reportIssueError": "Error submitting the report",
+  "registrationPromptTitle": "Unlock full potential",
+  "registrationPromptDescription": "Join the Italian ham radio community and take your experience to the next level.",
+  "registrationBenefitInteractTitle": "Interact",
+  "registrationBenefitInteractDescription": "Rate repeaters and leave comments for others.",
+  "registrationBenefitFavoritesTitle": "Favorites",
+  "registrationBenefitFavoritesDescription": "Save your most used frequencies and repeaters.",
+  "registrationBenefitLogbookTitle": "Logbook",
+  "registrationBenefitLogbookDescription": "Keep track of your QSOs and maintain a personal history.",
+  "registrationSignInApple": "Sign in with Apple",
+  "registrationSignInGoogle": "Sign in with Google",
+  "registrationPromptFooter": "Free registration. No license required to browse public data.",
+  "postLoginOnboardingWelcome": "Welcome to",
+  "postLoginOnboardingQuestion": "Are you a licensed ham radio operator?",
+  "postLoginOnboardingHelpText": "This helps us customize your experience and show you the right frequencies.",
+  "postLoginOnboardingYesLicensed": "Yes, I am",
+  "postLoginOnboardingNoListener": "No, I'm just a listener",
+  "postLoginOnboardingCallsignTitle": "Identify yourself",
+  "postLoginOnboardingCallsignSubtitle": "Enter your official callsign to access network features.",
+  "postLoginOnboardingCallsignLabel": "Callsign",
+  "postLoginOnboardingCallsignHint": "E.g. IU2XYZ",
+  "postLoginOnboardingComplete": "Complete profile",
+  "postLoginOnboardingBack": "Back",
+  "postLoginOnboardingChangeInSettings": "You can change this later in settings.",
+  "postLoginOnboardingSwlTitle": "SWL Callsign",
+  "postLoginOnboardingSwlQuestion": "Do you have an official SWL callsign?",
+  "postLoginOnboardingSwlHelpText": "Short wave listener callsigns help identify you in the global monitoring community.",
+  "postLoginOnboardingSwlYes": "Yes, I have one",
+  "postLoginOnboardingSwlNo": "No, I don't have one",
+  "postLoginOnboardingSwlEnterCallsign": "Enter callsign",
+  "postLoginOnboardingSwlCallsignHint": "E.g. I1-12345-SWL",
+  "timeAgoJustNow": "just now",
+  "timeAgoMinutes": "{count, plural, one{1 minute ago} other{{count} minutes ago}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{1 hour ago} other{{count} hours ago}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{1 day ago} other{{count} days ago}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{1 week ago} other{{count} weeks ago}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{1 month ago} other{{count} months ago}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{1 year ago} other{{count} years ago}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Theme",
+  "profileThemeModeSystem": "System",
+  "profileThemeModeLight": "Light",
+  "profileThemeModeDark": "Dark",
+  "repeaterDetailBeFirstFeedback": "Be the first to leave feedback on this repeater!",
+  "repeaterDetailDistanceFromYou": "Distance from you",
+  "repeaterDistanceMapNoLocation": "Location not available",
+  "repeaterDetailNever": "Never",
+  "repeaterDetailInfo": "Information",
+  "repeaterDetailSource": "Source",
+  "repeaterDetailManager": "Manager",
+  "repeaterDetailSuggestManager": "Do you know the repeater manager? Report it!",
+  "repeaterDetailViewFeedbackMap": "Feedback map",
+  "repeaterDetailViewFeedbackMapSubtitle": "View where likes and reports have been recorded",
+  "repeaterDetailAltimetricProfile": "Altimetric profile",
+  "repeaterDetailAltimetricProfileSubtitle": "View the terrain profile between you and the repeater",
+  "repeaterDetailLosClear": "Clear line of sight between you and the repeater",
+  "repeaterDetailLosObstructed": "Line of sight obstructed by terrain",
+  "repeaterDetailTerrainProfile": "Terrain profile",
+  "repeaterDetailLineOfSight": "Line of sight",
+  "repeaterDetailTotalDistance": "Distance",
+  "repeaterDetailRepeaterElevation": "Repeater elevation",
+  "repeaterDetailYourElevation": "Your elevation",
+  "repeaterDetailYou": "You",
+  "repeaterDetailRepeaterLabel": "Repeater",
+
+  "repeaterDetailFunFacts": "Did you know?",
+  "repeaterDetailWavelength": "Wavelength",
+  "repeaterDetailWavelengthValue": "The wavelength of this repeater is {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Oscillations per second",
+  "repeaterDetailOscillationsValue": "The signal oscillates {value} times per second",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Propagation time",
+  "repeaterDetailPropagationTimeValue": "Your signal takes {value} to reach the repeater",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Wave cycles in transit",
+  "repeaterDetailWaveCyclesValue": "The wave completes {value} full cycles in transit",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userReportsTitle": "My reports",
+  "userReportsFilterAll": "All",
+  "userReportsFilterOpen": "Open",
+  "userReportsFilterClosed": "Closed",
+  "userReportsEmpty": "No reports submitted",
+  "userReportsEmptyDescription": "Your repeater reports will appear here",
+  "userReportsEmptyFiltered": "No reports with this filter",
+  "userReportsStatusPending": "Pending",
+  "userReportsStatusReviewed": "Under review",
+  "userReportsStatusResolved": "Resolved",
+  "userReportsStatusRejected": "Rejected",
+  "userReportsRetryBanner": "Unable to update the list",
+  "userReportsProfileTile": "My reports",
+  "userReportsProfileTileSubtitle": "View the status of your reports",
+  "userReportsError": "Error loading reports",
+  "userReportsCoordinatorResponse": "Coordinator response",
+
+  "potaTitle": "POTA Spots",
+  "potaSearchHint": "Search by activator, park or mode…",
+  "potaNoSpots": "No active POTA spots at the moment.",
+  "potaLoadError": "Unable to load POTA spots",
+  "potaRetry": "Retry",
+  "potaViewAll": "View all",
+  "potaActivator": "Activator",
+  "potaFrequency": "Frequency",
+  "potaMode": "Mode",
+  "potaPark": "Park",
+  "potaReference": "Reference",
+  "potaSpotter": "Spotted by",
+  "potaComments": "Comments",
+  "potaLastSpotted": "Last spotted",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "Unable to open QRZ.com",
+  "potaParkWebsite": "Park website",
+  "potaParkType": "Park type",
+  "potaLocation": "Location",
+  "potaCountry": "Country",
+  "potaFirstActivation": "First activation",
+  "potaBand": "Band",
+  "potaDistanceAway": "{distance} away",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count} active spots",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Language",
+  "profileLanguageSystem": "System",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français"
+}

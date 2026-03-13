@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/locale_helper.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/router/app_router.dart';
@@ -17,6 +18,7 @@ import 'package:hamqrg/src/features/authentication/provider/sign_in_google/sign_
 import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/src/features/profile/provider/locale_notifier/locale_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -139,6 +141,11 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
                     _buildSectionHeader(context, l10n.profileSectionSupport),
                     const Gap(12),
                     _buildContactUsButton(context, isDark),
+                    const Gap(24),
+                    // Language section
+                    _buildSectionHeader(context, l10n.profileLanguage),
+                    const Gap(12),
+                    _buildLanguageButton(context, ref, isDark),
                     const Gap(32),
                     // Version
                     ref.watch(packageInfoProvider).when(
@@ -312,6 +319,92 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
     );
   }
 
+  Widget _buildLanguageButton(
+    BuildContext context,
+    WidgetRef ref,
+    bool isDark,
+  ) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final l10n = context.localization;
+    final currentLocale = ref.watch(localeProvider).value;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: isDark
+              ? colorScheme.outline.withValues(alpha: 0.1)
+              : colorScheme.outline.withValues(alpha: 0.05),
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => showLanguagePicker(context, ref),
+          borderRadius: BorderRadius.circular(12),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Builder(
+                  builder: (context) {
+                    final flag = getLocaleFlag(currentLocale);
+                    if (flag.isNotEmpty) {
+                      return Text(
+                        flag,
+                        style: const TextStyle(fontSize: 28),
+                      );
+                    }
+                    return Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Icon(
+                        Icons.language,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    );
+                  },
+                ),
+                const Gap(16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.profileLanguage,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        getLocaleDisplayName(currentLocale, l10n),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.chevron_right,
+                  size: 20,
+                  color: colorScheme.onSurfaceVariant,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildContactUsButton(BuildContext context, bool isDark) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -334,13 +427,11 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
             final emailLaunchUri = Uri(
               scheme: 'mailto',
               path: 'info@auroradigital.it',
-              queryParameters: {
-                'subject': 'HamQRG-Support',
-              },
+              query: 'subject=HamQRG-Support',
             );
-            if (await canLaunchUrl(emailLaunchUri)) {
+            try {
               await launchUrl(emailLaunchUri);
-            } else {
+            } catch (_) {
               if (context.mounted) {
                 showErrorSnackbar(context, l10n.profileErrorOpeningEmail);
               }

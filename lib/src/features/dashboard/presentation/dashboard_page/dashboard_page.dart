@@ -10,6 +10,9 @@ import 'package:hamqrg/src/features/authentication/presentation/auth/show_regist
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
+import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -79,6 +82,7 @@ class DashboardPage extends HookConsumerWidget {
               builder: (context, scrollController) => _ContentSection(
                 statistics: state.statistics,
                 nearbyRepeaters: state.nearbyRepeaters,
+                potaSpots: state.potaSpots,
                 scrollController: scrollController,
               ),
             ),
@@ -125,11 +129,13 @@ class _ContentSection extends StatelessWidget {
   const _ContentSection({
     required this.statistics,
     required this.nearbyRepeaters,
+    required this.potaSpots,
     required this.scrollController,
   });
 
   final DashboardStatistics statistics;
   final List<Repeater> nearbyRepeaters;
+  final List<PotaSpot> potaSpots;
   final ScrollController scrollController;
 
   @override
@@ -178,6 +184,12 @@ class _ContentSection extends StatelessWidget {
                     _NearbySection(
                       nearbyRepeaters: nearbyRepeaters.take(10).toList(),
                     ),
+                    if (potaSpots.isNotEmpty) ...[
+                      const SizedBox(height: 24),
+                      _PotaSpotsSection(
+                        potaSpots: potaSpots.take(5).toList(),
+                      ),
+                    ],
                     const SizedBox(height: 16),
                   ],
                 ),
@@ -377,6 +389,187 @@ class _NearbySection extends StatelessWidget {
   }
 }
 
+class _PotaSpotsSection extends StatelessWidget {
+  const _PotaSpotsSection({required this.potaSpots});
+
+  final List<PotaSpot> potaSpots;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final l10n = context.localization;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.park, color: Colors.green.shade700, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  l10n.potaTitle,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            TextButton(
+              onPressed: () {
+                context.router.push(const PotaSpotsRoute());
+              },
+              child: Text(
+                l10n.potaViewAll,
+                style: TextStyle(
+                  color: colorScheme.primary,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        ...potaSpots.map(
+          (spot) => _PotaSpotItem(spot: spot),
+        ),
+      ],
+    );
+  }
+}
+
+class _PotaSpotItem extends StatelessWidget {
+  const _PotaSpotItem({required this.spot});
+
+  final PotaSpot spot;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final band = bandFromFrequencyKhz(spot.frequency);
+
+    return InkWell(
+      onTap: () {
+        context.router.push(
+          PotaSpotDetailRoute(
+            spotId: spot.spotId,
+            reference: spot.reference,
+          ),
+        );
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerHighest,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.1),
+          ),
+        ),
+        child: Row(
+          children: [
+            PotaSpotFreshnessIndicator(spotTime: spot.spotTime),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        spot.activator,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        spotTimeAgo(spot.spotTime),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.6),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Text(
+                        '${spot.frequency} kHz',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                      if (band != null) ...[
+                        const SizedBox(width: 6),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 1,
+                          ),
+                          decoration: BoxDecoration(
+                            color: colorScheme.primaryContainer,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            band,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onPrimaryContainer,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ],
+                      const SizedBox(width: 6),
+                      Text(
+                        spot.mode,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Container(
+                        width: 4,
+                        height: 4,
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
+                        decoration: BoxDecoration(
+                          color: colorScheme.outlineVariant,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          spot.reference,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurface.withValues(alpha: 0.6),
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.chevron_right,
+              color: colorScheme.onSurfaceVariant,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _NearbyRepeaterItem extends StatelessWidget {
   const _NearbyRepeaterItem({required this.repeater});
 
@@ -468,8 +661,7 @@ class _NearbyRepeaterItem extends StatelessWidget {
                       spacing: 6,
                       runSpacing: 4,
                       children: repeater.accesses.map((access) {
-                        final color =
-                            AccessModeHelper.getAccessModeColorObject(
+                        final color = AccessModeHelper.getAccessModeColorObject(
                           access.mode,
                         );
                         return Container(

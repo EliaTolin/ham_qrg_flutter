@@ -5,6 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_fr.dart';
 import 'app_localizations_it.dart';
 
 // ignore_for_file: type=lint
@@ -92,7 +95,12 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('it')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('es'),
+    Locale('fr'),
+    Locale('it')
+  ];
 
   /// No description provided for @error.
   ///
@@ -1023,6 +1031,12 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Preferiti'**
   String get homeNavFavorites;
+
+  /// No description provided for @homeNavMap.
+  ///
+  /// In it, this message translates to:
+  /// **'Mappa'**
+  String get homeNavMap;
 
   /// No description provided for @homeNavProfile.
   ///
@@ -2097,6 +2111,186 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Risposta coordinatore'**
   String get userReportsCoordinatorResponse;
+
+  /// No description provided for @potaTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'POTA Spots'**
+  String get potaTitle;
+
+  /// No description provided for @potaSearchHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Cerca per attivatore, parco o modo…'**
+  String get potaSearchHint;
+
+  /// No description provided for @potaNoSpots.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuno spot POTA attivo al momento.'**
+  String get potaNoSpots;
+
+  /// No description provided for @potaLoadError.
+  ///
+  /// In it, this message translates to:
+  /// **'Impossibile caricare gli spot POTA'**
+  String get potaLoadError;
+
+  /// No description provided for @potaRetry.
+  ///
+  /// In it, this message translates to:
+  /// **'Riprova'**
+  String get potaRetry;
+
+  /// No description provided for @potaViewAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi tutto'**
+  String get potaViewAll;
+
+  /// No description provided for @potaActivator.
+  ///
+  /// In it, this message translates to:
+  /// **'Attivatore'**
+  String get potaActivator;
+
+  /// No description provided for @potaFrequency.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza'**
+  String get potaFrequency;
+
+  /// No description provided for @potaMode.
+  ///
+  /// In it, this message translates to:
+  /// **'Modo'**
+  String get potaMode;
+
+  /// No description provided for @potaPark.
+  ///
+  /// In it, this message translates to:
+  /// **'Parco'**
+  String get potaPark;
+
+  /// No description provided for @potaReference.
+  ///
+  /// In it, this message translates to:
+  /// **'Riferimento'**
+  String get potaReference;
+
+  /// No description provided for @potaSpotter.
+  ///
+  /// In it, this message translates to:
+  /// **'Spottato da'**
+  String get potaSpotter;
+
+  /// No description provided for @potaComments.
+  ///
+  /// In it, this message translates to:
+  /// **'Commenti'**
+  String get potaComments;
+
+  /// No description provided for @potaLastSpotted.
+  ///
+  /// In it, this message translates to:
+  /// **'Ultimo spot'**
+  String get potaLastSpotted;
+
+  /// No description provided for @potaOpenQrz.
+  ///
+  /// In it, this message translates to:
+  /// **'QRZ.com'**
+  String get potaOpenQrz;
+
+  /// No description provided for @potaQrzError.
+  ///
+  /// In it, this message translates to:
+  /// **'Impossibile aprire QRZ.com'**
+  String get potaQrzError;
+
+  /// No description provided for @potaParkWebsite.
+  ///
+  /// In it, this message translates to:
+  /// **'Sito parco'**
+  String get potaParkWebsite;
+
+  /// No description provided for @potaParkType.
+  ///
+  /// In it, this message translates to:
+  /// **'Tipo parco'**
+  String get potaParkType;
+
+  /// No description provided for @potaLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'Posizione'**
+  String get potaLocation;
+
+  /// No description provided for @potaCountry.
+  ///
+  /// In it, this message translates to:
+  /// **'Paese'**
+  String get potaCountry;
+
+  /// No description provided for @potaFirstActivation.
+  ///
+  /// In it, this message translates to:
+  /// **'Prima attivazione'**
+  String get potaFirstActivation;
+
+  /// No description provided for @potaBand.
+  ///
+  /// In it, this message translates to:
+  /// **'Banda'**
+  String get potaBand;
+
+  /// No description provided for @potaDistanceAway.
+  ///
+  /// In it, this message translates to:
+  /// **'{distance} di distanza'**
+  String potaDistanceAway(String distance);
+
+  /// No description provided for @potaSpotsCount.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} spot attivi'**
+  String potaSpotsCount(int count);
+
+  /// No description provided for @profileLanguage.
+  ///
+  /// In it, this message translates to:
+  /// **'Lingua'**
+  String get profileLanguage;
+
+  /// No description provided for @profileLanguageSystem.
+  ///
+  /// In it, this message translates to:
+  /// **'Sistema'**
+  String get profileLanguageSystem;
+
+  /// No description provided for @profileLanguageItalian.
+  ///
+  /// In it, this message translates to:
+  /// **'Italiano'**
+  String get profileLanguageItalian;
+
+  /// No description provided for @profileLanguageEnglish.
+  ///
+  /// In it, this message translates to:
+  /// **'English'**
+  String get profileLanguageEnglish;
+
+  /// No description provided for @profileLanguageSpanish.
+  ///
+  /// In it, this message translates to:
+  /// **'Español'**
+  String get profileLanguageSpanish;
+
+  /// No description provided for @profileLanguageFrench.
+  ///
+  /// In it, this message translates to:
+  /// **'Français'**
+  String get profileLanguageFrench;
 }
 
 class _AppLocalizationsDelegate
@@ -2110,7 +2304,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['it'].contains(locale.languageCode);
+      <String>['en', 'es', 'fr', 'it'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -2119,6 +2313,12 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+    case 'fr':
+      return AppLocalizationsFr();
     case 'it':
       return AppLocalizationsIt();
   }

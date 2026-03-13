@@ -12,6 +12,9 @@ import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
 import 'package:hamqrg/config/constants/map_keys.dart';
 import 'package:hamqrg/config/constants/map_layers.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/map/controller/repeaters_map_controller.dart';
@@ -93,6 +96,27 @@ class RepeatersMapPage extends HookConsumerWidget {
         return null;
       },
       [mapState?.repeaters, isStyleLoaded.value],
+    );
+
+    // Update POTA GeoJSON source when POTA spots change
+    useEffect(
+      () {
+        if (mapController.value != null && isStyleLoaded.value) {
+          _updatePotaGeoJsonSource(
+            mapController.value!,
+            mapState?.potaSpots ?? [],
+            mapState?.potaParkCache ?? {},
+            mapState?.showPotaSpots ?? false,
+          );
+        }
+        return null;
+      },
+      [
+        mapState?.potaSpots,
+        mapState?.potaParkCache,
+        mapState?.showPotaSpots,
+        isStyleLoaded.value,
+      ],
     );
 
     return Scaffold(
@@ -230,12 +254,20 @@ class RepeatersMapPage extends HookConsumerWidget {
     await Future.wait([
       _addMarkerImages(mapboxMap),
       _addStyleLayers(mapboxMap),
+      _addPotaLogoImage(mapboxMap),
+      _addPotaStyleLayer(mapboxMap),
     ]);
 
     // Update source with current repeaters
     final mapState = ref.read(repeatersMapControllerProvider).value;
     if (mapState != null) {
       await _updateGeoJsonSource(mapboxMap, mapState.repeaters);
+      await _updatePotaGeoJsonSource(
+        mapboxMap,
+        mapState.potaSpots,
+        mapState.potaParkCache,
+        mapState.showPotaSpots,
+      );
     }
   }
 
@@ -438,6 +470,129 @@ class RepeatersMapPage extends HookConsumerWidget {
     });
   }
 
+  /// Add POTA logo as a Mapbox style image
+  Future<void> _addPotaLogoImage(MapboxMap mapboxMap) async {
+    try {
+      final exists = await mapboxMap.style.hasStyleImage(MapKeys.potaLogoImage);
+      if (exists) return;
+
+      final bytes = await rootBundle.load('assets/images/pota_logo.png');
+      final imageData = bytes.buffer.asUint8List();
+
+      final buffer = await ui.ImmutableBuffer.fromUint8List(imageData);
+      final descriptor = await ui.ImageDescriptor.encoded(buffer);
+
+      await mapboxMap.style.addStyleImage(
+        MapKeys.potaLogoImage,
+        1,
+        MbxImage(
+          width: descriptor.width,
+          height: descriptor.height,
+          data: imageData,
+        ),
+        false,
+        [],
+        [],
+        null,
+      );
+    } catch (e) {
+      log('Error adding POTA logo image: $e');
+    }
+  }
+
+  /// Add POTA style layer from asset
+  Future<void> _addPotaStyleLayer(MapboxMap mapboxMap) async {
+    try {
+      final layerExists = await mapboxMap.style.styleLayerExists(
+        MapKeys.potaLayer,
+      );
+      if (!layerExists) {
+        await _addLayerFromAsset(mapboxMap, MapLayers.potaLayer);
+      }
+    } catch (e) {
+      log('Error adding POTA style layer: $e');
+    }
+  }
+
+  /// Update or create the POTA GeoJSON source
+  Future<void> _updatePotaGeoJsonSource(
+    MapboxMap mapboxMap,
+    List<PotaSpot> spots,
+    Map<String, PotaPark> parkCache,
+    bool showPotaSpots,
+  ) async {
+    try {
+      final geoJson = showPotaSpots
+          ? _potaSpotsToGeoJson(spots, parkCache)
+          : _emptyGeoJson();
+
+      final sourceExists = await mapboxMap.style.styleSourceExists(
+        MapKeys.potaSource,
+      );
+
+      if (!sourceExists) {
+        await mapboxMap.style.addSource(
+          GeoJsonSource(
+            id: MapKeys.potaSource,
+            data: geoJson,
+          ),
+        );
+      } else {
+        final source =
+            await mapboxMap.style.getSource(MapKeys.potaSource) as GeoJsonSource?;
+        if (source != null) {
+          await source.updateGeoJSON(geoJson);
+        }
+      }
+    } catch (e) {
+      log('Error updating POTA GeoJSON source: $e');
+    }
+  }
+
+  /// Convert POTA spots to GeoJSON using park coordinates
+  String _potaSpotsToGeoJson(
+    List<PotaSpot> spots,
+    Map<String, PotaPark> parkCache,
+  ) {
+    final features = <Map<String, dynamic>>[];
+
+    for (final spot in spots) {
+      final park = parkCache[spot.reference];
+      if (park == null || park.latitude == null || park.longitude == null) {
+        continue;
+      }
+
+      features.add({
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [park.longitude, park.latitude],
+        },
+        'properties': {
+          'spotId': spot.spotId,
+          'activator': spot.activator,
+          'frequency': spot.frequency,
+          'mode': spot.mode,
+          'reference': spot.reference,
+          'name': spot.name,
+          'is_pota': true,
+        },
+      });
+    }
+
+    return jsonEncode({
+      'type': 'FeatureCollection',
+      'features': features,
+    });
+  }
+
+  String _emptyGeoJson() {
+    return jsonEncode({
+      'type': 'FeatureCollection',
+      'features': <Map<String, dynamic>>[],
+    });
+  }
+
   /// Handle tap on the map
   Future<void> _handleMapTap(
     MapboxMap mapboxMap,
@@ -454,7 +609,17 @@ class RepeatersMapPage extends HookConsumerWidget {
 
       if (!context.mounted) return;
 
-      // First check for cluster tap
+      // First check for POTA spot tap
+      final potaHandled = await _handlePotaTap(
+        mapboxMap,
+        screenCoordinate,
+        context,
+      );
+      if (potaHandled) return;
+
+      if (!context.mounted) return;
+
+      // Then check for cluster tap
       final clusterHandled = await _handleClusterTap(
         mapboxMap,
         screenCoordinate,
@@ -669,6 +834,63 @@ class RepeatersMapPage extends HookConsumerWidget {
     }
   }
 
+  /// Handle tap on a POTA spot marker
+  Future<bool> _handlePotaTap(
+    MapboxMap mapboxMap,
+    ScreenCoordinate screenCoordinate,
+    BuildContext context,
+  ) async {
+    try {
+      final features = await mapboxMap.queryRenderedFeatures(
+        RenderedQueryGeometry.fromScreenCoordinate(screenCoordinate),
+        RenderedQueryOptions(layerIds: [MapKeys.potaLayer]),
+      );
+
+      if (features.isEmpty) return false;
+
+      final feature = features.first;
+      if (feature == null) return false;
+
+      final featureMap =
+          feature.queriedFeature.feature as Map<dynamic, dynamic>;
+      final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
+      if (properties == null) return false;
+
+      final spotId = properties['spotId'] as int?;
+      final reference = properties['reference'] as String?;
+      if (spotId == null || reference == null) return false;
+
+      // Center on the point
+      final geometry = featureMap['geometry'] as Map<dynamic, dynamic>?;
+      if (geometry != null) {
+        final coords = geometry['coordinates'] as List<dynamic>?;
+        if (coords != null && coords.length >= 2) {
+          await mapboxMap.flyTo(
+            CameraOptions(
+              center: Point(
+                coordinates: Position(
+                  (coords[0] as num).toDouble(),
+                  (coords[1] as num).toDouble(),
+                ),
+              ),
+            ),
+            MapAnimationOptions(duration: 200),
+          );
+        }
+      }
+
+      if (context.mounted) {
+        await context.router.push(
+          PotaSpotDetailRoute(spotId: spotId, reference: reference),
+        );
+      }
+      return true;
+    } catch (e) {
+      log('Error handling POTA tap: $e');
+      return false;
+    }
+  }
+
   /// Load repeaters based on visible map bounds
   Future<void> _loadRepeatersForVisibleBounds(
     WidgetRef ref,
@@ -799,6 +1021,22 @@ class RepeatersMapPage extends HookConsumerWidget {
               ),
             ),
           ),
+        // POTA toggle button
+        Positioned(
+          left: 16,
+          bottom: MediaQuery.of(context).padding.bottom + 32,
+          child: FloatingActionButton.small(
+            heroTag: 'potaToggle',
+            backgroundColor: (mapState?.showPotaSpots ?? false)
+                ? Theme.of(context).colorScheme.primaryContainer
+                : null,
+            foregroundColor: (mapState?.showPotaSpots ?? false)
+                ? Theme.of(context).colorScheme.onPrimaryContainer
+                : null,
+            onPressed: () => notifier.togglePotaSpots(),
+            child: const Icon(Icons.park),
+          ),
+        ),
         // My location button
         if (mapController != null &&
             mapState?.latitude != null &&

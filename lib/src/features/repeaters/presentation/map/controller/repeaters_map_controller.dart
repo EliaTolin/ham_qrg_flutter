@@ -1,3 +1,5 @@
+import 'package:hamqrg/src/features/pota/data/repository/pota_repository.dart';
+import 'package:hamqrg/src/features/pota/provider/get_pota_spots/get_pota_spots_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
@@ -172,6 +174,40 @@ class RepeatersMapController extends _$RepeatersMapController {
       );
     }
     return position;
+  }
+
+  /// Toggle POTA spots visibility on the map
+  void togglePotaSpots() {
+    final currentState = state.value;
+    if (currentState == null) return;
+
+    final newShow = !currentState.showPotaSpots;
+    state = AsyncData(currentState.copyWith(showPotaSpots: newShow));
+
+    if (newShow && currentState.potaSpots.isEmpty) {
+      loadPotaSpots();
+    }
+  }
+
+  /// Load POTA spots and their park coordinates for the map
+  Future<void> loadPotaSpots() async {
+    final currentState = state.value;
+    if (currentState == null) return;
+
+    try {
+      final spots = await ref.read(getPotaSpotsProvider.future);
+      final repository = ref.read(potaRepositoryProvider);
+      final parks = await repository.getParksForSpots(spots);
+
+      state = AsyncData(
+        currentState.copyWith(
+          potaSpots: spots,
+          potaParkCache: parks,
+        ),
+      );
+    } catch (_) {
+      // Silently fail — POTA is secondary to repeaters
+    }
   }
 
   Future<List<Repeater>> _fetchRepeatersFromBounds({

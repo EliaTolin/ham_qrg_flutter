@@ -1,4 +1,5 @@
 {
+  "@@locale": "it",
   "error": "Errore",
   "error_message": "Si è verificato un errore durante il caricamento",
   "error_message_retry": "Si è verificato un errore durante il caricamento. Riprova più tardi",
@@ -226,6 +227,7 @@
   "homeNavHome": "Home",
   "homeNavList": "Lista",
   "homeNavFavorites": "Preferiti",
+  "homeNavMap": "Mappa",
   "homeNavProfile": "Profilo",
   "favoritesTitle": "I miei preferiti",
   "favoritesSearchHint": "Cerca ripetitori salvati...",
@@ -521,5 +523,50 @@
   "userReportsProfileTile": "I miei report",
   "userReportsProfileTileSubtitle": "Visualizza lo stato delle tue segnalazioni",
   "userReportsError": "Errore durante il caricamento dei report",
-  "userReportsCoordinatorResponse": "Risposta coordinatore"
+  "userReportsCoordinatorResponse": "Risposta coordinatore",
+
+  "potaTitle": "POTA Spots",
+  "potaSearchHint": "Cerca per attivatore, parco o modo…",
+  "potaNoSpots": "Nessuno spot POTA attivo al momento.",
+  "potaLoadError": "Impossibile caricare gli spot POTA",
+  "potaRetry": "Riprova",
+  "potaViewAll": "Vedi tutto",
+  "potaActivator": "Attivatore",
+  "potaFrequency": "Frequenza",
+  "potaMode": "Modo",
+  "potaPark": "Parco",
+  "potaReference": "Riferimento",
+  "potaSpotter": "Spottato da",
+  "potaComments": "Commenti",
+  "potaLastSpotted": "Ultimo spot",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "Impossibile aprire QRZ.com",
+  "potaParkWebsite": "Sito parco",
+  "potaParkType": "Tipo parco",
+  "potaLocation": "Posizione",
+  "potaCountry": "Paese",
+  "potaFirstActivation": "Prima attivazione",
+  "potaBand": "Banda",
+  "potaDistanceAway": "{distance} di distanza",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count} spot attivi",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Lingua",
+  "profileLanguageSystem": "Sistema",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français"
 }

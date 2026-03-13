@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamqrg/l10n/app_localizations.dart';
 import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/profile/provider/locale_notifier/locale_notifier.dart';
 import 'package:hamqrg/src/features/profile/provider/theme_mode_notifier/theme_mode_notifier.dart';
 import 'package:hamqrg/themes/app_theme.dart';
 
@@ -15,6 +16,7 @@ class HamQRG extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appRouter = ref.read(appRouterProvider);
     final themeMode = ref.watch(themeModeProvider).value;
+    final appLocale = ref.watch(localeProvider).value;
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter.config(
@@ -29,6 +31,7 @@ class HamQRG extends ConsumerWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      locale: appLocale,
       title: 'HamQRG',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,

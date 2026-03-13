@@ -5,6 +5,8 @@ import 'package:hamqrg/src/features/authentication/presentation/auth/change_pass
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashboard_page.dart';
 import 'package:hamqrg/src/features/home/presentation/home_page/home_page.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/post_login_onboarding_page.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/pota_spot_detail_page.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/pota_spots_page.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/profile_screen.dart';
 import 'package:hamqrg/src/features/profile/presentation/user_settings/user_settings_screen.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/repeater_detail_page.dart';
@@ -53,6 +55,11 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(
                   path: 'repeater/:repeaterId/map',
                   page: RepeaterDetailMapRoute.page,
+                ),
+                AutoRoute(path: 'pota', page: PotaSpotsRoute.page),
+                AutoRoute(
+                  path: 'pota/:spotId/:reference',
+                  page: PotaSpotDetailRoute.page,
                 ),
               ],
             ),

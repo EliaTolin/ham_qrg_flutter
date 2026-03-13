@@ -512,6 +512,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get homeNavFavorites => 'Preferiti';
 
   @override
+  String get homeNavMap => 'Mappa';
+
+  @override
   String get homeNavProfile => 'Profilo';
 
   @override
@@ -1145,4 +1148,98 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Risposta coordinatore';
+
+  @override
+  String get potaTitle => 'POTA Spots';
+
+  @override
+  String get potaSearchHint => 'Cerca per attivatore, parco o modo…';
+
+  @override
+  String get potaNoSpots => 'Nessuno spot POTA attivo al momento.';
+
+  @override
+  String get potaLoadError => 'Impossibile caricare gli spot POTA';
+
+  @override
+  String get potaRetry => 'Riprova';
+
+  @override
+  String get potaViewAll => 'Vedi tutto';
+
+  @override
+  String get potaActivator => 'Attivatore';
+
+  @override
+  String get potaFrequency => 'Frequenza';
+
+  @override
+  String get potaMode => 'Modo';
+
+  @override
+  String get potaPark => 'Parco';
+
+  @override
+  String get potaReference => 'Riferimento';
+
+  @override
+  String get potaSpotter => 'Spottato da';
+
+  @override
+  String get potaComments => 'Commenti';
+
+  @override
+  String get potaLastSpotted => 'Ultimo spot';
+
+  @override
+  String get potaOpenQrz => 'QRZ.com';
+
+  @override
+  String get potaQrzError => 'Impossibile aprire QRZ.com';
+
+  @override
+  String get potaParkWebsite => 'Sito parco';
+
+  @override
+  String get potaParkType => 'Tipo parco';
+
+  @override
+  String get potaLocation => 'Posizione';
+
+  @override
+  String get potaCountry => 'Paese';
+
+  @override
+  String get potaFirstActivation => 'Prima attivazione';
+
+  @override
+  String get potaBand => 'Banda';
+
+  @override
+  String potaDistanceAway(String distance) {
+    return '$distance di distanza';
+  }
+
+  @override
+  String potaSpotsCount(int count) {
+    return '$count spot attivi';
+  }
+
+  @override
+  String get profileLanguage => 'Lingua';
+
+  @override
+  String get profileLanguageSystem => 'Sistema';
+
+  @override
+  String get profileLanguageItalian => 'Italiano';
+
+  @override
+  String get profileLanguageEnglish => 'English';
+
+  @override
+  String get profileLanguageSpanish => 'Español';
+
+  @override
+  String get profileLanguageFrench => 'Français';
 }
