@@ -6,6 +6,7 @@ import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashbo
 import 'package:hamqrg/src/features/home/presentation/home_page/home_page.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/post_login_onboarding_page.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/pota_spot_detail_page.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spots_map_page/pota_spots_map_page.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/pota_spots_page.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/profile_screen.dart';
 import 'package:hamqrg/src/features/profile/presentation/user_settings/user_settings_screen.dart';
