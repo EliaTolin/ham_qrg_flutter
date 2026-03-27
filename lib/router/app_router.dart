@@ -57,6 +57,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                   page: RepeaterDetailMapRoute.page,
                 ),
                 AutoRoute(path: 'pota', page: PotaSpotsRoute.page),
+                AutoRoute(path: 'pota/map', page: PotaSpotsMapRoute.page),
                 AutoRoute(
                   path: 'pota/:spotId/:reference',
                   page: PotaSpotDetailRoute.page,

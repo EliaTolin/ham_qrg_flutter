@@ -349,7 +349,7 @@ We believe that adding feature education and a guided first-repeater interaction
 | User kills app mid-onboarding | Resume from last completed step on next open |
 | User denies location, then grants later in settings | Nearest repeater feature activates on next app open |
 | No internet during onboarding | Show welcome screens (offline), skip first-discovery and Telegram steps, proceed to dashboard |
-| Anonymous user (no sign-in) | Show welcome screens + location permission, skip profile setup, show first discovery + Telegram invite |
+| Anonymous user (no sign-in) | Flusso completo: welcome screens → location → profile setup (salvato in locale) → first discovery → Telegram → dashboard |
 | User already completed onboarding (app update) | Do not re-show onboarding |
 | Very slow connection | Timeout on nearest-repeater fetch after 5s, show fallback CTA |
 | POTA API unreachable | Hide POTA section in discovery screen, show only nearest repeater |
@@ -430,7 +430,7 @@ We believe that adding feature education and a guided first-repeater interaction
 |---|----------|---------------|--------|
 | 1 | What is the current Day-1 / Day-7 retention rate? | PM/Analytics | Needs baseline |
 | 2 | ~~Is the disclaimer legally required on first open?~~ | — | **Risolto:** crediti IZ8WNH integrati nella Card 1 dell'onboarding; dialog eliminata |
-| 3 | Should anonymous users see the full onboarding or shortened version? | PM | Open |
+| 3 | ~~Should anonymous users see the full onboarding or shortened version?~~ | — | **Risolto:** tutti vedono il flusso completo; profile setup salvato in locale (SharedPreferences) |
 | 4 | Should we collect preferred radio modes during onboarding? | PM | Open (useful for v2 personalization) |
 | 5 | Should welcome screens be skippable with a single "Skip All" or require swiping? | PM/Design | Open |
 | 6 | What illustrations/graphics style for onboarding cards? | Design | Open |
