@@ -28,6 +28,12 @@ class PotaSpotsPage extends ConsumerWidget {
             Text(l10n.potaTitle),
           ],
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.map_outlined),
+            onPressed: () => context.router.push(const PotaSpotsMapRoute()),
+          ),
+        ],
       ),
       body: asyncState.when(
         loading: () => const Center(

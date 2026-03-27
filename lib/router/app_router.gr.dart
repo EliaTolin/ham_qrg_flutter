@@ -178,6 +178,22 @@ class PotaSpotDetailRouteArgs {
 }
 
 /// generated route for
+/// [PotaSpotsMapPage]
+class PotaSpotsMapRoute extends PageRouteInfo<void> {
+  const PotaSpotsMapRoute({List<PageRouteInfo>? children})
+      : super(PotaSpotsMapRoute.name, initialChildren: children);
+
+  static const String name = 'PotaSpotsMapRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PotaSpotsMapPage();
+    },
+  );
+}
+
+/// generated route for
 /// [PotaSpotsPage]
 class PotaSpotsRoute extends PageRouteInfo<void> {
   const PotaSpotsRoute({List<PageRouteInfo>? children})
