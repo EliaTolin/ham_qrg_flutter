@@ -10,6 +10,7 @@ import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
 import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
+import 'package:hamqrg/src/features/onboarding/provider/sync_onboarding_profile_provider.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hamqrg/src/features/splashscreen/provider/set_onboarding_seen/set_onboarding_seen_provider.dart';
@@ -75,6 +76,9 @@ class AuthScreen extends ConsumerWidget {
                     }
 
                     await ref.read(setOnboardingSeenProvider.future);
+
+                    // Sync local onboarding profile data to Supabase
+                    await ref.read(syncOnboardingProfileProvider.future);
 
                     log('AuthScreen: checking needsOnboarding...');
                     try {

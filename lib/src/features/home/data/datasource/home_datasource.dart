@@ -3,6 +3,4 @@ abstract class HomeDatasource {
   Future<void> setTelegramGroupMember();
   Future<DateTime?> getTelegramInviteLastShownDate();
   Future<void> setTelegramInviteLastShownDate(DateTime time);
-  Future<bool> hasSeenDisclaimer();
-  Future<void> setDisclaimerSeen();
 }

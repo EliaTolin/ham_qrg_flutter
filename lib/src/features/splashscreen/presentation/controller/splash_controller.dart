@@ -11,6 +11,7 @@ import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/provider/anonymous_signin/anonymous_signin_provider.dart';
 import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
+import 'package:hamqrg/src/features/onboarding/provider/needs_onboarding_provider.dart';
 import 'package:hamqrg/src/features/params/provider/get_params/get_params_provider.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_onboarding/check_needs_onboarding_provider.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
@@ -52,7 +53,14 @@ class SplashController extends _$SplashController {
       log('userId: $userId');
       _configureSentryUser(userId);
 
-      // // Check if user is not anonymous and needs onboarding
+      // Check if first-launch onboarding is needed (for all users)
+      final needsFirstLaunchOnboarding =
+          await ref.read(needsOnboardingProvider.future);
+      if (needsFirstLaunchOnboarding) {
+        return const SplashAction.navigate(OnboardingRoute());
+      }
+
+      // Check if user is not anonymous and needs post-login onboarding
       final isAnonymous = await ref.read(isAnonymousProvider.future);
       if (!isAnonymous) {
         final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);

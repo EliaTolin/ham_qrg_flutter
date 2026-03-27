@@ -34,7 +34,7 @@ final class PotaSpotsControllerProvider
 }
 
 String _$potaSpotsControllerHash() =>
-    r'679b69917ea5c765314713c73cdedcf077dab960';
+    r'f4e5d7c3d0fdfed4bff9d3e4a690ac52d9bbbd84';
 
 abstract class _$PotaSpotsController extends $AsyncNotifier<PotaSpotsState> {
   FutureOr<PotaSpotsState> build();

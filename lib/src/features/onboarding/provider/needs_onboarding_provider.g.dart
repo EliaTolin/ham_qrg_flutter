@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'need_to_show_disclaimer_provider.dart';
+part of 'needs_onboarding_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,25 +9,25 @@ part of 'need_to_show_disclaimer_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(needToShowDisclaimer)
-final needToShowDisclaimerProvider = NeedToShowDisclaimerProvider._();
+@ProviderFor(needsOnboarding)
+final needsOnboardingProvider = NeedsOnboardingProvider._();
 
-final class NeedToShowDisclaimerProvider
+final class NeedsOnboardingProvider
     extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
     with $FutureModifier<bool>, $FutureProvider<bool> {
-  NeedToShowDisclaimerProvider._()
+  NeedsOnboardingProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
-          name: r'needToShowDisclaimerProvider',
+          name: r'needsOnboardingProvider',
           isAutoDispose: true,
           dependencies: null,
           $allTransitiveDependencies: null,
         );
 
   @override
-  String debugGetCreateSourceHash() => _$needToShowDisclaimerHash();
+  String debugGetCreateSourceHash() => _$needsOnboardingHash();
 
   @$internal
   @override
@@ -36,9 +36,8 @@ final class NeedToShowDisclaimerProvider
 
   @override
   FutureOr<bool> create(Ref ref) {
-    return needToShowDisclaimer(ref);
+    return needsOnboarding(ref);
   }
 }
 
-String _$needToShowDisclaimerHash() =>
-    r'a8aa700a851cf4809e1b71e1ea4345026149339c';
+String _$needsOnboardingHash() => r'fa8ab9310377525facf23a18fc78db983ca1a990';
