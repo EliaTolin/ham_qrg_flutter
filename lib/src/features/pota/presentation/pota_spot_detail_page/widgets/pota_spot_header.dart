@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart';
+import 'package:hamqrg/src/features/pota/presentation/widgets/pota_mode_badge.dart'
+    show normalizePotaMode;
 
 class PotaSpotHeader extends StatelessWidget {
   const PotaSpotHeader({required this.spot, super.key});
@@ -123,9 +125,9 @@ class PotaSpotHeader extends StatelessWidget {
                           label: band,
                           filled: true,
                         ),
-                      if (spot.mode.trim().isNotEmpty)
+                      if (normalizePotaMode(spot.mode) case final mode?)
                         _HeaderBadge(
-                          label: spot.mode.trim(),
+                          label: mode,
                           filled: true,
                         ),
                     ],

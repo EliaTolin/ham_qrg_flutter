@@ -191,6 +191,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get repeatersSortFrequency => 'Fréquence';
 
   @override
+  String repeatersNearbyCount(int count) {
+    return '$count ripetitori vicini';
+  }
+
+  @override
+  String repeatersResultsCount(int count) {
+    return '$count risultati';
+  }
+
+  @override
   String get repeatersMapRetry => 'Réessayer';
 
   @override

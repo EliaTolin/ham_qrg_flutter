@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hamqrg/src/features/pota/data/repository/pota_repository.dart';
 import 'package:hamqrg/src/features/pota/provider/get_pota_spots/get_pota_spots_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
@@ -13,7 +15,10 @@ part 'repeaters_map_controller.g.dart';
 class RepeatersMapController extends _$RepeatersMapController {
   @override
   FutureOr<RepeatersMapState> build() async {
-    return _initalLoad();
+    final mapState = await _initalLoad();
+    // Load POTA spots in background (non-blocking)
+    unawaited(loadPotaSpots());
+    return mapState;
   }
 
   Future<void> toggleModeFilter({
@@ -174,19 +179,6 @@ class RepeatersMapController extends _$RepeatersMapController {
       );
     }
     return position;
-  }
-
-  /// Toggle POTA spots visibility on the map
-  void togglePotaSpots() {
-    final currentState = state.value;
-    if (currentState == null) return;
-
-    final newShow = !currentState.showPotaSpots;
-    state = AsyncData(currentState.copyWith(showPotaSpots: newShow));
-
-    if (newShow && currentState.potaSpots.isEmpty) {
-      loadPotaSpots();
-    }
   }
 
   /// Load POTA spots and their park coordinates for the map

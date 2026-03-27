@@ -7,6 +7,8 @@ import 'package:hamqrg/src/features/pota/data/repository/pota_repository.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/controller/state/pota_spots_sort_order.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/controller/state/pota_spots_state.dart';
+import 'package:hamqrg/src/features/pota/presentation/widgets/pota_mode_badge.dart'
+    show normalizePotaMode;
 import 'package:hamqrg/src/features/pota/provider/get_pota_spots/get_pota_spots_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -141,7 +143,7 @@ class PotaSpotsController extends _$PotaSpotsController {
     // Mode filter
     if (s.selectedMode != null) {
       results = results
-          .where((spot) => spot.mode.trim().toUpperCase() == s.selectedMode)
+          .where((spot) => normalizePotaMode(spot.mode) == s.selectedMode)
           .toList();
     }
 
@@ -209,8 +211,8 @@ class PotaSpotsController extends _$PotaSpotsController {
   List<String> _extractModes(List<PotaSpot> spots) {
     final modes = <String>{};
     for (final spot in spots) {
-      final mode = spot.mode.trim().toUpperCase();
-      if (mode.isEmpty) continue;
+      final mode = normalizePotaMode(spot.mode);
+      if (mode == null) continue;
       modes.add(mode);
     }
     const priority = ['CW', 'SSB'];

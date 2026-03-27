@@ -15,6 +15,7 @@ import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart'
     show spotTimeAgo;
+import 'package:hamqrg/src/features/pota/presentation/widgets/pota_mode_badge.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -642,26 +643,9 @@ class _PotaSpotItem extends StatelessWidget {
                               ),
                             ),
                           ],
-                          if (spot.mode.trim().isNotEmpty) ...[
+                          if (normalizePotaMode(spot.mode) != null) ...[
                             const SizedBox(width: 6),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 6,
-                                vertical: 1,
-                              ),
-                              decoration: BoxDecoration(
-                                color: colorScheme.tertiaryContainer,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Text(
-                                spot.mode.trim(),
-                                style: theme.textTheme.labelSmall?.copyWith(
-                                  color: colorScheme.onTertiaryContainer,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
+                            PotaModeBadge(mode: spot.mode),
                           ],
                         ],
                       ),
