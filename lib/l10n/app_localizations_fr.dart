@@ -1286,4 +1286,103 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileLanguageFrench => 'Français';
+
+  @override
+  String get onboardingSkip => 'Salta';
+
+  @override
+  String get onboardingGetStarted => 'Inizia';
+
+  @override
+  String get onboardingNext => 'Avanti';
+
+  @override
+  String get onboardingWelcomeTitle1 => 'Trova i ripetitori vicino a te';
+
+  @override
+  String get onboardingWelcomeSubtitle1 =>
+      'Scopri i ponti radio attivi nella tua zona, con frequenze, toni e dettagli tecnici.';
+
+  @override
+  String get onboardingWelcomeCredits =>
+      'Dati dei ponti radio forniti da IZ8WNH';
+
+  @override
+  String get onboardingWelcomeTitle2 => 'Filtra per modo';
+
+  @override
+  String get onboardingWelcomeSubtitle2 =>
+      'Analogico, DMR, C4FM, D-STAR — trova subito il ripetitore che fa per te.';
+
+  @override
+  String get onboardingWelcomeTitle3 => 'Spot POTA in tempo reale';
+
+  @override
+  String get onboardingWelcomeSubtitle3 =>
+      'Segui le attivazioni Parks on the Air con aggiornamenti live, filtri per banda e distanza.';
+
+  @override
+  String get onboardingWelcomeTitle4 => 'Salva i preferiti';
+
+  @override
+  String get onboardingWelcomeSubtitle4 =>
+      'Tieni a portata di mano i ripetitori che usi di più per accesso rapido.';
+
+  @override
+  String get onboardingLocationTitle => 'Posizione';
+
+  @override
+  String get onboardingLocationSubtitle =>
+      'Usiamo la tua posizione per mostrarti i ripetitori e le attivazioni POTA vicine.';
+
+  @override
+  String get onboardingLocationEnable => 'Attiva Posizione';
+
+  @override
+  String get onboardingLocationSkip => 'Non ora';
+
+  @override
+  String get onboardingDiscoveryTitle => 'Il tuo primo ripetitore';
+
+  @override
+  String get onboardingDiscoverySubtitle => 'Ecco cosa c\'è vicino a te!';
+
+  @override
+  String get onboardingDiscoveryViewDetails => 'Vedi Dettagli';
+
+  @override
+  String get onboardingDiscoveryViewSpot => 'Vedi Spot';
+
+  @override
+  String get onboardingDiscoveryExploreMap => 'Esplora la Mappa';
+
+  @override
+  String get onboardingDiscoveryNoLocation =>
+      'Esplora la mappa per trovare ripetitori e attivazioni POTA';
+
+  @override
+  String get onboardingDiscoveryNearbyRepeater => 'Ripetitore vicino';
+
+  @override
+  String get onboardingDiscoveryLivePota => 'Spot POTA attivo';
+
+  @override
+  String get onboardingDiscoveryNoRepeaters =>
+      'Nessun ripetitore trovato nelle vicinanze';
+
+  @override
+  String get onboardingTelegramTitle => 'Unisciti alla community';
+
+  @override
+  String get onboardingTelegramSubtitle =>
+      'Entra nel gruppo Telegram di HamQRG per ricevere aggiornamenti, segnalare ripetitori e conoscere altri radioamatori.';
+
+  @override
+  String get onboardingTelegramJoin => 'Unisciti al Gruppo Telegram';
+
+  @override
+  String get onboardingTelegramLater => 'Forse dopo';
+
+  @override
+  String get onboardingTelegramAlreadyMember => 'Sono già membro';
 }

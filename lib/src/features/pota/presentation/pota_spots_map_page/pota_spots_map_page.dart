@@ -234,8 +234,10 @@ class PotaSpotsMapPage extends HookConsumerWidget {
     WidgetRef ref,
   ) async {
     try {
+      log('POTA map: updating source with ${spots.length} spots');
       final repository = ref.read(potaRepositoryProvider);
       final parks = await repository.getParksForSpots(spots);
+      log('POTA map: loaded ${parks.length} parks with coordinates');
 
       final features = <Map<String, dynamic>>[];
       for (final spot in spots) {
@@ -265,12 +267,20 @@ class PotaSpotsMapPage extends HookConsumerWidget {
         'features': features,
       });
 
+      log('POTA map: ${features.length} features with coordinates');
+
       final sourceExists =
           await mapboxMap.style.styleSourceExists(MapKeys.potaSource);
       if (sourceExists) {
         final source = await mapboxMap.style.getSource(MapKeys.potaSource)
             as GeoJsonSource?;
         await source?.updateGeoJSON(geoJson);
+        log('POTA map: updated existing source');
+      } else {
+        await mapboxMap.style.addSource(
+          GeoJsonSource(id: MapKeys.potaSource, data: geoJson),
+        );
+        log('POTA map: created new source');
       }
     } catch (e) {
       log('Error updating POTA source: $e');

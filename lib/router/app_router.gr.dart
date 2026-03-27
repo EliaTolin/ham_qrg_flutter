@@ -91,6 +91,22 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OnboardingPage]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute({List<PageRouteInfo>? children})
+      : super(OnboardingRoute.name, initialChildren: children);
+
+  static const String name = 'OnboardingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OnboardingPage();
+    },
+  );
+}
+
+/// generated route for
 /// [PostLoginOnboardingPage]
 class PostLoginOnboardingRoute extends PageRouteInfo<void> {
   const PostLoginOnboardingRoute({List<PageRouteInfo>? children})

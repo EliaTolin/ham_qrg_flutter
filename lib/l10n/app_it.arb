@@ -576,7 +576,7 @@
       }
     }
   },
-  "potaSpotsCount": "{count} spot attivi",
+  "potaSpotsCount": "{count} spot",
   "potaFilterAll": "Tutte",
   "potaFilterBand": "Banda",
   "potaFilterMode": "Modo",
@@ -594,5 +594,43 @@
   "profileLanguageItalian": "Italiano",
   "profileLanguageEnglish": "English",
   "profileLanguageSpanish": "Español",
-  "profileLanguageFrench": "Français"
+  "profileLanguageFrench": "Français",
+
+  "onboardingSkip": "Salta",
+  "onboardingGetStarted": "Inizia",
+  "onboardingNext": "Avanti",
+
+  "onboardingWelcomeTitle1": "Trova i ripetitori vicino a te",
+  "onboardingWelcomeSubtitle1": "Scopri i ponti radio attivi nella tua zona, con frequenze, toni e dettagli tecnici.",
+  "onboardingWelcomeCredits": "Dati dei ponti radio forniti da IZ8WNH",
+
+  "onboardingWelcomeTitle2": "Filtra per modo",
+  "onboardingWelcomeSubtitle2": "Analogico, DMR, C4FM, D-STAR — trova subito il ripetitore che fa per te.",
+
+  "onboardingWelcomeTitle3": "Spot POTA in tempo reale",
+  "onboardingWelcomeSubtitle3": "Segui le attivazioni Parks on the Air con aggiornamenti live, filtri per banda e distanza.",
+
+  "onboardingWelcomeTitle4": "Salva i preferiti",
+  "onboardingWelcomeSubtitle4": "Tieni a portata di mano i ripetitori che usi di più per accesso rapido.",
+
+  "onboardingLocationTitle": "Posizione",
+  "onboardingLocationSubtitle": "Usiamo la tua posizione per mostrarti i ripetitori e le attivazioni POTA vicine.",
+  "onboardingLocationEnable": "Attiva Posizione",
+  "onboardingLocationSkip": "Non ora",
+
+  "onboardingDiscoveryTitle": "Il tuo primo ripetitore",
+  "onboardingDiscoverySubtitle": "Ecco cosa c'è vicino a te!",
+  "onboardingDiscoveryViewDetails": "Vedi Dettagli",
+  "onboardingDiscoveryViewSpot": "Vedi Spot",
+  "onboardingDiscoveryExploreMap": "Esplora la Mappa",
+  "onboardingDiscoveryNoLocation": "Esplora la mappa per trovare ripetitori e attivazioni POTA",
+  "onboardingDiscoveryNearbyRepeater": "Ripetitore vicino",
+  "onboardingDiscoveryLivePota": "Spot POTA attivo",
+  "onboardingDiscoveryNoRepeaters": "Nessun ripetitore trovato nelle vicinanze",
+
+  "onboardingTelegramTitle": "Unisciti alla community",
+  "onboardingTelegramSubtitle": "Entra nel gruppo Telegram di HamQRG per ricevere aggiornamenti, segnalare ripetitori e conoscere altri radioamatori.",
+  "onboardingTelegramJoin": "Unisciti al Gruppo Telegram",
+  "onboardingTelegramLater": "Forse dopo",
+  "onboardingTelegramAlreadyMember": "Sono già membro"
 }

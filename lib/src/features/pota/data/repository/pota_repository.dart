@@ -16,9 +16,28 @@ class PotaRepository {
   /// In-memory cache for park data to avoid repeated API calls.
   final Map<String, PotaPark> _parkCache = {};
 
+  /// Returns active spots, deduplicated by activator + reference.
+  /// Keeps only the most recent spot for each unique activation.
   Future<List<PotaSpot>> getActiveSpots() async {
     final models = await _datasource.getActiveSpots();
-    return models.map(_mapper.spotFromModel).toList();
+    final allSpots = models.map(_mapper.spotFromModel).toList();
+
+    // Deduplicate: keep the most recent spot per activator+reference
+    final now = DateTime.now();
+    const cutoff = Duration(minutes: 30);
+
+    final seen = <String, PotaSpot>{};
+    for (final spot in allSpots) {
+      if (now.difference(spot.spotTime) > cutoff) continue;
+      final key = '${spot.activator}_${spot.reference}';
+      final existing = seen[key];
+      if (existing == null || spot.spotTime.isAfter(existing.spotTime)) {
+        seen[key] = spot;
+      }
+    }
+
+    return seen.values.toList()
+      ..sort((a, b) => b.spotTime.compareTo(a.spotTime));
   }
 
   Future<PotaPark> getPark(String reference) async {

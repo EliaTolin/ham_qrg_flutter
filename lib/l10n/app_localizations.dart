@@ -2295,7 +2295,7 @@ abstract class AppLocalizations {
   /// No description provided for @potaSpotsCount.
   ///
   /// In it, this message translates to:
-  /// **'{count} spot attivi'**
+  /// **'{count} spot'**
   String potaSpotsCount(int count);
 
   /// No description provided for @potaFilterAll.
@@ -2363,6 +2363,186 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Français'**
   String get profileLanguageFrench;
+
+  /// No description provided for @onboardingSkip.
+  ///
+  /// In it, this message translates to:
+  /// **'Salta'**
+  String get onboardingSkip;
+
+  /// No description provided for @onboardingGetStarted.
+  ///
+  /// In it, this message translates to:
+  /// **'Inizia'**
+  String get onboardingGetStarted;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In it, this message translates to:
+  /// **'Avanti'**
+  String get onboardingNext;
+
+  /// No description provided for @onboardingWelcomeTitle1.
+  ///
+  /// In it, this message translates to:
+  /// **'Trova i ripetitori vicino a te'**
+  String get onboardingWelcomeTitle1;
+
+  /// No description provided for @onboardingWelcomeSubtitle1.
+  ///
+  /// In it, this message translates to:
+  /// **'Scopri i ponti radio attivi nella tua zona, con frequenze, toni e dettagli tecnici.'**
+  String get onboardingWelcomeSubtitle1;
+
+  /// No description provided for @onboardingWelcomeCredits.
+  ///
+  /// In it, this message translates to:
+  /// **'Dati dei ponti radio forniti da IZ8WNH'**
+  String get onboardingWelcomeCredits;
+
+  /// No description provided for @onboardingWelcomeTitle2.
+  ///
+  /// In it, this message translates to:
+  /// **'Filtra per modo'**
+  String get onboardingWelcomeTitle2;
+
+  /// No description provided for @onboardingWelcomeSubtitle2.
+  ///
+  /// In it, this message translates to:
+  /// **'Analogico, DMR, C4FM, D-STAR — trova subito il ripetitore che fa per te.'**
+  String get onboardingWelcomeSubtitle2;
+
+  /// No description provided for @onboardingWelcomeTitle3.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot POTA in tempo reale'**
+  String get onboardingWelcomeTitle3;
+
+  /// No description provided for @onboardingWelcomeSubtitle3.
+  ///
+  /// In it, this message translates to:
+  /// **'Segui le attivazioni Parks on the Air con aggiornamenti live, filtri per banda e distanza.'**
+  String get onboardingWelcomeSubtitle3;
+
+  /// No description provided for @onboardingWelcomeTitle4.
+  ///
+  /// In it, this message translates to:
+  /// **'Salva i preferiti'**
+  String get onboardingWelcomeTitle4;
+
+  /// No description provided for @onboardingWelcomeSubtitle4.
+  ///
+  /// In it, this message translates to:
+  /// **'Tieni a portata di mano i ripetitori che usi di più per accesso rapido.'**
+  String get onboardingWelcomeSubtitle4;
+
+  /// No description provided for @onboardingLocationTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Posizione'**
+  String get onboardingLocationTitle;
+
+  /// No description provided for @onboardingLocationSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Usiamo la tua posizione per mostrarti i ripetitori e le attivazioni POTA vicine.'**
+  String get onboardingLocationSubtitle;
+
+  /// No description provided for @onboardingLocationEnable.
+  ///
+  /// In it, this message translates to:
+  /// **'Attiva Posizione'**
+  String get onboardingLocationEnable;
+
+  /// No description provided for @onboardingLocationSkip.
+  ///
+  /// In it, this message translates to:
+  /// **'Non ora'**
+  String get onboardingLocationSkip;
+
+  /// No description provided for @onboardingDiscoveryTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Il tuo primo ripetitore'**
+  String get onboardingDiscoveryTitle;
+
+  /// No description provided for @onboardingDiscoverySubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Ecco cosa c\'è vicino a te!'**
+  String get onboardingDiscoverySubtitle;
+
+  /// No description provided for @onboardingDiscoveryViewDetails.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi Dettagli'**
+  String get onboardingDiscoveryViewDetails;
+
+  /// No description provided for @onboardingDiscoveryViewSpot.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi Spot'**
+  String get onboardingDiscoveryViewSpot;
+
+  /// No description provided for @onboardingDiscoveryExploreMap.
+  ///
+  /// In it, this message translates to:
+  /// **'Esplora la Mappa'**
+  String get onboardingDiscoveryExploreMap;
+
+  /// No description provided for @onboardingDiscoveryNoLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'Esplora la mappa per trovare ripetitori e attivazioni POTA'**
+  String get onboardingDiscoveryNoLocation;
+
+  /// No description provided for @onboardingDiscoveryNearbyRepeater.
+  ///
+  /// In it, this message translates to:
+  /// **'Ripetitore vicino'**
+  String get onboardingDiscoveryNearbyRepeater;
+
+  /// No description provided for @onboardingDiscoveryLivePota.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot POTA attivo'**
+  String get onboardingDiscoveryLivePota;
+
+  /// No description provided for @onboardingDiscoveryNoRepeaters.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ripetitore trovato nelle vicinanze'**
+  String get onboardingDiscoveryNoRepeaters;
+
+  /// No description provided for @onboardingTelegramTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Unisciti alla community'**
+  String get onboardingTelegramTitle;
+
+  /// No description provided for @onboardingTelegramSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Entra nel gruppo Telegram di HamQRG per ricevere aggiornamenti, segnalare ripetitori e conoscere altri radioamatori.'**
+  String get onboardingTelegramSubtitle;
+
+  /// No description provided for @onboardingTelegramJoin.
+  ///
+  /// In it, this message translates to:
+  /// **'Unisciti al Gruppo Telegram'**
+  String get onboardingTelegramJoin;
+
+  /// No description provided for @onboardingTelegramLater.
+  ///
+  /// In it, this message translates to:
+  /// **'Forse dopo'**
+  String get onboardingTelegramLater;
+
+  /// No description provided for @onboardingTelegramAlreadyMember.
+  ///
+  /// In it, this message translates to:
+  /// **'Sono già membro'**
+  String get onboardingTelegramAlreadyMember;
 }
 
 class _AppLocalizationsDelegate
