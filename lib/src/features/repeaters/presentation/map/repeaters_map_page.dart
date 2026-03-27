@@ -106,7 +106,6 @@ class RepeatersMapPage extends HookConsumerWidget {
             mapController.value!,
             mapState?.potaSpots ?? [],
             mapState?.potaParkCache ?? {},
-            mapState?.showPotaSpots ?? false,
           );
         }
         return null;
@@ -114,7 +113,6 @@ class RepeatersMapPage extends HookConsumerWidget {
       [
         mapState?.potaSpots,
         mapState?.potaParkCache,
-        mapState?.showPotaSpots,
         isStyleLoaded.value,
       ],
     );
@@ -266,7 +264,6 @@ class RepeatersMapPage extends HookConsumerWidget {
         mapboxMap,
         mapState.potaSpots,
         mapState.potaParkCache,
-        mapState.showPotaSpots,
       );
     }
   }
@@ -519,12 +516,9 @@ class RepeatersMapPage extends HookConsumerWidget {
     MapboxMap mapboxMap,
     List<PotaSpot> spots,
     Map<String, PotaPark> parkCache,
-    bool showPotaSpots,
   ) async {
     try {
-      final geoJson = showPotaSpots
-          ? _potaSpotsToGeoJson(spots, parkCache)
-          : _emptyGeoJson();
+      final geoJson = _potaSpotsToGeoJson(spots, parkCache);
 
       final sourceExists = await mapboxMap.style.styleSourceExists(
         MapKeys.potaSource,
@@ -583,13 +577,6 @@ class RepeatersMapPage extends HookConsumerWidget {
     return jsonEncode({
       'type': 'FeatureCollection',
       'features': features,
-    });
-  }
-
-  String _emptyGeoJson() {
-    return jsonEncode({
-      'type': 'FeatureCollection',
-      'features': <Map<String, dynamic>>[],
     });
   }
 
@@ -919,174 +906,179 @@ class RepeatersMapPage extends HookConsumerWidget {
     RepeatersMapController notifier,
     MapboxMap? mapController,
   ) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final bottomPadding = MediaQuery.of(context).padding.bottom + 24;
+
     return Stack(
       children: [
-        // Header with gradient and filters
+        // Top overlay: frosted header with filters + info
         Positioned(
           top: 0,
           left: 0,
           right: 0,
           child: SafeArea(
-            bottom: false,
-            child: ModeFilterChipsHorizontal(
-              allLabel: context.localization.repeaterModeAllmode,
-              selectedModes: mapState?.selectedModes ?? {},
-              onModeToggled: (mode) async {
-                if (mapController != null) {
-                  final visibleBounds = await _getVisibleBounds(mapController);
-                  await notifier.toggleModeFilter(
-                    lat1: visibleBounds.lat1,
-                    lon1: visibleBounds.lon1,
-                    lat2: visibleBounds.lat2,
-                    lon2: visibleBounds.lon2,
-                    mode: mode,
-                  );
-                }
-              },
-              onAllSelected: () async {
-                if (mapController != null) {
-                  final visibleBounds = await _getVisibleBounds(mapController);
-                  await notifier.clearAllModes(
-                    lat1: visibleBounds.lat1,
-                    lon1: visibleBounds.lon1,
-                    lat2: visibleBounds.lat2,
-                    lon2: visibleBounds.lon2,
-                  );
-                }
-              },
-            ),
-          ),
-        ),
-        // Error banners
-        if (mapState?.locationError != null)
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: SafeArea(
-              child: PermissionBanner(
-                errorType: mapState!.locationError!,
-                onRetry: () async {
-                  ref.invalidate(repeatersMapControllerProvider);
-                },
-              ),
-            ),
-          ),
-        if (mapState?.hasLoadError ?? false)
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: SafeArea(
-              child: InfoBanner(
-                icon: const Icon(Icons.warning_amber_rounded),
-                label: context.localization.repeatersMapGenericError,
-                trailing: TextButton(
-                  onPressed: () async {
-                    if (mapController != null) {
-                      await _loadRepeatersForVisibleBounds(ref, mapController);
-                    }
-                  },
-                  child: Text(context.localization.repeatersMapRetry),
-                ),
-              ),
-            ),
-          ),
-        if (!asyncState.isLoading &&
-            !(mapState?.hasLoadError ?? false) &&
-            mapState?.locationError == null &&
-            (mapState?.repeaters.isEmpty ?? false))
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: SafeArea(
-              child: InfoBanner(
-                icon: const Icon(Icons.location_off_outlined),
-                label: context.localization.repeatersMapEmpty,
-              ),
-            ),
-          ),
-        // Summary chip
-        if (!(mapState?.hasLoadError ?? false) &&
-            mapState?.locationError == null &&
-            (mapState?.repeaters.isNotEmpty ?? false))
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: SafeArea(
-              child: SummaryChip(
-                count: mapState!.repeaters.length,
-              ),
-            ),
-          ),
-        // POTA toggle button
-        Positioned(
-          left: 16,
-          bottom: MediaQuery.of(context).padding.bottom + 32,
-          child: GestureDetector(
-            onTap: () => notifier.togglePotaSpots(),
-            child: Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surface,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: (mapState?.showPotaSpots ?? false)
-                      ? Colors.green.shade700
-                      : Colors.transparent,
-                  width: 3,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.15),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
+              bottom: false,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Filter chips
+                  ModeFilterChipsHorizontal(
+                    allLabel: context.localization.repeaterModeAllmode,
+                    selectedModes: mapState?.selectedModes ?? {},
+                    onModeToggled: (mode) async {
+                      if (mapController != null) {
+                        final visibleBounds =
+                            await _getVisibleBounds(mapController);
+                        await notifier.toggleModeFilter(
+                          lat1: visibleBounds.lat1,
+                          lon1: visibleBounds.lon1,
+                          lat2: visibleBounds.lat2,
+                          lon2: visibleBounds.lon2,
+                          mode: mode,
+                        );
+                      }
+                    },
+                    onAllSelected: () async {
+                      if (mapController != null) {
+                        final visibleBounds =
+                            await _getVisibleBounds(mapController);
+                        await notifier.clearAllModes(
+                          lat1: visibleBounds.lat1,
+                          lon1: visibleBounds.lon1,
+                          lat2: visibleBounds.lat2,
+                          lon2: visibleBounds.lon2,
+                        );
+                      }
+                    },
                   ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Opacity(
-                  opacity:
-                      (mapState?.showPotaSpots ?? false) ? 1.0 : 0.4,
-                  child: Image.asset('assets/images/pota_logo.png'),
-                ),
-              ),
-            ),
-          ),
-        ),
-        // My location button
-        if (mapController != null &&
-            mapState?.latitude != null &&
-            mapState?.longitude != null &&
-            mapState?.locationError == null)
-          Positioned(
-            right: 16,
-            bottom: MediaQuery.of(context).padding.bottom + 32,
-            child: FloatingActionButton.small(
-              heroTag: 'myLocation',
-              onPressed: () async {
-                final position = await notifier.refreshUserPosition();
-                await mapController.flyTo(
-                  CameraOptions(
-                    center: Point(
-                      coordinates: Position(
-                        position.longitude,
-                        position.latitude,
+                  const SizedBox(height: 8),
+                  // Banner / Summary (below filter chips)
+                  if (mapState?.locationError != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: PermissionBanner(
+                        errorType: mapState!.locationError!,
+                        onRetry: () async {
+                          ref.invalidate(repeatersMapControllerProvider);
+                        },
+                      ),
+                    )
+                  else if (mapState?.hasLoadError ?? false)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: InfoBanner(
+                        icon: const Icon(Icons.warning_amber_rounded),
+                        label: context.localization.repeatersMapGenericError,
+                        trailing: TextButton(
+                          onPressed: () async {
+                            if (mapController != null) {
+                              await _loadRepeatersForVisibleBounds(
+                                ref,
+                                mapController,
+                              );
+                            }
+                          },
+                          child:
+                              Text(context.localization.repeatersMapRetry),
+                        ),
+                      ),
+                    )
+                  else if (!asyncState.isLoading &&
+                      mapState?.locationError == null &&
+                      (mapState?.repeaters.isEmpty ?? false))
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: InfoBanner(
+                        icon: const Icon(Icons.location_off_outlined),
+                        label: context.localization.repeatersMapEmpty,
+                      ),
+                    )
+                  else if (mapState?.repeaters.isNotEmpty ?? false)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: SummaryChip(
+                        count: mapState!.repeaters.length,
                       ),
                     ),
-                    zoom: 10,
-                  ),
-                  MapAnimationOptions(duration: 1000),
-                );
-              },
-              child: const Icon(Icons.my_location),
+                  const SizedBox(height: 8),
+                ],
+              ),
             ),
           ),
+        // Bottom buttons
+        Positioned(
+          left: 16,
+          right: 16,
+          bottom: bottomPadding,
+          child: Row(
+            children: [
+              const Spacer(),
+              // My location
+              if (mapController != null &&
+                  mapState?.latitude != null &&
+                  mapState?.longitude != null &&
+                  mapState?.locationError == null)
+                _MapCircleButton(
+                  onTap: () async {
+                    final position = await notifier.refreshUserPosition();
+                    await mapController.flyTo(
+                      CameraOptions(
+                        center: Point(
+                          coordinates: Position(
+                            position.longitude,
+                            position.latitude,
+                          ),
+                        ),
+                        zoom: 10,
+                      ),
+                      MapAnimationOptions(duration: 1000),
+                    );
+                  },
+                  child: Icon(
+                    Icons.my_location,
+                    color: colorScheme.primary,
+                    size: 22,
+                  ),
+                ),
+            ],
+          ),
+        ),
       ],
+    );
+  }
+}
+
+class _MapCircleButton extends StatelessWidget {
+  const _MapCircleButton({
+    required this.onTap,
+    required this.child,
+  });
+
+  final VoidCallback onTap;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 48,
+        height: 48,
+        decoration: BoxDecoration(
+          color: colorScheme.surface,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.12),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Center(child: child),
+      ),
     );
   }
 }

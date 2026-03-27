@@ -450,6 +450,18 @@ abstract class AppLocalizations {
   /// **'Frequenza'**
   String get repeatersSortFrequency;
 
+  /// No description provided for @repeatersNearbyCount.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} ripetitori vicini'**
+  String repeatersNearbyCount(int count);
+
+  /// No description provided for @repeatersResultsCount.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} risultati'**
+  String repeatersResultsCount(int count);
+
   /// No description provided for @repeatersMapRetry.
   ///
   /// In it, this message translates to:

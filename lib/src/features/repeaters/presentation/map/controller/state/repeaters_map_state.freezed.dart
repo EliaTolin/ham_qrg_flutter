@@ -21,7 +21,6 @@ mixin _$RepeatersMapState {
   bool get hasLoadError;
   Set<AccessMode> get selectedModes;
   Repeater? get selectedRepeater;
-  bool get showPotaSpots;
   List<PotaSpot> get potaSpots;
   Map<String, PotaPark> get potaParkCache;
 
@@ -51,8 +50,6 @@ mixin _$RepeatersMapState {
                 .equals(other.selectedModes, selectedModes) &&
             (identical(other.selectedRepeater, selectedRepeater) ||
                 other.selectedRepeater == selectedRepeater) &&
-            (identical(other.showPotaSpots, showPotaSpots) ||
-                other.showPotaSpots == showPotaSpots) &&
             const DeepCollectionEquality().equals(other.potaSpots, potaSpots) &&
             const DeepCollectionEquality()
                 .equals(other.potaParkCache, potaParkCache));
@@ -68,13 +65,12 @@ mixin _$RepeatersMapState {
       hasLoadError,
       const DeepCollectionEquality().hash(selectedModes),
       selectedRepeater,
-      showPotaSpots,
       const DeepCollectionEquality().hash(potaSpots),
       const DeepCollectionEquality().hash(potaParkCache));
 
   @override
   String toString() {
-    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater, showPotaSpots: $showPotaSpots, potaSpots: $potaSpots, potaParkCache: $potaParkCache)';
+    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater, potaSpots: $potaSpots, potaParkCache: $potaParkCache)';
   }
 }
 
@@ -92,7 +88,6 @@ abstract mixin class $RepeatersMapStateCopyWith<$Res> {
       bool hasLoadError,
       Set<AccessMode> selectedModes,
       Repeater? selectedRepeater,
-      bool showPotaSpots,
       List<PotaSpot> potaSpots,
       Map<String, PotaPark> potaParkCache});
 
@@ -119,7 +114,6 @@ class _$RepeatersMapStateCopyWithImpl<$Res>
     Object? hasLoadError = null,
     Object? selectedModes = null,
     Object? selectedRepeater = freezed,
-    Object? showPotaSpots = null,
     Object? potaSpots = null,
     Object? potaParkCache = null,
   }) {
@@ -152,10 +146,6 @@ class _$RepeatersMapStateCopyWithImpl<$Res>
           ? _self.selectedRepeater
           : selectedRepeater // ignore: cast_nullable_to_non_nullable
               as Repeater?,
-      showPotaSpots: null == showPotaSpots
-          ? _self.showPotaSpots
-          : showPotaSpots // ignore: cast_nullable_to_non_nullable
-              as bool,
       potaSpots: null == potaSpots
           ? _self.potaSpots
           : potaSpots // ignore: cast_nullable_to_non_nullable
@@ -283,7 +273,6 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             bool hasLoadError,
             Set<AccessMode> selectedModes,
             Repeater? selectedRepeater,
-            bool showPotaSpots,
             List<PotaSpot> potaSpots,
             Map<String, PotaPark> potaParkCache)?
         $default, {
@@ -300,7 +289,6 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             _that.hasLoadError,
             _that.selectedModes,
             _that.selectedRepeater,
-            _that.showPotaSpots,
             _that.potaSpots,
             _that.potaParkCache);
       case _:
@@ -331,7 +319,6 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             bool hasLoadError,
             Set<AccessMode> selectedModes,
             Repeater? selectedRepeater,
-            bool showPotaSpots,
             List<PotaSpot> potaSpots,
             Map<String, PotaPark> potaParkCache)
         $default,
@@ -347,7 +334,6 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             _that.hasLoadError,
             _that.selectedModes,
             _that.selectedRepeater,
-            _that.showPotaSpots,
             _that.potaSpots,
             _that.potaParkCache);
       case _:
@@ -377,7 +363,6 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             bool hasLoadError,
             Set<AccessMode> selectedModes,
             Repeater? selectedRepeater,
-            bool showPotaSpots,
             List<PotaSpot> potaSpots,
             Map<String, PotaPark> potaParkCache)?
         $default,
@@ -393,7 +378,6 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             _that.hasLoadError,
             _that.selectedModes,
             _that.selectedRepeater,
-            _that.showPotaSpots,
             _that.potaSpots,
             _that.potaParkCache);
       case _:
@@ -413,7 +397,6 @@ class _RepeatersMapState implements RepeatersMapState {
       this.hasLoadError = false,
       final Set<AccessMode> selectedModes = const <AccessMode>{},
       this.selectedRepeater,
-      this.showPotaSpots = false,
       final List<PotaSpot> potaSpots = const <PotaSpot>[],
       final Map<String, PotaPark> potaParkCache = const <String, PotaPark>{}})
       : _repeaters = repeaters,
@@ -450,9 +433,6 @@ class _RepeatersMapState implements RepeatersMapState {
 
   @override
   final Repeater? selectedRepeater;
-  @override
-  @JsonKey()
-  final bool showPotaSpots;
   final List<PotaSpot> _potaSpots;
   @override
   @JsonKey()
@@ -498,8 +478,6 @@ class _RepeatersMapState implements RepeatersMapState {
                 .equals(other._selectedModes, _selectedModes) &&
             (identical(other.selectedRepeater, selectedRepeater) ||
                 other.selectedRepeater == selectedRepeater) &&
-            (identical(other.showPotaSpots, showPotaSpots) ||
-                other.showPotaSpots == showPotaSpots) &&
             const DeepCollectionEquality()
                 .equals(other._potaSpots, _potaSpots) &&
             const DeepCollectionEquality()
@@ -516,13 +494,12 @@ class _RepeatersMapState implements RepeatersMapState {
       hasLoadError,
       const DeepCollectionEquality().hash(_selectedModes),
       selectedRepeater,
-      showPotaSpots,
       const DeepCollectionEquality().hash(_potaSpots),
       const DeepCollectionEquality().hash(_potaParkCache));
 
   @override
   String toString() {
-    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater, showPotaSpots: $showPotaSpots, potaSpots: $potaSpots, potaParkCache: $potaParkCache)';
+    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater, potaSpots: $potaSpots, potaParkCache: $potaParkCache)';
   }
 }
 
@@ -542,7 +519,6 @@ abstract mixin class _$RepeatersMapStateCopyWith<$Res>
       bool hasLoadError,
       Set<AccessMode> selectedModes,
       Repeater? selectedRepeater,
-      bool showPotaSpots,
       List<PotaSpot> potaSpots,
       Map<String, PotaPark> potaParkCache});
 
@@ -570,7 +546,6 @@ class __$RepeatersMapStateCopyWithImpl<$Res>
     Object? hasLoadError = null,
     Object? selectedModes = null,
     Object? selectedRepeater = freezed,
-    Object? showPotaSpots = null,
     Object? potaSpots = null,
     Object? potaParkCache = null,
   }) {
@@ -603,10 +578,6 @@ class __$RepeatersMapStateCopyWithImpl<$Res>
           ? _self.selectedRepeater
           : selectedRepeater // ignore: cast_nullable_to_non_nullable
               as Repeater?,
-      showPotaSpots: null == showPotaSpots
-          ? _self.showPotaSpots
-          : showPotaSpots // ignore: cast_nullable_to_non_nullable
-              as bool,
       potaSpots: null == potaSpots
           ? _self._potaSpots
           : potaSpots // ignore: cast_nullable_to_non_nullable

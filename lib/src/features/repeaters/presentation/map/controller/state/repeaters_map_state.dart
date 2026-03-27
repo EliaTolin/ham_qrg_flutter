@@ -17,7 +17,6 @@ abstract class RepeatersMapState with _$RepeatersMapState {
     @Default(false) bool hasLoadError,
     @Default(<AccessMode>{}) Set<AccessMode> selectedModes,
     Repeater? selectedRepeater,
-    @Default(false) bool showPotaSpots,
     @Default(<PotaSpot>[]) List<PotaSpot> potaSpots,
     @Default(<String, PotaPark>{}) Map<String, PotaPark> potaParkCache,
   }) = _RepeatersMapState;
