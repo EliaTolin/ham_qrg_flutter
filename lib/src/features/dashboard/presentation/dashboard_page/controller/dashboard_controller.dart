@@ -33,7 +33,10 @@ class DashboardController extends _$DashboardController {
     // Load POTA spots (non-blocking)
     final potaFuture = ref.read(getPotaSpotsProvider.future).then(
           (spots) => (spots: spots, error: false),
-          onError: (_) => (spots: <PotaSpot>[], error: true),
+          onError: (e) {
+            log('POTA spots error: $e');
+            return (spots: <PotaSpot>[], error: true);
+          },
         );
 
     try {

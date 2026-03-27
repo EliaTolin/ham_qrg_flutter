@@ -206,6 +206,11 @@
   "homeMyFavorites": "I miei preferiti",
   "homeNearby": "Vicino a te",
   "homeViewAll": "Vedi tutto",
+  "dashboardTabRepeaters": "Ripetitori",
+  "dashboardTabPota": "POTA",
+  "dashboardNearbyEmpty": "Nessun ripetitore nelle vicinanze",
+  "dashboardViewAllRepeaters": "Vedi tutti i ripetitori",
+  "dashboardViewAllPotaSpots": "Vedi tutti gli spot POTA",
   "homeStations": "{count} stazioni",
   "@homeStations": {
     "placeholders": {

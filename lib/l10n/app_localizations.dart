@@ -990,6 +990,36 @@ abstract class AppLocalizations {
   /// **'Vedi tutto'**
   String get homeViewAll;
 
+  /// No description provided for @dashboardTabRepeaters.
+  ///
+  /// In it, this message translates to:
+  /// **'Ripetitori'**
+  String get dashboardTabRepeaters;
+
+  /// No description provided for @dashboardTabPota.
+  ///
+  /// In it, this message translates to:
+  /// **'POTA'**
+  String get dashboardTabPota;
+
+  /// No description provided for @dashboardNearbyEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ripetitore nelle vicinanze'**
+  String get dashboardNearbyEmpty;
+
+  /// No description provided for @dashboardViewAllRepeaters.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi tutti i ripetitori'**
+  String get dashboardViewAllRepeaters;
+
+  /// No description provided for @dashboardViewAllPotaSpots.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi tutti gli spot POTA'**
+  String get dashboardViewAllPotaSpots;
+
   /// No description provided for @homeStations.
   ///
   /// In it, this message translates to:

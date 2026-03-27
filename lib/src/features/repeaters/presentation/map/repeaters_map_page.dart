@@ -1025,16 +1025,37 @@ class RepeatersMapPage extends HookConsumerWidget {
         Positioned(
           left: 16,
           bottom: MediaQuery.of(context).padding.bottom + 32,
-          child: FloatingActionButton.small(
-            heroTag: 'potaToggle',
-            backgroundColor: (mapState?.showPotaSpots ?? false)
-                ? Theme.of(context).colorScheme.primaryContainer
-                : null,
-            foregroundColor: (mapState?.showPotaSpots ?? false)
-                ? Theme.of(context).colorScheme.onPrimaryContainer
-                : null,
-            onPressed: () => notifier.togglePotaSpots(),
-            child: const Icon(Icons.park),
+          child: GestureDetector(
+            onTap: () => notifier.togglePotaSpots(),
+            child: Container(
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: (mapState?.showPotaSpots ?? false)
+                      ? Colors.green.shade700
+                      : Colors.transparent,
+                  width: 3,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.15),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Opacity(
+                  opacity:
+                      (mapState?.showPotaSpots ?? false) ? 1.0 : 0.4,
+                  child: Image.asset('assets/images/pota_logo.png'),
+                ),
+              ),
+            ),
           ),
         ),
         // My location button

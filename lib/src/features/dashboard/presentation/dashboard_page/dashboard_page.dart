@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/maidenhead_locator.dart';
@@ -15,6 +16,8 @@ import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+enum _DashboardTab { repeaters, pota }
 
 @RoutePage()
 class DashboardPage extends HookConsumerWidget {
@@ -125,7 +128,11 @@ class DashboardPage extends HookConsumerWidget {
   }
 }
 
-class _ContentSection extends StatelessWidget {
+// ---------------------------------------------------------------------------
+// Content Sheet
+// ---------------------------------------------------------------------------
+
+class _ContentSection extends HookWidget {
   const _ContentSection({
     required this.statistics,
     required this.nearbyRepeaters,
@@ -140,6 +147,7 @@ class _ContentSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedTab = useState(_DashboardTab.repeaters);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -177,19 +185,30 @@ class _ContentSection extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Quick Access Section
-                    _QuickAccessSection(statistics: statistics),
-                    const SizedBox(height: 24),
-                    // Nearby Section
-                    _NearbySection(
-                      nearbyRepeaters: nearbyRepeaters.take(10).toList(),
+                    // Compact Stats Row
+                    _StatsRow(statistics: statistics),
+                    const SizedBox(height: 16),
+                    // Segmented Tab Selector
+                    _TabSelector(
+                      selectedTab: selectedTab.value,
+                      potaSpotsCount: potaSpots.length,
+                      onTabChanged: (tab) => selectedTab.value = tab,
                     ),
-                    if (potaSpots.isNotEmpty) ...[
-                      const SizedBox(height: 24),
-                      _PotaSpotsSection(
-                        potaSpots: potaSpots.take(5).toList(),
-                      ),
-                    ],
+                    const SizedBox(height: 16),
+                    // Tab Content
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      child: switch (selectedTab.value) {
+                        _DashboardTab.repeaters => _RepeatersTabContent(
+                            key: const ValueKey('repeaters'),
+                            nearbyRepeaters: nearbyRepeaters.take(10).toList(),
+                          ),
+                        _DashboardTab.pota => _PotaTabContent(
+                            key: const ValueKey('pota'),
+                            potaSpots: potaSpots.take(5).toList(),
+                          ),
+                      },
+                    ),
                     const SizedBox(height: 16),
                   ],
                 ),
@@ -202,8 +221,12 @@ class _ContentSection extends StatelessWidget {
   }
 }
 
-class _QuickAccessSection extends ConsumerWidget {
-  const _QuickAccessSection({required this.statistics});
+// ---------------------------------------------------------------------------
+// Compact Stats Row
+// ---------------------------------------------------------------------------
+
+class _StatsRow extends ConsumerWidget {
+  const _StatsRow({required this.statistics});
 
   final DashboardStatistics statistics;
 
@@ -213,51 +236,27 @@ class _QuickAccessSection extends ConsumerWidget {
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        Row(
-          children: [
-            Icon(Icons.grid_view, color: colorScheme.primary, size: 20),
-            const SizedBox(width: 8),
-            Text(
-              l10n.homeQuickAccess,
-              style: theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        Expanded(
+          child: _StatChip(
+            icon: Icons.cell_tower,
+            iconColor: colorScheme.primary,
+            label: l10n.homeStations(statistics.totalRepeaters),
+            onTap: () => AutoTabsRouter.of(context).setActiveIndex(1),
+          ),
         ),
-        const SizedBox(height: 16),
-        IntrinsicHeight(
-          child: Row(
-            children: [
-              Expanded(
-                child: _QuickAccessCard(
-                  icon: Icons.list_alt,
-                  iconColor: colorScheme.primary,
-                  title: l10n.homeRepeaterList,
-                  subtitle: l10n.homeStations(statistics.totalRepeaters),
-                  onTap: () {
-                    AutoTabsRouter.of(context).setActiveIndex(1);
-                  },
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _QuickAccessCard(
-                  icon: Icons.favorite,
-                  iconColor: Colors.amber,
-                  title: l10n.homeMyFavorites,
-                  subtitle: l10n.homeSaved(statistics.favoritesCount ?? 0),
-                  onTap: () async {
-                    final isAuthenticated = await requireAuthentication(context, ref);
-                    if (!isAuthenticated || !context.mounted) return;
-                    await context.router.push(const FavoritesRoute());
-                  },
-                ),
-              ),
-            ],
+        const SizedBox(width: 10),
+        Expanded(
+          child: _StatChip(
+            icon: Icons.favorite,
+            iconColor: Colors.redAccent,
+            label: l10n.homeSaved(statistics.favoritesCount ?? 0),
+            onTap: () async {
+              final isAuthenticated = await requireAuthentication(context, ref);
+              if (!isAuthenticated || !context.mounted) return;
+              await context.router.push(const FavoritesRoute());
+            },
           ),
         ),
       ],
@@ -265,19 +264,17 @@ class _QuickAccessSection extends ConsumerWidget {
   }
 }
 
-class _QuickAccessCard extends StatelessWidget {
-  const _QuickAccessCard({
+class _StatChip extends StatelessWidget {
+  const _StatChip({
     required this.icon,
     required this.iconColor,
-    required this.title,
-    required this.subtitle,
+    required this.label,
     required this.onTap,
   });
 
   final IconData icon;
   final Color iconColor;
-  final String title;
-  final String subtitle;
+  final String label;
   final VoidCallback onTap;
 
   @override
@@ -287,45 +284,33 @@ class _QuickAccessCard extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(12),
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
           color: colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: colorScheme.outline.withValues(alpha: 0.1),
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: iconColor.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(
-                icon,
-                color: iconColor,
-                size: 24,
+            Icon(icon, color: iconColor, size: 18),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                label,
+                style: theme.textTheme.labelLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(height: 12),
-            Text(
-              title,
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              subtitle,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurfaceVariant,
-              ),
+            Icon(
+              Icons.chevron_right,
+              color: colorScheme.onSurfaceVariant,
+              size: 18,
             ),
           ],
         ),
@@ -334,8 +319,90 @@ class _QuickAccessCard extends StatelessWidget {
   }
 }
 
-class _NearbySection extends StatelessWidget {
-  const _NearbySection({required this.nearbyRepeaters});
+// ---------------------------------------------------------------------------
+// Tab Selector (SegmentedButton)
+// ---------------------------------------------------------------------------
+
+class _TabSelector extends StatelessWidget {
+  const _TabSelector({
+    required this.selectedTab,
+    required this.potaSpotsCount,
+    required this.onTabChanged,
+  });
+
+  final _DashboardTab selectedTab;
+  final int potaSpotsCount;
+  final ValueChanged<_DashboardTab> onTabChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.localization;
+
+    return SizedBox(
+      width: double.infinity,
+      child: SegmentedButton<_DashboardTab>(
+        segments: [
+          ButtonSegment(
+            value: _DashboardTab.repeaters,
+            label: Text(l10n.dashboardTabRepeaters),
+            icon: const Icon(Icons.cell_tower, size: 18),
+          ),
+          ButtonSegment(
+            value: _DashboardTab.pota,
+            label: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(l10n.dashboardTabPota),
+                if (potaSpotsCount > 0) ...[
+                  const SizedBox(width: 6),
+                  _LiveBadge(count: potaSpotsCount),
+                ],
+              ],
+            ),
+            icon: const Icon(Icons.park, size: 18),
+          ),
+        ],
+        selected: {selectedTab},
+        onSelectionChanged: (selected) => onTabChanged(selected.first),
+        showSelectedIcon: false,
+      ),
+    );
+  }
+}
+
+class _LiveBadge extends StatelessWidget {
+  const _LiveBadge({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+      decoration: BoxDecoration(
+        color: colorScheme.primary,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        '$count',
+        style: TextStyle(
+          color: colorScheme.onPrimary,
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Repeaters Tab Content
+// ---------------------------------------------------------------------------
+
+class _RepeatersTabContent extends StatelessWidget {
+  const _RepeatersTabContent({required this.nearbyRepeaters, super.key});
 
   final List<Repeater> nearbyRepeaters;
 
@@ -345,52 +412,41 @@ class _NearbySection extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Icon(Icons.near_me, color: colorScheme.primary, size: 20),
-                const SizedBox(width: 8),
-                Text(
-                  l10n.homeNearby,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+    if (nearbyRepeaters.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 32),
+        child: Center(
+          child: Text(
+            l10n.dashboardNearbyEmpty,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.6),
             ),
-            TextButton(
-              onPressed: () {
-                AutoTabsRouter.of(context).setActiveIndex(1);
-              },
-              child: Text(
-                l10n.homeViewAll,
-                style: TextStyle(
-                  color: colorScheme.primary,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        ...nearbyRepeaters.map(
-          (repeater) => _NearbyRepeaterItem(
-            repeater: repeater,
           ),
+        ),
+      );
+    }
+
+    return Column(
+      children: [
+        ...nearbyRepeaters.map(
+          (repeater) => _NearbyRepeaterItem(repeater: repeater),
+        ),
+        const SizedBox(height: 4),
+        _ViewAllButton(
+          label: l10n.dashboardViewAllRepeaters,
+          onTap: () => AutoTabsRouter.of(context).setActiveIndex(1),
         ),
       ],
     );
   }
 }
 
-class _PotaSpotsSection extends StatelessWidget {
-  const _PotaSpotsSection({required this.potaSpots});
+// ---------------------------------------------------------------------------
+// POTA Tab Content
+// ---------------------------------------------------------------------------
+
+class _PotaTabContent extends StatelessWidget {
+  const _PotaTabContent({required this.potaSpots, super.key});
 
   final List<PotaSpot> potaSpots;
 
@@ -400,47 +456,73 @@ class _PotaSpotsSection extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Icon(Icons.park, color: Colors.green.shade700, size: 20),
-                const SizedBox(width: 8),
-                Text(
-                  l10n.potaTitle,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+    if (potaSpots.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 32),
+        child: Center(
+          child: Text(
+            l10n.potaNoSpots,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.6),
             ),
-            TextButton(
-              onPressed: () {
-                context.router.push(const PotaSpotsRoute());
-              },
-              child: Text(
-                l10n.potaViewAll,
-                style: TextStyle(
-                  color: colorScheme.primary,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ],
+            textAlign: TextAlign.center,
+          ),
         ),
-        const SizedBox(height: 12),
+      );
+    }
+
+    return Column(
+      children: [
         ...potaSpots.map(
           (spot) => _PotaSpotItem(spot: spot),
+        ),
+        const SizedBox(height: 4),
+        _ViewAllButton(
+          label: l10n.dashboardViewAllPotaSpots,
+          onTap: () => context.router.push(const PotaSpotsRoute()),
         ),
       ],
     );
   }
 }
+
+// ---------------------------------------------------------------------------
+// View All Button
+// ---------------------------------------------------------------------------
+
+class _ViewAllButton extends StatelessWidget {
+  const _ViewAllButton({required this.label, required this.onTap});
+
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton.icon(
+        onPressed: onTap,
+        icon: Text(label),
+        label: const Icon(Icons.arrow_forward, size: 16),
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(
+            color: colorScheme.outline.withValues(alpha: 0.2),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+        ),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// POTA Spot Item
+// ---------------------------------------------------------------------------
 
 class _PotaSpotItem extends StatelessWidget {
   const _PotaSpotItem({required this.spot});
@@ -569,6 +651,10 @@ class _PotaSpotItem extends StatelessWidget {
     );
   }
 }
+
+// ---------------------------------------------------------------------------
+// Nearby Repeater Item
+// ---------------------------------------------------------------------------
 
 class _NearbyRepeaterItem extends StatelessWidget {
   const _NearbyRepeaterItem({required this.repeater});

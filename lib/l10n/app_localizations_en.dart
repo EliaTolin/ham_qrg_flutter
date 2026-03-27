@@ -482,6 +482,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeViewAll => 'View all';
 
   @override
+  String get dashboardTabRepeaters => 'Ripetitori';
+
+  @override
+  String get dashboardTabPota => 'POTA';
+
+  @override
+  String get dashboardNearbyEmpty => 'Nessun ripetitore nelle vicinanze';
+
+  @override
+  String get dashboardViewAllRepeaters => 'Vedi tutti i ripetitori';
+
+  @override
+  String get dashboardViewAllPotaSpots => 'Vedi tutti gli spot POTA';
+
+  @override
   String homeStations(int count) {
     return '$count stations';
   }
