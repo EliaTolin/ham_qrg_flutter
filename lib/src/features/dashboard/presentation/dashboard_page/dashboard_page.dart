@@ -479,13 +479,13 @@ class _PotaTabContent extends StatelessWidget {
 
     return Column(
       children: [
-        ...potaSpots.map(
-          (spot) => _PotaSpotItem(spot: spot),
-        ),
-        const SizedBox(height: 4),
         _ViewAllButton(
           label: l10n.dashboardViewAllPotaSpots,
           onTap: () => context.router.push(const PotaSpotsRoute()),
+        ),
+        const SizedBox(height: 12),
+        ...potaSpots.map(
+          (spot) => _PotaSpotItem(spot: spot),
         ),
       ],
     );
