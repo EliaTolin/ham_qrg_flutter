@@ -299,6 +299,7 @@ class _StatsFooter extends StatelessWidget {
 
     final likesTotal = feedbackStats?.likesTotal ?? 0;
     final downTotal = feedbackStats?.downTotal ?? 0;
+    final hasMyLike = feedbackStats?.hasMyLike ?? false;
 
     return Row(
       children: [
@@ -306,13 +307,13 @@ class _StatsFooter extends StatelessWidget {
           Icon(
             Icons.thumb_up_rounded,
             size: 24,
-            color: likesTotal > 0 ? Colors.green : colorScheme.outlineVariant,
+            color: hasMyLike ? Colors.green : colorScheme.outlineVariant,
           ),
           const SizedBox(width: 6),
           Text(
             '$likesTotal',
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: likesTotal > 0 ? Colors.green : colorScheme.onSurfaceVariant,
+              color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
             ),
           ),

@@ -42,12 +42,14 @@ abstract interface class RepeatersDatasource {
 
   // Feedback methods
   Future<RepeaterFeedbackStatsModel?> getRepeaterFeedbackStats(
-    String repeaterId,
-  );
+    String repeaterId, {
+    String? userId,
+  });
 
   Future<List<RepeaterFeedbackStatsModel>> getRepeatersFeedbackStatsFromIds(
-    List<String> repeaterIds,
-  );
+    List<String> repeaterIds, {
+    String? userId,
+  });
 
   Future<void> addRepeaterFeedback({
     required String userId,

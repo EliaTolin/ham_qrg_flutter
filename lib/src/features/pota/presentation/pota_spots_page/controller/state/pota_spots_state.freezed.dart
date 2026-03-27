@@ -19,6 +19,12 @@ mixin _$PotaSpotsState {
   String get searchQuery;
   bool get hasLoadError;
   bool get isRefreshing;
+  String? get selectedBand;
+  String? get selectedMode;
+  PotaSpotsSortOrder get sortOrder;
+  Map<String, double> get distanceByReference;
+  List<String> get availableBands;
+  List<String> get availableModes;
 
   /// Create a copy of PotaSpotsState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,7 +47,19 @@ mixin _$PotaSpotsState {
             (identical(other.hasLoadError, hasLoadError) ||
                 other.hasLoadError == hasLoadError) &&
             (identical(other.isRefreshing, isRefreshing) ||
-                other.isRefreshing == isRefreshing));
+                other.isRefreshing == isRefreshing) &&
+            (identical(other.selectedBand, selectedBand) ||
+                other.selectedBand == selectedBand) &&
+            (identical(other.selectedMode, selectedMode) ||
+                other.selectedMode == selectedMode) &&
+            (identical(other.sortOrder, sortOrder) ||
+                other.sortOrder == sortOrder) &&
+            const DeepCollectionEquality()
+                .equals(other.distanceByReference, distanceByReference) &&
+            const DeepCollectionEquality()
+                .equals(other.availableBands, availableBands) &&
+            const DeepCollectionEquality()
+                .equals(other.availableModes, availableModes));
   }
 
   @override
@@ -51,11 +69,17 @@ mixin _$PotaSpotsState {
       const DeepCollectionEquality().hash(filteredSpots),
       searchQuery,
       hasLoadError,
-      isRefreshing);
+      isRefreshing,
+      selectedBand,
+      selectedMode,
+      sortOrder,
+      const DeepCollectionEquality().hash(distanceByReference),
+      const DeepCollectionEquality().hash(availableBands),
+      const DeepCollectionEquality().hash(availableModes));
 
   @override
   String toString() {
-    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing)';
+    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, availableBands: $availableBands, availableModes: $availableModes)';
   }
 }
 
@@ -70,7 +94,13 @@ abstract mixin class $PotaSpotsStateCopyWith<$Res> {
       List<PotaSpot> filteredSpots,
       String searchQuery,
       bool hasLoadError,
-      bool isRefreshing});
+      bool isRefreshing,
+      String? selectedBand,
+      String? selectedMode,
+      PotaSpotsSortOrder sortOrder,
+      Map<String, double> distanceByReference,
+      List<String> availableBands,
+      List<String> availableModes});
 }
 
 /// @nodoc
@@ -91,6 +121,12 @@ class _$PotaSpotsStateCopyWithImpl<$Res>
     Object? searchQuery = null,
     Object? hasLoadError = null,
     Object? isRefreshing = null,
+    Object? selectedBand = freezed,
+    Object? selectedMode = freezed,
+    Object? sortOrder = null,
+    Object? distanceByReference = null,
+    Object? availableBands = null,
+    Object? availableModes = null,
   }) {
     return _then(_self.copyWith(
       spots: null == spots
@@ -113,6 +149,30 @@ class _$PotaSpotsStateCopyWithImpl<$Res>
           ? _self.isRefreshing
           : isRefreshing // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedBand: freezed == selectedBand
+          ? _self.selectedBand
+          : selectedBand // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedMode: freezed == selectedMode
+          ? _self.selectedMode
+          : selectedMode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sortOrder: null == sortOrder
+          ? _self.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as PotaSpotsSortOrder,
+      distanceByReference: null == distanceByReference
+          ? _self.distanceByReference
+          : distanceByReference // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      availableBands: null == availableBands
+          ? _self.availableBands
+          : availableBands // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      availableModes: null == availableModes
+          ? _self.availableModes
+          : availableModes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -210,16 +270,36 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<PotaSpot> spots, List<PotaSpot> filteredSpots,
-            String searchQuery, bool hasLoadError, bool isRefreshing)?
+    TResult Function(
+            List<PotaSpot> spots,
+            List<PotaSpot> filteredSpots,
+            String searchQuery,
+            bool hasLoadError,
+            bool isRefreshing,
+            String? selectedBand,
+            String? selectedMode,
+            PotaSpotsSortOrder sortOrder,
+            Map<String, double> distanceByReference,
+            List<String> availableBands,
+            List<String> availableModes)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _PotaSpotsState() when $default != null:
-        return $default(_that.spots, _that.filteredSpots, _that.searchQuery,
-            _that.hasLoadError, _that.isRefreshing);
+        return $default(
+            _that.spots,
+            _that.filteredSpots,
+            _that.searchQuery,
+            _that.hasLoadError,
+            _that.isRefreshing,
+            _that.selectedBand,
+            _that.selectedMode,
+            _that.sortOrder,
+            _that.distanceByReference,
+            _that.availableBands,
+            _that.availableModes);
       case _:
         return orElse();
     }
@@ -240,15 +320,35 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<PotaSpot> spots, List<PotaSpot> filteredSpots,
-            String searchQuery, bool hasLoadError, bool isRefreshing)
+    TResult Function(
+            List<PotaSpot> spots,
+            List<PotaSpot> filteredSpots,
+            String searchQuery,
+            bool hasLoadError,
+            bool isRefreshing,
+            String? selectedBand,
+            String? selectedMode,
+            PotaSpotsSortOrder sortOrder,
+            Map<String, double> distanceByReference,
+            List<String> availableBands,
+            List<String> availableModes)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _PotaSpotsState():
-        return $default(_that.spots, _that.filteredSpots, _that.searchQuery,
-            _that.hasLoadError, _that.isRefreshing);
+        return $default(
+            _that.spots,
+            _that.filteredSpots,
+            _that.searchQuery,
+            _that.hasLoadError,
+            _that.isRefreshing,
+            _that.selectedBand,
+            _that.selectedMode,
+            _that.sortOrder,
+            _that.distanceByReference,
+            _that.availableBands,
+            _that.availableModes);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -268,15 +368,35 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<PotaSpot> spots, List<PotaSpot> filteredSpots,
-            String searchQuery, bool hasLoadError, bool isRefreshing)?
+    TResult? Function(
+            List<PotaSpot> spots,
+            List<PotaSpot> filteredSpots,
+            String searchQuery,
+            bool hasLoadError,
+            bool isRefreshing,
+            String? selectedBand,
+            String? selectedMode,
+            PotaSpotsSortOrder sortOrder,
+            Map<String, double> distanceByReference,
+            List<String> availableBands,
+            List<String> availableModes)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _PotaSpotsState() when $default != null:
-        return $default(_that.spots, _that.filteredSpots, _that.searchQuery,
-            _that.hasLoadError, _that.isRefreshing);
+        return $default(
+            _that.spots,
+            _that.filteredSpots,
+            _that.searchQuery,
+            _that.hasLoadError,
+            _that.isRefreshing,
+            _that.selectedBand,
+            _that.selectedMode,
+            _that.sortOrder,
+            _that.distanceByReference,
+            _that.availableBands,
+            _that.availableModes);
       case _:
         return null;
     }
@@ -291,9 +411,18 @@ class _PotaSpotsState implements PotaSpotsState {
       final List<PotaSpot> filteredSpots = const <PotaSpot>[],
       this.searchQuery = '',
       this.hasLoadError = false,
-      this.isRefreshing = false})
+      this.isRefreshing = false,
+      this.selectedBand,
+      this.selectedMode,
+      this.sortOrder = PotaSpotsSortOrder.time,
+      final Map<String, double> distanceByReference = const <String, double>{},
+      final List<String> availableBands = const <String>[],
+      final List<String> availableModes = const <String>[]})
       : _spots = spots,
-        _filteredSpots = filteredSpots;
+        _filteredSpots = filteredSpots,
+        _distanceByReference = distanceByReference,
+        _availableBands = availableBands,
+        _availableModes = availableModes;
 
   final List<PotaSpot> _spots;
   @override
@@ -322,6 +451,40 @@ class _PotaSpotsState implements PotaSpotsState {
   @override
   @JsonKey()
   final bool isRefreshing;
+  @override
+  final String? selectedBand;
+  @override
+  final String? selectedMode;
+  @override
+  @JsonKey()
+  final PotaSpotsSortOrder sortOrder;
+  final Map<String, double> _distanceByReference;
+  @override
+  @JsonKey()
+  Map<String, double> get distanceByReference {
+    if (_distanceByReference is EqualUnmodifiableMapView)
+      return _distanceByReference;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_distanceByReference);
+  }
+
+  final List<String> _availableBands;
+  @override
+  @JsonKey()
+  List<String> get availableBands {
+    if (_availableBands is EqualUnmodifiableListView) return _availableBands;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_availableBands);
+  }
+
+  final List<String> _availableModes;
+  @override
+  @JsonKey()
+  List<String> get availableModes {
+    if (_availableModes is EqualUnmodifiableListView) return _availableModes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_availableModes);
+  }
 
   /// Create a copy of PotaSpotsState
   /// with the given fields replaced by the non-null parameter values.
@@ -344,7 +507,19 @@ class _PotaSpotsState implements PotaSpotsState {
             (identical(other.hasLoadError, hasLoadError) ||
                 other.hasLoadError == hasLoadError) &&
             (identical(other.isRefreshing, isRefreshing) ||
-                other.isRefreshing == isRefreshing));
+                other.isRefreshing == isRefreshing) &&
+            (identical(other.selectedBand, selectedBand) ||
+                other.selectedBand == selectedBand) &&
+            (identical(other.selectedMode, selectedMode) ||
+                other.selectedMode == selectedMode) &&
+            (identical(other.sortOrder, sortOrder) ||
+                other.sortOrder == sortOrder) &&
+            const DeepCollectionEquality()
+                .equals(other._distanceByReference, _distanceByReference) &&
+            const DeepCollectionEquality()
+                .equals(other._availableBands, _availableBands) &&
+            const DeepCollectionEquality()
+                .equals(other._availableModes, _availableModes));
   }
 
   @override
@@ -354,11 +529,17 @@ class _PotaSpotsState implements PotaSpotsState {
       const DeepCollectionEquality().hash(_filteredSpots),
       searchQuery,
       hasLoadError,
-      isRefreshing);
+      isRefreshing,
+      selectedBand,
+      selectedMode,
+      sortOrder,
+      const DeepCollectionEquality().hash(_distanceByReference),
+      const DeepCollectionEquality().hash(_availableBands),
+      const DeepCollectionEquality().hash(_availableModes));
 
   @override
   String toString() {
-    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing)';
+    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, availableBands: $availableBands, availableModes: $availableModes)';
   }
 }
 
@@ -375,7 +556,13 @@ abstract mixin class _$PotaSpotsStateCopyWith<$Res>
       List<PotaSpot> filteredSpots,
       String searchQuery,
       bool hasLoadError,
-      bool isRefreshing});
+      bool isRefreshing,
+      String? selectedBand,
+      String? selectedMode,
+      PotaSpotsSortOrder sortOrder,
+      Map<String, double> distanceByReference,
+      List<String> availableBands,
+      List<String> availableModes});
 }
 
 /// @nodoc
@@ -396,6 +583,12 @@ class __$PotaSpotsStateCopyWithImpl<$Res>
     Object? searchQuery = null,
     Object? hasLoadError = null,
     Object? isRefreshing = null,
+    Object? selectedBand = freezed,
+    Object? selectedMode = freezed,
+    Object? sortOrder = null,
+    Object? distanceByReference = null,
+    Object? availableBands = null,
+    Object? availableModes = null,
   }) {
     return _then(_PotaSpotsState(
       spots: null == spots
@@ -418,6 +611,30 @@ class __$PotaSpotsStateCopyWithImpl<$Res>
           ? _self.isRefreshing
           : isRefreshing // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedBand: freezed == selectedBand
+          ? _self.selectedBand
+          : selectedBand // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedMode: freezed == selectedMode
+          ? _self.selectedMode
+          : selectedMode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sortOrder: null == sortOrder
+          ? _self.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as PotaSpotsSortOrder,
+      distanceByReference: null == distanceByReference
+          ? _self._distanceByReference
+          : distanceByReference // ignore: cast_nullable_to_non_nullable
+              as Map<String, double>,
+      availableBands: null == availableBands
+          ? _self._availableBands
+          : availableBands // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      availableModes: null == availableModes
+          ? _self._availableModes
+          : availableModes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }

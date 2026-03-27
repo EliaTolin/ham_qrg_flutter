@@ -43,10 +43,12 @@ class PotaParkInfoSection extends StatelessWidget {
                   color: Colors.green.shade700.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(
-                  Icons.park,
-                  color: Colors.green.shade700,
-                  size: 24,
+                child: Center(
+                  child: Image.asset(
+                    'assets/images/pota_logo.png',
+                    width: 28,
+                    height: 28,
+                  ),
                 ),
               ),
               const SizedBox(width: 14),

@@ -8,18 +8,26 @@ class PotaSpotHeader extends StatelessWidget {
 
   final PotaSpot spot;
 
+  Color _freshnessColor(Duration age) {
+    if (age.inMinutes < 5) return const Color(0xFF4ADE80); // green-400
+    if (age.inMinutes < 15) return const Color(0xFFFBBF24); // amber-400
+    return const Color(0xFF9CA3AF); // gray-400
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final band = bandFromFrequencyKhz(spot.frequency);
+    final age = DateTime.now().difference(spot.spotTime);
+    final freshColor = _freshnessColor(age);
 
     return SliverAppBar(
-      expandedHeight: 220,
+      expandedHeight: 240,
       pinned: true,
       leading: Padding(
         padding: const EdgeInsets.all(8),
         child: CircleAvatar(
-          backgroundColor: Colors.black.withValues(alpha: 0.15),
+          backgroundColor: Colors.black.withValues(alpha: 0.2),
           child: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
@@ -38,17 +46,43 @@ class PotaSpotHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  // Activator callsign
+                  // POTA logo + callsign + freshness badge
                   Row(
                     children: [
-                      PotaSpotFreshnessIndicator(spotTime: spot.spotTime),
-                      const SizedBox(width: 10),
+                      Image.asset(
+                        'assets/images/pota_logo.png',
+                        width: 32,
+                        height: 32,
+                      ),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: Text(
                           spot.activator,
                           style: theme.textTheme.headlineMedium?.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      // Freshness badge
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: freshColor.withValues(alpha: 0.25),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: freshColor.withValues(alpha: 0.4),
+                          ),
+                        ),
+                        child: Text(
+                          spotTimeAgo(spot.spotTime),
+                          style: TextStyle(
+                            color: freshColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
@@ -65,22 +99,35 @@ class PotaSpotHeader extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 8),
-                  // Chips row: frequency + band + mode + time
+                  const SizedBox(height: 4),
+                  // Reference
+                  Text(
+                    spot.reference,
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: Colors.white.withValues(alpha: 0.6),
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  // Badges row: frequency + band + mode
                   Wrap(
                     spacing: 8,
                     runSpacing: 6,
                     children: [
-                      _HeaderChip(
+                      _HeaderBadge(
                         icon: Icons.radio,
                         label: '${spot.frequency} kHz',
                       ),
-                      if (band != null) _HeaderChip(label: band),
-                      _HeaderChip(label: spot.mode),
-                      _HeaderChip(
-                        icon: Icons.access_time,
-                        label: spotTimeAgo(spot.spotTime),
-                      ),
+                      if (band != null)
+                        _HeaderBadge(
+                          label: band,
+                          filled: true,
+                        ),
+                      if (spot.mode.trim().isNotEmpty)
+                        _HeaderBadge(
+                          label: spot.mode.trim(),
+                          filled: true,
+                        ),
                     ],
                   ),
                 ],
@@ -93,28 +140,39 @@ class PotaSpotHeader extends StatelessWidget {
   }
 }
 
-class _HeaderChip extends StatelessWidget {
-  const _HeaderChip({required this.label, this.icon});
+class _HeaderBadge extends StatelessWidget {
+  const _HeaderBadge({
+    required this.label,
+    this.icon,
+    this.filled = false,
+  });
 
   final String label;
   final IconData? icon;
+  final bool filled;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.15),
-        borderRadius: BorderRadius.circular(20),
+        color: filled
+            ? Colors.white.withValues(alpha: 0.2)
+            : Colors.white.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Colors.white.withValues(alpha: 0.2),
+          color: Colors.white.withValues(alpha: filled ? 0.3 : 0.15),
         ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (icon != null) ...[
-            Icon(icon, size: 14, color: Colors.white.withValues(alpha: 0.9)),
+            Icon(
+              icon,
+              size: 14,
+              color: Colors.white.withValues(alpha: 0.9),
+            ),
             const SizedBox(width: 4),
           ],
           Text(
@@ -122,7 +180,7 @@ class _HeaderChip extends StatelessWidget {
             style: const TextStyle(
               color: Colors.white,
               fontSize: 12,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w700,
               letterSpacing: 0.3,
             ),
           ),
@@ -139,8 +197,9 @@ class _PotaHeaderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // Main gradient background (subtle)
     final rect = Offset.zero & size;
+
+    // Main gradient
     final gradient = LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
@@ -152,7 +211,7 @@ class _PotaHeaderPainter extends CustomPainter {
     );
     canvas.drawRect(rect, Paint()..shader = gradient.createShader(rect));
 
-    // Decorative radial glow (top-right, subtle)
+    // Decorative radial glow
     final glowPaint = Paint()
       ..shader = RadialGradient(
         center: const Alignment(0.8, -0.6),
@@ -164,14 +223,14 @@ class _PotaHeaderPainter extends CustomPainter {
       ).createShader(rect);
     canvas.drawRect(rect, glowPaint);
 
-    // Bottom fade to scaffold background (gradual)
+    // Bottom fade to scaffold
     final bottomFade = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      stops: const [0.75, 1.0],
+      stops: const [0.6, 1.0],
       colors: [
         Colors.transparent,
-        scaffoldColor,
+        scaffoldColor.withValues(alpha: 0.4),
       ],
     );
     canvas.drawRect(rect, Paint()..shader = bottomFade.createShader(rect));

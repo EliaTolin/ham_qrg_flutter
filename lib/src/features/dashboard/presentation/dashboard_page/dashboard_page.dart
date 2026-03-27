@@ -13,7 +13,8 @@ import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/contro
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
-import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart'
+    show spotTimeAgo;
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -76,6 +77,19 @@ class DashboardPage extends HookConsumerWidget {
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
             ),
+            // Map tap target — below the sheet so sheet items take priority
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: MediaQuery.sizeOf(context).height * 0.42,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  AutoTabsRouter.of(context).setActiveIndex(2);
+                },
+              ),
+            ),
             // Draggable Content Sheet
             DraggableScrollableSheet(
               initialChildSize: 0.42,
@@ -87,19 +101,6 @@ class DashboardPage extends HookConsumerWidget {
                 nearbyRepeaters: state.nearbyRepeaters,
                 potaSpots: state.potaSpots,
                 scrollController: scrollController,
-              ),
-            ),
-            // Map tap target — above the sheet, on top of the stack
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: MediaQuery.sizeOf(context).height * 0.42,
-              child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  AutoTabsRouter.of(context).setActiveIndex(2);
-                },
               ),
             ),
           ],
@@ -359,7 +360,11 @@ class _TabSelector extends StatelessWidget {
                 ],
               ],
             ),
-            icon: const Icon(Icons.park, size: 18),
+            icon: Image.asset(
+              'assets/images/pota_logo.png',
+              width: 24,
+              height: 24,
+            ),
           ),
         ],
         selected: {selectedTab},
@@ -529,11 +534,19 @@ class _PotaSpotItem extends StatelessWidget {
 
   final PotaSpot spot;
 
+  Color _freshnessColor(Duration age) {
+    if (age.inMinutes < 5) return const Color(0xFF16A34A); // green-600
+    if (age.inMinutes < 15) return const Color(0xFFD97706); // amber-600
+    return const Color(0xFF6B7280); // gray-500
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final band = bandFromFrequencyKhz(spot.frequency);
+    final age = DateTime.now().difference(spot.spotTime);
+    final freshColor = _freshnessColor(age);
 
     return InkWell(
       onTap: () {
@@ -546,8 +559,8 @@ class _PotaSpotItem extends StatelessWidget {
       },
       borderRadius: BorderRadius.circular(12),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(12),
+        margin: const EdgeInsets.only(bottom: 10),
+        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: colorScheme.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(12),
@@ -555,97 +568,148 @@ class _PotaSpotItem extends StatelessWidget {
             color: colorScheme.outline.withValues(alpha: 0.1),
           ),
         ),
-        child: Row(
-          children: [
-            PotaSpotFreshnessIndicator(spotTime: spot.spotTime),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              // Freshness accent bar
+              Container(width: 4, color: freshColor),
+              // Content
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        spot.activator,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        spotTimeAgo(spot.spotTime),
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurface.withValues(alpha: 0.6),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      Text(
-                        '${spot.frequency} kHz',
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurfaceVariant,
-                        ),
-                      ),
-                      if (band != null) ...[
-                        const SizedBox(width: 6),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 6,
-                            vertical: 1,
-                          ),
-                          decoration: BoxDecoration(
-                            color: colorScheme.primaryContainer,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Text(
-                            band,
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: colorScheme.onPrimaryContainer,
+                      // Row 1: Activator + time badge
+                      Row(
+                        children: [
+                          Text(
+                            spot.activator,
+                            style: theme.textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.bold,
-                              fontSize: 10,
                             ),
                           ),
-                        ),
-                      ],
-                      const SizedBox(width: 6),
-                      Text(
-                        spot.mode,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurfaceVariant,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Container(
-                        width: 4,
-                        height: 4,
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          color: colorScheme.outlineVariant,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          spot.reference,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: colorScheme.onSurface.withValues(alpha: 0.6),
+                          const Spacer(),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: freshColor.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              spotTimeAgo(spot.spotTime),
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: freshColor,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 10,
+                              ),
+                            ),
                           ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      // Row 2: Frequency + band + mode badges
+                      Row(
+                        children: [
+                          Text(
+                            '${spot.frequency} kHz',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                              fontFeatures: const [FontFeature.tabularFigures()],
+                            ),
+                          ),
+                          if (band != null) ...[
+                            const SizedBox(width: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 1,
+                              ),
+                              decoration: BoxDecoration(
+                                color: colorScheme.primaryContainer,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                band,
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: colorScheme.onPrimaryContainer,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ],
+                          if (spot.mode.trim().isNotEmpty) ...[
+                            const SizedBox(width: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 1,
+                              ),
+                              decoration: BoxDecoration(
+                                color: colorScheme.tertiaryContainer,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                spot.mode.trim(),
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: colorScheme.onTertiaryContainer,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      // Row 3: Park name + reference
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/images/pota_logo.png',
+                            width: 18,
+                            height: 18,
+                          ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              spot.name,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            spot.reference,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onSurface.withValues(alpha: 0.5),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
-            Icon(
-              Icons.chevron_right,
-              color: colorScheme.onSurfaceVariant,
-            ),
-          ],
+              // Chevron
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Icon(
+                  Icons.chevron_right,
+                  color: colorScheme.onSurfaceVariant,
+                  size: 20,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

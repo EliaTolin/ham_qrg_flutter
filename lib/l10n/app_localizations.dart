@@ -2286,6 +2286,36 @@ abstract class AppLocalizations {
   /// **'{count} spot attivi'**
   String potaSpotsCount(int count);
 
+  /// No description provided for @potaFilterAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Tutte'**
+  String get potaFilterAll;
+
+  /// No description provided for @potaFilterBand.
+  ///
+  /// In it, this message translates to:
+  /// **'Banda'**
+  String get potaFilterBand;
+
+  /// No description provided for @potaFilterMode.
+  ///
+  /// In it, this message translates to:
+  /// **'Modo'**
+  String get potaFilterMode;
+
+  /// No description provided for @potaSortByTime.
+  ///
+  /// In it, this message translates to:
+  /// **'Più recenti'**
+  String get potaSortByTime;
+
+  /// No description provided for @potaSortByDistance.
+  ///
+  /// In it, this message translates to:
+  /// **'Più vicini'**
+  String get potaSortByDistance;
+
   /// No description provided for @profileLanguage.
   ///
   /// In it, this message translates to:

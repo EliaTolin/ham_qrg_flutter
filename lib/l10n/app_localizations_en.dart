@@ -1235,6 +1235,21 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get potaFilterAll => 'Tutte';
+
+  @override
+  String get potaFilterBand => 'Banda';
+
+  @override
+  String get potaFilterMode => 'Modo';
+
+  @override
+  String get potaSortByTime => 'Più recenti';
+
+  @override
+  String get potaSortByDistance => 'Più vicini';
+
+  @override
   String get profileLanguage => 'Language';
 
   @override

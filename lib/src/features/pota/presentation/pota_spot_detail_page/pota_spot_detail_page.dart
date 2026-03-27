@@ -6,7 +6,8 @@ import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/cont
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/controller/state/pota_spot_detail_state.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/widgets/pota_park_info_section.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/widgets/pota_spot_header.dart';
-import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart'
+    show spotTimeAgo;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -186,7 +187,7 @@ class _ActionButtonsRow extends StatelessWidget {
   Future<void> _openQrz(BuildContext context, String callsign) async {
     final uri = Uri.parse('https://www.qrz.com/db/$callsign');
     if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
+      await launchUrl(uri, mode: LaunchMode.inAppBrowserView);
     } else if (context.mounted) {
       showErrorSnackbar(context, context.localization.potaQrzError);
     }
@@ -195,7 +196,7 @@ class _ActionButtonsRow extends StatelessWidget {
   Future<void> _openUrl(BuildContext context, String url) async {
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
+      await launchUrl(uri, mode: LaunchMode.inAppBrowserView);
     } else if (context.mounted) {
       showErrorSnackbar(context, context.localization.potaQrzError);
     }

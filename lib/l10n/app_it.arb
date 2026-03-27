@@ -561,6 +561,11 @@
     }
   },
   "potaSpotsCount": "{count} spot attivi",
+  "potaFilterAll": "Tutte",
+  "potaFilterBand": "Banda",
+  "potaFilterMode": "Modo",
+  "potaSortByTime": "Più recenti",
+  "potaSortByDistance": "Più vicini",
   "@potaSpotsCount": {
     "placeholders": {
       "count": {

@@ -8,6 +8,7 @@ abstract class RepeaterFeedbackStats with _$RepeaterFeedbackStats {
     required String repeaterId,
     required int likesTotal,
     required int downTotal,
+    @Default(false) bool hasMyLike,
     DateTime? lastLikeAt,
     DateTime? lastDownAt,
   }) = _RepeaterFeedbackStats;

@@ -337,15 +337,16 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
 
   @override
   Future<RepeaterFeedbackStatsModel?> getRepeaterFeedbackStats(
-    String repeaterId,
-  ) async {
+    String repeaterId, {
+    String? userId,
+  }) async {
     final sw = Stopwatch()..start();
     try {
       // Query repeater_feedback directly instead of the view,
       // which can't push the WHERE filter inside the GROUP BY.
       final data = await _client
           .from('repeater_feedback')
-          .select('type, created_at')
+          .select('type, created_at, user_id')
           .eq('repeater_id', repeaterId);
 
       final rows = data as List;
@@ -357,6 +358,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       // Aggregate in Dart (same logic as the v_repeater_feedback_stats view)
       var likesTotal = 0;
       var downTotal = 0;
+      var hasMyLike = false;
       String? lastLikeAt;
       String? lastDownAt;
 
@@ -364,8 +366,10 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         final r = row as Map<String, dynamic>;
         final type = r['type'] as String;
         final createdAt = r['created_at'] as String;
+        final rowUserId = r['user_id'] as String?;
         if (type == 'like') {
           likesTotal++;
+          if (userId != null && rowUserId == userId) hasMyLike = true;
           if (lastLikeAt == null || createdAt.compareTo(lastLikeAt) > 0) {
             lastLikeAt = createdAt;
           }
@@ -387,6 +391,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         'repeater_id': repeaterId,
         'likes_total': likesTotal,
         'down_total': downTotal,
+        'has_my_like': hasMyLike,
         'last_like_at': lastLikeAt,
         'last_down_at': lastDownAt,
       });
@@ -399,8 +404,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
 
   @override
   Future<List<RepeaterFeedbackStatsModel>> getRepeatersFeedbackStatsFromIds(
-    List<String> repeaterIds,
-  ) async {
+    List<String> repeaterIds, {
+    String? userId,
+  }) async {
     final sw = Stopwatch()..start();
     try {
       if (repeaterIds.isEmpty) {
@@ -414,7 +420,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
 
       final data = await _client
           .from('repeater_feedback')
-          .select('repeater_id, type, created_at')
+          .select('repeater_id, type, created_at, user_id')
           .inFilter('repeater_id', repeaterIds);
 
       final rows = data as List;
@@ -434,10 +440,12 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         final repeaterId = r['repeater_id'] as String;
         final type = r['type'] as String;
         final createdAt = r['created_at'] as String;
+        final rowUserId = r['user_id'] as String?;
 
         final agg = statsMap.putIfAbsent(repeaterId, _FeedbackAgg.new);
         if (type == 'like') {
           agg.likesTotal++;
+          if (userId != null && rowUserId == userId) agg.hasMyLike = true;
           if (agg.lastLikeAt == null ||
               createdAt.compareTo(agg.lastLikeAt!) > 0) {
             agg.lastLikeAt = createdAt;
@@ -457,6 +465,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
               'repeater_id': e.key,
               'likes_total': e.value.likesTotal,
               'down_total': e.value.downTotal,
+              'has_my_like': e.value.hasMyLike,
               'last_like_at': e.value.lastLikeAt,
               'last_down_at': e.value.lastDownAt,
             }),
@@ -658,6 +667,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
 class _FeedbackAgg {
   int likesTotal = 0;
   int downTotal = 0;
+  bool hasMyLike = false;
   String? lastLikeAt;
   String? lastDownAt;
 }
