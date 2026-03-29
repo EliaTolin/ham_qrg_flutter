@@ -57,4 +57,4 @@ final class SyncOnboardingProfileProvider
 }
 
 String _$syncOnboardingProfileHash() =>
-    r'e2e2e921a13b1e2977faebf73b49b1248aa2d114';
+    r'a1ef8ad24503b5ae94236ce9ac69ade15dc36a67';

@@ -4,6 +4,9 @@ import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Telegram brand blue.
+const _telegramBlue = Color(0xFF2AABEE);
+
 class TelegramStep extends StatelessWidget {
   const TelegramStep({
     required this.onJoin,
@@ -27,16 +30,43 @@ class TelegramStep extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: Colors.blueAccent.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.telegram,
-              size: 64,
-              color: Colors.blueAccent,
+          // Visual
+          SizedBox(
+            width: 140,
+            height: 140,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 140,
+                  height: 140,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: _telegramBlue.withValues(alpha: 0.1),
+                      width: 2,
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        _telegramBlue.withValues(alpha: 0.12),
+                        _telegramBlue.withValues(alpha: 0.04),
+                      ],
+                    ),
+                  ),
+                ),
+                const Icon(
+                  Icons.telegram,
+                  size: 56,
+                  color: _telegramBlue,
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 32),
@@ -137,7 +167,6 @@ class _BenefitItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
@@ -147,10 +176,10 @@ class _BenefitItem extends StatelessWidget {
             width: 36,
             height: 36,
             decoration: BoxDecoration(
-              color: colorScheme.primary.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(8),
+              color: _telegramBlue.withValues(alpha: 0.08),
+              borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(icon, color: colorScheme.primary, size: 20),
+            child: Icon(icon, color: _telegramBlue, size: 20),
           ),
           const SizedBox(width: 12),
           Expanded(

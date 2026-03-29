@@ -7,5 +7,5 @@ part 'needs_onboarding_provider.g.dart';
 Future<bool> needsOnboarding(Ref ref) async {
   final datasource = await ref.watch(onboardingLocalDatasourceProvider.future);
   final completed = await datasource.hasCompletedOnboarding();
-  return !completed;
+  return completed;
 }

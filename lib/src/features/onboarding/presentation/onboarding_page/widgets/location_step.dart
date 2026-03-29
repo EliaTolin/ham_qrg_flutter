@@ -18,20 +18,47 @@ class LocationStep extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
+      padding: const EdgeInsets.symmetric(horizontal: 28),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: colorScheme.primary.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              Icons.location_on,
-              size: 64,
-              color: colorScheme.primary,
+          // Visual
+          SizedBox(
+            width: 140,
+            height: 140,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 140,
+                  height: 140,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: colorScheme.primary.withValues(alpha: 0.1),
+                      width: 2,
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        colorScheme.primary.withValues(alpha: 0.15),
+                        colorScheme.primary.withValues(alpha: 0.05),
+                      ],
+                    ),
+                  ),
+                ),
+                Icon(
+                  Icons.my_location,
+                  size: 56,
+                  color: colorScheme.primary,
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 32),
@@ -56,7 +83,7 @@ class LocationStep extends StatelessWidget {
             width: double.infinity,
             child: FilledButton.icon(
               onPressed: onEnable,
-              icon: const Icon(Icons.my_location),
+              icon: const Icon(Icons.location_on),
               label: Text(l10n.onboardingLocationEnable),
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
