@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 
 class DiscoveryStep extends StatelessWidget {
@@ -32,16 +33,43 @@ class DiscoveryStep extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: colorScheme.primary.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              Icons.explore,
-              size: 56,
-              color: colorScheme.primary,
+          // Visual
+          SizedBox(
+            width: 120,
+            height: 120,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: colorScheme.primary.withValues(alpha: 0.1),
+                      width: 2,
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 84,
+                  height: 84,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        colorScheme.primary.withValues(alpha: 0.15),
+                        colorScheme.primary.withValues(alpha: 0.05),
+                      ],
+                    ),
+                  ),
+                ),
+                Icon(
+                  Icons.explore,
+                  size: 48,
+                  color: colorScheme.primary,
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 24),
@@ -74,7 +102,6 @@ class DiscoveryStep extends StatelessWidget {
               onTap: onViewRepeater,
             )
           else if (!hasLocation)
-            // No location — just show explore CTA
             const SizedBox.shrink()
           else
             Padding(
@@ -114,6 +141,10 @@ class DiscoveryStep extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Repeater Card — refined with accent bar
+// ---------------------------------------------------------------------------
+
 class _RepeaterCard extends StatelessWidget {
   const _RepeaterCard({
     required this.repeater,
@@ -135,81 +166,105 @@ class _RepeaterCard extends StatelessWidget {
         ? AccessModeHelper.getAccessModeColorObject(primaryAccess.mode)
         : colorScheme.primary;
 
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: modeColor.withValues(alpha: 0.3)),
-      ),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerHighest,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.1),
+          ),
+        ),
+        child: IntrinsicHeight(
+          child: Row(
             children: [
-              Row(
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: modeColor.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      primaryAccess?.mode.name.toUpperCase() ?? '',
-                      style: TextStyle(
-                        color: modeColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 11,
+              // Mode accent bar
+              Container(width: 4, color: modeColor),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Label + mode badge
+                      Row(
+                        children: [
+                          Text(
+                            l10n.onboardingDiscoveryNearbyRepeater,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                          const Spacer(),
+                          if (primaryAccess != null)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: modeColor.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                AccessModeHelper.getAccessModeLabel(
+                                  primaryAccess.mode,
+                                ),
+                                style: TextStyle(
+                                  color: modeColor,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 11,
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
-                    ),
+                      const SizedBox(height: 8),
+                      // Name
+                      Text(
+                        repeater.name ?? repeater.callsign ?? '',
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
+                      // Frequency
+                      Text(
+                        RepeaterFormatHelper.formatFrequency(
+                          repeater.frequencyHz,
+                        ),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                          fontFeatures: const [FontFeature.tabularFigures()],
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      // CTA
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.open_in_new,
+                            size: 14,
+                            color: colorScheme.primary,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            l10n.onboardingDiscoveryViewDetails,
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  const Spacer(),
-                  Text(
-                    l10n.onboardingDiscoveryNearbyRepeater,
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              Text(
-                repeater.name ?? repeater.callsign ?? '',
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
                 ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                '${(repeater.frequencyHz / 1e6).toStringAsFixed(4)} MHz',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                  fontFamily: 'monospace',
-                ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  Icon(
-                    Icons.open_in_new,
-                    size: 14,
-                    color: colorScheme.primary,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    l10n.onboardingDiscoveryViewDetails,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.primary,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
               ),
             ],
           ),

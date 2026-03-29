@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -16,15 +14,15 @@ import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_logi
 import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/user_type_selection_step.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+/// Total number of onboarding steps.
+const _totalSteps = 6;
+
 @RoutePage()
 class OnboardingPage extends HookConsumerWidget {
   const OnboardingPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
     final welcomePageController = usePageController();
     final controllerState = ref.watch(onboardingControllerProvider);
     final controller = ref.read(onboardingControllerProvider.notifier);
@@ -44,55 +42,26 @@ class OnboardingPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          // Background gradient (same as post_login_onboarding)
-          DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  colorScheme.primary.withValues(alpha: .12),
-                  colorScheme.secondary.withValues(alpha: .08),
-                  theme.scaffoldBackgroundColor,
-                ],
-              ),
-            ),
-          ),
-          // Content
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(24),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: colorScheme.surface.withValues(alpha: .75),
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(
-                        color: colorScheme.primary.withValues(alpha: .12),
-                      ),
-                    ),
-                    child: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 300),
-                      child: _buildStep(
-                        context,
-                        ref,
-                        controllerState,
-                        controller,
-                        welcomePageController,
-                      ),
-                    ),
-                  ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Progress indicator
+            _StepProgress(currentStep: controllerState.currentStep),
+            // Content
+            Expanded(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: _buildStep(
+                  context,
+                  ref,
+                  controllerState,
+                  controller,
+                  welcomePageController,
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -227,9 +196,9 @@ class OnboardingPage extends HookConsumerWidget {
         const HomeRoute(),
         predicate: (_) => false,
       );
-      // Navigate to repeater detail after home is loaded
       if (context.mounted) {
-        await context.router.push(RepeaterDetailRoute(repeaterId: repeaterId));
+        await context.router
+            .push(RepeaterDetailRoute(repeaterId: repeaterId));
       }
     }
   }
@@ -245,5 +214,43 @@ class OnboardingPage extends HookConsumerWidget {
         predicate: (_) => false,
       );
     }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Step Progress Indicator
+// ---------------------------------------------------------------------------
+
+class _StepProgress extends StatelessWidget {
+  const _StepProgress({required this.currentStep});
+
+  final int currentStep;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+      child: Row(
+        children: List.generate(_totalSteps, (index) {
+          final isCompleted = index < currentStep;
+          final isCurrent = index == currentStep;
+
+          return Expanded(
+            child: Container(
+              height: 3,
+              margin: const EdgeInsets.symmetric(horizontal: 2),
+              decoration: BoxDecoration(
+                color: isCompleted || isCurrent
+                    ? colorScheme.primary
+                    : colorScheme.onSurface.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
   }
 }
