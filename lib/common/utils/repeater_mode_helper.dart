@@ -33,11 +33,6 @@ class RepeaterModeHelper {
   ) async {
     final cacheKey = getAccessModesKey(accessModes);
     final cached = _iconCache[cacheKey];
-    if (cached != null) {
-      log('Using cached icon for $cacheKey');
-      return cached;
-    }
-    log('Generating icon for $cacheKey');
     const size = 72.0;
     const iconSize = 32.0;
     const strokeWidth = 6.0;

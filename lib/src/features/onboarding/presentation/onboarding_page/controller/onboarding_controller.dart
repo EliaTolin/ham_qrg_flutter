@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:hamqrg/src/features/onboarding/data/datasource/onboarding_local_datasource.dart';
+import 'package:hamqrg/src/features/onboarding/data/repository/onboarding_repository.dart';
 import 'package:hamqrg/src/features/onboarding/presentation/onboarding_page/controller/state/onboarding_state.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/domain/user_type.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
@@ -89,17 +89,17 @@ class OnboardingController extends _$OnboardingController {
   Future<void> submitProfile() async {
     state = state.copyWith(isSubmitting: true);
     try {
-      final datasource =
-          await ref.read(onboardingLocalDatasourceProvider.future);
+      final repository =
+          await ref.read(onboardingRepositoryProvider.future);
 
       final userType = state.selectedUserType;
       if (userType != null) {
-        await datasource.setUserType(userType);
+        await repository.setUserType(userType);
       }
 
       final callsign = state.callsign.trim();
       if (callsign.isNotEmpty) {
-        await datasource.setCallsign(callsign);
+        await repository.setCallsign(callsign);
       }
 
       state = state.copyWith(
@@ -150,31 +150,31 @@ class OnboardingController extends _$OnboardingController {
   // -- Telegram --
 
   Future<void> joinTelegram() async {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
-    await datasource.setJoinedTelegram();
-    await datasource.setTelegramInviteShown();
+    final repository =
+        await ref.read(onboardingRepositoryProvider.future);
+    await repository.setJoinedTelegram();
+    await repository.setTelegramInviteShown();
   }
 
   Future<void> declineTelegram() async {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
-    await datasource.setDeclinedTelegram();
-    await datasource.setTelegramInviteShown();
+    final repository =
+        await ref.read(onboardingRepositoryProvider.future);
+    await repository.setDeclinedTelegram();
+    await repository.setTelegramInviteShown();
   }
 
   Future<void> alreadyTelegramMember() async {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
-    await datasource.setJoinedTelegram();
-    await datasource.setTelegramInviteShown();
+    final repository =
+        await ref.read(onboardingRepositoryProvider.future);
+    await repository.setJoinedTelegram();
+    await repository.setTelegramInviteShown();
   }
 
   // -- Complete --
 
   Future<void> completeOnboarding() async {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
-    await datasource.setOnboardingCompleted();
+    final repository =
+        await ref.read(onboardingRepositoryProvider.future);
+    await repository.setOnboardingCompleted();
   }
 }
