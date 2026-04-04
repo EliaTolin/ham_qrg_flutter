@@ -1,11 +1,11 @@
-import 'package:hamqrg/src/features/onboarding/data/datasource/onboarding_local_datasource.dart';
+import 'package:hamqrg/src/features/onboarding/data/repository/onboarding_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'needs_onboarding_provider.g.dart';
 
 @riverpod
 Future<bool> needsOnboarding(Ref ref) async {
-  final datasource = await ref.watch(onboardingLocalDatasourceProvider.future);
-  final completed = await datasource.hasCompletedOnboarding();
+  final repository = await ref.watch(onboardingRepositoryProvider.future);
+  final completed = await repository.hasCompletedOnboarding();
   return !completed;
 }

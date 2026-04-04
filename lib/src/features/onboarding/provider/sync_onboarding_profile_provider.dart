@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:hamqrg/src/features/onboarding/data/datasource/onboarding_local_datasource.dart';
+import 'package:hamqrg/src/features/onboarding/data/repository/onboarding_repository.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hamqrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,11 +15,11 @@ part 'sync_onboarding_profile_provider.g.dart';
 @riverpod
 Future<void> syncOnboardingProfile(Ref ref) async {
   try {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
+    final repository =
+        await ref.read(onboardingRepositoryProvider.future);
 
-    final localUserType = await datasource.getUserType();
-    final localCallsign = await datasource.getCallsign();
+    final localUserType = await repository.getUserType();
+    final localCallsign = await repository.getCallsign();
 
     // Nothing to sync
     if (localUserType == null) return;
