@@ -662,6 +662,54 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       rethrow;
     }
   }
+
+  @override
+  Future<void> submitRepeaterSubmission({
+    required String userId,
+    required String name,
+    required String callsign,
+    required int frequencyHz,
+    required List<Map<String, dynamic>> accesses,
+    int? shiftHz,
+    String? region,
+    String? provinceCode,
+    String? locality,
+    double? lat,
+    double? lon,
+    String? locator,
+    String? notes,
+  }) async {
+    final sw = Stopwatch()..start();
+    try {
+      if (userId.isEmpty) {
+        throw Exception('User not authenticated');
+      }
+      await _client.from('repeater_submissions').insert({
+        'user_id': userId,
+        'name': name.isEmpty ? null : name.trim(),
+        'callsign': callsign.isEmpty ? null : callsign.trim().toUpperCase(),
+        'frequency_hz': frequencyHz,
+        'shift_hz': shiftHz,
+        'region': region?.trim(),
+        'province_code': provinceCode?.trim().toUpperCase(),
+        'locality': locality?.trim(),
+        'lat': lat,
+        'lon': lon,
+        'locator': locator?.trim().toUpperCase(),
+        'accesses': accesses,
+        'notes': notes?.trim(),
+      });
+      _logTiming('submitRepeaterSubmission', sw);
+    } catch (error, stackTrace) {
+      _logTiming('submitRepeaterSubmission', sw, extra: '❌ error');
+      _talker.handle(
+        error,
+        stackTrace,
+        'Error submitting repeater submission',
+      );
+      rethrow;
+    }
+  }
 }
 
 class _FeedbackAgg {

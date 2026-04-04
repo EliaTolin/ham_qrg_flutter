@@ -13,6 +13,7 @@ class ProfileMappers implements Mapper<Profile, ProfileModel> {
       callsign: user.callsign,
       propic: user.propic.clearedValue(),
       userType: user.userType,
+      lastSeenVersion: user.lastSeenVersion,
     );
   }
 
@@ -25,6 +26,7 @@ class ProfileMappers implements Mapper<Profile, ProfileModel> {
       callsign: user.callsign,
       propic: user.propic.clearedValue(),
       userType: user.userType,
+      lastSeenVersion: user.lastSeenVersion,
     );
   }
 }

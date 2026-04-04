@@ -208,6 +208,38 @@ class RepeatersRepository {
       description: description,
     );
   }
+
+  Future<void> submitRepeaterSubmission({
+    required String userId,
+    required String name,
+    required String callsign,
+    required int frequencyHz,
+    required List<Map<String, dynamic>> accesses,
+    int? shiftHz,
+    String? region,
+    String? provinceCode,
+    String? locality,
+    double? lat,
+    double? lon,
+    String? locator,
+    String? notes,
+  }) async {
+    return _datasource.submitRepeaterSubmission(
+      userId: userId,
+      name: name,
+      callsign: callsign,
+      frequencyHz: frequencyHz,
+      accesses: accesses,
+      shiftHz: shiftHz,
+      region: region,
+      provinceCode: provinceCode,
+      locality: locality,
+      lat: lat,
+      lon: lon,
+      locator: locator,
+      notes: notes,
+    );
+  }
 }
 
 @riverpod

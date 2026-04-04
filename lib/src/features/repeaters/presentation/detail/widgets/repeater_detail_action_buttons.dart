@@ -107,12 +107,7 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
   }
 
   Future<void> _onReportTap(BuildContext context, WidgetRef ref) async {
-    final isAuthenticated = await requireAuthentication(context, ref);
-    if (!isAuthenticated) return;
-
-    if (context.mounted) {
-      await context.router.push(ReportIssueRoute(repeaterId: repeater.id));
-    }
+    await context.router.push(ReportIssueRoute(repeaterId: repeater.id));
   }
 }
 

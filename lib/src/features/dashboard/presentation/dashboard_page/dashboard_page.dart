@@ -1,13 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/common/utils/version_utils.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
+import 'package:hamqrg/src/features/changelog/data/changelog_data.dart';
+import 'package:hamqrg/src/features/changelog/presentation/changelog_sheet.dart';
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
@@ -16,6 +20,8 @@ import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart'
     show spotTimeAgo;
 import 'package:hamqrg/src/features/pota/presentation/widgets/pota_mode_badge.dart';
+import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
+import 'package:hamqrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -36,6 +42,9 @@ class DashboardPage extends HookConsumerWidget {
       data: (state) => Scaffold(
         body: Stack(
           children: [
+            // Changelog trigger (invisible, fires once)
+            _ChangelogTrigger(profile: state.profile),
+
             // Map Section (full screen, non-interactive preview)
             SizedBox(
               height: MediaQuery.sizeOf(context).height * 0.6,
@@ -833,5 +842,62 @@ class _NearbyRepeaterItem extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _ChangelogTrigger extends HookConsumerWidget {
+  const _ChangelogTrigger({required this.profile});
+  final Profile? profile;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hasShown = useRef(false);
+    final l10n = context.localization;
+
+    useEffect(
+      () {
+        if (hasShown.value || profile == null) return null;
+        hasShown.value = true;
+
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          if (!context.mounted) return;
+
+          final packageInfo = await ref.read(packageInfoProvider.future);
+          final appVersion = packageInfo.version;
+
+          // Only show entries for versions <= current app version
+          final allEntries = getChangelogEntries(l10n)
+              .where((e) => compareVersions(e.version, appVersion) <= 0)
+              .toList();
+
+          // If lastSeenVersion is null (existing user, column just added),
+          // show all entries for the current version
+          final unseen = profile!.lastSeenVersion == null
+              ? allEntries
+              : getUnseenChangelogEntries(
+                  allEntries: allEntries,
+                  lastSeenVersion: profile!.lastSeenVersion,
+                );
+
+          if (unseen.isNotEmpty && context.mounted) {
+            await showChangelogSheet(context, entries: unseen);
+          }
+
+          // Update lastSeenVersion to current app version
+          if (profile!.lastSeenVersion != appVersion) {
+            await ref.read(
+              updateProfileProvider(
+                profile!.copyWith(lastSeenVersion: appVersion),
+              ).future,
+            );
+          }
+        });
+
+        return null;
+      },
+      [profile],
+    );
+
+    return const SizedBox.shrink();
   }
 }

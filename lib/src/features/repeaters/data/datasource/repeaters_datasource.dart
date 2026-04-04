@@ -85,4 +85,21 @@ abstract interface class RepeatersDatasource {
     required String repeaterId,
     required String description,
   });
+
+  // Submission methods
+  Future<void> submitRepeaterSubmission({
+    required String userId,
+    required String name,
+    required String callsign,
+    required int frequencyHz,
+    required List<Map<String, dynamic>> accesses,
+    int? shiftHz,
+    String? region,
+    String? provinceCode,
+    String? locality,
+    double? lat,
+    double? lon,
+    String? locator,
+    String? notes,
+  });
 }

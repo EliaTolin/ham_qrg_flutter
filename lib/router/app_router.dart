@@ -11,6 +11,7 @@ import 'package:hamqrg/src/features/pota/presentation/pota_spots_map_page/pota_s
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/pota_spots_page.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/profile_screen.dart';
 import 'package:hamqrg/src/features/profile/presentation/user_settings/user_settings_screen.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/add_repeater/add_repeater_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/repeater_detail_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/distance_map/repeater_detail_map_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/favorites_page.dart';
@@ -73,6 +74,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(page: ProfileRoute.page),
                 AutoRoute(page: UserSettingsRoute.page),
                 AutoRoute(page: UserReportsRoute.page),
+                AutoRoute(page: AddRepeaterRoute.page),
               ],
             ),
           ],
