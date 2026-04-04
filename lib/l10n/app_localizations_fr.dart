@@ -192,12 +192,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String repeatersNearbyCount(int count) {
-    return '$count ripetitori vicini';
+    return '$count relais à proximité';
   }
 
   @override
   String repeatersResultsCount(int count) {
-    return '$count risultati';
+    return '$count résultats';
   }
 
   @override
@@ -498,19 +498,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeViewAll => 'Voir tout';
 
   @override
-  String get dashboardTabRepeaters => 'Ripetitori';
+  String get dashboardTabRepeaters => 'Relais';
 
   @override
   String get dashboardTabPota => 'POTA';
 
   @override
-  String get dashboardNearbyEmpty => 'Nessun ripetitore nelle vicinanze';
+  String get dashboardNearbyEmpty => 'Aucun relais à proximité';
 
   @override
-  String get dashboardViewAllRepeaters => 'Vedi tutti i ripetitori';
+  String get dashboardViewAllRepeaters => 'Voir tous les relais';
 
   @override
-  String get dashboardViewAllPotaSpots => 'Vedi tutti gli spot POTA';
+  String get dashboardViewAllPotaSpots => 'Voir tous les spots POTA';
 
   @override
   String homeStations(int count) {
@@ -1255,19 +1255,19 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get potaFilterAll => 'Tutte';
+  String get potaFilterAll => 'Toutes';
 
   @override
-  String get potaFilterBand => 'Banda';
+  String get potaFilterBand => 'Bande';
 
   @override
-  String get potaFilterMode => 'Modo';
+  String get potaFilterMode => 'Mode';
 
   @override
-  String get potaSortByTime => 'Più recenti';
+  String get potaSortByTime => 'Plus récents';
 
   @override
-  String get potaSortByDistance => 'Più vicini';
+  String get potaSortByDistance => 'Plus proches';
 
   @override
   String get profileLanguage => 'Langue';
@@ -1288,101 +1288,325 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileLanguageFrench => 'Français';
 
   @override
-  String get onboardingSkip => 'Salta';
+  String get onboardingSkip => 'Passer';
 
   @override
-  String get onboardingGetStarted => 'Inizia';
+  String get onboardingGetStarted => 'Commencer';
 
   @override
-  String get onboardingNext => 'Avanti';
+  String get onboardingNext => 'Suivant';
 
   @override
-  String get onboardingWelcomeTitle1 => 'Trova i ripetitori vicino a te';
+  String get onboardingWelcomeTitle1 => 'Trouvez les relais près de vous';
 
   @override
   String get onboardingWelcomeSubtitle1 =>
-      'Scopri i ponti radio attivi nella tua zona, con frequenze, toni e dettagli tecnici.';
+      'Découvrez les relais actifs dans votre zone, avec fréquences, tonalités et détails techniques.';
 
   @override
   String get onboardingWelcomeCredits =>
-      'Dati dei ponti radio forniti da IZ8WNH';
+      'Données des relais fournies par IZ8WNH';
 
   @override
-  String get onboardingWelcomeTitle2 => 'Filtra per modo';
+  String get onboardingWelcomeTitle2 => 'Filtrer par mode';
 
   @override
   String get onboardingWelcomeSubtitle2 =>
-      'Analogico, DMR, C4FM, D-STAR — trova subito il ripetitore che fa per te.';
+      'Analogique, DMR, C4FM, D-STAR — trouvez instantanément le relais qui vous convient.';
 
   @override
-  String get onboardingWelcomeTitle3 => 'Spot POTA in tempo reale';
+  String get onboardingWelcomeTitle3 => 'Spots POTA en temps réel';
 
   @override
   String get onboardingWelcomeSubtitle3 =>
-      'Segui le attivazioni Parks on the Air con aggiornamenti live, filtri per banda e distanza.';
+      'Suivez les activations Parks on the Air avec des mises à jour en direct, des filtres par bande et distance.';
 
   @override
-  String get onboardingWelcomeTitle4 => 'Salva i preferiti';
+  String get onboardingWelcomeTitle4 => 'Sauvegardez vos favoris';
 
   @override
   String get onboardingWelcomeSubtitle4 =>
-      'Tieni a portata di mano i ripetitori che usi di più per accesso rapido.';
+      'Gardez à portée de main les relais que vous utilisez le plus pour un accès rapide.';
 
   @override
-  String get onboardingLocationTitle => 'Posizione';
+  String get onboardingLocationTitle => 'Localisation';
 
   @override
   String get onboardingLocationSubtitle =>
-      'Usiamo la tua posizione per mostrarti i ripetitori e le attivazioni POTA vicine.';
+      'Nous utilisons votre position pour vous montrer les relais et les activations POTA à proximité.';
 
   @override
-  String get onboardingLocationEnable => 'Attiva Posizione';
+  String get onboardingLocationEnable => 'Activer la Localisation';
 
   @override
-  String get onboardingLocationSkip => 'Non ora';
+  String get onboardingLocationSkip => 'Pas maintenant';
 
   @override
-  String get onboardingDiscoveryTitle => 'Il tuo primo ripetitore';
+  String get onboardingDiscoveryTitle => 'Votre premier relais';
 
   @override
-  String get onboardingDiscoverySubtitle => 'Ecco cosa c\'è vicino a te!';
+  String get onboardingDiscoverySubtitle =>
+      'Voici ce qui se trouve près de vous !';
 
   @override
-  String get onboardingDiscoveryViewDetails => 'Vedi Dettagli';
+  String get onboardingDiscoveryViewDetails => 'Voir Détails';
 
   @override
-  String get onboardingDiscoveryViewSpot => 'Vedi Spot';
+  String get onboardingDiscoveryViewSpot => 'Voir Spot';
 
   @override
-  String get onboardingDiscoveryExploreMap => 'Esplora la Mappa';
+  String get onboardingDiscoveryExploreMap => 'Explorer la Carte';
 
   @override
   String get onboardingDiscoveryNoLocation =>
-      'Esplora la mappa per trovare ripetitori e attivazioni POTA';
+      'Explorez la carte pour trouver des relais et des activations POTA';
 
   @override
-  String get onboardingDiscoveryNearbyRepeater => 'Ripetitore vicino';
+  String get onboardingDiscoveryNearbyRepeater => 'Relais à proximité';
 
   @override
-  String get onboardingDiscoveryLivePota => 'Spot POTA attivo';
+  String get onboardingDiscoveryLivePota => 'Spot POTA actif';
 
   @override
   String get onboardingDiscoveryNoRepeaters =>
-      'Nessun ripetitore trovato nelle vicinanze';
+      'Aucun relais trouvé à proximité';
 
   @override
-  String get onboardingTelegramTitle => 'Unisciti alla community';
+  String get onboardingTelegramTitle => 'Rejoignez la communauté';
 
   @override
   String get onboardingTelegramSubtitle =>
-      'Entra nel gruppo Telegram di HamQRG per ricevere aggiornamenti, segnalare ripetitori e conoscere altri radioamatori.';
+      'Rejoignez le groupe Telegram HamQRG pour recevoir des mises à jour, signaler des relais et rencontrer d\'autres radioamateurs.';
 
   @override
-  String get onboardingTelegramJoin => 'Unisciti al Gruppo Telegram';
+  String get onboardingTelegramJoin => 'Rejoindre le Groupe Telegram';
 
   @override
-  String get onboardingTelegramLater => 'Forse dopo';
+  String get onboardingTelegramLater => 'Peut-être plus tard';
 
   @override
-  String get onboardingTelegramAlreadyMember => 'Sono già membro';
+  String get onboardingTelegramAlreadyMember => 'Je suis déjà membre';
+
+  @override
+  String get addRepeaterProfileTile => 'Proposer un nouveau relais';
+
+  @override
+  String get addRepeaterProfileTileSubtitle =>
+      'Signaler un relais non encore répertorié';
+
+  @override
+  String get addRepeaterTitle => 'Nouveau Relais';
+
+  @override
+  String get addRepeaterHeadline => 'Signaler un relais manquant';
+
+  @override
+  String get addRepeaterDescription =>
+      'Remplissez les données du relais que vous souhaitez ajouter. La soumission sera examinée avant publication.';
+
+  @override
+  String get addRepeaterSectionRepeater => 'Données du relais';
+
+  @override
+  String get addRepeaterSectionAccesses => 'Accès';
+
+  @override
+  String get addRepeaterSectionLocation => 'Emplacement';
+
+  @override
+  String get addRepeaterSectionNotes => 'Notes';
+
+  @override
+  String get addRepeaterName => 'Nom';
+
+  @override
+  String get addRepeaterNameHint => 'Ex. Monte Cimone';
+
+  @override
+  String get addRepeaterCallsign => 'Indicatif';
+
+  @override
+  String get addRepeaterCallsignHint => 'Ex. IR4AB';
+
+  @override
+  String get addRepeaterNameOrCallsignRequired =>
+      'Saisissez au moins un nom ou un indicatif';
+
+  @override
+  String get addRepeaterFrequency => 'Fréquence (MHz)';
+
+  @override
+  String get addRepeaterFrequencyHint => 'Ex. 145.000 ou 145,000';
+
+  @override
+  String get addRepeaterFrequencyRequired => 'Fréquence obligatoire';
+
+  @override
+  String get addRepeaterFrequencyInvalid => 'Fréquence invalide';
+
+  @override
+  String get addRepeaterShift => 'Shift (MHz)';
+
+  @override
+  String get addRepeaterShiftHint => 'Ex. -0.600 ou -0,600';
+
+  @override
+  String get addRepeaterRegion => 'Région';
+
+  @override
+  String get addRepeaterRegionHint => 'Ex. Emilia-Romagna';
+
+  @override
+  String get addRepeaterProvinceCode => 'Province';
+
+  @override
+  String get addRepeaterProvinceCodeHint => 'Ex. MO';
+
+  @override
+  String get addRepeaterLocality => 'Localité';
+
+  @override
+  String get addRepeaterLocalityHint => 'Ex. Fanano';
+
+  @override
+  String get addRepeaterLatitude => 'Latitude';
+
+  @override
+  String get addRepeaterLatitudeHint => 'Ex. 44.2100';
+
+  @override
+  String get addRepeaterLongitude => 'Longitude';
+
+  @override
+  String get addRepeaterLongitudeHint => 'Ex. 10.7900';
+
+  @override
+  String get addRepeaterLocator => 'Locator';
+
+  @override
+  String get addRepeaterLocatorHint => 'Ex. JN54QF';
+
+  @override
+  String get addRepeaterNotes => 'Notes supplémentaires';
+
+  @override
+  String get addRepeaterNotesHint =>
+      'Informations supplémentaires sur le relais...';
+
+  @override
+  String get addRepeaterAddAccess => 'Ajouter un accès';
+
+  @override
+  String get addRepeaterRemoveAccess => 'Supprimer';
+
+  @override
+  String get addRepeaterAccessMode => 'Mode';
+
+  @override
+  String get addRepeaterAccessCtcssTx => 'CTCSS TX (Hz)';
+
+  @override
+  String get addRepeaterAccessCtcssTxHint => 'Ex. 88.5';
+
+  @override
+  String get addRepeaterAccessCtcssRx => 'CTCSS RX (Hz)';
+
+  @override
+  String get addRepeaterAccessCtcssRxHint => 'Ex. 88.5';
+
+  @override
+  String get addRepeaterAccessDcsCode => 'Code DCS';
+
+  @override
+  String get addRepeaterAccessDcsCodeHint => 'Ex. 23';
+
+  @override
+  String get addRepeaterAccessColorCode => 'Color Code';
+
+  @override
+  String get addRepeaterAccessColorCodeHint => 'Ex. 1';
+
+  @override
+  String get addRepeaterAccessTalkgroup => 'Talkgroup';
+
+  @override
+  String get addRepeaterAccessTalkgroupHint => 'Ex. 222801';
+
+  @override
+  String get addRepeaterAccessDgId => 'DG-ID';
+
+  @override
+  String get addRepeaterAccessDgIdHint => 'Ex. 0';
+
+  @override
+  String get addRepeaterAccessNodeId => 'Node ID';
+
+  @override
+  String get addRepeaterAccessNodeIdHint => 'Ex. 1234';
+
+  @override
+  String get addRepeaterAccessNetworkName => 'Nom du réseau';
+
+  @override
+  String get addRepeaterAccessNetworkNameHint => 'Ex. BM Italia';
+
+  @override
+  String get addRepeaterAccessNotes => 'Notes d\'accès';
+
+  @override
+  String get addRepeaterAccessNotesHint => 'Notes spécifiques à cet accès...';
+
+  @override
+  String get addRepeaterConfirmCheckbox =>
+      'Je confirme que ces informations sont correctes à ma connaissance.';
+
+  @override
+  String get addRepeaterVerifiedTitle => 'Soumission vérifiée';
+
+  @override
+  String get addRepeaterVerifiedDescription =>
+      'Votre soumission sera examinée par l\'équipe avant d\'être publiée dans la base de données.';
+
+  @override
+  String get addRepeaterSubmit => 'Envoyer';
+
+  @override
+  String get addRepeaterSuccess => 'Soumission envoyée avec succès !';
+
+  @override
+  String get addRepeaterError => 'Erreur lors de l\'envoi de la soumission';
+
+  @override
+  String get addRepeaterAtLeastOneAccess => 'Ajoutez au moins un accès';
+
+  @override
+  String addRepeaterAccessNumber(int number) {
+    return 'Accès $number';
+  }
+
+  @override
+  String get changelog1017SubmitRepeater =>
+      'Proposez un nouveau relais directement depuis l\'app';
+
+  @override
+  String get changelog1017ReportAnonymous =>
+      'Signalements disponibles sans inscription';
+
+  @override
+  String get changelogTitle => 'Nouveautés';
+
+  @override
+  String get changelogSubtitle => 'Voici les nouveautés de cette version';
+
+  @override
+  String get changelogCategoryAdded => 'Nouveau';
+
+  @override
+  String get changelogCategoryImproved => 'Amélioré';
+
+  @override
+  String get changelogCategoryFixed => 'Corrigé';
+
+  @override
+  String get changelogDismiss => 'Compris !';
 }

@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AddRepeaterPage]
+class AddRepeaterRoute extends PageRouteInfo<void> {
+  const AddRepeaterRoute({List<PageRouteInfo>? children})
+      : super(AddRepeaterRoute.name, initialChildren: children);
+
+  static const String name = 'AddRepeaterRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AddRepeaterPage();
+    },
+  );
+}
+
+/// generated route for
 /// [AuthScreen]
 class AuthRoute extends PageRouteInfo<void> {
   const AuthRoute({List<PageRouteInfo>? children})

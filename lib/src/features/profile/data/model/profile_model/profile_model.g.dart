@@ -14,6 +14,7 @@ _ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) =>
       callsign: json['callsign'] as String?,
       propic: json['propic'] as String?,
       userType: $enumDecodeNullable(_$UserTypeEnumMap, json['user_type']),
+      lastSeenVersion: json['last_seen_version'] as String?,
     );
 
 Map<String, dynamic> _$ProfileModelToJson(_ProfileModel instance) =>
@@ -24,6 +25,7 @@ Map<String, dynamic> _$ProfileModelToJson(_ProfileModel instance) =>
       'callsign': instance.callsign,
       'propic': instance.propic,
       'user_type': _$UserTypeEnumMap[instance.userType],
+      'last_seen_version': instance.lastSeenVersion,
     };
 
 const _$UserTypeEnumMap = {

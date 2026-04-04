@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
@@ -136,6 +137,8 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
                     _buildSectionHeader(context, l10n.profileSectionCommunity),
                     const Gap(12),
                     _buildTelegramButton(context, isDark),
+                    const Gap(12),
+                    _buildAddRepeaterButton(context, ref, isDark),
                     const Gap(24),
                     // Support section
                     _buildSectionHeader(context, l10n.profileSectionSupport),
@@ -308,6 +311,80 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
                 ),
                 Icon(
                   Icons.open_in_new,
+                  size: 20,
+                  color: colorScheme.onSurfaceVariant,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAddRepeaterButton(
+    BuildContext context,
+    WidgetRef ref,
+    bool isDark,
+  ) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final l10n = context.localization;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: isDark ? colorScheme.surface : colorScheme.surface,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: isDark
+              ? colorScheme.outline.withValues(alpha: 0.1)
+              : colorScheme.outline.withValues(alpha: 0.05),
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => context.router.push(const AddRepeaterRoute()),
+          borderRadius: BorderRadius.circular(12),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Container(
+                  width: 32,
+                  height: 32,
+                  decoration: BoxDecoration(
+                    color: Colors.teal,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.cell_tower,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ),
+                const Gap(16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.addRepeaterProfileTile,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        l10n.addRepeaterProfileTileSubtitle,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.chevron_right,
                   size: 20,
                   color: colorScheme.onSurfaceVariant,
                 ),

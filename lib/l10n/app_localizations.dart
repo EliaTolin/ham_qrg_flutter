@@ -2543,6 +2543,432 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Sono già membro'**
   String get onboardingTelegramAlreadyMember;
+
+  /// No description provided for @addRepeaterProfileTile.
+  ///
+  /// In it, this message translates to:
+  /// **'Proponi nuovo ripetitore'**
+  String get addRepeaterProfileTile;
+
+  /// No description provided for @addRepeaterProfileTileSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnala un ripetitore non ancora presente'**
+  String get addRepeaterProfileTileSubtitle;
+
+  /// No description provided for @addRepeaterTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Nuovo Ripetitore'**
+  String get addRepeaterTitle;
+
+  /// No description provided for @addRepeaterHeadline.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnala un ripetitore mancante'**
+  String get addRepeaterHeadline;
+
+  /// No description provided for @addRepeaterDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Compila i dati del ripetitore che vorresti aggiungere. La segnalazione verrà revisionata prima della pubblicazione.'**
+  String get addRepeaterDescription;
+
+  /// No description provided for @addRepeaterSectionRepeater.
+  ///
+  /// In it, this message translates to:
+  /// **'Dati ripetitore'**
+  String get addRepeaterSectionRepeater;
+
+  /// No description provided for @addRepeaterSectionAccesses.
+  ///
+  /// In it, this message translates to:
+  /// **'Accessi'**
+  String get addRepeaterSectionAccesses;
+
+  /// No description provided for @addRepeaterSectionLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'Posizione'**
+  String get addRepeaterSectionLocation;
+
+  /// No description provided for @addRepeaterSectionNotes.
+  ///
+  /// In it, this message translates to:
+  /// **'Note'**
+  String get addRepeaterSectionNotes;
+
+  /// No description provided for @addRepeaterName.
+  ///
+  /// In it, this message translates to:
+  /// **'Nome'**
+  String get addRepeaterName;
+
+  /// No description provided for @addRepeaterNameHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. Monte Cimone'**
+  String get addRepeaterNameHint;
+
+  /// No description provided for @addRepeaterCallsign.
+  ///
+  /// In it, this message translates to:
+  /// **'Nominativo'**
+  String get addRepeaterCallsign;
+
+  /// No description provided for @addRepeaterCallsignHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. IR4AB'**
+  String get addRepeaterCallsignHint;
+
+  /// No description provided for @addRepeaterNameOrCallsignRequired.
+  ///
+  /// In it, this message translates to:
+  /// **'Inserisci almeno il nome o il nominativo'**
+  String get addRepeaterNameOrCallsignRequired;
+
+  /// No description provided for @addRepeaterFrequency.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza (MHz)'**
+  String get addRepeaterFrequency;
+
+  /// No description provided for @addRepeaterFrequencyHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 145.000 o 145,000'**
+  String get addRepeaterFrequencyHint;
+
+  /// No description provided for @addRepeaterFrequencyRequired.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza obbligatoria'**
+  String get addRepeaterFrequencyRequired;
+
+  /// No description provided for @addRepeaterFrequencyInvalid.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza non valida'**
+  String get addRepeaterFrequencyInvalid;
+
+  /// No description provided for @addRepeaterShift.
+  ///
+  /// In it, this message translates to:
+  /// **'Shift (MHz)'**
+  String get addRepeaterShift;
+
+  /// No description provided for @addRepeaterShiftHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. -0.600 o -0,600'**
+  String get addRepeaterShiftHint;
+
+  /// No description provided for @addRepeaterRegion.
+  ///
+  /// In it, this message translates to:
+  /// **'Regione'**
+  String get addRepeaterRegion;
+
+  /// No description provided for @addRepeaterRegionHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. Emilia-Romagna'**
+  String get addRepeaterRegionHint;
+
+  /// No description provided for @addRepeaterProvinceCode.
+  ///
+  /// In it, this message translates to:
+  /// **'Provincia'**
+  String get addRepeaterProvinceCode;
+
+  /// No description provided for @addRepeaterProvinceCodeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. MO'**
+  String get addRepeaterProvinceCodeHint;
+
+  /// No description provided for @addRepeaterLocality.
+  ///
+  /// In it, this message translates to:
+  /// **'Località'**
+  String get addRepeaterLocality;
+
+  /// No description provided for @addRepeaterLocalityHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. Fanano'**
+  String get addRepeaterLocalityHint;
+
+  /// No description provided for @addRepeaterLatitude.
+  ///
+  /// In it, this message translates to:
+  /// **'Latitudine'**
+  String get addRepeaterLatitude;
+
+  /// No description provided for @addRepeaterLatitudeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 44.2100'**
+  String get addRepeaterLatitudeHint;
+
+  /// No description provided for @addRepeaterLongitude.
+  ///
+  /// In it, this message translates to:
+  /// **'Longitudine'**
+  String get addRepeaterLongitude;
+
+  /// No description provided for @addRepeaterLongitudeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 10.7900'**
+  String get addRepeaterLongitudeHint;
+
+  /// No description provided for @addRepeaterLocator.
+  ///
+  /// In it, this message translates to:
+  /// **'Locator'**
+  String get addRepeaterLocator;
+
+  /// No description provided for @addRepeaterLocatorHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. JN54QF'**
+  String get addRepeaterLocatorHint;
+
+  /// No description provided for @addRepeaterNotes.
+  ///
+  /// In it, this message translates to:
+  /// **'Note aggiuntive'**
+  String get addRepeaterNotes;
+
+  /// No description provided for @addRepeaterNotesHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Informazioni aggiuntive sul ripetitore...'**
+  String get addRepeaterNotesHint;
+
+  /// No description provided for @addRepeaterAddAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiungi accesso'**
+  String get addRepeaterAddAccess;
+
+  /// No description provided for @addRepeaterRemoveAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Rimuovi'**
+  String get addRepeaterRemoveAccess;
+
+  /// No description provided for @addRepeaterAccessMode.
+  ///
+  /// In it, this message translates to:
+  /// **'Modo'**
+  String get addRepeaterAccessMode;
+
+  /// No description provided for @addRepeaterAccessCtcssTx.
+  ///
+  /// In it, this message translates to:
+  /// **'CTCSS TX (Hz)'**
+  String get addRepeaterAccessCtcssTx;
+
+  /// No description provided for @addRepeaterAccessCtcssTxHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 88.5'**
+  String get addRepeaterAccessCtcssTxHint;
+
+  /// No description provided for @addRepeaterAccessCtcssRx.
+  ///
+  /// In it, this message translates to:
+  /// **'CTCSS RX (Hz)'**
+  String get addRepeaterAccessCtcssRx;
+
+  /// No description provided for @addRepeaterAccessCtcssRxHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 88.5'**
+  String get addRepeaterAccessCtcssRxHint;
+
+  /// No description provided for @addRepeaterAccessDcsCode.
+  ///
+  /// In it, this message translates to:
+  /// **'Codice DCS'**
+  String get addRepeaterAccessDcsCode;
+
+  /// No description provided for @addRepeaterAccessDcsCodeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 23'**
+  String get addRepeaterAccessDcsCodeHint;
+
+  /// No description provided for @addRepeaterAccessColorCode.
+  ///
+  /// In it, this message translates to:
+  /// **'Color Code'**
+  String get addRepeaterAccessColorCode;
+
+  /// No description provided for @addRepeaterAccessColorCodeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 1'**
+  String get addRepeaterAccessColorCodeHint;
+
+  /// No description provided for @addRepeaterAccessTalkgroup.
+  ///
+  /// In it, this message translates to:
+  /// **'Talkgroup'**
+  String get addRepeaterAccessTalkgroup;
+
+  /// No description provided for @addRepeaterAccessTalkgroupHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 222801'**
+  String get addRepeaterAccessTalkgroupHint;
+
+  /// No description provided for @addRepeaterAccessDgId.
+  ///
+  /// In it, this message translates to:
+  /// **'DG-ID'**
+  String get addRepeaterAccessDgId;
+
+  /// No description provided for @addRepeaterAccessDgIdHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 0'**
+  String get addRepeaterAccessDgIdHint;
+
+  /// No description provided for @addRepeaterAccessNodeId.
+  ///
+  /// In it, this message translates to:
+  /// **'Node ID'**
+  String get addRepeaterAccessNodeId;
+
+  /// No description provided for @addRepeaterAccessNodeIdHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 1234'**
+  String get addRepeaterAccessNodeIdHint;
+
+  /// No description provided for @addRepeaterAccessNetworkName.
+  ///
+  /// In it, this message translates to:
+  /// **'Nome rete'**
+  String get addRepeaterAccessNetworkName;
+
+  /// No description provided for @addRepeaterAccessNetworkNameHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. BM Italia'**
+  String get addRepeaterAccessNetworkNameHint;
+
+  /// No description provided for @addRepeaterAccessNotes.
+  ///
+  /// In it, this message translates to:
+  /// **'Note accesso'**
+  String get addRepeaterAccessNotes;
+
+  /// No description provided for @addRepeaterAccessNotesHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Note specifiche per questo accesso...'**
+  String get addRepeaterAccessNotesHint;
+
+  /// No description provided for @addRepeaterConfirmCheckbox.
+  ///
+  /// In it, this message translates to:
+  /// **'Confermo che queste informazioni sono corrette in base alla mia conoscenza.'**
+  String get addRepeaterConfirmCheckbox;
+
+  /// No description provided for @addRepeaterVerifiedTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazione verificata'**
+  String get addRepeaterVerifiedTitle;
+
+  /// No description provided for @addRepeaterVerifiedDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'La tua segnalazione sarà revisionata dal team prima di essere pubblicata nel database.'**
+  String get addRepeaterVerifiedDescription;
+
+  /// No description provided for @addRepeaterSubmit.
+  ///
+  /// In it, this message translates to:
+  /// **'Invia'**
+  String get addRepeaterSubmit;
+
+  /// No description provided for @addRepeaterSuccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazione inviata con successo!'**
+  String get addRepeaterSuccess;
+
+  /// No description provided for @addRepeaterError.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore durante l\'invio della segnalazione'**
+  String get addRepeaterError;
+
+  /// No description provided for @addRepeaterAtLeastOneAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiungi almeno un accesso'**
+  String get addRepeaterAtLeastOneAccess;
+
+  /// No description provided for @addRepeaterAccessNumber.
+  ///
+  /// In it, this message translates to:
+  /// **'Accesso {number}'**
+  String addRepeaterAccessNumber(int number);
+
+  /// No description provided for @changelog1017SubmitRepeater.
+  ///
+  /// In it, this message translates to:
+  /// **'Proponi un nuovo ripetitore direttamente dall\'app'**
+  String get changelog1017SubmitRepeater;
+
+  /// No description provided for @changelog1017ReportAnonymous.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazioni disponibili anche senza registrazione'**
+  String get changelog1017ReportAnonymous;
+
+  /// No description provided for @changelogTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Novità'**
+  String get changelogTitle;
+
+  /// No description provided for @changelogSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Ecco cosa c\'è di nuovo in questa versione'**
+  String get changelogSubtitle;
+
+  /// No description provided for @changelogCategoryAdded.
+  ///
+  /// In it, this message translates to:
+  /// **'Nuovo'**
+  String get changelogCategoryAdded;
+
+  /// No description provided for @changelogCategoryImproved.
+  ///
+  /// In it, this message translates to:
+  /// **'Migliorato'**
+  String get changelogCategoryImproved;
+
+  /// No description provided for @changelogCategoryFixed.
+  ///
+  /// In it, this message translates to:
+  /// **'Corretto'**
+  String get changelogCategoryFixed;
+
+  /// No description provided for @changelogDismiss.
+  ///
+  /// In it, this message translates to:
+  /// **'Ho capito!'**
+  String get changelogDismiss;
 }
 
 class _AppLocalizationsDelegate

@@ -1381,4 +1381,228 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get onboardingTelegramAlreadyMember => 'Sono già membro';
+
+  @override
+  String get addRepeaterProfileTile => 'Proponi nuovo ripetitore';
+
+  @override
+  String get addRepeaterProfileTileSubtitle =>
+      'Segnala un ripetitore non ancora presente';
+
+  @override
+  String get addRepeaterTitle => 'Nuovo Ripetitore';
+
+  @override
+  String get addRepeaterHeadline => 'Segnala un ripetitore mancante';
+
+  @override
+  String get addRepeaterDescription =>
+      'Compila i dati del ripetitore che vorresti aggiungere. La segnalazione verrà revisionata prima della pubblicazione.';
+
+  @override
+  String get addRepeaterSectionRepeater => 'Dati ripetitore';
+
+  @override
+  String get addRepeaterSectionAccesses => 'Accessi';
+
+  @override
+  String get addRepeaterSectionLocation => 'Posizione';
+
+  @override
+  String get addRepeaterSectionNotes => 'Note';
+
+  @override
+  String get addRepeaterName => 'Nome';
+
+  @override
+  String get addRepeaterNameHint => 'Es. Monte Cimone';
+
+  @override
+  String get addRepeaterCallsign => 'Nominativo';
+
+  @override
+  String get addRepeaterCallsignHint => 'Es. IR4AB';
+
+  @override
+  String get addRepeaterNameOrCallsignRequired =>
+      'Inserisci almeno il nome o il nominativo';
+
+  @override
+  String get addRepeaterFrequency => 'Frequenza (MHz)';
+
+  @override
+  String get addRepeaterFrequencyHint => 'Es. 145.000 o 145,000';
+
+  @override
+  String get addRepeaterFrequencyRequired => 'Frequenza obbligatoria';
+
+  @override
+  String get addRepeaterFrequencyInvalid => 'Frequenza non valida';
+
+  @override
+  String get addRepeaterShift => 'Shift (MHz)';
+
+  @override
+  String get addRepeaterShiftHint => 'Es. -0.600 o -0,600';
+
+  @override
+  String get addRepeaterRegion => 'Regione';
+
+  @override
+  String get addRepeaterRegionHint => 'Es. Emilia-Romagna';
+
+  @override
+  String get addRepeaterProvinceCode => 'Provincia';
+
+  @override
+  String get addRepeaterProvinceCodeHint => 'Es. MO';
+
+  @override
+  String get addRepeaterLocality => 'Località';
+
+  @override
+  String get addRepeaterLocalityHint => 'Es. Fanano';
+
+  @override
+  String get addRepeaterLatitude => 'Latitudine';
+
+  @override
+  String get addRepeaterLatitudeHint => 'Es. 44.2100';
+
+  @override
+  String get addRepeaterLongitude => 'Longitudine';
+
+  @override
+  String get addRepeaterLongitudeHint => 'Es. 10.7900';
+
+  @override
+  String get addRepeaterLocator => 'Locator';
+
+  @override
+  String get addRepeaterLocatorHint => 'Es. JN54QF';
+
+  @override
+  String get addRepeaterNotes => 'Note aggiuntive';
+
+  @override
+  String get addRepeaterNotesHint =>
+      'Informazioni aggiuntive sul ripetitore...';
+
+  @override
+  String get addRepeaterAddAccess => 'Aggiungi accesso';
+
+  @override
+  String get addRepeaterRemoveAccess => 'Rimuovi';
+
+  @override
+  String get addRepeaterAccessMode => 'Modo';
+
+  @override
+  String get addRepeaterAccessCtcssTx => 'CTCSS TX (Hz)';
+
+  @override
+  String get addRepeaterAccessCtcssTxHint => 'Es. 88.5';
+
+  @override
+  String get addRepeaterAccessCtcssRx => 'CTCSS RX (Hz)';
+
+  @override
+  String get addRepeaterAccessCtcssRxHint => 'Es. 88.5';
+
+  @override
+  String get addRepeaterAccessDcsCode => 'Codice DCS';
+
+  @override
+  String get addRepeaterAccessDcsCodeHint => 'Es. 23';
+
+  @override
+  String get addRepeaterAccessColorCode => 'Color Code';
+
+  @override
+  String get addRepeaterAccessColorCodeHint => 'Es. 1';
+
+  @override
+  String get addRepeaterAccessTalkgroup => 'Talkgroup';
+
+  @override
+  String get addRepeaterAccessTalkgroupHint => 'Es. 222801';
+
+  @override
+  String get addRepeaterAccessDgId => 'DG-ID';
+
+  @override
+  String get addRepeaterAccessDgIdHint => 'Es. 0';
+
+  @override
+  String get addRepeaterAccessNodeId => 'Node ID';
+
+  @override
+  String get addRepeaterAccessNodeIdHint => 'Es. 1234';
+
+  @override
+  String get addRepeaterAccessNetworkName => 'Nome rete';
+
+  @override
+  String get addRepeaterAccessNetworkNameHint => 'Es. BM Italia';
+
+  @override
+  String get addRepeaterAccessNotes => 'Note accesso';
+
+  @override
+  String get addRepeaterAccessNotesHint =>
+      'Note specifiche per questo accesso...';
+
+  @override
+  String get addRepeaterConfirmCheckbox =>
+      'Confermo che queste informazioni sono corrette in base alla mia conoscenza.';
+
+  @override
+  String get addRepeaterVerifiedTitle => 'Segnalazione verificata';
+
+  @override
+  String get addRepeaterVerifiedDescription =>
+      'La tua segnalazione sarà revisionata dal team prima di essere pubblicata nel database.';
+
+  @override
+  String get addRepeaterSubmit => 'Invia';
+
+  @override
+  String get addRepeaterSuccess => 'Segnalazione inviata con successo!';
+
+  @override
+  String get addRepeaterError => 'Errore durante l\'invio della segnalazione';
+
+  @override
+  String get addRepeaterAtLeastOneAccess => 'Aggiungi almeno un accesso';
+
+  @override
+  String addRepeaterAccessNumber(int number) {
+    return 'Accesso $number';
+  }
+
+  @override
+  String get changelog1017SubmitRepeater =>
+      'Proponi un nuovo ripetitore direttamente dall\'app';
+
+  @override
+  String get changelog1017ReportAnonymous =>
+      'Segnalazioni disponibili anche senza registrazione';
+
+  @override
+  String get changelogTitle => 'Novità';
+
+  @override
+  String get changelogSubtitle => 'Ecco cosa c\'è di nuovo in questa versione';
+
+  @override
+  String get changelogCategoryAdded => 'Nuovo';
+
+  @override
+  String get changelogCategoryImproved => 'Migliorato';
+
+  @override
+  String get changelogCategoryFixed => 'Corretto';
+
+  @override
+  String get changelogDismiss => 'Ho capito!';
 }

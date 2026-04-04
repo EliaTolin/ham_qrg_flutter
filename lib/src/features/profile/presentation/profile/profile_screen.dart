@@ -204,6 +204,46 @@ class ProfileScreen extends HookConsumerWidget {
                                   alpha: .3,
                                 ),
                               ),
+                              // Add Repeater
+                              ListTile(
+                                leading: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.teal,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: const Icon(
+                                    Icons.cell_tower,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                                ),
+                                title: Text(l10n.addRepeaterProfileTile),
+                                subtitle: Text(
+                                  l10n.addRepeaterProfileTileSubtitle,
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    color: colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                                trailing: Icon(
+                                  Icons.chevron_right,
+                                  color: colorScheme.onSurface.withValues(
+                                    alpha: .5,
+                                  ),
+                                ),
+                                onTap: () {
+                                  context.router
+                                      .push(const AddRepeaterRoute());
+                                },
+                              ),
+                              Divider(
+                                height: 1,
+                                indent: 16,
+                                endIndent: 16,
+                                color: colorScheme.outlineVariant.withValues(
+                                  alpha: .3,
+                                ),
+                              ),
                               // Contact Us
                               ListTile(
                                 leading: Container(
