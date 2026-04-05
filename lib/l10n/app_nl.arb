@@ -1,0 +1,720 @@
+{
+  "@@locale": "nl",
+  "error": "Fout",
+  "error_message": "Er is een fout opgetreden bij het laden",
+  "error_message_retry": "Er is een fout opgetreden bij het laden. Probeer het later opnieuw",
+  "retry": "Opnieuw proberen",
+  "back": "Terug",
+  "loading": "Laden",
+  "details": "Details",
+  "pages_number": "{number} pagina's om te verkennen",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "Januari",
+  "february": "Februari",
+  "march": "Maart",
+  "april": "April",
+  "may": "Mei",
+  "june": "Juni",
+  "july": "Juli",
+  "august": "Augustus",
+  "september": "September",
+  "october": "Oktober",
+  "november": "November",
+  "december": "December",
+  "logout": "Uitloggen",
+  "profile": "Profiel",
+  "settings": "Instellingen",
+  "contact_us": "Neem contact op",
+  "error_opening_email": "Er is een fout opgetreden bij het openen van de e-mail",
+  "register_now": "Registreer nu",
+  "tracking_permission_title": "Ondersteun de app",
+  "tracking_permission_message": "Om je ervaring te verbeteren en je relevantere inhoud te tonen, help ons de app gratis te houden.\n\nTik op Sta toe om ons te ondersteunen.",
+  "tracking_permission_next": "Volgende",
+  "skip": "Overslaan",
+  "done": "Klaar",
+  "next": "Volgende",
+  "joinCommunityTitle": "Word lid van onze community!",
+  "joinCommunityDescription": "Ontdek de voordelen van de Telegram-community:",
+  "benefitSupportMembers": "Ondersteuning van leden",
+  "benefitSuggestFeatures": "Nieuwe functies voorstellen",
+  "benefitContactDevelopers": "Contact met ontwikkelaars",
+  "benefitExclusivePreviews": "Exclusieve previews en bèta's",
+  "benefitActiveCommunity": "Actieve community",
+  "joinNowButton": "Nu lid worden!",
+  "alreadyMemberButton": "Ik ben al lid",
+  "laterButton": "Later",
+  "errorOpenTelegram": "Fout bij het openen van Telegram",
+  "disclaimerTitle": "Gegevensbron",
+  "disclaimerDescription": "De repeatergegevens in deze app zijn afkomstig van IZ8WNH.\n\nVoor aanvullende informatie, het downloaden van CSV-bestanden voor het programmeren van radio's, of het raadplegen van gegevens die niet in deze app beschikbaar zijn, bezoek de officiële website.",
+  "disclaimerVisitSite": "Bezoek iz8wnh.it",
+  "disclaimerUnderstood": "Begrepen",
+  "errorOpenDisclaimerSite": "Fout bij het openen van de website",
+  "repeatersMapTitle": "Repeaterkaart",
+  "repeatersListTitle": "Repeaterlijst",
+  "repeatersMapLoading": "Repeaterkaart laden…",
+  "repeatersMapGenericError": "Kan repeaters niet laden.",
+  "repeatersMapEmpty": "Geen repeaters gevonden in je buurt.",
+  "repeatersSearchHint": "Zoek op naam, roepnaam of frequentie MHz…",
+  "repeatersSearchEmpty": "Geen repeaters gevonden.",
+  "repeatersSortDistance": "Afstand",
+  "repeatersSortLikes": "Likes",
+  "repeatersSortFrequency": "Frequentie",
+  "repeatersMapRetry": "Opnieuw proberen",
+  "repeatersMapOpenSettings": "Instellingen openen",
+  "repeatersMapPermissionMessage": "Geef locatietoegang om repeaters in je buurt te tonen.",
+  "repeatersMapPermissionPermanentlyDenied": "Locatietoestemming permanent geweigerd. Schakel deze in via de systeeminstellingen.",
+  "repeatersMapLocationServicesDisabled": "Schakel locatieservices in om repeaters in de buurt te vinden.",
+  "repeatersMapFound": "{count} repeaters gevonden",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Modus",
+  "repeaterModeAnalog": "Analoog",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "Alle modi",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frequentie",
+  "repeaterShift": "Shift",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Locatie",
+  "repeaterDistance": "Afstand",
+  "repeaterViewFullDetails": "Alle details bekijken",
+  "repeatersMapReturnToLocation": "Terug naar mijn locatie",
+  "clusterRepeatersTitle": "{count} repeaters op deze locatie",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Ontgrendel alle functies",
+  "profileUnlockFeaturesDescription": "Registreer om beoordelingen, favoriet opslaan en gedetailleerde statistieken te gebruiken.",
+  "profileSignUpOrLogin": "Registreren of inloggen",
+  "profileErrorOpeningEmail": "Fout bij het openen van e-mail",
+  "profileJoinTelegramCommunity": "Word lid van de Telegram-community",
+  "profileWelcomeTitle": "Welkom bij HamQRG",
+  "profileWelcomeDescription": "Word lid van onze community van zendamateurs in Italië.",
+  "profileEditProfile": "Profiel bewerken",
+  "profileChangePhoto": "Foto wijzigen",
+  "profileFirstName": "Voornaam",
+  "profileLastName": "Achternaam",
+  "profileCallsign": "Roepnaam",
+  "profileRestartIdentificationTitle": "Wil je je status wijzigen? Je kunt het identificatieproces opnieuw starten om te wisselen van Gelicentieerde Operator naar SWL-luisteraar.",
+  "profileRestartIdentificationButton": "Identificatieproces opnieuw starten",
+  "profileSaveChanges": "Wijzigingen opslaan",
+  "profileDangerZone": "Gevarenzone",
+  "profileDeleteAccount": "Account verwijderen",
+  "profileDeleteAccountConfirmTitle": "Account verwijderen",
+  "profileDeleteAccountConfirmMessage": "Weet je zeker dat je je account wilt verwijderen? Deze actie is onomkeerbaar.",
+  "profileDeleteAccountCancel": "Annuleren",
+  "profileDeleteAccountConfirm": "Verwijderen",
+  "profileAppVersion": "App-versie {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Community & ondersteuning",
+  "profileSectionSupport": "Ondersteuning",
+  "profileVersion": "Versie: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Versie {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Fout: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "Word lid van HamQRG",
+  "authUnlockFeatures": "Log in om alle functies te ontgrendelen!",
+  "authWhatYouGet": "Wat je krijgt:",
+  "authBenefitStatsTitle": "Gedetailleerde statistieken",
+  "authBenefitStatsDescription": "Volg je voortgang en verbeter",
+  "authBenefitQuizTitle": "Verschillende quizmodi",
+  "authBenefitQuizDescription": "Oefen in marathon-, thema- en andere modi.",
+  "authBenefitSyncTitle": "Synchronisatie",
+  "authBenefitSyncDescription": "Toegang vanaf elk apparaat",
+  "authOrSignInWithEmail": "Of inloggen met e-mail",
+  "authEnterEmail": "Voer e-mail in",
+  "authEnterPassword": "Voer wachtwoord in",
+  "authForgotPassword": "Wachtwoord vergeten?",
+  "authSignIn": "Inloggen",
+  "authSignUp": "Registreren",
+  "authPasswordLengthError": "Wachtwoord moet langer zijn",
+  "authDontHaveAccount": "Geen account? Registreer",
+  "authHaveAccount": "Al een account? Log in",
+  "authBackToSignIn": "Terug naar inloggen",
+  "authUnexpectedError": "Authenticatiefout: ",
+  "authValidEmailError": "Voer een geldig e-mailadres in",
+  "authSendPasswordReset": "Wachtwoord reset versturen",
+  "authPasswordResetSent": "Wachtwoord reset verstuurd",
+  "authVerifyEmailMessage": "Verifieer je e-mail om de registratie te voltooien, controleer je inbox.",
+  "authInvalidCredentials": "Ongeldig e-mailadres of wachtwoord",
+  "authEmailNotConfirmed": "Verifieer je e-mail om in te loggen",
+  "authFirstName": "Voornaam",
+  "authFirstNameRequired": "Voornaam is verplicht",
+  "authLastName": "Achternaam",
+  "authLastNameRequired": "Achternaam is verplicht",
+  "authContinueAsGuest": "Verder als gast",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Ontdek de repeaters om je heen",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Snelle toegang",
+  "homeRepeaterList": "Repeaterlijst",
+  "homeMyFavorites": "Mijn favorieten",
+  "homeNearby": "In de buurt",
+  "homeViewAll": "Alles bekijken",
+  "homeStations": "{count} stations",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} opgeslagen",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Actief",
+  "homeIdle": "Inactief",
+  "homeNavHome": "Home",
+  "homeNavList": "Lijst",
+  "homeNavFavorites": "Favorieten",
+  "homeNavMap": "Kaart",
+  "homeNavProfile": "Profiel",
+  "favoritesTitle": "Mijn favorieten",
+  "favoritesSearchHint": "Zoek opgeslagen repeaters...",
+  "favoritesFilterAllSaved": "Alle opgeslagen",
+  "favoritesEmpty": "Geen opgeslagen repeaters",
+  "favoritesEmptyDescription": "Voeg repeaters toe aan favorieten om ze hier te zien",
+  "favoritesShowing": "{showing} van {total} favoriete stations weergegeven",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Verwijderen uit favorieten",
+  "favoritesAdd": "Toevoegen aan favorieten",
+  "repeaterDetailSave": "Opslaan",
+  "repeaterDetailShare": "Delen",
+  "repeaterDetailReport": "Melden",
+  "repeaterDetailTotalLikes": "Totaal aantal likes",
+  "repeaterDetailReports1Yr": "Meldingen (1 jaar)",
+  "repeaterDetailHealthScore": "Gezondheidsscore",
+  "repeaterDetailExcellent": "Uitstekend",
+  "repeaterDetailGood": "Goed",
+  "repeaterDetailFair": "Redelijk",
+  "repeaterDetailToVerify": "Te verifiëren",
+  "repeaterDetailScoreCalculated": "Score berekend op basis van {count} negatieve meldingen in het afgelopen jaar",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Laatste like",
+  "repeaterDetailLastDownReport": "Laatste negatieve melding",
+  "repeaterDetailTechnicalData": "Technische gegevens",
+  "repeaterDetailFrequency": "Frequentie",
+  "repeaterDetailShift": "Shift",
+  "repeaterDetailSubtone": "Subtoon (SQL)",
+  "repeaterDetailMode": "Modus",
+  "repeaterDetailLocation": "Locatie",
+  "repeaterDetailAway": "{distance} verderop",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Communitymeldingen",
+  "repeaterDetailUpdateStatusFeedback": "Status en feedback bijwerken",
+  "repeaterDetailEquipment": "Apparatuur",
+  "repeaterDetailEquipmentRequired": "Apparatuur *",
+  "repeaterDetailAccessModes": "Toegangsmodi",
+  "repeaterDetailNetwork": "Netwerk",
+  "repeaterDetailLocationField": "Locatie",
+  "repeaterDetailLocationRequired": "Locatie *",
+  "repeaterDetailComment": "Opmerking",
+  "repeaterDetailCommentOptional": "Opmerking (optioneel)",
+  "repeaterDetailCommentPlaceholder": "Signaalkwaliteit, audioverslag of algemene opmerkingen...",
+  "repeaterDetailReportDown": "Probleem melden",
+  "repeaterDetailCheckinLike": "Check-in en like",
+  "repeaterDetailYourFeedback": "Jouw feedback",
+  "repeaterDetailPostedJustNow": "Zojuist geplaatst",
+  "repeaterDetailDeleteEntry": "Item verwijderen",
+  "repeaterDetailViewAllReports": "Alle {count} meldingen bekijken",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Draagbaar",
+  "repeaterDetailStationMobile": "Mobiel",
+  "repeaterDetailStationFixed": "Vast",
+  "repeaterDetailLike": "Like",
+  "repeaterDetailReportLabel": "Melding",
+  "repeaterDetailSaved": "Opgeslagen",
+  "repeaterDetailShareMessage": "Bekijk deze repeater op HamQRG!",
+  "repeaterDetailReportDescription": "De meldingsfunctie is binnenkort beschikbaar. Je kunt dan onjuiste informatie of problemen met deze repeater melden.",
+  "commonClose": "Sluiten",
+  "favorite": "Favoriet",
+  "accessConfiguration": "Toegangsconfiguratie",
+  "noAccessConfiguration": "Geen configuratie beschikbaar",
+  "repeaterDetailAddFeedback": "Feedback toevoegen",
+  "repeaterDetailOthersReports": "Meldingen van andere gebruikers",
+  "repeaterDetailRemove": "Verwijderen",
+  "repeaterDetailSelectAccess": "Selecteer toegang",
+  "repeaterDetailDistanceWarning": "Je moet binnen {distance} km van de repeater zijn om feedback te sturen.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interactief",
+  "repeaterDetailLogYourSignal": "Log je signaal",
+  "repeaterDetailUsedEquipment": "Gebruikte apparatuur",
+  "repeaterDetailYourLocation": "Jouw locatie",
+  "repeaterDetailLocationPlaceholder": "Waar was je? (bijv. Amsterdam)",
+  "repeaterDetailLocationSelectHint": "Selecteer een plaats uit de suggesties",
+  "feedbackDistanceConfirmTitle": "Verzending bevestigen",
+  "feedbackDistanceConfirmMessage": "De geselecteerde locatie is {distance} km van de repeater. Bevestig je dat je deze feedback op eigen verantwoordelijkheid wilt versturen?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Bevestigen",
+  "feedbackDistanceConfirmCancel": "Annuleren",
+  "repeaterDetailSelectAccessInstance": "Selecteer toegangsinstantie",
+  "repeaterDetailSignalObservations": "Signaalobservaties",
+  "repeaterDetailSignalObservationsPlaceholder": "Hoe was de audiokwaliteit?",
+  "repeaterDetailSendLike": "Like versturen",
+  "repeaterDetailReportIssue": "Probleem melden",
+  "repeaterDetailRecentActivity": "Recente activiteit",
+  "reportIssueTitle": "Melding",
+  "reportIssueHeadline": "Help ons de gegevens accuraat te houden",
+  "reportIssueDescription": "Heb je iets fouts of ontbrekends gevonden bij deze repeater? Laat ons weten wat er gewijzigd moet worden en we zullen het controleren.",
+  "reportIssueWhatToCorrect": "Wat wil je corrigeren of toevoegen?",
+  "reportIssuePlaceholder": "Bijv. De CTCSS-toon is gewijzigd naar 88,5 Hz, of de locatie is iets noordelijker, de beheerder is...",
+  "reportIssueVerifiedTitle": "Geverifieerde inzendingen",
+  "reportIssueVerifiedDescription": "Je melding wordt beoordeeld door de regionale coördinator voordat de openbare database wordt bijgewerkt. Bedankt voor je bijdrage aan de community.",
+  "reportIssueConfirmCheckbox": "Ik bevestig dat deze informatie correct is op basis van mijn waarneming.",
+  "reportIssueSubmit": "Versturen",
+  "reportIssueMinChars": "Minimaal 10 tekens vereist",
+  "reportIssueMaxChars": "Maximaal 2000 tekens",
+  "reportIssueSuccess": "Melding succesvol verstuurd",
+  "reportIssueError": "Fout bij het versturen van de melding",
+  "registrationPromptTitle": "Ontgrendel het volledige potentieel",
+  "registrationPromptDescription": "Word lid van de Italiaanse zendamateurscommunity en til je ervaring naar een hoger niveau.",
+  "registrationBenefitInteractTitle": "Interactie",
+  "registrationBenefitInteractDescription": "Beoordeel repeaters en laat opmerkingen achter voor anderen.",
+  "registrationBenefitFavoritesTitle": "Favorieten",
+  "registrationBenefitFavoritesDescription": "Sla je meest gebruikte frequenties en repeaters op.",
+  "registrationBenefitLogbookTitle": "Logboek",
+  "registrationBenefitLogbookDescription": "Houd je QSO's bij en bewaar een persoonlijke geschiedenis.",
+  "registrationSignInApple": "Inloggen met Apple",
+  "registrationSignInGoogle": "Inloggen met Google",
+  "registrationPromptFooter": "Gratis registratie. Geen licentie nodig om openbare gegevens te bekijken.",
+  "postLoginOnboardingWelcome": "Welkom bij",
+  "postLoginOnboardingQuestion": "Ben je een gelicentieerde zendamateur?",
+  "postLoginOnboardingHelpText": "Dit helpt ons je ervaring aan te passen en de juiste frequenties te tonen.",
+  "postLoginOnboardingYesLicensed": "Ja, dat ben ik",
+  "postLoginOnboardingNoListener": "Nee, ik luister alleen",
+  "postLoginOnboardingCallsignTitle": "Identificeer jezelf",
+  "postLoginOnboardingCallsignSubtitle": "Voer je officiële roepnaam in om toegang te krijgen tot netwerkfuncties.",
+  "postLoginOnboardingCallsignLabel": "Roepnaam",
+  "postLoginOnboardingCallsignHint": "Bijv. PA3XYZ",
+  "postLoginOnboardingComplete": "Profiel voltooien",
+  "postLoginOnboardingBack": "Terug",
+  "postLoginOnboardingChangeInSettings": "Je kunt dit later wijzigen in de instellingen.",
+  "postLoginOnboardingSwlTitle": "SWL-roepnaam",
+  "postLoginOnboardingSwlQuestion": "Heb je een officiële SWL-roepnaam?",
+  "postLoginOnboardingSwlHelpText": "SWL-roepnamen helpen je te identificeren in de wereldwijde luistergemeenschap.",
+  "postLoginOnboardingSwlYes": "Ja, ik heb er een",
+  "postLoginOnboardingSwlNo": "Nee, ik heb er geen",
+  "postLoginOnboardingSwlEnterCallsign": "Voer roepnaam in",
+  "postLoginOnboardingSwlCallsignHint": "Bijv. NL-12345-SWL",
+  "timeAgoJustNow": "zojuist",
+  "timeAgoMinutes": "{count, plural, one{1 minuut geleden} other{{count} minuten geleden}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{1 uur geleden} other{{count} uur geleden}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{1 dag geleden} other{{count} dagen geleden}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{1 week geleden} other{{count} weken geleden}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{1 maand geleden} other{{count} maanden geleden}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{1 jaar geleden} other{{count} jaar geleden}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Thema",
+  "profileThemeModeSystem": "Systeem",
+  "profileThemeModeLight": "Licht",
+  "profileThemeModeDark": "Donker",
+  "repeaterDetailBeFirstFeedback": "Wees de eerste die feedback geeft over deze repeater!",
+  "repeaterDetailDistanceFromYou": "Afstand tot jou",
+  "repeaterDistanceMapNoLocation": "Locatie niet beschikbaar",
+  "repeaterDetailNever": "Nooit",
+  "repeaterDetailInfo": "Informatie",
+  "repeaterDetailSource": "Bron",
+  "repeaterDetailManager": "Beheerder",
+  "repeaterDetailSuggestManager": "Ken je de repeaterbeheerder? Meld het!",
+  "repeaterDetailViewFeedbackMap": "Feedbackkaart",
+  "repeaterDetailViewFeedbackMapSubtitle": "Bekijk waar likes en meldingen zijn geregistreerd",
+  "repeaterDetailAltimetricProfile": "Hoogteprofiel",
+  "repeaterDetailAltimetricProfileSubtitle": "Bekijk het terreinprofiel tussen jou en de repeater",
+  "repeaterDetailLosClear": "Vrije zichtlijn tussen jou en de repeater",
+  "repeaterDetailLosObstructed": "Zichtlijn geblokkeerd door terrein",
+  "repeaterDetailTerrainProfile": "Terreinprofiel",
+  "repeaterDetailLineOfSight": "Zichtlijn",
+  "repeaterDetailTotalDistance": "Afstand",
+  "repeaterDetailRepeaterElevation": "Hoogte repeater",
+  "repeaterDetailYourElevation": "Jouw hoogte",
+  "repeaterDetailYou": "Jij",
+  "repeaterDetailRepeaterLabel": "Repeater",
+
+  "repeaterDetailFunFacts": "Wist je dat?",
+  "repeaterDetailWavelength": "Golflengte",
+  "repeaterDetailWavelengthValue": "De golflengte van deze repeater is {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Trillingen per seconde",
+  "repeaterDetailOscillationsValue": "Het signaal trilt {value} keer per seconde",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Voortplantingstijd",
+  "repeaterDetailPropagationTimeValue": "Je signaal doet er {value} over om de repeater te bereiken",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Golfcycli onderweg",
+  "repeaterDetailWaveCyclesValue": "De golf voltooit {value} volledige cycli onderweg",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userReportsTitle": "Mijn meldingen",
+  "userReportsFilterAll": "Alle",
+  "userReportsFilterOpen": "Open",
+  "userReportsFilterClosed": "Gesloten",
+  "userReportsEmpty": "Geen meldingen ingediend",
+  "userReportsEmptyDescription": "Je repeatermeldingen verschijnen hier",
+  "userReportsEmptyFiltered": "Geen meldingen met dit filter",
+  "userReportsStatusPending": "In afwachting",
+  "userReportsStatusReviewed": "In behandeling",
+  "userReportsStatusResolved": "Opgelost",
+  "userReportsStatusRejected": "Afgewezen",
+  "userReportsRetryBanner": "Kan de lijst niet bijwerken",
+  "userReportsProfileTile": "Mijn meldingen",
+  "userReportsProfileTileSubtitle": "Bekijk de status van je meldingen",
+  "userReportsError": "Fout bij het laden van meldingen",
+  "userReportsCoordinatorResponse": "Reactie coördinator",
+
+  "potaTitle": "POTA Spots",
+  "potaSearchHint": "Zoek op activeerder, park of modus…",
+  "potaNoSpots": "Geen actieve POTA spots op dit moment.",
+  "potaLoadError": "Kan POTA spots niet laden",
+  "potaRetry": "Opnieuw proberen",
+  "potaViewAll": "Alles bekijken",
+  "potaActivator": "Activeerder",
+  "potaFrequency": "Frequentie",
+  "potaMode": "Modus",
+  "potaPark": "Park",
+  "potaReference": "Referentie",
+  "potaSpotter": "Gespot door",
+  "potaComments": "Opmerkingen",
+  "potaLastSpotted": "Laatst gespot",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "Kan QRZ.com niet openen",
+  "potaParkWebsite": "Parkwebsite",
+  "potaParkType": "Parktype",
+  "potaLocation": "Locatie",
+  "potaCountry": "Land",
+  "potaFirstActivation": "Eerste activering",
+  "potaBand": "Band",
+  "potaDistanceAway": "{distance} verderop",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count} actieve spots",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Taal",
+  "profileLanguageSystem": "Systeem",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
+
+  "addRepeaterProfileTile": "Nieuwe repeater voorstellen",
+  "addRepeaterProfileTileSubtitle": "Meld een repeater die nog niet vermeld staat",
+  "addRepeaterTitle": "Nieuwe repeater",
+  "addRepeaterHeadline": "Meld een ontbrekende repeater",
+  "addRepeaterDescription": "Vul de gegevens in van de repeater die je wilt toevoegen. De inzending wordt beoordeeld vóór publicatie.",
+  "addRepeaterSectionRepeater": "Repeatergegevens",
+  "addRepeaterSectionAccesses": "Toegangen",
+  "addRepeaterSectionLocation": "Locatie",
+  "addRepeaterSectionNotes": "Opmerkingen",
+  "addRepeaterName": "Naam",
+  "addRepeaterNameHint": "Bijv. Monte Cimone",
+  "addRepeaterCallsign": "Roepnaam",
+  "addRepeaterCallsignHint": "Bijv. IR4AB",
+  "addRepeaterNameOrCallsignRequired": "Voer ten minste een naam of roepnaam in",
+  "addRepeaterFrequency": "Frequentie (MHz)",
+  "addRepeaterFrequencyHint": "Bijv. 145.000 of 145,000",
+  "addRepeaterFrequencyRequired": "Frequentie verplicht",
+  "addRepeaterFrequencyInvalid": "Ongeldige frequentie",
+  "addRepeaterShift": "Shift (MHz)",
+  "addRepeaterShiftHint": "Bijv. -0.600 of -0,600",
+  "addRepeaterRegion": "Regio",
+  "addRepeaterRegionHint": "Bijv. Emilia-Romagna",
+  "addRepeaterProvinceCode": "Provincie",
+  "addRepeaterProvinceCodeHint": "Bijv. MO",
+  "addRepeaterLocality": "Plaats",
+  "addRepeaterLocalityHint": "Bijv. Fanano",
+  "addRepeaterLatitude": "Breedtegraad",
+  "addRepeaterLatitudeHint": "Bijv. 44.2100",
+  "addRepeaterLongitude": "Lengtegraad",
+  "addRepeaterLongitudeHint": "Bijv. 10.7900",
+  "addRepeaterLocator": "Locator",
+  "addRepeaterLocatorHint": "Bijv. JN54QF",
+  "addRepeaterNotes": "Aanvullende opmerkingen",
+  "addRepeaterNotesHint": "Aanvullende informatie over de repeater...",
+  "addRepeaterAddAccess": "Toegang toevoegen",
+  "addRepeaterRemoveAccess": "Verwijderen",
+  "addRepeaterAccessMode": "Modus",
+  "addRepeaterAccessCtcssTx": "CTCSS TX (Hz)",
+  "addRepeaterAccessCtcssTxHint": "Bijv. 88.5",
+  "addRepeaterAccessCtcssRx": "CTCSS RX (Hz)",
+  "addRepeaterAccessCtcssRxHint": "Bijv. 88.5",
+  "addRepeaterAccessDcsCode": "DCS-code",
+  "addRepeaterAccessDcsCodeHint": "Bijv. 23",
+  "addRepeaterAccessColorCode": "Kleurcode",
+  "addRepeaterAccessColorCodeHint": "Bijv. 1",
+  "addRepeaterAccessTalkgroup": "Talkgroup",
+  "addRepeaterAccessTalkgroupHint": "Bijv. 222801",
+  "addRepeaterAccessDgId": "DG-ID",
+  "addRepeaterAccessDgIdHint": "Bijv. 0",
+  "addRepeaterAccessNodeId": "Node-ID",
+  "addRepeaterAccessNodeIdHint": "Bijv. 1234",
+  "addRepeaterAccessNetworkName": "Netwerknaam",
+  "addRepeaterAccessNetworkNameHint": "Bijv. BM Italia",
+  "addRepeaterAccessNotes": "Toegangsnotities",
+  "addRepeaterAccessNotesHint": "Notities specifiek voor deze toegang...",
+  "addRepeaterConfirmCheckbox": "Ik bevestig dat deze informatie naar mijn beste weten correct is.",
+  "addRepeaterVerifiedTitle": "Geverifieerde inzending",
+  "addRepeaterVerifiedDescription": "Je inzending wordt door het team beoordeeld voordat deze in de database wordt gepubliceerd.",
+  "addRepeaterSubmit": "Versturen",
+  "addRepeaterSuccess": "Inzending succesvol verstuurd!",
+  "addRepeaterError": "Fout bij het versturen van de inzending",
+  "addRepeaterAtLeastOneAccess": "Voeg ten minste één toegang toe",
+  "addRepeaterAccessNumber": "Toegang {number}",
+  "@addRepeaterAccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "changelog1017PotaSpots": "Realtime POTA spots met kaart en parkdetails",
+  "changelog1017SubmitRepeater": "Stel een nieuwe repeater voor rechtstreeks vanuit de app",
+  "changelog1017MultiLanguage": "App beschikbaar in het Engels, Spaans en Frans",
+  "changelog1017Onboarding": "Nieuwe eerste-keer-ervaring",
+  "changelog1017ReportAnonymous": "Meldingen beschikbaar zonder registratie",
+
+  "changelogTitle": "Wat is er nieuw",
+  "changelogSubtitle": "Dit is nieuw in deze versie",
+  "changelogCategoryAdded": "Nieuw",
+  "changelogCategoryImproved": "Verbeterd",
+  "changelogCategoryFixed": "Opgelost",
+  "changelogDismiss": "Begrepen!",
+
+  "dashboardNearbyEmpty": "Geen repeaters in de buurt",
+  "dashboardTabPota": "POTA",
+  "dashboardTabRepeaters": "Repeaters",
+  "dashboardViewAllPotaSpots": "Alle POTA spots bekijken",
+  "dashboardViewAllRepeaters": "Alle repeaters bekijken",
+  "onboardingDiscoveryExploreMap": "Verken de kaart",
+  "onboardingDiscoveryLivePota": "Live POTA spot",
+  "onboardingDiscoveryNearbyRepeater": "Repeater in de buurt",
+  "onboardingDiscoveryNoLocation": "Verken de kaart om repeaters en POTA-activeringen te vinden",
+  "onboardingDiscoveryNoRepeaters": "Geen repeaters gevonden in de buurt",
+  "onboardingDiscoverySubtitle": "Dit is er bij jou in de buurt!",
+  "onboardingDiscoveryTitle": "Je eerste repeater",
+  "onboardingDiscoveryViewDetails": "Details bekijken",
+  "onboardingDiscoveryViewSpot": "Spot bekijken",
+  "onboardingGetStarted": "Aan de slag",
+  "onboardingLocationEnable": "Locatie inschakelen",
+  "onboardingLocationSkip": "Nu niet",
+  "onboardingLocationSubtitle": "We gebruiken je locatie om repeaters en POTA-activeringen in de buurt te tonen.",
+  "onboardingLocationTitle": "Locatie",
+  "onboardingNext": "Volgende",
+  "onboardingSkip": "Overslaan",
+  "onboardingTelegramAlreadyMember": "Ik ben al lid",
+  "onboardingTelegramJoin": "Word lid van de Telegram-groep",
+  "onboardingTelegramLater": "Misschien later",
+  "onboardingTelegramSubtitle": "Word lid van de HamQRG Telegram-groep voor updates, repeatermeldingen en ontmoeting met andere zendamateurs.",
+  "onboardingTelegramTitle": "Word lid van de community",
+  "onboardingWelcomeCredits": "Repeatergegevens aangeleverd door IZ8WNH",
+  "onboardingWelcomeSubtitle1": "Ontdek actieve repeaters in je omgeving, met frequenties, tonen en technische details.",
+  "onboardingWelcomeSubtitle2": "Analoog, DMR, C4FM, D-STAR — vind direct de juiste repeater voor jou.",
+  "onboardingWelcomeSubtitle3": "Volg Parks on the Air-activeringen met live updates, bandfilters en afstand.",
+  "onboardingWelcomeSubtitle4": "Houd je meest gebruikte repeaters bij de hand voor snelle toegang.",
+  "onboardingWelcomeTitle1": "Vind repeaters bij jou in de buurt",
+  "onboardingWelcomeTitle2": "Filter op modus",
+  "onboardingWelcomeTitle3": "Realtime POTA spots",
+  "onboardingWelcomeTitle4": "Sla je favorieten op",
+  "potaFilterAll": "Alle",
+  "potaFilterBand": "Band",
+  "potaFilterMode": "Modus",
+  "potaSortByDistance": "Dichtstbij",
+  "potaSortByTime": "Meest recent",
+  "repeatersNearbyCount": "{count} repeaters in de buurt",
+  "@repeatersNearbyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatersResultsCount": "{count} resultaten",
+  "@repeatersResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

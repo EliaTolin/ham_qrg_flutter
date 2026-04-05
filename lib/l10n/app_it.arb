@@ -595,6 +595,13 @@
   "profileLanguageEnglish": "English",
   "profileLanguageSpanish": "Español",
   "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
 
   "onboardingSkip": "Salta",
   "onboardingGetStarted": "Inizia",

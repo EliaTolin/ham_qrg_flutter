@@ -33,6 +33,15 @@ platform :ios do
     )
   end
 
+  desc "Update App Store metadata and localizations only (no binary upload)"
+  lane :update_metadata do
+    deliver(
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      force: true,
+    )
+  end
+
   desc "Push a new release build to the App Store"
   lane :release do
     ENV.delete('GEM_PATH')

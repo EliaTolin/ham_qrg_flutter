@@ -1288,6 +1288,27 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileLanguageFrench => 'Français';
 
   @override
+  String get profileLanguageGerman => 'Deutsch';
+
+  @override
+  String get profileLanguagePortuguese => 'Português';
+
+  @override
+  String get profileLanguageDutch => 'Nederlands';
+
+  @override
+  String get profileLanguagePolish => 'Polski';
+
+  @override
+  String get profileLanguageRomanian => 'Română';
+
+  @override
+  String get profileLanguageSlovenian => 'Slovenščina';
+
+  @override
+  String get profileLanguageCroatian => 'Hrvatski';
+
+  @override
   String get onboardingSkip => 'Passer';
 
   @override

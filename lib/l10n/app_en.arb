@@ -569,6 +569,13 @@
   "profileLanguageEnglish": "English",
   "profileLanguageSpanish": "Español",
   "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
 
   "addRepeaterProfileTile": "Suggest new repeater",
   "addRepeaterProfileTileSubtitle": "Report a repeater not yet listed",

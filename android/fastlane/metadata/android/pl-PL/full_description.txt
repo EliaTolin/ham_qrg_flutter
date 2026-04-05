@@ -1,0 +1,32 @@
+HamQRG to najlepsza aplikacja dla krotkofalowcow i sluchaczy we Wloszech. Latwo znajdz przemienniki w poblizu, sprawdz czestotliwosci i dolacz do spolecznosci.
+
+<b>INTERAKTYWNA MAPA</b>
+• Wyswietl wszystkie wloskie przemienniki na interaktywnej mapie
+• Znajdz najblizsze przemienniki wzgledem Twojej lokalizacji
+• Filtruj wedlug trybu: Analogowy, DMR, C4FM, D-STAR, Echolink
+• Inteligentne grupowanie dla obszarow z wieloma przemiennikami
+
+<b>PELNE DANE TECHNICZNE</b>
+• Czestotliwosc TX/RX i przesuniecie
+• Tony CTCSS/DCS
+• Color Code i Talk Groups dla DMR
+• Sieci cyfrowe (BrandMeister, TGIF i inne)
+• Dokladna lokalizacja i odleglosc
+
+<b>ULUBIONE I OPINIE</b>
+• Zapisz ulubione przemienniki dla szybkiego dostepu
+• Zostaw opinie o jakosci sygnalu
+• Zglos problemy lub aktualizacje koordynatorom
+• Przegladaj raporty spolecznosci
+
+<b>DLA KROTKOFALOWCOW I SLUCHACZY</b>
+• Spersonalizowany profil ze znakiem wywolawczym
+• Wsparcie dla licencjonowanych operatorow i SWL
+• Darmowy dostep do wszystkich publicznych danych
+
+<b>AKTYWNA SPOLECZNOSC</b>
+• Dolacz do grupy na Telegramie
+• Proponuj nowe funkcje
+• Skontaktuj sie bezposrednio z deweloperami
+
+Pobierz HamQRG i odkryj swiat wloskich przemiennikow krotkofalowych!

@@ -1,0 +1,32 @@
+HamQRG ist die ultimative App fuer Funkamateure und Hoerer in Italien. Finde ganz einfach Relais in deiner Naehe, pruefe Frequenzen und werde Teil der Community.
+
+**INTERAKTIVE KARTE**
+• Alle italienischen Relais auf einer interaktiven Karte anzeigen
+• Die naechstgelegenen Relais zu deinem Standort finden
+• Nach Betriebsart filtern: Analog, DMR, C4FM, D-STAR, Echolink
+• Intelligentes Clustering fuer Gebiete mit vielen Relais
+
+**VOLLSTAENDIGE TECHNISCHE DATEN**
+• TX/RX-Frequenz und Ablage
+• CTCSS/DCS-Toene
+• Color Code und Talkgroups fuer DMR
+• Digitale Netze (BrandMeister, TGIF und weitere)
+• Genauer Standort und Entfernung
+
+**FAVORITEN & FEEDBACK**
+• Speichere deine Lieblingsrelais fuer schnellen Zugriff
+• Hinterlasse Feedback zur Signalqualitaet
+• Melde Probleme oder Aktualisierungen an die Koordinatoren
+• Durchsuche Community-Berichte
+
+**FUER FUNKAMATEURE & HOERER**
+• Personalisiertes Profil mit Rufzeichen
+• Unterstuetzung fuer lizenzierte Funkamateure und SWL
+• Kostenloser Zugang zu allen oeffentlichen Daten
+
+**AKTIVE COMMUNITY**
+• Tritt der Telegram-Gruppe bei
+• Schlage neue Funktionen vor
+• Kontaktiere die Entwickler direkt
+
+Lade HamQRG herunter und entdecke die Welt der italienischen Amateurfunk-Relais!

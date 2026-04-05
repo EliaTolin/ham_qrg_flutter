@@ -39,6 +39,16 @@ platform :android do
     )
   end
 
+  desc "Update Play Store metadata and localizations only (no binary upload)"
+  lane :update_metadata do
+    upload_to_play_store(
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+    )
+  end
+
   desc "Deploy a new version to the Google Play"
   lane :deploy do
     sh "cd ../.. && flutter build appbundle --release"

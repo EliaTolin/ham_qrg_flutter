@@ -1,0 +1,32 @@
+HamQRG este aplicatia definitiva pentru radioamatori si ascultatori in Italia. Gaseste usor repetoare in apropiere, verifica frecventele si alatura-te comunitatii.
+
+<b>HARTA INTERACTIVA</b>
+• Vizualizeaza toate repetoarele italiene pe o harta interactiva
+• Gaseste cele mai apropiate repetoare de locatia ta
+• Filtreaza dupa mod: Analogic, DMR, C4FM, D-STAR, Echolink
+• Grupare inteligenta pentru zone cu multe repetoare
+
+<b>DATE TEHNICE COMPLETE</b>
+• Frecventa TX/RX si deplasare
+• Tonuri CTCSS/DCS
+• Color Code si Talk Groups pentru DMR
+• Retele digitale (BrandMeister, TGIF si altele)
+• Locatie precisa si distanta
+
+<b>FAVORITE SI FEEDBACK</b>
+• Salveaza repetoarele favorite pentru acces rapid
+• Lasa feedback despre calitatea semnalului
+• Raporteaza probleme sau actualizari coordonatorilor
+• Consulta rapoartele comunitatii
+
+<b>PENTRU RADIOAMATORI SI ASCULTATORI</b>
+• Profil personalizat cu indicativ
+• Suport pentru operatori licentiati si SWL
+• Acces gratuit la toate datele publice
+
+<b>COMUNITATE ACTIVA</b>
+• Alatura-te grupului Telegram
+• Propune functionalitati noi
+• Contacteaza direct dezvoltatorii
+
+Descarca HamQRG si descopera lumea repetoarelor radioamator italiene!
