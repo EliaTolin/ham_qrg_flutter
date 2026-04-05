@@ -641,7 +641,10 @@
     }
   },
 
+  "changelog1017PotaSpots": "Spots POTA en tiempo real con mapa y detalles del parque",
   "changelog1017SubmitRepeater": "Propón un nuevo repetidor directamente desde la app",
+  "changelog1017MultiLanguage": "App disponible en inglés, español y francés",
+  "changelog1017Onboarding": "Nueva experiencia de primer inicio",
   "changelog1017ReportAnonymous": "Reportes disponibles sin registro",
 
   "changelogTitle": "Novedades",

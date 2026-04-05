@@ -2922,11 +2922,29 @@ abstract class AppLocalizations {
   /// **'Accesso {number}'**
   String addRepeaterAccessNumber(int number);
 
+  /// No description provided for @changelog1017PotaSpots.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot POTA in tempo reale con mappa e dettagli parco'**
+  String get changelog1017PotaSpots;
+
   /// No description provided for @changelog1017SubmitRepeater.
   ///
   /// In it, this message translates to:
   /// **'Proponi un nuovo ripetitore direttamente dall\'app'**
   String get changelog1017SubmitRepeater;
+
+  /// No description provided for @changelog1017MultiLanguage.
+  ///
+  /// In it, this message translates to:
+  /// **'App disponibile in inglese, spagnolo e francese'**
+  String get changelog1017MultiLanguage;
+
+  /// No description provided for @changelog1017Onboarding.
+  ///
+  /// In it, this message translates to:
+  /// **'Nuova esperienza di primo avvio'**
+  String get changelog1017Onboarding;
 
   /// No description provided for @changelog1017ReportAnonymous.
   ///
