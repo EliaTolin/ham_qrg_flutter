@@ -1,0 +1,32 @@
+HamQRG je dokonalá aplikácia pre rádioamatérov a poslucháčov v Taliansku. Jednoducho nájdete prevádzače vo svojom okolí, skontrolujete frekvencie a pripojíte sa ku komunite.
+
+<b>INTERAKTÍVNA MAPA</b>
+• Zobrazenie všetkých talianskych prevádzačov na interaktívnej mape
+• Nájdenie najbližších prevádzačov k vašej polohe
+• Filtrovanie podľa režimu: Analógový, DMR, C4FM, D-STAR, Echolink
+• Inteligentné zoskupovanie v oblastiach s mnohými prevádzačmi
+
+<b>KOMPLETNÉ TECHNICKÉ ÚDAJE</b>
+• TX/RX frekvencia a offset
+• CTCSS/DCS tóny
+• Color Code a Talk Group pre DMR
+• Digitálne siete (BrandMeister, TGIF a ďalšie)
+• Presná poloha a vzdialenosť
+
+<b>OBĽÚBENÉ A SPÄTNÁ VÄZBA</b>
+• Uložte si obľúbené prevádzače pre rýchly prístup
+• Zanechajte spätnú väzbu o kvalite signálu
+• Nahláste problémy alebo aktualizácie koordinátorom
+• Prechádzajte komunitné hlásenia
+
+<b>PRE RÁDIOAMATÉROV A POSLUCHÁČOV</b>
+• Personalizovaný profil s volacím znakom
+• Podpora pre licencovaných operátorov a SWL
+• Bezplatný prístup ku všetkým verejným údajom
+
+<b>AKTÍVNA KOMUNITA</b>
+• Pripojte sa ku skupine na Telegrame
+• Navrhnite nové funkcie
+• Kontaktujte priamo vývojárov
+
+Stiahnite si HamQRG a preskúmajte svet talianskych rádioamatérskych prevádzačov!

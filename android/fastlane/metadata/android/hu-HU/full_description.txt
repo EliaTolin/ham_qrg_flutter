@@ -1,0 +1,32 @@
+A HamQRG a tökéletes alkalmazás rádióamatőrök és hallgatók számára Olaszországban. Könnyedén megtalálhatod a közelben lévő átjátszókat, ellenőrizheted a frekvenciákat, és csatlakozhatsz a közösséghez.
+
+<b>INTERAKTÍV TÉRKÉP</b>
+• Az összes olasz átjátszó megjelenítése interaktív térképen
+• A legközelebbi átjátszók megkeresése a tartózkodási helyedhez
+• Szűrés üzemmód szerint: Analóg, DMR, C4FM, D-STAR, Echolink
+• Intelligens csoportosítás sok átjátszóval rendelkező területeken
+
+<b>TELJES MŰSZAKI ADATOK</b>
+• TX/RX frekvencia és eltolás
+• CTCSS/DCS tónusok
+• Color Code és Talk Group DMR-hez
+• Digitális hálózatok (BrandMeister, TGIF és más)
+• Pontos helyzet és távolság
+
+<b>KEDVENCEK ÉS VISSZAJELZÉS</b>
+• Mentsd el kedvenc átjátszóidat a gyors eléréshez
+• Adj visszajelzést a jelminőségről
+• Jelents problémákat vagy frissítéseket a koordinátoroknak
+• Böngészd a közösségi jelentéseket
+
+<b>RÁDIÓAMATŐRÖKNEK ÉS HALLGATÓKNAK</b>
+• Személyre szabott profil hívójellel
+• Támogatás engedéllyel rendelkező operátoroknak és SWL-eknek
+• Ingyenes hozzáférés minden nyilvános adathoz
+
+<b>AKTÍV KÖZÖSSÉG</b>
+• Csatlakozz a Telegram csoporthoz
+• Javasolj új funkciókat
+• Lépj kapcsolatba közvetlenül a fejlesztőkkel
+
+Töltsd le a HamQRG-t és fedezd fel az olasz rádióamatőr átjátszók világát!

@@ -576,6 +576,10 @@
   "profileLanguageRomanian": "Română",
   "profileLanguageSlovenian": "Slovenščina",
   "profileLanguageCroatian": "Hrvatski",
+  "profileLanguageHungarian": "Magyar",
+  "profileLanguageCzech": "Čeština",
+  "profileLanguageSlovak": "Slovenčina",
+  "profileLanguageSerbian": "Srpski",
 
   "addRepeaterProfileTile": "Sugerează un repetor nou",
   "addRepeaterProfileTileSubtitle": "Raportează un repetor care nu este încă listat",

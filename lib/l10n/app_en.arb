@@ -576,6 +576,10 @@
   "profileLanguageRomanian": "Română",
   "profileLanguageSlovenian": "Slovenščina",
   "profileLanguageCroatian": "Hrvatski",
+  "profileLanguageHungarian": "Magyar",
+  "profileLanguageCzech": "Čeština",
+  "profileLanguageSlovak": "Slovenčina",
+  "profileLanguageSerbian": "Srpski",
 
   "addRepeaterProfileTile": "Suggest new repeater",
   "addRepeaterProfileTileSubtitle": "Report a repeater not yet listed",

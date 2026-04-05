@@ -1,0 +1,724 @@
+{
+  "@@locale": "hu",
+  "error": "Hiba",
+  "error_message": "Hiba történt a betöltés során",
+  "error_message_retry": "Hiba történt a betöltés során. Kérjük, próbáld újra később",
+  "retry": "Újra",
+  "back": "Vissza",
+  "loading": "Betöltés",
+  "details": "Részletek",
+  "pages_number": "{number} felfedezésre váró oldal",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "Január",
+  "february": "Február",
+  "march": "Március",
+  "april": "Április",
+  "may": "Május",
+  "june": "Június",
+  "july": "Július",
+  "august": "Augusztus",
+  "september": "Szeptember",
+  "october": "Október",
+  "november": "November",
+  "december": "December",
+  "logout": "Kijelentkezés",
+  "profile": "Profil",
+  "settings": "Beállítások",
+  "contact_us": "Kapcsolat",
+  "error_opening_email": "Hiba történt az e-mail megnyitásakor",
+  "register_now": "Regisztrálj most",
+  "tracking_permission_title": "Támogasd az alkalmazást",
+  "tracking_permission_message": "Az élményed javítása és a számodra releváns tartalmak megjelenítése érdekében segíts nekünk ingyenesen tartani az alkalmazást.\n\nKoppints az Engedélyezés gombra a támogatáshoz.",
+  "tracking_permission_next": "Tovább",
+  "skip": "Kihagyás",
+  "done": "Kész",
+  "next": "Tovább",
+  "joinCommunityTitle": "Csatlakozz a közösségünkhöz!",
+  "joinCommunityDescription": "Fedezd fel a Telegram közösséghez való csatlakozás előnyeit:",
+  "benefitSupportMembers": "Tagok támogatása",
+  "benefitSuggestFeatures": "Új funkciók javaslása",
+  "benefitContactDevelopers": "Kapcsolat a fejlesztőkkel",
+  "benefitExclusivePreviews": "Exkluzív előzetesek és béták",
+  "benefitActiveCommunity": "Aktív közösség",
+  "joinNowButton": "Csatlakozz most!",
+  "alreadyMemberButton": "Már tag vagyok",
+  "laterButton": "Később",
+  "errorOpenTelegram": "Hiba a Telegram megnyitásakor",
+  "disclaimerTitle": "Adatforrás",
+  "disclaimerDescription": "Az alkalmazásban szereplő átjátszó adatok az IZ8WNH oldaláról származnak.\n\nTovábbi információkért, rádiók programozásához szükséges CSV fájlok letöltéséhez, vagy az alkalmazásban nem elérhető adatok megtekintéséhez látogass el a hivatalos weboldalra.",
+  "disclaimerVisitSite": "Látogass el az iz8wnh.it oldalra",
+  "disclaimerUnderstood": "Értem",
+  "errorOpenDisclaimerSite": "Hiba a weboldal megnyitásakor",
+  "repeatersMapTitle": "Átjátszó térkép",
+  "repeatersListTitle": "Átjátszó lista",
+  "repeatersMapLoading": "Átjátszó térkép betöltése…",
+  "repeatersMapGenericError": "Nem sikerült betölteni az átjátszókat.",
+  "repeatersMapEmpty": "Nem található átjátszó a közeledben.",
+  "repeatersSearchHint": "Keresés név, hívójel vagy frekvencia MHz alapján…",
+  "repeatersSearchEmpty": "Nem található átjátszó.",
+  "repeatersSortDistance": "Távolság",
+  "repeatersSortLikes": "Kedvelések",
+  "repeatersSortFrequency": "Frekvencia",
+  "repeatersMapRetry": "Újra",
+  "repeatersMapOpenSettings": "Beállítások megnyitása",
+  "repeatersMapPermissionMessage": "Engedélyezd a helymeghatározást a közeli átjátszók megjelenítéséhez.",
+  "repeatersMapPermissionPermanentlyDenied": "A helymeghatározási engedély véglegesen megtagadva. Engedélyezd a rendszerbeállításokban.",
+  "repeatersMapLocationServicesDisabled": "Engedélyezd a helymeghatározási szolgáltatásokat a közeli átjátszók kereséséhez.",
+  "repeatersMapFound": "{count} átjátszó található",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Üzemmód",
+  "repeaterModeAnalog": "Analóg",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "Minden üzemmód",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frekvencia",
+  "repeaterShift": "Eltolás",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Helyszín",
+  "repeaterDistance": "Távolság",
+  "repeaterViewFullDetails": "Teljes részletek megtekintése",
+  "repeatersMapReturnToLocation": "Vissza a tartózkodási helyemre",
+  "clusterRepeatersTitle": "{count} átjátszó ezen a helyen",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Minden funkció feloldása",
+  "profileUnlockFeaturesDescription": "Regisztrálj az értékelés, a kedvencek mentése és a részletes statisztikák eléréséhez.",
+  "profileSignUpOrLogin": "Regisztráció vagy bejelentkezés",
+  "profileErrorOpeningEmail": "Hiba az e-mail megnyitásakor",
+  "profileJoinTelegramCommunity": "Csatlakozz a Telegram közösséghez",
+  "profileWelcomeTitle": "Üdvözöl a HamQRG",
+  "profileWelcomeDescription": "Csatlakozz a rádióamatőr közösségünkhöz Olaszországban.",
+  "profileEditProfile": "Profil szerkesztése",
+  "profileChangePhoto": "Fotó módosítása",
+  "profileFirstName": "Keresztnév",
+  "profileLastName": "Vezetéknév",
+  "profileCallsign": "Hívójel",
+  "profileRestartIdentificationTitle": "Szeretnéd megváltoztatni a státuszodat? Újraindíthatod az azonosítási folyamatot, hogy válts az Engedélyes üzemeltető és az SWL Hallgató között.",
+  "profileRestartIdentificationButton": "Azonosítási folyamat újraindítása",
+  "profileSaveChanges": "Változások mentése",
+  "profileDangerZone": "Veszélyes zóna",
+  "profileDeleteAccount": "Fiók törlése",
+  "profileDeleteAccountConfirmTitle": "Fiók törlése",
+  "profileDeleteAccountConfirmMessage": "Biztosan törölni szeretnéd a fiókodat? Ez a művelet nem visszavonható.",
+  "profileDeleteAccountCancel": "Mégse",
+  "profileDeleteAccountConfirm": "Törlés",
+  "profileAppVersion": "Alkalmazás verzió {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Közösség és támogatás",
+  "profileSectionSupport": "Támogatás",
+  "profileVersion": "Verzió: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Verzió {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Hiba: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "Csatlakozz a HamQRG-hez",
+  "authUnlockFeatures": "Jelentkezz be az összes funkció feloldásához!",
+  "authWhatYouGet": "Amit kapsz:",
+  "authBenefitStatsTitle": "Részletes statisztikák",
+  "authBenefitStatsDescription": "Kövesd a fejlődésedet és fejlődj",
+  "authBenefitQuizTitle": "Különféle kvíz módok",
+  "authBenefitQuizDescription": "Gyakorolj maraton, témaalapú és egyéb módokban.",
+  "authBenefitSyncTitle": "Szinkronizálás",
+  "authBenefitSyncDescription": "Hozzáférés bármely eszközről",
+  "authOrSignInWithEmail": "Vagy jelentkezz be e-maillel",
+  "authEnterEmail": "Add meg az e-mail címed",
+  "authEnterPassword": "Add meg a jelszavad",
+  "authForgotPassword": "Elfelejtetted a jelszavad?",
+  "authSignIn": "Bejelentkezés",
+  "authSignUp": "Regisztráció",
+  "authPasswordLengthError": "A jelszónak hosszabbnak kell lennie",
+  "authDontHaveAccount": "Nincs fiókod? Regisztrálj",
+  "authHaveAccount": "Már van fiókod? Jelentkezz be",
+  "authBackToSignIn": "Vissza a bejelentkezéshez",
+  "authUnexpectedError": "Hitelesítési hiba: ",
+  "authValidEmailError": "Adj meg érvényes e-mail címet",
+  "authSendPasswordReset": "Jelszó-visszaállítás küldése",
+  "authPasswordResetSent": "Jelszó-visszaállítás elküldve",
+  "authVerifyEmailMessage": "A regisztráció befejezéséhez erősítsd meg az e-mail címedet, ellenőrizd a postaládádat.",
+  "authInvalidCredentials": "Érvénytelen e-mail cím vagy jelszó",
+  "authEmailNotConfirmed": "A bejelentkezéshez erősítsd meg az e-mail címedet",
+  "authFirstName": "Keresztnév",
+  "authFirstNameRequired": "A keresztnév megadása kötelező",
+  "authLastName": "Vezetéknév",
+  "authLastNameRequired": "A vezetéknév megadása kötelező",
+  "authContinueAsGuest": "Folytatás vendégként",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Fedezd fel a körülötted lévő átjátszókat",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Gyors hozzáférés",
+  "homeRepeaterList": "Átjátszó lista",
+  "homeMyFavorites": "Kedvenceim",
+  "homeNearby": "A közeledben",
+  "homeViewAll": "Összes megtekintése",
+  "homeStations": "{count} állomás",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} mentett",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Aktív",
+  "homeIdle": "Inaktív",
+  "homeNavHome": "Kezdőlap",
+  "homeNavList": "Lista",
+  "homeNavFavorites": "Kedvencek",
+  "homeNavMap": "Térkép",
+  "homeNavProfile": "Profil",
+  "favoritesTitle": "Kedvenceim",
+  "favoritesSearchHint": "Keresés a mentett átjátszók között...",
+  "favoritesFilterAllSaved": "Összes mentett",
+  "favoritesEmpty": "Nincsenek mentett átjátszók",
+  "favoritesEmptyDescription": "Adj hozzá átjátszókat a kedvencekhez, hogy itt megjelenjenek",
+  "favoritesShowing": "{showing}/{total} kedvenc állomás megjelenítése",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Eltávolítás a kedvencekből",
+  "favoritesAdd": "Hozzáadás a kedvencekhez",
+  "repeaterDetailSave": "Mentés",
+  "repeaterDetailShare": "Megosztás",
+  "repeaterDetailReport": "Bejelentés",
+  "repeaterDetailTotalLikes": "Összes kedvelés",
+  "repeaterDetailReports1Yr": "Bejelentések (1 év)",
+  "repeaterDetailHealthScore": "Állapotpontszám",
+  "repeaterDetailExcellent": "Kiváló",
+  "repeaterDetailGood": "Jó",
+  "repeaterDetailFair": "Megfelelő",
+  "repeaterDetailToVerify": "Ellenőrizendő",
+  "repeaterDetailScoreCalculated": "Az elmúlt év {count} negatív bejelentése alapján számított pontszám",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Utolsó kedvelés",
+  "repeaterDetailLastDownReport": "Utolsó negatív bejelentés",
+  "repeaterDetailTechnicalData": "Műszaki adatok",
+  "repeaterDetailFrequency": "Frekvencia",
+  "repeaterDetailShift": "Eltolás",
+  "repeaterDetailSubtone": "Altónus (SQL)",
+  "repeaterDetailMode": "Üzemmód",
+  "repeaterDetailLocation": "Helyszín",
+  "repeaterDetailAway": "{distance} távolságra",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Közösségi bejelentések",
+  "repeaterDetailUpdateStatusFeedback": "Állapot és visszajelzés frissítése",
+  "repeaterDetailEquipment": "Felszerelés",
+  "repeaterDetailEquipmentRequired": "Felszerelés *",
+  "repeaterDetailAccessModes": "Hozzáférési módok",
+  "repeaterDetailNetwork": "Hálózat",
+  "repeaterDetailLocationField": "Helyszín",
+  "repeaterDetailLocationRequired": "Helyszín *",
+  "repeaterDetailComment": "Megjegyzés",
+  "repeaterDetailCommentOptional": "Megjegyzés (Opcionális)",
+  "repeaterDetailCommentPlaceholder": "Jelminőség, audio jelentés vagy általános megjegyzések...",
+  "repeaterDetailReportDown": "Probléma bejelentése",
+  "repeaterDetailCheckinLike": "Bejelentkezés és kedvelés",
+  "repeaterDetailYourFeedback": "Visszajelzésed",
+  "repeaterDetailPostedJustNow": "Most közzétéve",
+  "repeaterDetailDeleteEntry": "Bejegyzés törlése",
+  "repeaterDetailViewAllReports": "Mind a(z) {count} bejelentés megtekintése",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Hordozható",
+  "repeaterDetailStationMobile": "Mobil",
+  "repeaterDetailStationFixed": "Fix",
+  "repeaterDetailLike": "Kedvelés",
+  "repeaterDetailReportLabel": "Bejelentés",
+  "repeaterDetailSaved": "Mentve",
+  "repeaterDetailShareMessage": "Nézd meg ezt az átjátszót a HamQRG-ben!",
+  "repeaterDetailReportDescription": "A bejelentési funkció hamarosan elérhető lesz. Jelentheted majd a helytelen információkat vagy az átjátszóval kapcsolatos problémákat.",
+  "commonClose": "Bezárás",
+  "favorite": "Kedvenc",
+  "accessConfiguration": "Hozzáférés beállítása",
+  "noAccessConfiguration": "Nincs elérhető konfiguráció",
+  "repeaterDetailAddFeedback": "Visszajelzés hozzáadása",
+  "repeaterDetailOthersReports": "Más felhasználók bejelentései",
+  "repeaterDetailRemove": "Eltávolítás",
+  "repeaterDetailSelectAccess": "Hozzáférés kiválasztása",
+  "repeaterDetailDistanceWarning": "A visszajelzés küldéséhez {distance} km-en belül kell lenned az átjátszótól.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interaktív",
+  "repeaterDetailLogYourSignal": "Jel naplózása",
+  "repeaterDetailUsedEquipment": "Használt felszerelés",
+  "repeaterDetailYourLocation": "Tartózkodási helyed",
+  "repeaterDetailLocationPlaceholder": "Hol voltál? (pl. Budapest)",
+  "repeaterDetailLocationSelectHint": "Válassz egy helyet a javaslatokból",
+  "feedbackDistanceConfirmTitle": "Beküldés megerősítése",
+  "feedbackDistanceConfirmMessage": "A kiválasztott helyszín {distance} km-re van az átjátszótól. Megerősíted, hogy saját felelősségedre küldöd el ezt a visszajelzést?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Megerősítés",
+  "feedbackDistanceConfirmCancel": "Mégse",
+  "repeaterDetailSelectAccessInstance": "Hozzáférési példány kiválasztása",
+  "repeaterDetailSignalObservations": "Jelmegfigyelések",
+  "repeaterDetailSignalObservationsPlaceholder": "Milyen volt a hangminőség?",
+  "repeaterDetailSendLike": "Kedvelés küldése",
+  "repeaterDetailReportIssue": "Probléma bejelentése",
+  "repeaterDetailRecentActivity": "Legutóbbi tevékenység",
+  "reportIssueTitle": "Bejelentés",
+  "reportIssueHeadline": "Segíts nekünk pontosan tartani az adatokat",
+  "reportIssueDescription": "Találtál valami hibásat vagy hiányzót ennél az átjátszónál? Jelezd, mit kell módosítani, és ellenőrizzük.",
+  "reportIssueWhatToCorrect": "Mit szeretnél javítani vagy hozzáadni?",
+  "reportIssuePlaceholder": "Pl. A CTCSS tónus 88,5 Hz-re változott, vagy a helyszín kissé északabbra van, az üzemeltető...",
+  "reportIssueVerifiedTitle": "Ellenőrzött bejelentések",
+  "reportIssueVerifiedDescription": "A bejelentésedet a regionális koordinátor felülvizsgálja, mielőtt a nyilvános adatbázis frissül. Köszönjük a közösséghez való hozzájárulásodat.",
+  "reportIssueConfirmCheckbox": "Megerősítem, hogy ez az információ a megfigyelésem alapján helyes.",
+  "reportIssueSubmit": "Beküldés",
+  "reportIssueMinChars": "Minimum 10 karakter szükséges",
+  "reportIssueMaxChars": "Maximum 2000 karakter",
+  "reportIssueSuccess": "Bejelentés sikeresen elküldve",
+  "reportIssueError": "Hiba a bejelentés elküldésekor",
+  "registrationPromptTitle": "Használd ki a lehetőségeket",
+  "registrationPromptDescription": "Csatlakozz a rádióamatőr közösséghez és emeld új szintre az élményed.",
+  "registrationBenefitInteractTitle": "Interakció",
+  "registrationBenefitInteractDescription": "Értékeld az átjátszókat és hagyj megjegyzéseket másoknak.",
+  "registrationBenefitFavoritesTitle": "Kedvencek",
+  "registrationBenefitFavoritesDescription": "Mentsd el a leggyakrabban használt frekvenciáidat és átjátszóidat.",
+  "registrationBenefitLogbookTitle": "Naplókönyv",
+  "registrationBenefitLogbookDescription": "Tartsd nyilván a QSO-idat és vezess személyes előzménynaplót.",
+  "registrationSignInApple": "Bejelentkezés Apple-lel",
+  "registrationSignInGoogle": "Bejelentkezés Google-lel",
+  "registrationPromptFooter": "Ingyenes regisztráció. A nyilvános adatok böngészéséhez nem szükséges engedély.",
+  "postLoginOnboardingWelcome": "Üdvözlünk a",
+  "postLoginOnboardingQuestion": "Engedéllyel rendelkező rádióamatőr vagy?",
+  "postLoginOnboardingHelpText": "Ez segít személyre szabni az élményedet és a megfelelő frekvenciákat megmutatni.",
+  "postLoginOnboardingYesLicensed": "Igen, az vagyok",
+  "postLoginOnboardingNoListener": "Nem, csak hallgató vagyok",
+  "postLoginOnboardingCallsignTitle": "Azonosítsd magad",
+  "postLoginOnboardingCallsignSubtitle": "Add meg a hivatalos hívójeledet a hálózati funkciók eléréséhez.",
+  "postLoginOnboardingCallsignLabel": "Hívójel",
+  "postLoginOnboardingCallsignHint": "Pl. HA5XYZ",
+  "postLoginOnboardingComplete": "Profil befejezése",
+  "postLoginOnboardingBack": "Vissza",
+  "postLoginOnboardingChangeInSettings": "Ezt később a beállításokban módosíthatod.",
+  "postLoginOnboardingSwlTitle": "SWL hívójel",
+  "postLoginOnboardingSwlQuestion": "Van hivatalos SWL hívójeled?",
+  "postLoginOnboardingSwlHelpText": "A rövidhullámú hallgatói hívójelek segítenek az azonosításban a globális megfigyelő közösségben.",
+  "postLoginOnboardingSwlYes": "Igen, van",
+  "postLoginOnboardingSwlNo": "Nem, nincs",
+  "postLoginOnboardingSwlEnterCallsign": "Add meg a hívójelet",
+  "postLoginOnboardingSwlCallsignHint": "Pl. HA-12345-SWL",
+  "timeAgoJustNow": "épp most",
+  "timeAgoMinutes": "{count, plural, one{1 perce} other{{count} perce}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{1 órája} other{{count} órája}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{1 napja} other{{count} napja}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{1 hete} other{{count} hete}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{1 hónapja} other{{count} hónapja}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{1 éve} other{{count} éve}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Téma",
+  "profileThemeModeSystem": "Rendszer",
+  "profileThemeModeLight": "Világos",
+  "profileThemeModeDark": "Sötét",
+  "repeaterDetailBeFirstFeedback": "Legyél az első, aki visszajelzést ad erről az átjátszóról!",
+  "repeaterDetailDistanceFromYou": "Távolság tőled",
+  "repeaterDistanceMapNoLocation": "Helymeghatározás nem elérhető",
+  "repeaterDetailNever": "Soha",
+  "repeaterDetailInfo": "Információ",
+  "repeaterDetailSource": "Forrás",
+  "repeaterDetailManager": "Üzemeltető",
+  "repeaterDetailSuggestManager": "Ismered az átjátszó üzemeltetőjét? Jelezd nekünk!",
+  "repeaterDetailViewFeedbackMap": "Visszajelzés térkép",
+  "repeaterDetailViewFeedbackMapSubtitle": "Nézd meg, hol rögzítettek kedveléseket és bejelentéseket",
+  "repeaterDetailAltimetricProfile": "Magassági profil",
+  "repeaterDetailAltimetricProfileSubtitle": "Nézd meg a terep profilt közted és az átjátszó között",
+  "repeaterDetailLosClear": "Szabad rálátás közted és az átjátszó között",
+  "repeaterDetailLosObstructed": "A rálátást akadályozza a terep",
+  "repeaterDetailTerrainProfile": "Terepprofil",
+  "repeaterDetailLineOfSight": "Rálátás",
+  "repeaterDetailTotalDistance": "Távolság",
+  "repeaterDetailRepeaterElevation": "Átjátszó magassága",
+  "repeaterDetailYourElevation": "A te magasságod",
+  "repeaterDetailYou": "Te",
+  "repeaterDetailRepeaterLabel": "Átjátszó",
+
+  "repeaterDetailFunFacts": "Tudtad?",
+  "repeaterDetailWavelength": "Hullámhossz",
+  "repeaterDetailWavelengthValue": "Ennek az átjátszónak a hullámhossza {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Rezgés másodpercenként",
+  "repeaterDetailOscillationsValue": "A jel másodpercenként {value} alkalommal rezeg",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Terjedési idő",
+  "repeaterDetailPropagationTimeValue": "A jeled {value} alatt éri el az átjátszót",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Hullámciklusok útközben",
+  "repeaterDetailWaveCyclesValue": "A hullám {value} teljes ciklust tesz meg útközben",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userReportsTitle": "Bejelentéseim",
+  "userReportsFilterAll": "Összes",
+  "userReportsFilterOpen": "Nyitott",
+  "userReportsFilterClosed": "Lezárt",
+  "userReportsEmpty": "Nincsenek beküldött bejelentések",
+  "userReportsEmptyDescription": "Az átjátszó bejelentéseid itt fognak megjelenni",
+  "userReportsEmptyFiltered": "Nincs bejelentés ezzel a szűrővel",
+  "userReportsStatusPending": "Függőben",
+  "userReportsStatusReviewed": "Felülvizsgálat alatt",
+  "userReportsStatusResolved": "Megoldva",
+  "userReportsStatusRejected": "Elutasítva",
+  "userReportsRetryBanner": "Nem sikerült frissíteni a listát",
+  "userReportsProfileTile": "Bejelentéseim",
+  "userReportsProfileTileSubtitle": "Bejelentéseid állapotának megtekintése",
+  "userReportsError": "Hiba a bejelentések betöltésekor",
+  "userReportsCoordinatorResponse": "Koordinátor válasza",
+
+  "potaTitle": "POTA Spotok",
+  "potaSearchHint": "Keresés aktiváló, park vagy üzemmód alapján…",
+  "potaNoSpots": "Jelenleg nincsenek aktív POTA spotok.",
+  "potaLoadError": "Nem sikerült betölteni a POTA spotokat",
+  "potaRetry": "Újra",
+  "potaViewAll": "Összes megtekintése",
+  "potaActivator": "Aktiváló",
+  "potaFrequency": "Frekvencia",
+  "potaMode": "Üzemmód",
+  "potaPark": "Park",
+  "potaReference": "Hivatkozás",
+  "potaSpotter": "Bejelentő",
+  "potaComments": "Megjegyzések",
+  "potaLastSpotted": "Utoljára észlelve",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "Nem sikerült megnyitni a QRZ.com-ot",
+  "potaParkWebsite": "Park weboldal",
+  "potaParkType": "Park típusa",
+  "potaLocation": "Helyszín",
+  "potaCountry": "Ország",
+  "potaFirstActivation": "Első aktiválás",
+  "potaBand": "Sáv",
+  "potaDistanceAway": "{distance} távolságra",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count} aktív spot",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Nyelv",
+  "profileLanguageSystem": "Rendszer",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
+  "profileLanguageHungarian": "Magyar",
+  "profileLanguageCzech": "Čeština",
+  "profileLanguageSlovak": "Slovenčina",
+  "profileLanguageSerbian": "Srpski",
+
+  "addRepeaterProfileTile": "Új átjátszó javaslása",
+  "addRepeaterProfileTileSubtitle": "Még nem listázott átjátszó bejelentése",
+  "addRepeaterTitle": "Új átjátszó",
+  "addRepeaterHeadline": "Hiányzó átjátszó bejelentése",
+  "addRepeaterDescription": "Töltsd ki a hozzáadni kívánt átjátszó adatait. A beküldést közzététel előtt felülvizsgálják.",
+  "addRepeaterSectionRepeater": "Átjátszó adatai",
+  "addRepeaterSectionAccesses": "Hozzáférések",
+  "addRepeaterSectionLocation": "Helyszín",
+  "addRepeaterSectionNotes": "Megjegyzések",
+  "addRepeaterName": "Név",
+  "addRepeaterNameHint": "Pl. Kékestető",
+  "addRepeaterCallsign": "Hívójel",
+  "addRepeaterCallsignHint": "Pl. HA5KDR",
+  "addRepeaterNameOrCallsignRequired": "Adj meg legalább egy nevet vagy hívójelet",
+  "addRepeaterFrequency": "Frekvencia (MHz)",
+  "addRepeaterFrequencyHint": "Pl. 145.000 vagy 145,000",
+  "addRepeaterFrequencyRequired": "Frekvencia megadása kötelező",
+  "addRepeaterFrequencyInvalid": "Érvénytelen frekvencia",
+  "addRepeaterShift": "Eltolás (MHz)",
+  "addRepeaterShiftHint": "Pl. -0,600 vagy -0.600",
+  "addRepeaterRegion": "Régió",
+  "addRepeaterRegionHint": "Pl. Pest megye",
+  "addRepeaterProvinceCode": "Megye",
+  "addRepeaterProvinceCodeHint": "Pl. PE",
+  "addRepeaterLocality": "Település",
+  "addRepeaterLocalityHint": "Pl. Budapest",
+  "addRepeaterLatitude": "Szélesség",
+  "addRepeaterLatitudeHint": "Pl. 47.4979",
+  "addRepeaterLongitude": "Hosszúság",
+  "addRepeaterLongitudeHint": "Pl. 19.0402",
+  "addRepeaterLocator": "Lokátor",
+  "addRepeaterLocatorHint": "Pl. JN97PM",
+  "addRepeaterNotes": "További megjegyzések",
+  "addRepeaterNotesHint": "További információk az átjátszóról...",
+  "addRepeaterAddAccess": "Hozzáférés hozzáadása",
+  "addRepeaterRemoveAccess": "Eltávolítás",
+  "addRepeaterAccessMode": "Üzemmód",
+  "addRepeaterAccessCtcssTx": "CTCSS TX (Hz)",
+  "addRepeaterAccessCtcssTxHint": "Pl. 88,5",
+  "addRepeaterAccessCtcssRx": "CTCSS RX (Hz)",
+  "addRepeaterAccessCtcssRxHint": "Pl. 88,5",
+  "addRepeaterAccessDcsCode": "DCS kód",
+  "addRepeaterAccessDcsCodeHint": "Pl. 23",
+  "addRepeaterAccessColorCode": "Színkód",
+  "addRepeaterAccessColorCodeHint": "Pl. 1",
+  "addRepeaterAccessTalkgroup": "Beszédcsoport",
+  "addRepeaterAccessTalkgroupHint": "Pl. 222801",
+  "addRepeaterAccessDgId": "DG-ID",
+  "addRepeaterAccessDgIdHint": "Pl. 0",
+  "addRepeaterAccessNodeId": "Csomópont azonosító",
+  "addRepeaterAccessNodeIdHint": "Pl. 1234",
+  "addRepeaterAccessNetworkName": "Hálózat neve",
+  "addRepeaterAccessNetworkNameHint": "Pl. BM Magyarország",
+  "addRepeaterAccessNotes": "Hozzáférési megjegyzések",
+  "addRepeaterAccessNotesHint": "Ehhez a hozzáféréshez tartozó megjegyzések...",
+  "addRepeaterConfirmCheckbox": "Megerősítem, hogy ez az információ a legjobb tudásom szerint helyes.",
+  "addRepeaterVerifiedTitle": "Ellenőrzött beküldés",
+  "addRepeaterVerifiedDescription": "A beküldésedet a csapat felülvizsgálja, mielőtt megjelenne az adatbázisban.",
+  "addRepeaterSubmit": "Beküldés",
+  "addRepeaterSuccess": "Beküldés sikeresen elküldve!",
+  "addRepeaterError": "Hiba a beküldés elküldésekor",
+  "addRepeaterAtLeastOneAccess": "Adj hozzá legalább egy hozzáférést",
+  "addRepeaterAccessNumber": "Hozzáférés {number}",
+  "@addRepeaterAccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "changelog1017PotaSpots": "Valós idejű POTA spotok térképpel és park részletekkel",
+  "changelog1017SubmitRepeater": "Új átjátszó javaslása közvetlenül az alkalmazásból",
+  "changelog1017MultiLanguage": "Alkalmazás elérhető angolul, spanyolul és franciául",
+  "changelog1017Onboarding": "Új első indítási élmény",
+  "changelog1017ReportAnonymous": "Bejelentések regisztráció nélkül is elérhetők",
+
+  "changelogTitle": "Újdonságok",
+  "changelogSubtitle": "Íme, mi újság ebben a verzióban",
+  "changelogCategoryAdded": "Új",
+  "changelogCategoryImproved": "Javított",
+  "changelogCategoryFixed": "Hibajavítás",
+  "changelogDismiss": "Értem!",
+
+  "dashboardNearbyEmpty": "Nincs közeli átjátszó",
+  "dashboardTabPota": "POTA",
+  "dashboardTabRepeaters": "Átjátszók",
+  "dashboardViewAllPotaSpots": "Összes POTA spot megtekintése",
+  "dashboardViewAllRepeaters": "Összes átjátszó megtekintése",
+  "onboardingDiscoveryExploreMap": "Térkép felfedezése",
+  "onboardingDiscoveryLivePota": "Élő POTA spot",
+  "onboardingDiscoveryNearbyRepeater": "Közeli átjátszó",
+  "onboardingDiscoveryNoLocation": "Fedezd fel a térképet átjátszók és POTA aktiválások kereséséhez",
+  "onboardingDiscoveryNoRepeaters": "Nem található közeli átjátszó",
+  "onboardingDiscoverySubtitle": "Íme, mi van a közeledben!",
+  "onboardingDiscoveryTitle": "Az első átjátszód",
+  "onboardingDiscoveryViewDetails": "Részletek megtekintése",
+  "onboardingDiscoveryViewSpot": "Spot megtekintése",
+  "onboardingGetStarted": "Kezdjük",
+  "onboardingLocationEnable": "Helymeghatározás engedélyezése",
+  "onboardingLocationSkip": "Most nem",
+  "onboardingLocationSubtitle": "A tartózkodási helyedet használjuk a közeli átjátszók és POTA aktiválások megjelenítéséhez.",
+  "onboardingLocationTitle": "Helymeghatározás",
+  "onboardingNext": "Tovább",
+  "onboardingSkip": "Kihagyás",
+  "onboardingTelegramAlreadyMember": "Már tag vagyok",
+  "onboardingTelegramJoin": "Csatlakozás a Telegram csoporthoz",
+  "onboardingTelegramLater": "Talán később",
+  "onboardingTelegramSubtitle": "Csatlakozz a HamQRG Telegram csoporthoz frissítésekért, átjátszó bejelentésekért és más rádióamatőrökkel való találkozásért.",
+  "onboardingTelegramTitle": "Csatlakozz a közösséghez",
+  "onboardingWelcomeCredits": "Az átjátszó adatokat az IZ8WNH biztosítja",
+  "onboardingWelcomeSubtitle1": "Fedezd fel a környéked aktív átjátszóit frekvenciákkal, tónusokkal és műszaki részletekkel.",
+  "onboardingWelcomeSubtitle2": "Analóg, DMR, C4FM, D-STAR — találd meg azonnal a neked megfelelő átjátszót.",
+  "onboardingWelcomeSubtitle3": "Kövesd a Parks on the Air aktiválásokat élő frissítésekkel, sávszűrőkkel és távolsággal.",
+  "onboardingWelcomeSubtitle4": "Tartsd kéznél a leggyakrabban használt átjátszóidat a gyors hozzáféréshez.",
+  "onboardingWelcomeTitle1": "Találj átjátszókat a közeledben",
+  "onboardingWelcomeTitle2": "Szűrés üzemmód szerint",
+  "onboardingWelcomeTitle3": "Valós idejű POTA spotok",
+  "onboardingWelcomeTitle4": "Mentsd el a kedvenceidet",
+  "potaFilterAll": "Összes",
+  "potaFilterBand": "Sáv",
+  "potaFilterMode": "Üzemmód",
+  "potaSortByDistance": "Legközelebbi",
+  "potaSortByTime": "Legújabb",
+  "repeatersNearbyCount": "{count} közeli átjátszó",
+  "@repeatersNearbyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatersResultsCount": "{count} találat",
+  "@repeatersResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}
