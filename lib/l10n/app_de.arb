@@ -576,6 +576,10 @@
   "profileLanguageRomanian": "Română",
   "profileLanguageSlovenian": "Slovenščina",
   "profileLanguageCroatian": "Hrvatski",
+  "profileLanguageHungarian": "Magyar",
+  "profileLanguageCzech": "Čeština",
+  "profileLanguageSlovak": "Slovenčina",
+  "profileLanguageSerbian": "Srpski",
 
   "addRepeaterProfileTile": "Neues Relais vorschlagen",
   "addRepeaterProfileTileSubtitle": "Ein noch nicht gelistetes Relais melden",

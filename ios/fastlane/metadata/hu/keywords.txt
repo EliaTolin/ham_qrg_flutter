@@ -1,0 +1,1 @@
+rádióamatőr,átjátszó,frekvencia,amatőr rádió,hamradio,QRG,DMR,rövidhullám

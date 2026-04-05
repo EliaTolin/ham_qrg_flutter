@@ -1310,6 +1310,18 @@ class AppLocalizationsHr extends AppLocalizations {
   String get profileLanguageCroatian => 'Hrvatski';
 
   @override
+  String get profileLanguageHungarian => 'Magyar';
+
+  @override
+  String get profileLanguageCzech => 'Čeština';
+
+  @override
+  String get profileLanguageSlovak => 'Slovenčina';
+
+  @override
+  String get profileLanguageSerbian => 'Srpski';
+
+  @override
   String get onboardingSkip => 'Preskoči';
 
   @override

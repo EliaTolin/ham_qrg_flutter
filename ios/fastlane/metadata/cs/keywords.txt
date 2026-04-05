@@ -1,0 +1,1 @@
+radioamatér,převaděč,frekvence,ham radio,hamradio,QRG,DMR,krátké vlny

@@ -5,17 +5,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_cs.dart';
 import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
 import 'app_localizations_hr.dart';
+import 'app_localizations_hu.dart';
 import 'app_localizations_it.dart';
 import 'app_localizations_nl.dart';
 import 'app_localizations_pl.dart';
 import 'app_localizations_pt.dart';
 import 'app_localizations_ro.dart';
+import 'app_localizations_sk.dart';
 import 'app_localizations_sl.dart';
+import 'app_localizations_sr.dart';
 
 // ignore_for_file: type=lint
 
@@ -103,17 +107,21 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('cs'),
     Locale('de'),
     Locale('en'),
     Locale('es'),
     Locale('fr'),
     Locale('hr'),
+    Locale('hu'),
     Locale('it'),
     Locale('nl'),
     Locale('pl'),
     Locale('pt'),
     Locale('ro'),
-    Locale('sl')
+    Locale('sk'),
+    Locale('sl'),
+    Locale('sr')
   ];
 
   /// No description provided for @error.
@@ -2420,6 +2428,30 @@ abstract class AppLocalizations {
   /// **'Hrvatski'**
   String get profileLanguageCroatian;
 
+  /// No description provided for @profileLanguageHungarian.
+  ///
+  /// In it, this message translates to:
+  /// **'Magyar'**
+  String get profileLanguageHungarian;
+
+  /// No description provided for @profileLanguageCzech.
+  ///
+  /// In it, this message translates to:
+  /// **'Čeština'**
+  String get profileLanguageCzech;
+
+  /// No description provided for @profileLanguageSlovak.
+  ///
+  /// In it, this message translates to:
+  /// **'Slovenčina'**
+  String get profileLanguageSlovak;
+
+  /// No description provided for @profileLanguageSerbian.
+  ///
+  /// In it, this message translates to:
+  /// **'Srpski'**
+  String get profileLanguageSerbian;
+
   /// No description provided for @onboardingSkip.
   ///
   /// In it, this message translates to:
@@ -3056,17 +3088,21 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) => <String>[
+        'cs',
         'de',
         'en',
         'es',
         'fr',
         'hr',
+        'hu',
         'it',
         'nl',
         'pl',
         'pt',
         'ro',
-        'sl'
+        'sk',
+        'sl',
+        'sr'
       ].contains(locale.languageCode);
 
   @override
@@ -3076,6 +3112,8 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'cs':
+      return AppLocalizationsCs();
     case 'de':
       return AppLocalizationsDe();
     case 'en':
@@ -3086,6 +3124,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsFr();
     case 'hr':
       return AppLocalizationsHr();
+    case 'hu':
+      return AppLocalizationsHu();
     case 'it':
       return AppLocalizationsIt();
     case 'nl':
@@ -3096,8 +3136,12 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsPt();
     case 'ro':
       return AppLocalizationsRo();
+    case 'sk':
+      return AppLocalizationsSk();
     case 'sl':
       return AppLocalizationsSl();
+    case 'sr':
+      return AppLocalizationsSr();
   }
 
   throw FlutterError(
