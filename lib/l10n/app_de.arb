@@ -1,0 +1,720 @@
+{
+  "@@locale": "de",
+  "error": "Fehler",
+  "error_message": "Beim Laden ist ein Fehler aufgetreten",
+  "error_message_retry": "Beim Laden ist ein Fehler aufgetreten. Bitte versuche es später erneut",
+  "retry": "Erneut versuchen",
+  "back": "Zurück",
+  "loading": "Laden",
+  "details": "Details",
+  "pages_number": "{number} Seiten zum Entdecken",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "Januar",
+  "february": "Februar",
+  "march": "März",
+  "april": "April",
+  "may": "Mai",
+  "june": "Juni",
+  "july": "Juli",
+  "august": "August",
+  "september": "September",
+  "october": "Oktober",
+  "november": "November",
+  "december": "Dezember",
+  "logout": "Abmelden",
+  "profile": "Profil",
+  "settings": "Einstellungen",
+  "contact_us": "Kontaktiere uns",
+  "error_opening_email": "Beim Öffnen der E-Mail ist ein Fehler aufgetreten",
+  "register_now": "Jetzt registrieren",
+  "tracking_permission_title": "Unterstütze die App",
+  "tracking_permission_message": "Um dein Erlebnis zu verbessern und dir relevantere Inhalte zu zeigen, hilf uns, die App kostenlos zu halten.\n\nTippe auf Erlauben, um uns zu unterstützen.",
+  "tracking_permission_next": "Weiter",
+  "skip": "Überspringen",
+  "done": "Fertig",
+  "next": "Weiter",
+  "joinCommunityTitle": "Tritt unserer Community bei!",
+  "joinCommunityDescription": "Entdecke die Vorteile der Telegram-Community:",
+  "benefitSupportMembers": "Unterstützung durch Mitglieder",
+  "benefitSuggestFeatures": "Neue Funktionen vorschlagen",
+  "benefitContactDevelopers": "Kontakt zu Entwicklern",
+  "benefitExclusivePreviews": "Exklusive Vorschauen und Betas",
+  "benefitActiveCommunity": "Aktive Community",
+  "joinNowButton": "Jetzt beitreten!",
+  "alreadyMemberButton": "Ich bin bereits Mitglied",
+  "laterButton": "Später",
+  "errorOpenTelegram": "Fehler beim Öffnen von Telegram",
+  "disclaimerTitle": "Datenquelle",
+  "disclaimerDescription": "Die Relaisdaten in dieser App stammen von IZ8WNH.\n\nFür zusätzliche Informationen, zum Herunterladen von CSV-Dateien zur Radioprogrammierung oder zur Einsicht in Daten, die in dieser App nicht verfügbar sind, besuche die offizielle Website.",
+  "disclaimerVisitSite": "iz8wnh.it besuchen",
+  "disclaimerUnderstood": "Verstanden",
+  "errorOpenDisclaimerSite": "Fehler beim Öffnen der Website",
+  "repeatersMapTitle": "Relaiskarte",
+  "repeatersListTitle": "Relaisliste",
+  "repeatersMapLoading": "Relaiskarte wird geladen…",
+  "repeatersMapGenericError": "Relais konnten nicht geladen werden.",
+  "repeatersMapEmpty": "Keine Relais in deiner Nähe gefunden.",
+  "repeatersSearchHint": "Nach Name, Rufzeichen oder Frequenz MHz suchen…",
+  "repeatersSearchEmpty": "Keine Relais gefunden.",
+  "repeatersSortDistance": "Entfernung",
+  "repeatersSortLikes": "Likes",
+  "repeatersSortFrequency": "Frequenz",
+  "repeatersMapRetry": "Erneut versuchen",
+  "repeatersMapOpenSettings": "Einstellungen öffnen",
+  "repeatersMapPermissionMessage": "Erlaube den Standortzugriff, um Relais in deiner Nähe anzuzeigen.",
+  "repeatersMapPermissionPermanentlyDenied": "Standortberechtigung dauerhaft verweigert. Aktiviere sie in den Systemeinstellungen.",
+  "repeatersMapLocationServicesDisabled": "Aktiviere die Ortungsdienste, um Relais in der Nähe zu finden.",
+  "repeatersMapFound": "{count} Relais gefunden",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Betriebsart",
+  "repeaterModeAnalog": "Analog",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "Alle Betriebsarten",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frequenz",
+  "repeaterShift": "Ablage",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Standort",
+  "repeaterDistance": "Entfernung",
+  "repeaterViewFullDetails": "Alle Details anzeigen",
+  "repeatersMapReturnToLocation": "Zurück zu meinem Standort",
+  "clusterRepeatersTitle": "{count} Relais an diesem Standort",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Alle Funktionen freischalten",
+  "profileUnlockFeaturesDescription": "Registriere dich, um Bewertungen, Favoritenspeicherung und detaillierte Statistiken zu nutzen.",
+  "profileSignUpOrLogin": "Registrieren oder Anmelden",
+  "profileErrorOpeningEmail": "Fehler beim Öffnen der E-Mail",
+  "profileJoinTelegramCommunity": "Der Telegram-Community beitreten",
+  "profileWelcomeTitle": "Willkommen bei HamQRG",
+  "profileWelcomeDescription": "Tritt unserer Amateurfunk-Community in Italien bei.",
+  "profileEditProfile": "Profil bearbeiten",
+  "profileChangePhoto": "Foto ändern",
+  "profileFirstName": "Vorname",
+  "profileLastName": "Nachname",
+  "profileCallsign": "Rufzeichen",
+  "profileRestartIdentificationTitle": "Möchtest du deinen Status ändern? Du kannst den Identifikationsprozess neu starten, um zwischen lizenziertem Funkamateur und SWL-Hörer zu wechseln.",
+  "profileRestartIdentificationButton": "Identifikationsprozess neu starten",
+  "profileSaveChanges": "Änderungen speichern",
+  "profileDangerZone": "Gefahrenbereich",
+  "profileDeleteAccount": "Konto löschen",
+  "profileDeleteAccountConfirmTitle": "Konto löschen",
+  "profileDeleteAccountConfirmMessage": "Bist du sicher, dass du dein Konto löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "profileDeleteAccountCancel": "Abbrechen",
+  "profileDeleteAccountConfirm": "Löschen",
+  "profileAppVersion": "App-Version {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Community & Unterstützung",
+  "profileSectionSupport": "Unterstützung",
+  "profileVersion": "Version: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Version {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Fehler: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "HamQRG beitreten",
+  "authUnlockFeatures": "Melde dich an, um alle Funktionen freizuschalten!",
+  "authWhatYouGet": "Das erwartet dich:",
+  "authBenefitStatsTitle": "Detaillierte Statistiken",
+  "authBenefitStatsDescription": "Verfolge deinen Fortschritt und verbessere dich",
+  "authBenefitQuizTitle": "Verschiedene Quiz-Modi",
+  "authBenefitQuizDescription": "Übe im Marathon-, Themen- und weiteren Modi.",
+  "authBenefitSyncTitle": "Synchronisierung",
+  "authBenefitSyncDescription": "Zugriff von jedem Gerät",
+  "authOrSignInWithEmail": "Oder mit E-Mail anmelden",
+  "authEnterEmail": "E-Mail eingeben",
+  "authEnterPassword": "Passwort eingeben",
+  "authForgotPassword": "Passwort vergessen?",
+  "authSignIn": "Anmelden",
+  "authSignUp": "Registrieren",
+  "authPasswordLengthError": "Passwort muss länger sein",
+  "authDontHaveAccount": "Noch kein Konto? Registrieren",
+  "authHaveAccount": "Bereits ein Konto? Anmelden",
+  "authBackToSignIn": "Zurück zur Anmeldung",
+  "authUnexpectedError": "Authentifizierungsfehler: ",
+  "authValidEmailError": "Gib eine gültige E-Mail-Adresse ein",
+  "authSendPasswordReset": "Passwort zurücksetzen senden",
+  "authPasswordResetSent": "Passwort-Zurücksetzung gesendet",
+  "authVerifyEmailMessage": "Bestätige deine E-Mail, um die Registrierung abzuschließen. Überprüfe deinen Posteingang.",
+  "authInvalidCredentials": "Ungültige E-Mail oder ungültiges Passwort",
+  "authEmailNotConfirmed": "Bestätige deine E-Mail, um dich anzumelden",
+  "authFirstName": "Vorname",
+  "authFirstNameRequired": "Vorname ist erforderlich",
+  "authLastName": "Nachname",
+  "authLastNameRequired": "Nachname ist erforderlich",
+  "authContinueAsGuest": "Als Gast fortfahren",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Entdecke die Relais in deiner Umgebung",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Schnellzugriff",
+  "homeRepeaterList": "Relaisliste",
+  "homeMyFavorites": "Meine Favoriten",
+  "homeNearby": "In deiner Nähe",
+  "homeViewAll": "Alle anzeigen",
+  "homeStations": "{count} Stationen",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} gespeichert",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Aktiv",
+  "homeIdle": "Inaktiv",
+  "homeNavHome": "Start",
+  "homeNavList": "Liste",
+  "homeNavFavorites": "Favoriten",
+  "homeNavMap": "Karte",
+  "homeNavProfile": "Profil",
+  "favoritesTitle": "Meine Favoriten",
+  "favoritesSearchHint": "Gespeicherte Relais suchen...",
+  "favoritesFilterAllSaved": "Alle gespeicherten",
+  "favoritesEmpty": "Keine gespeicherten Relais",
+  "favoritesEmptyDescription": "Füge Relais zu Favoriten hinzu, um sie hier zu sehen",
+  "favoritesShowing": "{showing} von {total} Favoritenstationen werden angezeigt",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Aus Favoriten entfernen",
+  "favoritesAdd": "Zu Favoriten hinzufügen",
+  "repeaterDetailSave": "Speichern",
+  "repeaterDetailShare": "Teilen",
+  "repeaterDetailReport": "Melden",
+  "repeaterDetailTotalLikes": "Likes insgesamt",
+  "repeaterDetailReports1Yr": "Meldungen (1 Jahr)",
+  "repeaterDetailHealthScore": "Zustandsbewertung",
+  "repeaterDetailExcellent": "Ausgezeichnet",
+  "repeaterDetailGood": "Gut",
+  "repeaterDetailFair": "Befriedigend",
+  "repeaterDetailToVerify": "Zu überprüfen",
+  "repeaterDetailScoreCalculated": "Bewertung basierend auf {count} negativen Meldungen im letzten Jahr",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Letzter Like",
+  "repeaterDetailLastDownReport": "Letzte negative Meldung",
+  "repeaterDetailTechnicalData": "Technische Daten",
+  "repeaterDetailFrequency": "Frequenz",
+  "repeaterDetailShift": "Ablage",
+  "repeaterDetailSubtone": "Subaudioton (SQL)",
+  "repeaterDetailMode": "Betriebsart",
+  "repeaterDetailLocation": "Standort",
+  "repeaterDetailAway": "{distance} entfernt",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Community-Meldungen",
+  "repeaterDetailUpdateStatusFeedback": "Status und Feedback aktualisieren",
+  "repeaterDetailEquipment": "Ausrüstung",
+  "repeaterDetailEquipmentRequired": "Ausrüstung *",
+  "repeaterDetailAccessModes": "Zugangsmodi",
+  "repeaterDetailNetwork": "Netzwerk",
+  "repeaterDetailLocationField": "Standort",
+  "repeaterDetailLocationRequired": "Standort *",
+  "repeaterDetailComment": "Kommentar",
+  "repeaterDetailCommentOptional": "Kommentar (optional)",
+  "repeaterDetailCommentPlaceholder": "Signalqualität, Audiobericht oder allgemeine Kommentare...",
+  "repeaterDetailReportDown": "Problem melden",
+  "repeaterDetailCheckinLike": "Einchecken und liken",
+  "repeaterDetailYourFeedback": "Dein Feedback",
+  "repeaterDetailPostedJustNow": "Gerade eben gepostet",
+  "repeaterDetailDeleteEntry": "Eintrag löschen",
+  "repeaterDetailViewAllReports": "Alle {count} Meldungen anzeigen",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Portabel",
+  "repeaterDetailStationMobile": "Mobil",
+  "repeaterDetailStationFixed": "Feststation",
+  "repeaterDetailLike": "Like",
+  "repeaterDetailReportLabel": "Meldung",
+  "repeaterDetailSaved": "Gespeichert",
+  "repeaterDetailShareMessage": "Schau dir dieses Relais auf HamQRG an!",
+  "repeaterDetailReportDescription": "Die Meldefunktion wird bald verfügbar sein. Du wirst fehlerhafte Informationen oder Probleme mit diesem Relais melden können.",
+  "commonClose": "Schließen",
+  "favorite": "Favorit",
+  "accessConfiguration": "Zugangskonfiguration",
+  "noAccessConfiguration": "Keine Konfiguration verfügbar",
+  "repeaterDetailAddFeedback": "Feedback hinzufügen",
+  "repeaterDetailOthersReports": "Meldungen anderer Nutzer",
+  "repeaterDetailRemove": "Entfernen",
+  "repeaterDetailSelectAccess": "Zugang auswählen",
+  "repeaterDetailDistanceWarning": "Du musst dich innerhalb von {distance} km vom Relais befinden, um Feedback zu senden.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interaktiv",
+  "repeaterDetailLogYourSignal": "Signal protokollieren",
+  "repeaterDetailUsedEquipment": "Verwendete Ausrüstung",
+  "repeaterDetailYourLocation": "Dein Standort",
+  "repeaterDetailLocationPlaceholder": "Wo warst du? (z.B. Berlin)",
+  "repeaterDetailLocationSelectHint": "Wähle einen Ort aus den Vorschlägen",
+  "feedbackDistanceConfirmTitle": "Absendung bestätigen",
+  "feedbackDistanceConfirmMessage": "Der ausgewählte Standort ist {distance} km vom Relais entfernt. Bestätigst du, dass du dieses Feedback auf eigene Verantwortung senden möchtest?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Bestätigen",
+  "feedbackDistanceConfirmCancel": "Abbrechen",
+  "repeaterDetailSelectAccessInstance": "Zugangsinstanz auswählen",
+  "repeaterDetailSignalObservations": "Signalbeobachtungen",
+  "repeaterDetailSignalObservationsPlaceholder": "Wie war die Audioqualität?",
+  "repeaterDetailSendLike": "Like senden",
+  "repeaterDetailReportIssue": "Problem melden",
+  "repeaterDetailRecentActivity": "Letzte Aktivität",
+  "reportIssueTitle": "Meldung",
+  "reportIssueHeadline": "Hilf uns, die Daten aktuell zu halten",
+  "reportIssueDescription": "Hast du etwas Falsches oder Fehlendes bei diesem Relais gefunden? Teile uns mit, was geändert werden muss, und wir überprüfen es.",
+  "reportIssueWhatToCorrect": "Was möchtest du korrigieren oder ergänzen?",
+  "reportIssuePlaceholder": "Z.B. Der CTCSS-Ton hat sich auf 88,5 Hz geändert, oder der Standort ist etwas weiter nördlich, der Betreiber ist...",
+  "reportIssueVerifiedTitle": "Überprüfte Einreichungen",
+  "reportIssueVerifiedDescription": "Deine Meldung wird vom regionalen Koordinator überprüft, bevor die öffentliche Datenbank aktualisiert wird. Vielen Dank für deinen Beitrag zur Community.",
+  "reportIssueConfirmCheckbox": "Ich bestätige, dass diese Informationen nach meiner Beobachtung korrekt sind.",
+  "reportIssueSubmit": "Absenden",
+  "reportIssueMinChars": "Mindestens 10 Zeichen erforderlich",
+  "reportIssueMaxChars": "Maximal 2000 Zeichen",
+  "reportIssueSuccess": "Meldung erfolgreich eingereicht",
+  "reportIssueError": "Fehler beim Einreichen der Meldung",
+  "registrationPromptTitle": "Volles Potenzial freischalten",
+  "registrationPromptDescription": "Tritt der italienischen Amateurfunk-Community bei und bringe dein Erlebnis auf das nächste Level.",
+  "registrationBenefitInteractTitle": "Interagieren",
+  "registrationBenefitInteractDescription": "Bewerte Relais und hinterlasse Kommentare für andere.",
+  "registrationBenefitFavoritesTitle": "Favoriten",
+  "registrationBenefitFavoritesDescription": "Speichere deine meistgenutzten Frequenzen und Relais.",
+  "registrationBenefitLogbookTitle": "Logbuch",
+  "registrationBenefitLogbookDescription": "Behalte den Überblick über deine QSOs und führe ein persönliches Logbuch.",
+  "registrationSignInApple": "Mit Apple anmelden",
+  "registrationSignInGoogle": "Mit Google anmelden",
+  "registrationPromptFooter": "Kostenlose Registrierung. Keine Lizenz erforderlich, um öffentliche Daten zu durchsuchen.",
+  "postLoginOnboardingWelcome": "Willkommen bei",
+  "postLoginOnboardingQuestion": "Bist du ein lizenzierter Funkamateur?",
+  "postLoginOnboardingHelpText": "Das hilft uns, dein Erlebnis anzupassen und dir die richtigen Frequenzen zu zeigen.",
+  "postLoginOnboardingYesLicensed": "Ja, bin ich",
+  "postLoginOnboardingNoListener": "Nein, ich bin nur Hörer",
+  "postLoginOnboardingCallsignTitle": "Identifiziere dich",
+  "postLoginOnboardingCallsignSubtitle": "Gib dein offizielles Rufzeichen ein, um auf Netzwerkfunktionen zuzugreifen.",
+  "postLoginOnboardingCallsignLabel": "Rufzeichen",
+  "postLoginOnboardingCallsignHint": "Z.B. DL1ABC",
+  "postLoginOnboardingComplete": "Profil vervollständigen",
+  "postLoginOnboardingBack": "Zurück",
+  "postLoginOnboardingChangeInSettings": "Du kannst dies später in den Einstellungen ändern.",
+  "postLoginOnboardingSwlTitle": "SWL-Rufzeichen",
+  "postLoginOnboardingSwlQuestion": "Hast du ein offizielles SWL-Rufzeichen?",
+  "postLoginOnboardingSwlHelpText": "Kurzwellenhörer-Rufzeichen helfen dir, dich in der weltweiten Monitorgemeinschaft zu identifizieren.",
+  "postLoginOnboardingSwlYes": "Ja, ich habe eins",
+  "postLoginOnboardingSwlNo": "Nein, ich habe keins",
+  "postLoginOnboardingSwlEnterCallsign": "Rufzeichen eingeben",
+  "postLoginOnboardingSwlCallsignHint": "Z.B. DE1-12345-SWL",
+  "timeAgoJustNow": "gerade eben",
+  "timeAgoMinutes": "{count, plural, one{vor 1 Minute} other{vor {count} Minuten}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{vor 1 Stunde} other{vor {count} Stunden}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{vor 1 Tag} other{vor {count} Tagen}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{vor 1 Woche} other{vor {count} Wochen}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{vor 1 Monat} other{vor {count} Monaten}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{vor 1 Jahr} other{vor {count} Jahren}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Design",
+  "profileThemeModeSystem": "System",
+  "profileThemeModeLight": "Hell",
+  "profileThemeModeDark": "Dunkel",
+  "repeaterDetailBeFirstFeedback": "Sei der Erste, der Feedback zu diesem Relais hinterlässt!",
+  "repeaterDetailDistanceFromYou": "Entfernung von dir",
+  "repeaterDistanceMapNoLocation": "Standort nicht verfügbar",
+  "repeaterDetailNever": "Nie",
+  "repeaterDetailInfo": "Informationen",
+  "repeaterDetailSource": "Quelle",
+  "repeaterDetailManager": "Betreiber",
+  "repeaterDetailSuggestManager": "Kennst du den Relaisbetreiber? Melde es uns!",
+  "repeaterDetailViewFeedbackMap": "Feedback-Karte",
+  "repeaterDetailViewFeedbackMapSubtitle": "Zeige an, wo Likes und Meldungen erfasst wurden",
+  "repeaterDetailAltimetricProfile": "Höhenprofil",
+  "repeaterDetailAltimetricProfileSubtitle": "Zeige das Geländeprofil zwischen dir und dem Relais",
+  "repeaterDetailLosClear": "Freie Sichtverbindung zwischen dir und dem Relais",
+  "repeaterDetailLosObstructed": "Sichtverbindung durch Gelände blockiert",
+  "repeaterDetailTerrainProfile": "Geländeprofil",
+  "repeaterDetailLineOfSight": "Sichtverbindung",
+  "repeaterDetailTotalDistance": "Entfernung",
+  "repeaterDetailRepeaterElevation": "Höhe des Relais",
+  "repeaterDetailYourElevation": "Deine Höhe",
+  "repeaterDetailYou": "Du",
+  "repeaterDetailRepeaterLabel": "Relais",
+
+  "repeaterDetailFunFacts": "Wusstest du schon?",
+  "repeaterDetailWavelength": "Wellenlänge",
+  "repeaterDetailWavelengthValue": "Die Wellenlänge dieses Relais beträgt {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Schwingungen pro Sekunde",
+  "repeaterDetailOscillationsValue": "Das Signal schwingt {value} Mal pro Sekunde",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Ausbreitungszeit",
+  "repeaterDetailPropagationTimeValue": "Dein Signal braucht {value}, um das Relais zu erreichen",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Wellendurchläufe unterwegs",
+  "repeaterDetailWaveCyclesValue": "Die Welle durchläuft {value} vollständige Zyklen auf dem Weg",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userReportsTitle": "Meine Meldungen",
+  "userReportsFilterAll": "Alle",
+  "userReportsFilterOpen": "Offen",
+  "userReportsFilterClosed": "Geschlossen",
+  "userReportsEmpty": "Keine Meldungen eingereicht",
+  "userReportsEmptyDescription": "Deine Relaismeldungen werden hier angezeigt",
+  "userReportsEmptyFiltered": "Keine Meldungen mit diesem Filter",
+  "userReportsStatusPending": "Ausstehend",
+  "userReportsStatusReviewed": "In Überprüfung",
+  "userReportsStatusResolved": "Erledigt",
+  "userReportsStatusRejected": "Abgelehnt",
+  "userReportsRetryBanner": "Liste konnte nicht aktualisiert werden",
+  "userReportsProfileTile": "Meine Meldungen",
+  "userReportsProfileTileSubtitle": "Status deiner Meldungen anzeigen",
+  "userReportsError": "Fehler beim Laden der Meldungen",
+  "userReportsCoordinatorResponse": "Antwort des Koordinators",
+
+  "potaTitle": "POTA Spots",
+  "potaSearchHint": "Nach Aktivierer, Park oder Betriebsart suchen…",
+  "potaNoSpots": "Derzeit keine aktiven POTA Spots.",
+  "potaLoadError": "POTA Spots konnten nicht geladen werden",
+  "potaRetry": "Erneut versuchen",
+  "potaViewAll": "Alle anzeigen",
+  "potaActivator": "Aktivierer",
+  "potaFrequency": "Frequenz",
+  "potaMode": "Betriebsart",
+  "potaPark": "Park",
+  "potaReference": "Referenz",
+  "potaSpotter": "Gemeldet von",
+  "potaComments": "Kommentare",
+  "potaLastSpotted": "Zuletzt gemeldet",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "QRZ.com konnte nicht geöffnet werden",
+  "potaParkWebsite": "Park-Website",
+  "potaParkType": "Parktyp",
+  "potaLocation": "Standort",
+  "potaCountry": "Land",
+  "potaFirstActivation": "Erstaktivierung",
+  "potaBand": "Band",
+  "potaDistanceAway": "{distance} entfernt",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count} aktive Spots",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Sprache",
+  "profileLanguageSystem": "System",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
+
+  "addRepeaterProfileTile": "Neues Relais vorschlagen",
+  "addRepeaterProfileTileSubtitle": "Ein noch nicht gelistetes Relais melden",
+  "addRepeaterTitle": "Neues Relais",
+  "addRepeaterHeadline": "Ein fehlendes Relais melden",
+  "addRepeaterDescription": "Fülle die Details des Relais aus, das du hinzufügen möchtest. Die Einreichung wird vor der Veröffentlichung überprüft.",
+  "addRepeaterSectionRepeater": "Relaisdaten",
+  "addRepeaterSectionAccesses": "Zugänge",
+  "addRepeaterSectionLocation": "Standort",
+  "addRepeaterSectionNotes": "Anmerkungen",
+  "addRepeaterName": "Name",
+  "addRepeaterNameHint": "Z.B. Feldberg",
+  "addRepeaterCallsign": "Rufzeichen",
+  "addRepeaterCallsignHint": "Z.B. DB0VC",
+  "addRepeaterNameOrCallsignRequired": "Gib mindestens einen Namen oder ein Rufzeichen ein",
+  "addRepeaterFrequency": "Frequenz (MHz)",
+  "addRepeaterFrequencyHint": "Z.B. 145.000 oder 145,000",
+  "addRepeaterFrequencyRequired": "Frequenz erforderlich",
+  "addRepeaterFrequencyInvalid": "Ungültige Frequenz",
+  "addRepeaterShift": "Ablage (MHz)",
+  "addRepeaterShiftHint": "Z.B. -0,600",
+  "addRepeaterRegion": "Region",
+  "addRepeaterRegionHint": "Z.B. Bayern",
+  "addRepeaterProvinceCode": "Bundesland",
+  "addRepeaterProvinceCodeHint": "Z.B. BY",
+  "addRepeaterLocality": "Ort",
+  "addRepeaterLocalityHint": "Z.B. Schmitten",
+  "addRepeaterLatitude": "Breitengrad",
+  "addRepeaterLatitudeHint": "Z.B. 50.2200",
+  "addRepeaterLongitude": "Längengrad",
+  "addRepeaterLongitudeHint": "Z.B. 8.4500",
+  "addRepeaterLocator": "Locator",
+  "addRepeaterLocatorHint": "Z.B. JO40QF",
+  "addRepeaterNotes": "Zusätzliche Anmerkungen",
+  "addRepeaterNotesHint": "Zusätzliche Informationen zum Relais...",
+  "addRepeaterAddAccess": "Zugang hinzufügen",
+  "addRepeaterRemoveAccess": "Entfernen",
+  "addRepeaterAccessMode": "Betriebsart",
+  "addRepeaterAccessCtcssTx": "CTCSS TX (Hz)",
+  "addRepeaterAccessCtcssTxHint": "Z.B. 88,5",
+  "addRepeaterAccessCtcssRx": "CTCSS RX (Hz)",
+  "addRepeaterAccessCtcssRxHint": "Z.B. 88,5",
+  "addRepeaterAccessDcsCode": "DCS-Code",
+  "addRepeaterAccessDcsCodeHint": "Z.B. 23",
+  "addRepeaterAccessColorCode": "Color Code",
+  "addRepeaterAccessColorCodeHint": "Z.B. 1",
+  "addRepeaterAccessTalkgroup": "Sprechgruppe",
+  "addRepeaterAccessTalkgroupHint": "Z.B. 262001",
+  "addRepeaterAccessDgId": "DG-ID",
+  "addRepeaterAccessDgIdHint": "Z.B. 0",
+  "addRepeaterAccessNodeId": "Node-ID",
+  "addRepeaterAccessNodeIdHint": "Z.B. 1234",
+  "addRepeaterAccessNetworkName": "Netzwerkname",
+  "addRepeaterAccessNetworkNameHint": "Z.B. BM Deutschland",
+  "addRepeaterAccessNotes": "Zugangshinweise",
+  "addRepeaterAccessNotesHint": "Hinweise speziell zu diesem Zugang...",
+  "addRepeaterConfirmCheckbox": "Ich bestätige, dass diese Informationen nach meinem besten Wissen korrekt sind.",
+  "addRepeaterVerifiedTitle": "Überprüfte Einreichung",
+  "addRepeaterVerifiedDescription": "Deine Einreichung wird vom Team überprüft, bevor sie in der Datenbank veröffentlicht wird.",
+  "addRepeaterSubmit": "Absenden",
+  "addRepeaterSuccess": "Einreichung erfolgreich gesendet!",
+  "addRepeaterError": "Fehler beim Senden der Einreichung",
+  "addRepeaterAtLeastOneAccess": "Füge mindestens einen Zugang hinzu",
+  "addRepeaterAccessNumber": "Zugang {number}",
+  "@addRepeaterAccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "changelog1017PotaSpots": "POTA Spots in Echtzeit mit Karte und Parkdetails",
+  "changelog1017SubmitRepeater": "Neues Relais direkt aus der App vorschlagen",
+  "changelog1017MultiLanguage": "App verfügbar auf Englisch, Spanisch und Französisch",
+  "changelog1017Onboarding": "Neues Erststart-Erlebnis",
+  "changelog1017ReportAnonymous": "Meldungen ohne Registrierung möglich",
+
+  "changelogTitle": "Neuigkeiten",
+  "changelogSubtitle": "Das ist neu in dieser Version",
+  "changelogCategoryAdded": "Neu",
+  "changelogCategoryImproved": "Verbessert",
+  "changelogCategoryFixed": "Behoben",
+  "changelogDismiss": "Verstanden!",
+
+  "dashboardNearbyEmpty": "Keine Relais in der Nähe",
+  "dashboardTabPota": "POTA",
+  "dashboardTabRepeaters": "Relais",
+  "dashboardViewAllPotaSpots": "Alle POTA Spots anzeigen",
+  "dashboardViewAllRepeaters": "Alle Relais anzeigen",
+  "onboardingDiscoveryExploreMap": "Karte erkunden",
+  "onboardingDiscoveryLivePota": "Live POTA Spot",
+  "onboardingDiscoveryNearbyRepeater": "Relais in der Nähe",
+  "onboardingDiscoveryNoLocation": "Erkunde die Karte, um Relais und POTA-Aktivierungen zu finden",
+  "onboardingDiscoveryNoRepeaters": "Keine Relais in der Nähe gefunden",
+  "onboardingDiscoverySubtitle": "Das befindet sich in deiner Nähe!",
+  "onboardingDiscoveryTitle": "Dein erstes Relais",
+  "onboardingDiscoveryViewDetails": "Details anzeigen",
+  "onboardingDiscoveryViewSpot": "Spot anzeigen",
+  "onboardingGetStarted": "Loslegen",
+  "onboardingLocationEnable": "Standort aktivieren",
+  "onboardingLocationSkip": "Jetzt nicht",
+  "onboardingLocationSubtitle": "Wir verwenden deinen Standort, um dir Relais und POTA-Aktivierungen in der Nähe zu zeigen.",
+  "onboardingLocationTitle": "Standort",
+  "onboardingNext": "Weiter",
+  "onboardingSkip": "Überspringen",
+  "onboardingTelegramAlreadyMember": "Ich bin bereits Mitglied",
+  "onboardingTelegramJoin": "Telegram-Gruppe beitreten",
+  "onboardingTelegramLater": "Vielleicht später",
+  "onboardingTelegramSubtitle": "Tritt der HamQRG Telegram-Gruppe bei, um Updates zu erhalten, Relais zu melden und andere Funkamateure kennenzulernen.",
+  "onboardingTelegramTitle": "Tritt der Community bei",
+  "onboardingWelcomeCredits": "Relaisdaten bereitgestellt von IZ8WNH",
+  "onboardingWelcomeSubtitle1": "Entdecke aktive Relais in deiner Umgebung mit Frequenzen, Tönen und technischen Details.",
+  "onboardingWelcomeSubtitle2": "Analog, DMR, C4FM, D-STAR — finde sofort das richtige Relais für dich.",
+  "onboardingWelcomeSubtitle3": "Verfolge Parks on the Air Aktivierungen mit Live-Updates, Bandfiltern und Entfernung.",
+  "onboardingWelcomeSubtitle4": "Halte deine meistgenutzten Relais griffbereit für schnellen Zugriff.",
+  "onboardingWelcomeTitle1": "Finde Relais in deiner Nähe",
+  "onboardingWelcomeTitle2": "Nach Betriebsart filtern",
+  "onboardingWelcomeTitle3": "POTA Spots in Echtzeit",
+  "onboardingWelcomeTitle4": "Speichere deine Favoriten",
+  "potaFilterAll": "Alle",
+  "potaFilterBand": "Band",
+  "potaFilterMode": "Betriebsart",
+  "potaSortByDistance": "Nächste",
+  "potaSortByTime": "Neueste",
+  "repeatersNearbyCount": "{count} Relais in der Nähe",
+  "@repeatersNearbyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatersResultsCount": "{count} Ergebnisse",
+  "@repeatersResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

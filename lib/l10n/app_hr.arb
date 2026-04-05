@@ -1,0 +1,720 @@
+{
+  "@@locale": "hr",
+  "error": "Greška",
+  "error_message": "Došlo je do greške prilikom učitavanja",
+  "error_message_retry": "Došlo je do greške prilikom učitavanja. Pokušajte ponovno kasnije",
+  "retry": "Pokušaj ponovno",
+  "back": "Natrag",
+  "loading": "Učitavanje",
+  "details": "Detalji",
+  "pages_number": "{number} stranica za istraživanje",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "Siječanj",
+  "february": "Veljača",
+  "march": "Ožujak",
+  "april": "Travanj",
+  "may": "Svibanj",
+  "june": "Lipanj",
+  "july": "Srpanj",
+  "august": "Kolovoz",
+  "september": "Rujan",
+  "october": "Listopad",
+  "november": "Studeni",
+  "december": "Prosinac",
+  "logout": "Odjava",
+  "profile": "Profil",
+  "settings": "Postavke",
+  "contact_us": "Kontaktirajte nas",
+  "error_opening_email": "Došlo je do greške prilikom otvaranja e-pošte",
+  "register_now": "Registrirajte se odmah",
+  "tracking_permission_title": "Podržite aplikaciju",
+  "tracking_permission_message": "Kako bismo poboljšali vaše iskustvo i prikazali relevantniji sadržaj, pomozite nam da aplikacija ostane besplatna.\n\nDodirnite Dopusti da nas podržite.",
+  "tracking_permission_next": "Dalje",
+  "skip": "Preskoči",
+  "done": "Gotovo",
+  "next": "Dalje",
+  "joinCommunityTitle": "Pridružite se našoj zajednici!",
+  "joinCommunityDescription": "Otkrijte prednosti pridruživanja Telegram zajednici:",
+  "benefitSupportMembers": "Podrška članova",
+  "benefitSuggestFeatures": "Predlaganje novih značajki",
+  "benefitContactDevelopers": "Kontakt s programerima",
+  "benefitExclusivePreviews": "Ekskluzivni pregledi i beta verzije",
+  "benefitActiveCommunity": "Aktivna zajednica",
+  "joinNowButton": "Pridruži se odmah!",
+  "alreadyMemberButton": "Već sam član",
+  "laterButton": "Kasnije",
+  "errorOpenTelegram": "Greška pri otvaranju Telegrama",
+  "disclaimerTitle": "Izvor podataka",
+  "disclaimerDescription": "Podaci o repetitorima u ovoj aplikaciji dolaze od IZ8WNH.\n\nZa dodatne informacije, preuzimanje CSV datoteka za programiranje radijskih uređaja ili za podatke koji nisu dostupni u ovoj aplikaciji, posjetite službenu stranicu.",
+  "disclaimerVisitSite": "Posjetite iz8wnh.it",
+  "disclaimerUnderstood": "Razumijem",
+  "errorOpenDisclaimerSite": "Greška pri otvaranju web stranice",
+  "repeatersMapTitle": "Karta repetitora",
+  "repeatersListTitle": "Popis repetitora",
+  "repeatersMapLoading": "Učitavanje karte repetitora…",
+  "repeatersMapGenericError": "Nije moguće učitati repetitore.",
+  "repeatersMapEmpty": "Nema pronađenih repetitora u vašoj blizini.",
+  "repeatersSearchHint": "Pretraži po imenu, pozivnom znaku ili frekvenciji MHz…",
+  "repeatersSearchEmpty": "Nema pronađenih repetitora.",
+  "repeatersSortDistance": "Udaljenost",
+  "repeatersSortLikes": "Sviđanja",
+  "repeatersSortFrequency": "Frekvencija",
+  "repeatersMapRetry": "Pokušaj ponovno",
+  "repeatersMapOpenSettings": "Otvori postavke",
+  "repeatersMapPermissionMessage": "Dopustite pristup lokaciji za prikaz repetitora u vašoj blizini.",
+  "repeatersMapPermissionPermanentlyDenied": "Dozvola za lokaciju je trajno odbijena. Omogućite je u postavkama sustava.",
+  "repeatersMapLocationServicesDisabled": "Omogućite lokacijske usluge za pronalaženje obližnjih repetitora.",
+  "repeatersMapFound": "{count} pronađenih repetitora",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Način rada",
+  "repeaterModeAnalog": "Analogni",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "Svi načini",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frekvencija",
+  "repeaterShift": "Pomak",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Lokacija",
+  "repeaterDistance": "Udaljenost",
+  "repeaterViewFullDetails": "Pogledaj sve detalje",
+  "repeatersMapReturnToLocation": "Povratak na moju lokaciju",
+  "clusterRepeatersTitle": "{count} repetitora na ovoj lokaciji",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Otključajte sve značajke",
+  "profileUnlockFeaturesDescription": "Registrirajte se za korištenje recenzija, spremanje favorita i pristup detaljnoj statistici.",
+  "profileSignUpOrLogin": "Registracija ili prijava",
+  "profileErrorOpeningEmail": "Greška pri otvaranju e-pošte",
+  "profileJoinTelegramCommunity": "Pridružite se Telegram zajednici",
+  "profileWelcomeTitle": "Dobrodošli u HamQRG",
+  "profileWelcomeDescription": "Pridružite se našoj zajednici radioamatera u Italiji.",
+  "profileEditProfile": "Uredi profil",
+  "profileChangePhoto": "Promijeni fotografiju",
+  "profileFirstName": "Ime",
+  "profileLastName": "Prezime",
+  "profileCallsign": "Pozivni znak",
+  "profileRestartIdentificationTitle": "Trebate promijeniti status? Možete ponovno pokrenuti postupak identifikacije za prebacivanje s licenciranog operatora na SWL slušatelja.",
+  "profileRestartIdentificationButton": "Ponovno pokreni postupak identifikacije",
+  "profileSaveChanges": "Spremi promjene",
+  "profileDangerZone": "Opasna zona",
+  "profileDeleteAccount": "Obriši račun",
+  "profileDeleteAccountConfirmTitle": "Obriši račun",
+  "profileDeleteAccountConfirmMessage": "Jeste li sigurni da želite obrisati svoj račun? Ova radnja je nepovratna.",
+  "profileDeleteAccountCancel": "Odustani",
+  "profileDeleteAccountConfirm": "Obriši",
+  "profileAppVersion": "Verzija aplikacije {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Zajednica i podrška",
+  "profileSectionSupport": "Podrška",
+  "profileVersion": "Verzija: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Verzija {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Greška: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "Pridružite se HamQRG-u",
+  "authUnlockFeatures": "Prijavite se za otključavanje svih značajki!",
+  "authWhatYouGet": "Što dobivate:",
+  "authBenefitStatsTitle": "Detaljna statistika",
+  "authBenefitStatsDescription": "Pratite svoj napredak i poboljšajte se",
+  "authBenefitQuizTitle": "Različiti načini kviza",
+  "authBenefitQuizDescription": "Vježbajte u maratonskom, tematskom i drugim načinima.",
+  "authBenefitSyncTitle": "Sinkronizacija",
+  "authBenefitSyncDescription": "Pristupite s bilo kojeg uređaja",
+  "authOrSignInWithEmail": "Ili se prijavite putem e-pošte",
+  "authEnterEmail": "Unesite e-poštu",
+  "authEnterPassword": "Unesite lozinku",
+  "authForgotPassword": "Zaboravljena lozinka?",
+  "authSignIn": "Prijava",
+  "authSignUp": "Registracija",
+  "authPasswordLengthError": "Lozinka mora biti duža",
+  "authDontHaveAccount": "Nemate račun? Registrirajte se",
+  "authHaveAccount": "Već imate račun? Prijavite se",
+  "authBackToSignIn": "Natrag na prijavu",
+  "authUnexpectedError": "Greška autentikacije: ",
+  "authValidEmailError": "Unesite valjanu e-poštu",
+  "authSendPasswordReset": "Pošalji resetiranje lozinke",
+  "authPasswordResetSent": "Resetiranje lozinke poslano",
+  "authVerifyEmailMessage": "Potvrdite svoju e-poštu za dovršetak registracije, provjerite pristiglu poštu.",
+  "authInvalidCredentials": "Nevažeća e-pošta ili lozinka",
+  "authEmailNotConfirmed": "Potvrdite svoju e-poštu za prijavu",
+  "authFirstName": "Ime",
+  "authFirstNameRequired": "Ime je obavezno",
+  "authLastName": "Prezime",
+  "authLastNameRequired": "Prezime je obavezno",
+  "authContinueAsGuest": "Nastavi kao gost",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Otkrijte repetitore u svojoj blizini",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Brzi pristup",
+  "homeRepeaterList": "Popis repetitora",
+  "homeMyFavorites": "Moji favoriti",
+  "homeNearby": "U blizini",
+  "homeViewAll": "Prikaži sve",
+  "homeStations": "{count} postaja",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} spremljenih",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Aktivno",
+  "homeIdle": "Neaktivno",
+  "homeNavHome": "Početna",
+  "homeNavList": "Popis",
+  "homeNavFavorites": "Favoriti",
+  "homeNavMap": "Karta",
+  "homeNavProfile": "Profil",
+  "favoritesTitle": "Moji favoriti",
+  "favoritesSearchHint": "Pretraži spremljene repetitore...",
+  "favoritesFilterAllSaved": "Svi spremljeni",
+  "favoritesEmpty": "Nema spremljenih repetitora",
+  "favoritesEmptyDescription": "Dodajte repetitore u favorite da ih vidite ovdje",
+  "favoritesShowing": "Prikazano {showing} od {total} omiljenih postaja",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Ukloni iz favorita",
+  "favoritesAdd": "Dodaj u favorite",
+  "repeaterDetailSave": "Spremi",
+  "repeaterDetailShare": "Podijeli",
+  "repeaterDetailReport": "Prijavi",
+  "repeaterDetailTotalLikes": "Ukupno sviđanja",
+  "repeaterDetailReports1Yr": "Prijave (1 godina)",
+  "repeaterDetailHealthScore": "Ocjena stanja",
+  "repeaterDetailExcellent": "Izvrsno",
+  "repeaterDetailGood": "Dobro",
+  "repeaterDetailFair": "Zadovoljavajuće",
+  "repeaterDetailToVerify": "Za provjeru",
+  "repeaterDetailScoreCalculated": "Ocjena izračunata na temelju {count} negativnih prijava u posljednjih godinu dana",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Zadnje sviđanje",
+  "repeaterDetailLastDownReport": "Zadnja negativna prijava",
+  "repeaterDetailTechnicalData": "Tehnički podaci",
+  "repeaterDetailFrequency": "Frekvencija",
+  "repeaterDetailShift": "Pomak",
+  "repeaterDetailSubtone": "Subton (SQL)",
+  "repeaterDetailMode": "Način rada",
+  "repeaterDetailLocation": "Lokacija",
+  "repeaterDetailAway": "{distance} daleko",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Prijave zajednice",
+  "repeaterDetailUpdateStatusFeedback": "Ažurirajte status i povratne informacije",
+  "repeaterDetailEquipment": "Oprema",
+  "repeaterDetailEquipmentRequired": "Oprema *",
+  "repeaterDetailAccessModes": "Načini pristupa",
+  "repeaterDetailNetwork": "Mreža",
+  "repeaterDetailLocationField": "Lokacija",
+  "repeaterDetailLocationRequired": "Lokacija *",
+  "repeaterDetailComment": "Komentar",
+  "repeaterDetailCommentOptional": "Komentar (neobavezno)",
+  "repeaterDetailCommentPlaceholder": "Kvaliteta signala, audio izvještaj ili opći komentari...",
+  "repeaterDetailReportDown": "Prijavi problem",
+  "repeaterDetailCheckinLike": "Prijava i sviđanje",
+  "repeaterDetailYourFeedback": "Vaše povratne informacije",
+  "repeaterDetailPostedJustNow": "Upravo objavljeno",
+  "repeaterDetailDeleteEntry": "Obriši unos",
+  "repeaterDetailViewAllReports": "Pogledaj svih {count} prijava",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Prijenosna",
+  "repeaterDetailStationMobile": "Mobilna",
+  "repeaterDetailStationFixed": "Fiksna",
+  "repeaterDetailLike": "Sviđa mi se",
+  "repeaterDetailReportLabel": "Prijava",
+  "repeaterDetailSaved": "Spremljeno",
+  "repeaterDetailShareMessage": "Pogledajte ovaj repetitor na HamQRG-u!",
+  "repeaterDetailReportDescription": "Značajka prijave uskoro će biti dostupna. Moći ćete prijaviti netočne informacije ili probleme s ovim repetitorom.",
+  "commonClose": "Zatvori",
+  "favorite": "Favorit",
+  "accessConfiguration": "Konfiguracija pristupa",
+  "noAccessConfiguration": "Nema dostupne konfiguracije",
+  "repeaterDetailAddFeedback": "Dodaj povratnu informaciju",
+  "repeaterDetailOthersReports": "Prijave drugih korisnika",
+  "repeaterDetailRemove": "Ukloni",
+  "repeaterDetailSelectAccess": "Odaberi pristup",
+  "repeaterDetailDistanceWarning": "Morate biti unutar {distance} km od repetitora za slanje povratne informacije.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interaktivno",
+  "repeaterDetailLogYourSignal": "Zabilježi svoj signal",
+  "repeaterDetailUsedEquipment": "Korištena oprema",
+  "repeaterDetailYourLocation": "Vaša lokacija",
+  "repeaterDetailLocationPlaceholder": "Gdje ste bili? (npr. Zagreb)",
+  "repeaterDetailLocationSelectHint": "Odaberite mjesto iz prijedloga",
+  "feedbackDistanceConfirmTitle": "Potvrdite slanje",
+  "feedbackDistanceConfirmMessage": "Odabrana lokacija je {distance} km od repetitora. Potvrđujete li da želite poslati ovu povratnu informaciju pod vlastitom odgovornošću?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Potvrdi",
+  "feedbackDistanceConfirmCancel": "Odustani",
+  "repeaterDetailSelectAccessInstance": "Odaberi instancu pristupa",
+  "repeaterDetailSignalObservations": "Zapažanja o signalu",
+  "repeaterDetailSignalObservationsPlaceholder": "Kakva je bila kvaliteta zvuka?",
+  "repeaterDetailSendLike": "Pošalji sviđanje",
+  "repeaterDetailReportIssue": "Prijavi problem",
+  "repeaterDetailRecentActivity": "Nedavna aktivnost",
+  "reportIssueTitle": "Prijava",
+  "reportIssueHeadline": "Pomozite nam da podaci budu točni",
+  "reportIssueDescription": "Pronašli ste nešto netočno ili što nedostaje kod ovog repetitora? Javite nam što treba promijeniti i mi ćemo to provjeriti.",
+  "reportIssueWhatToCorrect": "Što biste željeli ispraviti ili dodati?",
+  "reportIssuePlaceholder": "Npr. CTCSS ton je promijenjen na 88.5Hz, ili je lokacija malo sjevernije, upravitelj je...",
+  "reportIssueVerifiedTitle": "Provjerene prijave",
+  "reportIssueVerifiedDescription": "Vašu prijavu će pregledati regionalni koordinator prije ažuriranja javne baze podataka. Hvala vam na doprinosu zajednici.",
+  "reportIssueConfirmCheckbox": "Potvrđujem da su ove informacije točne na temelju mog zapažanja.",
+  "reportIssueSubmit": "Pošalji",
+  "reportIssueMinChars": "Potrebno najmanje 10 znakova",
+  "reportIssueMaxChars": "Najviše 2000 znakova",
+  "reportIssueSuccess": "Prijava uspješno poslana",
+  "reportIssueError": "Greška pri slanju prijave",
+  "registrationPromptTitle": "Otključajte puni potencijal",
+  "registrationPromptDescription": "Pridružite se zajednici radioamatera i podignite svoje iskustvo na višu razinu.",
+  "registrationBenefitInteractTitle": "Interakcija",
+  "registrationBenefitInteractDescription": "Ocijenite repetitore i ostavite komentare za druge.",
+  "registrationBenefitFavoritesTitle": "Favoriti",
+  "registrationBenefitFavoritesDescription": "Spremite najčešće korištene frekvencije i repetitore.",
+  "registrationBenefitLogbookTitle": "Dnevnik",
+  "registrationBenefitLogbookDescription": "Pratite svoje QSO-ove i vodite osobnu povijest.",
+  "registrationSignInApple": "Prijava s Apple",
+  "registrationSignInGoogle": "Prijava s Google",
+  "registrationPromptFooter": "Besplatna registracija. Za pregledavanje javnih podataka nije potrebna dozvola.",
+  "postLoginOnboardingWelcome": "Dobrodošli u",
+  "postLoginOnboardingQuestion": "Jeste li licencirani radioamater?",
+  "postLoginOnboardingHelpText": "Ovo nam pomaže prilagoditi vaše iskustvo i prikazati vam prave frekvencije.",
+  "postLoginOnboardingYesLicensed": "Da, jesam",
+  "postLoginOnboardingNoListener": "Ne, samo sam slušatelj",
+  "postLoginOnboardingCallsignTitle": "Identificirajte se",
+  "postLoginOnboardingCallsignSubtitle": "Unesite svoj službeni pozivni znak za pristup mrežnim značajkama.",
+  "postLoginOnboardingCallsignLabel": "Pozivni znak",
+  "postLoginOnboardingCallsignHint": "Npr. 9A2XYZ",
+  "postLoginOnboardingComplete": "Dovrši profil",
+  "postLoginOnboardingBack": "Natrag",
+  "postLoginOnboardingChangeInSettings": "Ovo možete promijeniti kasnije u postavkama.",
+  "postLoginOnboardingSwlTitle": "SWL pozivni znak",
+  "postLoginOnboardingSwlQuestion": "Imate li službeni SWL pozivni znak?",
+  "postLoginOnboardingSwlHelpText": "SWL pozivni znakovi pomažu u identifikaciji unutar globalne zajednice slušatelja.",
+  "postLoginOnboardingSwlYes": "Da, imam",
+  "postLoginOnboardingSwlNo": "Ne, nemam",
+  "postLoginOnboardingSwlEnterCallsign": "Unesite pozivni znak",
+  "postLoginOnboardingSwlCallsignHint": "Npr. 9A-12345-SWL",
+  "timeAgoJustNow": "upravo sada",
+  "timeAgoMinutes": "{count, plural, one{prije 1 minutu} few{prije {count} minute} other{prije {count} minuta}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{prije 1 sat} few{prije {count} sata} other{prije {count} sati}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{prije 1 dan} few{prije {count} dana} other{prije {count} dana}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{prije 1 tjedan} few{prije {count} tjedna} other{prije {count} tjedana}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{prije 1 mjesec} few{prije {count} mjeseca} other{prije {count} mjeseci}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{prije 1 godinu} few{prije {count} godine} other{prije {count} godina}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Tema",
+  "profileThemeModeSystem": "Sustav",
+  "profileThemeModeLight": "Svijetla",
+  "profileThemeModeDark": "Tamna",
+  "repeaterDetailBeFirstFeedback": "Budite prvi koji će ostaviti povratnu informaciju o ovom repetitoru!",
+  "repeaterDetailDistanceFromYou": "Udaljenost od vas",
+  "repeaterDistanceMapNoLocation": "Lokacija nije dostupna",
+  "repeaterDetailNever": "Nikad",
+  "repeaterDetailInfo": "Informacije",
+  "repeaterDetailSource": "Izvor",
+  "repeaterDetailManager": "Upravitelj",
+  "repeaterDetailSuggestManager": "Znate li upravitelja repetitora? Prijavite to!",
+  "repeaterDetailViewFeedbackMap": "Karta povratnih informacija",
+  "repeaterDetailViewFeedbackMapSubtitle": "Pogledajte gdje su zabilježena sviđanja i prijave",
+  "repeaterDetailAltimetricProfile": "Visinomjerni profil",
+  "repeaterDetailAltimetricProfileSubtitle": "Pogledajte profil terena između vas i repetitora",
+  "repeaterDetailLosClear": "Čista optička vidljivost između vas i repetitora",
+  "repeaterDetailLosObstructed": "Optička vidljivost blokirana terenom",
+  "repeaterDetailTerrainProfile": "Profil terena",
+  "repeaterDetailLineOfSight": "Optička vidljivost",
+  "repeaterDetailTotalDistance": "Udaljenost",
+  "repeaterDetailRepeaterElevation": "Nadmorska visina repetitora",
+  "repeaterDetailYourElevation": "Vaša nadmorska visina",
+  "repeaterDetailYou": "Vi",
+  "repeaterDetailRepeaterLabel": "Repetitor",
+
+  "repeaterDetailFunFacts": "Jeste li znali?",
+  "repeaterDetailWavelength": "Valna duljina",
+  "repeaterDetailWavelengthValue": "Valna duljina ovog repetitora je {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Oscilacija u sekundi",
+  "repeaterDetailOscillationsValue": "Signal oscilira {value} puta u sekundi",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Vrijeme propagacije",
+  "repeaterDetailPropagationTimeValue": "Vašem signalu treba {value} da dođe do repetitora",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Ciklusi vala u prijenosu",
+  "repeaterDetailWaveCyclesValue": "Val završava {value} punih ciklusa u prijenosu",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userReportsTitle": "Moje prijave",
+  "userReportsFilterAll": "Sve",
+  "userReportsFilterOpen": "Otvorene",
+  "userReportsFilterClosed": "Zatvorene",
+  "userReportsEmpty": "Nema poslanih prijava",
+  "userReportsEmptyDescription": "Vaše prijave repetitora pojavit će se ovdje",
+  "userReportsEmptyFiltered": "Nema prijava s ovim filtrom",
+  "userReportsStatusPending": "Na čekanju",
+  "userReportsStatusReviewed": "U pregledu",
+  "userReportsStatusResolved": "Riješeno",
+  "userReportsStatusRejected": "Odbijeno",
+  "userReportsRetryBanner": "Nije moguće ažurirati popis",
+  "userReportsProfileTile": "Moje prijave",
+  "userReportsProfileTileSubtitle": "Pogledajte status svojih prijava",
+  "userReportsError": "Greška pri učitavanju prijava",
+  "userReportsCoordinatorResponse": "Odgovor koordinatora",
+
+  "potaTitle": "POTA spotovi",
+  "potaSearchHint": "Pretraži po aktivatoru, parku ili načinu rada…",
+  "potaNoSpots": "Trenutno nema aktivnih POTA spotova.",
+  "potaLoadError": "Nije moguće učitati POTA spotove",
+  "potaRetry": "Pokušaj ponovno",
+  "potaViewAll": "Prikaži sve",
+  "potaActivator": "Aktivator",
+  "potaFrequency": "Frekvencija",
+  "potaMode": "Način rada",
+  "potaPark": "Park",
+  "potaReference": "Referenca",
+  "potaSpotter": "Spottao",
+  "potaComments": "Komentari",
+  "potaLastSpotted": "Zadnji spot",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "Nije moguće otvoriti QRZ.com",
+  "potaParkWebsite": "Web stranica parka",
+  "potaParkType": "Vrsta parka",
+  "potaLocation": "Lokacija",
+  "potaCountry": "Država",
+  "potaFirstActivation": "Prva aktivacija",
+  "potaBand": "Opseg",
+  "potaDistanceAway": "{distance} daleko",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count} aktivnih spotova",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Jezik",
+  "profileLanguageSystem": "Sustav",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
+
+  "addRepeaterProfileTile": "Predloži novi repetitor",
+  "addRepeaterProfileTileSubtitle": "Prijavite repetitor koji još nije na popisu",
+  "addRepeaterTitle": "Novi repetitor",
+  "addRepeaterHeadline": "Prijavite repetitor koji nedostaje",
+  "addRepeaterDescription": "Ispunite podatke o repetitoru koji želite dodati. Prijava će biti pregledana prije objave.",
+  "addRepeaterSectionRepeater": "Podaci o repetitoru",
+  "addRepeaterSectionAccesses": "Pristupi",
+  "addRepeaterSectionLocation": "Lokacija",
+  "addRepeaterSectionNotes": "Napomene",
+  "addRepeaterName": "Naziv",
+  "addRepeaterNameHint": "Npr. Monte Cimone",
+  "addRepeaterCallsign": "Pozivni znak",
+  "addRepeaterCallsignHint": "Npr. IR4AB",
+  "addRepeaterNameOrCallsignRequired": "Unesite barem naziv ili pozivni znak",
+  "addRepeaterFrequency": "Frekvencija (MHz)",
+  "addRepeaterFrequencyHint": "Npr. 145.000 ili 145,000",
+  "addRepeaterFrequencyRequired": "Frekvencija je obavezna",
+  "addRepeaterFrequencyInvalid": "Nevažeća frekvencija",
+  "addRepeaterShift": "Pomak (MHz)",
+  "addRepeaterShiftHint": "Npr. -0.600 ili -0,600",
+  "addRepeaterRegion": "Regija",
+  "addRepeaterRegionHint": "Npr. Emilia-Romagna",
+  "addRepeaterProvinceCode": "Pokrajina",
+  "addRepeaterProvinceCodeHint": "Npr. MO",
+  "addRepeaterLocality": "Mjesto",
+  "addRepeaterLocalityHint": "Npr. Fanano",
+  "addRepeaterLatitude": "Zemljopisna širina",
+  "addRepeaterLatitudeHint": "Npr. 44.2100",
+  "addRepeaterLongitude": "Zemljopisna duljina",
+  "addRepeaterLongitudeHint": "Npr. 10.7900",
+  "addRepeaterLocator": "Lokator",
+  "addRepeaterLocatorHint": "Npr. JN54QF",
+  "addRepeaterNotes": "Dodatne napomene",
+  "addRepeaterNotesHint": "Dodatne informacije o repetitoru...",
+  "addRepeaterAddAccess": "Dodaj pristup",
+  "addRepeaterRemoveAccess": "Ukloni",
+  "addRepeaterAccessMode": "Način rada",
+  "addRepeaterAccessCtcssTx": "CTCSS TX (Hz)",
+  "addRepeaterAccessCtcssTxHint": "Npr. 88.5",
+  "addRepeaterAccessCtcssRx": "CTCSS RX (Hz)",
+  "addRepeaterAccessCtcssRxHint": "Npr. 88.5",
+  "addRepeaterAccessDcsCode": "DCS kod",
+  "addRepeaterAccessDcsCodeHint": "Npr. 23",
+  "addRepeaterAccessColorCode": "Color Code",
+  "addRepeaterAccessColorCodeHint": "Npr. 1",
+  "addRepeaterAccessTalkgroup": "Talkgroup",
+  "addRepeaterAccessTalkgroupHint": "Npr. 222801",
+  "addRepeaterAccessDgId": "DG-ID",
+  "addRepeaterAccessDgIdHint": "Npr. 0",
+  "addRepeaterAccessNodeId": "Node ID",
+  "addRepeaterAccessNodeIdHint": "Npr. 1234",
+  "addRepeaterAccessNetworkName": "Naziv mreže",
+  "addRepeaterAccessNetworkNameHint": "Npr. BM Italia",
+  "addRepeaterAccessNotes": "Napomene o pristupu",
+  "addRepeaterAccessNotesHint": "Napomene specifične za ovaj pristup...",
+  "addRepeaterConfirmCheckbox": "Potvrđujem da su ove informacije točne prema mom saznanju.",
+  "addRepeaterVerifiedTitle": "Provjerena prijava",
+  "addRepeaterVerifiedDescription": "Vašu prijavu će pregledati tim prije objave u bazi podataka.",
+  "addRepeaterSubmit": "Pošalji",
+  "addRepeaterSuccess": "Prijava uspješno poslana!",
+  "addRepeaterError": "Greška pri slanju prijave",
+  "addRepeaterAtLeastOneAccess": "Dodajte barem jedan pristup",
+  "addRepeaterAccessNumber": "Pristup {number}",
+  "@addRepeaterAccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "changelog1017PotaSpots": "POTA spotovi u stvarnom vremenu s kartom i detaljima parkova",
+  "changelog1017SubmitRepeater": "Predložite novi repetitor izravno iz aplikacije",
+  "changelog1017MultiLanguage": "Aplikacija dostupna na engleskom, španjolskom i francuskom",
+  "changelog1017Onboarding": "Novo iskustvo prvog pokretanja",
+  "changelog1017ReportAnonymous": "Prijave dostupne bez registracije",
+
+  "changelogTitle": "Što je novo",
+  "changelogSubtitle": "Evo što je novo u ovoj verziji",
+  "changelogCategoryAdded": "Novo",
+  "changelogCategoryImproved": "Poboljšano",
+  "changelogCategoryFixed": "Ispravljeno",
+  "changelogDismiss": "Razumijem!",
+
+  "dashboardNearbyEmpty": "Nema repetitora u blizini",
+  "dashboardTabPota": "POTA",
+  "dashboardTabRepeaters": "Repetitori",
+  "dashboardViewAllPotaSpots": "Prikaži sve POTA spotove",
+  "dashboardViewAllRepeaters": "Prikaži sve repetitore",
+  "onboardingDiscoveryExploreMap": "Istraži kartu",
+  "onboardingDiscoveryLivePota": "POTA spot uživo",
+  "onboardingDiscoveryNearbyRepeater": "Obližnji repetitor",
+  "onboardingDiscoveryNoLocation": "Istražite kartu za pronalaženje repetitora i POTA aktivacija",
+  "onboardingDiscoveryNoRepeaters": "Nema pronađenih repetitora u blizini",
+  "onboardingDiscoverySubtitle": "Evo što je u vašoj blizini!",
+  "onboardingDiscoveryTitle": "Vaš prvi repetitor",
+  "onboardingDiscoveryViewDetails": "Pogledaj detalje",
+  "onboardingDiscoveryViewSpot": "Pogledaj spot",
+  "onboardingGetStarted": "Započni",
+  "onboardingLocationEnable": "Omogući lokaciju",
+  "onboardingLocationSkip": "Ne sada",
+  "onboardingLocationSubtitle": "Koristimo vašu lokaciju za prikaz obližnjih repetitora i POTA aktivacija.",
+  "onboardingLocationTitle": "Lokacija",
+  "onboardingNext": "Dalje",
+  "onboardingSkip": "Preskoči",
+  "onboardingTelegramAlreadyMember": "Već sam član",
+  "onboardingTelegramJoin": "Pridruži se Telegram grupi",
+  "onboardingTelegramLater": "Možda kasnije",
+  "onboardingTelegramSubtitle": "Pridružite se HamQRG Telegram grupi za ažuriranja, prijave repetitora i upoznavanje drugih radioamatera.",
+  "onboardingTelegramTitle": "Pridružite se zajednici",
+  "onboardingWelcomeCredits": "Podaci o repetitorima omogućeni od IZ8WNH",
+  "onboardingWelcomeSubtitle1": "Otkrijte aktivne repetitore u vašem području, s frekvencijama, tonovima i tehničkim detaljima.",
+  "onboardingWelcomeSubtitle2": "Analogni, DMR, C4FM, D-STAR — pronađite pravi repetitor za vas odmah.",
+  "onboardingWelcomeSubtitle3": "Pratite Parks on the Air aktivacije s ažuriranjima uživo, filtrima opsega i udaljenošću.",
+  "onboardingWelcomeSubtitle4": "Držite najčešće korištene repetitore pri ruci za brzi pristup.",
+  "onboardingWelcomeTitle1": "Pronađite repetitore u blizini",
+  "onboardingWelcomeTitle2": "Filtrirajte po načinu rada",
+  "onboardingWelcomeTitle3": "POTA spotovi u stvarnom vremenu",
+  "onboardingWelcomeTitle4": "Spremite svoje favorite",
+  "potaFilterAll": "Sve",
+  "potaFilterBand": "Opseg",
+  "potaFilterMode": "Način rada",
+  "potaSortByDistance": "Najbliže",
+  "potaSortByTime": "Najnovije",
+  "repeatersNearbyCount": "{count} obližnjih repetitora",
+  "@repeatersNearbyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatersResultsCount": "{count} rezultata",
+  "@repeatersResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

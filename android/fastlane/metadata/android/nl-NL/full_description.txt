@@ -1,0 +1,32 @@
+HamQRG is de ultieme app voor zendamateurs en luisteraars in Italie. Vind eenvoudig repeaters bij jou in de buurt, bekijk frequenties en sluit je aan bij de community.
+
+<b>INTERACTIEVE KAART</b>
+• Bekijk alle Italiaanse repeaters op een interactieve kaart
+• Vind de dichtstbijzijnde repeaters bij jouw locatie
+• Filter op modus: Analoog, DMR, C4FM, D-STAR, Echolink
+• Slimme clustering voor gebieden met veel repeaters
+
+<b>VOLLEDIGE TECHNISCHE GEGEVENS</b>
+• TX/RX-frequentie en shift
+• CTCSS/DCS-tonen
+• Color Code en Talk Groups voor DMR
+• Digitale netwerken (BrandMeister, TGIF en meer)
+• Precieze locatie en afstand
+
+<b>FAVORIETEN & FEEDBACK</b>
+• Sla je favoriete repeaters op voor snelle toegang
+• Geef feedback over de signaalkwaliteit
+• Meld problemen of updates aan coordinatoren
+• Bekijk community-rapporten
+
+<b>VOOR ZENDAMATEURS & LUISTERAARS</b>
+• Gepersonaliseerd profiel met roepnaam
+• Ondersteuning voor gelicentieerde operators en SWL
+• Gratis toegang tot alle openbare gegevens
+
+<b>ACTIEVE COMMUNITY</b>
+• Sluit je aan bij de Telegram-groep
+• Stel nieuwe functies voor
+• Neem direct contact op met de ontwikkelaars
+
+Download HamQRG en ontdek de wereld van de Italiaanse zendamateur-repeaters!

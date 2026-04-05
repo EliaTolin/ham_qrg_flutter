@@ -1,0 +1,720 @@
+{
+  "@@locale": "pl",
+  "error": "Błąd",
+  "error_message": "Wystąpił błąd podczas ładowania",
+  "error_message_retry": "Wystąpił błąd podczas ładowania. Spróbuj ponownie później",
+  "retry": "Ponów",
+  "back": "Wstecz",
+  "loading": "Ładowanie",
+  "details": "Szczegóły",
+  "pages_number": "{number} stron do odkrycia",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "Styczeń",
+  "february": "Luty",
+  "march": "Marzec",
+  "april": "Kwiecień",
+  "may": "Maj",
+  "june": "Czerwiec",
+  "july": "Lipiec",
+  "august": "Sierpień",
+  "september": "Wrzesień",
+  "october": "Październik",
+  "november": "Listopad",
+  "december": "Grudzień",
+  "logout": "Wyloguj się",
+  "profile": "Profil",
+  "settings": "Ustawienia",
+  "contact_us": "Skontaktuj się z nami",
+  "error_opening_email": "Wystąpił błąd podczas otwierania e-maila",
+  "register_now": "Zarejestruj się teraz",
+  "tracking_permission_title": "Wesprzyj aplikację",
+  "tracking_permission_message": "Aby poprawić Twoje wrażenia i wyświetlać bardziej trafne treści, pomóż nam utrzymać aplikację za darmo.\n\nKliknij Zezwól, aby nas wesprzeć.",
+  "tracking_permission_next": "Dalej",
+  "skip": "Pomiń",
+  "done": "Gotowe",
+  "next": "Dalej",
+  "joinCommunityTitle": "Dołącz do naszej społeczności!",
+  "joinCommunityDescription": "Poznaj korzyści z dołączenia do społeczności na Telegram:",
+  "benefitSupportMembers": "Wsparcie od członków",
+  "benefitSuggestFeatures": "Proponowanie nowych funkcji",
+  "benefitContactDevelopers": "Kontakt z twórcami",
+  "benefitExclusivePreviews": "Ekskluzywne zapowiedzi i wersje beta",
+  "benefitActiveCommunity": "Aktywna społeczność",
+  "joinNowButton": "Dołącz teraz!",
+  "alreadyMemberButton": "Już jestem członkiem",
+  "laterButton": "Później",
+  "errorOpenTelegram": "Błąd otwierania Telegram",
+  "disclaimerTitle": "Źródło danych",
+  "disclaimerDescription": "Dane o przemiennikach w tej aplikacji pochodzą od IZ8WNH.\n\nAby uzyskać dodatkowe informacje, pobrać pliki CSV do programowania radiotelefonów lub sprawdzić dane niedostępne w aplikacji, odwiedź oficjalną stronę.",
+  "disclaimerVisitSite": "Odwiedź iz8wnh.it",
+  "disclaimerUnderstood": "Rozumiem",
+  "errorOpenDisclaimerSite": "Błąd otwierania strony",
+  "repeatersMapTitle": "Mapa przemienników",
+  "repeatersListTitle": "Lista przemienników",
+  "repeatersMapLoading": "Ładowanie mapy przemienników…",
+  "repeatersMapGenericError": "Nie udało się załadować przemienników.",
+  "repeatersMapEmpty": "Nie znaleziono przemienników w pobliżu.",
+  "repeatersSearchHint": "Szukaj po nazwie, znaku wywoławczym lub częstotliwości MHz…",
+  "repeatersSearchEmpty": "Nie znaleziono przemienników.",
+  "repeatersSortDistance": "Odległość",
+  "repeatersSortLikes": "Polubienia",
+  "repeatersSortFrequency": "Częstotliwość",
+  "repeatersMapRetry": "Ponów",
+  "repeatersMapOpenSettings": "Otwórz ustawienia",
+  "repeatersMapPermissionMessage": "Zezwól na dostęp do lokalizacji, aby wyświetlić pobliskie przemienniki.",
+  "repeatersMapPermissionPermanentlyDenied": "Uprawnienie do lokalizacji zostało trwale odrzucone. Włącz je w ustawieniach systemu.",
+  "repeatersMapLocationServicesDisabled": "Włącz usługi lokalizacji, aby znaleźć pobliskie przemienniki.",
+  "repeatersMapFound": "{count, plural, one{{count} przemiennik znaleziony} few{{count} przemienniki znalezione} many{{count} przemienników znalezionych} other{{count} przemienników znalezionych}}",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Tryb",
+  "repeaterModeAnalog": "Analogowy",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "Wszystkie tryby",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Częstotliwość",
+  "repeaterShift": "Przesunięcie",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Lokalizacja",
+  "repeaterDistance": "Odległość",
+  "repeaterViewFullDetails": "Zobacz pełne szczegóły",
+  "repeatersMapReturnToLocation": "Wróć do mojej lokalizacji",
+  "clusterRepeatersTitle": "{count, plural, one{{count} przemiennik w tej lokalizacji} few{{count} przemienniki w tej lokalizacji} many{{count} przemienników w tej lokalizacji} other{{count} przemienników w tej lokalizacji}}",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Odblokuj wszystkie funkcje",
+  "profileUnlockFeaturesDescription": "Zarejestruj się, aby korzystać z opinii, zapisywania ulubionych i szczegółowych statystyk.",
+  "profileSignUpOrLogin": "Zarejestruj się lub zaloguj",
+  "profileErrorOpeningEmail": "Błąd otwierania e-maila",
+  "profileJoinTelegramCommunity": "Dołącz do społeczności na Telegram",
+  "profileWelcomeTitle": "Witamy w HamQRG",
+  "profileWelcomeDescription": "Dołącz do naszej społeczności krótkofalowców we Włoszech.",
+  "profileEditProfile": "Edytuj profil",
+  "profileChangePhoto": "Zmień zdjęcie",
+  "profileFirstName": "Imię",
+  "profileLastName": "Nazwisko",
+  "profileCallsign": "Znak wywoławczy",
+  "profileRestartIdentificationTitle": "Chcesz zmienić swój status? Możesz ponownie przejść proces identyfikacji, aby zmienić się z licencjonowanego operatora na nasłuchowca SWL.",
+  "profileRestartIdentificationButton": "Ponów proces identyfikacji",
+  "profileSaveChanges": "Zapisz zmiany",
+  "profileDangerZone": "Strefa zagrożenia",
+  "profileDeleteAccount": "Usuń konto",
+  "profileDeleteAccountConfirmTitle": "Usuń konto",
+  "profileDeleteAccountConfirmMessage": "Czy na pewno chcesz usunąć swoje konto? Ta czynność jest nieodwracalna.",
+  "profileDeleteAccountCancel": "Anuluj",
+  "profileDeleteAccountConfirm": "Usuń",
+  "profileAppVersion": "Wersja aplikacji {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Społeczność i wsparcie",
+  "profileSectionSupport": "Wsparcie",
+  "profileVersion": "Wersja: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Wersja {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Błąd: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "Dołącz do HamQRG",
+  "authUnlockFeatures": "Zaloguj się, aby odblokować wszystkie funkcje!",
+  "authWhatYouGet": "Co zyskasz:",
+  "authBenefitStatsTitle": "Szczegółowe statystyki",
+  "authBenefitStatsDescription": "Monitoruj swoje postępy i się rozwijaj",
+  "authBenefitQuizTitle": "Różne tryby quizu",
+  "authBenefitQuizDescription": "Ćwicz w trybach: maraton, tematycznym i innych.",
+  "authBenefitSyncTitle": "Synchronizacja",
+  "authBenefitSyncDescription": "Dostęp z dowolnego urządzenia",
+  "authOrSignInWithEmail": "Lub zaloguj się przez e-mail",
+  "authEnterEmail": "Wpisz e-mail",
+  "authEnterPassword": "Wpisz hasło",
+  "authForgotPassword": "Nie pamiętasz hasła?",
+  "authSignIn": "Zaloguj się",
+  "authSignUp": "Zarejestruj się",
+  "authPasswordLengthError": "Hasło musi być dłuższe",
+  "authDontHaveAccount": "Nie masz konta? Zarejestruj się",
+  "authHaveAccount": "Masz już konto? Zaloguj się",
+  "authBackToSignIn": "Wróć do logowania",
+  "authUnexpectedError": "Błąd uwierzytelniania: ",
+  "authValidEmailError": "Wpisz prawidłowy adres e-mail",
+  "authSendPasswordReset": "Wyślij reset hasła",
+  "authPasswordResetSent": "Link do resetowania hasła wysłany",
+  "authVerifyEmailMessage": "Zweryfikuj swój e-mail, aby dokończyć rejestrację — sprawdź swoją skrzynkę.",
+  "authInvalidCredentials": "Nieprawidłowy e-mail lub hasło",
+  "authEmailNotConfirmed": "Zweryfikuj swój e-mail, aby się zalogować",
+  "authFirstName": "Imię",
+  "authFirstNameRequired": "Imię jest wymagane",
+  "authLastName": "Nazwisko",
+  "authLastNameRequired": "Nazwisko jest wymagane",
+  "authContinueAsGuest": "Kontynuuj jako gość",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Odkrywaj przemienniki wokół siebie",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Szybki dostęp",
+  "homeRepeaterList": "Lista przemienników",
+  "homeMyFavorites": "Moje ulubione",
+  "homeNearby": "W pobliżu",
+  "homeViewAll": "Zobacz wszystko",
+  "homeStations": "{count, plural, one{{count} stacja} few{{count} stacje} many{{count} stacji} other{{count} stacji}}",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count, plural, one{{count} zapisany} few{{count} zapisane} many{{count} zapisanych} other{{count} zapisanych}}",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Aktywne",
+  "homeIdle": "Nieaktywne",
+  "homeNavHome": "Główna",
+  "homeNavList": "Lista",
+  "homeNavFavorites": "Ulubione",
+  "homeNavMap": "Mapa",
+  "homeNavProfile": "Profil",
+  "favoritesTitle": "Moje ulubione",
+  "favoritesSearchHint": "Szukaj zapisanych przemienników...",
+  "favoritesFilterAllSaved": "Wszystkie zapisane",
+  "favoritesEmpty": "Brak zapisanych przemienników",
+  "favoritesEmptyDescription": "Dodaj przemienniki do ulubionych, aby je tu zobaczyć",
+  "favoritesShowing": "Wyświetlanie {showing} z {total} ulubionych stacji",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Usuń z ulubionych",
+  "favoritesAdd": "Dodaj do ulubionych",
+  "repeaterDetailSave": "Zapisz",
+  "repeaterDetailShare": "Udostępnij",
+  "repeaterDetailReport": "Zgłoś",
+  "repeaterDetailTotalLikes": "Łączna liczba polubień",
+  "repeaterDetailReports1Yr": "Zgłoszenia (1 rok)",
+  "repeaterDetailHealthScore": "Ocena stanu",
+  "repeaterDetailExcellent": "Doskonały",
+  "repeaterDetailGood": "Dobry",
+  "repeaterDetailFair": "Średni",
+  "repeaterDetailToVerify": "Do weryfikacji",
+  "repeaterDetailScoreCalculated": "Ocena obliczona na podstawie {count} negatywnych zgłoszeń w ostatnim roku",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Ostatnie polubienie",
+  "repeaterDetailLastDownReport": "Ostatnie negatywne zgłoszenie",
+  "repeaterDetailTechnicalData": "Dane techniczne",
+  "repeaterDetailFrequency": "Częstotliwość",
+  "repeaterDetailShift": "Przesunięcie",
+  "repeaterDetailSubtone": "Subton (SQL)",
+  "repeaterDetailMode": "Tryb",
+  "repeaterDetailLocation": "Lokalizacja",
+  "repeaterDetailAway": "{distance} stąd",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Zgłoszenia społeczności",
+  "repeaterDetailUpdateStatusFeedback": "Zaktualizuj status i opinię",
+  "repeaterDetailEquipment": "Sprzęt",
+  "repeaterDetailEquipmentRequired": "Sprzęt *",
+  "repeaterDetailAccessModes": "Tryby dostępu",
+  "repeaterDetailNetwork": "Sieć",
+  "repeaterDetailLocationField": "Lokalizacja",
+  "repeaterDetailLocationRequired": "Lokalizacja *",
+  "repeaterDetailComment": "Komentarz",
+  "repeaterDetailCommentOptional": "Komentarz (opcjonalny)",
+  "repeaterDetailCommentPlaceholder": "Jakość sygnału, raport audio lub ogólne uwagi...",
+  "repeaterDetailReportDown": "Zgłoś problem",
+  "repeaterDetailCheckinLike": "Zamelduj się i polub",
+  "repeaterDetailYourFeedback": "Twoja opinia",
+  "repeaterDetailPostedJustNow": "Opublikowano przed chwilą",
+  "repeaterDetailDeleteEntry": "Usuń wpis",
+  "repeaterDetailViewAllReports": "Zobacz wszystkie {count} zgłoszenia",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Przenośna",
+  "repeaterDetailStationMobile": "Mobilna",
+  "repeaterDetailStationFixed": "Stacjonarna",
+  "repeaterDetailLike": "Polub",
+  "repeaterDetailReportLabel": "Zgłoś",
+  "repeaterDetailSaved": "Zapisano",
+  "repeaterDetailShareMessage": "Sprawdź ten przemiennik na HamQRG!",
+  "repeaterDetailReportDescription": "Funkcja zgłaszania będzie wkrótce dostępna. Będziesz mógł zgłosić nieprawidłowe informacje lub problemy z tym przemiennikiem.",
+  "commonClose": "Zamknij",
+  "favorite": "Ulubiony",
+  "accessConfiguration": "Konfiguracja dostępu",
+  "noAccessConfiguration": "Brak dostępnej konfiguracji",
+  "repeaterDetailAddFeedback": "Dodaj opinię",
+  "repeaterDetailOthersReports": "Zgłoszenia innych użytkowników",
+  "repeaterDetailRemove": "Usuń",
+  "repeaterDetailSelectAccess": "Wybierz dostęp",
+  "repeaterDetailDistanceWarning": "Musisz znajdować się w odległości {distance} km od przemiennika, aby wysłać opinię.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interaktywny",
+  "repeaterDetailLogYourSignal": "Zapisz swój sygnał",
+  "repeaterDetailUsedEquipment": "Użyty sprzęt",
+  "repeaterDetailYourLocation": "Twoja lokalizacja",
+  "repeaterDetailLocationPlaceholder": "Gdzie byłeś? (np. Warszawa)",
+  "repeaterDetailLocationSelectHint": "Wybierz miejsce z sugestii",
+  "feedbackDistanceConfirmTitle": "Potwierdź wysłanie",
+  "feedbackDistanceConfirmMessage": "Wybrana lokalizacja jest {distance} km od przemiennika. Czy potwierdzasz, że chcesz wysłać tę opinię na swoją odpowiedzialność?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Potwierdź",
+  "feedbackDistanceConfirmCancel": "Anuluj",
+  "repeaterDetailSelectAccessInstance": "Wybierz instancję dostępu",
+  "repeaterDetailSignalObservations": "Obserwacje sygnału",
+  "repeaterDetailSignalObservationsPlaceholder": "Jak była jakość dźwięku?",
+  "repeaterDetailSendLike": "Wyślij polubienie",
+  "repeaterDetailReportIssue": "Zgłoś problem",
+  "repeaterDetailRecentActivity": "Ostatnia aktywność",
+  "reportIssueTitle": "Zgłoszenie",
+  "reportIssueHeadline": "Pomóż nam utrzymać dane na bieżąco",
+  "reportIssueDescription": "Znalazłeś coś błędnego lub brakującego w tym przemienniku? Daj nam znać, co należy zmienić, a my to zweryfikujemy.",
+  "reportIssueWhatToCorrect": "Co chcesz poprawić lub dodać?",
+  "reportIssuePlaceholder": "Np. ton CTCSS zmienił się na 88,5 Hz, lokalizacja jest nieco bardziej na północ, opiekun to...",
+  "reportIssueVerifiedTitle": "Zweryfikowane zgłoszenia",
+  "reportIssueVerifiedDescription": "Twoje zgłoszenie zostanie sprawdzone przez koordynatora regionalnego przed aktualizacją publicznej bazy danych. Dziękujemy za Twój wkład w społeczność.",
+  "reportIssueConfirmCheckbox": "Potwierdzam, że te informacje są prawidłowe na podstawie mojej obserwacji.",
+  "reportIssueSubmit": "Wyślij",
+  "reportIssueMinChars": "Wymagane minimum 10 znaków",
+  "reportIssueMaxChars": "Maksymalnie 2000 znaków",
+  "reportIssueSuccess": "Zgłoszenie wysłane pomyślnie",
+  "reportIssueError": "Błąd podczas wysyłania zgłoszenia",
+  "registrationPromptTitle": "Odblokuj pełny potencjał",
+  "registrationPromptDescription": "Dołącz do włoskiej społeczności krótkofalowców i przenieś swoje doświadczenie na wyższy poziom.",
+  "registrationBenefitInteractTitle": "Interakcja",
+  "registrationBenefitInteractDescription": "Oceniaj przemienniki i zostawiaj komentarze dla innych.",
+  "registrationBenefitFavoritesTitle": "Ulubione",
+  "registrationBenefitFavoritesDescription": "Zapisuj najczęściej używane częstotliwości i przemienniki.",
+  "registrationBenefitLogbookTitle": "Dziennik",
+  "registrationBenefitLogbookDescription": "Śledź swoje QSO i prowadź osobistą historię.",
+  "registrationSignInApple": "Zaloguj się przez Apple",
+  "registrationSignInGoogle": "Zaloguj się przez Google",
+  "registrationPromptFooter": "Darmowa rejestracja. Licencja nie jest wymagana do przeglądania publicznych danych.",
+  "postLoginOnboardingWelcome": "Witamy w",
+  "postLoginOnboardingQuestion": "Czy jesteś licencjonowanym krótkofalowcem?",
+  "postLoginOnboardingHelpText": "Pomoże nam to dostosować Twoje wrażenia i wyświetlać odpowiednie częstotliwości.",
+  "postLoginOnboardingYesLicensed": "Tak, jestem",
+  "postLoginOnboardingNoListener": "Nie, jestem tylko nasłuchowcem",
+  "postLoginOnboardingCallsignTitle": "Zidentyfikuj się",
+  "postLoginOnboardingCallsignSubtitle": "Wpisz swój oficjalny znak wywoławczy, aby uzyskać dostęp do funkcji sieciowych.",
+  "postLoginOnboardingCallsignLabel": "Znak wywoławczy",
+  "postLoginOnboardingCallsignHint": "Np. SP1ABC",
+  "postLoginOnboardingComplete": "Uzupełnij profil",
+  "postLoginOnboardingBack": "Wstecz",
+  "postLoginOnboardingChangeInSettings": "Możesz to zmienić później w ustawieniach.",
+  "postLoginOnboardingSwlTitle": "Znak SWL",
+  "postLoginOnboardingSwlQuestion": "Czy masz oficjalny znak nasłuchowy SWL?",
+  "postLoginOnboardingSwlHelpText": "Znaki nasłuchowe pomagają w identyfikacji w globalnej społeczności monitoringu.",
+  "postLoginOnboardingSwlYes": "Tak, mam",
+  "postLoginOnboardingSwlNo": "Nie, nie mam",
+  "postLoginOnboardingSwlEnterCallsign": "Wpisz znak wywoławczy",
+  "postLoginOnboardingSwlCallsignHint": "Np. SP-12345-SWL",
+  "timeAgoJustNow": "przed chwilą",
+  "timeAgoMinutes": "{count, plural, one{1 minutę temu} few{{count} minuty temu} many{{count} minut temu} other{{count} minut temu}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{1 godzinę temu} few{{count} godziny temu} many{{count} godzin temu} other{{count} godzin temu}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{1 dzień temu} few{{count} dni temu} many{{count} dni temu} other{{count} dni temu}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{1 tydzień temu} few{{count} tygodnie temu} many{{count} tygodni temu} other{{count} tygodni temu}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{1 miesiąc temu} few{{count} miesiące temu} many{{count} miesięcy temu} other{{count} miesięcy temu}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{1 rok temu} few{{count} lata temu} many{{count} lat temu} other{{count} lat temu}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Motyw",
+  "profileThemeModeSystem": "Systemowy",
+  "profileThemeModeLight": "Jasny",
+  "profileThemeModeDark": "Ciemny",
+  "repeaterDetailBeFirstFeedback": "Bądź pierwszym, który zostawi opinię o tym przemienniku!",
+  "repeaterDetailDistanceFromYou": "Odległość od Ciebie",
+  "repeaterDistanceMapNoLocation": "Lokalizacja niedostępna",
+  "repeaterDetailNever": "Nigdy",
+  "repeaterDetailInfo": "Informacje",
+  "repeaterDetailSource": "Źródło",
+  "repeaterDetailManager": "Opiekun",
+  "repeaterDetailSuggestManager": "Znasz opiekuna przemiennika? Zgłoś go!",
+  "repeaterDetailViewFeedbackMap": "Mapa opinii",
+  "repeaterDetailViewFeedbackMapSubtitle": "Zobacz, gdzie zarejestrowano polubienia i zgłoszenia",
+  "repeaterDetailAltimetricProfile": "Profil wysokościowy",
+  "repeaterDetailAltimetricProfileSubtitle": "Zobacz profil terenu między Tobą a przemiennikiem",
+  "repeaterDetailLosClear": "Czysta linia wzroku między Tobą a przemiennikiem",
+  "repeaterDetailLosObstructed": "Linia wzroku przesłonięta przez teren",
+  "repeaterDetailTerrainProfile": "Profil terenu",
+  "repeaterDetailLineOfSight": "Linia wzroku",
+  "repeaterDetailTotalDistance": "Odległość",
+  "repeaterDetailRepeaterElevation": "Wysokość przemiennika",
+  "repeaterDetailYourElevation": "Twoja wysokość",
+  "repeaterDetailYou": "Ty",
+  "repeaterDetailRepeaterLabel": "Przemiennik",
+
+  "repeaterDetailFunFacts": "Czy wiesz, że?",
+  "repeaterDetailWavelength": "Długość fali",
+  "repeaterDetailWavelengthValue": "Długość fali tego przemiennika wynosi {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Oscylacji na sekundę",
+  "repeaterDetailOscillationsValue": "Sygnał oscyluje {value} razy na sekundę",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Czas propagacji",
+  "repeaterDetailPropagationTimeValue": "Twój sygnał potrzebuje {value}, aby dotrzeć do przemiennika",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Cykle fali w tranzycie",
+  "repeaterDetailWaveCyclesValue": "Fala wykonuje {value} pełnych cykli w drodze",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userReportsTitle": "Moje zgłoszenia",
+  "userReportsFilterAll": "Wszystkie",
+  "userReportsFilterOpen": "Otwarte",
+  "userReportsFilterClosed": "Zamknięte",
+  "userReportsEmpty": "Brak wysłanych zgłoszeń",
+  "userReportsEmptyDescription": "Twoje zgłoszenia przemienników pojawią się tutaj",
+  "userReportsEmptyFiltered": "Brak zgłoszeń z tym filtrem",
+  "userReportsStatusPending": "Oczekujące",
+  "userReportsStatusReviewed": "W trakcie przeglądu",
+  "userReportsStatusResolved": "Rozwiązane",
+  "userReportsStatusRejected": "Odrzucone",
+  "userReportsRetryBanner": "Nie udało się zaktualizować listy",
+  "userReportsProfileTile": "Moje zgłoszenia",
+  "userReportsProfileTileSubtitle": "Zobacz status swoich zgłoszeń",
+  "userReportsError": "Błąd ładowania zgłoszeń",
+  "userReportsCoordinatorResponse": "Odpowiedź koordynatora",
+
+  "potaTitle": "Spoty POTA",
+  "potaSearchHint": "Szukaj po aktywatorze, parku lub trybie…",
+  "potaNoSpots": "Brak aktywnych spotów POTA w tej chwili.",
+  "potaLoadError": "Nie udało się załadować spotów POTA",
+  "potaRetry": "Ponów",
+  "potaViewAll": "Zobacz wszystko",
+  "potaActivator": "Aktywator",
+  "potaFrequency": "Częstotliwość",
+  "potaMode": "Tryb",
+  "potaPark": "Park",
+  "potaReference": "Referencja",
+  "potaSpotter": "Zaobserwował",
+  "potaComments": "Komentarze",
+  "potaLastSpotted": "Ostatnio zaobserwowany",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "Nie udało się otworzyć QRZ.com",
+  "potaParkWebsite": "Strona parku",
+  "potaParkType": "Typ parku",
+  "potaLocation": "Lokalizacja",
+  "potaCountry": "Kraj",
+  "potaFirstActivation": "Pierwsza aktywacja",
+  "potaBand": "Pasmo",
+  "potaDistanceAway": "{distance} stąd",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count, plural, one{{count} aktywny spot} few{{count} aktywne spoty} many{{count} aktywnych spotów} other{{count} aktywnych spotów}}",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Język",
+  "profileLanguageSystem": "Systemowy",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
+
+  "addRepeaterProfileTile": "Zaproponuj nowy przemiennik",
+  "addRepeaterProfileTileSubtitle": "Zgłoś przemiennik, którego jeszcze nie ma na liście",
+  "addRepeaterTitle": "Nowy przemiennik",
+  "addRepeaterHeadline": "Zgłoś brakujący przemiennik",
+  "addRepeaterDescription": "Wypełnij dane przemiennika, który chcesz dodać. Zgłoszenie zostanie sprawdzone przed publikacją.",
+  "addRepeaterSectionRepeater": "Dane przemiennika",
+  "addRepeaterSectionAccesses": "Dostępy",
+  "addRepeaterSectionLocation": "Lokalizacja",
+  "addRepeaterSectionNotes": "Uwagi",
+  "addRepeaterName": "Nazwa",
+  "addRepeaterNameHint": "Np. Monte Cimone",
+  "addRepeaterCallsign": "Znak wywoławczy",
+  "addRepeaterCallsignHint": "Np. IR4AB",
+  "addRepeaterNameOrCallsignRequired": "Wpisz przynajmniej nazwę lub znak wywoławczy",
+  "addRepeaterFrequency": "Częstotliwość (MHz)",
+  "addRepeaterFrequencyHint": "Np. 145.000 lub 145,000",
+  "addRepeaterFrequencyRequired": "Częstotliwość jest wymagana",
+  "addRepeaterFrequencyInvalid": "Nieprawidłowa częstotliwość",
+  "addRepeaterShift": "Przesunięcie (MHz)",
+  "addRepeaterShiftHint": "Np. -0.600 lub -0,600",
+  "addRepeaterRegion": "Region",
+  "addRepeaterRegionHint": "Np. Emilia-Romagna",
+  "addRepeaterProvinceCode": "Prowincja",
+  "addRepeaterProvinceCodeHint": "Np. MO",
+  "addRepeaterLocality": "Miejscowość",
+  "addRepeaterLocalityHint": "Np. Fanano",
+  "addRepeaterLatitude": "Szerokość geograficzna",
+  "addRepeaterLatitudeHint": "Np. 44.2100",
+  "addRepeaterLongitude": "Długość geograficzna",
+  "addRepeaterLongitudeHint": "Np. 10.7900",
+  "addRepeaterLocator": "Lokator",
+  "addRepeaterLocatorHint": "Np. JN54QF",
+  "addRepeaterNotes": "Dodatkowe uwagi",
+  "addRepeaterNotesHint": "Dodatkowe informacje o przemienniku...",
+  "addRepeaterAddAccess": "Dodaj dostęp",
+  "addRepeaterRemoveAccess": "Usuń",
+  "addRepeaterAccessMode": "Tryb",
+  "addRepeaterAccessCtcssTx": "CTCSS TX (Hz)",
+  "addRepeaterAccessCtcssTxHint": "Np. 88.5",
+  "addRepeaterAccessCtcssRx": "CTCSS RX (Hz)",
+  "addRepeaterAccessCtcssRxHint": "Np. 88.5",
+  "addRepeaterAccessDcsCode": "Kod DCS",
+  "addRepeaterAccessDcsCodeHint": "Np. 23",
+  "addRepeaterAccessColorCode": "Color Code",
+  "addRepeaterAccessColorCodeHint": "Np. 1",
+  "addRepeaterAccessTalkgroup": "Talkgroup",
+  "addRepeaterAccessTalkgroupHint": "Np. 222801",
+  "addRepeaterAccessDgId": "DG-ID",
+  "addRepeaterAccessDgIdHint": "Np. 0",
+  "addRepeaterAccessNodeId": "Node ID",
+  "addRepeaterAccessNodeIdHint": "Np. 1234",
+  "addRepeaterAccessNetworkName": "Nazwa sieci",
+  "addRepeaterAccessNetworkNameHint": "Np. BM Italia",
+  "addRepeaterAccessNotes": "Uwagi do dostępu",
+  "addRepeaterAccessNotesHint": "Uwagi dotyczące tego dostępu...",
+  "addRepeaterConfirmCheckbox": "Potwierdzam, że te informacje są prawidłowe według mojej najlepszej wiedzy.",
+  "addRepeaterVerifiedTitle": "Zweryfikowane zgłoszenie",
+  "addRepeaterVerifiedDescription": "Twoje zgłoszenie zostanie sprawdzone przez zespół przed opublikowaniem w bazie danych.",
+  "addRepeaterSubmit": "Wyślij",
+  "addRepeaterSuccess": "Zgłoszenie wysłane pomyślnie!",
+  "addRepeaterError": "Błąd wysyłania zgłoszenia",
+  "addRepeaterAtLeastOneAccess": "Dodaj przynajmniej jeden dostęp",
+  "addRepeaterAccessNumber": "Dostęp {number}",
+  "@addRepeaterAccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "changelog1017PotaSpots": "Spoty POTA w czasie rzeczywistym z mapą i szczegółami parków",
+  "changelog1017SubmitRepeater": "Zaproponuj nowy przemiennik bezpośrednio z aplikacji",
+  "changelog1017MultiLanguage": "Aplikacja dostępna w języku angielskim, hiszpańskim i francuskim",
+  "changelog1017Onboarding": "Nowe doświadczenie pierwszego uruchomienia",
+  "changelog1017ReportAnonymous": "Zgłoszenia dostępne bez rejestracji",
+
+  "changelogTitle": "Co nowego",
+  "changelogSubtitle": "Oto nowości w tej wersji",
+  "changelogCategoryAdded": "Nowe",
+  "changelogCategoryImproved": "Ulepszone",
+  "changelogCategoryFixed": "Naprawione",
+  "changelogDismiss": "Rozumiem!",
+
+  "dashboardNearbyEmpty": "Brak przemienników w pobliżu",
+  "dashboardTabPota": "POTA",
+  "dashboardTabRepeaters": "Przemienniki",
+  "dashboardViewAllPotaSpots": "Zobacz wszystkie spoty POTA",
+  "dashboardViewAllRepeaters": "Zobacz wszystkie przemienniki",
+  "onboardingDiscoveryExploreMap": "Odkrywaj mapę",
+  "onboardingDiscoveryLivePota": "Spot POTA na żywo",
+  "onboardingDiscoveryNearbyRepeater": "Pobliski przemiennik",
+  "onboardingDiscoveryNoLocation": "Odkrywaj mapę, aby znaleźć przemienniki i aktywacje POTA",
+  "onboardingDiscoveryNoRepeaters": "Nie znaleziono przemienników w pobliżu",
+  "onboardingDiscoverySubtitle": "Oto co jest w Twojej okolicy!",
+  "onboardingDiscoveryTitle": "Twój pierwszy przemiennik",
+  "onboardingDiscoveryViewDetails": "Zobacz szczegóły",
+  "onboardingDiscoveryViewSpot": "Zobacz spot",
+  "onboardingGetStarted": "Zaczynajmy",
+  "onboardingLocationEnable": "Włącz lokalizację",
+  "onboardingLocationSkip": "Nie teraz",
+  "onboardingLocationSubtitle": "Używamy Twojej lokalizacji, aby wyświetlać pobliskie przemienniki i aktywacje POTA.",
+  "onboardingLocationTitle": "Lokalizacja",
+  "onboardingNext": "Dalej",
+  "onboardingSkip": "Pomiń",
+  "onboardingTelegramAlreadyMember": "Już jestem członkiem",
+  "onboardingTelegramJoin": "Dołącz do grupy na Telegram",
+  "onboardingTelegramLater": "Może później",
+  "onboardingTelegramSubtitle": "Dołącz do grupy HamQRG na Telegram, aby otrzymywać aktualizacje, zgłaszać przemienniki i poznawać innych krótkofalowców.",
+  "onboardingTelegramTitle": "Dołącz do społeczności",
+  "onboardingWelcomeCredits": "Dane przemienników dostarczone przez IZ8WNH",
+  "onboardingWelcomeSubtitle1": "Odkrywaj aktywne przemienniki w Twojej okolicy z częstotliwościami, tonami i danymi technicznymi.",
+  "onboardingWelcomeSubtitle2": "Analogowy, DMR, C4FM, D-STAR — znajdź odpowiedni przemiennik natychmiast.",
+  "onboardingWelcomeSubtitle3": "Śledź aktywacje Parks on the Air z aktualizacjami na żywo, filtrami pasm i odległości.",
+  "onboardingWelcomeSubtitle4": "Miej najczęściej używane przemienniki pod ręką dla szybkiego dostępu.",
+  "onboardingWelcomeTitle1": "Znajdź przemienniki w pobliżu",
+  "onboardingWelcomeTitle2": "Filtruj według trybu",
+  "onboardingWelcomeTitle3": "Spoty POTA w czasie rzeczywistym",
+  "onboardingWelcomeTitle4": "Zapisz ulubione",
+  "potaFilterAll": "Wszystkie",
+  "potaFilterBand": "Pasmo",
+  "potaFilterMode": "Tryb",
+  "potaSortByDistance": "Najbliższe",
+  "potaSortByTime": "Najnowsze",
+  "repeatersNearbyCount": "{count, plural, one{{count} pobliski przemiennik} few{{count} pobliskie przemienniki} many{{count} pobliskich przemienników} other{{count} pobliskich przemienników}}",
+  "@repeatersNearbyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatersResultsCount": "{count, plural, one{{count} wynik} few{{count} wyniki} many{{count} wyników} other{{count} wyników}}",
+  "@repeatersResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}
