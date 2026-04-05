@@ -641,7 +641,10 @@
     }
   },
 
+  "changelog1017PotaSpots": "Spots POTA en temps réel avec carte et détails du parc",
   "changelog1017SubmitRepeater": "Proposez un nouveau relais directement depuis l'app",
+  "changelog1017MultiLanguage": "App disponible en anglais, espagnol et français",
+  "changelog1017Onboarding": "Nouvelle expérience de premier lancement",
   "changelog1017ReportAnonymous": "Signalements disponibles sans inscription",
 
   "changelogTitle": "Nouveautés",

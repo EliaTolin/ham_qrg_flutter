@@ -698,7 +698,10 @@
   "addRepeaterAtLeastOneAccess": "Aggiungi almeno un accesso",
   "addRepeaterAccessNumber": "Accesso {number}",
 
+  "changelog1017PotaSpots": "Spot POTA in tempo reale con mappa e dettagli parco",
   "changelog1017SubmitRepeater": "Proponi un nuovo ripetitore direttamente dall'app",
+  "changelog1017MultiLanguage": "App disponibile in inglese, spagnolo e francese",
+  "changelog1017Onboarding": "Nuova esperienza di primo avvio",
   "changelog1017ReportAnonymous": "Segnalazioni disponibili anche senza registrazione",
 
   "changelogTitle": "Novità",

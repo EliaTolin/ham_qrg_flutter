@@ -1579,8 +1579,19 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get changelog1017PotaSpots =>
+      'Spots POTA en tiempo real con mapa y detalles del parque';
+
+  @override
   String get changelog1017SubmitRepeater =>
       'Propón un nuevo repetidor directamente desde la app';
+
+  @override
+  String get changelog1017MultiLanguage =>
+      'App disponible en inglés, español y francés';
+
+  @override
+  String get changelog1017Onboarding => 'Nueva experiencia de primer inicio';
 
   @override
   String get changelog1017ReportAnonymous =>

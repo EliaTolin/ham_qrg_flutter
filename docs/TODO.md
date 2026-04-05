@@ -1,16 +1,15 @@
-# HamQRG - TODO Funzionalità
+# HamQRG - TODO & Roadmap
 
-Checklist completa delle funzionalità da implementare, organizzata per fase.
+Funzionalità ancora da implementare, organizzate per priorità.
 
 ---
 
-## Fase 1 - Quick Wins (infrastruttura già presente)
+## Fase 1 - Quick Wins
 
-- [ ] **"Vedi tutti i feedback"** — Implementare navigazione dal pulsante esistente
-- [ ] **Push notifications (handler)** — Handler OneSignal in Flutter per notifiche in-app e background
-  - [ ] Voce in pagina Impostazioni
+- [ ] **"Vedi tutti i feedback"** — Navigazione dal pulsante esistente (skeleton in `community_reports_section.dart`)
 - [ ] **Filtro per banda nella lista** — Usare enum `FrequencyBand` già nel dominio
-- [ ] **Onboarding interattivo** — Package `introduction_screen` già installato
+- [ ] **"Portami là" — Navigazione al sito** — Pulsante apertura Google Maps / Apple Maps / Waze via `url_launcher` (già presente)
+
 ---
 
 ## Fase 2 - Core Features
@@ -21,9 +20,6 @@ Checklist completa delle funzionalità da implementare, organizzata per fase.
   - [ ] Pagina lista QSO con filtri
   - [ ] Form inserimento QSO
   - [ ] Auto-fill da pagina dettaglio ripetitore
-- [ ] **Navigazione verso ripetitore ("Portami là")** (F11)
-  - [ ] Pulsante apertura Google Maps / Apple Maps / Waze
-  - [ ] Tempo di percorrenza stimato
 
 ---
 
@@ -57,69 +53,52 @@ Checklist completa delle funzionalità da implementare, organizzata per fase.
 
 ---
 
-## Funzionalità Fisiche — Pagina Dettaglio Ripetitore
+## Funzionalità Pagina Dettaglio Ripetitore
 
 ### Sprint 2 (API gratuite, alto impatto)
 
 - [ ] **F2 — Meteo in tempo reale al sito**
-  - [ ] Open-Meteo Forecast API
-  - [ ] Card con temperatura, vento, umidità, visibilità
+  - Open-Meteo Forecast API (gratuita, no API key)
+  - Card con temperatura, vento, umidita, visibilita
 - [ ] **F4 — Bearing e bussola**
-  - [ ] Azimut (gradi dal Nord)
-  - [ ] Bussola visuale rotante
-  - [ ] Angolo di elevazione
-  - [ ] Direzione cardinale testuale
+  - Azimut, bussola visuale rotante, angolo di elevazione
+  - Tutto lato client (formula haversine)
 - [ ] **F12 — Indice di propagazione in tempo reale**
-  - [ ] Solar Flux Index, K-index
-  - [ ] Previsione per banda specifica
-  - [ ] Badge colorato nell'header
+  - Solar Flux Index, K-index (API NOAA/HamQSL gratuite)
+  - Previsione per banda specifica
+  - Badge colorato nell'header
 
 ### Sprint 3 (calcoli avanzati)
 
 - [ ] **F5 — Link budget e stima segnale**
-  - [ ] Free Space Path Loss (FSPL)
-  - [ ] Clearance zona di Fresnel
-  - [ ] Stima potenza ricevuta con slider TX power
-  - [ ] Verdetto semaforo verde/giallo/rosso
+  - FSPL, clearance zona di Fresnel
+  - Stima potenza ricevuta con slider TX power
+  - Verdetto semaforo verde/giallo/rosso
 - [ ] **F3 — Alba, tramonto e condizioni di luce**
-  - [ ] Orario alba/tramonto al sito
-  - [ ] Durata giorno e crepuscolo civile
-  - [ ] Barra visuale giorno/notte
+  - Orario alba/tramonto al sito, durata giorno
+  - Barra visuale giorno/notte
 - [ ] **F6 — Radio horizon e copertura teorica**
-  - [ ] Radio horizon in km
-  - [ ] Overlay sulla mini-mappa
-  - [ ] Confronto "tu sei a Y km"
+  - Radio horizon in km, overlay sulla mini-mappa
+  - Confronto "tu sei a Y km"
 
 ### Sprint 4 (dati aggregati)
 
-- [ ] **F8 — Storia e attività del ripetitore**
-  - [ ] Timeline: data inserimento, ultimo aggiornamento, ultimo feedback
-  - [ ] Grafico sparkline health score
+- [ ] **F8 — Storia e attivita del ripetitore**
+  - Timeline: data inserimento, ultimo aggiornamento, ultimo feedback
+  - Grafico sparkline health score
 - [ ] **F9 — Confronto con la media regionale**
-  - [ ] RPC statistiche aggregate per regione
-  - [ ] Quota, health score, banda vs media
+  - RPC statistiche aggregate per regione
+  - Quota, health score, banda vs media
 - [ ] **F10 — Panorama 360° e vista dal sito**
-  - [ ] Google Street View embed
-  - [ ] Mappa elevazione a raggiera
+  - Google Street View embed
+  - Mappa elevazione a raggiera
 
 ---
 
-## Altre Feature (priorità da definire)
+## Altre Feature (priorita da definire)
 
-- [ ] **Push notifications intelligenti**
-  - [ ] Ripetitore preferito down/up
-  - [ ] Nuovo ripetitore nella zona
-  - [ ] Aggiornamento su report inviato
-  - [ ] Preferenze utente per tipo notifica
-- [ ] **Ricerca avanzata e filtri**
-  - [ ] Filtro per rete (BrandMeister, TGIF, FreeDMR)
-  - [ ] Filtro per CTCSS/DCS
-  - [ ] Filtro per stato (health score)
-  - [ ] Filtro per locator Maidenhead
-- [ ] **Integrazione servizi esterni**
-  - [ ] QRZ.com lookup callsign
-  - [ ] APRS tracking sulla mappa
-  - [ ] EchoLink status
-  - [ ] Cluster DX
-- [ ] **Apple Watch complication** — Frequenza e tono ripetitore più vicino
+- [ ] **Push notifications intelligenti** — Ripetitore preferito down/up, nuovo ripetitore nella zona, aggiornamento su report
+- [ ] **Ricerca avanzata e filtri** — Per rete, CTCSS/DCS, health score, locator Maidenhead
+- [ ] **Integrazione servizi esterni** — QRZ.com lookup, APRS tracking, EchoLink status, Cluster DX
+- [ ] **Apple Watch complication** — Frequenza e tono ripetitore piu vicino
 - [ ] **Quick Actions (3D Touch)** — Accesso rapido a mappa, ricerca, preferiti

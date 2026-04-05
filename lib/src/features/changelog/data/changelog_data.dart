@@ -9,7 +9,19 @@ List<ChangelogEntry> getChangelogEntries(AppLocalizations l10n) => [
         changes: [
           ChangelogChange(
             category: ChangeCategory.added,
+            description: l10n.changelog1017PotaSpots,
+          ),
+          ChangelogChange(
+            category: ChangeCategory.added,
             description: l10n.changelog1017SubmitRepeater,
+          ),
+          ChangelogChange(
+            category: ChangeCategory.added,
+            description: l10n.changelog1017MultiLanguage,
+          ),
+          ChangelogChange(
+            category: ChangeCategory.improved,
+            description: l10n.changelog1017Onboarding,
           ),
           ChangelogChange(
             category: ChangeCategory.improved,
