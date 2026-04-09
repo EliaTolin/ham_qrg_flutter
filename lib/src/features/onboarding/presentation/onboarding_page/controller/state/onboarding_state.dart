@@ -7,14 +7,10 @@ part 'onboarding_state.freezed.dart';
 @freezed
 abstract class OnboardingState with _$OnboardingState {
   const factory OnboardingState({
-    /// 0=welcome, 1=location, 2=userType, 3=callsign, 4=discovery, 5=telegram
+    /// 0=welcome, 1=location, 2=userType, 3=discovery, 4=telegram
     @Default(0) int currentStep,
     @Default(0) int welcomeCardIndex,
     UserType? selectedUserType,
-    @Default('') String callsign,
-
-    /// For SWL users: whether they have a callsign (null = not yet chosen)
-    bool? hasSwlCallsign,
     @Default(false) bool isSubmitting,
     @Default(false) bool locationGranted,
 

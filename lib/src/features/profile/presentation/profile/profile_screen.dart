@@ -70,6 +70,19 @@ class ProfileScreen extends HookConsumerWidget {
                             textAlign: TextAlign.center,
                           ),
                         ],
+                        // Email
+                        if (state.email != null &&
+                            state.email!.isNotEmpty) ...[
+                          const Gap(4),
+                          Text(
+                            state.email!,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color:
+                                  colorScheme.onSurface.withValues(alpha: .5),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                         const Gap(16),
                         // Edit Profile button
                         OutlinedButton.icon(

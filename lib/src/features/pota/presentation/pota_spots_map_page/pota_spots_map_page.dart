@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:ui' as ui;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/pota_marker_helper.dart';
 import 'package:hamqrg/config/constants/map_keys.dart';
 import 'package:hamqrg/config/constants/map_layers.dart';
 import 'package:hamqrg/router/app_router.dart';
-import 'package:hamqrg/src/features/pota/data/repository/pota_repository.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/controller/pota_spots_controller.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
@@ -36,7 +36,9 @@ class PotaSpotsMapPage extends HookConsumerWidget {
       _ => null,
     };
 
-    // Update POTA source when spots change
+    final hasFittedBounds = useState(false);
+
+    // Update POTA source when spots or park cache change
     useEffect(
       () {
         if (mapController.value != null &&
@@ -45,13 +47,18 @@ class PotaSpotsMapPage extends HookConsumerWidget {
           _updatePotaSource(
             mapController.value!,
             spotsState.spots,
-            spotsState.distanceByReference,
-            ref,
+            spotsState.parkCache,
           );
+
+          // Fit camera to spot bounds on first load
+          if (!hasFittedBounds.value && spotsState.parkCache.isNotEmpty) {
+            hasFittedBounds.value = true;
+            _fitCameraToSpots(mapController.value!, spotsState.parkCache);
+          }
         }
         return null;
       },
-      [spotsState?.spots, isStyleLoaded.value],
+      [spotsState?.spots, spotsState?.parkCache, isStyleLoaded.value],
     );
 
     final initialLat = userPosition?.latitude ?? LocationService.defaultLatitude;
@@ -113,8 +120,7 @@ class PotaSpotsMapPage extends HookConsumerWidget {
                 await _updatePotaSource(
                   map,
                   spotsState.spots,
-                  spotsState.distanceByReference,
-                  ref,
+                  spotsState.parkCache,
                 );
               }
             },
@@ -172,32 +178,7 @@ class PotaSpotsMapPage extends HookConsumerWidget {
   }
 
   Future<void> _addPotaLogoImage(MapboxMap mapboxMap) async {
-    try {
-      final exists =
-          await mapboxMap.style.hasStyleImage(MapKeys.potaLogoImage);
-      if (exists) return;
-
-      final bytes = await rootBundle.load('assets/images/pota_logo.png');
-      final imageData = bytes.buffer.asUint8List();
-      final buffer = await ui.ImmutableBuffer.fromUint8List(imageData);
-      final descriptor = await ui.ImageDescriptor.encoded(buffer);
-
-      await mapboxMap.style.addStyleImage(
-        MapKeys.potaLogoImage,
-        1,
-        MbxImage(
-          width: descriptor.width,
-          height: descriptor.height,
-          data: imageData,
-        ),
-        false,
-        [],
-        [],
-        null,
-      );
-    } catch (e) {
-      log('Error adding POTA logo image: $e');
-    }
+    await PotaMarkerHelper.addPotaStyleImage(mapboxMap);
   }
 
   Future<void> _addPotaLayer(MapboxMap mapboxMap) async {
@@ -230,18 +211,14 @@ class PotaSpotsMapPage extends HookConsumerWidget {
   Future<void> _updatePotaSource(
     MapboxMap mapboxMap,
     List<PotaSpot> spots,
-    Map<String, double> distanceByReference,
-    WidgetRef ref,
+    Map<String, PotaPark> parkCache,
   ) async {
     try {
       log('POTA map: updating source with ${spots.length} spots');
-      final repository = ref.read(potaRepositoryProvider);
-      final parks = await repository.getParksForSpots(spots);
-      log('POTA map: loaded ${parks.length} parks with coordinates');
 
       final features = <Map<String, dynamic>>[];
       for (final spot in spots) {
-        final park = parks[spot.reference];
+        final park = parkCache[spot.reference];
         if (park == null || park.latitude == null || park.longitude == null) {
           continue;
         }
@@ -340,6 +317,43 @@ class PotaSpotsMapPage extends HookConsumerWidget {
       }
     } catch (e) {
       log('Error handling POTA map tap: $e');
+    }
+  }
+
+  Future<void> _fitCameraToSpots(
+    MapboxMap mapboxMap,
+    Map<String, PotaPark> parkCache,
+  ) async {
+    try {
+      var minLat = 90.0;
+      var maxLat = -90.0;
+      var minLon = 180.0;
+      var maxLon = -180.0;
+
+      for (final park in parkCache.values) {
+        if (park.latitude == null || park.longitude == null) continue;
+        if (park.latitude! < minLat) minLat = park.latitude!;
+        if (park.latitude! > maxLat) maxLat = park.latitude!;
+        if (park.longitude! < minLon) minLon = park.longitude!;
+        if (park.longitude! > maxLon) maxLon = park.longitude!;
+      }
+
+      if (minLat > maxLat) return; // no valid parks
+
+      await mapboxMap.flyTo(
+        CameraOptions(
+          center: Point(
+            coordinates: Position(
+              (minLon + maxLon) / 2,
+              (minLat + maxLat) / 2,
+            ),
+          ),
+          zoom: 2,
+        ),
+        MapAnimationOptions(duration: 500),
+      );
+    } catch (e) {
+      log('Error fitting camera to spots: $e');
     }
   }
 }

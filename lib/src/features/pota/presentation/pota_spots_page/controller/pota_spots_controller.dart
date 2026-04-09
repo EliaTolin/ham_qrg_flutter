@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:geolocator/geolocator.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/data/repository/pota_repository.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/controller/state/pota_spots_sort_order.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/controller/state/pota_spots_state.dart';
@@ -28,8 +29,10 @@ class PotaSpotsController extends _$PotaSpotsController {
     final availableBands = _extractBands(spots);
     final availableModes = _extractModes(spots);
 
-    // Load distances in the background (non-blocking)
-    final distances = await _loadDistances(spots);
+    // Load parks and distances
+    final repository = ref.read(potaRepositoryProvider);
+    final parks = await repository.getParksForSpots(spots);
+    final distances = await _computeDistances(parks);
 
     return PotaSpotsState(
       spots: spots,
@@ -37,6 +40,7 @@ class PotaSpotsController extends _$PotaSpotsController {
       availableBands: availableBands,
       availableModes: availableModes,
       distanceByReference: distances,
+      parkCache: parks,
     );
   }
 
@@ -57,12 +61,15 @@ class PotaSpotsController extends _$PotaSpotsController {
       );
       ref.invalidate(getPotaSpotsProvider);
       final spots = await ref.read(getPotaSpotsProvider.future);
-      final distances = await _loadDistances(spots);
+      final repository = ref.read(potaRepositoryProvider);
+      final parks = await repository.getParksForSpots(spots);
+      final distances = await _computeDistances(parks);
       final newState = (currentState ?? const PotaSpotsState()).copyWith(
         spots: spots,
         availableBands: _extractBands(spots),
         availableModes: _extractModes(spots),
         distanceByReference: distances,
+        parkCache: parks,
         isRefreshing: false,
         hasLoadError: false,
       );
@@ -165,13 +172,13 @@ class PotaSpotsController extends _$PotaSpotsController {
     return results;
   }
 
-  Future<Map<String, double>> _loadDistances(List<PotaSpot> spots) async {
+  Future<Map<String, double>> _computeDistances(
+    Map<String, PotaPark> parks,
+  ) async {
     try {
       final position = await ref
           .read(locationServiceProvider)
           .getCurrentPositionOrDefault();
-      final repository = ref.read(potaRepositoryProvider);
-      final parks = await repository.getParksForSpots(spots);
 
       final distances = <String, double>{};
       for (final entry in parks.entries) {
@@ -188,7 +195,7 @@ class PotaSpotsController extends _$PotaSpotsController {
       }
       return distances;
     } catch (e) {
-      log('Failed to load park distances: $e');
+      log('Failed to compute park distances: $e');
       return {};
     }
   }

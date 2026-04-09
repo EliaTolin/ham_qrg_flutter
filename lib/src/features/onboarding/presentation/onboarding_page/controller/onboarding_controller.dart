@@ -10,8 +10,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'onboarding_controller.g.dart';
 
 /// Total number of onboarding steps:
-/// 0=welcome, 1=location, 2=userType, 3=callsign, 4=discovery, 5=telegram
-const _totalSteps = 6;
+/// 0=welcome, 1=location, 2=userType, 3=discovery, 4=telegram
+const _totalSteps = 5;
 
 @riverpod
 class OnboardingController extends _$OnboardingController {
@@ -56,62 +56,26 @@ class OnboardingController extends _$OnboardingController {
 
   // -- User type --
 
-  void selectUserType(UserType userType) {
+  Future<void> selectUserType(UserType userType) async {
     state = state.copyWith(
       selectedUserType: userType,
-      currentStep: 3,
-      hasSwlCallsign: null,
-      callsign: '',
+      isSubmitting: true,
     );
-  }
-
-  // -- Callsign --
-
-  void updateCallsign(String callsign) {
-    state = state.copyWith(callsign: callsign.toUpperCase());
-  }
-
-  void setHasSwlCallsign({required bool hasCallsign}) {
-    state = state.copyWith(
-      hasSwlCallsign: hasCallsign,
-      callsign: hasCallsign ? state.callsign : '',
-    );
-  }
-
-  void goBackFromCallsign() {
-    state = state.copyWith(
-      currentStep: 2,
-      hasSwlCallsign: null,
-      callsign: '',
-    );
-  }
-
-  Future<void> submitProfile() async {
-    state = state.copyWith(isSubmitting: true);
     try {
       final datasource =
           await ref.read(onboardingLocalDatasourceProvider.future);
-
-      final userType = state.selectedUserType;
-      if (userType != null) {
-        await datasource.setUserType(userType);
-      }
-
-      final callsign = state.callsign.trim();
-      if (callsign.isNotEmpty) {
-        await datasource.setCallsign(callsign);
-      }
+      await datasource.setUserType(userType);
 
       state = state.copyWith(
         isSubmitting: false,
-        currentStep: 4,
+        currentStep: 3,
         isLoadingDiscovery: true,
       );
 
       // Load discovery data
       await _loadDiscoveryData();
     } catch (e) {
-      log('Onboarding: profile save failed: $e');
+      log('Onboarding: user type save failed: $e');
       state = state.copyWith(isSubmitting: false);
     }
   }
@@ -144,7 +108,7 @@ class OnboardingController extends _$OnboardingController {
   }
 
   void finishDiscovery() {
-    state = state.copyWith(currentStep: 5);
+    state = state.copyWith(currentStep: 4);
   }
 
   // -- Telegram --

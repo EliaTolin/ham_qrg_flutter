@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
@@ -33,23 +35,36 @@ class PotaSpotDetailPage extends HookConsumerWidget {
         loading: () => const Center(
           child: CircularProgressIndicator.adaptive(),
         ),
-        error: (error, _) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.error_outline,
-                size: 64,
-                color: Theme.of(context).colorScheme.error,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                context.localization.potaLoadError,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ],
-          ),
-        ),
+        error: (error, stackTrace) {
+          log('POTA spot detail error: $error\n$stackTrace');
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.error_outline,
+                  size: 64,
+                  color: Theme.of(context)
+                      .colorScheme
+                      .error
+                      .withValues(alpha: 0.6),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  context.localization.potaLoadError,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () => ref.invalidate(
+                    potaSpotDetailControllerProvider(spotId, reference),
+                  ),
+                  child: Text(context.localization.potaRetry),
+                ),
+              ],
+            ),
+          );
+        },
         data: (state) => _PotaSpotDetailContent(state: state),
       ),
     );

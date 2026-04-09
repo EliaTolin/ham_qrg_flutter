@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
@@ -39,28 +41,32 @@ class PotaSpotsPage extends ConsumerWidget {
         loading: () => const Center(
           child: CircularProgressIndicator.adaptive(),
         ),
-        error: (error, _) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.warning_amber_rounded,
-                size: 64,
-                color: Theme.of(context)
-                    .colorScheme
-                    .error
-                    .withValues(alpha: 0.6),
-              ),
-              const SizedBox(height: 16),
-              Text(l10n.potaLoadError),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () => ref.invalidate(potaSpotsControllerProvider),
-                child: Text(l10n.potaRetry),
-              ),
-            ],
-          ),
-        ),
+        error: (error, stackTrace) {
+          log('POTA spots error: $error\n$stackTrace');
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.warning_amber_rounded,
+                  size: 64,
+                  color: Theme.of(context)
+                      .colorScheme
+                      .error
+                      .withValues(alpha: 0.6),
+                ),
+                const SizedBox(height: 16),
+                Text(l10n.potaLoadError),
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () =>
+                      ref.invalidate(potaSpotsControllerProvider),
+                  child: Text(l10n.potaRetry),
+                ),
+              ],
+            ),
+          );
+        },
         data: (state) => _PotaSpotsBody(
           state: state,
           notifier: notifier,
@@ -174,24 +180,32 @@ class _PotaSpotsBody extends StatelessWidget {
         ),
         // List
         Expanded(
-          child: state.filteredSpots.isEmpty
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+          child: RefreshIndicator(
+            onRefresh: notifier.refresh,
+            child: state.filteredSpots.isEmpty
+                ? ListView(
                     children: [
-                      Icon(
-                        Icons.search_off,
-                        size: 64,
-                        color: colorScheme.onSurface.withValues(alpha: 0.3),
+                      SizedBox(
+                        height: MediaQuery.sizeOf(context).height * 0.4,
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search_off,
+                                size: 64,
+                                color: colorScheme.onSurface
+                                    .withValues(alpha: 0.3),
+                              ),
+                              const SizedBox(height: 16),
+                              Text(l10n.potaNoSpots),
+                            ],
+                          ),
+                        ),
                       ),
-                      const SizedBox(height: 16),
-                      Text(l10n.potaNoSpots),
                     ],
-                  ),
-                )
-              : RefreshIndicator(
-                  onRefresh: notifier.refresh,
-                  child: ListView.builder(
+                  )
+                : ListView.builder(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 8,
@@ -206,7 +220,7 @@ class _PotaSpotsBody extends StatelessWidget {
                       );
                     },
                   ),
-                ),
+          ),
         ),
       ],
     );
