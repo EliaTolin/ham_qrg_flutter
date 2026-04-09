@@ -9,13 +9,11 @@ import 'package:hamqrg/src/features/onboarding/presentation/onboarding_page/widg
 import 'package:hamqrg/src/features/onboarding/presentation/onboarding_page/widgets/telegram_step.dart';
 import 'package:hamqrg/src/features/onboarding/presentation/onboarding_page/widgets/welcome_step.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/domain/user_type.dart';
-import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/callsign_entry_step.dart';
-import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/swl_callsign_step.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/widgets/user_type_selection_step.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Total number of onboarding steps.
-const _totalSteps = 6;
+const _totalSteps = 5;
 
 @RoutePage()
 class OnboardingPage extends HookConsumerWidget {
@@ -100,33 +98,6 @@ class OnboardingPage extends HookConsumerWidget {
           },
         );
       case 3:
-        if (state.selectedUserType == UserType.swl) {
-          return SwlCallsignStep(
-            key: const ValueKey('swlCallsign'),
-            hasCallsign: state.hasSwlCallsign,
-            callsign: state.callsign,
-            isSubmitting: state.isSubmitting,
-            onHasCallsignChanged: (hasCallsign) {
-              controller.setHasSwlCallsign(hasCallsign: hasCallsign);
-            },
-            onCallsignChanged: controller.updateCallsign,
-            onSubmit: () async {
-              await controller.submitProfile();
-            },
-            onBack: controller.goBackFromCallsign,
-          );
-        }
-        return CallsignEntryStep(
-          key: const ValueKey('callsign'),
-          callsign: state.callsign,
-          isSubmitting: state.isSubmitting,
-          onCallsignChanged: controller.updateCallsign,
-          onSubmit: () async {
-            await controller.submitProfile();
-          },
-          onBack: controller.goBackFromCallsign,
-        );
-      case 4:
         return DiscoveryStep(
           key: const ValueKey('discovery'),
           isLoading: state.isLoadingDiscovery,
@@ -145,7 +116,7 @@ class OnboardingPage extends HookConsumerWidget {
           onExploreMap: () => _completeAndNavigateToMap(context, controller),
           onContinue: controller.finishDiscovery,
         );
-      case 5:
+      case 4:
         return TelegramStep(
           key: const ValueKey('telegram'),
           onJoin: () async {

@@ -14,14 +14,10 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$OnboardingState {
-  /// 0=welcome, 1=location, 2=userType, 3=callsign, 4=discovery, 5=telegram
+  /// 0=welcome, 1=location, 2=userType, 3=discovery, 4=telegram
   int get currentStep;
   int get welcomeCardIndex;
   UserType? get selectedUserType;
-  String get callsign;
-
-  /// For SWL users: whether they have a callsign (null = not yet chosen)
-  bool? get hasSwlCallsign;
   bool get isSubmitting;
   bool get locationGranted;
 
@@ -48,10 +44,6 @@ mixin _$OnboardingState {
                 other.welcomeCardIndex == welcomeCardIndex) &&
             (identical(other.selectedUserType, selectedUserType) ||
                 other.selectedUserType == selectedUserType) &&
-            (identical(other.callsign, callsign) ||
-                other.callsign == callsign) &&
-            (identical(other.hasSwlCallsign, hasSwlCallsign) ||
-                other.hasSwlCallsign == hasSwlCallsign) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 other.isSubmitting == isSubmitting) &&
             (identical(other.locationGranted, locationGranted) ||
@@ -68,8 +60,6 @@ mixin _$OnboardingState {
       currentStep,
       welcomeCardIndex,
       selectedUserType,
-      callsign,
-      hasSwlCallsign,
       isSubmitting,
       locationGranted,
       nearestRepeater,
@@ -77,7 +67,7 @@ mixin _$OnboardingState {
 
   @override
   String toString() {
-    return 'OnboardingState(currentStep: $currentStep, welcomeCardIndex: $welcomeCardIndex, selectedUserType: $selectedUserType, callsign: $callsign, hasSwlCallsign: $hasSwlCallsign, isSubmitting: $isSubmitting, locationGranted: $locationGranted, nearestRepeater: $nearestRepeater, isLoadingDiscovery: $isLoadingDiscovery)';
+    return 'OnboardingState(currentStep: $currentStep, welcomeCardIndex: $welcomeCardIndex, selectedUserType: $selectedUserType, isSubmitting: $isSubmitting, locationGranted: $locationGranted, nearestRepeater: $nearestRepeater, isLoadingDiscovery: $isLoadingDiscovery)';
   }
 }
 
@@ -91,8 +81,6 @@ abstract mixin class $OnboardingStateCopyWith<$Res> {
       {int currentStep,
       int welcomeCardIndex,
       UserType? selectedUserType,
-      String callsign,
-      bool? hasSwlCallsign,
       bool isSubmitting,
       bool locationGranted,
       Repeater? nearestRepeater,
@@ -117,8 +105,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? currentStep = null,
     Object? welcomeCardIndex = null,
     Object? selectedUserType = freezed,
-    Object? callsign = null,
-    Object? hasSwlCallsign = freezed,
     Object? isSubmitting = null,
     Object? locationGranted = null,
     Object? nearestRepeater = freezed,
@@ -137,14 +123,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _self.selectedUserType
           : selectedUserType // ignore: cast_nullable_to_non_nullable
               as UserType?,
-      callsign: null == callsign
-          ? _self.callsign
-          : callsign // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasSwlCallsign: freezed == hasSwlCallsign
-          ? _self.hasSwlCallsign
-          : hasSwlCallsign // ignore: cast_nullable_to_non_nullable
-              as bool?,
       isSubmitting: null == isSubmitting
           ? _self.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
@@ -276,8 +254,6 @@ extension OnboardingStatePatterns on OnboardingState {
             int currentStep,
             int welcomeCardIndex,
             UserType? selectedUserType,
-            String callsign,
-            bool? hasSwlCallsign,
             bool isSubmitting,
             bool locationGranted,
             Repeater? nearestRepeater,
@@ -292,8 +268,6 @@ extension OnboardingStatePatterns on OnboardingState {
             _that.currentStep,
             _that.welcomeCardIndex,
             _that.selectedUserType,
-            _that.callsign,
-            _that.hasSwlCallsign,
             _that.isSubmitting,
             _that.locationGranted,
             _that.nearestRepeater,
@@ -322,8 +296,6 @@ extension OnboardingStatePatterns on OnboardingState {
             int currentStep,
             int welcomeCardIndex,
             UserType? selectedUserType,
-            String callsign,
-            bool? hasSwlCallsign,
             bool isSubmitting,
             bool locationGranted,
             Repeater? nearestRepeater,
@@ -337,8 +309,6 @@ extension OnboardingStatePatterns on OnboardingState {
             _that.currentStep,
             _that.welcomeCardIndex,
             _that.selectedUserType,
-            _that.callsign,
-            _that.hasSwlCallsign,
             _that.isSubmitting,
             _that.locationGranted,
             _that.nearestRepeater,
@@ -366,8 +336,6 @@ extension OnboardingStatePatterns on OnboardingState {
             int currentStep,
             int welcomeCardIndex,
             UserType? selectedUserType,
-            String callsign,
-            bool? hasSwlCallsign,
             bool isSubmitting,
             bool locationGranted,
             Repeater? nearestRepeater,
@@ -381,8 +349,6 @@ extension OnboardingStatePatterns on OnboardingState {
             _that.currentStep,
             _that.welcomeCardIndex,
             _that.selectedUserType,
-            _that.callsign,
-            _that.hasSwlCallsign,
             _that.isSubmitting,
             _that.locationGranted,
             _that.nearestRepeater,
@@ -400,14 +366,12 @@ class _OnboardingState implements OnboardingState {
       {this.currentStep = 0,
       this.welcomeCardIndex = 0,
       this.selectedUserType,
-      this.callsign = '',
-      this.hasSwlCallsign,
       this.isSubmitting = false,
       this.locationGranted = false,
       this.nearestRepeater,
       this.isLoadingDiscovery = false});
 
-  /// 0=welcome, 1=location, 2=userType, 3=callsign, 4=discovery, 5=telegram
+  /// 0=welcome, 1=location, 2=userType, 3=discovery, 4=telegram
   @override
   @JsonKey()
   final int currentStep;
@@ -416,13 +380,6 @@ class _OnboardingState implements OnboardingState {
   final int welcomeCardIndex;
   @override
   final UserType? selectedUserType;
-  @override
-  @JsonKey()
-  final String callsign;
-
-  /// For SWL users: whether they have a callsign (null = not yet chosen)
-  @override
-  final bool? hasSwlCallsign;
   @override
   @JsonKey()
   final bool isSubmitting;
@@ -456,10 +413,6 @@ class _OnboardingState implements OnboardingState {
                 other.welcomeCardIndex == welcomeCardIndex) &&
             (identical(other.selectedUserType, selectedUserType) ||
                 other.selectedUserType == selectedUserType) &&
-            (identical(other.callsign, callsign) ||
-                other.callsign == callsign) &&
-            (identical(other.hasSwlCallsign, hasSwlCallsign) ||
-                other.hasSwlCallsign == hasSwlCallsign) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 other.isSubmitting == isSubmitting) &&
             (identical(other.locationGranted, locationGranted) ||
@@ -476,8 +429,6 @@ class _OnboardingState implements OnboardingState {
       currentStep,
       welcomeCardIndex,
       selectedUserType,
-      callsign,
-      hasSwlCallsign,
       isSubmitting,
       locationGranted,
       nearestRepeater,
@@ -485,7 +436,7 @@ class _OnboardingState implements OnboardingState {
 
   @override
   String toString() {
-    return 'OnboardingState(currentStep: $currentStep, welcomeCardIndex: $welcomeCardIndex, selectedUserType: $selectedUserType, callsign: $callsign, hasSwlCallsign: $hasSwlCallsign, isSubmitting: $isSubmitting, locationGranted: $locationGranted, nearestRepeater: $nearestRepeater, isLoadingDiscovery: $isLoadingDiscovery)';
+    return 'OnboardingState(currentStep: $currentStep, welcomeCardIndex: $welcomeCardIndex, selectedUserType: $selectedUserType, isSubmitting: $isSubmitting, locationGranted: $locationGranted, nearestRepeater: $nearestRepeater, isLoadingDiscovery: $isLoadingDiscovery)';
   }
 }
 
@@ -501,8 +452,6 @@ abstract mixin class _$OnboardingStateCopyWith<$Res>
       {int currentStep,
       int welcomeCardIndex,
       UserType? selectedUserType,
-      String callsign,
-      bool? hasSwlCallsign,
       bool isSubmitting,
       bool locationGranted,
       Repeater? nearestRepeater,
@@ -528,8 +477,6 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? currentStep = null,
     Object? welcomeCardIndex = null,
     Object? selectedUserType = freezed,
-    Object? callsign = null,
-    Object? hasSwlCallsign = freezed,
     Object? isSubmitting = null,
     Object? locationGranted = null,
     Object? nearestRepeater = freezed,
@@ -548,14 +495,6 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _self.selectedUserType
           : selectedUserType // ignore: cast_nullable_to_non_nullable
               as UserType?,
-      callsign: null == callsign
-          ? _self.callsign
-          : callsign // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasSwlCallsign: freezed == hasSwlCallsign
-          ? _self.hasSwlCallsign
-          : hasSwlCallsign // ignore: cast_nullable_to_non_nullable
-              as bool?,
       isSubmitting: null == isSubmitting
           ? _self.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable

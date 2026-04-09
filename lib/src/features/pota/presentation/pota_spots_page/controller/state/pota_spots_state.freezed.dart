@@ -23,6 +23,7 @@ mixin _$PotaSpotsState {
   String? get selectedMode;
   PotaSpotsSortOrder get sortOrder;
   Map<String, double> get distanceByReference;
+  Map<String, PotaPark> get parkCache;
   List<String> get availableBands;
   List<String> get availableModes;
 
@@ -56,6 +57,7 @@ mixin _$PotaSpotsState {
                 other.sortOrder == sortOrder) &&
             const DeepCollectionEquality()
                 .equals(other.distanceByReference, distanceByReference) &&
+            const DeepCollectionEquality().equals(other.parkCache, parkCache) &&
             const DeepCollectionEquality()
                 .equals(other.availableBands, availableBands) &&
             const DeepCollectionEquality()
@@ -74,12 +76,13 @@ mixin _$PotaSpotsState {
       selectedMode,
       sortOrder,
       const DeepCollectionEquality().hash(distanceByReference),
+      const DeepCollectionEquality().hash(parkCache),
       const DeepCollectionEquality().hash(availableBands),
       const DeepCollectionEquality().hash(availableModes));
 
   @override
   String toString() {
-    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, availableBands: $availableBands, availableModes: $availableModes)';
+    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, parkCache: $parkCache, availableBands: $availableBands, availableModes: $availableModes)';
   }
 }
 
@@ -99,6 +102,7 @@ abstract mixin class $PotaSpotsStateCopyWith<$Res> {
       String? selectedMode,
       PotaSpotsSortOrder sortOrder,
       Map<String, double> distanceByReference,
+      Map<String, PotaPark> parkCache,
       List<String> availableBands,
       List<String> availableModes});
 }
@@ -125,6 +129,7 @@ class _$PotaSpotsStateCopyWithImpl<$Res>
     Object? selectedMode = freezed,
     Object? sortOrder = null,
     Object? distanceByReference = null,
+    Object? parkCache = null,
     Object? availableBands = null,
     Object? availableModes = null,
   }) {
@@ -165,6 +170,10 @@ class _$PotaSpotsStateCopyWithImpl<$Res>
           ? _self.distanceByReference
           : distanceByReference // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
+      parkCache: null == parkCache
+          ? _self.parkCache
+          : parkCache // ignore: cast_nullable_to_non_nullable
+              as Map<String, PotaPark>,
       availableBands: null == availableBands
           ? _self.availableBands
           : availableBands // ignore: cast_nullable_to_non_nullable
@@ -280,6 +289,7 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             String? selectedMode,
             PotaSpotsSortOrder sortOrder,
             Map<String, double> distanceByReference,
+            Map<String, PotaPark> parkCache,
             List<String> availableBands,
             List<String> availableModes)?
         $default, {
@@ -298,6 +308,7 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             _that.selectedMode,
             _that.sortOrder,
             _that.distanceByReference,
+            _that.parkCache,
             _that.availableBands,
             _that.availableModes);
       case _:
@@ -330,6 +341,7 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             String? selectedMode,
             PotaSpotsSortOrder sortOrder,
             Map<String, double> distanceByReference,
+            Map<String, PotaPark> parkCache,
             List<String> availableBands,
             List<String> availableModes)
         $default,
@@ -347,6 +359,7 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             _that.selectedMode,
             _that.sortOrder,
             _that.distanceByReference,
+            _that.parkCache,
             _that.availableBands,
             _that.availableModes);
       case _:
@@ -378,6 +391,7 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             String? selectedMode,
             PotaSpotsSortOrder sortOrder,
             Map<String, double> distanceByReference,
+            Map<String, PotaPark> parkCache,
             List<String> availableBands,
             List<String> availableModes)?
         $default,
@@ -395,6 +409,7 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             _that.selectedMode,
             _that.sortOrder,
             _that.distanceByReference,
+            _that.parkCache,
             _that.availableBands,
             _that.availableModes);
       case _:
@@ -416,11 +431,13 @@ class _PotaSpotsState implements PotaSpotsState {
       this.selectedMode,
       this.sortOrder = PotaSpotsSortOrder.time,
       final Map<String, double> distanceByReference = const <String, double>{},
+      final Map<String, PotaPark> parkCache = const <String, PotaPark>{},
       final List<String> availableBands = const <String>[],
       final List<String> availableModes = const <String>[]})
       : _spots = spots,
         _filteredSpots = filteredSpots,
         _distanceByReference = distanceByReference,
+        _parkCache = parkCache,
         _availableBands = availableBands,
         _availableModes = availableModes;
 
@@ -466,6 +483,15 @@ class _PotaSpotsState implements PotaSpotsState {
       return _distanceByReference;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_distanceByReference);
+  }
+
+  final Map<String, PotaPark> _parkCache;
+  @override
+  @JsonKey()
+  Map<String, PotaPark> get parkCache {
+    if (_parkCache is EqualUnmodifiableMapView) return _parkCache;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_parkCache);
   }
 
   final List<String> _availableBands;
@@ -517,6 +543,8 @@ class _PotaSpotsState implements PotaSpotsState {
             const DeepCollectionEquality()
                 .equals(other._distanceByReference, _distanceByReference) &&
             const DeepCollectionEquality()
+                .equals(other._parkCache, _parkCache) &&
+            const DeepCollectionEquality()
                 .equals(other._availableBands, _availableBands) &&
             const DeepCollectionEquality()
                 .equals(other._availableModes, _availableModes));
@@ -534,12 +562,13 @@ class _PotaSpotsState implements PotaSpotsState {
       selectedMode,
       sortOrder,
       const DeepCollectionEquality().hash(_distanceByReference),
+      const DeepCollectionEquality().hash(_parkCache),
       const DeepCollectionEquality().hash(_availableBands),
       const DeepCollectionEquality().hash(_availableModes));
 
   @override
   String toString() {
-    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, availableBands: $availableBands, availableModes: $availableModes)';
+    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, parkCache: $parkCache, availableBands: $availableBands, availableModes: $availableModes)';
   }
 }
 
@@ -561,6 +590,7 @@ abstract mixin class _$PotaSpotsStateCopyWith<$Res>
       String? selectedMode,
       PotaSpotsSortOrder sortOrder,
       Map<String, double> distanceByReference,
+      Map<String, PotaPark> parkCache,
       List<String> availableBands,
       List<String> availableModes});
 }
@@ -587,6 +617,7 @@ class __$PotaSpotsStateCopyWithImpl<$Res>
     Object? selectedMode = freezed,
     Object? sortOrder = null,
     Object? distanceByReference = null,
+    Object? parkCache = null,
     Object? availableBands = null,
     Object? availableModes = null,
   }) {
@@ -627,6 +658,10 @@ class __$PotaSpotsStateCopyWithImpl<$Res>
           ? _self._distanceByReference
           : distanceByReference // ignore: cast_nullable_to_non_nullable
               as Map<String, double>,
+      parkCache: null == parkCache
+          ? _self._parkCache
+          : parkCache // ignore: cast_nullable_to_non_nullable
+              as Map<String, PotaPark>,
       availableBands: null == availableBands
           ? _self._availableBands
           : availableBands // ignore: cast_nullable_to_non_nullable

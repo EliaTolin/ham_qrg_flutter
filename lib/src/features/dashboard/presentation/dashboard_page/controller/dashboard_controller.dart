@@ -81,7 +81,9 @@ class DashboardController extends _$DashboardController {
 
   Future<void> reload() async {
     state = const AsyncValue.loading();
-    ref.invalidate(favoriteRepeatersProvider);
+    ref
+      ..invalidate(favoriteRepeatersProvider)
+      ..invalidate(getPotaSpotsProvider);
     final favoritesState = await ref.read(favoriteRepeatersProvider.future);
     final countRepeaters = await ref.read(getTotalRepeatersCountProvider.future);
     state = await AsyncValue.guard(() => _loadInitialData(favoritesState.count, countRepeaters));

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/pota_marker_helper.dart';
 import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
 import 'package:hamqrg/config/constants/map_keys.dart';
@@ -469,32 +470,7 @@ class RepeatersMapPage extends HookConsumerWidget {
 
   /// Add POTA logo as a Mapbox style image
   Future<void> _addPotaLogoImage(MapboxMap mapboxMap) async {
-    try {
-      final exists = await mapboxMap.style.hasStyleImage(MapKeys.potaLogoImage);
-      if (exists) return;
-
-      final bytes = await rootBundle.load('assets/images/pota_logo.png');
-      final imageData = bytes.buffer.asUint8List();
-
-      final buffer = await ui.ImmutableBuffer.fromUint8List(imageData);
-      final descriptor = await ui.ImageDescriptor.encoded(buffer);
-
-      await mapboxMap.style.addStyleImage(
-        MapKeys.potaLogoImage,
-        1,
-        MbxImage(
-          width: descriptor.width,
-          height: descriptor.height,
-          data: imageData,
-        ),
-        false,
-        [],
-        [],
-        null,
-      );
-    } catch (e) {
-      log('Error adding POTA logo image: $e');
-    }
+    await PotaMarkerHelper.addPotaStyleImage(mapboxMap);
   }
 
   /// Add POTA style layer from asset

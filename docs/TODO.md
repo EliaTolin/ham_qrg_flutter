@@ -9,6 +9,7 @@ Funzionalità ancora da implementare, organizzate per priorità.
 - [ ] **"Vedi tutti i feedback"** — Navigazione dal pulsante esistente (skeleton in `community_reports_section.dart`)
 - [ ] **Filtro per banda nella lista** — Usare enum `FrequencyBand` già nel dominio
 - [ ] **"Portami là" — Navigazione al sito** — Pulsante apertura Google Maps / Apple Maps / Waze via `url_launcher` (già presente)
+- [ ] **Richiesta di recensione (In-App Review)** — Prompt per invitare l'utente a lasciare una recensione sullo store (iOS/Android) tramite `in_app_review`
 
 ---
 

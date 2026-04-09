@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/utils/pota_marker_helper.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
@@ -121,36 +124,42 @@ class _FullMapDialog extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
-        body: Stack(
-          children: [
-            MapWidget(
-              cameraOptions: CameraOptions(
-                center: Point(
-                  coordinates:
-                      Position(park.longitude!, park.latitude!),
-                ),
-                zoom: 14,
-                bearing: 0,
-                pitch: 0,
+        body: MapWidget(
+          cameraOptions: CameraOptions(
+            center: Point(
+              coordinates: Position(park.longitude!, park.latitude!),
+            ),
+            zoom: 14,
+            bearing: 0,
+            pitch: 0,
+          ),
+          styleUri: MapboxStyles.OUTDOORS,
+          onMapCreated: (mapboxMap) async {
+            await mapboxMap.location.updateSettings(
+              LocationComponentSettings(
+                enabled: true,
+                showAccuracyRing: true,
               ),
-              styleUri: MapboxStyles.OUTDOORS,
-              onMapCreated: (mapboxMap) async {
-                await mapboxMap.location.updateSettings(
-                  LocationComponentSettings(
-                    enabled: true,
-                    showAccuracyRing: true,
-                  ),
-                );
-              },
-            ),
-            // Park marker
-            Center(
-              child: _PotaMarker(),
-            ),
-          ],
+            );
+            await _addParkAnnotation(mapboxMap);
+          },
         ),
       ),
     );
+  }
+
+  Future<void> _addParkAnnotation(MapboxMap mapboxMap) async {
+    try {
+      await PotaMarkerHelper.addPotaStyleImage(mapboxMap);
+      await PotaMarkerHelper.addParkMarker(
+        mapboxMap,
+        latitude: park.latitude!,
+        longitude: park.longitude!,
+        name: park.name,
+      );
+    } catch (e) {
+      log('Error adding park annotation: $e');
+    }
   }
 }
 
