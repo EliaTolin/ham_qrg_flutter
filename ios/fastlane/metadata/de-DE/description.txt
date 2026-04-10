@@ -1,0 +1,39 @@
+HamQRG ist die ultimative App fuer Funkamateure und Hoerer. Finde ganz einfach Relais in deiner Naehe, verfolge POTA-Aktivierungen in Echtzeit, pruefe Frequenzen und werde Teil einer Community, die jeden Tag waechst.
+
+**INTERAKTIVE KARTE**
+• Alle Relais auf einer interaktiven Karte anzeigen
+• Die naechstgelegenen Relais zu deinem Standort finden
+• Nach Betriebsart filtern: Analog, DMR, C4FM, D-STAR, Echolink
+• Intelligentes Clustering fuer Gebiete mit vielen Relais
+
+**VOLLSTAENDIGE TECHNISCHE DATEN**
+• TX/RX-Frequenz und Ablage
+• CTCSS/DCS-Toene
+• Color Code und Talkgroups fuer DMR
+• Digitale Netze (BrandMeister, TGIF und weitere)
+• Genauer Standort und Entfernung
+
+**POTA-LIVE-SPOTS**
+• Verfolge alle Parks On The Air Aktivierungen in Echtzeit
+• Filtere Spots nach Band und Betriebsart (SSB, CW, Digital)
+• Sortiere nach Uhrzeit oder Entfernung zu deinem Standort
+• Sieh dir aktive Parks auf der interaktiven Karte an
+• Schneller Zugriff auf das QRZ-Profil des Aktivierers und die Park-Seite
+
+**FAVORITEN & FEEDBACK**
+• Speichere deine Lieblingsrelais fuer schnellen Zugriff
+• Hinterlasse Feedback zur Signalqualitaet
+• Melde Probleme oder Aktualisierungen an die Koordinatoren
+• Durchsuche Community-Berichte
+
+**FUER FUNKAMATEURE & HOERER**
+• Personalisiertes Profil mit Rufzeichen
+• Unterstuetzung fuer lizenzierte Funkamateure und SWL
+• Kostenloser Zugang zu allen oeffentlichen Daten
+
+**AKTIVE COMMUNITY**
+• Tritt der Telegram-Gruppe bei
+• Schlage neue Funktionen vor
+• Kontaktiere die Entwickler direkt
+
+Lade HamQRG herunter und entdecke die Welt der Amateurfunk-Relais!

@@ -1,6 +1,21 @@
 source "https://rubygems.org"
 
 gem "fastlane"
+# Ruby 4.0+ no longer bundles these as default gems — required by fastlane.
+gem "logger"
+gem "ostruct"
+gem "mutex_m"
+gem "fiddle"
+gem "benchmark"
+gem "abbrev"
+gem "base64"
+gem "bigdecimal"
+gem "csv"
+gem "drb"
+gem "getoptlong"
+gem "observer"
+gem "rexml"
+gem "syslog"
 
 plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
 eval_gemfile(plugins_path) if File.exist?(plugins_path)

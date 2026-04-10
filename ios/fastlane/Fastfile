@@ -33,6 +33,28 @@ platform :ios do
     )
   end
 
+  desc "Push a new beta build to TestFlight for internal testers only"
+  lane :beta_internal do
+    ENV.delete('GEM_PATH')
+    ENV.delete('GEM_HOME')
+    Dir.chdir(root) { sh("flutter", "build", "ipa", "--release") }
+    upload_to_testflight(
+      ipa: Dir["#{root}/build/ios/ipa/*.ipa"].first,
+      distribute_external: false,
+      notify_external_testers: false,
+      uses_non_exempt_encryption: false,
+    )
+  end
+
+  desc "Update App Store metadata and localizations only (no binary upload)"
+  lane :update_metadata do
+    deliver(
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      force: true,
+    )
+  end
+
   desc "Push a new release build to the App Store"
   lane :release do
     ENV.delete('GEM_PATH')

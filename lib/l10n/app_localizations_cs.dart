@@ -1,0 +1,1651 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Czech (`cs`).
+class AppLocalizationsCs extends AppLocalizations {
+  AppLocalizationsCs([String locale = 'cs']) : super(locale);
+
+  @override
+  String get error => 'Chyba';
+
+  @override
+  String get error_message => 'Při načítání došlo k chybě';
+
+  @override
+  String get error_message_retry =>
+      'Při načítání došlo k chybě. Zkuste to prosím později';
+
+  @override
+  String get retry => 'Zkusit znovu';
+
+  @override
+  String get back => 'Zpět';
+
+  @override
+  String get loading => 'Načítání';
+
+  @override
+  String get details => 'Podrobnosti';
+
+  @override
+  String pages_number(Object number) {
+    return '$number stránek k prozkoumání';
+  }
+
+  @override
+  String get january => 'Leden';
+
+  @override
+  String get february => 'Únor';
+
+  @override
+  String get march => 'Březen';
+
+  @override
+  String get april => 'Duben';
+
+  @override
+  String get may => 'Květen';
+
+  @override
+  String get june => 'Červen';
+
+  @override
+  String get july => 'Červenec';
+
+  @override
+  String get august => 'Srpen';
+
+  @override
+  String get september => 'Září';
+
+  @override
+  String get october => 'Říjen';
+
+  @override
+  String get november => 'Listopad';
+
+  @override
+  String get december => 'Prosinec';
+
+  @override
+  String get logout => 'Odhlásit se';
+
+  @override
+  String get profile => 'Profil';
+
+  @override
+  String get settings => 'Nastavení';
+
+  @override
+  String get contact_us => 'Kontaktujte nás';
+
+  @override
+  String get error_opening_email => 'Při otevírání e-mailu došlo k chybě';
+
+  @override
+  String get register_now => 'Zaregistrujte se';
+
+  @override
+  String get tracking_permission_title => 'Podpořte aplikaci';
+
+  @override
+  String get tracking_permission_message =>
+      'Pro zlepšení vašeho zážitku a zobrazení relevantnějšího obsahu nám pomozte udržet aplikaci zdarma.\n\nKlepněte na Povolit pro podporu.';
+
+  @override
+  String get tracking_permission_next => 'Další';
+
+  @override
+  String get skip => 'Přeskočit';
+
+  @override
+  String get done => 'Hotovo';
+
+  @override
+  String get next => 'Další';
+
+  @override
+  String get joinCommunityTitle => 'Přidejte se k naší komunitě!';
+
+  @override
+  String get joinCommunityDescription =>
+      'Objevte výhody členství v komunitě na Telegramu:';
+
+  @override
+  String get benefitSupportMembers => 'Podpora od členů';
+
+  @override
+  String get benefitSuggestFeatures => 'Navrhujte nové funkce';
+
+  @override
+  String get benefitContactDevelopers => 'Kontakt s vývojáři';
+
+  @override
+  String get benefitExclusivePreviews => 'Exkluzivní náhledy a beta verze';
+
+  @override
+  String get benefitActiveCommunity => 'Aktivní komunita';
+
+  @override
+  String get joinNowButton => 'Přidejte se!';
+
+  @override
+  String get alreadyMemberButton => 'Už jsem členem';
+
+  @override
+  String get laterButton => 'Později';
+
+  @override
+  String get errorOpenTelegram => 'Chyba při otevírání Telegramu';
+
+  @override
+  String get disclaimerTitle => 'Zdroj dat';
+
+  @override
+  String get disclaimerDescription =>
+      'Data o převaděčích v této aplikaci pocházejí od IZ8WNH.\n\nPro další informace, stažení CSV souborů pro programování radiostanic nebo konzultaci dat nedostupných v této aplikaci navštivte oficiální stránky.';
+
+  @override
+  String get disclaimerVisitSite => 'Navštívit iz8wnh.it';
+
+  @override
+  String get disclaimerUnderstood => 'Rozumím';
+
+  @override
+  String get errorOpenDisclaimerSite => 'Chyba při otevírání webových stránek';
+
+  @override
+  String get repeatersMapTitle => 'Mapa převaděčů';
+
+  @override
+  String get repeatersListTitle => 'Seznam převaděčů';
+
+  @override
+  String get repeatersMapLoading => 'Načítání mapy převaděčů…';
+
+  @override
+  String get repeatersMapGenericError => 'Nepodařilo se načíst převaděče.';
+
+  @override
+  String get repeatersMapEmpty => 'V okolí nebyly nalezeny žádné převaděče.';
+
+  @override
+  String get repeatersSearchHint =>
+      'Hledat podle názvu, volacího znaku nebo frekvence MHz…';
+
+  @override
+  String get repeatersSearchEmpty => 'Žádné převaděče nebyly nalezeny.';
+
+  @override
+  String get repeatersSortDistance => 'Vzdálenost';
+
+  @override
+  String get repeatersSortLikes => 'Lajky';
+
+  @override
+  String get repeatersSortFrequency => 'Frekvence';
+
+  @override
+  String repeatersNearbyCount(int count) {
+    return '$count převaděčů v okolí';
+  }
+
+  @override
+  String repeatersResultsCount(int count) {
+    return '$count výsledků';
+  }
+
+  @override
+  String get repeatersMapRetry => 'Zkusit znovu';
+
+  @override
+  String get repeatersMapOpenSettings => 'Otevřít nastavení';
+
+  @override
+  String get repeatersMapPermissionMessage =>
+      'Povolte přístup k poloze pro zobrazení převaděčů ve vašem okolí.';
+
+  @override
+  String get repeatersMapPermissionPermanentlyDenied =>
+      'Oprávnění k poloze bylo trvale zamítnuto. Povolte ho v nastavení systému.';
+
+  @override
+  String get repeatersMapLocationServicesDisabled =>
+      'Zapněte služby určování polohy pro nalezení převaděčů v okolí.';
+
+  @override
+  String repeatersMapFound(int count) {
+    return '$count nalezených převaděčů';
+  }
+
+  @override
+  String get repeaterMode => 'Režim';
+
+  @override
+  String get repeaterModeAnalog => 'Analog';
+
+  @override
+  String get repeaterModeC4fm => 'C4FM';
+
+  @override
+  String get repeaterModeDstar => 'D-STAR';
+
+  @override
+  String get repeaterModeDmr => 'DMR';
+
+  @override
+  String get repeaterModeAllmode => 'Všechny režimy';
+
+  @override
+  String get repeaterModeEcholink => 'Echolink';
+
+  @override
+  String get repeaterModeAllstar => 'AllStar';
+
+  @override
+  String get repeaterModeWinlink => 'Winlink';
+
+  @override
+  String get repeaterFrequency => 'Frekvence';
+
+  @override
+  String get repeaterShift => 'Shift';
+
+  @override
+  String get repeaterCtcss => 'CTCSS';
+
+  @override
+  String get repeaterLocation => 'Poloha';
+
+  @override
+  String get repeaterDistance => 'Vzdálenost';
+
+  @override
+  String get repeaterViewFullDetails => 'Zobrazit úplné podrobnosti';
+
+  @override
+  String get repeatersMapReturnToLocation => 'Návrat na moji polohu';
+
+  @override
+  String clusterRepeatersTitle(int count) {
+    return '$count převaděčů na tomto místě';
+  }
+
+  @override
+  String get profileUnlockFeatures => 'Odemkněte všechny funkce';
+
+  @override
+  String get profileUnlockFeaturesDescription =>
+      'Zaregistrujte se a používejte hodnocení, ukládání oblíbených a podrobné statistiky.';
+
+  @override
+  String get profileSignUpOrLogin => 'Registrace nebo přihlášení';
+
+  @override
+  String get profileErrorOpeningEmail => 'Chyba při otevírání e-mailu';
+
+  @override
+  String get profileJoinTelegramCommunity =>
+      'Přidejte se ke komunitě na Telegramu';
+
+  @override
+  String get profileWelcomeTitle => 'Vítejte v HamQRG';
+
+  @override
+  String get profileWelcomeDescription =>
+      'Přidejte se k naší komunitě radioamatérů v Itálii.';
+
+  @override
+  String get profileEditProfile => 'Upravit profil';
+
+  @override
+  String get profileChangePhoto => 'Změnit fotografii';
+
+  @override
+  String get profileFirstName => 'Jméno';
+
+  @override
+  String get profileLastName => 'Příjmení';
+
+  @override
+  String get profileCallsign => 'Volací znak';
+
+  @override
+  String get profileRestartIdentificationTitle =>
+      'Potřebujete změnit svůj status? Můžete restartovat proces identifikace a přepnout z licencovaného operátora na SWL posluchače.';
+
+  @override
+  String get profileRestartIdentificationButton =>
+      'Restartovat proces identifikace';
+
+  @override
+  String get profileSaveChanges => 'Uložit změny';
+
+  @override
+  String get profileDangerZone => 'Nebezpečná zóna';
+
+  @override
+  String get profileDeleteAccount => 'Smazat účet';
+
+  @override
+  String get profileDeleteAccountConfirmTitle => 'Smazat účet';
+
+  @override
+  String get profileDeleteAccountConfirmMessage =>
+      'Opravdu chcete smazat svůj účet? Tuto akci nelze vrátit zpět.';
+
+  @override
+  String get profileDeleteAccountCancel => 'Zrušit';
+
+  @override
+  String get profileDeleteAccountConfirm => 'Smazat';
+
+  @override
+  String profileAppVersion(String version, String buildNumber) {
+    return 'Verze aplikace $version (Build $buildNumber)';
+  }
+
+  @override
+  String get profileSectionCommunity => 'Komunita a podpora';
+
+  @override
+  String get profileSectionSupport => 'Podpora';
+
+  @override
+  String profileVersion(String version, String buildNumber) {
+    return 'Verze: $version+$buildNumber';
+  }
+
+  @override
+  String profileVersionFormat(String version, String buildNumber) {
+    return 'Verze $version (Build $buildNumber)';
+  }
+
+  @override
+  String profileError(String error) {
+    return 'Chyba: $error';
+  }
+
+  @override
+  String get authJoinTitle => 'Připojte se k HamQRG';
+
+  @override
+  String get authUnlockFeatures => 'Přihlaste se a odemkněte všechny funkce!';
+
+  @override
+  String get authWhatYouGet => 'Co získáte:';
+
+  @override
+  String get authBenefitStatsTitle => 'Podrobné statistiky';
+
+  @override
+  String get authBenefitStatsDescription =>
+      'Sledujte svůj pokrok a zlepšujte se';
+
+  @override
+  String get authBenefitQuizTitle => 'Různé režimy kvízů';
+
+  @override
+  String get authBenefitQuizDescription =>
+      'Procvičujte v maratonu, tématických a dalších režimech.';
+
+  @override
+  String get authBenefitSyncTitle => 'Synchronizace';
+
+  @override
+  String get authBenefitSyncDescription => 'Přístup z jakéhokoli zařízení';
+
+  @override
+  String get authOrSignInWithEmail => 'Nebo se přihlaste e-mailem';
+
+  @override
+  String get authEnterEmail => 'Zadejte e-mail';
+
+  @override
+  String get authEnterPassword => 'Zadejte heslo';
+
+  @override
+  String get authForgotPassword => 'Zapomněli jste heslo?';
+
+  @override
+  String get authSignIn => 'Přihlásit se';
+
+  @override
+  String get authSignUp => 'Zaregistrovat se';
+
+  @override
+  String get authPasswordLengthError => 'Heslo musí být delší';
+
+  @override
+  String get authDontHaveAccount => 'Nemáte účet? Zaregistrujte se';
+
+  @override
+  String get authHaveAccount => 'Již máte účet? Přihlaste se';
+
+  @override
+  String get authBackToSignIn => 'Zpět na přihlášení';
+
+  @override
+  String get authUnexpectedError => 'Chyba ověřování: ';
+
+  @override
+  String get authValidEmailError => 'Zadejte platný e-mail';
+
+  @override
+  String get authSendPasswordReset => 'Odeslat obnovení hesla';
+
+  @override
+  String get authPasswordResetSent => 'Obnovení hesla odesláno';
+
+  @override
+  String get authVerifyEmailMessage =>
+      'Pro dokončení registrace ověřte svůj e-mail, zkontrolujte doručenou poštu.';
+
+  @override
+  String get authInvalidCredentials => 'Neplatný e-mail nebo heslo';
+
+  @override
+  String get authEmailNotConfirmed => 'Pro přihlášení ověřte svůj e-mail';
+
+  @override
+  String get authFirstName => 'Jméno';
+
+  @override
+  String get authFirstNameRequired => 'Jméno je povinné';
+
+  @override
+  String get authLastName => 'Příjmení';
+
+  @override
+  String get authLastNameRequired => 'Příjmení je povinné';
+
+  @override
+  String get authContinueAsGuest => 'Pokračovat jako host';
+
+  @override
+  String get commonAppNamePart1 => 'Ham';
+
+  @override
+  String get commonAppNamePart2 => 'QRG';
+
+  @override
+  String get commonAppTagline => 'Objevte převaděče ve vašem okolí';
+
+  @override
+  String get commonPoweredBy => 'POWERED BY IU4VRB';
+
+  @override
+  String get homeQuickAccess => 'Rychlý přístup';
+
+  @override
+  String get homeRepeaterList => 'Seznam převaděčů';
+
+  @override
+  String get homeMyFavorites => 'Moje oblíbené';
+
+  @override
+  String get homeNearby => 'V okolí';
+
+  @override
+  String get homeViewAll => 'Zobrazit vše';
+
+  @override
+  String get dashboardTabRepeaters => 'Převaděče';
+
+  @override
+  String get dashboardTabPota => 'POTA';
+
+  @override
+  String get dashboardNearbyEmpty => 'Žádné převaděče v okolí';
+
+  @override
+  String get dashboardViewAllRepeaters => 'Zobrazit všechny převaděče';
+
+  @override
+  String get dashboardViewAllPotaSpots => 'Zobrazit všechny POTA spoty';
+
+  @override
+  String homeStations(int count) {
+    return '$count stanic';
+  }
+
+  @override
+  String homeSaved(int count) {
+    return '$count uložených';
+  }
+
+  @override
+  String get homeActive => 'Aktivní';
+
+  @override
+  String get homeIdle => 'Neaktivní';
+
+  @override
+  String get homeNavHome => 'Domů';
+
+  @override
+  String get homeNavList => 'Seznam';
+
+  @override
+  String get homeNavFavorites => 'Oblíbené';
+
+  @override
+  String get homeNavMap => 'Mapa';
+
+  @override
+  String get homeNavProfile => 'Profil';
+
+  @override
+  String get favoritesTitle => 'Moje oblíbené';
+
+  @override
+  String get favoritesSearchHint => 'Hledat uložené převaděče...';
+
+  @override
+  String get favoritesFilterAllSaved => 'Vše uložené';
+
+  @override
+  String get favoritesEmpty => 'Žádné uložené převaděče';
+
+  @override
+  String get favoritesEmptyDescription =>
+      'Přidejte převaděče do oblíbených a uvidíte je zde';
+
+  @override
+  String favoritesShowing(int showing, int total) {
+    return 'Zobrazeno $showing z $total oblíbených stanic';
+  }
+
+  @override
+  String get favoritesRemove => 'Odebrat z oblíbených';
+
+  @override
+  String get favoritesAdd => 'Přidat do oblíbených';
+
+  @override
+  String get repeaterDetailSave => 'Uložit';
+
+  @override
+  String get repeaterDetailShare => 'Sdílet';
+
+  @override
+  String get repeaterDetailReport => 'Nahlásit';
+
+  @override
+  String get repeaterDetailTotalLikes => 'Celkem lajků';
+
+  @override
+  String get repeaterDetailReports1Yr => 'Hlášení (1 rok)';
+
+  @override
+  String get repeaterDetailHealthScore => 'Skóre stavu';
+
+  @override
+  String get repeaterDetailExcellent => 'Vynikající';
+
+  @override
+  String get repeaterDetailGood => 'Dobrý';
+
+  @override
+  String get repeaterDetailFair => 'Uspokojivý';
+
+  @override
+  String get repeaterDetailToVerify => 'K ověření';
+
+  @override
+  String repeaterDetailScoreCalculated(int count) {
+    return 'Skóre vypočítáno z $count negativních hlášení za poslední rok';
+  }
+
+  @override
+  String get repeaterDetailLastLike => 'Poslední lajk';
+
+  @override
+  String get repeaterDetailLastDownReport => 'Poslední negativní hlášení';
+
+  @override
+  String get repeaterDetailTechnicalData => 'Technické údaje';
+
+  @override
+  String get repeaterDetailFrequency => 'Frekvence';
+
+  @override
+  String get repeaterDetailShift => 'Shift';
+
+  @override
+  String get repeaterDetailSubtone => 'Subtón (SQL)';
+
+  @override
+  String get repeaterDetailMode => 'Režim';
+
+  @override
+  String get repeaterDetailLocation => 'Poloha';
+
+  @override
+  String repeaterDetailAway(String distance) {
+    return '$distance daleko';
+  }
+
+  @override
+  String get repeaterDetailCommunityReports => 'Hlášení komunity';
+
+  @override
+  String get repeaterDetailUpdateStatusFeedback =>
+      'Aktualizovat stav a zpětnou vazbu';
+
+  @override
+  String get repeaterDetailEquipment => 'Vybavení';
+
+  @override
+  String get repeaterDetailEquipmentRequired => 'Vybavení *';
+
+  @override
+  String get repeaterDetailAccessModes => 'Režimy přístupu';
+
+  @override
+  String get repeaterDetailNetwork => 'Síť';
+
+  @override
+  String get repeaterDetailLocationField => 'Poloha';
+
+  @override
+  String get repeaterDetailLocationRequired => 'Poloha *';
+
+  @override
+  String get repeaterDetailComment => 'Komentář';
+
+  @override
+  String get repeaterDetailCommentOptional => 'Komentář (volitelný)';
+
+  @override
+  String get repeaterDetailCommentPlaceholder =>
+      'Kvalita signálu, hlášení o zvuku nebo obecné komentáře...';
+
+  @override
+  String get repeaterDetailReportDown => 'Nahlásit problém';
+
+  @override
+  String get repeaterDetailCheckinLike => 'Check-in a lajk';
+
+  @override
+  String get repeaterDetailYourFeedback => 'Vaše zpětná vazba';
+
+  @override
+  String get repeaterDetailPostedJustNow => 'Právě přidáno';
+
+  @override
+  String get repeaterDetailDeleteEntry => 'Smazat záznam';
+
+  @override
+  String repeaterDetailViewAllReports(int count) {
+    return 'Zobrazit všech $count hlášení';
+  }
+
+  @override
+  String get repeaterDetailStationPortable => 'Přenosná';
+
+  @override
+  String get repeaterDetailStationMobile => 'Mobilní';
+
+  @override
+  String get repeaterDetailStationFixed => 'Pevná';
+
+  @override
+  String get repeaterDetailLike => 'Lajk';
+
+  @override
+  String get repeaterDetailReportLabel => 'Hlášení';
+
+  @override
+  String get repeaterDetailSaved => 'Uloženo';
+
+  @override
+  String get repeaterDetailShareMessage =>
+      'Podívejte se na tento převaděč na HamQRG!';
+
+  @override
+  String get repeaterDetailReportDescription =>
+      'Funkce hlášení bude brzy k dispozici. Budete moci nahlásit nesprávné informace nebo problémy s tímto převaděčem.';
+
+  @override
+  String get commonClose => 'Zavřít';
+
+  @override
+  String get favorite => 'Oblíbené';
+
+  @override
+  String get accessConfiguration => 'Konfigurace přístupu';
+
+  @override
+  String get noAccessConfiguration => 'Žádná konfigurace není k dispozici';
+
+  @override
+  String get repeaterDetailAddFeedback => 'Přidat zpětnou vazbu';
+
+  @override
+  String get repeaterDetailOthersReports => 'Hlášení ostatních uživatelů';
+
+  @override
+  String get repeaterDetailRemove => 'Odebrat';
+
+  @override
+  String get repeaterDetailSelectAccess => 'Vybrat přístup';
+
+  @override
+  String repeaterDetailDistanceWarning(int distance) {
+    return 'Pro odeslání zpětné vazby musíte být do $distance km od převaděče.';
+  }
+
+  @override
+  String get repeaterDetailInteractive => 'Interaktivní';
+
+  @override
+  String get repeaterDetailLogYourSignal => 'Zaznamenejte svůj signál';
+
+  @override
+  String get repeaterDetailUsedEquipment => 'Použité vybavení';
+
+  @override
+  String get repeaterDetailYourLocation => 'Vaše poloha';
+
+  @override
+  String get repeaterDetailLocationPlaceholder =>
+      'Kde jste byli? (např. Praha)';
+
+  @override
+  String get repeaterDetailLocationSelectHint => 'Vyberte místo z návrhů';
+
+  @override
+  String get feedbackDistanceConfirmTitle => 'Potvrzení odeslání';
+
+  @override
+  String feedbackDistanceConfirmMessage(String distance) {
+    return 'Vybrané místo je $distance km od převaděče. Potvrzujete, že chcete odeslat tuto zpětnou vazbu na vlastní odpovědnost?';
+  }
+
+  @override
+  String get feedbackDistanceConfirmButton => 'Potvrdit';
+
+  @override
+  String get feedbackDistanceConfirmCancel => 'Zrušit';
+
+  @override
+  String get repeaterDetailSelectAccessInstance => 'Vybrat instanci přístupu';
+
+  @override
+  String get repeaterDetailSignalObservations => 'Pozorování signálu';
+
+  @override
+  String get repeaterDetailSignalObservationsPlaceholder =>
+      'Jaká byla kvalita zvuku?';
+
+  @override
+  String get repeaterDetailSendLike => 'Odeslat lajk';
+
+  @override
+  String get repeaterDetailReportIssue => 'Nahlásit problém';
+
+  @override
+  String get repeaterDetailRecentActivity => 'Nedávná aktivita';
+
+  @override
+  String get reportIssueTitle => 'Hlášení';
+
+  @override
+  String get reportIssueHeadline => 'Pomozte nám udržet data přesná';
+
+  @override
+  String get reportIssueDescription =>
+      'Našli jste u tohoto převaděče něco špatného nebo chybějícího? Dejte nám vědět, co je třeba změnit, a my to ověříme.';
+
+  @override
+  String get reportIssueWhatToCorrect =>
+      'Co byste chtěli opravit nebo doplnit?';
+
+  @override
+  String get reportIssuePlaceholder =>
+      'Např. CTCSS tón se změnil na 88,5 Hz, nebo poloha je mírně severněji, správce je...';
+
+  @override
+  String get reportIssueVerifiedTitle => 'Ověřená podání';
+
+  @override
+  String get reportIssueVerifiedDescription =>
+      'Vaše hlášení bude posouzeno regionálním koordinátorem před aktualizací veřejné databáze. Děkujeme za váš příspěvek komunitě.';
+
+  @override
+  String get reportIssueConfirmCheckbox =>
+      'Potvrzuji, že tyto informace jsou správné na základě mého pozorování.';
+
+  @override
+  String get reportIssueSubmit => 'Odeslat';
+
+  @override
+  String get reportIssueMinChars => 'Vyžadováno minimálně 10 znaků';
+
+  @override
+  String get reportIssueMaxChars => 'Maximálně 2000 znaků';
+
+  @override
+  String get reportIssueSuccess => 'Hlášení úspěšně odesláno';
+
+  @override
+  String get reportIssueError => 'Chyba při odesílání hlášení';
+
+  @override
+  String get registrationPromptTitle => 'Odemkněte plný potenciál';
+
+  @override
+  String get registrationPromptDescription =>
+      'Přidejte se ke komunitě radioamatérů a posuňte svůj zážitek na novou úroveň.';
+
+  @override
+  String get registrationBenefitInteractTitle => 'Interakce';
+
+  @override
+  String get registrationBenefitInteractDescription =>
+      'Hodnoťte převaděče a zanechávejte komentáře pro ostatní.';
+
+  @override
+  String get registrationBenefitFavoritesTitle => 'Oblíbené';
+
+  @override
+  String get registrationBenefitFavoritesDescription =>
+      'Uložte si nejpoužívanější frekvence a převaděče.';
+
+  @override
+  String get registrationBenefitLogbookTitle => 'Deník';
+
+  @override
+  String get registrationBenefitLogbookDescription =>
+      'Sledujte svá QSO a uchovávejte osobní historii.';
+
+  @override
+  String get registrationSignInApple => 'Přihlásit se přes Apple';
+
+  @override
+  String get registrationSignInGoogle => 'Přihlásit se přes Google';
+
+  @override
+  String get registrationPromptFooter =>
+      'Registrace zdarma. Pro prohlížení veřejných dat není nutná licence.';
+
+  @override
+  String get postLoginOnboardingWelcome => 'Vítejte v';
+
+  @override
+  String get postLoginOnboardingQuestion => 'Jste licencovaný radioamatér?';
+
+  @override
+  String get postLoginOnboardingHelpText =>
+      'Toto nám pomáhá přizpůsobit váš zážitek a zobrazit správné frekvence.';
+
+  @override
+  String get postLoginOnboardingYesLicensed => 'Ano, jsem';
+
+  @override
+  String get postLoginOnboardingNoListener => 'Ne, jsem jen posluchač';
+
+  @override
+  String get postLoginOnboardingCallsignTitle => 'Identifikujte se';
+
+  @override
+  String get postLoginOnboardingCallsignSubtitle =>
+      'Zadejte svůj oficiální volací znak pro přístup k síťovým funkcím.';
+
+  @override
+  String get postLoginOnboardingCallsignLabel => 'Volací znak';
+
+  @override
+  String get postLoginOnboardingCallsignHint => 'Např. OK1XYZ';
+
+  @override
+  String get postLoginOnboardingComplete => 'Dokončit profil';
+
+  @override
+  String get postLoginOnboardingBack => 'Zpět';
+
+  @override
+  String get postLoginOnboardingChangeInSettings =>
+      'Toto můžete změnit později v nastavení.';
+
+  @override
+  String get postLoginOnboardingSwlTitle => 'Volací znak SWL';
+
+  @override
+  String get postLoginOnboardingSwlQuestion =>
+      'Máte oficiální volací znak SWL?';
+
+  @override
+  String get postLoginOnboardingSwlHelpText =>
+      'Volací znaky posluchačů krátkých vln pomáhají s identifikací v globální monitorovací komunitě.';
+
+  @override
+  String get postLoginOnboardingSwlYes => 'Ano, mám';
+
+  @override
+  String get postLoginOnboardingSwlNo => 'Ne, nemám';
+
+  @override
+  String get postLoginOnboardingSwlEnterCallsign => 'Zadejte volací znak';
+
+  @override
+  String get postLoginOnboardingSwlCallsignHint => 'Např. OK1-12345-SWL';
+
+  @override
+  String get timeAgoJustNow => 'právě teď';
+
+  @override
+  String timeAgoMinutes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'před $count minutami',
+      few: 'před $count minutami',
+      one: 'před 1 minutou',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'před $count hodinami',
+      few: 'před $count hodinami',
+      one: 'před 1 hodinou',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'před $count dny',
+      few: 'před $count dny',
+      one: 'před 1 dnem',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'před $count týdny',
+      few: 'před $count týdny',
+      one: 'před 1 týdnem',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'před $count měsíci',
+      few: 'před $count měsíci',
+      one: 'před 1 měsícem',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String timeAgoYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'před $count lety',
+      few: 'před $count lety',
+      one: 'před 1 rokem',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get profileThemeMode => 'Vzhled';
+
+  @override
+  String get profileThemeModeSystem => 'Systémový';
+
+  @override
+  String get profileThemeModeLight => 'Světlý';
+
+  @override
+  String get profileThemeModeDark => 'Tmavý';
+
+  @override
+  String get repeaterDetailBeFirstFeedback =>
+      'Buďte první, kdo zanechá zpětnou vazbu k tomuto převaděči!';
+
+  @override
+  String get repeaterDetailDistanceFromYou => 'Vzdálenost od vás';
+
+  @override
+  String get repeaterDistanceMapNoLocation => 'Poloha není k dispozici';
+
+  @override
+  String get repeaterDetailNever => 'Nikdy';
+
+  @override
+  String get repeaterDetailInfo => 'Informace';
+
+  @override
+  String get repeaterDetailSource => 'Zdroj';
+
+  @override
+  String get repeaterDetailManager => 'Správce';
+
+  @override
+  String get repeaterDetailSuggestManager =>
+      'Znáte správce převaděče? Nahlaste to!';
+
+  @override
+  String get repeaterDetailViewFeedbackMap => 'Mapa zpětné vazby';
+
+  @override
+  String get repeaterDetailViewFeedbackMapSubtitle =>
+      'Podívejte se, kde byly zaznamenány lajky a hlášení';
+
+  @override
+  String get repeaterDetailAltimetricProfile => 'Výškový profil';
+
+  @override
+  String get repeaterDetailAltimetricProfileSubtitle =>
+      'Zobrazit profil terénu mezi vámi a převaděčem';
+
+  @override
+  String get repeaterDetailLosClear =>
+      'Přímá viditelnost mezi vámi a převaděčem je volná';
+
+  @override
+  String get repeaterDetailLosObstructed =>
+      'Přímá viditelnost je blokována terénem';
+
+  @override
+  String get repeaterDetailTerrainProfile => 'Profil terénu';
+
+  @override
+  String get repeaterDetailLineOfSight => 'Přímá viditelnost';
+
+  @override
+  String get repeaterDetailTotalDistance => 'Vzdálenost';
+
+  @override
+  String get repeaterDetailRepeaterElevation => 'Nadmořská výška převaděče';
+
+  @override
+  String get repeaterDetailYourElevation => 'Vaše nadmořská výška';
+
+  @override
+  String get repeaterDetailYou => 'Vy';
+
+  @override
+  String get repeaterDetailRepeaterLabel => 'Převaděč';
+
+  @override
+  String get repeaterDetailFunFacts => 'Věděli jste?';
+
+  @override
+  String get repeaterDetailWavelength => 'Vlnová délka';
+
+  @override
+  String repeaterDetailWavelengthValue(String value) {
+    return 'Vlnová délka tohoto převaděče je $value';
+  }
+
+  @override
+  String get repeaterDetailOscillations => 'Kmitů za sekundu';
+
+  @override
+  String repeaterDetailOscillationsValue(String value) {
+    return 'Signál kmitá $value krát za sekundu';
+  }
+
+  @override
+  String get repeaterDetailPropagationTime => 'Doba šíření';
+
+  @override
+  String repeaterDetailPropagationTimeValue(String value) {
+    return 'Váš signál potřebuje $value k dosažení převaděče';
+  }
+
+  @override
+  String get repeaterDetailWaveCycles => 'Vlnové cykly při přenosu';
+
+  @override
+  String repeaterDetailWaveCyclesValue(String value) {
+    return 'Vlna dokončí $value úplných cyklů při přenosu';
+  }
+
+  @override
+  String get userReportsTitle => 'Moje hlášení';
+
+  @override
+  String get userReportsFilterAll => 'Vše';
+
+  @override
+  String get userReportsFilterOpen => 'Otevřená';
+
+  @override
+  String get userReportsFilterClosed => 'Uzavřená';
+
+  @override
+  String get userReportsEmpty => 'Žádná odeslaná hlášení';
+
+  @override
+  String get userReportsEmptyDescription =>
+      'Vaše hlášení o převaděčích se zobrazí zde';
+
+  @override
+  String get userReportsEmptyFiltered => 'Žádná hlášení s tímto filtrem';
+
+  @override
+  String get userReportsStatusPending => 'Čeká na zpracování';
+
+  @override
+  String get userReportsStatusReviewed => 'Kontrolováno';
+
+  @override
+  String get userReportsStatusResolved => 'Vyřešeno';
+
+  @override
+  String get userReportsStatusRejected => 'Zamítnuto';
+
+  @override
+  String get userReportsRetryBanner => 'Nelze aktualizovat seznam';
+
+  @override
+  String get userReportsProfileTile => 'Moje hlášení';
+
+  @override
+  String get userReportsProfileTileSubtitle => 'Zobrazit stav vašich hlášení';
+
+  @override
+  String get userReportsError => 'Chyba při načítání hlášení';
+
+  @override
+  String get userReportsCoordinatorResponse => 'Odpověď koordinátora';
+
+  @override
+  String get potaTitle => 'POTA spoty';
+
+  @override
+  String get potaSearchHint => 'Hledat podle aktivátora, parku nebo režimu…';
+
+  @override
+  String get potaNoSpots => 'Momentálně nejsou žádné aktivní POTA spoty.';
+
+  @override
+  String get potaLoadError => 'Nepodařilo se načíst POTA spoty';
+
+  @override
+  String get potaRetry => 'Zkusit znovu';
+
+  @override
+  String get potaViewAll => 'Zobrazit vše';
+
+  @override
+  String get potaActivator => 'Aktivátor';
+
+  @override
+  String get potaFrequency => 'Frekvence';
+
+  @override
+  String get potaMode => 'Režim';
+
+  @override
+  String get potaPark => 'Park';
+
+  @override
+  String get potaReference => 'Reference';
+
+  @override
+  String get potaSpotter => 'Spatřil';
+
+  @override
+  String get potaComments => 'Komentáře';
+
+  @override
+  String get potaLastSpotted => 'Naposledy spatřen';
+
+  @override
+  String get potaOpenQrz => 'QRZ.com';
+
+  @override
+  String get potaQrzError => 'Nepodařilo se otevřít QRZ.com';
+
+  @override
+  String get potaParkWebsite => 'Web parku';
+
+  @override
+  String get potaParkType => 'Typ parku';
+
+  @override
+  String get potaLocation => 'Poloha';
+
+  @override
+  String get potaCountry => 'Země';
+
+  @override
+  String get potaFirstActivation => 'První aktivace';
+
+  @override
+  String get potaBand => 'Pásmo';
+
+  @override
+  String potaDistanceAway(String distance) {
+    return '$distance daleko';
+  }
+
+  @override
+  String potaSpotsCount(int count) {
+    return '$count aktivních spotů';
+  }
+
+  @override
+  String get potaFilterAll => 'Vše';
+
+  @override
+  String get potaFilterBand => 'Pásmo';
+
+  @override
+  String get potaFilterMode => 'Režim';
+
+  @override
+  String get potaSortByTime => 'Nejnovější';
+
+  @override
+  String get potaSortByDistance => 'Nejbližší';
+
+  @override
+  String get profileLanguage => 'Jazyk';
+
+  @override
+  String get profileLanguageSystem => 'Systémový';
+
+  @override
+  String get profileLanguageItalian => 'Italiano';
+
+  @override
+  String get profileLanguageEnglish => 'English';
+
+  @override
+  String get profileLanguageSpanish => 'Español';
+
+  @override
+  String get profileLanguageFrench => 'Français';
+
+  @override
+  String get profileLanguageGerman => 'Deutsch';
+
+  @override
+  String get profileLanguagePortuguese => 'Português';
+
+  @override
+  String get profileLanguageDutch => 'Nederlands';
+
+  @override
+  String get profileLanguagePolish => 'Polski';
+
+  @override
+  String get profileLanguageRomanian => 'Română';
+
+  @override
+  String get profileLanguageSlovenian => 'Slovenščina';
+
+  @override
+  String get profileLanguageCroatian => 'Hrvatski';
+
+  @override
+  String get profileLanguageHungarian => 'Magyar';
+
+  @override
+  String get profileLanguageCzech => 'Čeština';
+
+  @override
+  String get profileLanguageSlovak => 'Slovenčina';
+
+  @override
+  String get profileLanguageSerbian => 'Srpski';
+
+  @override
+  String get onboardingSkip => 'Přeskočit';
+
+  @override
+  String get onboardingGetStarted => 'Začít';
+
+  @override
+  String get onboardingNext => 'Další';
+
+  @override
+  String get onboardingWelcomeTitle1 => 'Najděte převaděče ve svém okolí';
+
+  @override
+  String get onboardingWelcomeSubtitle1 =>
+      'Objevte aktivní převaděče ve svém okolí s frekvencemi, tóny a technickými detaily.';
+
+  @override
+  String get onboardingWelcomeCredits => 'Data o převaděčích poskytuje IZ8WNH';
+
+  @override
+  String get onboardingWelcomeTitle2 => 'Filtrujte podle režimu';
+
+  @override
+  String get onboardingWelcomeSubtitle2 =>
+      'Analog, DMR, C4FM, D-STAR — najděte ten správný převaděč okamžitě.';
+
+  @override
+  String get onboardingWelcomeTitle3 => 'POTA spoty v reálném čase';
+
+  @override
+  String get onboardingWelcomeSubtitle3 =>
+      'Sledujte aktivace Parks on the Air s živými aktualizacemi, filtry pásem a vzdáleností.';
+
+  @override
+  String get onboardingWelcomeTitle4 => 'Uložte si oblíbené';
+
+  @override
+  String get onboardingWelcomeSubtitle4 =>
+      'Mějte nejpoužívanější převaděče po ruce pro rychlý přístup.';
+
+  @override
+  String get onboardingLocationTitle => 'Poloha';
+
+  @override
+  String get onboardingLocationSubtitle =>
+      'Vaši polohu používáme k zobrazení převaděčů a POTA aktivací ve vašem okolí.';
+
+  @override
+  String get onboardingLocationEnable => 'Povolit polohu';
+
+  @override
+  String get onboardingLocationSkip => 'Teď ne';
+
+  @override
+  String get onboardingDiscoveryTitle => 'Váš první převaděč';
+
+  @override
+  String get onboardingDiscoverySubtitle => 'Tady je to, co je ve vašem okolí!';
+
+  @override
+  String get onboardingDiscoveryViewDetails => 'Zobrazit podrobnosti';
+
+  @override
+  String get onboardingDiscoveryViewSpot => 'Zobrazit spot';
+
+  @override
+  String get onboardingDiscoveryExploreMap => 'Prozkoumat mapu';
+
+  @override
+  String get onboardingDiscoveryNoLocation =>
+      'Prozkoumejte mapu a najděte převaděče a POTA aktivace';
+
+  @override
+  String get onboardingDiscoveryNearbyRepeater => 'Převaděč v okolí';
+
+  @override
+  String get onboardingDiscoveryLivePota => 'Živý POTA spot';
+
+  @override
+  String get onboardingDiscoveryNoRepeaters =>
+      'V okolí nebyly nalezeny žádné převaděče';
+
+  @override
+  String get onboardingTelegramTitle => 'Přidejte se ke komunitě';
+
+  @override
+  String get onboardingTelegramSubtitle =>
+      'Připojte se ke skupině HamQRG na Telegramu a získejte aktualizace, nahlašujte převaděče a poznávejte další radioamatéry.';
+
+  @override
+  String get onboardingTelegramJoin => 'Připojit se ke skupině na Telegramu';
+
+  @override
+  String get onboardingTelegramLater => 'Možná později';
+
+  @override
+  String get onboardingTelegramAlreadyMember => 'Už jsem členem';
+
+  @override
+  String get addRepeaterProfileTile => 'Navrhnout nový převaděč';
+
+  @override
+  String get addRepeaterProfileTileSubtitle =>
+      'Nahlásit převaděč, který dosud není v seznamu';
+
+  @override
+  String get addRepeaterTitle => 'Nový převaděč';
+
+  @override
+  String get addRepeaterHeadline => 'Nahlásit chybějící převaděč';
+
+  @override
+  String get addRepeaterDescription =>
+      'Vyplňte údaje o převaděči, který chcete přidat. Podání bude před zveřejněním zkontrolováno.';
+
+  @override
+  String get addRepeaterSectionRepeater => 'Údaje o převaděči';
+
+  @override
+  String get addRepeaterSectionAccesses => 'Přístupy';
+
+  @override
+  String get addRepeaterSectionLocation => 'Poloha';
+
+  @override
+  String get addRepeaterSectionNotes => 'Poznámky';
+
+  @override
+  String get addRepeaterName => 'Název';
+
+  @override
+  String get addRepeaterNameHint => 'Např. Sněžka';
+
+  @override
+  String get addRepeaterCallsign => 'Volací znak';
+
+  @override
+  String get addRepeaterCallsignHint => 'Např. OK0AB';
+
+  @override
+  String get addRepeaterNameOrCallsignRequired =>
+      'Zadejte alespoň název nebo volací znak';
+
+  @override
+  String get addRepeaterFrequency => 'Frekvence (MHz)';
+
+  @override
+  String get addRepeaterFrequencyHint => 'Např. 145.000 nebo 145,000';
+
+  @override
+  String get addRepeaterFrequencyRequired => 'Frekvence je povinná';
+
+  @override
+  String get addRepeaterFrequencyInvalid => 'Neplatná frekvence';
+
+  @override
+  String get addRepeaterShift => 'Shift (MHz)';
+
+  @override
+  String get addRepeaterShiftHint => 'Např. -0.600 nebo -0,600';
+
+  @override
+  String get addRepeaterRegion => 'Kraj';
+
+  @override
+  String get addRepeaterRegionHint => 'Např. Středočeský kraj';
+
+  @override
+  String get addRepeaterProvinceCode => 'Okres';
+
+  @override
+  String get addRepeaterProvinceCodeHint => 'Např. PH';
+
+  @override
+  String get addRepeaterLocality => 'Obec';
+
+  @override
+  String get addRepeaterLocalityHint => 'Např. Příbram';
+
+  @override
+  String get addRepeaterLatitude => 'Zeměpisná šířka';
+
+  @override
+  String get addRepeaterLatitudeHint => 'Např. 49.7437';
+
+  @override
+  String get addRepeaterLongitude => 'Zeměpisná délka';
+
+  @override
+  String get addRepeaterLongitudeHint => 'Např. 13.3733';
+
+  @override
+  String get addRepeaterLocator => 'Lokátor';
+
+  @override
+  String get addRepeaterLocatorHint => 'Např. JN79DW';
+
+  @override
+  String get addRepeaterNotes => 'Další poznámky';
+
+  @override
+  String get addRepeaterNotesHint => 'Další informace o převaděči...';
+
+  @override
+  String get addRepeaterAddAccess => 'Přidat přístup';
+
+  @override
+  String get addRepeaterRemoveAccess => 'Odebrat';
+
+  @override
+  String get addRepeaterAccessMode => 'Režim';
+
+  @override
+  String get addRepeaterAccessCtcssTx => 'CTCSS TX (Hz)';
+
+  @override
+  String get addRepeaterAccessCtcssTxHint => 'Např. 88.5';
+
+  @override
+  String get addRepeaterAccessCtcssRx => 'CTCSS RX (Hz)';
+
+  @override
+  String get addRepeaterAccessCtcssRxHint => 'Např. 88.5';
+
+  @override
+  String get addRepeaterAccessDcsCode => 'DCS kód';
+
+  @override
+  String get addRepeaterAccessDcsCodeHint => 'Např. 23';
+
+  @override
+  String get addRepeaterAccessColorCode => 'Color Code';
+
+  @override
+  String get addRepeaterAccessColorCodeHint => 'Např. 1';
+
+  @override
+  String get addRepeaterAccessTalkgroup => 'Talkgroup';
+
+  @override
+  String get addRepeaterAccessTalkgroupHint => 'Např. 222801';
+
+  @override
+  String get addRepeaterAccessDgId => 'DG-ID';
+
+  @override
+  String get addRepeaterAccessDgIdHint => 'Např. 0';
+
+  @override
+  String get addRepeaterAccessNodeId => 'Node ID';
+
+  @override
+  String get addRepeaterAccessNodeIdHint => 'Např. 1234';
+
+  @override
+  String get addRepeaterAccessNetworkName => 'Název sítě';
+
+  @override
+  String get addRepeaterAccessNetworkNameHint => 'Např. BM Italia';
+
+  @override
+  String get addRepeaterAccessNotes => 'Poznámky k přístupu';
+
+  @override
+  String get addRepeaterAccessNotesHint =>
+      'Poznámky specifické pro tento přístup...';
+
+  @override
+  String get addRepeaterConfirmCheckbox =>
+      'Potvrzuji, že tyto informace jsou podle mého nejlepšího vědomí správné.';
+
+  @override
+  String get addRepeaterVerifiedTitle => 'Ověřené podání';
+
+  @override
+  String get addRepeaterVerifiedDescription =>
+      'Vaše podání bude zkontrolováno týmem před zveřejněním v databázi.';
+
+  @override
+  String get addRepeaterSubmit => 'Odeslat';
+
+  @override
+  String get addRepeaterSuccess => 'Podání úspěšně odesláno!';
+
+  @override
+  String get addRepeaterError => 'Chyba při odesílání podání';
+
+  @override
+  String get addRepeaterAtLeastOneAccess => 'Přidejte alespoň jeden přístup';
+
+  @override
+  String addRepeaterAccessNumber(int number) {
+    return 'Přístup $number';
+  }
+
+  @override
+  String get changelog1017PotaSpots =>
+      'POTA spoty v reálném čase s mapou a detaily parků';
+
+  @override
+  String get changelog1017SubmitRepeater =>
+      'Navrhněte nový převaděč přímo z aplikace';
+
+  @override
+  String get changelog1017MultiLanguage =>
+      'Aplikace dostupná v angličtině, španělštině a francouzštině';
+
+  @override
+  String get changelog1017Onboarding => 'Nový zážitek při prvním spuštění';
+
+  @override
+  String get changelog1017ReportAnonymous => 'Hlášení dostupná bez registrace';
+
+  @override
+  String get changelogTitle => 'Co je nového';
+
+  @override
+  String get changelogSubtitle => 'Zde je přehled novinek v této verzi';
+
+  @override
+  String get changelogCategoryAdded => 'Nové';
+
+  @override
+  String get changelogCategoryImproved => 'Vylepšeno';
+
+  @override
+  String get changelogCategoryFixed => 'Opraveno';
+
+  @override
+  String get changelogDismiss => 'Rozumím!';
+}

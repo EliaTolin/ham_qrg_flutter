@@ -1,0 +1,4 @@
+enum PotaSpotsSortOrder {
+  time,
+  distance,
+}

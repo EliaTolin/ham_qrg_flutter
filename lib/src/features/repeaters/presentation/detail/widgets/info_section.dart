@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/router/app_router.dart';
-import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -76,12 +75,7 @@ class InfoSection extends ConsumerWidget {
   }
 
   Future<void> _onSuggestManagerTap(BuildContext context, WidgetRef ref) async {
-    final isAuthenticated = await requireAuthentication(context, ref);
-    if (!isAuthenticated) return;
-
-    if (context.mounted) {
-      await context.router.push(ReportIssueRoute(repeaterId: repeater.id));
-    }
+    await context.router.push(ReportIssueRoute(repeaterId: repeater.id));
   }
 }
 

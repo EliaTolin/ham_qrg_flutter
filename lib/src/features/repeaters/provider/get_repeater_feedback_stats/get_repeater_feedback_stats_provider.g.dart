@@ -68,7 +68,7 @@ final class GetRepeaterFeedbackStatsProvider extends $FunctionalProvider<
 }
 
 String _$getRepeaterFeedbackStatsHash() =>
-    r'f479c527dfa47405042c90236c11200167a7489e';
+    r'4b852a6632ca3f839d93c052bdad0fc3a0483884';
 
 final class GetRepeaterFeedbackStatsFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<RepeaterFeedbackStats?>, String> {

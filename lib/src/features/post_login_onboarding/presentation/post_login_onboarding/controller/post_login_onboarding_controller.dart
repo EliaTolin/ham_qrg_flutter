@@ -10,7 +10,24 @@ part 'post_login_onboarding_controller.g.dart';
 class PostLoginOnboardingController extends _$PostLoginOnboardingController {
   @override
   PostLoginOnboardingState build() {
+    _tryInitFromProfile();
     return const PostLoginOnboardingState();
+  }
+
+  /// If the user already has a userType but no callsign,
+  /// skip user type selection and go directly to callsign entry.
+  Future<void> _tryInitFromProfile() async {
+    try {
+      final profile = await ref.read(getProfileProvider.future);
+      if (profile.userType != null && profile.callsign == null) {
+        state = state.copyWith(
+          selectedUserType: profile.userType,
+          currentStep: 1,
+        );
+      }
+    } catch (_) {
+      // New user or error — start from step 0
+    }
   }
 
   void selectUserType(UserType userType) {

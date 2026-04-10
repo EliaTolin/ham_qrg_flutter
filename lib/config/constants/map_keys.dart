@@ -19,4 +19,13 @@ abstract final class MapKeys {
 
   /// Layer ID for unclustered repeater points
   static const String unclusteredPointLayer = 'repeaters-unclustered';
+
+  /// Source ID for POTA spots GeoJSON data
+  static const String potaSource = 'pota-source';
+
+  /// Layer ID for POTA spot markers
+  static const String potaLayer = 'pota-spots';
+
+  /// Image ID for POTA logo marker
+  static const String potaLogoImage = 'pota-logo';
 }

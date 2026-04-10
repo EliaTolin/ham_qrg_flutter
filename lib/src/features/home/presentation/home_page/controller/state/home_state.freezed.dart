@@ -14,8 +14,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$HomeState {
-  bool get showTelegram;
-  bool get showDisclaimer;
+  bool get showTelegramRePrompt;
   bool get needToExtraConfig;
 
   /// Create a copy of HomeState
@@ -30,21 +29,19 @@ mixin _$HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is HomeState &&
-            (identical(other.showTelegram, showTelegram) ||
-                other.showTelegram == showTelegram) &&
-            (identical(other.showDisclaimer, showDisclaimer) ||
-                other.showDisclaimer == showDisclaimer) &&
+            (identical(other.showTelegramRePrompt, showTelegramRePrompt) ||
+                other.showTelegramRePrompt == showTelegramRePrompt) &&
             (identical(other.needToExtraConfig, needToExtraConfig) ||
                 other.needToExtraConfig == needToExtraConfig));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, showTelegram, showDisclaimer, needToExtraConfig);
+      Object.hash(runtimeType, showTelegramRePrompt, needToExtraConfig);
 
   @override
   String toString() {
-    return 'HomeState(showTelegram: $showTelegram, showDisclaimer: $showDisclaimer, needToExtraConfig: $needToExtraConfig)';
+    return 'HomeState(showTelegramRePrompt: $showTelegramRePrompt, needToExtraConfig: $needToExtraConfig)';
   }
 }
 
@@ -53,7 +50,7 @@ abstract mixin class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) _then) =
       _$HomeStateCopyWithImpl;
   @useResult
-  $Res call({bool showTelegram, bool showDisclaimer, bool needToExtraConfig});
+  $Res call({bool showTelegramRePrompt, bool needToExtraConfig});
 }
 
 /// @nodoc
@@ -68,18 +65,13 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? showTelegram = null,
-    Object? showDisclaimer = null,
+    Object? showTelegramRePrompt = null,
     Object? needToExtraConfig = null,
   }) {
     return _then(_self.copyWith(
-      showTelegram: null == showTelegram
-          ? _self.showTelegram
-          : showTelegram // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showDisclaimer: null == showDisclaimer
-          ? _self.showDisclaimer
-          : showDisclaimer // ignore: cast_nullable_to_non_nullable
+      showTelegramRePrompt: null == showTelegramRePrompt
+          ? _self.showTelegramRePrompt
+          : showTelegramRePrompt // ignore: cast_nullable_to_non_nullable
               as bool,
       needToExtraConfig: null == needToExtraConfig
           ? _self.needToExtraConfig
@@ -182,16 +174,14 @@ extension HomeStatePatterns on HomeState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            bool showTelegram, bool showDisclaimer, bool needToExtraConfig)?
+    TResult Function(bool showTelegramRePrompt, bool needToExtraConfig)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _HomeState() when $default != null:
-        return $default(
-            _that.showTelegram, _that.showDisclaimer, _that.needToExtraConfig);
+        return $default(_that.showTelegramRePrompt, _that.needToExtraConfig);
       case _:
         return orElse();
     }
@@ -212,15 +202,13 @@ extension HomeStatePatterns on HomeState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            bool showTelegram, bool showDisclaimer, bool needToExtraConfig)
+    TResult Function(bool showTelegramRePrompt, bool needToExtraConfig)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeState():
-        return $default(
-            _that.showTelegram, _that.showDisclaimer, _that.needToExtraConfig);
+        return $default(_that.showTelegramRePrompt, _that.needToExtraConfig);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -240,15 +228,13 @@ extension HomeStatePatterns on HomeState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            bool showTelegram, bool showDisclaimer, bool needToExtraConfig)?
+    TResult? Function(bool showTelegramRePrompt, bool needToExtraConfig)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeState() when $default != null:
-        return $default(
-            _that.showTelegram, _that.showDisclaimer, _that.needToExtraConfig);
+        return $default(_that.showTelegramRePrompt, _that.needToExtraConfig);
       case _:
         return null;
     }
@@ -259,14 +245,10 @@ extension HomeStatePatterns on HomeState {
 
 class _HomeState implements HomeState {
   const _HomeState(
-      {required this.showTelegram,
-      required this.showDisclaimer,
-      required this.needToExtraConfig});
+      {required this.showTelegramRePrompt, required this.needToExtraConfig});
 
   @override
-  final bool showTelegram;
-  @override
-  final bool showDisclaimer;
+  final bool showTelegramRePrompt;
   @override
   final bool needToExtraConfig;
 
@@ -283,21 +265,19 @@ class _HomeState implements HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _HomeState &&
-            (identical(other.showTelegram, showTelegram) ||
-                other.showTelegram == showTelegram) &&
-            (identical(other.showDisclaimer, showDisclaimer) ||
-                other.showDisclaimer == showDisclaimer) &&
+            (identical(other.showTelegramRePrompt, showTelegramRePrompt) ||
+                other.showTelegramRePrompt == showTelegramRePrompt) &&
             (identical(other.needToExtraConfig, needToExtraConfig) ||
                 other.needToExtraConfig == needToExtraConfig));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, showTelegram, showDisclaimer, needToExtraConfig);
+      Object.hash(runtimeType, showTelegramRePrompt, needToExtraConfig);
 
   @override
   String toString() {
-    return 'HomeState(showTelegram: $showTelegram, showDisclaimer: $showDisclaimer, needToExtraConfig: $needToExtraConfig)';
+    return 'HomeState(showTelegramRePrompt: $showTelegramRePrompt, needToExtraConfig: $needToExtraConfig)';
   }
 }
 
@@ -309,7 +289,7 @@ abstract mixin class _$HomeStateCopyWith<$Res>
       __$HomeStateCopyWithImpl;
   @override
   @useResult
-  $Res call({bool showTelegram, bool showDisclaimer, bool needToExtraConfig});
+  $Res call({bool showTelegramRePrompt, bool needToExtraConfig});
 }
 
 /// @nodoc
@@ -324,18 +304,13 @@ class __$HomeStateCopyWithImpl<$Res> implements _$HomeStateCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? showTelegram = null,
-    Object? showDisclaimer = null,
+    Object? showTelegramRePrompt = null,
     Object? needToExtraConfig = null,
   }) {
     return _then(_HomeState(
-      showTelegram: null == showTelegram
-          ? _self.showTelegram
-          : showTelegram // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showDisclaimer: null == showDisclaimer
-          ? _self.showDisclaimer
-          : showDisclaimer // ignore: cast_nullable_to_non_nullable
+      showTelegramRePrompt: null == showTelegramRePrompt
+          ? _self.showTelegramRePrompt
+          : showTelegramRePrompt // ignore: cast_nullable_to_non_nullable
               as bool,
       needToExtraConfig: null == needToExtraConfig
           ? _self.needToExtraConfig

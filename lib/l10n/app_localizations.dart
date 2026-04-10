@@ -5,7 +5,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_cs.dart';
+import 'app_localizations_de.dart';
+import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_fr.dart';
+import 'app_localizations_hr.dart';
+import 'app_localizations_hu.dart';
 import 'app_localizations_it.dart';
+import 'app_localizations_nl.dart';
+import 'app_localizations_pl.dart';
+import 'app_localizations_pt.dart';
+import 'app_localizations_ro.dart';
+import 'app_localizations_sk.dart';
+import 'app_localizations_sl.dart';
+import 'app_localizations_sr.dart';
 
 // ignore_for_file: type=lint
 
@@ -92,7 +106,23 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('it')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('cs'),
+    Locale('de'),
+    Locale('en'),
+    Locale('es'),
+    Locale('fr'),
+    Locale('hr'),
+    Locale('hu'),
+    Locale('it'),
+    Locale('nl'),
+    Locale('pl'),
+    Locale('pt'),
+    Locale('ro'),
+    Locale('sk'),
+    Locale('sl'),
+    Locale('sr')
+  ];
 
   /// No description provided for @error.
   ///
@@ -441,6 +471,18 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Frequenza'**
   String get repeatersSortFrequency;
+
+  /// No description provided for @repeatersNearbyCount.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} ripetitori vicini'**
+  String repeatersNearbyCount(int count);
+
+  /// No description provided for @repeatersResultsCount.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} risultati'**
+  String repeatersResultsCount(int count);
 
   /// No description provided for @repeatersMapRetry.
   ///
@@ -982,6 +1024,36 @@ abstract class AppLocalizations {
   /// **'Vedi tutto'**
   String get homeViewAll;
 
+  /// No description provided for @dashboardTabRepeaters.
+  ///
+  /// In it, this message translates to:
+  /// **'Ripetitori'**
+  String get dashboardTabRepeaters;
+
+  /// No description provided for @dashboardTabPota.
+  ///
+  /// In it, this message translates to:
+  /// **'POTA'**
+  String get dashboardTabPota;
+
+  /// No description provided for @dashboardNearbyEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ripetitore nelle vicinanze'**
+  String get dashboardNearbyEmpty;
+
+  /// No description provided for @dashboardViewAllRepeaters.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi tutti i ripetitori'**
+  String get dashboardViewAllRepeaters;
+
+  /// No description provided for @dashboardViewAllPotaSpots.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi tutti gli spot POTA'**
+  String get dashboardViewAllPotaSpots;
+
   /// No description provided for @homeStations.
   ///
   /// In it, this message translates to:
@@ -1023,6 +1095,12 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Preferiti'**
   String get homeNavFavorites;
+
+  /// No description provided for @homeNavMap.
+  ///
+  /// In it, this message translates to:
+  /// **'Mappa'**
+  String get homeNavMap;
 
   /// No description provided for @homeNavProfile.
   ///
@@ -2097,6 +2175,906 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Risposta coordinatore'**
   String get userReportsCoordinatorResponse;
+
+  /// No description provided for @potaTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'POTA Spots'**
+  String get potaTitle;
+
+  /// No description provided for @potaSearchHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Cerca per attivatore, parco o modo…'**
+  String get potaSearchHint;
+
+  /// No description provided for @potaNoSpots.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuno spot POTA attivo al momento.'**
+  String get potaNoSpots;
+
+  /// No description provided for @potaLoadError.
+  ///
+  /// In it, this message translates to:
+  /// **'Impossibile caricare gli spot POTA'**
+  String get potaLoadError;
+
+  /// No description provided for @potaRetry.
+  ///
+  /// In it, this message translates to:
+  /// **'Riprova'**
+  String get potaRetry;
+
+  /// No description provided for @potaViewAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi tutto'**
+  String get potaViewAll;
+
+  /// No description provided for @potaActivator.
+  ///
+  /// In it, this message translates to:
+  /// **'Attivatore'**
+  String get potaActivator;
+
+  /// No description provided for @potaFrequency.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza'**
+  String get potaFrequency;
+
+  /// No description provided for @potaMode.
+  ///
+  /// In it, this message translates to:
+  /// **'Modo'**
+  String get potaMode;
+
+  /// No description provided for @potaPark.
+  ///
+  /// In it, this message translates to:
+  /// **'Parco'**
+  String get potaPark;
+
+  /// No description provided for @potaReference.
+  ///
+  /// In it, this message translates to:
+  /// **'Riferimento'**
+  String get potaReference;
+
+  /// No description provided for @potaSpotter.
+  ///
+  /// In it, this message translates to:
+  /// **'Spottato da'**
+  String get potaSpotter;
+
+  /// No description provided for @potaComments.
+  ///
+  /// In it, this message translates to:
+  /// **'Commenti'**
+  String get potaComments;
+
+  /// No description provided for @potaLastSpotted.
+  ///
+  /// In it, this message translates to:
+  /// **'Ultimo spot'**
+  String get potaLastSpotted;
+
+  /// No description provided for @potaOpenQrz.
+  ///
+  /// In it, this message translates to:
+  /// **'QRZ.com'**
+  String get potaOpenQrz;
+
+  /// No description provided for @potaQrzError.
+  ///
+  /// In it, this message translates to:
+  /// **'Impossibile aprire QRZ.com'**
+  String get potaQrzError;
+
+  /// No description provided for @potaParkWebsite.
+  ///
+  /// In it, this message translates to:
+  /// **'Sito parco'**
+  String get potaParkWebsite;
+
+  /// No description provided for @potaParkType.
+  ///
+  /// In it, this message translates to:
+  /// **'Tipo parco'**
+  String get potaParkType;
+
+  /// No description provided for @potaLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'Posizione'**
+  String get potaLocation;
+
+  /// No description provided for @potaCountry.
+  ///
+  /// In it, this message translates to:
+  /// **'Paese'**
+  String get potaCountry;
+
+  /// No description provided for @potaFirstActivation.
+  ///
+  /// In it, this message translates to:
+  /// **'Prima attivazione'**
+  String get potaFirstActivation;
+
+  /// No description provided for @potaBand.
+  ///
+  /// In it, this message translates to:
+  /// **'Banda'**
+  String get potaBand;
+
+  /// No description provided for @potaDistanceAway.
+  ///
+  /// In it, this message translates to:
+  /// **'{distance} di distanza'**
+  String potaDistanceAway(String distance);
+
+  /// No description provided for @potaSpotsCount.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} spot'**
+  String potaSpotsCount(int count);
+
+  /// No description provided for @potaFilterAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Tutte'**
+  String get potaFilterAll;
+
+  /// No description provided for @potaFilterBand.
+  ///
+  /// In it, this message translates to:
+  /// **'Banda'**
+  String get potaFilterBand;
+
+  /// No description provided for @potaFilterMode.
+  ///
+  /// In it, this message translates to:
+  /// **'Modo'**
+  String get potaFilterMode;
+
+  /// No description provided for @potaSortByTime.
+  ///
+  /// In it, this message translates to:
+  /// **'Più recenti'**
+  String get potaSortByTime;
+
+  /// No description provided for @potaSortByDistance.
+  ///
+  /// In it, this message translates to:
+  /// **'Più vicini'**
+  String get potaSortByDistance;
+
+  /// No description provided for @profileLanguage.
+  ///
+  /// In it, this message translates to:
+  /// **'Lingua'**
+  String get profileLanguage;
+
+  /// No description provided for @profileLanguageSystem.
+  ///
+  /// In it, this message translates to:
+  /// **'Sistema'**
+  String get profileLanguageSystem;
+
+  /// No description provided for @profileLanguageItalian.
+  ///
+  /// In it, this message translates to:
+  /// **'Italiano'**
+  String get profileLanguageItalian;
+
+  /// No description provided for @profileLanguageEnglish.
+  ///
+  /// In it, this message translates to:
+  /// **'English'**
+  String get profileLanguageEnglish;
+
+  /// No description provided for @profileLanguageSpanish.
+  ///
+  /// In it, this message translates to:
+  /// **'Español'**
+  String get profileLanguageSpanish;
+
+  /// No description provided for @profileLanguageFrench.
+  ///
+  /// In it, this message translates to:
+  /// **'Français'**
+  String get profileLanguageFrench;
+
+  /// No description provided for @profileLanguageGerman.
+  ///
+  /// In it, this message translates to:
+  /// **'Deutsch'**
+  String get profileLanguageGerman;
+
+  /// No description provided for @profileLanguagePortuguese.
+  ///
+  /// In it, this message translates to:
+  /// **'Português'**
+  String get profileLanguagePortuguese;
+
+  /// No description provided for @profileLanguageDutch.
+  ///
+  /// In it, this message translates to:
+  /// **'Nederlands'**
+  String get profileLanguageDutch;
+
+  /// No description provided for @profileLanguagePolish.
+  ///
+  /// In it, this message translates to:
+  /// **'Polski'**
+  String get profileLanguagePolish;
+
+  /// No description provided for @profileLanguageRomanian.
+  ///
+  /// In it, this message translates to:
+  /// **'Română'**
+  String get profileLanguageRomanian;
+
+  /// No description provided for @profileLanguageSlovenian.
+  ///
+  /// In it, this message translates to:
+  /// **'Slovenščina'**
+  String get profileLanguageSlovenian;
+
+  /// No description provided for @profileLanguageCroatian.
+  ///
+  /// In it, this message translates to:
+  /// **'Hrvatski'**
+  String get profileLanguageCroatian;
+
+  /// No description provided for @profileLanguageHungarian.
+  ///
+  /// In it, this message translates to:
+  /// **'Magyar'**
+  String get profileLanguageHungarian;
+
+  /// No description provided for @profileLanguageCzech.
+  ///
+  /// In it, this message translates to:
+  /// **'Čeština'**
+  String get profileLanguageCzech;
+
+  /// No description provided for @profileLanguageSlovak.
+  ///
+  /// In it, this message translates to:
+  /// **'Slovenčina'**
+  String get profileLanguageSlovak;
+
+  /// No description provided for @profileLanguageSerbian.
+  ///
+  /// In it, this message translates to:
+  /// **'Srpski'**
+  String get profileLanguageSerbian;
+
+  /// No description provided for @onboardingSkip.
+  ///
+  /// In it, this message translates to:
+  /// **'Salta'**
+  String get onboardingSkip;
+
+  /// No description provided for @onboardingGetStarted.
+  ///
+  /// In it, this message translates to:
+  /// **'Inizia'**
+  String get onboardingGetStarted;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In it, this message translates to:
+  /// **'Avanti'**
+  String get onboardingNext;
+
+  /// No description provided for @onboardingWelcomeTitle1.
+  ///
+  /// In it, this message translates to:
+  /// **'Trova i ripetitori vicino a te'**
+  String get onboardingWelcomeTitle1;
+
+  /// No description provided for @onboardingWelcomeSubtitle1.
+  ///
+  /// In it, this message translates to:
+  /// **'Scopri i ponti radio attivi nella tua zona, con frequenze, toni e dettagli tecnici.'**
+  String get onboardingWelcomeSubtitle1;
+
+  /// No description provided for @onboardingWelcomeCredits.
+  ///
+  /// In it, this message translates to:
+  /// **'Dati dei ponti radio forniti da IZ8WNH'**
+  String get onboardingWelcomeCredits;
+
+  /// No description provided for @onboardingWelcomeTitle2.
+  ///
+  /// In it, this message translates to:
+  /// **'Filtra per modo'**
+  String get onboardingWelcomeTitle2;
+
+  /// No description provided for @onboardingWelcomeSubtitle2.
+  ///
+  /// In it, this message translates to:
+  /// **'Analogico, DMR, C4FM, D-STAR — trova subito il ripetitore che fa per te.'**
+  String get onboardingWelcomeSubtitle2;
+
+  /// No description provided for @onboardingWelcomeTitle3.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot POTA in tempo reale'**
+  String get onboardingWelcomeTitle3;
+
+  /// No description provided for @onboardingWelcomeSubtitle3.
+  ///
+  /// In it, this message translates to:
+  /// **'Segui le attivazioni Parks on the Air con aggiornamenti live, filtri per banda e distanza.'**
+  String get onboardingWelcomeSubtitle3;
+
+  /// No description provided for @onboardingWelcomeTitle4.
+  ///
+  /// In it, this message translates to:
+  /// **'Salva i preferiti'**
+  String get onboardingWelcomeTitle4;
+
+  /// No description provided for @onboardingWelcomeSubtitle4.
+  ///
+  /// In it, this message translates to:
+  /// **'Tieni a portata di mano i ripetitori che usi di più per accesso rapido.'**
+  String get onboardingWelcomeSubtitle4;
+
+  /// No description provided for @onboardingLocationTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Posizione'**
+  String get onboardingLocationTitle;
+
+  /// No description provided for @onboardingLocationSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Usiamo la tua posizione per mostrarti i ripetitori e le attivazioni POTA vicine.'**
+  String get onboardingLocationSubtitle;
+
+  /// No description provided for @onboardingLocationEnable.
+  ///
+  /// In it, this message translates to:
+  /// **'Attiva Posizione'**
+  String get onboardingLocationEnable;
+
+  /// No description provided for @onboardingLocationSkip.
+  ///
+  /// In it, this message translates to:
+  /// **'Non ora'**
+  String get onboardingLocationSkip;
+
+  /// No description provided for @onboardingDiscoveryTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Il tuo primo ripetitore'**
+  String get onboardingDiscoveryTitle;
+
+  /// No description provided for @onboardingDiscoverySubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Ecco cosa c\'è vicino a te!'**
+  String get onboardingDiscoverySubtitle;
+
+  /// No description provided for @onboardingDiscoveryViewDetails.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi Dettagli'**
+  String get onboardingDiscoveryViewDetails;
+
+  /// No description provided for @onboardingDiscoveryViewSpot.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi Spot'**
+  String get onboardingDiscoveryViewSpot;
+
+  /// No description provided for @onboardingDiscoveryExploreMap.
+  ///
+  /// In it, this message translates to:
+  /// **'Esplora la Mappa'**
+  String get onboardingDiscoveryExploreMap;
+
+  /// No description provided for @onboardingDiscoveryNoLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'Esplora la mappa per trovare ripetitori e attivazioni POTA'**
+  String get onboardingDiscoveryNoLocation;
+
+  /// No description provided for @onboardingDiscoveryNearbyRepeater.
+  ///
+  /// In it, this message translates to:
+  /// **'Ripetitore vicino'**
+  String get onboardingDiscoveryNearbyRepeater;
+
+  /// No description provided for @onboardingDiscoveryLivePota.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot POTA attivo'**
+  String get onboardingDiscoveryLivePota;
+
+  /// No description provided for @onboardingDiscoveryNoRepeaters.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ripetitore trovato nelle vicinanze'**
+  String get onboardingDiscoveryNoRepeaters;
+
+  /// No description provided for @onboardingTelegramTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Unisciti alla community'**
+  String get onboardingTelegramTitle;
+
+  /// No description provided for @onboardingTelegramSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Entra nel gruppo Telegram di HamQRG per ricevere aggiornamenti, segnalare ripetitori e conoscere altri radioamatori.'**
+  String get onboardingTelegramSubtitle;
+
+  /// No description provided for @onboardingTelegramJoin.
+  ///
+  /// In it, this message translates to:
+  /// **'Unisciti al Gruppo Telegram'**
+  String get onboardingTelegramJoin;
+
+  /// No description provided for @onboardingTelegramLater.
+  ///
+  /// In it, this message translates to:
+  /// **'Forse dopo'**
+  String get onboardingTelegramLater;
+
+  /// No description provided for @onboardingTelegramAlreadyMember.
+  ///
+  /// In it, this message translates to:
+  /// **'Sono già membro'**
+  String get onboardingTelegramAlreadyMember;
+
+  /// No description provided for @addRepeaterProfileTile.
+  ///
+  /// In it, this message translates to:
+  /// **'Proponi nuovo ripetitore'**
+  String get addRepeaterProfileTile;
+
+  /// No description provided for @addRepeaterProfileTileSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnala un ripetitore non ancora presente'**
+  String get addRepeaterProfileTileSubtitle;
+
+  /// No description provided for @addRepeaterTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Nuovo Ripetitore'**
+  String get addRepeaterTitle;
+
+  /// No description provided for @addRepeaterHeadline.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnala un ripetitore mancante'**
+  String get addRepeaterHeadline;
+
+  /// No description provided for @addRepeaterDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Compila i dati del ripetitore che vorresti aggiungere. La segnalazione verrà revisionata prima della pubblicazione.'**
+  String get addRepeaterDescription;
+
+  /// No description provided for @addRepeaterSectionRepeater.
+  ///
+  /// In it, this message translates to:
+  /// **'Dati ripetitore'**
+  String get addRepeaterSectionRepeater;
+
+  /// No description provided for @addRepeaterSectionAccesses.
+  ///
+  /// In it, this message translates to:
+  /// **'Accessi'**
+  String get addRepeaterSectionAccesses;
+
+  /// No description provided for @addRepeaterSectionLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'Posizione'**
+  String get addRepeaterSectionLocation;
+
+  /// No description provided for @addRepeaterSectionNotes.
+  ///
+  /// In it, this message translates to:
+  /// **'Note'**
+  String get addRepeaterSectionNotes;
+
+  /// No description provided for @addRepeaterName.
+  ///
+  /// In it, this message translates to:
+  /// **'Nome'**
+  String get addRepeaterName;
+
+  /// No description provided for @addRepeaterNameHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. Monte Cimone'**
+  String get addRepeaterNameHint;
+
+  /// No description provided for @addRepeaterCallsign.
+  ///
+  /// In it, this message translates to:
+  /// **'Nominativo'**
+  String get addRepeaterCallsign;
+
+  /// No description provided for @addRepeaterCallsignHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. IR4AB'**
+  String get addRepeaterCallsignHint;
+
+  /// No description provided for @addRepeaterNameOrCallsignRequired.
+  ///
+  /// In it, this message translates to:
+  /// **'Inserisci almeno il nome o il nominativo'**
+  String get addRepeaterNameOrCallsignRequired;
+
+  /// No description provided for @addRepeaterFrequency.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza (MHz)'**
+  String get addRepeaterFrequency;
+
+  /// No description provided for @addRepeaterFrequencyHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 145.000 o 145,000'**
+  String get addRepeaterFrequencyHint;
+
+  /// No description provided for @addRepeaterFrequencyRequired.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza obbligatoria'**
+  String get addRepeaterFrequencyRequired;
+
+  /// No description provided for @addRepeaterFrequencyInvalid.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza non valida'**
+  String get addRepeaterFrequencyInvalid;
+
+  /// No description provided for @addRepeaterShift.
+  ///
+  /// In it, this message translates to:
+  /// **'Shift (MHz)'**
+  String get addRepeaterShift;
+
+  /// No description provided for @addRepeaterShiftHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. -0.600 o -0,600'**
+  String get addRepeaterShiftHint;
+
+  /// No description provided for @addRepeaterRegion.
+  ///
+  /// In it, this message translates to:
+  /// **'Regione'**
+  String get addRepeaterRegion;
+
+  /// No description provided for @addRepeaterRegionHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. Emilia-Romagna'**
+  String get addRepeaterRegionHint;
+
+  /// No description provided for @addRepeaterProvinceCode.
+  ///
+  /// In it, this message translates to:
+  /// **'Provincia'**
+  String get addRepeaterProvinceCode;
+
+  /// No description provided for @addRepeaterProvinceCodeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. MO'**
+  String get addRepeaterProvinceCodeHint;
+
+  /// No description provided for @addRepeaterLocality.
+  ///
+  /// In it, this message translates to:
+  /// **'Località'**
+  String get addRepeaterLocality;
+
+  /// No description provided for @addRepeaterLocalityHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. Fanano'**
+  String get addRepeaterLocalityHint;
+
+  /// No description provided for @addRepeaterLatitude.
+  ///
+  /// In it, this message translates to:
+  /// **'Latitudine'**
+  String get addRepeaterLatitude;
+
+  /// No description provided for @addRepeaterLatitudeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 44.2100'**
+  String get addRepeaterLatitudeHint;
+
+  /// No description provided for @addRepeaterLongitude.
+  ///
+  /// In it, this message translates to:
+  /// **'Longitudine'**
+  String get addRepeaterLongitude;
+
+  /// No description provided for @addRepeaterLongitudeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 10.7900'**
+  String get addRepeaterLongitudeHint;
+
+  /// No description provided for @addRepeaterLocator.
+  ///
+  /// In it, this message translates to:
+  /// **'Locator'**
+  String get addRepeaterLocator;
+
+  /// No description provided for @addRepeaterLocatorHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. JN54QF'**
+  String get addRepeaterLocatorHint;
+
+  /// No description provided for @addRepeaterNotes.
+  ///
+  /// In it, this message translates to:
+  /// **'Note aggiuntive'**
+  String get addRepeaterNotes;
+
+  /// No description provided for @addRepeaterNotesHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Informazioni aggiuntive sul ripetitore...'**
+  String get addRepeaterNotesHint;
+
+  /// No description provided for @addRepeaterAddAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiungi accesso'**
+  String get addRepeaterAddAccess;
+
+  /// No description provided for @addRepeaterRemoveAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Rimuovi'**
+  String get addRepeaterRemoveAccess;
+
+  /// No description provided for @addRepeaterAccessMode.
+  ///
+  /// In it, this message translates to:
+  /// **'Modo'**
+  String get addRepeaterAccessMode;
+
+  /// No description provided for @addRepeaterAccessCtcssTx.
+  ///
+  /// In it, this message translates to:
+  /// **'CTCSS TX (Hz)'**
+  String get addRepeaterAccessCtcssTx;
+
+  /// No description provided for @addRepeaterAccessCtcssTxHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 88.5'**
+  String get addRepeaterAccessCtcssTxHint;
+
+  /// No description provided for @addRepeaterAccessCtcssRx.
+  ///
+  /// In it, this message translates to:
+  /// **'CTCSS RX (Hz)'**
+  String get addRepeaterAccessCtcssRx;
+
+  /// No description provided for @addRepeaterAccessCtcssRxHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 88.5'**
+  String get addRepeaterAccessCtcssRxHint;
+
+  /// No description provided for @addRepeaterAccessDcsCode.
+  ///
+  /// In it, this message translates to:
+  /// **'Codice DCS'**
+  String get addRepeaterAccessDcsCode;
+
+  /// No description provided for @addRepeaterAccessDcsCodeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 23'**
+  String get addRepeaterAccessDcsCodeHint;
+
+  /// No description provided for @addRepeaterAccessColorCode.
+  ///
+  /// In it, this message translates to:
+  /// **'Color Code'**
+  String get addRepeaterAccessColorCode;
+
+  /// No description provided for @addRepeaterAccessColorCodeHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 1'**
+  String get addRepeaterAccessColorCodeHint;
+
+  /// No description provided for @addRepeaterAccessTalkgroup.
+  ///
+  /// In it, this message translates to:
+  /// **'Talkgroup'**
+  String get addRepeaterAccessTalkgroup;
+
+  /// No description provided for @addRepeaterAccessTalkgroupHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 222801'**
+  String get addRepeaterAccessTalkgroupHint;
+
+  /// No description provided for @addRepeaterAccessDgId.
+  ///
+  /// In it, this message translates to:
+  /// **'DG-ID'**
+  String get addRepeaterAccessDgId;
+
+  /// No description provided for @addRepeaterAccessDgIdHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 0'**
+  String get addRepeaterAccessDgIdHint;
+
+  /// No description provided for @addRepeaterAccessNodeId.
+  ///
+  /// In it, this message translates to:
+  /// **'Node ID'**
+  String get addRepeaterAccessNodeId;
+
+  /// No description provided for @addRepeaterAccessNodeIdHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 1234'**
+  String get addRepeaterAccessNodeIdHint;
+
+  /// No description provided for @addRepeaterAccessNetworkName.
+  ///
+  /// In it, this message translates to:
+  /// **'Nome rete'**
+  String get addRepeaterAccessNetworkName;
+
+  /// No description provided for @addRepeaterAccessNetworkNameHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. BM Italia'**
+  String get addRepeaterAccessNetworkNameHint;
+
+  /// No description provided for @addRepeaterAccessNotes.
+  ///
+  /// In it, this message translates to:
+  /// **'Note accesso'**
+  String get addRepeaterAccessNotes;
+
+  /// No description provided for @addRepeaterAccessNotesHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Note specifiche per questo accesso...'**
+  String get addRepeaterAccessNotesHint;
+
+  /// No description provided for @addRepeaterConfirmCheckbox.
+  ///
+  /// In it, this message translates to:
+  /// **'Confermo che queste informazioni sono corrette in base alla mia conoscenza.'**
+  String get addRepeaterConfirmCheckbox;
+
+  /// No description provided for @addRepeaterVerifiedTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazione verificata'**
+  String get addRepeaterVerifiedTitle;
+
+  /// No description provided for @addRepeaterVerifiedDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'La tua segnalazione sarà revisionata dal team prima di essere pubblicata nel database.'**
+  String get addRepeaterVerifiedDescription;
+
+  /// No description provided for @addRepeaterSubmit.
+  ///
+  /// In it, this message translates to:
+  /// **'Invia'**
+  String get addRepeaterSubmit;
+
+  /// No description provided for @addRepeaterSuccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazione inviata con successo!'**
+  String get addRepeaterSuccess;
+
+  /// No description provided for @addRepeaterError.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore durante l\'invio della segnalazione'**
+  String get addRepeaterError;
+
+  /// No description provided for @addRepeaterAtLeastOneAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiungi almeno un accesso'**
+  String get addRepeaterAtLeastOneAccess;
+
+  /// No description provided for @addRepeaterAccessNumber.
+  ///
+  /// In it, this message translates to:
+  /// **'Accesso {number}'**
+  String addRepeaterAccessNumber(int number);
+
+  /// No description provided for @changelog1017PotaSpots.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot POTA in tempo reale con mappa e dettagli parco'**
+  String get changelog1017PotaSpots;
+
+  /// No description provided for @changelog1017SubmitRepeater.
+  ///
+  /// In it, this message translates to:
+  /// **'Proponi un nuovo ripetitore direttamente dall\'app'**
+  String get changelog1017SubmitRepeater;
+
+  /// No description provided for @changelog1017MultiLanguage.
+  ///
+  /// In it, this message translates to:
+  /// **'App disponibile in inglese, spagnolo e francese'**
+  String get changelog1017MultiLanguage;
+
+  /// No description provided for @changelog1017Onboarding.
+  ///
+  /// In it, this message translates to:
+  /// **'Nuova esperienza di primo avvio'**
+  String get changelog1017Onboarding;
+
+  /// No description provided for @changelog1017ReportAnonymous.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazioni disponibili anche senza registrazione'**
+  String get changelog1017ReportAnonymous;
+
+  /// No description provided for @changelogTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Novità'**
+  String get changelogTitle;
+
+  /// No description provided for @changelogSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Ecco cosa c\'è di nuovo in questa versione'**
+  String get changelogSubtitle;
+
+  /// No description provided for @changelogCategoryAdded.
+  ///
+  /// In it, this message translates to:
+  /// **'Nuovo'**
+  String get changelogCategoryAdded;
+
+  /// No description provided for @changelogCategoryImproved.
+  ///
+  /// In it, this message translates to:
+  /// **'Migliorato'**
+  String get changelogCategoryImproved;
+
+  /// No description provided for @changelogCategoryFixed.
+  ///
+  /// In it, this message translates to:
+  /// **'Corretto'**
+  String get changelogCategoryFixed;
+
+  /// No description provided for @changelogDismiss.
+  ///
+  /// In it, this message translates to:
+  /// **'Ho capito!'**
+  String get changelogDismiss;
 }
 
 class _AppLocalizationsDelegate
@@ -2109,8 +3087,23 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['it'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+        'cs',
+        'de',
+        'en',
+        'es',
+        'fr',
+        'hr',
+        'hu',
+        'it',
+        'nl',
+        'pl',
+        'pt',
+        'ro',
+        'sk',
+        'sl',
+        'sr'
+      ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -2119,8 +3112,36 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'cs':
+      return AppLocalizationsCs();
+    case 'de':
+      return AppLocalizationsDe();
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+    case 'fr':
+      return AppLocalizationsFr();
+    case 'hr':
+      return AppLocalizationsHr();
+    case 'hu':
+      return AppLocalizationsHu();
     case 'it':
       return AppLocalizationsIt();
+    case 'nl':
+      return AppLocalizationsNl();
+    case 'pl':
+      return AppLocalizationsPl();
+    case 'pt':
+      return AppLocalizationsPt();
+    case 'ro':
+      return AppLocalizationsRo();
+    case 'sk':
+      return AppLocalizationsSk();
+    case 'sl':
+      return AppLocalizationsSl();
+    case 'sr':
+      return AppLocalizationsSr();
   }
 
   throw FlutterError(

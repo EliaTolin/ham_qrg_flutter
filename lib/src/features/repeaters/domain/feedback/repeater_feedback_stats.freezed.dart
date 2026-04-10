@@ -17,6 +17,7 @@ mixin _$RepeaterFeedbackStats {
   String get repeaterId;
   int get likesTotal;
   int get downTotal;
+  bool get hasMyLike;
   DateTime? get lastLikeAt;
   DateTime? get lastDownAt;
 
@@ -39,6 +40,8 @@ mixin _$RepeaterFeedbackStats {
                 other.likesTotal == likesTotal) &&
             (identical(other.downTotal, downTotal) ||
                 other.downTotal == downTotal) &&
+            (identical(other.hasMyLike, hasMyLike) ||
+                other.hasMyLike == hasMyLike) &&
             (identical(other.lastLikeAt, lastLikeAt) ||
                 other.lastLikeAt == lastLikeAt) &&
             (identical(other.lastDownAt, lastDownAt) ||
@@ -46,12 +49,12 @@ mixin _$RepeaterFeedbackStats {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, repeaterId, likesTotal, downTotal, lastLikeAt, lastDownAt);
+  int get hashCode => Object.hash(runtimeType, repeaterId, likesTotal,
+      downTotal, hasMyLike, lastLikeAt, lastDownAt);
 
   @override
   String toString() {
-    return 'RepeaterFeedbackStats(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
+    return 'RepeaterFeedbackStats(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, hasMyLike: $hasMyLike, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
   }
 }
 
@@ -65,6 +68,7 @@ abstract mixin class $RepeaterFeedbackStatsCopyWith<$Res> {
       {String repeaterId,
       int likesTotal,
       int downTotal,
+      bool hasMyLike,
       DateTime? lastLikeAt,
       DateTime? lastDownAt});
 }
@@ -85,6 +89,7 @@ class _$RepeaterFeedbackStatsCopyWithImpl<$Res>
     Object? repeaterId = null,
     Object? likesTotal = null,
     Object? downTotal = null,
+    Object? hasMyLike = null,
     Object? lastLikeAt = freezed,
     Object? lastDownAt = freezed,
   }) {
@@ -101,6 +106,10 @@ class _$RepeaterFeedbackStatsCopyWithImpl<$Res>
           ? _self.downTotal
           : downTotal // ignore: cast_nullable_to_non_nullable
               as int,
+      hasMyLike: null == hasMyLike
+          ? _self.hasMyLike
+          : hasMyLike // ignore: cast_nullable_to_non_nullable
+              as bool,
       lastLikeAt: freezed == lastLikeAt
           ? _self.lastLikeAt
           : lastLikeAt // ignore: cast_nullable_to_non_nullable
@@ -207,7 +216,7 @@ extension RepeaterFeedbackStatsPatterns on RepeaterFeedbackStats {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String repeaterId, int likesTotal, int downTotal,
-            DateTime? lastLikeAt, DateTime? lastDownAt)?
+            bool hasMyLike, DateTime? lastLikeAt, DateTime? lastDownAt)?
         $default, {
     required TResult orElse(),
   }) {
@@ -215,7 +224,7 @@ extension RepeaterFeedbackStatsPatterns on RepeaterFeedbackStats {
     switch (_that) {
       case _RepeaterFeedbackStats() when $default != null:
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
-            _that.lastLikeAt, _that.lastDownAt);
+            _that.hasMyLike, _that.lastLikeAt, _that.lastDownAt);
       case _:
         return orElse();
     }
@@ -237,14 +246,14 @@ extension RepeaterFeedbackStatsPatterns on RepeaterFeedbackStats {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String repeaterId, int likesTotal, int downTotal,
-            DateTime? lastLikeAt, DateTime? lastDownAt)
+            bool hasMyLike, DateTime? lastLikeAt, DateTime? lastDownAt)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _RepeaterFeedbackStats():
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
-            _that.lastLikeAt, _that.lastDownAt);
+            _that.hasMyLike, _that.lastLikeAt, _that.lastDownAt);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -265,14 +274,14 @@ extension RepeaterFeedbackStatsPatterns on RepeaterFeedbackStats {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String repeaterId, int likesTotal, int downTotal,
-            DateTime? lastLikeAt, DateTime? lastDownAt)?
+            bool hasMyLike, DateTime? lastLikeAt, DateTime? lastDownAt)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _RepeaterFeedbackStats() when $default != null:
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
-            _that.lastLikeAt, _that.lastDownAt);
+            _that.hasMyLike, _that.lastLikeAt, _that.lastDownAt);
       case _:
         return null;
     }
@@ -286,6 +295,7 @@ class _RepeaterFeedbackStats implements RepeaterFeedbackStats {
       {required this.repeaterId,
       required this.likesTotal,
       required this.downTotal,
+      this.hasMyLike = false,
       this.lastLikeAt,
       this.lastDownAt});
 
@@ -295,6 +305,9 @@ class _RepeaterFeedbackStats implements RepeaterFeedbackStats {
   final int likesTotal;
   @override
   final int downTotal;
+  @override
+  @JsonKey()
+  final bool hasMyLike;
   @override
   final DateTime? lastLikeAt;
   @override
@@ -320,6 +333,8 @@ class _RepeaterFeedbackStats implements RepeaterFeedbackStats {
                 other.likesTotal == likesTotal) &&
             (identical(other.downTotal, downTotal) ||
                 other.downTotal == downTotal) &&
+            (identical(other.hasMyLike, hasMyLike) ||
+                other.hasMyLike == hasMyLike) &&
             (identical(other.lastLikeAt, lastLikeAt) ||
                 other.lastLikeAt == lastLikeAt) &&
             (identical(other.lastDownAt, lastDownAt) ||
@@ -327,12 +342,12 @@ class _RepeaterFeedbackStats implements RepeaterFeedbackStats {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, repeaterId, likesTotal, downTotal, lastLikeAt, lastDownAt);
+  int get hashCode => Object.hash(runtimeType, repeaterId, likesTotal,
+      downTotal, hasMyLike, lastLikeAt, lastDownAt);
 
   @override
   String toString() {
-    return 'RepeaterFeedbackStats(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
+    return 'RepeaterFeedbackStats(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, hasMyLike: $hasMyLike, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
   }
 }
 
@@ -348,6 +363,7 @@ abstract mixin class _$RepeaterFeedbackStatsCopyWith<$Res>
       {String repeaterId,
       int likesTotal,
       int downTotal,
+      bool hasMyLike,
       DateTime? lastLikeAt,
       DateTime? lastDownAt});
 }
@@ -368,6 +384,7 @@ class __$RepeaterFeedbackStatsCopyWithImpl<$Res>
     Object? repeaterId = null,
     Object? likesTotal = null,
     Object? downTotal = null,
+    Object? hasMyLike = null,
     Object? lastLikeAt = freezed,
     Object? lastDownAt = freezed,
   }) {
@@ -384,6 +401,10 @@ class __$RepeaterFeedbackStatsCopyWithImpl<$Res>
           ? _self.downTotal
           : downTotal // ignore: cast_nullable_to_non_nullable
               as int,
+      hasMyLike: null == hasMyLike
+          ? _self.hasMyLike
+          : hasMyLike // ignore: cast_nullable_to_non_nullable
+              as bool,
       lastLikeAt: freezed == lastLikeAt
           ? _self.lastLikeAt
           : lastLikeAt // ignore: cast_nullable_to_non_nullable

@@ -1,0 +1,724 @@
+{
+  "@@locale": "ro",
+  "error": "Eroare",
+  "error_message": "A apărut o eroare la încărcare",
+  "error_message_retry": "A apărut o eroare la încărcare. Vă rugăm să încercați din nou mai târziu",
+  "retry": "Reîncearcă",
+  "back": "Înapoi",
+  "loading": "Se încarcă",
+  "details": "Detalii",
+  "pages_number": "{number} pagini de explorat",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "Ianuarie",
+  "february": "Februarie",
+  "march": "Martie",
+  "april": "Aprilie",
+  "may": "Mai",
+  "june": "Iunie",
+  "july": "Iulie",
+  "august": "August",
+  "september": "Septembrie",
+  "october": "Octombrie",
+  "november": "Noiembrie",
+  "december": "Decembrie",
+  "logout": "Deconectare",
+  "profile": "Profil",
+  "settings": "Setări",
+  "contact_us": "Contactează-ne",
+  "error_opening_email": "A apărut o eroare la deschiderea emailului",
+  "register_now": "Înregistrează-te acum",
+  "tracking_permission_title": "Susține aplicația",
+  "tracking_permission_message": "Pentru a îmbunătăți experiența ta și a-ți arăta conținut mai relevant, ajută-ne să menținem aplicația gratuită.\n\nApasă Permite pentru a ne susține.",
+  "tracking_permission_next": "Următorul",
+  "skip": "Omite",
+  "done": "Gata",
+  "next": "Următorul",
+  "joinCommunityTitle": "Alătură-te comunității noastre!",
+  "joinCommunityDescription": "Descoperă beneficiile comunității Telegram:",
+  "benefitSupportMembers": "Suport din partea membrilor",
+  "benefitSuggestFeatures": "Sugerează funcționalități noi",
+  "benefitContactDevelopers": "Contact cu dezvoltatorii",
+  "benefitExclusivePreviews": "Previzualizări și versiuni beta exclusive",
+  "benefitActiveCommunity": "Comunitate activă",
+  "joinNowButton": "Alătură-te acum!",
+  "alreadyMemberButton": "Sunt deja membru",
+  "laterButton": "Mai târziu",
+  "errorOpenTelegram": "Eroare la deschiderea Telegram",
+  "disclaimerTitle": "Sursa datelor",
+  "disclaimerDescription": "Datele despre repetoare din această aplicație provin de la IZ8WNH.\n\nPentru informații suplimentare, pentru a descărca fișiere CSV pentru programarea radiourilor sau pentru a consulta date care nu sunt disponibile în aplicație, vizitați site-ul oficial.",
+  "disclaimerVisitSite": "Vizitează iz8wnh.it",
+  "disclaimerUnderstood": "Am înțeles",
+  "errorOpenDisclaimerSite": "Eroare la deschiderea site-ului",
+  "repeatersMapTitle": "Harta repetoarelor",
+  "repeatersListTitle": "Lista repetoarelor",
+  "repeatersMapLoading": "Se încarcă harta repetoarelor…",
+  "repeatersMapGenericError": "Nu s-au putut încărca repetoarele.",
+  "repeatersMapEmpty": "Nu s-au găsit repetoare în apropierea ta.",
+  "repeatersSearchHint": "Caută după nume, indicativ sau frecvență MHz…",
+  "repeatersSearchEmpty": "Nu s-au găsit repetoare.",
+  "repeatersSortDistance": "Distanță",
+  "repeatersSortLikes": "Aprecieri",
+  "repeatersSortFrequency": "Frecvență",
+  "repeatersMapRetry": "Reîncearcă",
+  "repeatersMapOpenSettings": "Deschide setările",
+  "repeatersMapPermissionMessage": "Permite accesul la locație pentru a afișa repetoarele din apropierea ta.",
+  "repeatersMapPermissionPermanentlyDenied": "Permisiunea pentru locație a fost refuzată permanent. Activează-o din setările sistemului.",
+  "repeatersMapLocationServicesDisabled": "Activează serviciile de localizare pentru a găsi repetoarele din apropiere.",
+  "repeatersMapFound": "{count, plural, one{{count} repetor găsit} few{{count} repetoare găsite} other{{count} de repetoare găsite}}",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Mod",
+  "repeaterModeAnalog": "Analog",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "Toate modurile",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frecvență",
+  "repeaterShift": "Deplasare",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Locație",
+  "repeaterDistance": "Distanță",
+  "repeaterViewFullDetails": "Vezi toate detaliile",
+  "repeatersMapReturnToLocation": "Revino la locația mea",
+  "clusterRepeatersTitle": "{count, plural, one{{count} repetor în această locație} few{{count} repetoare în această locație} other{{count} de repetoare în această locație}}",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Deblochează toate funcționalitățile",
+  "profileUnlockFeaturesDescription": "Înregistrează-te pentru a folosi recenziile, salvarea favoritelor și accesul la statistici detaliate.",
+  "profileSignUpOrLogin": "Înregistrare sau Autentificare",
+  "profileErrorOpeningEmail": "Eroare la deschiderea emailului",
+  "profileJoinTelegramCommunity": "Alătură-te comunității Telegram",
+  "profileWelcomeTitle": "Bine ai venit pe HamQRG",
+  "profileWelcomeDescription": "Alătură-te comunității noastre de radioamatori din Italia.",
+  "profileEditProfile": "Editează profilul",
+  "profileChangePhoto": "Schimbă fotografia",
+  "profileFirstName": "Prenume",
+  "profileLastName": "Nume",
+  "profileCallsign": "Indicativ",
+  "profileRestartIdentificationTitle": "Trebuie să îți schimbi statutul? Poți reporni procesul de identificare pentru a trece de la Operator Licențiat la Ascultător SWL.",
+  "profileRestartIdentificationButton": "Repornește procesul de identificare",
+  "profileSaveChanges": "Salvează modificările",
+  "profileDangerZone": "Zonă periculoasă",
+  "profileDeleteAccount": "Șterge contul",
+  "profileDeleteAccountConfirmTitle": "Șterge contul",
+  "profileDeleteAccountConfirmMessage": "Ești sigur că vrei să ștergi contul? Această acțiune este ireversibilă.",
+  "profileDeleteAccountCancel": "Anulează",
+  "profileDeleteAccountConfirm": "Șterge",
+  "profileAppVersion": "Versiunea aplicației {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Comunitate și Suport",
+  "profileSectionSupport": "Suport",
+  "profileVersion": "Versiune: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Versiunea {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Eroare: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "Alătură-te HamQRG",
+  "authUnlockFeatures": "Autentifică-te pentru a debloca toate funcționalitățile!",
+  "authWhatYouGet": "Ce vei primi:",
+  "authBenefitStatsTitle": "Statistici detaliate",
+  "authBenefitStatsDescription": "Monitorizează-ți progresul și îmbunătățește-te",
+  "authBenefitQuizTitle": "Moduri variate de quiz",
+  "authBenefitQuizDescription": "Exersează în modurile maraton, pe teme și altele.",
+  "authBenefitSyncTitle": "Sincronizare",
+  "authBenefitSyncDescription": "Accesează de pe orice dispozitiv",
+  "authOrSignInWithEmail": "Sau autentifică-te cu email",
+  "authEnterEmail": "Introdu emailul",
+  "authEnterPassword": "Introdu parola",
+  "authForgotPassword": "Ai uitat parola?",
+  "authSignIn": "Autentificare",
+  "authSignUp": "Înregistrare",
+  "authPasswordLengthError": "Parola trebuie să fie mai lungă",
+  "authDontHaveAccount": "Nu ai cont? Înregistrează-te",
+  "authHaveAccount": "Ai deja cont? Autentifică-te",
+  "authBackToSignIn": "Înapoi la autentificare",
+  "authUnexpectedError": "Eroare de autentificare: ",
+  "authValidEmailError": "Introdu un email valid",
+  "authSendPasswordReset": "Trimite resetarea parolei",
+  "authPasswordResetSent": "Resetarea parolei a fost trimisă",
+  "authVerifyEmailMessage": "Verifică-ți emailul pentru a finaliza înregistrarea, verifică inbox-ul.",
+  "authInvalidCredentials": "Email sau parolă incorectă",
+  "authEmailNotConfirmed": "Verifică-ți emailul pentru a te autentifica",
+  "authFirstName": "Prenume",
+  "authFirstNameRequired": "Prenumele este obligatoriu",
+  "authLastName": "Nume",
+  "authLastNameRequired": "Numele este obligatoriu",
+  "authContinueAsGuest": "Continuă ca vizitator",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Descoperă repetoarele din jurul tău",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Acces rapid",
+  "homeRepeaterList": "Lista repetoarelor",
+  "homeMyFavorites": "Favoritele mele",
+  "homeNearby": "În apropierea ta",
+  "homeViewAll": "Vezi tot",
+  "homeStations": "{count, plural, one{{count} stație} few{{count} stații} other{{count} de stații}}",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count, plural, one{{count} salvat} few{{count} salvate} other{{count} salvate}}",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Activ",
+  "homeIdle": "Inactiv",
+  "homeNavHome": "Acasă",
+  "homeNavList": "Listă",
+  "homeNavFavorites": "Favorite",
+  "homeNavMap": "Hartă",
+  "homeNavProfile": "Profil",
+  "favoritesTitle": "Favoritele mele",
+  "favoritesSearchHint": "Caută repetoare salvate...",
+  "favoritesFilterAllSaved": "Toate salvate",
+  "favoritesEmpty": "Niciun repetor salvat",
+  "favoritesEmptyDescription": "Adaugă repetoare la favorite pentru a le vedea aici",
+  "favoritesShowing": "Se afișează {showing} din {total} stații favorite",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Elimină din favorite",
+  "favoritesAdd": "Adaugă la favorite",
+  "repeaterDetailSave": "Salvează",
+  "repeaterDetailShare": "Distribuie",
+  "repeaterDetailReport": "Raportează",
+  "repeaterDetailTotalLikes": "Total aprecieri",
+  "repeaterDetailReports1Yr": "Rapoarte (1 an)",
+  "repeaterDetailHealthScore": "Scor de sănătate",
+  "repeaterDetailExcellent": "Excelent",
+  "repeaterDetailGood": "Bun",
+  "repeaterDetailFair": "Acceptabil",
+  "repeaterDetailToVerify": "De verificat",
+  "repeaterDetailScoreCalculated": "Scor calculat din {count, plural, one{{count} raport negativ} few{{count} rapoarte negative} other{{count} de rapoarte negative}} în ultimul an",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Ultima apreciere",
+  "repeaterDetailLastDownReport": "Ultimul raport negativ",
+  "repeaterDetailTechnicalData": "Date tehnice",
+  "repeaterDetailFrequency": "Frecvență",
+  "repeaterDetailShift": "Deplasare",
+  "repeaterDetailSubtone": "Subton (SQL)",
+  "repeaterDetailMode": "Mod",
+  "repeaterDetailLocation": "Locație",
+  "repeaterDetailAway": "la {distance} distanță",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Rapoartele comunității",
+  "repeaterDetailUpdateStatusFeedback": "Actualizează starea și feedback-ul",
+  "repeaterDetailEquipment": "Echipament",
+  "repeaterDetailEquipmentRequired": "Echipament *",
+  "repeaterDetailAccessModes": "Moduri de acces",
+  "repeaterDetailNetwork": "Rețea",
+  "repeaterDetailLocationField": "Locație",
+  "repeaterDetailLocationRequired": "Locație *",
+  "repeaterDetailComment": "Comentariu",
+  "repeaterDetailCommentOptional": "Comentariu (Opțional)",
+  "repeaterDetailCommentPlaceholder": "Calitatea semnalului, raport audio sau comentarii generale...",
+  "repeaterDetailReportDown": "Raportează o problemă",
+  "repeaterDetailCheckinLike": "Check-in și apreciere",
+  "repeaterDetailYourFeedback": "Feedback-ul tău",
+  "repeaterDetailPostedJustNow": "Publicat chiar acum",
+  "repeaterDetailDeleteEntry": "Șterge intrarea",
+  "repeaterDetailViewAllReports": "Vezi toate cele {count, plural, one{{count} raport} few{{count} rapoarte} other{{count} de rapoarte}}",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Portabil",
+  "repeaterDetailStationMobile": "Mobil",
+  "repeaterDetailStationFixed": "Fix",
+  "repeaterDetailLike": "Apreciere",
+  "repeaterDetailReportLabel": "Raport",
+  "repeaterDetailSaved": "Salvat",
+  "repeaterDetailShareMessage": "Descoperă acest repetor pe HamQRG!",
+  "repeaterDetailReportDescription": "Funcția de raportare va fi disponibilă în curând. Vei putea raporta informații incorecte sau probleme cu acest repetor.",
+  "commonClose": "Închide",
+  "favorite": "Favorit",
+  "accessConfiguration": "Configurare acces",
+  "noAccessConfiguration": "Nicio configurare disponibilă",
+  "repeaterDetailAddFeedback": "Adaugă feedback",
+  "repeaterDetailOthersReports": "Rapoartele altor utilizatori",
+  "repeaterDetailRemove": "Elimină",
+  "repeaterDetailSelectAccess": "Selectează accesul",
+  "repeaterDetailDistanceWarning": "Trebuie să fii la maximum {distance} km de repetor pentru a trimite feedback.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interactiv",
+  "repeaterDetailLogYourSignal": "Înregistrează-ți semnalul",
+  "repeaterDetailUsedEquipment": "Echipament utilizat",
+  "repeaterDetailYourLocation": "Locația ta",
+  "repeaterDetailLocationPlaceholder": "Unde te aflai? (ex. București)",
+  "repeaterDetailLocationSelectHint": "Selectează un loc din sugestii",
+  "feedbackDistanceConfirmTitle": "Confirmă trimiterea",
+  "feedbackDistanceConfirmMessage": "Locația selectată este la {distance} km de repetor. Confirmi că vrei să trimiți acest feedback pe propria răspundere?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Confirmă",
+  "feedbackDistanceConfirmCancel": "Anulează",
+  "repeaterDetailSelectAccessInstance": "Selectează instanța de acces",
+  "repeaterDetailSignalObservations": "Observații despre semnal",
+  "repeaterDetailSignalObservationsPlaceholder": "Cum a fost calitatea audio?",
+  "repeaterDetailSendLike": "Trimite apreciere",
+  "repeaterDetailReportIssue": "Raportează o problemă",
+  "repeaterDetailRecentActivity": "Activitate recentă",
+  "reportIssueTitle": "Raport",
+  "reportIssueHeadline": "Ajută-ne să menținem datele corecte",
+  "reportIssueDescription": "Ai găsit ceva greșit sau lipsă la acest repetor? Spune-ne ce trebuie schimbat și vom verifica.",
+  "reportIssueWhatToCorrect": "Ce ai dori să corectezi sau să adaugi?",
+  "reportIssuePlaceholder": "Ex. Tonul CTCSS s-a schimbat la 88.5Hz, sau locația este puțin mai la nord, managerul este...",
+  "reportIssueVerifiedTitle": "Trimiteri verificate",
+  "reportIssueVerifiedDescription": "Raportul tău va fi analizat de coordonatorul regional înainte de actualizarea bazei de date publice. Îți mulțumim pentru contribuția la comunitate.",
+  "reportIssueConfirmCheckbox": "Confirm că aceste informații sunt corecte conform observației mele.",
+  "reportIssueSubmit": "Trimite",
+  "reportIssueMinChars": "Minimum 10 caractere necesare",
+  "reportIssueMaxChars": "Maximum 2000 de caractere",
+  "reportIssueSuccess": "Raportul a fost trimis cu succes",
+  "reportIssueError": "Eroare la trimiterea raportului",
+  "registrationPromptTitle": "Deblochează potențialul complet",
+  "registrationPromptDescription": "Alătură-te comunității de radioamatori italieni și ridică-ți experiența la un nivel superior.",
+  "registrationBenefitInteractTitle": "Interacționează",
+  "registrationBenefitInteractDescription": "Evaluează repetoarele și lasă comentarii pentru ceilalți.",
+  "registrationBenefitFavoritesTitle": "Favorite",
+  "registrationBenefitFavoritesDescription": "Salvează frecvențele și repetoarele pe care le folosești cel mai des.",
+  "registrationBenefitLogbookTitle": "Jurnal de bord",
+  "registrationBenefitLogbookDescription": "Ține evidența QSO-urilor tale și menține un istoric personal.",
+  "registrationSignInApple": "Autentificare cu Apple",
+  "registrationSignInGoogle": "Autentificare cu Google",
+  "registrationPromptFooter": "Înregistrare gratuită. Nu este necesară licența pentru a naviga datele publice.",
+  "postLoginOnboardingWelcome": "Bine ai venit pe",
+  "postLoginOnboardingQuestion": "Ești un radioamator licențiat?",
+  "postLoginOnboardingHelpText": "Acest lucru ne ajută să personalizăm experiența ta și să îți arătăm frecvențele potrivite.",
+  "postLoginOnboardingYesLicensed": "Da, sunt",
+  "postLoginOnboardingNoListener": "Nu, sunt doar ascultător",
+  "postLoginOnboardingCallsignTitle": "Identifică-te",
+  "postLoginOnboardingCallsignSubtitle": "Introdu indicativul tău oficial pentru a accesa funcțiile de rețea.",
+  "postLoginOnboardingCallsignLabel": "Indicativ",
+  "postLoginOnboardingCallsignHint": "Ex. YO3XYZ",
+  "postLoginOnboardingComplete": "Finalizează profilul",
+  "postLoginOnboardingBack": "Înapoi",
+  "postLoginOnboardingChangeInSettings": "Poți schimba acest lucru mai târziu din setări.",
+  "postLoginOnboardingSwlTitle": "Indicativ SWL",
+  "postLoginOnboardingSwlQuestion": "Ai un indicativ oficial SWL?",
+  "postLoginOnboardingSwlHelpText": "Indicativele de ascultător unde scurte ajută la identificarea ta în comunitatea globală de monitorizare.",
+  "postLoginOnboardingSwlYes": "Da, am unul",
+  "postLoginOnboardingSwlNo": "Nu, nu am",
+  "postLoginOnboardingSwlEnterCallsign": "Introdu indicativul",
+  "postLoginOnboardingSwlCallsignHint": "Ex. YO-12345-SWL",
+  "timeAgoJustNow": "chiar acum",
+  "timeAgoMinutes": "{count, plural, one{acum 1 minut} few{acum {count} minute} other{acum {count} de minute}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{acum 1 oră} few{acum {count} ore} other{acum {count} de ore}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{acum 1 zi} few{acum {count} zile} other{acum {count} de zile}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{acum 1 săptămână} few{acum {count} săptămâni} other{acum {count} de săptămâni}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{acum 1 lună} few{acum {count} luni} other{acum {count} de luni}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{acum 1 an} few{acum {count} ani} other{acum {count} de ani}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Temă",
+  "profileThemeModeSystem": "Sistem",
+  "profileThemeModeLight": "Deschisă",
+  "profileThemeModeDark": "Întunecată",
+  "repeaterDetailBeFirstFeedback": "Fii primul care lasă un feedback pe acest repetor!",
+  "repeaterDetailDistanceFromYou": "Distanța față de tine",
+  "repeaterDistanceMapNoLocation": "Locație indisponibilă",
+  "repeaterDetailNever": "Niciodată",
+  "repeaterDetailInfo": "Informații",
+  "repeaterDetailSource": "Sursă",
+  "repeaterDetailManager": "Manager",
+  "repeaterDetailSuggestManager": "Cunoști managerul repetorului? Raportează-l!",
+  "repeaterDetailViewFeedbackMap": "Harta feedback-urilor",
+  "repeaterDetailViewFeedbackMapSubtitle": "Vezi unde au fost înregistrate aprecierile și rapoartele",
+  "repeaterDetailAltimetricProfile": "Profil altimetric",
+  "repeaterDetailAltimetricProfileSubtitle": "Vezi profilul terenului între tine și repetor",
+  "repeaterDetailLosClear": "Linie de vizibilitate liberă între tine și repetor",
+  "repeaterDetailLosObstructed": "Linie de vizibilitate obstrucționată de teren",
+  "repeaterDetailTerrainProfile": "Profilul terenului",
+  "repeaterDetailLineOfSight": "Linie de vizibilitate",
+  "repeaterDetailTotalDistance": "Distanță",
+  "repeaterDetailRepeaterElevation": "Altitudinea repetorului",
+  "repeaterDetailYourElevation": "Altitudinea ta",
+  "repeaterDetailYou": "Tu",
+  "repeaterDetailRepeaterLabel": "Repetor",
+
+  "repeaterDetailFunFacts": "Știai că?",
+  "repeaterDetailWavelength": "Lungimea de undă",
+  "repeaterDetailWavelengthValue": "Lungimea de undă a acestui repetor este {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Oscilații pe secundă",
+  "repeaterDetailOscillationsValue": "Semnalul oscilează de {value} ori pe secundă",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Timpul de propagare",
+  "repeaterDetailPropagationTimeValue": "Semnalul tău are nevoie de {value} pentru a ajunge la repetor",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Cicluri de undă în tranzit",
+  "repeaterDetailWaveCyclesValue": "Unda completează {value} cicluri complete în tranzit",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userReportsTitle": "Rapoartele mele",
+  "userReportsFilterAll": "Toate",
+  "userReportsFilterOpen": "Deschise",
+  "userReportsFilterClosed": "Închise",
+  "userReportsEmpty": "Niciun raport trimis",
+  "userReportsEmptyDescription": "Rapoartele tale despre repetoare vor apărea aici",
+  "userReportsEmptyFiltered": "Niciun raport cu acest filtru",
+  "userReportsStatusPending": "În așteptare",
+  "userReportsStatusReviewed": "În curs de analiză",
+  "userReportsStatusResolved": "Rezolvat",
+  "userReportsStatusRejected": "Respins",
+  "userReportsRetryBanner": "Nu s-a putut actualiza lista",
+  "userReportsProfileTile": "Rapoartele mele",
+  "userReportsProfileTileSubtitle": "Vezi starea rapoartelor tale",
+  "userReportsError": "Eroare la încărcarea rapoartelor",
+  "userReportsCoordinatorResponse": "Răspunsul coordonatorului",
+
+  "potaTitle": "Spoturi POTA",
+  "potaSearchHint": "Caută după activator, parc sau mod…",
+  "potaNoSpots": "Niciun spot POTA activ în acest moment.",
+  "potaLoadError": "Nu s-au putut încărca spoturile POTA",
+  "potaRetry": "Reîncearcă",
+  "potaViewAll": "Vezi tot",
+  "potaActivator": "Activator",
+  "potaFrequency": "Frecvență",
+  "potaMode": "Mod",
+  "potaPark": "Parc",
+  "potaReference": "Referință",
+  "potaSpotter": "Spotat de",
+  "potaComments": "Comentarii",
+  "potaLastSpotted": "Ultima spotare",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "Nu s-a putut deschide QRZ.com",
+  "potaParkWebsite": "Site-ul parcului",
+  "potaParkType": "Tipul parcului",
+  "potaLocation": "Locație",
+  "potaCountry": "Țară",
+  "potaFirstActivation": "Prima activare",
+  "potaBand": "Bandă",
+  "potaDistanceAway": "la {distance} distanță",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count, plural, one{{count} spot activ} few{{count} spoturi active} other{{count} de spoturi active}}",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Limbă",
+  "profileLanguageSystem": "Sistem",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
+  "profileLanguageHungarian": "Magyar",
+  "profileLanguageCzech": "Čeština",
+  "profileLanguageSlovak": "Slovenčina",
+  "profileLanguageSerbian": "Srpski",
+
+  "addRepeaterProfileTile": "Sugerează un repetor nou",
+  "addRepeaterProfileTileSubtitle": "Raportează un repetor care nu este încă listat",
+  "addRepeaterTitle": "Repetor nou",
+  "addRepeaterHeadline": "Raportează un repetor lipsă",
+  "addRepeaterDescription": "Completează detaliile repetorului pe care dorești să-l adaugi. Propunerea va fi analizată înainte de publicare.",
+  "addRepeaterSectionRepeater": "Datele repetorului",
+  "addRepeaterSectionAccesses": "Accese",
+  "addRepeaterSectionLocation": "Locație",
+  "addRepeaterSectionNotes": "Note",
+  "addRepeaterName": "Nume",
+  "addRepeaterNameHint": "Ex. Muntele Penteleu",
+  "addRepeaterCallsign": "Indicativ",
+  "addRepeaterCallsignHint": "Ex. YO3AB",
+  "addRepeaterNameOrCallsignRequired": "Introdu cel puțin un nume sau indicativ",
+  "addRepeaterFrequency": "Frecvență (MHz)",
+  "addRepeaterFrequencyHint": "Ex. 145.000 sau 145,000",
+  "addRepeaterFrequencyRequired": "Frecvența este obligatorie",
+  "addRepeaterFrequencyInvalid": "Frecvență invalidă",
+  "addRepeaterShift": "Deplasare (MHz)",
+  "addRepeaterShiftHint": "Ex. -0.600 sau -0,600",
+  "addRepeaterRegion": "Regiune",
+  "addRepeaterRegionHint": "Ex. Muntenia",
+  "addRepeaterProvinceCode": "Județ",
+  "addRepeaterProvinceCodeHint": "Ex. BV",
+  "addRepeaterLocality": "Localitate",
+  "addRepeaterLocalityHint": "Ex. Brașov",
+  "addRepeaterLatitude": "Latitudine",
+  "addRepeaterLatitudeHint": "Ex. 44.2100",
+  "addRepeaterLongitude": "Longitudine",
+  "addRepeaterLongitudeHint": "Ex. 10.7900",
+  "addRepeaterLocator": "Locator",
+  "addRepeaterLocatorHint": "Ex. KN25QF",
+  "addRepeaterNotes": "Note suplimentare",
+  "addRepeaterNotesHint": "Informații suplimentare despre repetor...",
+  "addRepeaterAddAccess": "Adaugă acces",
+  "addRepeaterRemoveAccess": "Elimină",
+  "addRepeaterAccessMode": "Mod",
+  "addRepeaterAccessCtcssTx": "CTCSS TX (Hz)",
+  "addRepeaterAccessCtcssTxHint": "Ex. 88.5",
+  "addRepeaterAccessCtcssRx": "CTCSS RX (Hz)",
+  "addRepeaterAccessCtcssRxHint": "Ex. 88.5",
+  "addRepeaterAccessDcsCode": "Cod DCS",
+  "addRepeaterAccessDcsCodeHint": "Ex. 23",
+  "addRepeaterAccessColorCode": "Color Code",
+  "addRepeaterAccessColorCodeHint": "Ex. 1",
+  "addRepeaterAccessTalkgroup": "Talkgroup",
+  "addRepeaterAccessTalkgroupHint": "Ex. 222801",
+  "addRepeaterAccessDgId": "DG-ID",
+  "addRepeaterAccessDgIdHint": "Ex. 0",
+  "addRepeaterAccessNodeId": "ID nod",
+  "addRepeaterAccessNodeIdHint": "Ex. 1234",
+  "addRepeaterAccessNetworkName": "Numele rețelei",
+  "addRepeaterAccessNetworkNameHint": "Ex. BM Italia",
+  "addRepeaterAccessNotes": "Note acces",
+  "addRepeaterAccessNotesHint": "Note specifice acestui acces...",
+  "addRepeaterConfirmCheckbox": "Confirm că aceste informații sunt corecte conform cunoștințelor mele.",
+  "addRepeaterVerifiedTitle": "Propunere verificată",
+  "addRepeaterVerifiedDescription": "Propunerea ta va fi analizată de echipă înainte de publicarea în baza de date.",
+  "addRepeaterSubmit": "Trimite",
+  "addRepeaterSuccess": "Propunerea a fost trimisă cu succes!",
+  "addRepeaterError": "Eroare la trimiterea propunerii",
+  "addRepeaterAtLeastOneAccess": "Adaugă cel puțin un acces",
+  "addRepeaterAccessNumber": "Acces {number}",
+  "@addRepeaterAccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "changelog1017PotaSpots": "Spoturi POTA în timp real cu hartă și detalii despre parcuri",
+  "changelog1017SubmitRepeater": "Sugerează un repetor nou direct din aplicație",
+  "changelog1017MultiLanguage": "Aplicație disponibilă în engleză, spaniolă și franceză",
+  "changelog1017Onboarding": "Experiență nouă la prima lansare",
+  "changelog1017ReportAnonymous": "Rapoarte disponibile fără înregistrare",
+
+  "changelogTitle": "Ce este nou",
+  "changelogSubtitle": "Iată ce este nou în această versiune",
+  "changelogCategoryAdded": "Nou",
+  "changelogCategoryImproved": "Îmbunătățit",
+  "changelogCategoryFixed": "Corectat",
+  "changelogDismiss": "Am înțeles!",
+
+  "dashboardNearbyEmpty": "Niciun repetor în apropiere",
+  "dashboardTabPota": "POTA",
+  "dashboardTabRepeaters": "Repetoare",
+  "dashboardViewAllPotaSpots": "Vezi toate spoturile POTA",
+  "dashboardViewAllRepeaters": "Vezi toate repetoarele",
+  "onboardingDiscoveryExploreMap": "Explorează harta",
+  "onboardingDiscoveryLivePota": "Spot POTA live",
+  "onboardingDiscoveryNearbyRepeater": "Repetor în apropiere",
+  "onboardingDiscoveryNoLocation": "Explorează harta pentru a găsi repetoare și activări POTA",
+  "onboardingDiscoveryNoRepeaters": "Niciun repetor găsit în apropiere",
+  "onboardingDiscoverySubtitle": "Iată ce este în apropierea ta!",
+  "onboardingDiscoveryTitle": "Primul tău repetor",
+  "onboardingDiscoveryViewDetails": "Vezi detaliile",
+  "onboardingDiscoveryViewSpot": "Vezi spotul",
+  "onboardingGetStarted": "Începe",
+  "onboardingLocationEnable": "Activează locația",
+  "onboardingLocationSkip": "Nu acum",
+  "onboardingLocationSubtitle": "Folosim locația ta pentru a-ți arăta repetoarele și activările POTA din apropiere.",
+  "onboardingLocationTitle": "Locație",
+  "onboardingNext": "Următorul",
+  "onboardingSkip": "Omite",
+  "onboardingTelegramAlreadyMember": "Sunt deja membru",
+  "onboardingTelegramJoin": "Alătură-te grupului Telegram",
+  "onboardingTelegramLater": "Poate mai târziu",
+  "onboardingTelegramSubtitle": "Alătură-te grupului Telegram HamQRG pentru a primi actualizări, a raporta repetoare și a cunoaște alți radioamatori.",
+  "onboardingTelegramTitle": "Alătură-te comunității",
+  "onboardingWelcomeCredits": "Date despre repetoare furnizate de IZ8WNH",
+  "onboardingWelcomeSubtitle1": "Descoperă repetoarele active din zona ta, cu frecvențe, tonuri și detalii tehnice.",
+  "onboardingWelcomeSubtitle2": "Analog, DMR, C4FM, D-STAR — găsește imediat repetorul potrivit pentru tine.",
+  "onboardingWelcomeSubtitle3": "Urmărește activările Parks on the Air cu actualizări live, filtre pe bandă și distanță.",
+  "onboardingWelcomeSubtitle4": "Păstrează repetoarele cele mai utilizate la îndemână pentru acces rapid.",
+  "onboardingWelcomeTitle1": "Găsește repetoare în apropierea ta",
+  "onboardingWelcomeTitle2": "Filtrează după mod",
+  "onboardingWelcomeTitle3": "Spoturi POTA în timp real",
+  "onboardingWelcomeTitle4": "Salvează-ți favoritele",
+  "potaFilterAll": "Toate",
+  "potaFilterBand": "Bandă",
+  "potaFilterMode": "Mod",
+  "potaSortByDistance": "Cele mai apropiate",
+  "potaSortByTime": "Cele mai recente",
+  "repeatersNearbyCount": "{count, plural, one{{count} repetor în apropiere} few{{count} repetoare în apropiere} other{{count} de repetoare în apropiere}}",
+  "@repeatersNearbyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatersResultsCount": "{count, plural, one{{count} rezultat} few{{count} rezultate} other{{count} de rezultate}}",
+  "@repeatersResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/state/dashboard_state.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
+import 'package:hamqrg/src/features/pota/provider/get_pota_spots/get_pota_spots_provider.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
@@ -15,9 +17,14 @@ part 'dashboard_controller.g.dart';
 class DashboardController extends _$DashboardController {
   @override
   FutureOr<DashboardState> build() async {
-    final favoritesState = await ref.watch(favoriteRepeatersProvider.future);
+    // Read all providers BEFORE any await to avoid using Ref after
+    // the provider may have been disposed across async gaps.
+    final favoritesFuture = ref.watch(favoriteRepeatersProvider.future);
+    final countRepeatersFuture =
+        ref.watch(getTotalRepeatersCountProvider.future);
+    final favoritesState = await favoritesFuture;
     log('countFavorites: ${favoritesState.count}');
-    final countRepeaters = await ref.watch(getTotalRepeatersCountProvider.future);
+    final countRepeaters = await countRepeatersFuture;
 
     return _loadInitialData(favoritesState.count, countRepeaters);
   }
@@ -28,6 +35,15 @@ class DashboardController extends _$DashboardController {
     final position =
         await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
 
+    // Load POTA spots (non-blocking)
+    final potaFuture = ref.read(getPotaSpotsProvider.future).then(
+          (spots) => (spots: spots, error: false),
+          onError: (e) {
+            log('POTA spots error: $e');
+            return (spots: <PotaSpot>[], error: true);
+          },
+        );
+
     try {
       // Load nearby repeaters
       final nearbyRepeaters = await ref.read(
@@ -37,6 +53,8 @@ class DashboardController extends _$DashboardController {
         ).future,
       );
 
+      final potaResult = await potaFuture;
+
       return DashboardState(
         statistics: DashboardStatistics(
           totalRepeaters: countRepeaters,
@@ -45,8 +63,12 @@ class DashboardController extends _$DashboardController {
         initialPosition: (lat: position.latitude, lon: position.longitude),
         nearbyRepeaters: nearbyRepeaters,
         profile: profile,
+        potaSpots: potaResult.spots,
+        hasPotaError: potaResult.error,
       );
     } on LocationException catch (error) {
+      final potaResult = await potaFuture;
+
       return DashboardState(
         statistics: DashboardStatistics(
           totalRepeaters: countRepeaters,
@@ -56,13 +78,17 @@ class DashboardController extends _$DashboardController {
         nearbyRepeaters: [],
         locationError: error.type,
         profile: profile,
+        potaSpots: potaResult.spots,
+        hasPotaError: potaResult.error,
       );
     }
   }
 
   Future<void> reload() async {
     state = const AsyncValue.loading();
-    ref.invalidate(favoriteRepeatersProvider);
+    ref
+      ..invalidate(favoriteRepeatersProvider)
+      ..invalidate(getPotaSpotsProvider);
     final favoritesState = await ref.read(favoriteRepeatersProvider.future);
     final countRepeaters = await ref.read(getTotalRepeatersCountProvider.future);
     state = await AsyncValue.guard(() => _loadInitialData(favoritesState.count, countRepeaters));

@@ -49,7 +49,10 @@
       "Bash(done)",
       "Bash(./gradlew signingReport:*)",
       "Bash(keytool -list:*)",
-      "Bash(which deploy_flutter 2>/dev/null || type deploy_flutter 2>/dev/null || command -v deploy_flutter 2>/dev/null)"
+      "Bash(which deploy_flutter 2>/dev/null || type deploy_flutter 2>/dev/null || command -v deploy_flutter 2>/dev/null)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(brew list:*)",
+      "Bash(dart pub:*)"
     ]
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/dialogs/show_update_required_dialog.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/error/debug_error_widget.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/splashscreen/presentation/controller/splash_controller.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -14,11 +15,11 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref
-      ..listen<AsyncValue<SplashAction?>>(
-        splashControllerProvider,
-        (previous, next) {
-          next.whenData((action) {
+    ref.listen<AsyncValue<SplashAction?>>(
+      splashControllerProvider,
+      (previous, next) {
+        next.when(
+          data: (action) {
             if (action == null) return;
 
             WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -53,12 +54,31 @@ class SplashScreen extends ConsumerWidget {
 
               notifier.clearAction();
             });
-          });
-        },
-      )
-      ..watch(splashControllerProvider);
+          },
+          loading: () {},
+          // Sentry capture happens inside the controller, but we double-log
+          // here to make sure errors are NEVER silent.
+          error: (error, stackTrace) {
+            Sentry.captureException(error, stackTrace: stackTrace);
+          },
+        );
+      },
+    );
 
-    return const _SplashView();
+    final splashState = ref.watch(splashControllerProvider);
+
+    return splashState.when(
+      data: (_) => const _SplashView(),
+      loading: () => const _SplashView(),
+      error: (error, stackTrace) => Scaffold(
+        body: DebugErrorWidget(
+          label: 'Splash',
+          error: error,
+          stackTrace: stackTrace,
+          onRetry: () => ref.invalidate(splashControllerProvider),
+        ),
+      ),
+    );
   }
 }
 

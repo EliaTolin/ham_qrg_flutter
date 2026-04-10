@@ -192,6 +192,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get repeatersSortFrequency => 'Frequenza';
 
   @override
+  String repeatersNearbyCount(int count) {
+    return '$count ripetitori vicini';
+  }
+
+  @override
+  String repeatersResultsCount(int count) {
+    return '$count risultati';
+  }
+
+  @override
   String get repeatersMapRetry => 'Riprova';
 
   @override
@@ -487,6 +497,21 @@ class AppLocalizationsIt extends AppLocalizations {
   String get homeViewAll => 'Vedi tutto';
 
   @override
+  String get dashboardTabRepeaters => 'Ripetitori';
+
+  @override
+  String get dashboardTabPota => 'POTA';
+
+  @override
+  String get dashboardNearbyEmpty => 'Nessun ripetitore nelle vicinanze';
+
+  @override
+  String get dashboardViewAllRepeaters => 'Vedi tutti i ripetitori';
+
+  @override
+  String get dashboardViewAllPotaSpots => 'Vedi tutti gli spot POTA';
+
+  @override
   String homeStations(int count) {
     return '$count stazioni';
   }
@@ -510,6 +535,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get homeNavFavorites => 'Preferiti';
+
+  @override
+  String get homeNavMap => 'Mappa';
 
   @override
   String get homeNavProfile => 'Profilo';
@@ -1145,4 +1173,480 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Risposta coordinatore';
+
+  @override
+  String get potaTitle => 'POTA Spots';
+
+  @override
+  String get potaSearchHint => 'Cerca per attivatore, parco o modo…';
+
+  @override
+  String get potaNoSpots => 'Nessuno spot POTA attivo al momento.';
+
+  @override
+  String get potaLoadError => 'Impossibile caricare gli spot POTA';
+
+  @override
+  String get potaRetry => 'Riprova';
+
+  @override
+  String get potaViewAll => 'Vedi tutto';
+
+  @override
+  String get potaActivator => 'Attivatore';
+
+  @override
+  String get potaFrequency => 'Frequenza';
+
+  @override
+  String get potaMode => 'Modo';
+
+  @override
+  String get potaPark => 'Parco';
+
+  @override
+  String get potaReference => 'Riferimento';
+
+  @override
+  String get potaSpotter => 'Spottato da';
+
+  @override
+  String get potaComments => 'Commenti';
+
+  @override
+  String get potaLastSpotted => 'Ultimo spot';
+
+  @override
+  String get potaOpenQrz => 'QRZ.com';
+
+  @override
+  String get potaQrzError => 'Impossibile aprire QRZ.com';
+
+  @override
+  String get potaParkWebsite => 'Sito parco';
+
+  @override
+  String get potaParkType => 'Tipo parco';
+
+  @override
+  String get potaLocation => 'Posizione';
+
+  @override
+  String get potaCountry => 'Paese';
+
+  @override
+  String get potaFirstActivation => 'Prima attivazione';
+
+  @override
+  String get potaBand => 'Banda';
+
+  @override
+  String potaDistanceAway(String distance) {
+    return '$distance di distanza';
+  }
+
+  @override
+  String potaSpotsCount(int count) {
+    return '$count spot';
+  }
+
+  @override
+  String get potaFilterAll => 'Tutte';
+
+  @override
+  String get potaFilterBand => 'Banda';
+
+  @override
+  String get potaFilterMode => 'Modo';
+
+  @override
+  String get potaSortByTime => 'Più recenti';
+
+  @override
+  String get potaSortByDistance => 'Più vicini';
+
+  @override
+  String get profileLanguage => 'Lingua';
+
+  @override
+  String get profileLanguageSystem => 'Sistema';
+
+  @override
+  String get profileLanguageItalian => 'Italiano';
+
+  @override
+  String get profileLanguageEnglish => 'English';
+
+  @override
+  String get profileLanguageSpanish => 'Español';
+
+  @override
+  String get profileLanguageFrench => 'Français';
+
+  @override
+  String get profileLanguageGerman => 'Deutsch';
+
+  @override
+  String get profileLanguagePortuguese => 'Português';
+
+  @override
+  String get profileLanguageDutch => 'Nederlands';
+
+  @override
+  String get profileLanguagePolish => 'Polski';
+
+  @override
+  String get profileLanguageRomanian => 'Română';
+
+  @override
+  String get profileLanguageSlovenian => 'Slovenščina';
+
+  @override
+  String get profileLanguageCroatian => 'Hrvatski';
+
+  @override
+  String get profileLanguageHungarian => 'Magyar';
+
+  @override
+  String get profileLanguageCzech => 'Čeština';
+
+  @override
+  String get profileLanguageSlovak => 'Slovenčina';
+
+  @override
+  String get profileLanguageSerbian => 'Srpski';
+
+  @override
+  String get onboardingSkip => 'Salta';
+
+  @override
+  String get onboardingGetStarted => 'Inizia';
+
+  @override
+  String get onboardingNext => 'Avanti';
+
+  @override
+  String get onboardingWelcomeTitle1 => 'Trova i ripetitori vicino a te';
+
+  @override
+  String get onboardingWelcomeSubtitle1 =>
+      'Scopri i ponti radio attivi nella tua zona, con frequenze, toni e dettagli tecnici.';
+
+  @override
+  String get onboardingWelcomeCredits =>
+      'Dati dei ponti radio forniti da IZ8WNH';
+
+  @override
+  String get onboardingWelcomeTitle2 => 'Filtra per modo';
+
+  @override
+  String get onboardingWelcomeSubtitle2 =>
+      'Analogico, DMR, C4FM, D-STAR — trova subito il ripetitore che fa per te.';
+
+  @override
+  String get onboardingWelcomeTitle3 => 'Spot POTA in tempo reale';
+
+  @override
+  String get onboardingWelcomeSubtitle3 =>
+      'Segui le attivazioni Parks on the Air con aggiornamenti live, filtri per banda e distanza.';
+
+  @override
+  String get onboardingWelcomeTitle4 => 'Salva i preferiti';
+
+  @override
+  String get onboardingWelcomeSubtitle4 =>
+      'Tieni a portata di mano i ripetitori che usi di più per accesso rapido.';
+
+  @override
+  String get onboardingLocationTitle => 'Posizione';
+
+  @override
+  String get onboardingLocationSubtitle =>
+      'Usiamo la tua posizione per mostrarti i ripetitori e le attivazioni POTA vicine.';
+
+  @override
+  String get onboardingLocationEnable => 'Attiva Posizione';
+
+  @override
+  String get onboardingLocationSkip => 'Non ora';
+
+  @override
+  String get onboardingDiscoveryTitle => 'Il tuo primo ripetitore';
+
+  @override
+  String get onboardingDiscoverySubtitle => 'Ecco cosa c\'è vicino a te!';
+
+  @override
+  String get onboardingDiscoveryViewDetails => 'Vedi Dettagli';
+
+  @override
+  String get onboardingDiscoveryViewSpot => 'Vedi Spot';
+
+  @override
+  String get onboardingDiscoveryExploreMap => 'Esplora la Mappa';
+
+  @override
+  String get onboardingDiscoveryNoLocation =>
+      'Esplora la mappa per trovare ripetitori e attivazioni POTA';
+
+  @override
+  String get onboardingDiscoveryNearbyRepeater => 'Ripetitore vicino';
+
+  @override
+  String get onboardingDiscoveryLivePota => 'Spot POTA attivo';
+
+  @override
+  String get onboardingDiscoveryNoRepeaters =>
+      'Nessun ripetitore trovato nelle vicinanze';
+
+  @override
+  String get onboardingTelegramTitle => 'Unisciti alla community';
+
+  @override
+  String get onboardingTelegramSubtitle =>
+      'Entra nel gruppo Telegram di HamQRG per ricevere aggiornamenti, segnalare ripetitori e conoscere altri radioamatori.';
+
+  @override
+  String get onboardingTelegramJoin => 'Unisciti al Gruppo Telegram';
+
+  @override
+  String get onboardingTelegramLater => 'Forse dopo';
+
+  @override
+  String get onboardingTelegramAlreadyMember => 'Sono già membro';
+
+  @override
+  String get addRepeaterProfileTile => 'Proponi nuovo ripetitore';
+
+  @override
+  String get addRepeaterProfileTileSubtitle =>
+      'Segnala un ripetitore non ancora presente';
+
+  @override
+  String get addRepeaterTitle => 'Nuovo Ripetitore';
+
+  @override
+  String get addRepeaterHeadline => 'Segnala un ripetitore mancante';
+
+  @override
+  String get addRepeaterDescription =>
+      'Compila i dati del ripetitore che vorresti aggiungere. La segnalazione verrà revisionata prima della pubblicazione.';
+
+  @override
+  String get addRepeaterSectionRepeater => 'Dati ripetitore';
+
+  @override
+  String get addRepeaterSectionAccesses => 'Accessi';
+
+  @override
+  String get addRepeaterSectionLocation => 'Posizione';
+
+  @override
+  String get addRepeaterSectionNotes => 'Note';
+
+  @override
+  String get addRepeaterName => 'Nome';
+
+  @override
+  String get addRepeaterNameHint => 'Es. Monte Cimone';
+
+  @override
+  String get addRepeaterCallsign => 'Nominativo';
+
+  @override
+  String get addRepeaterCallsignHint => 'Es. IR4AB';
+
+  @override
+  String get addRepeaterNameOrCallsignRequired =>
+      'Inserisci almeno il nome o il nominativo';
+
+  @override
+  String get addRepeaterFrequency => 'Frequenza (MHz)';
+
+  @override
+  String get addRepeaterFrequencyHint => 'Es. 145.000 o 145,000';
+
+  @override
+  String get addRepeaterFrequencyRequired => 'Frequenza obbligatoria';
+
+  @override
+  String get addRepeaterFrequencyInvalid => 'Frequenza non valida';
+
+  @override
+  String get addRepeaterShift => 'Shift (MHz)';
+
+  @override
+  String get addRepeaterShiftHint => 'Es. -0.600 o -0,600';
+
+  @override
+  String get addRepeaterRegion => 'Regione';
+
+  @override
+  String get addRepeaterRegionHint => 'Es. Emilia-Romagna';
+
+  @override
+  String get addRepeaterProvinceCode => 'Provincia';
+
+  @override
+  String get addRepeaterProvinceCodeHint => 'Es. MO';
+
+  @override
+  String get addRepeaterLocality => 'Località';
+
+  @override
+  String get addRepeaterLocalityHint => 'Es. Fanano';
+
+  @override
+  String get addRepeaterLatitude => 'Latitudine';
+
+  @override
+  String get addRepeaterLatitudeHint => 'Es. 44.2100';
+
+  @override
+  String get addRepeaterLongitude => 'Longitudine';
+
+  @override
+  String get addRepeaterLongitudeHint => 'Es. 10.7900';
+
+  @override
+  String get addRepeaterLocator => 'Locator';
+
+  @override
+  String get addRepeaterLocatorHint => 'Es. JN54QF';
+
+  @override
+  String get addRepeaterNotes => 'Note aggiuntive';
+
+  @override
+  String get addRepeaterNotesHint =>
+      'Informazioni aggiuntive sul ripetitore...';
+
+  @override
+  String get addRepeaterAddAccess => 'Aggiungi accesso';
+
+  @override
+  String get addRepeaterRemoveAccess => 'Rimuovi';
+
+  @override
+  String get addRepeaterAccessMode => 'Modo';
+
+  @override
+  String get addRepeaterAccessCtcssTx => 'CTCSS TX (Hz)';
+
+  @override
+  String get addRepeaterAccessCtcssTxHint => 'Es. 88.5';
+
+  @override
+  String get addRepeaterAccessCtcssRx => 'CTCSS RX (Hz)';
+
+  @override
+  String get addRepeaterAccessCtcssRxHint => 'Es. 88.5';
+
+  @override
+  String get addRepeaterAccessDcsCode => 'Codice DCS';
+
+  @override
+  String get addRepeaterAccessDcsCodeHint => 'Es. 23';
+
+  @override
+  String get addRepeaterAccessColorCode => 'Color Code';
+
+  @override
+  String get addRepeaterAccessColorCodeHint => 'Es. 1';
+
+  @override
+  String get addRepeaterAccessTalkgroup => 'Talkgroup';
+
+  @override
+  String get addRepeaterAccessTalkgroupHint => 'Es. 222801';
+
+  @override
+  String get addRepeaterAccessDgId => 'DG-ID';
+
+  @override
+  String get addRepeaterAccessDgIdHint => 'Es. 0';
+
+  @override
+  String get addRepeaterAccessNodeId => 'Node ID';
+
+  @override
+  String get addRepeaterAccessNodeIdHint => 'Es. 1234';
+
+  @override
+  String get addRepeaterAccessNetworkName => 'Nome rete';
+
+  @override
+  String get addRepeaterAccessNetworkNameHint => 'Es. BM Italia';
+
+  @override
+  String get addRepeaterAccessNotes => 'Note accesso';
+
+  @override
+  String get addRepeaterAccessNotesHint =>
+      'Note specifiche per questo accesso...';
+
+  @override
+  String get addRepeaterConfirmCheckbox =>
+      'Confermo che queste informazioni sono corrette in base alla mia conoscenza.';
+
+  @override
+  String get addRepeaterVerifiedTitle => 'Segnalazione verificata';
+
+  @override
+  String get addRepeaterVerifiedDescription =>
+      'La tua segnalazione sarà revisionata dal team prima di essere pubblicata nel database.';
+
+  @override
+  String get addRepeaterSubmit => 'Invia';
+
+  @override
+  String get addRepeaterSuccess => 'Segnalazione inviata con successo!';
+
+  @override
+  String get addRepeaterError => 'Errore durante l\'invio della segnalazione';
+
+  @override
+  String get addRepeaterAtLeastOneAccess => 'Aggiungi almeno un accesso';
+
+  @override
+  String addRepeaterAccessNumber(int number) {
+    return 'Accesso $number';
+  }
+
+  @override
+  String get changelog1017PotaSpots =>
+      'Spot POTA in tempo reale con mappa e dettagli parco';
+
+  @override
+  String get changelog1017SubmitRepeater =>
+      'Proponi un nuovo ripetitore direttamente dall\'app';
+
+  @override
+  String get changelog1017MultiLanguage =>
+      'App disponibile in inglese, spagnolo e francese';
+
+  @override
+  String get changelog1017Onboarding => 'Nuova esperienza di primo avvio';
+
+  @override
+  String get changelog1017ReportAnonymous =>
+      'Segnalazioni disponibili anche senza registrazione';
+
+  @override
+  String get changelogTitle => 'Novità';
+
+  @override
+  String get changelogSubtitle => 'Ecco cosa c\'è di nuovo in questa versione';
+
+  @override
+  String get changelogCategoryAdded => 'Nuovo';
+
+  @override
+  String get changelogCategoryImproved => 'Migliorato';
+
+  @override
+  String get changelogCategoryFixed => 'Corretto';
+
+  @override
+  String get changelogDismiss => 'Ho capito!';
 }

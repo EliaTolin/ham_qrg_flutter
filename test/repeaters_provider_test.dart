@@ -4,6 +4,7 @@ library;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:hamqrg/src/features/repeaters/data/datasource/repeaters_supabase_datasource.dart';
 import 'package:hamqrg/src/features/repeaters/data/repository/repeaters_repository.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
@@ -46,6 +47,7 @@ void main() {
       AppConfigs.getSupabaseKey(),
     );
     await _client.auth.signInAnonymously();
+    final anonymousUserId = _client.auth.currentUser?.id;
 
     final talker = TalkerFlutter.init();
 
@@ -56,6 +58,7 @@ void main() {
     _container = ProviderContainer(
       overrides: [
         repeatersRepositoryProvider.overrideWithValue(repository),
+        getUserIdProvider.overrideWith((_) async => anonymousUserId),
       ],
     );
 

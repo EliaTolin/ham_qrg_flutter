@@ -1,0 +1,39 @@
+HamQRG je najboljsa aplikacija za radioamaterje in poslusalce. Enostavno najdi repetitorje v blizini, sledi POTA aktivacijam v zivo, preveri frekvence in se pridruzi skupnosti, ki raste vsak dan.
+
+<b>INTERAKTIVNI ZEMLJEVID</b>
+• Oglej si vse repetitorje na interaktivnem zemljevidu
+• Najdi najblizje repetitorje glede na tvojo lokacijo
+• Filtriraj po nacinu: Analogni, DMR, C4FM, D-STAR, Echolink
+• Pametno grupiranje za obmocja z veliko repetitorji
+
+<b>POPOLNI TEHNICNI PODATKI</b>
+• TX/RX frekvenca in odmik
+• CTCSS/DCS toni
+• Color Code in Talk Groups za DMR
+• Digitalna omrezja (BrandMeister, TGIF in druga)
+• Natancna lokacija in razdalja
+
+<b>POTA SPOTI V ZIVO</b>
+• Sledi v realnem casu vsem aktivacijam Parks On The Air
+• Filtriraj spote po pasu in nacinu (SSB, CW, Digital)
+• Razvrsti po casu ali oddaljenosti od tvoje lokacije
+• Oglej si aktivne parke na interaktivnem zemljevidu
+• Hiter dostop do QRZ profila aktivatorja in strani parka
+
+<b>PRILJUBLJENI IN POVRATNE INFORMACIJE</b>
+• Shrani priljubljene repetitorje za hiter dostop
+• Podaj mnenje o kakovosti signala
+• Prijavi tezave ali posodobitve koordinatorjem
+• Preglej porocila skupnosti
+
+<b>ZA RADIOAMATERJE IN POSLUSALCE</b>
+• Prilagojen profil s klicnim znakom
+• Podpora za licencirane operaterje in SWL
+• Brezplacen dostop do vseh javnih podatkov
+
+<b>AKTIVNA SKUPNOST</b>
+• Pridruzi se Telegram skupini
+• Predlagaj nove funkcije
+• Neposredno kontaktiraj razvijalce
+
+Prenesi HamQRG in odkrij svet radioamaterskih repetitorjev!

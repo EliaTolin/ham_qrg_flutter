@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Deploy a new beta build to Google Play Closed Testing
 
+### android update_metadata
+
+```sh
+[bundle exec] fastlane android update_metadata
+```
+
+Update Play Store metadata and localizations only (no binary upload)
+
 ### android deploy
 
 ```sh

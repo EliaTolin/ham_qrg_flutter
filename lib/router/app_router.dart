@@ -4,9 +4,14 @@ import 'package:hamqrg/src/features/authentication/presentation/auth/auth_screen
 import 'package:hamqrg/src/features/authentication/presentation/auth/change_password/change_password_screen.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashboard_page.dart';
 import 'package:hamqrg/src/features/home/presentation/home_page/home_page.dart';
+import 'package:hamqrg/src/features/onboarding/presentation/onboarding_page/onboarding_page.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/post_login_onboarding_page.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/pota_spot_detail_page.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spots_map_page/pota_spots_map_page.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/pota_spots_page.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/profile_screen.dart';
 import 'package:hamqrg/src/features/profile/presentation/user_settings/user_settings_screen.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/add_repeater/add_repeater_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/repeater_detail_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/distance_map/repeater_detail_map_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/favorites_page.dart';
@@ -29,6 +34,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
   List<AutoRoute> get routes => [
         AutoRoute(path: '/splash', page: SplashRoute.page, initial: true),
         AutoRoute(page: AuthRoute.page),
+        AutoRoute(page: OnboardingRoute.page),
         AutoRoute(page: PostLoginOnboardingRoute.page),
         AutoRoute(path: '/change-password', page: ChangePasswordRoute.page),
         AutoRoute(
@@ -54,6 +60,12 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                   path: 'repeater/:repeaterId/map',
                   page: RepeaterDetailMapRoute.page,
                 ),
+                AutoRoute(path: 'pota', page: PotaSpotsRoute.page),
+                AutoRoute(path: 'pota/map', page: PotaSpotsMapRoute.page),
+                AutoRoute(
+                  path: 'pota/:spotId/:reference',
+                  page: PotaSpotDetailRoute.page,
+                ),
               ],
             ),
             AutoRoute(
@@ -62,6 +74,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(page: ProfileRoute.page),
                 AutoRoute(page: UserSettingsRoute.page),
                 AutoRoute(page: UserReportsRoute.page),
+                AutoRoute(page: AddRepeaterRoute.page),
               ],
             ),
           ],

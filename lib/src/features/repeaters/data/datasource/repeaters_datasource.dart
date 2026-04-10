@@ -42,12 +42,14 @@ abstract interface class RepeatersDatasource {
 
   // Feedback methods
   Future<RepeaterFeedbackStatsModel?> getRepeaterFeedbackStats(
-    String repeaterId,
-  );
+    String repeaterId, {
+    String? userId,
+  });
 
   Future<List<RepeaterFeedbackStatsModel>> getRepeatersFeedbackStatsFromIds(
-    List<String> repeaterIds,
-  );
+    List<String> repeaterIds, {
+    String? userId,
+  });
 
   Future<void> addRepeaterFeedback({
     required String userId,
@@ -82,5 +84,22 @@ abstract interface class RepeatersDatasource {
     required String userId,
     required String repeaterId,
     required String description,
+  });
+
+  // Submission methods
+  Future<void> submitRepeaterSubmission({
+    required String userId,
+    required String name,
+    required String callsign,
+    required int frequencyHz,
+    required List<Map<String, dynamic>> accesses,
+    int? shiftHz,
+    String? region,
+    String? provinceCode,
+    String? locality,
+    double? lat,
+    double? lon,
+    String? locator,
+    String? notes,
   });
 }

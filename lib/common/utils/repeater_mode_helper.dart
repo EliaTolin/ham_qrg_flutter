@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
@@ -34,10 +33,8 @@ class RepeaterModeHelper {
     final cacheKey = getAccessModesKey(accessModes);
     final cached = _iconCache[cacheKey];
     if (cached != null) {
-      log('Using cached icon for $cacheKey');
       return cached;
     }
-    log('Generating icon for $cacheKey');
     const size = 72.0;
     const iconSize = 32.0;
     const strokeWidth = 6.0;

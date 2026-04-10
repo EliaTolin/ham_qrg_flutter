@@ -1,0 +1,724 @@
+{
+  "@@locale": "cs",
+  "error": "Chyba",
+  "error_message": "Při načítání došlo k chybě",
+  "error_message_retry": "Při načítání došlo k chybě. Zkuste to prosím později",
+  "retry": "Zkusit znovu",
+  "back": "Zpět",
+  "loading": "Načítání",
+  "details": "Podrobnosti",
+  "pages_number": "{number} stránek k prozkoumání",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "Leden",
+  "february": "Únor",
+  "march": "Březen",
+  "april": "Duben",
+  "may": "Květen",
+  "june": "Červen",
+  "july": "Červenec",
+  "august": "Srpen",
+  "september": "Září",
+  "october": "Říjen",
+  "november": "Listopad",
+  "december": "Prosinec",
+  "logout": "Odhlásit se",
+  "profile": "Profil",
+  "settings": "Nastavení",
+  "contact_us": "Kontaktujte nás",
+  "error_opening_email": "Při otevírání e-mailu došlo k chybě",
+  "register_now": "Zaregistrujte se",
+  "tracking_permission_title": "Podpořte aplikaci",
+  "tracking_permission_message": "Pro zlepšení vašeho zážitku a zobrazení relevantnějšího obsahu nám pomozte udržet aplikaci zdarma.\n\nKlepněte na Povolit pro podporu.",
+  "tracking_permission_next": "Další",
+  "skip": "Přeskočit",
+  "done": "Hotovo",
+  "next": "Další",
+  "joinCommunityTitle": "Přidejte se k naší komunitě!",
+  "joinCommunityDescription": "Objevte výhody členství v komunitě na Telegramu:",
+  "benefitSupportMembers": "Podpora od členů",
+  "benefitSuggestFeatures": "Navrhujte nové funkce",
+  "benefitContactDevelopers": "Kontakt s vývojáři",
+  "benefitExclusivePreviews": "Exkluzivní náhledy a beta verze",
+  "benefitActiveCommunity": "Aktivní komunita",
+  "joinNowButton": "Přidejte se!",
+  "alreadyMemberButton": "Už jsem členem",
+  "laterButton": "Později",
+  "errorOpenTelegram": "Chyba při otevírání Telegramu",
+  "disclaimerTitle": "Zdroj dat",
+  "disclaimerDescription": "Data o převaděčích v této aplikaci pocházejí od IZ8WNH.\n\nPro další informace, stažení CSV souborů pro programování radiostanic nebo konzultaci dat nedostupných v této aplikaci navštivte oficiální stránky.",
+  "disclaimerVisitSite": "Navštívit iz8wnh.it",
+  "disclaimerUnderstood": "Rozumím",
+  "errorOpenDisclaimerSite": "Chyba při otevírání webových stránek",
+  "repeatersMapTitle": "Mapa převaděčů",
+  "repeatersListTitle": "Seznam převaděčů",
+  "repeatersMapLoading": "Načítání mapy převaděčů…",
+  "repeatersMapGenericError": "Nepodařilo se načíst převaděče.",
+  "repeatersMapEmpty": "V okolí nebyly nalezeny žádné převaděče.",
+  "repeatersSearchHint": "Hledat podle názvu, volacího znaku nebo frekvence MHz…",
+  "repeatersSearchEmpty": "Žádné převaděče nebyly nalezeny.",
+  "repeatersSortDistance": "Vzdálenost",
+  "repeatersSortLikes": "Lajky",
+  "repeatersSortFrequency": "Frekvence",
+  "repeatersMapRetry": "Zkusit znovu",
+  "repeatersMapOpenSettings": "Otevřít nastavení",
+  "repeatersMapPermissionMessage": "Povolte přístup k poloze pro zobrazení převaděčů ve vašem okolí.",
+  "repeatersMapPermissionPermanentlyDenied": "Oprávnění k poloze bylo trvale zamítnuto. Povolte ho v nastavení systému.",
+  "repeatersMapLocationServicesDisabled": "Zapněte služby určování polohy pro nalezení převaděčů v okolí.",
+  "repeatersMapFound": "{count} nalezených převaděčů",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Režim",
+  "repeaterModeAnalog": "Analog",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "Všechny režimy",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frekvence",
+  "repeaterShift": "Shift",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Poloha",
+  "repeaterDistance": "Vzdálenost",
+  "repeaterViewFullDetails": "Zobrazit úplné podrobnosti",
+  "repeatersMapReturnToLocation": "Návrat na moji polohu",
+  "clusterRepeatersTitle": "{count} převaděčů na tomto místě",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Odemkněte všechny funkce",
+  "profileUnlockFeaturesDescription": "Zaregistrujte se a používejte hodnocení, ukládání oblíbených a podrobné statistiky.",
+  "profileSignUpOrLogin": "Registrace nebo přihlášení",
+  "profileErrorOpeningEmail": "Chyba při otevírání e-mailu",
+  "profileJoinTelegramCommunity": "Přidejte se ke komunitě na Telegramu",
+  "profileWelcomeTitle": "Vítejte v HamQRG",
+  "profileWelcomeDescription": "Přidejte se k naší komunitě radioamatérů v Itálii.",
+  "profileEditProfile": "Upravit profil",
+  "profileChangePhoto": "Změnit fotografii",
+  "profileFirstName": "Jméno",
+  "profileLastName": "Příjmení",
+  "profileCallsign": "Volací znak",
+  "profileRestartIdentificationTitle": "Potřebujete změnit svůj status? Můžete restartovat proces identifikace a přepnout z licencovaného operátora na SWL posluchače.",
+  "profileRestartIdentificationButton": "Restartovat proces identifikace",
+  "profileSaveChanges": "Uložit změny",
+  "profileDangerZone": "Nebezpečná zóna",
+  "profileDeleteAccount": "Smazat účet",
+  "profileDeleteAccountConfirmTitle": "Smazat účet",
+  "profileDeleteAccountConfirmMessage": "Opravdu chcete smazat svůj účet? Tuto akci nelze vrátit zpět.",
+  "profileDeleteAccountCancel": "Zrušit",
+  "profileDeleteAccountConfirm": "Smazat",
+  "profileAppVersion": "Verze aplikace {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Komunita a podpora",
+  "profileSectionSupport": "Podpora",
+  "profileVersion": "Verze: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Verze {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Chyba: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "Připojte se k HamQRG",
+  "authUnlockFeatures": "Přihlaste se a odemkněte všechny funkce!",
+  "authWhatYouGet": "Co získáte:",
+  "authBenefitStatsTitle": "Podrobné statistiky",
+  "authBenefitStatsDescription": "Sledujte svůj pokrok a zlepšujte se",
+  "authBenefitQuizTitle": "Různé režimy kvízů",
+  "authBenefitQuizDescription": "Procvičujte v maratonu, tématických a dalších režimech.",
+  "authBenefitSyncTitle": "Synchronizace",
+  "authBenefitSyncDescription": "Přístup z jakéhokoli zařízení",
+  "authOrSignInWithEmail": "Nebo se přihlaste e-mailem",
+  "authEnterEmail": "Zadejte e-mail",
+  "authEnterPassword": "Zadejte heslo",
+  "authForgotPassword": "Zapomněli jste heslo?",
+  "authSignIn": "Přihlásit se",
+  "authSignUp": "Zaregistrovat se",
+  "authPasswordLengthError": "Heslo musí být delší",
+  "authDontHaveAccount": "Nemáte účet? Zaregistrujte se",
+  "authHaveAccount": "Již máte účet? Přihlaste se",
+  "authBackToSignIn": "Zpět na přihlášení",
+  "authUnexpectedError": "Chyba ověřování: ",
+  "authValidEmailError": "Zadejte platný e-mail",
+  "authSendPasswordReset": "Odeslat obnovení hesla",
+  "authPasswordResetSent": "Obnovení hesla odesláno",
+  "authVerifyEmailMessage": "Pro dokončení registrace ověřte svůj e-mail, zkontrolujte doručenou poštu.",
+  "authInvalidCredentials": "Neplatný e-mail nebo heslo",
+  "authEmailNotConfirmed": "Pro přihlášení ověřte svůj e-mail",
+  "authFirstName": "Jméno",
+  "authFirstNameRequired": "Jméno je povinné",
+  "authLastName": "Příjmení",
+  "authLastNameRequired": "Příjmení je povinné",
+  "authContinueAsGuest": "Pokračovat jako host",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Objevte převaděče ve vašem okolí",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Rychlý přístup",
+  "homeRepeaterList": "Seznam převaděčů",
+  "homeMyFavorites": "Moje oblíbené",
+  "homeNearby": "V okolí",
+  "homeViewAll": "Zobrazit vše",
+  "homeStations": "{count} stanic",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} uložených",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Aktivní",
+  "homeIdle": "Neaktivní",
+  "homeNavHome": "Domů",
+  "homeNavList": "Seznam",
+  "homeNavFavorites": "Oblíbené",
+  "homeNavMap": "Mapa",
+  "homeNavProfile": "Profil",
+  "favoritesTitle": "Moje oblíbené",
+  "favoritesSearchHint": "Hledat uložené převaděče...",
+  "favoritesFilterAllSaved": "Vše uložené",
+  "favoritesEmpty": "Žádné uložené převaděče",
+  "favoritesEmptyDescription": "Přidejte převaděče do oblíbených a uvidíte je zde",
+  "favoritesShowing": "Zobrazeno {showing} z {total} oblíbených stanic",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Odebrat z oblíbených",
+  "favoritesAdd": "Přidat do oblíbených",
+  "repeaterDetailSave": "Uložit",
+  "repeaterDetailShare": "Sdílet",
+  "repeaterDetailReport": "Nahlásit",
+  "repeaterDetailTotalLikes": "Celkem lajků",
+  "repeaterDetailReports1Yr": "Hlášení (1 rok)",
+  "repeaterDetailHealthScore": "Skóre stavu",
+  "repeaterDetailExcellent": "Vynikající",
+  "repeaterDetailGood": "Dobrý",
+  "repeaterDetailFair": "Uspokojivý",
+  "repeaterDetailToVerify": "K ověření",
+  "repeaterDetailScoreCalculated": "Skóre vypočítáno z {count} negativních hlášení za poslední rok",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Poslední lajk",
+  "repeaterDetailLastDownReport": "Poslední negativní hlášení",
+  "repeaterDetailTechnicalData": "Technické údaje",
+  "repeaterDetailFrequency": "Frekvence",
+  "repeaterDetailShift": "Shift",
+  "repeaterDetailSubtone": "Subtón (SQL)",
+  "repeaterDetailMode": "Režim",
+  "repeaterDetailLocation": "Poloha",
+  "repeaterDetailAway": "{distance} daleko",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Hlášení komunity",
+  "repeaterDetailUpdateStatusFeedback": "Aktualizovat stav a zpětnou vazbu",
+  "repeaterDetailEquipment": "Vybavení",
+  "repeaterDetailEquipmentRequired": "Vybavení *",
+  "repeaterDetailAccessModes": "Režimy přístupu",
+  "repeaterDetailNetwork": "Síť",
+  "repeaterDetailLocationField": "Poloha",
+  "repeaterDetailLocationRequired": "Poloha *",
+  "repeaterDetailComment": "Komentář",
+  "repeaterDetailCommentOptional": "Komentář (volitelný)",
+  "repeaterDetailCommentPlaceholder": "Kvalita signálu, hlášení o zvuku nebo obecné komentáře...",
+  "repeaterDetailReportDown": "Nahlásit problém",
+  "repeaterDetailCheckinLike": "Check-in a lajk",
+  "repeaterDetailYourFeedback": "Vaše zpětná vazba",
+  "repeaterDetailPostedJustNow": "Právě přidáno",
+  "repeaterDetailDeleteEntry": "Smazat záznam",
+  "repeaterDetailViewAllReports": "Zobrazit všech {count} hlášení",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Přenosná",
+  "repeaterDetailStationMobile": "Mobilní",
+  "repeaterDetailStationFixed": "Pevná",
+  "repeaterDetailLike": "Lajk",
+  "repeaterDetailReportLabel": "Hlášení",
+  "repeaterDetailSaved": "Uloženo",
+  "repeaterDetailShareMessage": "Podívejte se na tento převaděč na HamQRG!",
+  "repeaterDetailReportDescription": "Funkce hlášení bude brzy k dispozici. Budete moci nahlásit nesprávné informace nebo problémy s tímto převaděčem.",
+  "commonClose": "Zavřít",
+  "favorite": "Oblíbené",
+  "accessConfiguration": "Konfigurace přístupu",
+  "noAccessConfiguration": "Žádná konfigurace není k dispozici",
+  "repeaterDetailAddFeedback": "Přidat zpětnou vazbu",
+  "repeaterDetailOthersReports": "Hlášení ostatních uživatelů",
+  "repeaterDetailRemove": "Odebrat",
+  "repeaterDetailSelectAccess": "Vybrat přístup",
+  "repeaterDetailDistanceWarning": "Pro odeslání zpětné vazby musíte být do {distance} km od převaděče.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interaktivní",
+  "repeaterDetailLogYourSignal": "Zaznamenejte svůj signál",
+  "repeaterDetailUsedEquipment": "Použité vybavení",
+  "repeaterDetailYourLocation": "Vaše poloha",
+  "repeaterDetailLocationPlaceholder": "Kde jste byli? (např. Praha)",
+  "repeaterDetailLocationSelectHint": "Vyberte místo z návrhů",
+  "feedbackDistanceConfirmTitle": "Potvrzení odeslání",
+  "feedbackDistanceConfirmMessage": "Vybrané místo je {distance} km od převaděče. Potvrzujete, že chcete odeslat tuto zpětnou vazbu na vlastní odpovědnost?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Potvrdit",
+  "feedbackDistanceConfirmCancel": "Zrušit",
+  "repeaterDetailSelectAccessInstance": "Vybrat instanci přístupu",
+  "repeaterDetailSignalObservations": "Pozorování signálu",
+  "repeaterDetailSignalObservationsPlaceholder": "Jaká byla kvalita zvuku?",
+  "repeaterDetailSendLike": "Odeslat lajk",
+  "repeaterDetailReportIssue": "Nahlásit problém",
+  "repeaterDetailRecentActivity": "Nedávná aktivita",
+  "reportIssueTitle": "Hlášení",
+  "reportIssueHeadline": "Pomozte nám udržet data přesná",
+  "reportIssueDescription": "Našli jste u tohoto převaděče něco špatného nebo chybějícího? Dejte nám vědět, co je třeba změnit, a my to ověříme.",
+  "reportIssueWhatToCorrect": "Co byste chtěli opravit nebo doplnit?",
+  "reportIssuePlaceholder": "Např. CTCSS tón se změnil na 88,5 Hz, nebo poloha je mírně severněji, správce je...",
+  "reportIssueVerifiedTitle": "Ověřená podání",
+  "reportIssueVerifiedDescription": "Vaše hlášení bude posouzeno regionálním koordinátorem před aktualizací veřejné databáze. Děkujeme za váš příspěvek komunitě.",
+  "reportIssueConfirmCheckbox": "Potvrzuji, že tyto informace jsou správné na základě mého pozorování.",
+  "reportIssueSubmit": "Odeslat",
+  "reportIssueMinChars": "Vyžadováno minimálně 10 znaků",
+  "reportIssueMaxChars": "Maximálně 2000 znaků",
+  "reportIssueSuccess": "Hlášení úspěšně odesláno",
+  "reportIssueError": "Chyba při odesílání hlášení",
+  "registrationPromptTitle": "Odemkněte plný potenciál",
+  "registrationPromptDescription": "Přidejte se ke komunitě radioamatérů a posuňte svůj zážitek na novou úroveň.",
+  "registrationBenefitInteractTitle": "Interakce",
+  "registrationBenefitInteractDescription": "Hodnoťte převaděče a zanechávejte komentáře pro ostatní.",
+  "registrationBenefitFavoritesTitle": "Oblíbené",
+  "registrationBenefitFavoritesDescription": "Uložte si nejpoužívanější frekvence a převaděče.",
+  "registrationBenefitLogbookTitle": "Deník",
+  "registrationBenefitLogbookDescription": "Sledujte svá QSO a uchovávejte osobní historii.",
+  "registrationSignInApple": "Přihlásit se přes Apple",
+  "registrationSignInGoogle": "Přihlásit se přes Google",
+  "registrationPromptFooter": "Registrace zdarma. Pro prohlížení veřejných dat není nutná licence.",
+  "postLoginOnboardingWelcome": "Vítejte v",
+  "postLoginOnboardingQuestion": "Jste licencovaný radioamatér?",
+  "postLoginOnboardingHelpText": "Toto nám pomáhá přizpůsobit váš zážitek a zobrazit správné frekvence.",
+  "postLoginOnboardingYesLicensed": "Ano, jsem",
+  "postLoginOnboardingNoListener": "Ne, jsem jen posluchač",
+  "postLoginOnboardingCallsignTitle": "Identifikujte se",
+  "postLoginOnboardingCallsignSubtitle": "Zadejte svůj oficiální volací znak pro přístup k síťovým funkcím.",
+  "postLoginOnboardingCallsignLabel": "Volací znak",
+  "postLoginOnboardingCallsignHint": "Např. OK1XYZ",
+  "postLoginOnboardingComplete": "Dokončit profil",
+  "postLoginOnboardingBack": "Zpět",
+  "postLoginOnboardingChangeInSettings": "Toto můžete změnit později v nastavení.",
+  "postLoginOnboardingSwlTitle": "Volací znak SWL",
+  "postLoginOnboardingSwlQuestion": "Máte oficiální volací znak SWL?",
+  "postLoginOnboardingSwlHelpText": "Volací znaky posluchačů krátkých vln pomáhají s identifikací v globální monitorovací komunitě.",
+  "postLoginOnboardingSwlYes": "Ano, mám",
+  "postLoginOnboardingSwlNo": "Ne, nemám",
+  "postLoginOnboardingSwlEnterCallsign": "Zadejte volací znak",
+  "postLoginOnboardingSwlCallsignHint": "Např. OK1-12345-SWL",
+  "timeAgoJustNow": "právě teď",
+  "timeAgoMinutes": "{count, plural, one{před 1 minutou} few{před {count} minutami} other{před {count} minutami}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{před 1 hodinou} few{před {count} hodinami} other{před {count} hodinami}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{před 1 dnem} few{před {count} dny} other{před {count} dny}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{před 1 týdnem} few{před {count} týdny} other{před {count} týdny}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{před 1 měsícem} few{před {count} měsíci} other{před {count} měsíci}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{před 1 rokem} few{před {count} lety} other{před {count} lety}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Vzhled",
+  "profileThemeModeSystem": "Systémový",
+  "profileThemeModeLight": "Světlý",
+  "profileThemeModeDark": "Tmavý",
+  "repeaterDetailBeFirstFeedback": "Buďte první, kdo zanechá zpětnou vazbu k tomuto převaděči!",
+  "repeaterDetailDistanceFromYou": "Vzdálenost od vás",
+  "repeaterDistanceMapNoLocation": "Poloha není k dispozici",
+  "repeaterDetailNever": "Nikdy",
+  "repeaterDetailInfo": "Informace",
+  "repeaterDetailSource": "Zdroj",
+  "repeaterDetailManager": "Správce",
+  "repeaterDetailSuggestManager": "Znáte správce převaděče? Nahlaste to!",
+  "repeaterDetailViewFeedbackMap": "Mapa zpětné vazby",
+  "repeaterDetailViewFeedbackMapSubtitle": "Podívejte se, kde byly zaznamenány lajky a hlášení",
+  "repeaterDetailAltimetricProfile": "Výškový profil",
+  "repeaterDetailAltimetricProfileSubtitle": "Zobrazit profil terénu mezi vámi a převaděčem",
+  "repeaterDetailLosClear": "Přímá viditelnost mezi vámi a převaděčem je volná",
+  "repeaterDetailLosObstructed": "Přímá viditelnost je blokována terénem",
+  "repeaterDetailTerrainProfile": "Profil terénu",
+  "repeaterDetailLineOfSight": "Přímá viditelnost",
+  "repeaterDetailTotalDistance": "Vzdálenost",
+  "repeaterDetailRepeaterElevation": "Nadmořská výška převaděče",
+  "repeaterDetailYourElevation": "Vaše nadmořská výška",
+  "repeaterDetailYou": "Vy",
+  "repeaterDetailRepeaterLabel": "Převaděč",
+
+  "repeaterDetailFunFacts": "Věděli jste?",
+  "repeaterDetailWavelength": "Vlnová délka",
+  "repeaterDetailWavelengthValue": "Vlnová délka tohoto převaděče je {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Kmitů za sekundu",
+  "repeaterDetailOscillationsValue": "Signál kmitá {value} krát za sekundu",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Doba šíření",
+  "repeaterDetailPropagationTimeValue": "Váš signál potřebuje {value} k dosažení převaděče",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Vlnové cykly při přenosu",
+  "repeaterDetailWaveCyclesValue": "Vlna dokončí {value} úplných cyklů při přenosu",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userReportsTitle": "Moje hlášení",
+  "userReportsFilterAll": "Vše",
+  "userReportsFilterOpen": "Otevřená",
+  "userReportsFilterClosed": "Uzavřená",
+  "userReportsEmpty": "Žádná odeslaná hlášení",
+  "userReportsEmptyDescription": "Vaše hlášení o převaděčích se zobrazí zde",
+  "userReportsEmptyFiltered": "Žádná hlášení s tímto filtrem",
+  "userReportsStatusPending": "Čeká na zpracování",
+  "userReportsStatusReviewed": "Kontrolováno",
+  "userReportsStatusResolved": "Vyřešeno",
+  "userReportsStatusRejected": "Zamítnuto",
+  "userReportsRetryBanner": "Nelze aktualizovat seznam",
+  "userReportsProfileTile": "Moje hlášení",
+  "userReportsProfileTileSubtitle": "Zobrazit stav vašich hlášení",
+  "userReportsError": "Chyba při načítání hlášení",
+  "userReportsCoordinatorResponse": "Odpověď koordinátora",
+
+  "potaTitle": "POTA spoty",
+  "potaSearchHint": "Hledat podle aktivátora, parku nebo režimu…",
+  "potaNoSpots": "Momentálně nejsou žádné aktivní POTA spoty.",
+  "potaLoadError": "Nepodařilo se načíst POTA spoty",
+  "potaRetry": "Zkusit znovu",
+  "potaViewAll": "Zobrazit vše",
+  "potaActivator": "Aktivátor",
+  "potaFrequency": "Frekvence",
+  "potaMode": "Režim",
+  "potaPark": "Park",
+  "potaReference": "Reference",
+  "potaSpotter": "Spatřil",
+  "potaComments": "Komentáře",
+  "potaLastSpotted": "Naposledy spatřen",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "Nepodařilo se otevřít QRZ.com",
+  "potaParkWebsite": "Web parku",
+  "potaParkType": "Typ parku",
+  "potaLocation": "Poloha",
+  "potaCountry": "Země",
+  "potaFirstActivation": "První aktivace",
+  "potaBand": "Pásmo",
+  "potaDistanceAway": "{distance} daleko",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count} aktivních spotů",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Jazyk",
+  "profileLanguageSystem": "Systémový",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
+  "profileLanguageHungarian": "Magyar",
+  "profileLanguageCzech": "Čeština",
+  "profileLanguageSlovak": "Slovenčina",
+  "profileLanguageSerbian": "Srpski",
+
+  "addRepeaterProfileTile": "Navrhnout nový převaděč",
+  "addRepeaterProfileTileSubtitle": "Nahlásit převaděč, který dosud není v seznamu",
+  "addRepeaterTitle": "Nový převaděč",
+  "addRepeaterHeadline": "Nahlásit chybějící převaděč",
+  "addRepeaterDescription": "Vyplňte údaje o převaděči, který chcete přidat. Podání bude před zveřejněním zkontrolováno.",
+  "addRepeaterSectionRepeater": "Údaje o převaděči",
+  "addRepeaterSectionAccesses": "Přístupy",
+  "addRepeaterSectionLocation": "Poloha",
+  "addRepeaterSectionNotes": "Poznámky",
+  "addRepeaterName": "Název",
+  "addRepeaterNameHint": "Např. Sněžka",
+  "addRepeaterCallsign": "Volací znak",
+  "addRepeaterCallsignHint": "Např. OK0AB",
+  "addRepeaterNameOrCallsignRequired": "Zadejte alespoň název nebo volací znak",
+  "addRepeaterFrequency": "Frekvence (MHz)",
+  "addRepeaterFrequencyHint": "Např. 145.000 nebo 145,000",
+  "addRepeaterFrequencyRequired": "Frekvence je povinná",
+  "addRepeaterFrequencyInvalid": "Neplatná frekvence",
+  "addRepeaterShift": "Shift (MHz)",
+  "addRepeaterShiftHint": "Např. -0.600 nebo -0,600",
+  "addRepeaterRegion": "Kraj",
+  "addRepeaterRegionHint": "Např. Středočeský kraj",
+  "addRepeaterProvinceCode": "Okres",
+  "addRepeaterProvinceCodeHint": "Např. PH",
+  "addRepeaterLocality": "Obec",
+  "addRepeaterLocalityHint": "Např. Příbram",
+  "addRepeaterLatitude": "Zeměpisná šířka",
+  "addRepeaterLatitudeHint": "Např. 49.7437",
+  "addRepeaterLongitude": "Zeměpisná délka",
+  "addRepeaterLongitudeHint": "Např. 13.3733",
+  "addRepeaterLocator": "Lokátor",
+  "addRepeaterLocatorHint": "Např. JN79DW",
+  "addRepeaterNotes": "Další poznámky",
+  "addRepeaterNotesHint": "Další informace o převaděči...",
+  "addRepeaterAddAccess": "Přidat přístup",
+  "addRepeaterRemoveAccess": "Odebrat",
+  "addRepeaterAccessMode": "Režim",
+  "addRepeaterAccessCtcssTx": "CTCSS TX (Hz)",
+  "addRepeaterAccessCtcssTxHint": "Např. 88.5",
+  "addRepeaterAccessCtcssRx": "CTCSS RX (Hz)",
+  "addRepeaterAccessCtcssRxHint": "Např. 88.5",
+  "addRepeaterAccessDcsCode": "DCS kód",
+  "addRepeaterAccessDcsCodeHint": "Např. 23",
+  "addRepeaterAccessColorCode": "Color Code",
+  "addRepeaterAccessColorCodeHint": "Např. 1",
+  "addRepeaterAccessTalkgroup": "Talkgroup",
+  "addRepeaterAccessTalkgroupHint": "Např. 222801",
+  "addRepeaterAccessDgId": "DG-ID",
+  "addRepeaterAccessDgIdHint": "Např. 0",
+  "addRepeaterAccessNodeId": "Node ID",
+  "addRepeaterAccessNodeIdHint": "Např. 1234",
+  "addRepeaterAccessNetworkName": "Název sítě",
+  "addRepeaterAccessNetworkNameHint": "Např. BM Italia",
+  "addRepeaterAccessNotes": "Poznámky k přístupu",
+  "addRepeaterAccessNotesHint": "Poznámky specifické pro tento přístup...",
+  "addRepeaterConfirmCheckbox": "Potvrzuji, že tyto informace jsou podle mého nejlepšího vědomí správné.",
+  "addRepeaterVerifiedTitle": "Ověřené podání",
+  "addRepeaterVerifiedDescription": "Vaše podání bude zkontrolováno týmem před zveřejněním v databázi.",
+  "addRepeaterSubmit": "Odeslat",
+  "addRepeaterSuccess": "Podání úspěšně odesláno!",
+  "addRepeaterError": "Chyba při odesílání podání",
+  "addRepeaterAtLeastOneAccess": "Přidejte alespoň jeden přístup",
+  "addRepeaterAccessNumber": "Přístup {number}",
+  "@addRepeaterAccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "changelog1017PotaSpots": "POTA spoty v reálném čase s mapou a detaily parků",
+  "changelog1017SubmitRepeater": "Navrhněte nový převaděč přímo z aplikace",
+  "changelog1017MultiLanguage": "Aplikace dostupná v angličtině, španělštině a francouzštině",
+  "changelog1017Onboarding": "Nový zážitek při prvním spuštění",
+  "changelog1017ReportAnonymous": "Hlášení dostupná bez registrace",
+
+  "changelogTitle": "Co je nového",
+  "changelogSubtitle": "Zde je přehled novinek v této verzi",
+  "changelogCategoryAdded": "Nové",
+  "changelogCategoryImproved": "Vylepšeno",
+  "changelogCategoryFixed": "Opraveno",
+  "changelogDismiss": "Rozumím!",
+
+  "dashboardNearbyEmpty": "Žádné převaděče v okolí",
+  "dashboardTabPota": "POTA",
+  "dashboardTabRepeaters": "Převaděče",
+  "dashboardViewAllPotaSpots": "Zobrazit všechny POTA spoty",
+  "dashboardViewAllRepeaters": "Zobrazit všechny převaděče",
+  "onboardingDiscoveryExploreMap": "Prozkoumat mapu",
+  "onboardingDiscoveryLivePota": "Živý POTA spot",
+  "onboardingDiscoveryNearbyRepeater": "Převaděč v okolí",
+  "onboardingDiscoveryNoLocation": "Prozkoumejte mapu a najděte převaděče a POTA aktivace",
+  "onboardingDiscoveryNoRepeaters": "V okolí nebyly nalezeny žádné převaděče",
+  "onboardingDiscoverySubtitle": "Tady je to, co je ve vašem okolí!",
+  "onboardingDiscoveryTitle": "Váš první převaděč",
+  "onboardingDiscoveryViewDetails": "Zobrazit podrobnosti",
+  "onboardingDiscoveryViewSpot": "Zobrazit spot",
+  "onboardingGetStarted": "Začít",
+  "onboardingLocationEnable": "Povolit polohu",
+  "onboardingLocationSkip": "Teď ne",
+  "onboardingLocationSubtitle": "Vaši polohu používáme k zobrazení převaděčů a POTA aktivací ve vašem okolí.",
+  "onboardingLocationTitle": "Poloha",
+  "onboardingNext": "Další",
+  "onboardingSkip": "Přeskočit",
+  "onboardingTelegramAlreadyMember": "Už jsem členem",
+  "onboardingTelegramJoin": "Připojit se ke skupině na Telegramu",
+  "onboardingTelegramLater": "Možná později",
+  "onboardingTelegramSubtitle": "Připojte se ke skupině HamQRG na Telegramu a získejte aktualizace, nahlašujte převaděče a poznávejte další radioamatéry.",
+  "onboardingTelegramTitle": "Přidejte se ke komunitě",
+  "onboardingWelcomeCredits": "Data o převaděčích poskytuje IZ8WNH",
+  "onboardingWelcomeSubtitle1": "Objevte aktivní převaděče ve svém okolí s frekvencemi, tóny a technickými detaily.",
+  "onboardingWelcomeSubtitle2": "Analog, DMR, C4FM, D-STAR — najděte ten správný převaděč okamžitě.",
+  "onboardingWelcomeSubtitle3": "Sledujte aktivace Parks on the Air s živými aktualizacemi, filtry pásem a vzdáleností.",
+  "onboardingWelcomeSubtitle4": "Mějte nejpoužívanější převaděče po ruce pro rychlý přístup.",
+  "onboardingWelcomeTitle1": "Najděte převaděče ve svém okolí",
+  "onboardingWelcomeTitle2": "Filtrujte podle režimu",
+  "onboardingWelcomeTitle3": "POTA spoty v reálném čase",
+  "onboardingWelcomeTitle4": "Uložte si oblíbené",
+  "potaFilterAll": "Vše",
+  "potaFilterBand": "Pásmo",
+  "potaFilterMode": "Režim",
+  "potaSortByDistance": "Nejbližší",
+  "potaSortByTime": "Nejnovější",
+  "repeatersNearbyCount": "{count} převaděčů v okolí",
+  "@repeatersNearbyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatersResultsCount": "{count} výsledků",
+  "@repeatersResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

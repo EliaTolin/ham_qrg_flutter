@@ -1,0 +1,39 @@
+HamQRG je dokonalá aplikace pro radioamatéry a posluchače. Snadno najdete převaděče ve svém okolí, sledujte aktivace POTA v reálném čase, zkontrolujte frekvence a připojte se ke komunitě, která roste každý den.
+
+<b>INTERAKTIVNÍ MAPA</b>
+• Zobrazení všech převaděčů na interaktivní mapě
+• Nalezení nejbližších převaděčů k vaší poloze
+• Filtrování podle režimu: Analogový, DMR, C4FM, D-STAR, Echolink
+• Chytré shlukování v oblastech s mnoha převaděči
+
+<b>KOMPLETNÍ TECHNICKÉ ÚDAJE</b>
+• TX/RX frekvence a offset
+• CTCSS/DCS tóny
+• Color Code a Talk Group pro DMR
+• Digitální sítě (BrandMeister, TGIF a další)
+• Přesná poloha a vzdálenost
+
+<b>POTA SPOTY ŽIVĚ</b>
+• Sledujte všechny aktivace Parks On The Air v reálném čase
+• Filtrujte spoty podle pásma a režimu (SSB, CW, Digital)
+• Řaďte podle času nebo vzdálenosti od vaší polohy
+• Zobrazte aktivní parky na interaktivní mapě
+• Rychlý přístup k QRZ profilu aktivátora a stránce parku
+
+<b>OBLÍBENÉ A ZPĚTNÁ VAZBA</b>
+• Uložte si oblíbené převaděče pro rychlý přístup
+• Zanechte zpětnou vazbu o kvalitě signálu
+• Nahlaste problémy nebo aktualizace koordinátorům
+• Procházejte komunitní hlášení
+
+<b>PRO RADIOAMATÉRY A POSLUCHAČE</b>
+• Personalizovaný profil s volací značkou
+• Podpora pro licencované operátory a SWL
+• Bezplatný přístup ke všem veřejným datům
+
+<b>AKTIVNÍ KOMUNITA</b>
+• Připojte se ke skupině na Telegramu
+• Navrhněte nové funkce
+• Kontaktujte přímo vývojáře
+
+Stáhněte si HamQRG a prozkoumejte svět radioamatérských převaděčů!

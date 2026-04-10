@@ -9,4 +9,5 @@ abstract final class MapLayers {
       'assets/map_layers/same_location_cluster_count_layer.json';
   static const String unclusteredPointLayer =
       'assets/map_layers/unclustered_point_layer.json';
+  static const String potaLayer = 'assets/map_layers/pota_spots_layer.json';
 }

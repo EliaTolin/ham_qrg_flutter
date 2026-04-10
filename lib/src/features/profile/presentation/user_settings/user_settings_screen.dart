@@ -6,9 +6,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/locale_helper.dart';
 import 'package:hamqrg/common/widgets/profile/profile_avatar.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/profile/presentation/user_settings/controller/user_settings_controller.dart';
+import 'package:hamqrg/src/features/profile/provider/locale_notifier/locale_notifier.dart';
 import 'package:hamqrg/src/features/profile/provider/theme_mode_notifier/theme_mode_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -264,6 +266,68 @@ class UserSettingsScreen extends HookConsumerWidget {
                         onSelectionChanged: (selected) {
                           ref.read(themeModeProvider.notifier).setThemeMode(selected.first);
                         },
+                      ),
+                    ),
+                    const Gap(24),
+
+                    // Language selector
+                    _buildFieldLabel(
+                      l10n.profileLanguage,
+                      theme,
+                      colorScheme,
+                    ),
+                    const Gap(8),
+                    InkWell(
+                      onTap: () => showLanguagePicker(context, ref),
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 16,
+                        ),
+                        decoration: BoxDecoration(
+                          color: colorScheme.surfaceContainerHighest
+                              .withValues(alpha: .3),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          children: [
+                            Builder(
+                              builder: (context) {
+                                final currentLocale =
+                                    ref.watch(localeProvider).value;
+                                final flag = getLocaleFlag(currentLocale);
+                                if (flag.isNotEmpty) {
+                                  return Text(
+                                    flag,
+                                    style: const TextStyle(fontSize: 22),
+                                  );
+                                }
+                                return Icon(
+                                  Icons.language,
+                                  color: colorScheme.onSurface
+                                      .withValues(alpha: .5),
+                                  size: 22,
+                                );
+                              },
+                            ),
+                            const Gap(12),
+                            Expanded(
+                              child: Text(
+                                getLocaleDisplayName(
+                                  ref.watch(localeProvider).value,
+                                  l10n,
+                                ),
+                                style: theme.textTheme.bodyLarge,
+                              ),
+                            ),
+                            Icon(
+                              Icons.chevron_right,
+                              color: colorScheme.onSurface
+                                  .withValues(alpha: .4),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const Gap(24),

@@ -12,5 +12,6 @@ abstract class Profile with _$Profile {
     required String? callsign,
     required String? propic,
     UserType? userType,
+    String? lastSeenVersion,
   }) = _Profile;
 }
