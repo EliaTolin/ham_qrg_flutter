@@ -56,7 +56,7 @@ final class PotaSpotDetailControllerProvider extends $AsyncNotifierProvider<
 }
 
 String _$potaSpotDetailControllerHash() =>
-    r'9fe8a206b611cb37e95d1d59a1702c4e62f32934';
+    r'42f54fe24ec9500689c678ed0730ec609cc3ca35';
 
 final class PotaSpotDetailControllerFamily extends $Family
     with

@@ -41,8 +41,13 @@ class HomeRepository {
 
 @riverpod
 Future<HomeRepository> homeRepository(Ref ref) async {
-  final dataSource = await ref.watch(homeLocalDatasourceProvider.future);
-  final onboardingDatasource =
-      await ref.watch(onboardingLocalDatasourceProvider.future);
+  // Read all providers BEFORE any await: if we interleave ref.watch and
+  // await, the Ref can be disposed between calls (auto-dispose) and the
+  // second ref.watch throws "Cannot use the Ref after it has been disposed".
+  final dataSourceFuture = ref.watch(homeLocalDatasourceProvider.future);
+  final onboardingDatasourceFuture =
+      ref.watch(onboardingLocalDatasourceProvider.future);
+  final dataSource = await dataSourceFuture;
+  final onboardingDatasource = await onboardingDatasourceFuture;
   return HomeRepository(dataSource, onboardingDatasource);
 }

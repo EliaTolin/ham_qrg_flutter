@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/dialogs/show_update_required_dialog.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
-import 'package:hamqrg/common/widgets/error/error_with_retry_widget.dart';
+import 'package:hamqrg/common/widgets/error/debug_error_widget.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/splashscreen/presentation/controller/splash_controller.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -71,7 +71,10 @@ class SplashScreen extends ConsumerWidget {
       data: (_) => const _SplashView(),
       loading: () => const _SplashView(),
       error: (error, stackTrace) => Scaffold(
-        body: ErrorWidgetWithRetry(
+        body: DebugErrorWidget(
+          label: 'Splash',
+          error: error,
+          stackTrace: stackTrace,
           onRetry: () => ref.invalidate(splashControllerProvider),
         ),
       ),
