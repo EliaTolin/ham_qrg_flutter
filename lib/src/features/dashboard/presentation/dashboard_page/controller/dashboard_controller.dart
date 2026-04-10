@@ -17,9 +17,14 @@ part 'dashboard_controller.g.dart';
 class DashboardController extends _$DashboardController {
   @override
   FutureOr<DashboardState> build() async {
-    final favoritesState = await ref.watch(favoriteRepeatersProvider.future);
+    // Read all providers BEFORE any await to avoid using Ref after
+    // the provider may have been disposed across async gaps.
+    final favoritesFuture = ref.watch(favoriteRepeatersProvider.future);
+    final countRepeatersFuture =
+        ref.watch(getTotalRepeatersCountProvider.future);
+    final favoritesState = await favoritesFuture;
     log('countFavorites: ${favoritesState.count}');
-    final countRepeaters = await ref.watch(getTotalRepeatersCountProvider.future);
+    final countRepeaters = await countRepeatersFuture;
 
     return _loadInitialData(favoritesState.count, countRepeaters);
   }

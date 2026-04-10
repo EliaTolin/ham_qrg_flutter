@@ -28,17 +28,14 @@ class PotaMarkerHelper {
       format: ui.ImageByteFormat.png,
     );
     if (byteData == null) return null;
-
-    _cachedPngBytes = byteData.buffer.asUint8List();
-    return _cachedPngBytes;
+    return byteData.buffer.asUint8List();
   }
 
   /// Registers the POTA logo as a Mapbox style image.
   /// Safe to call multiple times — skips if already registered.
   static Future<void> addPotaStyleImage(MapboxMap mapboxMap) async {
     try {
-      final exists =
-          await mapboxMap.style.hasStyleImage(MapKeys.potaLogoImage);
+      final exists = await mapboxMap.style.hasStyleImage(MapKeys.potaLogoImage);
       if (exists) return;
 
       final pngBytes = await getPotaLogoPngBytes();

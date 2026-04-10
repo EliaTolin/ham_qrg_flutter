@@ -1,3 +1,4 @@
+import 'package:hamqrg/log/talker_service/talker_service.dart';
 import 'package:hamqrg/src/features/home/presentation/home_page/controller/state/home_state.dart';
 import 'package:hamqrg/src/features/home/provider/need_to_show_telegram_invite/need_to_show_telegram_invite_provider.dart';
 import 'package:hamqrg/src/features/home/provider/set_last_telegram_invite_show/set_last_telegram_invite_show_provider.dart';
@@ -10,12 +11,19 @@ part 'home_controller.g.dart';
 class HomeController extends _$HomeController {
   @override
   FutureOr<HomeState> build() async {
-    final needToShowTelegram =
-        await ref.read(needToShowTelegramInviteProvider.future);
-    return HomeState(
-      showTelegramRePrompt: needToShowTelegram,
-      needToExtraConfig: false,
-    );
+    final talker = ref.read(talkerServiceProvider);
+    try {
+      talker.info('[Home] build() start');
+      final needToShowTelegram = await ref.read(needToShowTelegramInviteProvider.future);
+      talker.info('[Home] needToShowTelegram: $needToShowTelegram');
+      return HomeState(
+        showTelegramRePrompt: needToShowTelegram,
+        needToExtraConfig: false,
+      );
+    } catch (error, stackTrace) {
+      talker.handle(error, stackTrace, '[Home] build() failed');
+      rethrow;
+    }
   }
 
   Future<void> setTelegramGroupMember() async {
