@@ -1,0 +1,1 @@
+radioamater,repetitori,qrz,qrg,frekvencije,ham radio,amaterski radio,dmr,kratki val

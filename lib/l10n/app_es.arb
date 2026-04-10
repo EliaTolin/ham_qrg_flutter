@@ -1,0 +1,724 @@
+{
+  "@@locale": "es",
+  "error": "Error",
+  "error_message": "Se ha producido un error durante la carga",
+  "error_message_retry": "Se ha producido un error durante la carga. Inténtalo más tarde",
+  "retry": "Reintentar",
+  "back": "Atrás",
+  "loading": "Cargando",
+  "details": "Detalles",
+  "pages_number": "{number} páginas por explorar",
+  "@number": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "january": "Enero",
+  "february": "Febrero",
+  "march": "Marzo",
+  "april": "Abril",
+  "may": "Mayo",
+  "june": "Junio",
+  "july": "Julio",
+  "august": "Agosto",
+  "september": "Septiembre",
+  "october": "Octubre",
+  "november": "Noviembre",
+  "december": "Diciembre",
+  "logout": "Cerrar sesión",
+  "profile": "Perfil",
+  "settings": "Ajustes",
+  "contact_us": "Contáctanos",
+  "error_opening_email": "Se ha producido un error al abrir el correo electrónico",
+  "register_now": "Regístrate ahora",
+  "tracking_permission_title": "Apoya la App",
+  "tracking_permission_message": "Para mejorar tu experiencia y mostrarte contenido más relevante, ayúdanos a mantener la app gratuita.\n\nToca Permitir para apoyarnos.",
+  "tracking_permission_next": "Siguiente",
+  "skip": "Omitir",
+  "done": "Hecho",
+  "next": "Siguiente",
+  "joinCommunityTitle": "¡Únete a nuestra Comunidad!",
+  "joinCommunityDescription": "Descubre las ventajas de unirte a la comunidad de Telegram:",
+  "benefitSupportMembers": "Apoyo de los miembros",
+  "benefitSuggestFeatures": "Propón nuevas funcionalidades",
+  "benefitContactDevelopers": "Contacto con los desarrolladores",
+  "benefitExclusivePreviews": "Vistas previas y betas exclusivas",
+  "benefitActiveCommunity": "Comunidad activa",
+  "joinNowButton": "¡Únete ahora!",
+  "alreadyMemberButton": "Ya soy miembro",
+  "laterButton": "Más tarde",
+  "errorOpenTelegram": "Error al abrir Telegram",
+  "disclaimerTitle": "Fuente de datos",
+  "disclaimerDescription": "Los datos de los repetidores de esta app provienen de IZ8WNH.\n\nPara información adicional, descargar archivos CSV para programar radios o consultar datos no disponibles en esta app, visita el sitio oficial.",
+  "disclaimerVisitSite": "Visitar iz8wnh.it",
+  "disclaimerUnderstood": "Entendido",
+  "errorOpenDisclaimerSite": "Error al abrir el sitio web",
+  "repeatersMapTitle": "Mapa de repetidores",
+  "repeatersListTitle": "Lista de repetidores",
+  "repeatersMapLoading": "Cargando mapa de repetidores…",
+  "repeatersMapGenericError": "No se pueden cargar los repetidores.",
+  "repeatersMapEmpty": "No se encontraron repetidores cerca de ti.",
+  "repeatersSearchHint": "Buscar por nombre, indicativo o frecuencia MHz…",
+  "repeatersSearchEmpty": "No se encontraron repetidores.",
+  "repeatersSortDistance": "Distancia",
+  "repeatersSortLikes": "Me gusta",
+  "repeatersSortFrequency": "Frecuencia",
+  "repeatersMapRetry": "Reintentar",
+  "repeatersMapOpenSettings": "Abrir ajustes",
+  "repeatersMapPermissionMessage": "Permite el acceso a la ubicación para mostrar los repetidores cerca de ti.",
+  "repeatersMapPermissionPermanentlyDenied": "Permiso de ubicación denegado permanentemente. Actívalo desde los ajustes del sistema.",
+  "repeatersMapLocationServicesDisabled": "Activa los servicios de ubicación para encontrar repetidores cercanos.",
+  "repeatersMapFound": "{count} repetidores encontrados",
+  "@repeatersMapFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterMode": "Modo",
+  "repeaterModeAnalog": "Analógico",
+  "repeaterModeC4fm": "C4FM",
+  "repeaterModeDstar": "D-STAR",
+  "repeaterModeDmr": "DMR",
+  "repeaterModeAllmode": "Todos los modos",
+  "repeaterModeEcholink": "Echolink",
+  "repeaterModeAllstar": "AllStar",
+  "repeaterModeWinlink": "Winlink",
+  "repeaterFrequency": "Frecuencia",
+  "repeaterShift": "Desplazamiento",
+  "repeaterCtcss": "CTCSS",
+  "repeaterLocation": "Ubicación",
+  "repeaterDistance": "Distancia",
+  "repeaterViewFullDetails": "Ver detalles completos",
+  "repeatersMapReturnToLocation": "Volver a mi ubicación",
+  "clusterRepeatersTitle": "{count} repetidores en esta ubicación",
+  "@clusterRepeatersTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileUnlockFeatures": "Desbloquea todas las funciones",
+  "profileUnlockFeaturesDescription": "Regístrate para usar las funciones de reseña, guardar favoritos y acceder a estadísticas detalladas.",
+  "profileSignUpOrLogin": "Regístrate o Inicia sesión",
+  "profileErrorOpeningEmail": "Error al abrir el correo",
+  "profileJoinTelegramCommunity": "Únete a la comunidad de Telegram",
+  "profileWelcomeTitle": "Bienvenido a HamQRG",
+  "profileWelcomeDescription": "Únete a nuestra comunidad de radioaficionados en Italia.",
+  "profileEditProfile": "Editar Perfil",
+  "profileChangePhoto": "Cambiar Foto",
+  "profileFirstName": "Nombre",
+  "profileLastName": "Apellido",
+  "profileCallsign": "Indicativo",
+  "profileRestartIdentificationTitle": "¿Necesitas cambiar tu estado? Puedes reiniciar el proceso de identificación para pasar de Operador Autorizado a SWL Listener.",
+  "profileRestartIdentificationButton": "Reiniciar Proceso de Identificación",
+  "profileSaveChanges": "Guardar Cambios",
+  "profileDangerZone": "Zona Peligrosa",
+  "profileDeleteAccount": "Eliminar Cuenta",
+  "profileDeleteAccountConfirmTitle": "Eliminar Cuenta",
+  "profileDeleteAccountConfirmMessage": "¿Estás seguro de que quieres eliminar tu cuenta? Esta acción es irreversible.",
+  "profileDeleteAccountCancel": "Cancelar",
+  "profileDeleteAccountConfirm": "Eliminar",
+  "profileAppVersion": "Versión {version} (Build {buildNumber})",
+  "@profileAppVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSectionCommunity": "Comunidad y Soporte",
+  "profileSectionSupport": "Soporte",
+  "profileVersion": "Versión: {version}+{buildNumber}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileVersionFormat": "Versión {version} (Build {buildNumber})",
+  "@profileVersionFormat": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "buildNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "profileError": "Error: {error}",
+  "@profileError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "authJoinTitle": "Únete a HamQRG",
+  "authUnlockFeatures": "¡Inicia sesión para desbloquear todas las funciones!",
+  "authWhatYouGet": "Lo que obtendrás:",
+  "authBenefitStatsTitle": "Estadísticas detalladas",
+  "authBenefitStatsDescription": "Monitoriza tu progreso y mejora",
+  "authBenefitQuizTitle": "Varios modos de quiz",
+  "authBenefitQuizDescription": "Practica en modo maratón, por temas y más.",
+  "authBenefitSyncTitle": "Sincronización",
+  "authBenefitSyncDescription": "Accede desde cualquier dispositivo",
+  "authOrSignInWithEmail": "O inicia sesión con correo",
+  "authEnterEmail": "Introduce el correo",
+  "authEnterPassword": "Introduce la contraseña",
+  "authForgotPassword": "¿Olvidaste la contraseña?",
+  "authSignIn": "Iniciar sesión",
+  "authSignUp": "Registrarse",
+  "authPasswordLengthError": "La contraseña debe ser más larga",
+  "authDontHaveAccount": "¿No tienes cuenta? Regístrate",
+  "authHaveAccount": "¿Ya tienes cuenta? Inicia sesión",
+  "authBackToSignIn": "Volver al inicio de sesión",
+  "authUnexpectedError": "Error de autenticación: ",
+  "authValidEmailError": "Introduce un correo válido",
+  "authSendPasswordReset": "Enviar restablecimiento",
+  "authPasswordResetSent": "Restablecimiento enviado",
+  "authVerifyEmailMessage": "Verifica tu correo para completar el registro, revisa tu bandeja de entrada.",
+  "authInvalidCredentials": "Correo o contraseña incorrectos",
+  "authEmailNotConfirmed": "Verifica tu correo para iniciar sesión",
+  "authFirstName": "Nombre",
+  "authFirstNameRequired": "El nombre es obligatorio",
+  "authLastName": "Apellido",
+  "authLastNameRequired": "El apellido es obligatorio",
+  "authContinueAsGuest": "Continuar como invitado",
+  "commonAppNamePart1": "Ham",
+  "commonAppNamePart2": "QRG",
+  "commonAppTagline": "Descubre los repetidores a tu alrededor",
+  "commonPoweredBy": "POWERED BY IU4VRB",
+  "homeQuickAccess": "Acceso rápido",
+  "homeRepeaterList": "Lista de repetidores",
+  "homeMyFavorites": "Mis favoritos",
+  "homeNearby": "Cerca de ti",
+  "homeViewAll": "Ver todo",
+  "homeStations": "{count} estaciones",
+  "@homeStations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSaved": "{count} guardados",
+  "@homeSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeActive": "Activo",
+  "homeIdle": "Inactivo",
+  "homeNavHome": "Inicio",
+  "homeNavList": "Lista",
+  "homeNavFavorites": "Favoritos",
+  "homeNavMap": "Mapa",
+  "homeNavProfile": "Perfil",
+  "favoritesTitle": "Mis favoritos",
+  "favoritesSearchHint": "Buscar repetidores guardados...",
+  "favoritesFilterAllSaved": "Todos guardados",
+  "favoritesEmpty": "No hay repetidores guardados",
+  "favoritesEmptyDescription": "Añade repetidores a favoritos para verlos aquí",
+  "favoritesShowing": "Mostrando {showing} de {total} estaciones favoritas",
+  "@favoritesShowing": {
+    "placeholders": {
+      "showing": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesRemove": "Quitar de favoritos",
+  "favoritesAdd": "Añadir a favoritos",
+  "repeaterDetailSave": "Guardar",
+  "repeaterDetailShare": "Compartir",
+  "repeaterDetailReport": "Reportar",
+  "repeaterDetailTotalLikes": "Me gusta totales",
+  "repeaterDetailReports1Yr": "Reportes (1 año)",
+  "repeaterDetailHealthScore": "Puntuación de salud",
+  "repeaterDetailExcellent": "Excelente",
+  "repeaterDetailGood": "Bueno",
+  "repeaterDetailFair": "Regular",
+  "repeaterDetailToVerify": "Por verificar",
+  "repeaterDetailScoreCalculated": "Puntuación calculada a partir de {count} reportes negativos en el último año",
+  "@repeaterDetailScoreCalculated": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailLastLike": "Último me gusta",
+  "repeaterDetailLastDownReport": "Último reporte negativo",
+  "repeaterDetailTechnicalData": "Datos técnicos",
+  "repeaterDetailFrequency": "Frecuencia",
+  "repeaterDetailShift": "Desplazamiento",
+  "repeaterDetailSubtone": "Subtono (SQL)",
+  "repeaterDetailMode": "Modo",
+  "repeaterDetailLocation": "Ubicación",
+  "repeaterDetailAway": "a {distance} de distancia",
+  "@repeaterDetailAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailCommunityReports": "Reportes de la comunidad",
+  "repeaterDetailUpdateStatusFeedback": "Actualizar estado y feedback",
+  "repeaterDetailEquipment": "Equipo",
+  "repeaterDetailEquipmentRequired": "Equipo *",
+  "repeaterDetailAccessModes": "Modos de acceso",
+  "repeaterDetailNetwork": "Red",
+  "repeaterDetailLocationField": "Lugar",
+  "repeaterDetailLocationRequired": "Lugar *",
+  "repeaterDetailComment": "Comentario",
+  "repeaterDetailCommentOptional": "Comentario (Opcional)",
+  "repeaterDetailCommentPlaceholder": "Calidad de señal, informe de audio o comentarios generales...",
+  "repeaterDetailReportDown": "Reportar problema",
+  "repeaterDetailCheckinLike": "Check-in y me gusta",
+  "repeaterDetailYourFeedback": "Tu feedback",
+  "repeaterDetailPostedJustNow": "Publicado ahora",
+  "repeaterDetailDeleteEntry": "Eliminar entrada",
+  "repeaterDetailViewAllReports": "Ver todos los {count} reportes",
+  "@repeaterDetailViewAllReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailStationPortable": "Portátil",
+  "repeaterDetailStationMobile": "Móvil",
+  "repeaterDetailStationFixed": "Fijo",
+  "repeaterDetailLike": "Me gusta",
+  "repeaterDetailReportLabel": "Reporte",
+  "repeaterDetailSaved": "Guardado",
+  "repeaterDetailShareMessage": "¡Descubre este repetidor en HamQRG!",
+  "repeaterDetailReportDescription": "La función de reportes estará disponible pronto. Podrás reportar información incorrecta o problemas con este repetidor.",
+  "commonClose": "Cerrar",
+  "favorite": "Favorito",
+  "accessConfiguration": "Configuración de acceso",
+  "noAccessConfiguration": "No hay configuración disponible",
+  "repeaterDetailAddFeedback": "Añadir feedback",
+  "repeaterDetailOthersReports": "Reportes de otros usuarios",
+  "repeaterDetailRemove": "Eliminar",
+  "repeaterDetailSelectAccess": "Seleccionar acceso",
+  "repeaterDetailDistanceWarning": "Debes estar a menos de {distance} km del repetidor para enviar feedback.",
+  "@repeaterDetailDistanceWarning": {
+    "placeholders": {
+      "distance": {
+        "type": "int"
+      }
+    }
+  },
+  "repeaterDetailInteractive": "Interactivo",
+  "repeaterDetailLogYourSignal": "Registra tu señal",
+  "repeaterDetailUsedEquipment": "Equipo utilizado",
+  "repeaterDetailYourLocation": "Tu ubicación",
+  "repeaterDetailLocationPlaceholder": "¿Dónde estabas? (ej. Madrid)",
+  "repeaterDetailLocationSelectHint": "Selecciona un lugar de las sugerencias",
+  "feedbackDistanceConfirmTitle": "Confirmar envío",
+  "feedbackDistanceConfirmMessage": "El lugar seleccionado está a {distance} km del repetidor. ¿Confirmas que quieres enviar este feedback bajo tu responsabilidad?",
+  "@feedbackDistanceConfirmMessage": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackDistanceConfirmButton": "Confirmar",
+  "feedbackDistanceConfirmCancel": "Cancelar",
+  "repeaterDetailSelectAccessInstance": "Seleccionar instancia de acceso",
+  "repeaterDetailSignalObservations": "Observaciones de señal",
+  "repeaterDetailSignalObservationsPlaceholder": "¿Cómo era la calidad de audio?",
+  "repeaterDetailSendLike": "Enviar Me gusta",
+  "repeaterDetailReportIssue": "Reportar Problema",
+  "repeaterDetailRecentActivity": "Actividad reciente",
+  "reportIssueTitle": "Reporte",
+  "reportIssueHeadline": "Ayúdanos a mantener los datos precisos",
+  "reportIssueDescription": "¿Encontraste algo incorrecto o faltante en este repetidor? Cuéntanos qué debe cambiarse y lo verificaremos.",
+  "reportIssueWhatToCorrect": "¿Qué te gustaría corregir o añadir?",
+  "reportIssuePlaceholder": "Ej. El tono CTCSS ha cambiado a 88.5Hz, o la ubicación está un poco más al norte, el gestor es...",
+  "reportIssueVerifiedTitle": "Envíos Verificados",
+  "reportIssueVerifiedDescription": "Tu reporte será revisado por el coordinador regional antes de actualizar la base de datos pública. Gracias por tu contribución a la comunidad.",
+  "reportIssueConfirmCheckbox": "Confirmo que esta información es correcta según mi observación.",
+  "reportIssueSubmit": "Enviar",
+  "reportIssueMinChars": "Mínimo 10 caracteres requeridos",
+  "reportIssueMaxChars": "Máximo 2000 caracteres",
+  "reportIssueSuccess": "Reporte enviado con éxito",
+  "reportIssueError": "Error al enviar el reporte",
+  "registrationPromptTitle": "Desbloquea todo el potencial",
+  "registrationPromptDescription": "Únete a la comunidad italiana de radioaficionados y lleva tu experiencia al siguiente nivel.",
+  "registrationBenefitInteractTitle": "Interactúa",
+  "registrationBenefitInteractDescription": "Valora repetidores y deja comentarios para otros.",
+  "registrationBenefitFavoritesTitle": "Favoritos",
+  "registrationBenefitFavoritesDescription": "Guarda tus frecuencias y repetidores más usados.",
+  "registrationBenefitLogbookTitle": "Logbook",
+  "registrationBenefitLogbookDescription": "Lleva un registro de tus QSOs y mantén un historial personal.",
+  "registrationSignInApple": "Iniciar sesión con Apple",
+  "registrationSignInGoogle": "Iniciar sesión con Google",
+  "registrationPromptFooter": "Registro gratuito. No se requiere licencia para consultar datos públicos.",
+  "postLoginOnboardingWelcome": "Bienvenido a",
+  "postLoginOnboardingQuestion": "¿Eres un radioaficionado con licencia?",
+  "postLoginOnboardingHelpText": "Nos ayuda a personalizar tu experiencia y mostrarte las frecuencias correctas.",
+  "postLoginOnboardingYesLicensed": "Sí, lo soy",
+  "postLoginOnboardingNoListener": "No, solo soy un oyente",
+  "postLoginOnboardingCallsignTitle": "Identifícate",
+  "postLoginOnboardingCallsignSubtitle": "Introduce tu indicativo oficial para acceder a las funciones de red.",
+  "postLoginOnboardingCallsignLabel": "Indicativo (Callsign)",
+  "postLoginOnboardingCallsignHint": "Ej. EA4XYZ",
+  "postLoginOnboardingComplete": "Completar perfil",
+  "postLoginOnboardingBack": "Atrás",
+  "postLoginOnboardingChangeInSettings": "Puedes cambiarlo después en ajustes.",
+  "postLoginOnboardingSwlTitle": "Indicativo SWL",
+  "postLoginOnboardingSwlQuestion": "¿Tienes un indicativo SWL oficial?",
+  "postLoginOnboardingSwlHelpText": "Los indicativos de oyentes de onda corta ayudan a identificarte en la comunidad global de monitorización.",
+  "postLoginOnboardingSwlYes": "Sí, tengo uno",
+  "postLoginOnboardingSwlNo": "No, no tengo uno",
+  "postLoginOnboardingSwlEnterCallsign": "Introduce indicativo",
+  "postLoginOnboardingSwlCallsignHint": "Ej. EA1-12345-SWL",
+  "timeAgoJustNow": "ahora",
+  "timeAgoMinutes": "{count, plural, one{hace 1 minuto} other{hace {count} minutos}}",
+  "@timeAgoMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoHours": "{count, plural, one{hace 1 hora} other{hace {count} horas}}",
+  "@timeAgoHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoDays": "{count, plural, one{hace 1 día} other{hace {count} días}}",
+  "@timeAgoDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoWeeks": "{count, plural, one{hace 1 semana} other{hace {count} semanas}}",
+  "@timeAgoWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoMonths": "{count, plural, one{hace 1 mes} other{hace {count} meses}}",
+  "@timeAgoMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeAgoYears": "{count, plural, one{hace 1 año} other{hace {count} años}}",
+  "@timeAgoYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileThemeMode": "Tema",
+  "profileThemeModeSystem": "Sistema",
+  "profileThemeModeLight": "Claro",
+  "profileThemeModeDark": "Oscuro",
+  "repeaterDetailBeFirstFeedback": "¡Sé el primero en dejar feedback en este repetidor!",
+  "repeaterDetailDistanceFromYou": "Distancia desde ti",
+  "repeaterDistanceMapNoLocation": "Ubicación no disponible",
+  "repeaterDetailNever": "Nunca",
+  "repeaterDetailInfo": "Información",
+  "repeaterDetailSource": "Fuente",
+  "repeaterDetailManager": "Gestor",
+  "repeaterDetailSuggestManager": "¿Conoces al gestor del repetidor? ¡Repórtalo!",
+  "repeaterDetailViewFeedbackMap": "Mapa de feedback",
+  "repeaterDetailViewFeedbackMapSubtitle": "Visualiza dónde se han registrado los me gusta y reportes",
+  "repeaterDetailAltimetricProfile": "Perfil altimétrico",
+  "repeaterDetailAltimetricProfileSubtitle": "Visualiza el perfil del terreno entre tú y el repetidor",
+  "repeaterDetailLosClear": "Línea de visión despejada entre tú y el repetidor",
+  "repeaterDetailLosObstructed": "Línea de visión obstruida por el terreno",
+  "repeaterDetailTerrainProfile": "Perfil del terreno",
+  "repeaterDetailLineOfSight": "Línea de visión",
+  "repeaterDetailTotalDistance": "Distancia",
+  "repeaterDetailRepeaterElevation": "Elevación del repetidor",
+  "repeaterDetailYourElevation": "Tu elevación",
+  "repeaterDetailYou": "Tú",
+  "repeaterDetailRepeaterLabel": "Repetidor",
+
+  "repeaterDetailFunFacts": "¿Sabías que?",
+  "repeaterDetailWavelength": "Longitud de onda",
+  "repeaterDetailWavelengthValue": "La longitud de onda de este repetidor es {value}",
+  "@repeaterDetailWavelengthValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailOscillations": "Oscilaciones por segundo",
+  "repeaterDetailOscillationsValue": "La señal oscila {value} veces por segundo",
+  "@repeaterDetailOscillationsValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailPropagationTime": "Tiempo de propagación",
+  "repeaterDetailPropagationTimeValue": "Tu señal tarda {value} en llegar al repetidor",
+  "@repeaterDetailPropagationTimeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterDetailWaveCycles": "Ciclos en el trayecto",
+  "repeaterDetailWaveCyclesValue": "La onda completa {value} ciclos completos en el trayecto",
+  "@repeaterDetailWaveCyclesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+
+  "userReportsTitle": "Mis reportes",
+  "userReportsFilterAll": "Todos",
+  "userReportsFilterOpen": "Abiertos",
+  "userReportsFilterClosed": "Cerrados",
+  "userReportsEmpty": "No hay reportes enviados",
+  "userReportsEmptyDescription": "Tus reportes de repetidores aparecerán aquí",
+  "userReportsEmptyFiltered": "No hay reportes con este filtro",
+  "userReportsStatusPending": "Pendiente",
+  "userReportsStatusReviewed": "En revisión",
+  "userReportsStatusResolved": "Resuelto",
+  "userReportsStatusRejected": "Rechazado",
+  "userReportsRetryBanner": "No se puede actualizar la lista",
+  "userReportsProfileTile": "Mis reportes",
+  "userReportsProfileTileSubtitle": "Ver el estado de tus reportes",
+  "userReportsError": "Error al cargar los reportes",
+  "userReportsCoordinatorResponse": "Respuesta del coordinador",
+
+  "potaTitle": "POTA Spots",
+  "potaSearchHint": "Buscar por activador, parque o modo…",
+  "potaNoSpots": "No hay spots POTA activos en este momento.",
+  "potaLoadError": "No se pueden cargar los spots POTA",
+  "potaRetry": "Reintentar",
+  "potaViewAll": "Ver todo",
+  "potaActivator": "Activador",
+  "potaFrequency": "Frecuencia",
+  "potaMode": "Modo",
+  "potaPark": "Parque",
+  "potaReference": "Referencia",
+  "potaSpotter": "Spotteado por",
+  "potaComments": "Comentarios",
+  "potaLastSpotted": "Último spot",
+  "potaOpenQrz": "QRZ.com",
+  "potaQrzError": "No se puede abrir QRZ.com",
+  "potaParkWebsite": "Sitio del parque",
+  "potaParkType": "Tipo de parque",
+  "potaLocation": "Ubicación",
+  "potaCountry": "País",
+  "potaFirstActivation": "Primera activación",
+  "potaBand": "Banda",
+  "potaDistanceAway": "a {distance} de distancia",
+  "@potaDistanceAway": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "potaSpotsCount": "{count} spots activos",
+  "@potaSpotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profileLanguage": "Idioma",
+  "profileLanguageSystem": "Sistema",
+  "profileLanguageItalian": "Italiano",
+  "profileLanguageEnglish": "English",
+  "profileLanguageSpanish": "Español",
+  "profileLanguageFrench": "Français",
+  "profileLanguageGerman": "Deutsch",
+  "profileLanguagePortuguese": "Português",
+  "profileLanguageDutch": "Nederlands",
+  "profileLanguagePolish": "Polski",
+  "profileLanguageRomanian": "Română",
+  "profileLanguageSlovenian": "Slovenščina",
+  "profileLanguageCroatian": "Hrvatski",
+  "profileLanguageHungarian": "Magyar",
+  "profileLanguageCzech": "Čeština",
+  "profileLanguageSlovak": "Slovenčina",
+  "profileLanguageSerbian": "Srpski",
+
+  "addRepeaterProfileTile": "Proponer nuevo repetidor",
+  "addRepeaterProfileTileSubtitle": "Reportar un repetidor aún no listado",
+  "addRepeaterTitle": "Nuevo Repetidor",
+  "addRepeaterHeadline": "Reportar un repetidor faltante",
+  "addRepeaterDescription": "Completa los datos del repetidor que quieres añadir. La solicitud será revisada antes de su publicación.",
+  "addRepeaterSectionRepeater": "Datos del repetidor",
+  "addRepeaterSectionAccesses": "Accesos",
+  "addRepeaterSectionLocation": "Ubicación",
+  "addRepeaterSectionNotes": "Notas",
+  "addRepeaterName": "Nombre",
+  "addRepeaterNameHint": "Ej. Monte Cimone",
+  "addRepeaterCallsign": "Indicativo",
+  "addRepeaterCallsignHint": "Ej. IR4AB",
+  "addRepeaterNameOrCallsignRequired": "Introduce al menos un nombre o indicativo",
+  "addRepeaterFrequency": "Frecuencia (MHz)",
+  "addRepeaterFrequencyHint": "Ej. 145.000 o 145,000",
+  "addRepeaterFrequencyRequired": "Frecuencia obligatoria",
+  "addRepeaterFrequencyInvalid": "Frecuencia no válida",
+  "addRepeaterShift": "Shift (MHz)",
+  "addRepeaterShiftHint": "Ej. -0.600 o -0,600",
+  "addRepeaterRegion": "Región",
+  "addRepeaterRegionHint": "Ej. Emilia-Romagna",
+  "addRepeaterProvinceCode": "Provincia",
+  "addRepeaterProvinceCodeHint": "Ej. MO",
+  "addRepeaterLocality": "Localidad",
+  "addRepeaterLocalityHint": "Ej. Fanano",
+  "addRepeaterLatitude": "Latitud",
+  "addRepeaterLatitudeHint": "Ej. 44.2100",
+  "addRepeaterLongitude": "Longitud",
+  "addRepeaterLongitudeHint": "Ej. 10.7900",
+  "addRepeaterLocator": "Locator",
+  "addRepeaterLocatorHint": "Ej. JN54QF",
+  "addRepeaterNotes": "Notas adicionales",
+  "addRepeaterNotesHint": "Información adicional sobre el repetidor...",
+  "addRepeaterAddAccess": "Añadir acceso",
+  "addRepeaterRemoveAccess": "Eliminar",
+  "addRepeaterAccessMode": "Modo",
+  "addRepeaterAccessCtcssTx": "CTCSS TX (Hz)",
+  "addRepeaterAccessCtcssTxHint": "Ej. 88.5",
+  "addRepeaterAccessCtcssRx": "CTCSS RX (Hz)",
+  "addRepeaterAccessCtcssRxHint": "Ej. 88.5",
+  "addRepeaterAccessDcsCode": "Código DCS",
+  "addRepeaterAccessDcsCodeHint": "Ej. 23",
+  "addRepeaterAccessColorCode": "Color Code",
+  "addRepeaterAccessColorCodeHint": "Ej. 1",
+  "addRepeaterAccessTalkgroup": "Talkgroup",
+  "addRepeaterAccessTalkgroupHint": "Ej. 222801",
+  "addRepeaterAccessDgId": "DG-ID",
+  "addRepeaterAccessDgIdHint": "Ej. 0",
+  "addRepeaterAccessNodeId": "Node ID",
+  "addRepeaterAccessNodeIdHint": "Ej. 1234",
+  "addRepeaterAccessNetworkName": "Nombre de red",
+  "addRepeaterAccessNetworkNameHint": "Ej. BM Italia",
+  "addRepeaterAccessNotes": "Notas del acceso",
+  "addRepeaterAccessNotesHint": "Notas específicas para este acceso...",
+  "addRepeaterConfirmCheckbox": "Confirmo que esta información es correcta según mi conocimiento.",
+  "addRepeaterVerifiedTitle": "Envío verificado",
+  "addRepeaterVerifiedDescription": "Tu solicitud será revisada por el equipo antes de ser publicada en la base de datos.",
+  "addRepeaterSubmit": "Enviar",
+  "addRepeaterSuccess": "¡Solicitud enviada con éxito!",
+  "addRepeaterError": "Error al enviar la solicitud",
+  "addRepeaterAtLeastOneAccess": "Añade al menos un acceso",
+  "addRepeaterAccessNumber": "Acceso {number}",
+  "@addRepeaterAccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+
+  "changelog1017PotaSpots": "Spots POTA en tiempo real con mapa y detalles del parque",
+  "changelog1017SubmitRepeater": "Propón un nuevo repetidor directamente desde la app",
+  "changelog1017MultiLanguage": "App disponible en inglés, español y francés",
+  "changelog1017Onboarding": "Nueva experiencia de primer inicio",
+  "changelog1017ReportAnonymous": "Reportes disponibles sin registro",
+
+  "changelogTitle": "Novedades",
+  "changelogSubtitle": "Esto es lo nuevo en esta versión",
+  "changelogCategoryAdded": "Nuevo",
+  "changelogCategoryImproved": "Mejorado",
+  "changelogCategoryFixed": "Corregido",
+  "changelogDismiss": "¡Entendido!",
+
+  "dashboardNearbyEmpty": "No hay repetidores cercanos",
+  "dashboardTabPota": "POTA",
+  "dashboardTabRepeaters": "Repetidores",
+  "dashboardViewAllPotaSpots": "Ver todos los spots POTA",
+  "dashboardViewAllRepeaters": "Ver todos los repetidores",
+  "onboardingDiscoveryExploreMap": "Explorar el Mapa",
+  "onboardingDiscoveryLivePota": "Spot POTA activo",
+  "onboardingDiscoveryNearbyRepeater": "Repetidor cercano",
+  "onboardingDiscoveryNoLocation": "Explora el mapa para encontrar repetidores y activaciones POTA",
+  "onboardingDiscoveryNoRepeaters": "No se encontraron repetidores cercanos",
+  "onboardingDiscoverySubtitle": "¡Esto es lo que hay cerca de ti!",
+  "onboardingDiscoveryTitle": "Tu primer repetidor",
+  "onboardingDiscoveryViewDetails": "Ver Detalles",
+  "onboardingDiscoveryViewSpot": "Ver Spot",
+  "onboardingGetStarted": "Comenzar",
+  "onboardingLocationEnable": "Activar Ubicación",
+  "onboardingLocationSkip": "Ahora no",
+  "onboardingLocationSubtitle": "Usamos tu ubicación para mostrarte los repetidores y activaciones POTA cercanas.",
+  "onboardingLocationTitle": "Ubicación",
+  "onboardingNext": "Siguiente",
+  "onboardingSkip": "Saltar",
+  "onboardingTelegramAlreadyMember": "Ya soy miembro",
+  "onboardingTelegramJoin": "Unirse al Grupo Telegram",
+  "onboardingTelegramLater": "Quizás después",
+  "onboardingTelegramSubtitle": "Únete al grupo Telegram de HamQRG para recibir actualizaciones, reportar repetidores y conocer a otros radioaficionados.",
+  "onboardingTelegramTitle": "Únete a la comunidad",
+  "onboardingWelcomeCredits": "Datos de repetidores proporcionados por IZ8WNH",
+  "onboardingWelcomeSubtitle1": "Descubre los repetidores activos en tu zona, con frecuencias, tonos y detalles técnicos.",
+  "onboardingWelcomeSubtitle2": "Analógico, DMR, C4FM, D-STAR — encuentra al instante el repetidor adecuado para ti.",
+  "onboardingWelcomeSubtitle3": "Sigue las activaciones Parks on the Air con actualizaciones en vivo, filtros por banda y distancia.",
+  "onboardingWelcomeSubtitle4": "Ten a mano los repetidores que más usas para un acceso rápido.",
+  "onboardingWelcomeTitle1": "Encuentra repetidores cerca de ti",
+  "onboardingWelcomeTitle2": "Filtra por modo",
+  "onboardingWelcomeTitle3": "Spots POTA en tiempo real",
+  "onboardingWelcomeTitle4": "Guarda tus favoritos",
+  "potaFilterAll": "Todas",
+  "potaFilterBand": "Banda",
+  "potaFilterMode": "Modo",
+  "potaSortByDistance": "Más cercanos",
+  "potaSortByTime": "Más recientes",
+  "repeatersNearbyCount": "{count} repetidores cercanos",
+  "@repeatersNearbyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatersResultsCount": "{count} resultados",
+  "@repeatersResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

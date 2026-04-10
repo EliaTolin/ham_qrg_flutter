@@ -8,10 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/pota_marker_helper.dart';
 import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
 import 'package:hamqrg/config/constants/map_keys.dart';
 import 'package:hamqrg/config/constants/map_layers.dart';
+import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/map/controller/repeaters_map_controller.dart';
@@ -93,6 +97,25 @@ class RepeatersMapPage extends HookConsumerWidget {
         return null;
       },
       [mapState?.repeaters, isStyleLoaded.value],
+    );
+
+    // Update POTA GeoJSON source when POTA spots change
+    useEffect(
+      () {
+        if (mapController.value != null && isStyleLoaded.value) {
+          _updatePotaGeoJsonSource(
+            mapController.value!,
+            mapState?.potaSpots ?? [],
+            mapState?.potaParkCache ?? {},
+          );
+        }
+        return null;
+      },
+      [
+        mapState?.potaSpots,
+        mapState?.potaParkCache,
+        isStyleLoaded.value,
+      ],
     );
 
     return Scaffold(
@@ -230,12 +253,19 @@ class RepeatersMapPage extends HookConsumerWidget {
     await Future.wait([
       _addMarkerImages(mapboxMap),
       _addStyleLayers(mapboxMap),
+      _addPotaLogoImage(mapboxMap),
+      _addPotaStyleLayer(mapboxMap),
     ]);
 
     // Update source with current repeaters
     final mapState = ref.read(repeatersMapControllerProvider).value;
     if (mapState != null) {
       await _updateGeoJsonSource(mapboxMap, mapState.repeaters);
+      await _updatePotaGeoJsonSource(
+        mapboxMap,
+        mapState.potaSpots,
+        mapState.potaParkCache,
+      );
     }
   }
 
@@ -438,6 +468,94 @@ class RepeatersMapPage extends HookConsumerWidget {
     });
   }
 
+  /// Add POTA logo as a Mapbox style image
+  Future<void> _addPotaLogoImage(MapboxMap mapboxMap) async {
+    await PotaMarkerHelper.addPotaStyleImage(mapboxMap);
+  }
+
+  /// Add POTA style layer from asset
+  Future<void> _addPotaStyleLayer(MapboxMap mapboxMap) async {
+    try {
+      final layerExists = await mapboxMap.style.styleLayerExists(
+        MapKeys.potaLayer,
+      );
+      if (!layerExists) {
+        await _addLayerFromAsset(mapboxMap, MapLayers.potaLayer);
+      }
+    } catch (e) {
+      log('Error adding POTA style layer: $e');
+    }
+  }
+
+  /// Update or create the POTA GeoJSON source
+  Future<void> _updatePotaGeoJsonSource(
+    MapboxMap mapboxMap,
+    List<PotaSpot> spots,
+    Map<String, PotaPark> parkCache,
+  ) async {
+    try {
+      final geoJson = _potaSpotsToGeoJson(spots, parkCache);
+
+      final sourceExists = await mapboxMap.style.styleSourceExists(
+        MapKeys.potaSource,
+      );
+
+      if (!sourceExists) {
+        await mapboxMap.style.addSource(
+          GeoJsonSource(
+            id: MapKeys.potaSource,
+            data: geoJson,
+          ),
+        );
+      } else {
+        final source =
+            await mapboxMap.style.getSource(MapKeys.potaSource) as GeoJsonSource?;
+        if (source != null) {
+          await source.updateGeoJSON(geoJson);
+        }
+      }
+    } catch (e) {
+      log('Error updating POTA GeoJSON source: $e');
+    }
+  }
+
+  /// Convert POTA spots to GeoJSON using park coordinates
+  String _potaSpotsToGeoJson(
+    List<PotaSpot> spots,
+    Map<String, PotaPark> parkCache,
+  ) {
+    final features = <Map<String, dynamic>>[];
+
+    for (final spot in spots) {
+      final park = parkCache[spot.reference];
+      if (park == null || park.latitude == null || park.longitude == null) {
+        continue;
+      }
+
+      features.add({
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [park.longitude, park.latitude],
+        },
+        'properties': {
+          'spotId': spot.spotId,
+          'activator': spot.activator,
+          'frequency': spot.frequency,
+          'mode': spot.mode,
+          'reference': spot.reference,
+          'name': spot.name,
+          'is_pota': true,
+        },
+      });
+    }
+
+    return jsonEncode({
+      'type': 'FeatureCollection',
+      'features': features,
+    });
+  }
+
   /// Handle tap on the map
   Future<void> _handleMapTap(
     MapboxMap mapboxMap,
@@ -454,7 +572,17 @@ class RepeatersMapPage extends HookConsumerWidget {
 
       if (!context.mounted) return;
 
-      // First check for cluster tap
+      // First check for POTA spot tap
+      final potaHandled = await _handlePotaTap(
+        mapboxMap,
+        screenCoordinate,
+        context,
+      );
+      if (potaHandled) return;
+
+      if (!context.mounted) return;
+
+      // Then check for cluster tap
       final clusterHandled = await _handleClusterTap(
         mapboxMap,
         screenCoordinate,
@@ -669,6 +797,63 @@ class RepeatersMapPage extends HookConsumerWidget {
     }
   }
 
+  /// Handle tap on a POTA spot marker
+  Future<bool> _handlePotaTap(
+    MapboxMap mapboxMap,
+    ScreenCoordinate screenCoordinate,
+    BuildContext context,
+  ) async {
+    try {
+      final features = await mapboxMap.queryRenderedFeatures(
+        RenderedQueryGeometry.fromScreenCoordinate(screenCoordinate),
+        RenderedQueryOptions(layerIds: [MapKeys.potaLayer]),
+      );
+
+      if (features.isEmpty) return false;
+
+      final feature = features.first;
+      if (feature == null) return false;
+
+      final featureMap =
+          feature.queriedFeature.feature as Map<dynamic, dynamic>;
+      final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
+      if (properties == null) return false;
+
+      final spotId = properties['spotId'] as int?;
+      final reference = properties['reference'] as String?;
+      if (spotId == null || reference == null) return false;
+
+      // Center on the point
+      final geometry = featureMap['geometry'] as Map<dynamic, dynamic>?;
+      if (geometry != null) {
+        final coords = geometry['coordinates'] as List<dynamic>?;
+        if (coords != null && coords.length >= 2) {
+          await mapboxMap.flyTo(
+            CameraOptions(
+              center: Point(
+                coordinates: Position(
+                  (coords[0] as num).toDouble(),
+                  (coords[1] as num).toDouble(),
+                ),
+              ),
+            ),
+            MapAnimationOptions(duration: 200),
+          );
+        }
+      }
+
+      if (context.mounted) {
+        await context.router.push(
+          PotaSpotDetailRoute(spotId: spotId, reference: reference),
+        );
+      }
+      return true;
+    } catch (e) {
+      log('Error handling POTA tap: $e');
+      return false;
+    }
+  }
+
   /// Load repeaters based on visible map bounds
   Future<void> _loadRepeatersForVisibleBounds(
     WidgetRef ref,
@@ -697,137 +882,179 @@ class RepeatersMapPage extends HookConsumerWidget {
     RepeatersMapController notifier,
     MapboxMap? mapController,
   ) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final bottomPadding = MediaQuery.of(context).padding.bottom + 24;
+
     return Stack(
       children: [
-        // Header with gradient and filters
+        // Top overlay: frosted header with filters + info
         Positioned(
           top: 0,
           left: 0,
           right: 0,
           child: SafeArea(
-            bottom: false,
-            child: ModeFilterChipsHorizontal(
-              allLabel: context.localization.repeaterModeAllmode,
-              selectedModes: mapState?.selectedModes ?? {},
-              onModeToggled: (mode) async {
-                if (mapController != null) {
-                  final visibleBounds = await _getVisibleBounds(mapController);
-                  await notifier.toggleModeFilter(
-                    lat1: visibleBounds.lat1,
-                    lon1: visibleBounds.lon1,
-                    lat2: visibleBounds.lat2,
-                    lon2: visibleBounds.lon2,
-                    mode: mode,
-                  );
-                }
-              },
-              onAllSelected: () async {
-                if (mapController != null) {
-                  final visibleBounds = await _getVisibleBounds(mapController);
-                  await notifier.clearAllModes(
-                    lat1: visibleBounds.lat1,
-                    lon1: visibleBounds.lon1,
-                    lat2: visibleBounds.lat2,
-                    lon2: visibleBounds.lon2,
-                  );
-                }
-              },
-            ),
-          ),
-        ),
-        // Error banners
-        if (mapState?.locationError != null)
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: SafeArea(
-              child: PermissionBanner(
-                errorType: mapState!.locationError!,
-                onRetry: () async {
-                  ref.invalidate(repeatersMapControllerProvider);
-                },
-              ),
-            ),
-          ),
-        if (mapState?.hasLoadError ?? false)
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: SafeArea(
-              child: InfoBanner(
-                icon: const Icon(Icons.warning_amber_rounded),
-                label: context.localization.repeatersMapGenericError,
-                trailing: TextButton(
-                  onPressed: () async {
-                    if (mapController != null) {
-                      await _loadRepeatersForVisibleBounds(ref, mapController);
-                    }
-                  },
-                  child: Text(context.localization.repeatersMapRetry),
-                ),
-              ),
-            ),
-          ),
-        if (!asyncState.isLoading &&
-            !(mapState?.hasLoadError ?? false) &&
-            mapState?.locationError == null &&
-            (mapState?.repeaters.isEmpty ?? false))
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: SafeArea(
-              child: InfoBanner(
-                icon: const Icon(Icons.location_off_outlined),
-                label: context.localization.repeatersMapEmpty,
-              ),
-            ),
-          ),
-        // Summary chip
-        if (!(mapState?.hasLoadError ?? false) &&
-            mapState?.locationError == null &&
-            (mapState?.repeaters.isNotEmpty ?? false))
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: SafeArea(
-              child: SummaryChip(
-                count: mapState!.repeaters.length,
-              ),
-            ),
-          ),
-        // My location button
-        if (mapController != null &&
-            mapState?.latitude != null &&
-            mapState?.longitude != null &&
-            mapState?.locationError == null)
-          Positioned(
-            right: 16,
-            bottom: MediaQuery.of(context).padding.bottom + 32,
-            child: FloatingActionButton.small(
-              heroTag: 'myLocation',
-              onPressed: () async {
-                final position = await notifier.refreshUserPosition();
-                await mapController.flyTo(
-                  CameraOptions(
-                    center: Point(
-                      coordinates: Position(
-                        position.longitude,
-                        position.latitude,
+              bottom: false,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Filter chips
+                  ModeFilterChipsHorizontal(
+                    allLabel: context.localization.repeaterModeAllmode,
+                    selectedModes: mapState?.selectedModes ?? {},
+                    onModeToggled: (mode) async {
+                      if (mapController != null) {
+                        final visibleBounds =
+                            await _getVisibleBounds(mapController);
+                        await notifier.toggleModeFilter(
+                          lat1: visibleBounds.lat1,
+                          lon1: visibleBounds.lon1,
+                          lat2: visibleBounds.lat2,
+                          lon2: visibleBounds.lon2,
+                          mode: mode,
+                        );
+                      }
+                    },
+                    onAllSelected: () async {
+                      if (mapController != null) {
+                        final visibleBounds =
+                            await _getVisibleBounds(mapController);
+                        await notifier.clearAllModes(
+                          lat1: visibleBounds.lat1,
+                          lon1: visibleBounds.lon1,
+                          lat2: visibleBounds.lat2,
+                          lon2: visibleBounds.lon2,
+                        );
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  // Banner / Summary (below filter chips)
+                  if (mapState?.locationError != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: PermissionBanner(
+                        errorType: mapState!.locationError!,
+                        onRetry: () async {
+                          ref.invalidate(repeatersMapControllerProvider);
+                        },
+                      ),
+                    )
+                  else if (mapState?.hasLoadError ?? false)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: InfoBanner(
+                        icon: const Icon(Icons.warning_amber_rounded),
+                        label: context.localization.repeatersMapGenericError,
+                        trailing: TextButton(
+                          onPressed: () async {
+                            if (mapController != null) {
+                              await _loadRepeatersForVisibleBounds(
+                                ref,
+                                mapController,
+                              );
+                            }
+                          },
+                          child:
+                              Text(context.localization.repeatersMapRetry),
+                        ),
+                      ),
+                    )
+                  else if (!asyncState.isLoading &&
+                      mapState?.locationError == null &&
+                      (mapState?.repeaters.isEmpty ?? false))
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: InfoBanner(
+                        icon: const Icon(Icons.location_off_outlined),
+                        label: context.localization.repeatersMapEmpty,
+                      ),
+                    )
+                  else if (mapState?.repeaters.isNotEmpty ?? false)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: SummaryChip(
+                        count: mapState!.repeaters.length,
                       ),
                     ),
-                    zoom: 10,
-                  ),
-                  MapAnimationOptions(duration: 1000),
-                );
-              },
-              child: const Icon(Icons.my_location),
+                  const SizedBox(height: 8),
+                ],
+              ),
             ),
           ),
+        // Bottom buttons
+        Positioned(
+          left: 16,
+          right: 16,
+          bottom: bottomPadding,
+          child: Row(
+            children: [
+              const Spacer(),
+              // My location
+              if (mapController != null &&
+                  mapState?.latitude != null &&
+                  mapState?.longitude != null &&
+                  mapState?.locationError == null)
+                _MapCircleButton(
+                  onTap: () async {
+                    final position = await notifier.refreshUserPosition();
+                    await mapController.flyTo(
+                      CameraOptions(
+                        center: Point(
+                          coordinates: Position(
+                            position.longitude,
+                            position.latitude,
+                          ),
+                        ),
+                        zoom: 10,
+                      ),
+                      MapAnimationOptions(duration: 1000),
+                    );
+                  },
+                  child: Icon(
+                    Icons.my_location,
+                    color: colorScheme.primary,
+                    size: 22,
+                  ),
+                ),
+            ],
+          ),
+        ),
       ],
+    );
+  }
+}
+
+class _MapCircleButton extends StatelessWidget {
+  const _MapCircleButton({
+    required this.onTap,
+    required this.child,
+  });
+
+  final VoidCallback onTap;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 48,
+        height: 48,
+        decoration: BoxDecoration(
+          color: colorScheme.surface,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.12),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Center(child: child),
+      ),
     );
   }
 }

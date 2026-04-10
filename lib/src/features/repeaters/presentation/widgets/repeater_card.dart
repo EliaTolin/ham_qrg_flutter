@@ -68,10 +68,10 @@ class RepeaterCard extends StatelessWidget {
                 _AccessModes(repeater: repeater),
                 if (_hasFooter) ...[
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Divider(
                       height: 1,
-                      color: colorScheme.outline.withValues(alpha: 0.08),
+                      color: colorScheme.outline.withValues(alpha: 0.1),
                     ),
                   ),
                   _StatsFooter(
@@ -299,34 +299,37 @@ class _StatsFooter extends StatelessWidget {
 
     final likesTotal = feedbackStats?.likesTotal ?? 0;
     final downTotal = feedbackStats?.downTotal ?? 0;
+    final hasMyLike = feedbackStats?.hasMyLike ?? false;
 
     return Row(
       children: [
         if (feedbackStats != null) ...[
           Icon(
             Icons.thumb_up_rounded,
-            size: 24,
-            color: likesTotal > 0 ? Colors.green : colorScheme.outlineVariant,
+            size: 16,
+            color: hasMyLike ? Colors.green : colorScheme.outlineVariant,
           ),
-          const SizedBox(width: 6),
+          const SizedBox(width: 4),
           Text(
             '$likesTotal',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: likesTotal > 0 ? Colors.green : colorScheme.onSurfaceVariant,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 12),
           Icon(
             Icons.flag_rounded,
-            size: 24,
+            size: 16,
             color: downTotal > 0 ? Colors.amber : colorScheme.outlineVariant,
           ),
-          const SizedBox(width: 6),
+          const SizedBox(width: 4),
           Text(
             '$downTotal',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: downTotal > 0 ? Colors.amber : colorScheme.onSurfaceVariant,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: downTotal > 0
+                  ? Colors.amber
+                  : colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -335,15 +338,15 @@ class _StatsFooter extends StatelessWidget {
         if (repeater.distanceMeters != null) ...[
           Icon(
             Icons.near_me_outlined,
-            size: 24,
+            size: 16,
             color: colorScheme.onSurfaceVariant,
           ),
-          const SizedBox(width: 6),
+          const SizedBox(width: 4),
           Text(
             _formatDistance(repeater.distanceMeters!),
-            style: theme.textTheme.bodyMedium?.copyWith(
+            style: theme.textTheme.bodySmall?.copyWith(
               color: colorScheme.onSurfaceVariant,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],

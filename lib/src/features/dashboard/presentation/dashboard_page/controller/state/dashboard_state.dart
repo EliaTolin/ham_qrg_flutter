@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
@@ -14,5 +15,7 @@ abstract class DashboardState with _$DashboardState {
     required List<Repeater> nearbyRepeaters,
     required Profile? profile,
     LocationErrorType? locationError,
+    @Default(<PotaSpot>[]) List<PotaSpot> potaSpots,
+    @Default(false) bool hasPotaError,
   }) = _DashboardState;
 }

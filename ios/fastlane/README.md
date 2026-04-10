@@ -23,6 +23,22 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Push a new beta build to TestFlight
 
+### ios beta_internal
+
+```sh
+[bundle exec] fastlane ios beta_internal
+```
+
+Push a new beta build to TestFlight for internal testers only
+
+### ios update_metadata
+
+```sh
+[bundle exec] fastlane ios update_metadata
+```
+
+Update App Store metadata and localizations only (no binary upload)
+
 ### ios release
 
 ```sh

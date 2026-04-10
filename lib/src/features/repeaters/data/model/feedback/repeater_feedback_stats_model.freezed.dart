@@ -20,6 +20,8 @@ mixin _$RepeaterFeedbackStatsModel {
   int get likesTotal;
   @JsonKey(name: 'down_total')
   int get downTotal;
+  @JsonKey(name: 'has_my_like')
+  bool get hasMyLike;
   @JsonKey(name: 'last_like_at')
   String? get lastLikeAt;
   @JsonKey(name: 'last_down_at')
@@ -48,6 +50,8 @@ mixin _$RepeaterFeedbackStatsModel {
                 other.likesTotal == likesTotal) &&
             (identical(other.downTotal, downTotal) ||
                 other.downTotal == downTotal) &&
+            (identical(other.hasMyLike, hasMyLike) ||
+                other.hasMyLike == hasMyLike) &&
             (identical(other.lastLikeAt, lastLikeAt) ||
                 other.lastLikeAt == lastLikeAt) &&
             (identical(other.lastDownAt, lastDownAt) ||
@@ -56,12 +60,12 @@ mixin _$RepeaterFeedbackStatsModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, repeaterId, likesTotal, downTotal, lastLikeAt, lastDownAt);
+  int get hashCode => Object.hash(runtimeType, repeaterId, likesTotal,
+      downTotal, hasMyLike, lastLikeAt, lastDownAt);
 
   @override
   String toString() {
-    return 'RepeaterFeedbackStatsModel(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
+    return 'RepeaterFeedbackStatsModel(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, hasMyLike: $hasMyLike, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
   }
 }
 
@@ -75,6 +79,7 @@ abstract mixin class $RepeaterFeedbackStatsModelCopyWith<$Res> {
       {@JsonKey(name: 'repeater_id') String repeaterId,
       @JsonKey(name: 'likes_total') int likesTotal,
       @JsonKey(name: 'down_total') int downTotal,
+      @JsonKey(name: 'has_my_like') bool hasMyLike,
       @JsonKey(name: 'last_like_at') String? lastLikeAt,
       @JsonKey(name: 'last_down_at') String? lastDownAt});
 }
@@ -95,6 +100,7 @@ class _$RepeaterFeedbackStatsModelCopyWithImpl<$Res>
     Object? repeaterId = null,
     Object? likesTotal = null,
     Object? downTotal = null,
+    Object? hasMyLike = null,
     Object? lastLikeAt = freezed,
     Object? lastDownAt = freezed,
   }) {
@@ -111,6 +117,10 @@ class _$RepeaterFeedbackStatsModelCopyWithImpl<$Res>
           ? _self.downTotal
           : downTotal // ignore: cast_nullable_to_non_nullable
               as int,
+      hasMyLike: null == hasMyLike
+          ? _self.hasMyLike
+          : hasMyLike // ignore: cast_nullable_to_non_nullable
+              as bool,
       lastLikeAt: freezed == lastLikeAt
           ? _self.lastLikeAt
           : lastLikeAt // ignore: cast_nullable_to_non_nullable
@@ -220,6 +230,7 @@ extension RepeaterFeedbackStatsModelPatterns on RepeaterFeedbackStatsModel {
             @JsonKey(name: 'repeater_id') String repeaterId,
             @JsonKey(name: 'likes_total') int likesTotal,
             @JsonKey(name: 'down_total') int downTotal,
+            @JsonKey(name: 'has_my_like') bool hasMyLike,
             @JsonKey(name: 'last_like_at') String? lastLikeAt,
             @JsonKey(name: 'last_down_at') String? lastDownAt)?
         $default, {
@@ -229,7 +240,7 @@ extension RepeaterFeedbackStatsModelPatterns on RepeaterFeedbackStatsModel {
     switch (_that) {
       case _RepeaterFeedbackStatsModel() when $default != null:
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
-            _that.lastLikeAt, _that.lastDownAt);
+            _that.hasMyLike, _that.lastLikeAt, _that.lastDownAt);
       case _:
         return orElse();
     }
@@ -254,6 +265,7 @@ extension RepeaterFeedbackStatsModelPatterns on RepeaterFeedbackStatsModel {
             @JsonKey(name: 'repeater_id') String repeaterId,
             @JsonKey(name: 'likes_total') int likesTotal,
             @JsonKey(name: 'down_total') int downTotal,
+            @JsonKey(name: 'has_my_like') bool hasMyLike,
             @JsonKey(name: 'last_like_at') String? lastLikeAt,
             @JsonKey(name: 'last_down_at') String? lastDownAt)
         $default,
@@ -262,7 +274,7 @@ extension RepeaterFeedbackStatsModelPatterns on RepeaterFeedbackStatsModel {
     switch (_that) {
       case _RepeaterFeedbackStatsModel():
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
-            _that.lastLikeAt, _that.lastDownAt);
+            _that.hasMyLike, _that.lastLikeAt, _that.lastDownAt);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -286,6 +298,7 @@ extension RepeaterFeedbackStatsModelPatterns on RepeaterFeedbackStatsModel {
             @JsonKey(name: 'repeater_id') String repeaterId,
             @JsonKey(name: 'likes_total') int likesTotal,
             @JsonKey(name: 'down_total') int downTotal,
+            @JsonKey(name: 'has_my_like') bool hasMyLike,
             @JsonKey(name: 'last_like_at') String? lastLikeAt,
             @JsonKey(name: 'last_down_at') String? lastDownAt)?
         $default,
@@ -294,7 +307,7 @@ extension RepeaterFeedbackStatsModelPatterns on RepeaterFeedbackStatsModel {
     switch (_that) {
       case _RepeaterFeedbackStatsModel() when $default != null:
         return $default(_that.repeaterId, _that.likesTotal, _that.downTotal,
-            _that.lastLikeAt, _that.lastDownAt);
+            _that.hasMyLike, _that.lastLikeAt, _that.lastDownAt);
       case _:
         return null;
     }
@@ -308,6 +321,7 @@ class _RepeaterFeedbackStatsModel implements RepeaterFeedbackStatsModel {
       {@JsonKey(name: 'repeater_id') required this.repeaterId,
       @JsonKey(name: 'likes_total') required this.likesTotal,
       @JsonKey(name: 'down_total') required this.downTotal,
+      @JsonKey(name: 'has_my_like') this.hasMyLike = false,
       @JsonKey(name: 'last_like_at') this.lastLikeAt,
       @JsonKey(name: 'last_down_at') this.lastDownAt});
   factory _RepeaterFeedbackStatsModel.fromJson(Map<String, dynamic> json) =>
@@ -322,6 +336,9 @@ class _RepeaterFeedbackStatsModel implements RepeaterFeedbackStatsModel {
   @override
   @JsonKey(name: 'down_total')
   final int downTotal;
+  @override
+  @JsonKey(name: 'has_my_like')
+  final bool hasMyLike;
   @override
   @JsonKey(name: 'last_like_at')
   final String? lastLikeAt;
@@ -356,6 +373,8 @@ class _RepeaterFeedbackStatsModel implements RepeaterFeedbackStatsModel {
                 other.likesTotal == likesTotal) &&
             (identical(other.downTotal, downTotal) ||
                 other.downTotal == downTotal) &&
+            (identical(other.hasMyLike, hasMyLike) ||
+                other.hasMyLike == hasMyLike) &&
             (identical(other.lastLikeAt, lastLikeAt) ||
                 other.lastLikeAt == lastLikeAt) &&
             (identical(other.lastDownAt, lastDownAt) ||
@@ -364,12 +383,12 @@ class _RepeaterFeedbackStatsModel implements RepeaterFeedbackStatsModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, repeaterId, likesTotal, downTotal, lastLikeAt, lastDownAt);
+  int get hashCode => Object.hash(runtimeType, repeaterId, likesTotal,
+      downTotal, hasMyLike, lastLikeAt, lastDownAt);
 
   @override
   String toString() {
-    return 'RepeaterFeedbackStatsModel(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
+    return 'RepeaterFeedbackStatsModel(repeaterId: $repeaterId, likesTotal: $likesTotal, downTotal: $downTotal, hasMyLike: $hasMyLike, lastLikeAt: $lastLikeAt, lastDownAt: $lastDownAt)';
   }
 }
 
@@ -386,6 +405,7 @@ abstract mixin class _$RepeaterFeedbackStatsModelCopyWith<$Res>
       {@JsonKey(name: 'repeater_id') String repeaterId,
       @JsonKey(name: 'likes_total') int likesTotal,
       @JsonKey(name: 'down_total') int downTotal,
+      @JsonKey(name: 'has_my_like') bool hasMyLike,
       @JsonKey(name: 'last_like_at') String? lastLikeAt,
       @JsonKey(name: 'last_down_at') String? lastDownAt});
 }
@@ -406,6 +426,7 @@ class __$RepeaterFeedbackStatsModelCopyWithImpl<$Res>
     Object? repeaterId = null,
     Object? likesTotal = null,
     Object? downTotal = null,
+    Object? hasMyLike = null,
     Object? lastLikeAt = freezed,
     Object? lastDownAt = freezed,
   }) {
@@ -422,6 +443,10 @@ class __$RepeaterFeedbackStatsModelCopyWithImpl<$Res>
           ? _self.downTotal
           : downTotal // ignore: cast_nullable_to_non_nullable
               as int,
+      hasMyLike: null == hasMyLike
+          ? _self.hasMyLike
+          : hasMyLike // ignore: cast_nullable_to_non_nullable
+              as bool,
       lastLikeAt: freezed == lastLikeAt
           ? _self.lastLikeAt
           : lastLikeAt // ignore: cast_nullable_to_non_nullable

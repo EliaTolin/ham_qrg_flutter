@@ -105,9 +105,13 @@ class RepeatersRepository {
 
   // Feedback methods
   Future<RepeaterFeedbackStats?> getRepeaterFeedbackStats(
-    String repeaterId,
-  ) async {
-    final model = await _datasource.getRepeaterFeedbackStats(repeaterId);
+    String repeaterId, {
+    String? userId,
+  }) async {
+    final model = await _datasource.getRepeaterFeedbackStats(
+      repeaterId,
+      userId: userId,
+    );
     if (model == null) {
       return null;
     }
@@ -115,10 +119,13 @@ class RepeatersRepository {
   }
 
   Future<Map<String, RepeaterFeedbackStats>> getRepeatersFeedbackStatsFromIds(
-    List<String> repeaterIds,
-  ) async {
-    final models =
-        await _datasource.getRepeatersFeedbackStatsFromIds(repeaterIds);
+    List<String> repeaterIds, {
+    String? userId,
+  }) async {
+    final models = await _datasource.getRepeatersFeedbackStatsFromIds(
+      repeaterIds,
+      userId: userId,
+    );
     final stats = <String, RepeaterFeedbackStats>{};
     for (final model in models) {
       final entity = _feedbackStatsMapper.fromModel(model);
@@ -199,6 +206,38 @@ class RepeatersRepository {
       userId: userId,
       repeaterId: repeaterId,
       description: description,
+    );
+  }
+
+  Future<void> submitRepeaterSubmission({
+    required String userId,
+    required String name,
+    required String callsign,
+    required int frequencyHz,
+    required List<Map<String, dynamic>> accesses,
+    int? shiftHz,
+    String? region,
+    String? provinceCode,
+    String? locality,
+    double? lat,
+    double? lon,
+    String? locator,
+    String? notes,
+  }) async {
+    return _datasource.submitRepeaterSubmission(
+      userId: userId,
+      name: name,
+      callsign: callsign,
+      frequencyHz: frequencyHz,
+      accesses: accesses,
+      shiftHz: shiftHz,
+      region: region,
+      provinceCode: provinceCode,
+      locality: locality,
+      lat: lat,
+      lon: lon,
+      locator: locator,
+      notes: notes,
     );
   }
 }

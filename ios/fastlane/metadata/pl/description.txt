@@ -1,0 +1,39 @@
+HamQRG to najlepsza aplikacja dla krotkofalowcow i sluchaczy. Latwo znajdz przemienniki w poblizu, sledz aktywacje POTA na zywo, sprawdz czestotliwosci i dolacz do spolecznosci, ktora rosnie kazdego dnia.
+
+**INTERAKTYWNA MAPA**
+• Wyswietl wszystkie przemienniki na interaktywnej mapie
+• Znajdz najblizsze przemienniki wzgledem Twojej lokalizacji
+• Filtruj wedlug trybu: Analogowy, DMR, C4FM, D-STAR, Echolink
+• Inteligentne grupowanie dla obszarow z wieloma przemiennikami
+
+**PELNE DANE TECHNICZNE**
+• Czestotliwosc TX/RX i przesuniecie
+• Tony CTCSS/DCS
+• Color Code i Talk Groups dla DMR
+• Sieci cyfrowe (BrandMeister, TGIF i inne)
+• Dokladna lokalizacja i odleglosc
+
+**SPOTY POTA NA ZYWO**
+• Sledz na zywo wszystkie aktywacje Parks On The Air
+• Filtruj spoty wedlug pasma i trybu (SSB, CW, Digital)
+• Sortuj wedlug czasu lub odleglosci od Twojej lokalizacji
+• Wyswietl aktywne parki na interaktywnej mapie
+• Szybki dostep do profilu QRZ aktywatora i strony parku
+
+**ULUBIONE I OPINIE**
+• Zapisz ulubione przemienniki dla szybkiego dostepu
+• Zostaw opinie o jakosci sygnalu
+• Zglos problemy lub aktualizacje koordynatorom
+• Przegladaj raporty spolecznosci
+
+**DLA KROTKOFALOWCOW I SLUCHACZY**
+• Spersonalizowany profil ze znakiem wywolawczym
+• Wsparcie dla licencjonowanych operatorow i SWL
+• Darmowy dostep do wszystkich publicznych danych
+
+**AKTYWNA SPOLECZNOSC**
+• Dolacz do grupy na Telegramie
+• Proponuj nowe funkcje
+• Skontaktuj sie bezposrednio z deweloperami
+
+Pobierz HamQRG i odkryj swiat przemiennikow krotkofalowych!

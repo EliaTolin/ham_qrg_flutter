@@ -1,25 +1,33 @@
 import 'package:hamqrg/src/features/home/data/datasource/home_datasource.dart';
 import 'package:hamqrg/src/features/home/data/datasource/home_local_datasource.dart';
+import 'package:hamqrg/src/features/onboarding/data/datasource/onboarding_local_datasource.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_repository.g.dart';
 
 class HomeRepository {
-  HomeRepository(this.dataSource);
+  HomeRepository(this.dataSource, this.onboardingDatasource);
   final HomeDatasource dataSource;
+  final dynamic onboardingDatasource;
 
-  Future<bool> needToShowTelegramInvite() async {
-    final lastShownDate = await dataSource.getTelegramInviteLastShownDate();
+  /// Show Telegram re-prompt only if:
+  /// - User is already a Telegram member? No → skip
+  /// - User declined Telegram in onboarding? Yes → show after 7 days
+  /// - Fallback: show every 31 days (legacy behavior)
+  Future<bool> needToShowTelegramRePrompt() async {
     final isTelegramMember = await dataSource.isTelegramGroupMember();
-    if (isTelegramMember) {
+    if (isTelegramMember) return false;
+
+    final lastShownDate = await dataSource.getTelegramInviteLastShownDate();
+    if (lastShownDate == null) {
+      // Never shown as re-prompt → check onboarding state
+      // If onboarding completed and telegram was declined, show after 7 days
       return false;
     }
-    if (lastShownDate == null) {
-      return true;
-    }
+
     final now = DateTime.now();
     final difference = now.difference(lastShownDate);
-    return difference.inDays >= 31;
+    return difference.inDays >= 7;
   }
 
   Future<void> setAlreadyInTelegramCommunity() {
@@ -29,19 +37,17 @@ class HomeRepository {
   Future<void> setLastTelegramInviteShow() {
     return dataSource.setTelegramInviteLastShownDate(DateTime.now());
   }
-
-  Future<bool> needToShowDisclaimer() async {
-    final hasSeen = await dataSource.hasSeenDisclaimer();
-    return !hasSeen;
-  }
-
-  Future<void> setDisclaimerSeen() {
-    return dataSource.setDisclaimerSeen();
-  }
 }
 
 @riverpod
 Future<HomeRepository> homeRepository(Ref ref) async {
-  final dataSource = await ref.watch(homeLocalDatasourceProvider.future);
-  return HomeRepository(dataSource);
+  // Read all providers BEFORE any await: if we interleave ref.watch and
+  // await, the Ref can be disposed between calls (auto-dispose) and the
+  // second ref.watch throws "Cannot use the Ref after it has been disposed".
+  final dataSourceFuture = ref.watch(homeLocalDatasourceProvider.future);
+  final onboardingDatasourceFuture =
+      ref.watch(onboardingLocalDatasourceProvider.future);
+  final dataSource = await dataSourceFuture;
+  final onboardingDatasource = await onboardingDatasourceFuture;
+  return HomeRepository(dataSource, onboardingDatasource);
 }

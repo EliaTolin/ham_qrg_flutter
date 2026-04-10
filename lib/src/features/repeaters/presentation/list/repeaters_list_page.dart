@@ -18,7 +18,6 @@ import 'package:hamqrg/src/features/repeaters/provider/search_repeaters/search_r
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-/// Debounce delay for search (milliseconds)
 const int _searchDebounceMs = 500;
 
 @RoutePage()
@@ -31,16 +30,13 @@ class RepeatersListPage extends HookConsumerWidget {
     final searchQuery = useState<String>('');
     final debounceTimer = useRef<Timer?>(null);
 
-    // Local selected modes (source of truth for filter chips + search)
     final selectedModes = useState<Set<AccessMode>>(const {});
-
-    // Stable list reference for the search provider (avoids new List identity each build)
     final stableAccessModes = useRef<List<AccessMode>?>(null);
 
     final listAsyncState = ref.watch(repeatersListControllerProvider);
     final listNotifier = ref.read(repeatersListControllerProvider.notifier);
 
-    // Handle search debounce
+    // Search debounce
     useEffect(
       () {
         void onTextChanged() {
@@ -67,7 +63,7 @@ class RepeatersListPage extends HookConsumerWidget {
       [searchController],
     );
 
-    // Keep stable access modes list in sync with selectedModes
+    // Stable access modes
     final currentModes = selectedModes.value;
     if (currentModes.isEmpty) {
       stableAccessModes.value = null;
@@ -76,19 +72,16 @@ class RepeatersListPage extends HookConsumerWidget {
       stableAccessModes.value = currentModes.toList();
     }
 
-    // Determine search mode
     final currentSearchText = searchController.text.trim();
     final isSearchMode = currentSearchText.isNotEmpty;
     final debouncedQuery = searchQuery.value.trim();
     final isTyping = isSearchMode && currentSearchText != debouncedQuery;
 
-    // User position from shared cached provider (no duplicate GPS request)
     final userPosition = switch (ref.watch(cachedUserPositionProvider)) {
       AsyncData(:final value) => value,
       _ => null,
     };
 
-    // Get search results if in search mode (pass user position for server-side distance)
     final searchAsyncState = debouncedQuery.isNotEmpty
         ? ref.watch(
             searchRepeatersProvider(
@@ -100,7 +93,6 @@ class RepeatersListPage extends HookConsumerWidget {
           )
         : null;
 
-    // Memoize search result IDs for stable provider key (List == is reference-based)
     final searchRepeaters = switch (searchAsyncState) {
       AsyncData(:final value) => value,
       _ => null,
@@ -110,7 +102,6 @@ class RepeatersListPage extends HookConsumerWidget {
       [searchRepeaters],
     );
 
-    // Fetch feedback stats for search results
     final searchFeedbackStatsAsync =
         searchResultIds != null && searchResultIds.isNotEmpty
             ? ref.watch(
@@ -122,7 +113,7 @@ class RepeatersListPage extends HookConsumerWidget {
       _ => const <String, RepeaterFeedbackStats>{},
     };
 
-    // Handle loading state (only when not searching)
+    // Loading state
     if (listAsyncState.isLoading && !isSearchMode) {
       return Scaffold(
         appBar: AppBar(
@@ -134,8 +125,10 @@ class RepeatersListPage extends HookConsumerWidget {
       );
     }
 
-    // Handle error state (only when not searching)
-    if (listAsyncState.hasError && !isSearchMode && listAsyncState.error != null) {
+    // Error state
+    if (listAsyncState.hasError &&
+        !isSearchMode &&
+        listAsyncState.error != null) {
       return Scaffold(
         appBar: AppBar(
           title: Text(context.localization.repeatersListTitle),
@@ -146,14 +139,16 @@ class RepeatersListPage extends HookConsumerWidget {
 
     final listState = listAsyncState.value;
     final l10n = context.localization;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.repeatersListTitle),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
+          preferredSize: const Size.fromHeight(56),
           child: Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
@@ -172,7 +167,8 @@ class RepeatersListPage extends HookConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 filled: true,
-                fillColor: Theme.of(context).colorScheme.surface,
+                fillColor: colorScheme.surface,
+                contentPadding: EdgeInsets.zero,
               ),
             ),
           ),
@@ -180,7 +176,7 @@ class RepeatersListPage extends HookConsumerWidget {
       ),
       body: Column(
         children: [
-          // Filter chips – always visible
+          // Filter chips
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: ModeFilterChipsHorizontal(
@@ -207,16 +203,20 @@ class RepeatersListPage extends HookConsumerWidget {
               },
             ),
           ),
-          // Sort order
-          if (listState != null) ...[
+          // Count + Sort row
+          if (listState != null)
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 16, bottom: 4),
-              child: _SortOrderRow(
-                current: listState.sortOrder,
-                onChanged: listNotifier.setSortOrder,
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: _CountAndSortRow(
+                count: isSearchMode
+                    ? (searchRepeaters?.length ?? 0)
+                    : listState.repeaters.length,
+                isSearchMode: isSearchMode,
+                sortOrder: listState.sortOrder,
+                onSortChanged: listNotifier.setSortOrder,
               ),
             ),
-          ],
           // Content
           Expanded(
             child: isSearchMode
@@ -239,7 +239,6 @@ class RepeatersListPage extends HookConsumerWidget {
     );
   }
 
-  /// Build search results view
   Widget _buildSearchResults(
     BuildContext context,
     AsyncValue<List<Repeater>>? searchAsyncState,
@@ -252,7 +251,6 @@ class RepeatersListPage extends HookConsumerWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    // Show loading while typing or loading
     if (isTyping || searchAsyncState == null || searchAsyncState.isLoading) {
       return const Center(
         child: CircularProgressIndicator.adaptive(),
@@ -283,7 +281,6 @@ class RepeatersListPage extends HookConsumerWidget {
           );
         }
 
-        // Sort (distance comes from server, likes from feedback stats)
         final sorted = List<Repeater>.of(repeaters);
         switch (sortOrder) {
           case RepeatersSortOrder.distance:
@@ -305,7 +302,7 @@ class RepeatersListPage extends HookConsumerWidget {
         return RefreshIndicator(
           onRefresh: onRefresh,
           child: ListView.builder(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             itemCount: sorted.length,
             itemBuilder: (context, index) {
               final repeater = sorted[index];
@@ -324,7 +321,6 @@ class RepeatersListPage extends HookConsumerWidget {
     );
   }
 
-  /// Build nearby content (without filter chips – they are in the parent Column)
   Widget _buildNearbyContent(
     BuildContext context,
     WidgetRef ref,
@@ -340,7 +336,6 @@ class RepeatersListPage extends HookConsumerWidget {
       );
     }
 
-    // Show location error
     if (listState.locationError != null) {
       return Center(
         child: Padding(
@@ -359,7 +354,8 @@ class RepeatersListPage extends HookConsumerWidget {
                   LocationErrorType.permissionDenied ||
                   LocationErrorType.permissionPermanentlyDenied =>
                     l10n.repeatersMapPermissionPermanentlyDenied,
-                  LocationErrorType.servicesDisabled => l10n.repeatersMapLocationServicesDisabled,
+                  LocationErrorType.servicesDisabled =>
+                    l10n.repeatersMapLocationServicesDisabled,
                 },
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge,
@@ -367,7 +363,9 @@ class RepeatersListPage extends HookConsumerWidget {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
-                  ref.read(repeatersListControllerProvider.notifier).reload();
+                  ref
+                      .read(repeatersListControllerProvider.notifier)
+                      .reload();
                 },
                 child: Text(l10n.repeatersMapRetry),
               ),
@@ -377,16 +375,15 @@ class RepeatersListPage extends HookConsumerWidget {
       );
     }
 
-    // Empty state
     if (listState.repeaters.isEmpty) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.search_off,
+              Icons.cell_tower,
               size: 64,
-              color: colorScheme.onSurface.withValues(alpha: 0.3),
+              color: colorScheme.onSurface.withValues(alpha: 0.2),
             ),
             const SizedBox(height: 16),
             Text(
@@ -405,7 +402,7 @@ class RepeatersListPage extends HookConsumerWidget {
           .read(repeatersListControllerProvider.notifier)
           .refreshAndReload(),
       child: ListView.builder(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         itemCount: listState.repeaters.length,
         itemBuilder: (context, index) {
           final repeater = listState.repeaters[index];
@@ -418,7 +415,6 @@ class RepeatersListPage extends HookConsumerWidget {
     );
   }
 
-  /// Build error state widget
   Widget _buildErrorState(BuildContext context, Object error) {
     final l10n = context.localization;
     final theme = Theme.of(context);
@@ -442,7 +438,8 @@ class RepeatersListPage extends HookConsumerWidget {
                   LocationErrorType.permissionDenied ||
                   LocationErrorType.permissionPermanentlyDenied =>
                     l10n.repeatersMapPermissionPermanentlyDenied,
-                  LocationErrorType.servicesDisabled => l10n.repeatersMapLocationServicesDisabled,
+                  LocationErrorType.servicesDisabled =>
+                    l10n.repeatersMapLocationServicesDisabled,
                 },
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge,
@@ -478,96 +475,157 @@ class RepeatersListPage extends HookConsumerWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Sort order chip row — mirrors the filter chip style
+// Count + Sort Row
 // ---------------------------------------------------------------------------
-class _SortOrderRow extends StatelessWidget {
-  const _SortOrderRow({required this.current, required this.onChanged});
 
-  final RepeatersSortOrder current;
-  final ValueChanged<RepeatersSortOrder> onChanged;
+class _CountAndSortRow extends StatelessWidget {
+  const _CountAndSortRow({
+    required this.count,
+    required this.isSearchMode,
+    required this.sortOrder,
+    required this.onSortChanged,
+  });
+
+  final int count;
+  final bool isSearchMode;
+  final RepeatersSortOrder sortOrder;
+  final ValueChanged<RepeatersSortOrder> onSortChanged;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     final l10n = context.localization;
-    // final theme = Theme.of(context);
-    //final colorScheme = theme.colorScheme;
 
     return Row(
-      spacing: 8,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        //Icon(Icons.sort, size: 16, color: colorScheme.onSurfaceVariant),
-        _SortChip(
-          label: l10n.repeatersSortDistance,
-          icon: Icons.near_me_outlined,
-          isSelected: current == RepeatersSortOrder.distance,
-          onTap: () => onChanged(RepeatersSortOrder.distance),
+        Text(
+          isSearchMode
+              ? l10n.repeatersResultsCount(count)
+              : l10n.repeatersNearbyCount(count),
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: colorScheme.onSurfaceVariant,
+          ),
         ),
-        _SortChip(
-          label: l10n.repeatersSortLikes,
-          icon: Icons.thumb_up_rounded,
-          isSelected: current == RepeatersSortOrder.likes,
-          onTap: () => onChanged(RepeatersSortOrder.likes),
-        ),
-        _SortChip(
-          label: l10n.repeatersSortFrequency,
-          icon: Icons.radio_outlined,
-          isSelected: current == RepeatersSortOrder.frequency,
-          onTap: () => onChanged(RepeatersSortOrder.frequency),
+        const Spacer(),
+        _SortButton(
+          sortOrder: sortOrder,
+          onChanged: onSortChanged,
         ),
       ],
     );
   }
 }
 
-class _SortChip extends StatelessWidget {
-  const _SortChip({
-    required this.label,
-    required this.icon,
-    required this.isSelected,
-    required this.onTap,
+// ---------------------------------------------------------------------------
+// Sort Button (PopupMenu)
+// ---------------------------------------------------------------------------
+
+class _SortButton extends StatelessWidget {
+  const _SortButton({
+    required this.sortOrder,
+    required this.onChanged,
   });
 
-  final String label;
-  final IconData icon;
-  final bool isSelected;
-  final VoidCallback onTap;
+  final RepeatersSortOrder sortOrder;
+  final ValueChanged<RepeatersSortOrder> onChanged;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.localization;
 
-    final backgroundColor = isSelected ? colorScheme.primary : colorScheme.surfaceContainerHighest;
-    final foregroundColor = isSelected ? colorScheme.onPrimary : colorScheme.onSurface;
+    final label = switch (sortOrder) {
+      RepeatersSortOrder.distance => l10n.repeatersSortDistance,
+      RepeatersSortOrder.likes => l10n.repeatersSortLikes,
+      RepeatersSortOrder.frequency => l10n.repeatersSortFrequency,
+    };
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isSelected ? Colors.transparent : colorScheme.outline,
+    return PopupMenuButton<RepeatersSortOrder>(
+      onSelected: onChanged,
+      initialValue: sortOrder,
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          value: RepeatersSortOrder.distance,
+          child: _SortMenuItem(
+            icon: Icons.near_me_outlined,
+            label: l10n.repeatersSortDistance,
+            selected: sortOrder == RepeatersSortOrder.distance,
           ),
+        ),
+        PopupMenuItem(
+          value: RepeatersSortOrder.likes,
+          child: _SortMenuItem(
+            icon: Icons.thumb_up_rounded,
+            label: l10n.repeatersSortLikes,
+            selected: sortOrder == RepeatersSortOrder.likes,
+          ),
+        ),
+        PopupMenuItem(
+          value: RepeatersSortOrder.frequency,
+          child: _SortMenuItem(
+            icon: Icons.radio_outlined,
+            label: l10n.repeatersSortFrequency,
+            selected: sortOrder == RepeatersSortOrder.frequency,
+          ),
+        ),
+      ],
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerHighest,
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 14, color: foregroundColor),
+            Icon(Icons.sort, size: 16, color: colorScheme.onSurfaceVariant),
             const SizedBox(width: 4),
             Text(
               label,
-              style: theme.textTheme.labelSmall?.copyWith(
-                color: foregroundColor,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: colorScheme.onSurfaceVariant,
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _SortMenuItem extends StatelessWidget {
+  const _SortMenuItem({
+    required this.icon,
+    required this.label,
+    required this.selected,
+  });
+
+  final IconData icon;
+  final String label;
+  final bool selected;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 18,
+          color: selected ? colorScheme.primary : colorScheme.onSurfaceVariant,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          label,
+          style: TextStyle(
+            color: selected ? colorScheme.primary : null,
+            fontWeight: selected ? FontWeight.w600 : null,
+          ),
+        ),
+      ],
     );
   }
 }

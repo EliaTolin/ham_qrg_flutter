@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AddRepeaterPage]
+class AddRepeaterRoute extends PageRouteInfo<void> {
+  const AddRepeaterRoute({List<PageRouteInfo>? children})
+      : super(AddRepeaterRoute.name, initialChildren: children);
+
+  static const String name = 'AddRepeaterRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AddRepeaterPage();
+    },
+  );
+}
+
+/// generated route for
 /// [AuthScreen]
 class AuthRoute extends PageRouteInfo<void> {
   const AuthRoute({List<PageRouteInfo>? children})
@@ -91,6 +107,22 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OnboardingPage]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute({List<PageRouteInfo>? children})
+      : super(OnboardingRoute.name, initialChildren: children);
+
+  static const String name = 'OnboardingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OnboardingPage();
+    },
+  );
+}
+
+/// generated route for
 /// [PostLoginOnboardingPage]
 class PostLoginOnboardingRoute extends PageRouteInfo<void> {
   const PostLoginOnboardingRoute({List<PageRouteInfo>? children})
@@ -102,6 +134,109 @@ class PostLoginOnboardingRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const PostLoginOnboardingPage();
+    },
+  );
+}
+
+/// generated route for
+/// [PotaSpotDetailPage]
+class PotaSpotDetailRoute extends PageRouteInfo<PotaSpotDetailRouteArgs> {
+  PotaSpotDetailRoute({
+    required int spotId,
+    required String reference,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PotaSpotDetailRoute.name,
+          args: PotaSpotDetailRouteArgs(
+            spotId: spotId,
+            reference: reference,
+            key: key,
+          ),
+          rawPathParams: {'spotId': spotId, 'reference': reference},
+          initialChildren: children,
+        );
+
+  static const String name = 'PotaSpotDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<PotaSpotDetailRouteArgs>(
+        orElse: () => PotaSpotDetailRouteArgs(
+          spotId: pathParams.getInt('spotId'),
+          reference: pathParams.getString('reference'),
+        ),
+      );
+      return PotaSpotDetailPage(
+        spotId: args.spotId,
+        reference: args.reference,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class PotaSpotDetailRouteArgs {
+  const PotaSpotDetailRouteArgs({
+    required this.spotId,
+    required this.reference,
+    this.key,
+  });
+
+  final int spotId;
+
+  final String reference;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PotaSpotDetailRouteArgs{spotId: $spotId, reference: $reference, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PotaSpotDetailRouteArgs) return false;
+    return spotId == other.spotId &&
+        reference == other.reference &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode => spotId.hashCode ^ reference.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [PotaSpotsMapPage]
+class PotaSpotsMapRoute extends PageRouteInfo<void> {
+  const PotaSpotsMapRoute({List<PageRouteInfo>? children})
+      : super(PotaSpotsMapRoute.name, initialChildren: children);
+
+  static const String name = 'PotaSpotsMapRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PotaSpotsMapPage();
+    },
+  );
+}
+
+/// generated route for
+/// [PotaSpotsPage]
+class PotaSpotsRoute extends PageRouteInfo<void> {
+  const PotaSpotsRoute({List<PageRouteInfo>? children})
+      : super(PotaSpotsRoute.name, initialChildren: children);
+
+  static const String name = 'PotaSpotsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PotaSpotsPage();
     },
   );
 }
