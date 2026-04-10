@@ -45,7 +45,7 @@ class SplashController extends _$SplashController {
             playStorePackageName: packageInfo.packageName,
             installedVersion: error.installedVersion,
             minVersion: error.minVersion,
-            fallbackRoute: const RepeatersMapRoute(),
+            fallbackRoute: const HomeRoute(),
           ),
         );
       }
@@ -63,7 +63,8 @@ class SplashController extends _$SplashController {
       // Check if user is not anonymous and needs post-login onboarding
       final isAnonymous = await ref.read(isAnonymousProvider.future);
       if (!isAnonymous) {
-        final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+        final needsOnboarding =
+            await ref.read(checkNeedsPostLoginOnboardingProvider.future);
         if (needsOnboarding) {
           return const SplashAction.navigate(PostLoginOnboardingRoute());
         }
@@ -73,8 +74,10 @@ class SplashController extends _$SplashController {
       log('SplashController build: ${startWatch.elapsed}');
       return const SplashAction.navigate(HomeRoute());
     } catch (error, stackTrace) {
+      // Errors must NEVER be silent: log to Sentry and rethrow so the UI
+      // can show a proper error state with a retry button.
       await Sentry.captureException(error, stackTrace: stackTrace);
-      return const SplashAction.navigate(RepeatersMapRoute());
+      rethrow;
     }
   }
 
@@ -89,7 +92,8 @@ class SplashController extends _$SplashController {
       log('Dashboard prefetch: favorites, count, profile done');
 
       // Location + nearby repeaters
-      final position = await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
+      final position =
+          await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
       final repeatersNearby = await ref.read(
         getRepeatersNearbyProvider(
           latitude: position.latitude,
@@ -98,26 +102,37 @@ class SplashController extends _$SplashController {
       );
       // Pre-generate all icon combinations
       for (final repeater in repeatersNearby) {
-        final accessModes = repeater.accesses.map((e) => e.mode).toSet().toList();
-        await RepeaterModeHelper.generateRepeaterIconWithAccessModes(accessModes);
+        final accessModes =
+            repeater.accesses.map((e) => e.mode).toSet().toList();
+        await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+          accessModes,
+        );
       }
       log('Dashboard prefetch: nearby repeaters done');
-    } catch (e) {
-      log('Dashboard prefetch failed: $e');
+    } catch (error, stackTrace) {
+      // Prefetch failures are non-fatal: report to Sentry but do not block.
+      log('Dashboard prefetch failed: $error');
+      unawaited(
+        Sentry.captureException(error, stackTrace: stackTrace),
+      );
     }
   }
 
   Future<void> _ensureMinimumVersion(PackageInfo packageInfo) async {
     final installedVersion = packageInfo.version;
-    final minVersionKey = Platform.isIOS ? 'min_version_app_store' : 'min_version_play_store';
+    final minVersionKey =
+        Platform.isIOS ? 'min_version_app_store' : 'min_version_play_store';
 
     try {
-      final minVersionParam = await ref.read(getParamByKeyProvider(minVersionKey).future);
+      final minVersionParam =
+          await ref.read(getParamByKeyProvider(minVersionKey).future);
       if (minVersionParam == null) return;
 
       final minVersion = minVersionParam.value;
       if (isVersionOutdated(installedVersion, minVersion)) {
-        log('Versione installata ($installedVersion) è inferiore alla minima richiesta ($minVersion)');
+        log(
+          'Versione installata ($installedVersion) è inferiore alla minima richiesta ($minVersion)',
+        );
         throw UpdateRequiredException(
           minVersion: minVersion,
           installedVersion: installedVersion,
