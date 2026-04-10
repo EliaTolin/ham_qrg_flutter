@@ -1,7 +1,7 @@
-HamQRG je dokonalá aplikace pro radioamatéry a posluchače v Itálii. Snadno najdete převaděče ve svém okolí, zkontrolujete frekvence a připojíte se ke komunitě.
+HamQRG je dokonalá aplikace pro radioamatéry a posluchače. Snadno najdete převaděče ve svém okolí, sledujte aktivace POTA v reálném čase, zkontrolujte frekvence a připojte se ke komunitě, která roste každý den.
 
 <b>INTERAKTIVNÍ MAPA</b>
-• Zobrazení všech italských převaděčů na interaktivní mapě
+• Zobrazení všech převaděčů na interaktivní mapě
 • Nalezení nejbližších převaděčů k vaší poloze
 • Filtrování podle režimu: Analogový, DMR, C4FM, D-STAR, Echolink
 • Chytré shlukování v oblastech s mnoha převaděči
@@ -12,6 +12,13 @@ HamQRG je dokonalá aplikace pro radioamatéry a posluchače v Itálii. Snadno n
 • Color Code a Talk Group pro DMR
 • Digitální sítě (BrandMeister, TGIF a další)
 • Přesná poloha a vzdálenost
+
+<b>POTA SPOTY ŽIVĚ</b>
+• Sledujte všechny aktivace Parks On The Air v reálném čase
+• Filtrujte spoty podle pásma a režimu (SSB, CW, Digital)
+• Řaďte podle času nebo vzdálenosti od vaší polohy
+• Zobrazte aktivní parky na interaktivní mapě
+• Rychlý přístup k QRZ profilu aktivátora a stránce parku
 
 <b>OBLÍBENÉ A ZPĚTNÁ VAZBA</b>
 • Uložte si oblíbené převaděče pro rychlý přístup
@@ -29,4 +36,4 @@ HamQRG je dokonalá aplikace pro radioamatéry a posluchače v Itálii. Snadno n
 • Navrhněte nové funkce
 • Kontaktujte přímo vývojáře
 
-Stáhněte si HamQRG a prozkoumejte svět italských radioamatérských převaděčů!
+Stáhněte si HamQRG a prozkoumejte svět radioamatérských převaděčů!

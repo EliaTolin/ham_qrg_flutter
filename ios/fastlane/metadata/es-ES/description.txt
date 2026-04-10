@@ -1,7 +1,7 @@
-HamQRG es la app definitiva para radioaficionados y oyentes en Italia. Encuentra fácilmente los repetidores cerca de ti, consulta las frecuencias y únete a la comunidad.
+HamQRG es la app definitiva para radioaficionados y oyentes. Encuentra fácilmente los repetidores cerca de ti, sigue las activaciones POTA en tiempo real, consulta las frecuencias y únete a una comunidad que crece cada día.
 
 **MAPA INTERACTIVO**
-• Visualiza todos los repetidores italianos en un mapa interactivo
+• Visualiza todos los repetidores en un mapa interactivo
 • Encuentra los repetidores más cercanos a tu ubicación
 • Filtra por modo: Analógico, DMR, C4FM, D-STAR, Echolink
 • Agrupación inteligente para áreas con muchos repetidores
@@ -12,6 +12,13 @@ HamQRG es la app definitiva para radioaficionados y oyentes en Italia. Encuentra
 • Color Code y Talk Groups para DMR
 • Redes digitales (BrandMeister, TGIF y otras)
 • Ubicación precisa y distancia
+
+**SPOTS POTA EN VIVO**
+• Sigue en tiempo real todas las activaciones Parks On The Air
+• Filtra los spots por banda y modo (SSB, CW, Digital)
+• Ordena por hora o por distancia desde tu ubicación
+• Visualiza los parques activos en el mapa interactivo
+• Acceso rápido al perfil QRZ del activador y a la página del parque
 
 **FAVORITOS Y COMENTARIOS**
 • Guarda tus repetidores favoritos para acceso rápido
@@ -29,4 +36,4 @@ HamQRG es la app definitiva para radioaficionados y oyentes en Italia. Encuentra
 • Propón nuevas funcionalidades
 • Contacta directamente con los desarrolladores
 
-¡Descarga HamQRG y descubre el mundo de los repetidores de radioaficionados italianos!
+¡Descarga HamQRG y descubre el mundo de los repetidores de radioaficionados!

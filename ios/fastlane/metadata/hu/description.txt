@@ -1,7 +1,7 @@
-A HamQRG a tökéletes alkalmazás rádióamatőrök és hallgatók számára Olaszországban. Könnyedén megtalálhatod a közelben lévő átjátszókat, ellenőrizheted a frekvenciákat, és csatlakozhatsz a közösséghez.
+A HamQRG a tökéletes alkalmazás rádióamatőrök és hallgatók számára. Könnyedén megtalálhatod a közeledben lévő átjátszókat, valós időben követheted a POTA aktiválásokat, ellenőrizheted a frekvenciákat, és csatlakozhatsz egy közösséghez, amely napról napra növekszik.
 
 **INTERAKTÍV TÉRKÉP**
-• Az összes olasz átjátszó megjelenítése interaktív térképen
+• Az összes átjátszó megjelenítése interaktív térképen
 • A legközelebbi átjátszók megkeresése a tartózkodási helyedhez
 • Szűrés üzemmód szerint: Analóg, DMR, C4FM, D-STAR, Echolink
 • Intelligens csoportosítás sok átjátszóval rendelkező területeken
@@ -12,6 +12,13 @@ A HamQRG a tökéletes alkalmazás rádióamatőrök és hallgatók számára Ol
 • Color Code és Talk Group DMR-hez
 • Digitális hálózatok (BrandMeister, TGIF és más)
 • Pontos helyzet és távolság
+
+**POTA ÉLŐ SPOTOK**
+• Kövesd valós időben az összes Parks On The Air aktiválást
+• Szűrd a spotokat sáv és üzemmód szerint (SSB, CW, Digital)
+• Rendezd időrend vagy a tőled mért távolság szerint
+• Tekintsd meg az aktív parkokat az interaktív térképen
+• Gyors hozzáférés az aktiváló QRZ profiljához és a park oldalához
 
 **KEDVENCEK ÉS VISSZAJELZÉS**
 • Mentsd el kedvenc átjátszóidat a gyors eléréshez
@@ -29,4 +36,4 @@ A HamQRG a tökéletes alkalmazás rádióamatőrök és hallgatók számára Ol
 • Javasolj új funkciókat
 • Lépj kapcsolatba közvetlenül a fejlesztőkkel
 
-Töltsd le a HamQRG-t és fedezd fel az olasz rádióamatőr átjátszók világát!
+Töltsd le a HamQRG-t és fedezd fel a rádióamatőr átjátszók világát!

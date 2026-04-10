@@ -1,1 +1,0 @@
-radioamater,repetitor,frekvencija,ham radio,hamradio,QRG,DMR,kratki talasi

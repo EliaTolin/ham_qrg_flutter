@@ -1,7 +1,7 @@
-HamQRG is de ultieme app voor zendamateurs en luisteraars in Italie. Vind eenvoudig repeaters bij jou in de buurt, bekijk frequenties en sluit je aan bij de community.
+HamQRG is de ultieme app voor zendamateurs en luisteraars. Vind eenvoudig repeaters bij jou in de buurt, volg POTA-activaties live, bekijk frequenties en sluit je aan bij een community die elke dag groeit.
 
 <b>INTERACTIEVE KAART</b>
-• Bekijk alle Italiaanse repeaters op een interactieve kaart
+• Bekijk alle repeaters op een interactieve kaart
 • Vind de dichtstbijzijnde repeaters bij jouw locatie
 • Filter op modus: Analoog, DMR, C4FM, D-STAR, Echolink
 • Slimme clustering voor gebieden met veel repeaters
@@ -12,6 +12,13 @@ HamQRG is de ultieme app voor zendamateurs en luisteraars in Italie. Vind eenvou
 • Color Code en Talk Groups voor DMR
 • Digitale netwerken (BrandMeister, TGIF en meer)
 • Precieze locatie en afstand
+
+<b>POTA LIVE SPOTS</b>
+• Volg alle Parks On The Air activaties in real-time
+• Filter spots op band en mode (SSB, CW, Digital)
+• Sorteer op tijd of op afstand vanaf jouw locatie
+• Bekijk actieve parken op de interactieve kaart
+• Snelle toegang tot het QRZ-profiel van de activator en de parkpagina
 
 <b>FAVORIETEN & FEEDBACK</b>
 • Sla je favoriete repeaters op voor snelle toegang
@@ -29,4 +36,4 @@ HamQRG is de ultieme app voor zendamateurs en luisteraars in Italie. Vind eenvou
 • Stel nieuwe functies voor
 • Neem direct contact op met de ontwikkelaars
 
-Download HamQRG en ontdek de wereld van de Italiaanse zendamateur-repeaters!
+Download HamQRG en ontdek de wereld van zendamateur-repeaters!

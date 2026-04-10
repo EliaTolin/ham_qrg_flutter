@@ -1,7 +1,7 @@
-HamQRG je najbolja aplikacija za radioamatere i slusalce u Italiji. Lako pronadi repetitore u blizini, provjeri frekvencije i pridruzi se zajednici.
+HamQRG je najbolja aplikacija za radioamatere i slusalce. Lako pronadi repetitore u blizini, prati POTA aktivacije uzivo, provjeri frekvencije i pridruzi se zajednici koja raste svakim danom.
 
 **INTERAKTIVNA KARTA**
-• Pregledaj sve talijanske repetitore na interaktivnoj karti
+• Pregledaj sve repetitore na interaktivnoj karti
 • Pronadi najblize repetitore prema tvojoj lokaciji
 • Filtriraj po nacinu rada: Analogni, DMR, C4FM, D-STAR, Echolink
 • Pametno grupiranje za podrucja s mnogo repetitora
@@ -12,6 +12,13 @@ HamQRG je najbolja aplikacija za radioamatere i slusalce u Italiji. Lako pronadi
 • Color Code i Talk Groups za DMR
 • Digitalne mreze (BrandMeister, TGIF i druge)
 • Tocna lokacija i udaljenost
+
+**POTA SPOTOVI UZIVO**
+• Prati u stvarnom vremenu sve aktivacije Parks On The Air
+• Filtriraj spotove po pojasu i nacinu rada (SSB, CW, Digital)
+• Sortiraj po vremenu ili udaljenosti od tvoje lokacije
+• Pregledaj aktivne parkove na interaktivnoj karti
+• Brzi pristup QRZ profilu aktivatora i stranici parka
 
 **FAVORITI I POVRATNE INFORMACIJE**
 • Spremi omiljene repetitore za brzi pristup
@@ -29,4 +36,4 @@ HamQRG je najbolja aplikacija za radioamatere i slusalce u Italiji. Lako pronadi
 • Predlozi nove funkcije
 • Izravno kontaktiraj razvojne programere
 
-Preuzmi HamQRG i otkrij svijet talijanskih radioamaterskih repetitora!
+Preuzmi HamQRG i otkrij svijet radioamaterskih repetitora!

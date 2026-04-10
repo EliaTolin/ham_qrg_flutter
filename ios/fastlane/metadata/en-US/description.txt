@@ -1,7 +1,7 @@
-HamQRG is the ultimate app for ham radio operators and listeners in Italy. Easily find repeaters near you, check frequencies and join the community.
+HamQRG is the ultimate app for ham radio operators and listeners. Easily find repeaters near you, follow POTA activations live, check frequencies and join a community that grows every day.
 
 **INTERACTIVE MAP**
-• View all Italian repeaters on an interactive map
+• View all repeaters on an interactive map
 • Find the closest repeaters to your location
 • Filter by mode: Analog, DMR, C4FM, D-STAR, Echolink
 • Smart clustering for areas with many repeaters
@@ -12,6 +12,13 @@ HamQRG is the ultimate app for ham radio operators and listeners in Italy. Easil
 • Color Code and Talk Groups for DMR
 • Digital networks (BrandMeister, TGIF, and more)
 • Precise location and distance
+
+**POTA LIVE SPOTS**
+• Follow all Parks On The Air activations in real time
+• Filter spots by band and mode (SSB, CW, Digital)
+• Sort by time or by distance from your location
+• View active parks on the interactive map
+• Quick access to the activator's QRZ profile and park page
 
 **FAVORITES & FEEDBACK**
 • Save your favorite repeaters for quick access
@@ -29,4 +36,4 @@ HamQRG is the ultimate app for ham radio operators and listeners in Italy. Easil
 • Suggest new features
 • Contact the developers directly
 
-Download HamQRG and explore the world of Italian ham radio repeaters!
+Download HamQRG and explore the world of ham radio repeaters!
