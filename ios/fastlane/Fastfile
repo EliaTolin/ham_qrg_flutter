@@ -42,7 +42,6 @@ platform :ios do
       ipa: Dir["#{root}/build/ios/ipa/*.ipa"].first,
       distribute_external: false,
       notify_external_testers: false,
-      skip_waiting_for_build_processing: true,
       uses_non_exempt_encryption: false,
     )
   end

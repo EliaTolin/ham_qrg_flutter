@@ -1,7 +1,7 @@
-HamQRG je savršena aplikacija za radioamatere i slušaoce u Italiji. Lako pronađite repetitore u svojoj blizini, proverite frekvencije i pridružite se zajednici.
+HamQRG je savršena aplikacija za radioamatere i slušaoce. Lako pronađite repetitore u svojoj blizini, pratite POTA aktivacije uživo, proverite frekvencije i pridružite se zajednici koja raste svakog dana.
 
 <b>INTERAKTIVNA MAPA</b>
-• Prikaz svih italijanskih repetitora na interaktivnoj mapi
+• Prikaz svih repetitora na interaktivnoj mapi
 • Pronalaženje najbližih repetitora prema vašoj lokaciji
 • Filtriranje po režimu: Analogni, DMR, C4FM, D-STAR, Echolink
 • Pametno grupisanje u oblastima sa mnogo repetitora
@@ -12,6 +12,13 @@ HamQRG je savršena aplikacija za radioamatere i slušaoce u Italiji. Lako prona
 • Color Code i Talk Group za DMR
 • Digitalne mreže (BrandMeister, TGIF i druge)
 • Tačna lokacija i udaljenost
+
+<b>POTA SPOTOVI UŽIVO</b>
+• Pratite u realnom vremenu sve aktivacije Parks On The Air
+• Filtrirajte spotove po opsegu i režimu (SSB, CW, Digital)
+• Sortirajte po vremenu ili udaljenosti od vaše lokacije
+• Pregledajte aktivne parkove na interaktivnoj mapi
+• Brz pristup QRZ profilu aktivatora i stranici parka
 
 <b>OMILJENI I POVRATNE INFORMACIJE</b>
 • Sačuvajte omiljene repetitore za brz pristup
@@ -29,4 +36,4 @@ HamQRG je savršena aplikacija za radioamatere i slušaoce u Italiji. Lako prona
 • Predložite nove funkcije
 • Kontaktirajte direktno programere
 
-Preuzmite HamQRG i istražite svet italijanskih radioamaterskih repetitora!
+Preuzmite HamQRG i istražite svet radioamaterskih repetitora!
