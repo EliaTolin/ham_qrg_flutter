@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'get_pota_spots_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<List<PotaSpot>> getPotaSpots(Ref ref) async {
   final repository = ref.read(potaRepositoryProvider);
   return repository.getActiveSpots();
