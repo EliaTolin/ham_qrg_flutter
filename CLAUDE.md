@@ -231,3 +231,10 @@ provider/get_profile/get_profile_provider.dart
 Prefix format: `[type]: [description]`
 - Examples: `dev:`, `refactor:`, `fix:`, `feat:`
 - Each commit must pass `flutter analyze`
+
+## Active Technologies
+- Dart 3.x / Flutter 3.x + Riverpod 3.x (`riverpod_annotation: ^4.0`), `@freezed`, `auto_route`, `supabase_flutter`, `onesignal_flutter`, `mapbox_maps_flutter` (002-cluster-spots-frontend)
+- Supabase (PostgreSQL via Edge Functions + PostgREST + Realtime) (002-cluster-spots-frontend)
+
+## Recent Changes
+- 002-cluster-spots-frontend: Added Dart 3.x / Flutter 3.x + Riverpod 3.x (`riverpod_annotation: ^4.0`), `@freezed`, `auto_route`, `supabase_flutter`, `onesignal_flutter`, `mapbox_maps_flutter`
