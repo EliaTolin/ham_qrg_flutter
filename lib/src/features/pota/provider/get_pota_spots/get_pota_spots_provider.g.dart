@@ -21,7 +21,7 @@ final class GetPotaSpotsProvider extends $FunctionalProvider<
           argument: null,
           retry: null,
           name: r'getPotaSpotsProvider',
-          isAutoDispose: true,
+          isAutoDispose: false,
           dependencies: null,
           $allTransitiveDependencies: null,
         );
@@ -41,4 +41,4 @@ final class GetPotaSpotsProvider extends $FunctionalProvider<
   }
 }
 
-String _$getPotaSpotsHash() => r'a4269f3eb69c91801d0efd4ed18a5b47810f084e';
+String _$getPotaSpotsHash() => r'd4041c112c297e4319f3acd4a3965691c36adb9d';
