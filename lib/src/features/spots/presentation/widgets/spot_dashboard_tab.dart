@@ -18,6 +18,7 @@ class SpotDashboardTab extends HookConsumerWidget {
     final recentSpotsAsync = ref.watch(recentSpotsProvider);
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Header with "Vedi tutti"
@@ -38,52 +39,58 @@ class SpotDashboardTab extends HookConsumerWidget {
         ),
         const Gap(4),
         // Spot list
-        Expanded(
-          child: recentSpotsAsync.when(
-            data: (spots) {
-              if (spots.isEmpty) {
-                return Center(
+        recentSpotsAsync.when(
+          data: (spots) {
+            if (spots.isEmpty) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24),
+                child: Center(
                   child: Text(
                     l10n.spotListEmpty,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onSurface.withValues(alpha: .5),
+                      color:
+                          theme.colorScheme.onSurface.withValues(alpha: .5),
                     ),
                   ),
-                );
-              }
-              return ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: spots.length,
-                itemBuilder: (context, index) {
-                  final spot = spots[index];
-                  return SpotCard(
-                    spot: spot,
-                    showRepeaterName: true,
-                    onTap: () => context.router.push(
-                      RepeaterDetailRoute(repeaterId: spot.repeaterId),
-                    ),
-                    onExpired: spot.isSelfSpot && spot.isActive
-                        ? () {} // UI will re-derive state on next tick
-                        : null,
-                  );
-                },
+                ),
               );
-            },
-            loading: () => const Center(
-              child: CircularProgressIndicator.adaptive(),
-            ),
-            error: (_, __) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(l10n.error_message_retry),
-                  const Gap(8),
-                  TextButton(
-                    onPressed: () => ref.invalidate(recentSpotsProvider),
-                    child: Text(l10n.retry),
+            }
+            return ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: spots.length,
+              itemBuilder: (context, index) {
+                final spot = spots[index];
+                return SpotCard(
+                  spot: spot,
+                  showRepeaterName: true,
+                  onTap: () => context.router.push(
+                    RepeaterDetailRoute(repeaterId: spot.repeaterId),
                   ),
-                ],
-              ),
+                  onExpired: spot.isSelfSpot && spot.isActive
+                      ? () {} // UI will re-derive state on next tick
+                      : null,
+                );
+              },
+            );
+          },
+          loading: () => const Padding(
+            padding: EdgeInsets.symmetric(vertical: 24),
+            child: Center(child: CircularProgressIndicator.adaptive()),
+          ),
+          error: (_, __) => Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(l10n.error_message_retry),
+                const Gap(8),
+                TextButton(
+                  onPressed: () => ref.invalidate(recentSpotsProvider),
+                  child: Text(l10n.retry),
+                ),
+              ],
             ),
           ),
         ),

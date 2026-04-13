@@ -364,12 +364,10 @@ class _TabSelector extends StatelessWidget {
           ButtonSegment(
             value: _DashboardTab.repeaters,
             label: Text(l10n.dashboardTabRepeaters),
-            icon: const Icon(Icons.cell_tower, size: 18),
           ),
           ButtonSegment(
             value: _DashboardTab.spots,
             label: Text(l10n.spotListTitle),
-            icon: const Icon(Icons.radar, size: 18),
           ),
           ButtonSegment(
             value: _DashboardTab.pota,
@@ -382,11 +380,6 @@ class _TabSelector extends StatelessWidget {
                   _LiveBadge(count: potaSpotsCount),
                 ],
               ],
-            ),
-            icon: Image.asset(
-              'assets/images/pota_logo.png',
-              width: 24,
-              height: 24,
             ),
           ),
         ],
