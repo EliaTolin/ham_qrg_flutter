@@ -77,16 +77,12 @@ class MyActiveSpotNotifier extends _$MyActiveSpotNotifier {
         final spotId = payload.newRecord['id'] as String?;
         if (spotId == null) return;
         final client = Supabase.instance.client;
-        final row = await client
-            .from('repeater_spots')
-            .select('''
+        final row = await client.from('repeater_spots').select('''
               id, user_id, repeater_id, callsign_snapshot,
               started_at, expires_at, closed_at, duration_minutes,
               repeaters!repeater_id(id, callsign, name),
               repeater_access!access_id(id, mode)
-            ''')
-            .eq('id', spotId)
-            .maybeSingle();
+            ''').eq('id', spotId).maybeSingle();
         if (row != null) {
           final model = SpotModel.fromJson(row);
           state = AsyncData(_mapper.fromModel(model));

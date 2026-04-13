@@ -56,17 +56,13 @@ class RecentSpotsNotifier extends _$RecentSpotsNotifier {
 
     try {
       final client = Supabase.instance.client;
-      final row = await client
-          .from('repeater_spots')
-          .select('''
+      final row = await client.from('repeater_spots').select('''
             id, user_id, callsign_snapshot, spotted_callsign,
             access_id, started_at, expires_at, closed_at, duration_minutes,
             profiles!user_id(id, callsign, first_name),
             repeaters!repeater_id(id, callsign, name),
             repeater_access!access_id(id, mode)
-          ''')
-          .eq('id', spotId)
-          .maybeSingle();
+          ''').eq('id', spotId).maybeSingle();
 
       final next = [...currentSpots]..removeWhere((s) => s.id == spotId);
 

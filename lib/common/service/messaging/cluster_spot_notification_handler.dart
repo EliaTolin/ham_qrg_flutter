@@ -30,8 +30,7 @@ void setupClusterSpotNotificationHandlers(AppRouter router) {
     final currentRoute = router.current;
     if (currentRoute.name == RepeaterDetailRoute.name) {
       final args = currentRoute.args;
-      if (args is RepeaterDetailRouteArgs &&
-          args.repeaterId == repeaterId) {
+      if (args is RepeaterDetailRouteArgs && args.repeaterId == repeaterId) {
         // Suppress notification — Realtime already updates the page
         event.preventDefault();
         return;

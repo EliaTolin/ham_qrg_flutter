@@ -22,7 +22,10 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
     repeater_access!access_id(id, mode)
   ''';
 
-  SpotModel _parseResponse(FunctionResponse response, {int expectedStatus = 201}) {
+  SpotModel _parseResponse(
+    FunctionResponse response, {
+    int expectedStatus = 201,
+  }) {
     final data = response.data as Map<String, dynamic>;
     if (response.status != expectedStatus) {
       final error = data['error'] as String? ?? 'UNKNOWN';

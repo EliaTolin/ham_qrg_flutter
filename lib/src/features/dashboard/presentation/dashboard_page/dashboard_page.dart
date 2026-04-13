@@ -105,8 +105,9 @@ class DashboardPage extends HookConsumerWidget {
             DraggableScrollableSheet(
               initialChildSize: 0.42,
               minChildSize: 0.42,
-              maxChildSize:
-                  1.0 - (MediaQuery.paddingOf(context).top / MediaQuery.sizeOf(context).height),
+              maxChildSize: 1.0 -
+                  (MediaQuery.paddingOf(context).top /
+                      MediaQuery.sizeOf(context).height),
               builder: (context, scrollController) => _ContentSection(
                 statistics: state.statistics,
                 nearbyRepeaters: state.nearbyRepeaters,
@@ -129,7 +130,8 @@ class DashboardPage extends HookConsumerWidget {
             ),
             const SizedBox(height: 16),
             FilledButton(
-              onPressed: () => ref.read(dashboardControllerProvider.notifier).reload(),
+              onPressed: () =>
+                  ref.read(dashboardControllerProvider.notifier).reload(),
               child: Text(l10n.retry),
             ),
           ],
@@ -192,8 +194,10 @@ class _ContentSection extends HookWidget {
             Expanded(
               child: SingleChildScrollView(
                 controller: scrollController,
-                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -637,7 +641,9 @@ class _PotaSpotItem extends StatelessWidget {
                             '${spot.frequency} kHz',
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: colorScheme.onSurfaceVariant,
-                              fontFeatures: const [FontFeature.tabularFigures()],
+                              fontFeatures: const [
+                                FontFeature.tabularFigures()
+                              ],
                             ),
                           ),
                           if (band != null) ...[
@@ -691,7 +697,8 @@ class _PotaSpotItem extends StatelessWidget {
                           Text(
                             spot.reference,
                             style: theme.textTheme.labelSmall?.copyWith(
-                              color: colorScheme.onSurface.withValues(alpha: 0.5),
+                              color:
+                                  colorScheme.onSurface.withValues(alpha: 0.5),
                               fontWeight: FontWeight.w600,
                             ),
                           ),
