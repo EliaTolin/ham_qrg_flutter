@@ -82,7 +82,7 @@ class _SpotCountdownState extends State<SpotCountdown> {
 
     final defaultStyle = theme.textTheme.bodyMedium?.copyWith(
       fontFeatures: const [FontFeature.tabularFigures()],
-      color: isUrgent ? const Color(0xFFEF4444) : null,
+      color: isUrgent ? theme.colorScheme.error : null,
       fontWeight: isUrgent ? FontWeight.bold : null,
     );
 

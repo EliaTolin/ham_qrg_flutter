@@ -34,7 +34,7 @@ final class MyActiveSpotNotifierProvider
 }
 
 String _$myActiveSpotNotifierHash() =>
-    r'6bae86447b6962db81fa167633da78870324a754';
+    r'e8a6b1663f6c9ac21ee521786e8bcf43b441e617';
 
 abstract class _$MyActiveSpotNotifier extends $AsyncNotifier<RepeaterSpot?> {
   FutureOr<RepeaterSpot?> build();

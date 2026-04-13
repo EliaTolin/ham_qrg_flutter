@@ -4,6 +4,7 @@ import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/src/features/spots/domain/spot/repeater_spot.dart';
 import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
+import 'package:hamqrg/src/features/spots/presentation/widgets/pulsing_live_dot.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/spot_countdown.dart';
 
 class SpotCard extends StatelessWidget {
@@ -40,8 +41,13 @@ class SpotCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           child: Row(
             children: [
-              // Access mode color dot
-              if (spot.accessMode != null)
+              // Pulsing red dot for active spots, access mode dot otherwise
+              if (spot.isSelfSpot && spot.isActive)
+                const Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: PulsingLiveDot(),
+                )
+              else if (spot.accessMode != null)
                 Container(
                   width: 10,
                   height: 10,

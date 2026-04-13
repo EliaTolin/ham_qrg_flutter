@@ -1650,119 +1650,124 @@ class AppLocalizationsCs extends AppLocalizations {
   String get changelogDismiss => 'Rozumím!';
 
   @override
-  String get spotCreateTitle => 'Spot yourself';
+  String get spotCreateTitle => 'Spottovat sebe';
 
   @override
-  String get spotCreateOtherTitle => 'Spot an OM';
+  String get spotCreateOtherTitle => 'Spottovat OM';
 
   @override
-  String get spotCreateDuration => 'Duration';
+  String get spotCreateDuration => 'Doba trvání';
 
   @override
-  String get spotCreateAccess => 'Mode (optional)';
+  String get spotCreateAccess => 'Režim (volitelný)';
 
   @override
-  String get spotCreateCallsign => 'Callsign of OM heard';
+  String get spotCreateCallsign => 'Značka slyšeného OM';
 
   @override
-  String get spotCreateCallsignHint => 'E.g. IZ0ABC';
+  String get spotCreateCallsignHint => 'Např. OK1ABC';
 
   @override
-  String get spotCreateConfirm => 'Confirm';
+  String get spotCreateConfirm => 'Potvrdit';
 
   @override
-  String get spotCreateSuccessSelf => 'Spot created!';
+  String get spotCreateSuccessSelf => 'Spot vytvořen!';
 
   @override
-  String get spotCreateSuccessOther => 'OM spotted!';
+  String get spotCreateSuccessOther => 'OM spottován!';
 
   @override
-  String get spotActiveYou => 'You are spotted';
+  String get spotActiveYou => 'Jste spottován';
 
   @override
-  String get spotActiveClose => 'Close spot';
+  String get spotActiveClose => 'Zavřít spot';
 
   @override
   String spotActiveOn(String repeaterName) {
-    return 'on $repeaterName';
+    return 'na $repeaterName';
   }
 
   @override
-  String get spotActiveNone => 'Nobody spotted at the moment';
+  String get spotActiveNone => 'Momentálně nikdo spottován';
 
   @override
-  String get spotActiveCta => 'Be the first!';
+  String get spotActiveCta => 'Buďte první!';
 
   @override
-  String get spotActiveSection => 'Active spots';
+  String get spotActiveSection => 'Aktivní spoty';
 
   @override
-  String get spotListTitle => 'Latest spots';
+  String get spotHistorySection => 'Historie spotů';
 
   @override
-  String get spotListViewAll => 'View all';
+  String get spotListTitle => 'Nejnovější spoty';
 
   @override
-  String get spotListBadgeActive => 'Listening';
+  String get spotListViewAll => 'Zobrazit vše';
 
   @override
-  String get spotListBadgeClosed => 'Ended';
+  String get spotListBadgeActive => 'Poslouchá';
 
   @override
-  String get spotListBadgeReport => 'Report';
+  String get spotListBadgeClosed => 'Ukončeno';
 
   @override
-  String get spotListEmpty => 'No spots in the last 24 hours';
+  String get spotListBadgeReport => 'Nahlásit';
+
+  @override
+  String get spotListEmpty => 'Žádné spoty za posledních 24 hodin';
 
   @override
   String spotListSpottedBy(String callsign) {
-    return 'Reported by $callsign';
+    return 'Nahlásil $callsign';
   }
 
   @override
-  String get spotNotificationToggle => 'Cluster notifications';
+  String get spotNotificationToggle => 'Oznámení clusteru';
 
   @override
   String get spotNotificationDisabled =>
-      'Cluster notifications disabled in profile settings';
+      'Oznámení clusteru vypnuta v nastavení profilu';
 
   @override
-  String get spotNotificationPerFavorite => 'Spot notifications';
+  String get spotNotificationPerFavorite => 'Oznámení o spotech';
 
   @override
-  String get spotPreviousClosed => 'Your previous spot is no longer active';
+  String get spotPreviousClosed => 'Váš předchozí spot již není aktivní';
 
   @override
-  String get spotErrorAuthRequired => 'You must be logged in.';
+  String get spotErrorAuthRequired => 'Musíte být přihlášeni.';
 
   @override
   String get spotErrorCallsignRequired =>
-      'Set your callsign in your profile to use the cluster.';
+      'Nastavte svou značku v profilu pro použití clusteru.';
 
   @override
   String get spotErrorInvalidDuration =>
-      'Duration must be between 5 and 60 minutes.';
+      'Doba trvání musí být mezi 5 a 60 minutami.';
 
   @override
-  String get spotErrorRepeaterNotFound => 'Repeater not found.';
+  String get spotErrorRepeaterNotFound => 'Převaděč nenalezen.';
 
   @override
-  String get spotErrorInvalidAccess => 'Invalid access mode for this repeater.';
+  String get spotErrorInvalidAccess =>
+      'Neplatný přístupový režim pro tento převaděč.';
 
   @override
-  String get spotErrorSpotNotFound => 'Spot not found.';
+  String get spotErrorSpotNotFound => 'Spot nenalezen.';
 
   @override
-  String get spotErrorForbidden => 'You cannot close a spot that isn\'t yours.';
+  String get spotErrorForbidden => 'Nemůžete zavřít spot, který není váš.';
 
   @override
-  String get spotErrorAlreadyClosed => 'The spot is already closed.';
+  String get spotErrorAlreadyClosed => 'Spot je již uzavřen.';
 
   @override
-  String get spotErrorGeneric => 'Error creating spot. Please try again.';
+  String get spotErrorGeneric =>
+      'Chyba při vytváření spotu. Zkuste to prosím znovu.';
 
   @override
-  String get spotAccessUnavailable => '(mode no longer available)';
+  String get spotAccessUnavailable => '(režim již není dostupný)';
 
   @override
   String spotDurationMinutes(int minutes) {

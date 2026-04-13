@@ -17,6 +17,8 @@ abstract class SpotsDatasource {
 
   Future<List<SpotModel>> getActiveSpotsForRepeater(String repeaterId);
 
+  Future<List<SpotModel>> getAllSpotsForRepeater(String repeaterId);
+
   Future<List<SpotModel>> getRecentSpots();
 
   Future<SpotModel?> getMyActiveSpot(String userId);

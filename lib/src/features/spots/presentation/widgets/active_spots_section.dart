@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/spot_card.dart';
 import 'package:hamqrg/src/features/spots/provider/active_spots_notifier/active_spots_notifier.dart';
 import 'package:hamqrg/src/features/spots/provider/close_spot/close_spot_provider.dart';
@@ -16,20 +17,20 @@ class ActiveSpotsSection extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
     final theme = Theme.of(context);
-    final activeSpotsAsync = ref.watch(activeSpotsProvider(repeaterId));
+    final spotsAsync = ref.watch(activeSpotsProvider(repeaterId));
     final currentUserId = Supabase.instance.client.auth.currentUser?.id;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          l10n.spotActiveSection,
+          l10n.spotHistorySection,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),
         const Gap(8),
-        activeSpotsAsync.when(
+        spotsAsync.when(
           data: (spots) {
             if (spots.isEmpty) {
               return _EmptyState(
@@ -43,18 +44,16 @@ class ActiveSpotsSection extends HookConsumerWidget {
                     (spot) => SpotCard(
                       spot: spot,
                       currentUserId: currentUserId,
-                      onClose: () async {
-                        await ref.read(
-                          closeSpotProvider(spotId: spot.id).future,
-                        );
-                      },
-                      onExpired: () {
-                        ref
-                            .read(
-                              activeSpotsProvider(repeaterId).notifier,
-                            )
-                            .removeExpired(spot.id);
-                      },
+                      onClose: spot.isSelfSpot &&
+                              spot.isActive &&
+                              currentUserId != null &&
+                              spot.userId == currentUserId
+                          ? () async {
+                              await ref.read(
+                                closeSpotProvider(spotId: spot.id).future,
+                              );
+                            }
+                          : null,
                     ),
                   )
                   .toList(),

@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:hamqrg/log/talker_service/talker_service.dart';
 import 'package:hamqrg/src/features/spots/data/mappers/spot_mapper.dart';
 import 'package:hamqrg/src/features/spots/data/model/spot_model.dart';
 import 'package:hamqrg/src/features/spots/data/repository/spots_repository.dart';
 import 'package:hamqrg/src/features/spots/domain/spot/repeater_spot.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 part 'my_active_spot_notifier.g.dart';
 
@@ -13,9 +15,11 @@ part 'my_active_spot_notifier.g.dart';
 class MyActiveSpotNotifier extends _$MyActiveSpotNotifier {
   RealtimeChannel? _channel;
   final _mapper = SpotMapper();
+  late Talker _talker;
 
   @override
   FutureOr<RepeaterSpot?> build() async {
+    _talker = ref.read(talkerServiceProvider);
     final userId = Supabase.instance.client.auth.currentUser?.id;
     if (userId == null) return null;
 
@@ -87,8 +91,12 @@ class MyActiveSpotNotifier extends _$MyActiveSpotNotifier {
           final model = SpotModel.fromJson(row);
           state = AsyncData(_mapper.fromModel(model));
         }
-      } catch (_) {
-        // Keep current state on error
+      } catch (error, stackTrace) {
+        _talker.handle(
+          error,
+          stackTrace,
+          'Error re-fetching my active spot after INSERT',
+        );
       }
     }
   }

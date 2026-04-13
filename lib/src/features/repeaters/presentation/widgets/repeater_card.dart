@@ -100,8 +100,8 @@ class RepeaterCard extends StatelessWidget {
           child: Container(
             width: 8,
             height: 8,
-            decoration: const BoxDecoration(
-              color: Color(0xFFEF4444),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.error,
               shape: BoxShape.circle,
             ),
           ),

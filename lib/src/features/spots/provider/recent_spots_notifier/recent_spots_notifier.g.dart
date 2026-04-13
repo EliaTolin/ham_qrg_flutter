@@ -34,7 +34,7 @@ final class RecentSpotsNotifierProvider
 }
 
 String _$recentSpotsNotifierHash() =>
-    r'1b818c0d7a69a06c03ce73f3db187b0c5614d5c2';
+    r'ad73d60638fecbf042c6a4fc6022ec35c35a0236';
 
 abstract class _$RecentSpotsNotifier
     extends $AsyncNotifier<List<RepeaterSpot>> {

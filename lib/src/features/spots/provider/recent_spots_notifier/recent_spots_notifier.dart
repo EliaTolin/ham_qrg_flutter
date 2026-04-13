@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:hamqrg/log/talker_service/talker_service.dart';
 import 'package:hamqrg/src/features/spots/data/mappers/spot_mapper.dart';
 import 'package:hamqrg/src/features/spots/data/model/spot_model.dart';
 import 'package:hamqrg/src/features/spots/data/repository/spots_repository.dart';
 import 'package:hamqrg/src/features/spots/domain/spot/repeater_spot.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 part 'recent_spots_notifier.g.dart';
 
@@ -13,9 +15,11 @@ part 'recent_spots_notifier.g.dart';
 class RecentSpotsNotifier extends _$RecentSpotsNotifier {
   RealtimeChannel? _channel;
   final _mapper = SpotMapper();
+  late Talker _talker;
 
   @override
   FutureOr<List<RepeaterSpot>> build() async {
+    _talker = ref.read(talkerServiceProvider);
     final repository = ref.read(spotsRepositoryProvider);
     final spots = await repository.getRecentSpots();
 
@@ -73,14 +77,18 @@ class RecentSpotsNotifier extends _$RecentSpotsNotifier {
       }
 
       state = AsyncData(next);
-    } catch (_) {
-      // Full refresh on error
+    } catch (error, stackTrace) {
+      _talker.handle(error, stackTrace, 'Realtime re-fetch failed for spot');
       try {
         final repository = ref.read(spotsRepositoryProvider);
         final spots = await repository.getRecentSpots();
         state = AsyncData(spots);
-      } catch (_) {
-        // Keep current state (FR-035)
+      } catch (refreshError, refreshStack) {
+        _talker.handle(
+          refreshError,
+          refreshStack,
+          'Error refreshing recent spots',
+        );
       }
     }
   }

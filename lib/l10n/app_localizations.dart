@@ -3166,6 +3166,12 @@ abstract class AppLocalizations {
   /// **'Spot attivi'**
   String get spotActiveSection;
 
+  /// No description provided for @spotHistorySection.
+  ///
+  /// In it, this message translates to:
+  /// **'Storico spot'**
+  String get spotHistorySection;
+
   /// No description provided for @spotListTitle.
   ///
   /// In it, this message translates to:

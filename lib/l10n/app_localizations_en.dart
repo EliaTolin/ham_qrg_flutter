@@ -1689,6 +1689,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get spotActiveSection => 'Active spots';
 
   @override
+  String get spotHistorySection => 'Spot history';
+
+  @override
   String get spotListTitle => 'Latest spots';
 
   @override
