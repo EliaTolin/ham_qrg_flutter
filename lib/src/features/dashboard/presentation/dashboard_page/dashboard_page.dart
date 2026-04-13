@@ -23,9 +23,10 @@ import 'package:hamqrg/src/features/pota/presentation/widgets/pota_mode_badge.da
 import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 import 'package:hamqrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/spots/presentation/widgets/spot_dashboard_tab.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-enum _DashboardTab { repeaters, pota }
+enum _DashboardTab { repeaters, spots, pota }
 
 @RoutePage()
 class DashboardPage extends HookConsumerWidget {
@@ -214,6 +215,9 @@ class _ContentSection extends HookWidget {
                             key: const ValueKey('repeaters'),
                             nearbyRepeaters: nearbyRepeaters.take(10).toList(),
                           ),
+                        _DashboardTab.spots => const SpotDashboardTab(
+                            key: ValueKey('spots'),
+                          ),
                         _DashboardTab.pota => _PotaTabContent(
                             key: const ValueKey('pota'),
                             potaSpots: potaSpots.take(5).toList(),
@@ -357,6 +361,11 @@ class _TabSelector extends StatelessWidget {
             value: _DashboardTab.repeaters,
             label: Text(l10n.dashboardTabRepeaters),
             icon: const Icon(Icons.cell_tower, size: 18),
+          ),
+          ButtonSegment(
+            value: _DashboardTab.spots,
+            label: Text(l10n.spotListTitle),
+            icon: const Icon(Icons.radar, size: 18),
           ),
           ButtonSegment(
             value: _DashboardTab.pota,

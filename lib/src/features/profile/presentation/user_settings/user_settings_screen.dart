@@ -12,6 +12,7 @@ import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/profile/presentation/user_settings/controller/user_settings_controller.dart';
 import 'package:hamqrg/src/features/profile/provider/locale_notifier/locale_notifier.dart';
 import 'package:hamqrg/src/features/profile/provider/theme_mode_notifier/theme_mode_notifier.dart';
+import 'package:hamqrg/src/features/spots/data/repository/spots_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -360,7 +361,21 @@ class UserSettingsScreen extends HookConsumerWidget {
                         ),
                       ),
                     ),
-                    const Gap(32),
+                    const Gap(24),
+
+                    // Cluster Notifications Toggle
+                    SwitchListTile(
+                      title: Text(l10n.spotNotificationToggle),
+                      value: state.profile.clusterNotificationsEnabled,
+                      onChanged: (value) async {
+                        await ref
+                            .read(spotsRepositoryProvider)
+                            .setClusterNotificationsEnabled(enabled: value);
+                        ref.invalidate(userSettingsControllerProvider);
+                      },
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    const Gap(24),
 
                     // Danger Zone
                     Divider(
