@@ -1,3 +1,4 @@
+import 'package:hamqrg/log/talker_service/talker_service.dart';
 import 'package:hamqrg/src/features/spots/data/datasource/spots_datasource.dart';
 import 'package:hamqrg/src/features/spots/data/datasource/spots_supabase_datasource.dart';
 import 'package:hamqrg/src/features/spots/data/mappers/spot_mapper.dart';
@@ -51,6 +52,13 @@ class SpotsRepository {
     return models.map(_mapper.fromModel).toList();
   }
 
+  Future<List<RepeaterSpot>> getAllSpotsForRepeater(
+    String repeaterId,
+  ) async {
+    final models = await _datasource.getAllSpotsForRepeater(repeaterId);
+    return models.map(_mapper.fromModel).toList();
+  }
+
   Future<List<RepeaterSpot>> getRecentSpots() async {
     final models = await _datasource.getRecentSpots();
     return models.map(_mapper.fromModel).toList();
@@ -85,5 +93,6 @@ class SpotsRepository {
 @riverpod
 SpotsRepository spotsRepository(Ref ref) {
   final client = Supabase.instance.client;
-  return SpotsRepository(SpotsSupabaseDatasource(client));
+  final talker = ref.read(talkerServiceProvider);
+  return SpotsRepository(SpotsSupabaseDatasource(client, talker));
 }

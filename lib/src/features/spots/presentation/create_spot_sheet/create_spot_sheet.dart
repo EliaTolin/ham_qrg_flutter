@@ -7,7 +7,6 @@ import 'package:hamqrg/l10n/app_localizations.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:hamqrg/src/features/spots/errors/spot_error.dart';
 import 'package:hamqrg/src/features/spots/provider/create_spot/create_spot_provider.dart';
-import 'package:hamqrg/themes/app_colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 const _durations = [5, 15, 30, 60];
@@ -42,7 +41,6 @@ class _CreateSpotSheet extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
     final selectedDuration = useState<int>(15);
     final selectedAccess = useState<RepeaterAccess?>(null);
     final isLoading = useState(false);
@@ -79,7 +77,7 @@ class _CreateSpotSheet extends HookConsumerWidget {
         maxHeight: MediaQuery.of(context).size.height * 0.6,
       ),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
+        color: theme.colorScheme.surface,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
       ),
       child: Padding(

@@ -47,4 +47,4 @@ final class SpotsRepositoryProvider extends $FunctionalProvider<SpotsRepository,
   }
 }
 
-String _$spotsRepositoryHash() => r'f51aaad52b2e8a1b3e2e85da43c827e8331296cf';
+String _$spotsRepositoryHash() => r'd12b202e88d26f0a607b65d22c05d87b1077d795';

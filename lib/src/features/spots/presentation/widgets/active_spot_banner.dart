@@ -30,7 +30,7 @@ class ActiveSpotBanner extends HookConsumerWidget {
           color: theme.colorScheme.primaryContainer,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: .1),
+              color: theme.shadowColor.withValues(alpha: .1),
               blurRadius: 4,
               offset: const Offset(0, -2),
             ),

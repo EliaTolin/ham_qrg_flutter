@@ -7,7 +7,6 @@ import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart
 import 'package:hamqrg/src/features/spots/errors/spot_error.dart';
 import 'package:hamqrg/src/features/spots/presentation/create_spot_sheet/create_spot_sheet.dart';
 import 'package:hamqrg/src/features/spots/provider/create_spot/create_other_spot_provider.dart';
-import 'package:hamqrg/themes/app_colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 Future<bool> showCreateOtherSpotSheet(
@@ -40,7 +39,6 @@ class _CreateOtherSpotSheet extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
     final callsignController = useTextEditingController();
     final selectedAccess = useState<RepeaterAccess?>(null);
     final isLoading = useState(false);
@@ -82,7 +80,7 @@ class _CreateOtherSpotSheet extends HookConsumerWidget {
         maxHeight: MediaQuery.of(context).size.height * 0.6,
       ),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
+        color: theme.colorScheme.surface,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
       ),
       child: Padding(

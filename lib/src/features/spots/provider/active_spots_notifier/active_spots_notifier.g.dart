@@ -8,12 +8,15 @@ part of 'active_spots_notifier.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
+/// Provides the full spot history for a repeater (active + expired + closed).
 
 @ProviderFor(ActiveSpotsNotifier)
 final activeSpotsProvider = ActiveSpotsNotifierFamily._();
 
+/// Provides the full spot history for a repeater (active + expired + closed).
 final class ActiveSpotsNotifierProvider
     extends $AsyncNotifierProvider<ActiveSpotsNotifier, List<RepeaterSpot>> {
+  /// Provides the full spot history for a repeater (active + expired + closed).
   ActiveSpotsNotifierProvider._(
       {required ActiveSpotsNotifierFamily super.from,
       required String super.argument})
@@ -51,7 +54,9 @@ final class ActiveSpotsNotifierProvider
 }
 
 String _$activeSpotsNotifierHash() =>
-    r'4fec30af52159b7f0ca28c6d51cc89ed15c145bd';
+    r'9baf0a868e8233d09ab4d63d0dbffb860552a7a4';
+
+/// Provides the full spot history for a repeater (active + expired + closed).
 
 final class ActiveSpotsNotifierFamily extends $Family
     with
@@ -70,6 +75,8 @@ final class ActiveSpotsNotifierFamily extends $Family
           isAutoDispose: true,
         );
 
+  /// Provides the full spot history for a repeater (active + expired + closed).
+
   ActiveSpotsNotifierProvider call(
     String repeaterId,
   ) =>
@@ -78,6 +85,8 @@ final class ActiveSpotsNotifierFamily extends $Family
   @override
   String toString() => r'activeSpotsProvider';
 }
+
+/// Provides the full spot history for a repeater (active + expired + closed).
 
 abstract class _$ActiveSpotsNotifier
     extends $AsyncNotifier<List<RepeaterSpot>> {

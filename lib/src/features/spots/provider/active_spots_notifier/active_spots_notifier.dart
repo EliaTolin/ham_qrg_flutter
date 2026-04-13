@@ -1,26 +1,30 @@
 import 'dart:async';
 
+import 'package:hamqrg/log/talker_service/talker_service.dart';
 import 'package:hamqrg/src/features/spots/data/mappers/spot_mapper.dart';
 import 'package:hamqrg/src/features/spots/data/model/spot_model.dart';
 import 'package:hamqrg/src/features/spots/data/repository/spots_repository.dart';
 import 'package:hamqrg/src/features/spots/domain/spot/repeater_spot.dart';
-import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 part 'active_spots_notifier.g.dart';
 
+/// Provides the full spot history for a repeater (active + expired + closed).
 @riverpod
 class ActiveSpotsNotifier extends _$ActiveSpotsNotifier {
   RealtimeChannel? _channel;
   final _mapper = SpotMapper();
   late String _repeaterId;
+  late Talker _talker;
 
   @override
   FutureOr<List<RepeaterSpot>> build(String repeaterId) async {
     _repeaterId = repeaterId;
+    _talker = ref.read(talkerServiceProvider);
     final repository = ref.read(spotsRepositoryProvider);
-    final spots = await repository.getActiveSpotsForRepeater(repeaterId);
+    final spots = await repository.getAllSpotsForRepeater(repeaterId);
 
     _subscribeRealtime(repeaterId);
 
@@ -78,15 +82,13 @@ class ActiveSpotsNotifier extends _$ActiveSpotsNotifier {
       if (row != null) {
         final model = SpotModel.fromJson(row);
         final spot = _mapper.fromModel(model);
-        // Only show active self-spots in this section
-        if (spot.isSelfSpot && spot.isActive) {
-          next.insert(0, spot);
-        }
+        // Insert at top (most recent first)
+        next.insert(0, spot);
       }
 
       state = AsyncData(next);
-    } catch (_) {
-      // On error, do a full refresh
+    } catch (error, stackTrace) {
+      _talker.handle(error, stackTrace, 'Realtime re-fetch failed for spot');
       await _refreshFromRest();
     }
   }
@@ -94,15 +96,14 @@ class ActiveSpotsNotifier extends _$ActiveSpotsNotifier {
   Future<void> _refreshFromRest() async {
     try {
       final repository = ref.read(spotsRepositoryProvider);
-      final spots = await repository.getActiveSpotsForRepeater(_repeaterId);
+      final spots = await repository.getAllSpotsForRepeater(_repeaterId);
       state = AsyncData(spots);
-    } catch (_) {
-      // Keep current state on error (FR-035)
+    } catch (error, stackTrace) {
+      _talker.handle(
+        error,
+        stackTrace,
+        'Error refreshing spots for repeater $_repeaterId',
+      );
     }
-  }
-
-  void removeExpired(String spotId) {
-    final current = state.value ?? [];
-    state = AsyncData(current.where((s) => s.id != spotId).toList());
   }
 }

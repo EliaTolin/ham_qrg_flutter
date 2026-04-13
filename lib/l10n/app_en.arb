@@ -743,6 +743,7 @@
   "spotActiveNone": "Nobody spotted at the moment",
   "spotActiveCta": "Be the first!",
   "spotActiveSection": "Active spots",
+  "spotHistorySection": "Spot history",
   "spotListTitle": "Latest spots",
   "spotListViewAll": "View all",
   "spotListBadgeActive": "Listening",
