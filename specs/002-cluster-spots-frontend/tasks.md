@@ -19,10 +19,10 @@
 
 **Purpose**: Project scaffolding, new feature directory, shared models
 
-- [ ] T001 Create feature directory structure `lib/src/features/spots/{data/{datasource,model,mappers,repository},domain/{spot},presentation/{create_spot_sheet,spot_list_page/controller/state,widgets},provider/{create_spot,close_spot,active_spots_notifier,recent_spots_notifier,my_active_spot_notifier,spots_with_active},errors}`
-- [ ] T002 [P] Add localization keys with prefix `spot*` to `lib/l10n/app_it.arb` (all keys from quickstart.md §10: spotCreateTitle, spotCreateOtherTitle, spotCreateDuration, spotCreateAccess, spotCreateConfirm, spotActiveYou, spotActiveClose, spotActiveNone, spotActiveCta, spotListTitle, spotListViewAll, spotListBadgeActive, spotListBadgeClosed, spotListBadgeReport, spotNotificationToggle, spotNotificationDisabled, spotPreviousClosed, spotError*)
-- [ ] T003 [P] Add same localization keys to `lib/l10n/app_en.arb`, `lib/l10n/app_es.arb`, `lib/l10n/app_fr.arb`
-- [ ] T004 Run `flutter gen-l10n` to generate localization delegates
+- [x] T001 Create feature directory structure `lib/src/features/spots/{data/{datasource,model,mappers,repository},domain/{spot},presentation/{create_spot_sheet,spot_list_page/controller/state,widgets},provider/{create_spot,close_spot,active_spots_notifier,recent_spots_notifier,my_active_spot_notifier,spots_with_active},errors}`
+- [x] T002 [P] Add localization keys with prefix `spot*` to `lib/l10n/app_it.arb` (all keys from quickstart.md §10: spotCreateTitle, spotCreateOtherTitle, spotCreateDuration, spotCreateAccess, spotCreateConfirm, spotActiveYou, spotActiveClose, spotActiveNone, spotActiveCta, spotListTitle, spotListViewAll, spotListBadgeActive, spotListBadgeClosed, spotListBadgeReport, spotNotificationToggle, spotNotificationDisabled, spotPreviousClosed, spotError*)
+- [x] T003 [P] Add same localization keys to `lib/l10n/app_en.arb`, `lib/l10n/app_es.arb`, `lib/l10n/app_fr.arb`
+- [x] T004 Run `flutter gen-l10n` to generate localization delegates
 
 ---
 
@@ -32,22 +32,22 @@
 
 **CRITICAL**: No UI work can begin until this phase is complete
 
-- [ ] T005 [P] Create domain entity `RepeaterSpot` (@freezed, no JSON) in `lib/src/features/spots/domain/spot/repeater_spot.dart` — fields: id, userId, repeaterId, callsignSnapshot, spottedCallsign?, accessId?, accessMode?, startedAt, durationMinutes?, expiresAt?, closedAt?, repeaterCallsign?, repeaterName?, spotterFirstName? (see data-model.md §1)
-- [ ] T006 [P] Create `SpotState` enum + `RepeaterSpotState` extension in `lib/src/features/spots/domain/spot_state.dart` — state derivation: isSelfSpot, isOtherSpot, state (active/expired/closed), isActive, remainingTime (see data-model.md §2)
-- [ ] T007 [P] Create DTO `SpotModel` (@freezed + fromJson) with nested `SpotProfileModel`, `SpotRepeaterModel`, `SpotAccessModel` in `lib/src/features/spots/data/model/spot_model.dart` (see data-model.md §3)
-- [ ] T008 [P] Create `SpotMapper` (Model → Entity) in `lib/src/features/spots/data/mappers/spot_mapper.dart` — use `AccessModeHelper.fromString` for accessMode (see data-model.md §4)
-- [ ] T009 [P] Create `SpotError` sealed class in `lib/src/features/spots/errors/spot_error.dart` — variants: authRequired, callsignRequired, invalidDuration, repeaterNotFound, invalidAccess, spotNotFound, forbidden, alreadyClosed, unknown. Include `fromCode(String)` factory (see quickstart.md §2)
-- [ ] T010 Create abstract `SpotsDatasource` interface in `lib/src/features/spots/data/datasource/spots_datasource.dart` — methods: createSelfSpot, createOtherSpot, closeSpot, getActiveSpotsForRepeater, getRecentSpots, getMyActiveSpot, getRepeaterIdsWithActiveSpots, setClusterNotificationsEnabled, setFavoriteClusterNotifications
-- [ ] T011 Create `SpotsSupabaseDatasource` implementing `SpotsDatasource` in `lib/src/features/spots/data/datasource/spots_supabase_datasource.dart` — Edge Function calls for create-spot/close-spot, REST queries per quickstart.md §2-§9
-- [ ] T012 Create `SpotsRepository` in `lib/src/features/spots/data/repository/spots_repository.dart` — wraps datasource, converts Models to Entities via SpotMapper, provides Riverpod provider
-- [ ] T013 Run `dart run build_runner build --delete-conflicting-outputs` to generate .g.dart and .freezed.dart files
-- [ ] T014 [P] Add `clusterNotificationsEnabled` field to existing `Profile` domain entity in `lib/src/features/profile/domain/profile/profile.dart`, update ProfileModel DTO, ProfileMapper, and update the profile datasource SELECT query to include `cluster_notifications_enabled` column
-- [ ] T015 [P] Add `clusterNotificationsEnabled` field to favorite repeater model/entity (in `lib/src/features/repeaters/` data layer), update mapper, and update the favorites datasource SELECT query to include `cluster_notifications_enabled` column
-- [ ] T016 Run `dart run build_runner build --delete-conflicting-outputs` after profile/favorite model changes
-- [ ] T017a [P] Create `SpotCard` widget in `lib/src/features/spots/presentation/widgets/spot_card.dart` — displays callsign, access mode with color chip, countdown (for self-spot) or "segnalazione" badge (for other-spot), tap handler, close button visible if spot belongs to current user (FR-008)
-- [ ] T017b [P] Create `SpotCountdown` widget in `lib/src/features/spots/presentation/widgets/spot_countdown.dart` — Stream.periodic(1s), format mm:ss or h:mm:ss for >=60min (FR-014), red color under 60s, calls onExpired callback when countdown reaches zero
-- [ ] T017c Run `dart run build_runner build --delete-conflicting-outputs`
-- [ ] T017d Run `flutter analyze` — zero warnings required
+- [x] T005 [P] Create domain entity `RepeaterSpot` (@freezed, no JSON) in `lib/src/features/spots/domain/spot/repeater_spot.dart` — fields: id, userId, repeaterId, callsignSnapshot, spottedCallsign?, accessId?, accessMode?, startedAt, durationMinutes?, expiresAt?, closedAt?, repeaterCallsign?, repeaterName?, spotterFirstName? (see data-model.md §1)
+- [x] T006 [P] Create `SpotState` enum + `RepeaterSpotState` extension in `lib/src/features/spots/domain/spot_state.dart` — state derivation: isSelfSpot, isOtherSpot, state (active/expired/closed), isActive, remainingTime (see data-model.md §2)
+- [x] T007 [P] Create DTO `SpotModel` (@freezed + fromJson) with nested `SpotProfileModel`, `SpotRepeaterModel`, `SpotAccessModel` in `lib/src/features/spots/data/model/spot_model.dart` (see data-model.md §3)
+- [x] T008 [P] Create `SpotMapper` (Model → Entity) in `lib/src/features/spots/data/mappers/spot_mapper.dart` — use `AccessModeHelper.fromString` for accessMode (see data-model.md §4)
+- [x] T009 [P] Create `SpotError` sealed class in `lib/src/features/spots/errors/spot_error.dart` — variants: authRequired, callsignRequired, invalidDuration, repeaterNotFound, invalidAccess, spotNotFound, forbidden, alreadyClosed, unknown. Include `fromCode(String)` factory (see quickstart.md §2)
+- [x] T010 Create abstract `SpotsDatasource` interface in `lib/src/features/spots/data/datasource/spots_datasource.dart` — methods: createSelfSpot, createOtherSpot, closeSpot, getActiveSpotsForRepeater, getRecentSpots, getMyActiveSpot, getRepeaterIdsWithActiveSpots, setClusterNotificationsEnabled, setFavoriteClusterNotifications
+- [x] T011 Create `SpotsSupabaseDatasource` implementing `SpotsDatasource` in `lib/src/features/spots/data/datasource/spots_supabase_datasource.dart` — Edge Function calls for create-spot/close-spot, REST queries per quickstart.md §2-§9
+- [x] T012 Create `SpotsRepository` in `lib/src/features/spots/data/repository/spots_repository.dart` — wraps datasource, converts Models to Entities via SpotMapper, provides Riverpod provider
+- [x] T013 Run `dart run build_runner build --delete-conflicting-outputs` to generate .g.dart and .freezed.dart files
+- [x] T014 [P] Add `clusterNotificationsEnabled` field to existing `Profile` domain entity in `lib/src/features/profile/domain/profile/profile.dart`, update ProfileModel DTO, ProfileMapper, and update the profile datasource SELECT query to include `cluster_notifications_enabled` column
+- [x] T015 [P] Add `clusterNotificationsEnabled` field to favorite repeater model/entity (in `lib/src/features/repeaters/` data layer), update mapper, and update the favorites datasource SELECT query to include `cluster_notifications_enabled` column
+- [x] T016 Run `dart run build_runner build --delete-conflicting-outputs` after profile/favorite model changes
+- [x] T017a [P] Create `SpotCard` widget in `lib/src/features/spots/presentation/widgets/spot_card.dart` — displays callsign, access mode with color chip, countdown (for self-spot) or "segnalazione" badge (for other-spot), tap handler, close button visible if spot belongs to current user (FR-008)
+- [x] T017b [P] Create `SpotCountdown` widget in `lib/src/features/spots/presentation/widgets/spot_countdown.dart` — Stream.periodic(1s), format mm:ss or h:mm:ss for >=60min (FR-014), red color under 60s, calls onExpired callback when countdown reaches zero
+- [x] T017c Run `dart run build_runner build --delete-conflicting-outputs`
+- [x] T017d Run `flutter analyze` — zero warnings required
 
 **Checkpoint**: Data layer + foundational widgets complete. All models, datasource, repository, error types, and shared UI components ready.
 
@@ -61,16 +61,16 @@
 
 ### Implementation
 
-- [ ] T018 [P] [US1] Create `createSpotProvider` (action provider, calls Edge Function `create-spot` for self-spot) in `lib/src/features/spots/provider/create_spot/create_spot_provider.dart`
-- [ ] T019 [P] [US1b] Create `createOtherSpotProvider` (action provider, calls Edge Function `create-spot` with spotted_callsign) in `lib/src/features/spots/provider/create_spot/create_other_spot_provider.dart`
-- [ ] T020 [P] [US1] Create `closeSpotProvider` (action provider, calls Edge Function `close-spot`, treats ALREADY_CLOSED as success per FR-009) in `lib/src/features/spots/provider/close_spot/close_spot_provider.dart`
-- [ ] T021 [US1] Create self-spot bottom sheet `CreateSpotSheet` (HookConsumerWidget) in `lib/src/features/spots/presentation/create_spot_sheet/create_spot_sheet.dart` — duration chips (5, 15, 30, 60 min per FR-003), optional access dropdown with mode colors, confirm button with loading state (FR-005), auto-close + toast on success, error messages i18n (FR-006), auth gate for anonymous (FR-007)
-- [ ] T022 [US1b] Create other-spot bottom sheet `CreateOtherSpotSheet` in `lib/src/features/spots/presentation/create_spot_sheet/create_other_spot_sheet.dart` — callsign text field (required), optional access dropdown, NO duration selection (FR-002a), confirm + loading + auto-close + toast, auth gate
-- [ ] T023 [US1] Add cluster section with "Spottati" and "Spotta un OM" buttons to repeater detail page in `lib/src/features/repeaters/presentation/detail/repeater_detail_page.dart` — position after "Dati tecnici" section, before "Posizione" (FR-001). "Spottati" primary, "Spotta un OM" secondary. Buttons open respective bottom sheets.
-- [ ] T024 Run `dart run build_runner build --delete-conflicting-outputs`
-- [ ] T025 Run `flutter analyze` — zero warnings
+- [x] T018 [P] [US1] Create `createSpotProvider` (action provider, calls Edge Function `create-spot` for self-spot) in `lib/src/features/spots/provider/create_spot/create_spot_provider.dart`
+- [x] T019 [P] [US1b] Create `createOtherSpotProvider` (action provider, calls Edge Function `create-spot` with spotted_callsign) in `lib/src/features/spots/provider/create_spot/create_other_spot_provider.dart`
+- [x] T020 [P] [US1] Create `closeSpotProvider` (action provider, calls Edge Function `close-spot`, treats ALREADY_CLOSED as success per FR-009) in `lib/src/features/spots/provider/close_spot/close_spot_provider.dart`
+- [x] T021 [US1] Create self-spot bottom sheet `CreateSpotSheet` (HookConsumerWidget) in `lib/src/features/spots/presentation/create_spot_sheet/create_spot_sheet.dart` — duration chips (5, 15, 30, 60 min per FR-003), optional access dropdown with mode colors, confirm button with loading state (FR-005), auto-close + toast on success, error messages i18n (FR-006), auth gate for anonymous (FR-007)
+- [x] T022 [US1b] Create other-spot bottom sheet `CreateOtherSpotSheet` in `lib/src/features/spots/presentation/create_spot_sheet/create_other_spot_sheet.dart` — callsign text field (required), optional access dropdown, NO duration selection (FR-002a), confirm + loading + auto-close + toast, auth gate
+- [x] T023 [US1] Add cluster section with "Spottati" and "Spotta un OM" buttons to repeater detail page in `lib/src/features/repeaters/presentation/detail/repeater_detail_page.dart` — position after "Dati tecnici" section, before "Posizione" (FR-001). "Spottati" primary, "Spotta un OM" secondary. Buttons open respective bottom sheets.
+- [x] T024 Run `dart run build_runner build --delete-conflicting-outputs`
+- [x] T025 Run `flutter analyze` — zero warnings
 - [ ] T026 [US1] Integration test: create self-spot via Edge Function, verify response shape in `test/spots_provider_test.dart` (@Tags(['integration']))
-- [ ] T027 [US1] Unit test: SpotState derivation (active, expired, closed, other-spot) in `test/common/utils/spot_state_test.dart`
+- [x] T027 [US1] Unit test: SpotState derivation (active, expired, closed, other-spot) in `test/common/utils/spot_state_test.dart`
 
 **Checkpoint**: Self-spot and other-spot creation works from repeater detail page. Bottom sheets functional with error handling.
 
@@ -84,11 +84,11 @@
 
 ### Implementation
 
-- [ ] T028 [US2] Create `ActiveSpotsNotifier` (@riverpod, family by repeaterId) in `lib/src/features/spots/provider/active_spots_notifier/active_spots_notifier.dart` — initial REST load (getActiveSpotsForRepeater), Realtime subscription on channel `spots:repeater:{id}`, re-fetch enriched on event, filter only self-spots (spotted_callsign IS NULL), remove expired spots locally, ref.onDispose to unsubscribe (see contracts/realtime.md §2)
-- [ ] T031 [US2] Create `ActiveSpotsSection` widget in `lib/src/features/spots/presentation/widgets/active_spots_section.dart` — consumes ActiveSpotsNotifier, shows list of SpotCard (from Phase 2 T017a), empty state "Nessuno spottato al momento — spottati tu!" (FR-015), loading skeleton (FR-030e), error with retry (FR-030f). SpotCard shows close button for current user's own spot (FR-008).
-- [ ] T032 [US2] Integrate `ActiveSpotsSection` into repeater detail page in `lib/src/features/repeaters/presentation/detail/repeater_detail_page.dart` — add section between cluster buttons and location section
-- [ ] T033 Run `dart run build_runner build --delete-conflicting-outputs`
-- [ ] T034 Run `flutter analyze`
+- [x] T028 [US2] Create `ActiveSpotsNotifier` (@riverpod, family by repeaterId) in `lib/src/features/spots/provider/active_spots_notifier/active_spots_notifier.dart` — initial REST load (getActiveSpotsForRepeater), Realtime subscription on channel `spots:repeater:{id}`, re-fetch enriched on event, filter only self-spots (spotted_callsign IS NULL), remove expired spots locally, ref.onDispose to unsubscribe (see contracts/realtime.md §2)
+- [x] T031 [US2] Create `ActiveSpotsSection` widget in `lib/src/features/spots/presentation/widgets/active_spots_section.dart` — consumes ActiveSpotsNotifier, shows list of SpotCard (from Phase 2 T017a), empty state "Nessuno spottato al momento — spottati tu!" (FR-015), loading skeleton (FR-030e), error with retry (FR-030f). SpotCard shows close button for current user's own spot (FR-008).
+- [x] T032 [US2] Integrate `ActiveSpotsSection` into repeater detail page in `lib/src/features/repeaters/presentation/detail/repeater_detail_page.dart` — add section between cluster buttons and location section
+- [x] T033 Run `dart run build_runner build --delete-conflicting-outputs`
+- [x] T034 Run `flutter analyze`
 
 **Checkpoint**: Repeater detail page shows live spot list with real-time updates and countdown.
 
@@ -194,6 +194,7 @@
 - [ ] T067 Run `flutter analyze` — final zero warnings check
 - [ ] T068 Run `flutter test` — all tests pass
 - [ ] T069 Manual smoke test: full flow per quickstart.md §9 (create self-spot, other-spot, close, realtime, notification, preferences, indicators)
+- [ ] T070 Translate correctly all '.arb' files from previous steps
 
 ---
 

@@ -14,6 +14,9 @@ abstract class ProfileModel with _$ProfileModel {
     required String? propic,
     @JsonKey(name: 'user_type') UserType? userType,
     @JsonKey(name: 'last_seen_version') String? lastSeenVersion,
+    @JsonKey(name: 'cluster_notifications_enabled', defaultValue: true)
+    @Default(true)
+    bool clusterNotificationsEnabled,
   }) = _ProfileModel;
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => _$ProfileModelFromJson(json);

@@ -18,6 +18,12 @@ mixin _$FavoriteRepeatersState {
   List<String> get ids;
   int get count;
 
+  /// Map of repeaterId → clusterNotificationsEnabled for each favorite.
+  Map<String, bool> get clusterNotifications;
+
+  /// Map of repeaterId → favoriteId for update operations.
+  Map<String, String> get favoriteIdByRepeaterId;
+
   /// Create a copy of FavoriteRepeatersState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -33,7 +39,11 @@ mixin _$FavoriteRepeatersState {
             other is FavoriteRepeatersState &&
             const DeepCollectionEquality().equals(other.repeaters, repeaters) &&
             const DeepCollectionEquality().equals(other.ids, ids) &&
-            (identical(other.count, count) || other.count == count));
+            (identical(other.count, count) || other.count == count) &&
+            const DeepCollectionEquality()
+                .equals(other.clusterNotifications, clusterNotifications) &&
+            const DeepCollectionEquality()
+                .equals(other.favoriteIdByRepeaterId, favoriteIdByRepeaterId));
   }
 
   @override
@@ -41,11 +51,13 @@ mixin _$FavoriteRepeatersState {
       runtimeType,
       const DeepCollectionEquality().hash(repeaters),
       const DeepCollectionEquality().hash(ids),
-      count);
+      count,
+      const DeepCollectionEquality().hash(clusterNotifications),
+      const DeepCollectionEquality().hash(favoriteIdByRepeaterId));
 
   @override
   String toString() {
-    return 'FavoriteRepeatersState(repeaters: $repeaters, ids: $ids, count: $count)';
+    return 'FavoriteRepeatersState(repeaters: $repeaters, ids: $ids, count: $count, clusterNotifications: $clusterNotifications, favoriteIdByRepeaterId: $favoriteIdByRepeaterId)';
   }
 }
 
@@ -55,7 +67,12 @@ abstract mixin class $FavoriteRepeatersStateCopyWith<$Res> {
           $Res Function(FavoriteRepeatersState) _then) =
       _$FavoriteRepeatersStateCopyWithImpl;
   @useResult
-  $Res call({List<Repeater> repeaters, List<String> ids, int count});
+  $Res call(
+      {List<Repeater> repeaters,
+      List<String> ids,
+      int count,
+      Map<String, bool> clusterNotifications,
+      Map<String, String> favoriteIdByRepeaterId});
 }
 
 /// @nodoc
@@ -74,6 +91,8 @@ class _$FavoriteRepeatersStateCopyWithImpl<$Res>
     Object? repeaters = null,
     Object? ids = null,
     Object? count = null,
+    Object? clusterNotifications = null,
+    Object? favoriteIdByRepeaterId = null,
   }) {
     return _then(_self.copyWith(
       repeaters: null == repeaters
@@ -88,6 +107,14 @@ class _$FavoriteRepeatersStateCopyWithImpl<$Res>
           ? _self.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      clusterNotifications: null == clusterNotifications
+          ? _self.clusterNotifications
+          : clusterNotifications // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
+      favoriteIdByRepeaterId: null == favoriteIdByRepeaterId
+          ? _self.favoriteIdByRepeaterId
+          : favoriteIdByRepeaterId // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
     ));
   }
 }
@@ -185,14 +212,20 @@ extension FavoriteRepeatersStatePatterns on FavoriteRepeatersState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Repeater> repeaters, List<String> ids, int count)?
+    TResult Function(
+            List<Repeater> repeaters,
+            List<String> ids,
+            int count,
+            Map<String, bool> clusterNotifications,
+            Map<String, String> favoriteIdByRepeaterId)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _FavoriteRepeatersState() when $default != null:
-        return $default(_that.repeaters, _that.ids, _that.count);
+        return $default(_that.repeaters, _that.ids, _that.count,
+            _that.clusterNotifications, _that.favoriteIdByRepeaterId);
       case _:
         return orElse();
     }
@@ -213,13 +246,19 @@ extension FavoriteRepeatersStatePatterns on FavoriteRepeatersState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Repeater> repeaters, List<String> ids, int count)
+    TResult Function(
+            List<Repeater> repeaters,
+            List<String> ids,
+            int count,
+            Map<String, bool> clusterNotifications,
+            Map<String, String> favoriteIdByRepeaterId)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _FavoriteRepeatersState():
-        return $default(_that.repeaters, _that.ids, _that.count);
+        return $default(_that.repeaters, _that.ids, _that.count,
+            _that.clusterNotifications, _that.favoriteIdByRepeaterId);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -239,13 +278,19 @@ extension FavoriteRepeatersStatePatterns on FavoriteRepeatersState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Repeater> repeaters, List<String> ids, int count)?
+    TResult? Function(
+            List<Repeater> repeaters,
+            List<String> ids,
+            int count,
+            Map<String, bool> clusterNotifications,
+            Map<String, String> favoriteIdByRepeaterId)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _FavoriteRepeatersState() when $default != null:
-        return $default(_that.repeaters, _that.ids, _that.count);
+        return $default(_that.repeaters, _that.ids, _that.count,
+            _that.clusterNotifications, _that.favoriteIdByRepeaterId);
       case _:
         return null;
     }
@@ -258,9 +303,13 @@ class _FavoriteRepeatersState implements FavoriteRepeatersState {
   const _FavoriteRepeatersState(
       {final List<Repeater> repeaters = const [],
       final List<String> ids = const [],
-      this.count = 0})
+      this.count = 0,
+      final Map<String, bool> clusterNotifications = const {},
+      final Map<String, String> favoriteIdByRepeaterId = const {}})
       : _repeaters = repeaters,
-        _ids = ids;
+        _ids = ids,
+        _clusterNotifications = clusterNotifications,
+        _favoriteIdByRepeaterId = favoriteIdByRepeaterId;
 
   final List<Repeater> _repeaters;
   @override
@@ -284,6 +333,32 @@ class _FavoriteRepeatersState implements FavoriteRepeatersState {
   @JsonKey()
   final int count;
 
+  /// Map of repeaterId → clusterNotificationsEnabled for each favorite.
+  final Map<String, bool> _clusterNotifications;
+
+  /// Map of repeaterId → clusterNotificationsEnabled for each favorite.
+  @override
+  @JsonKey()
+  Map<String, bool> get clusterNotifications {
+    if (_clusterNotifications is EqualUnmodifiableMapView)
+      return _clusterNotifications;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_clusterNotifications);
+  }
+
+  /// Map of repeaterId → favoriteId for update operations.
+  final Map<String, String> _favoriteIdByRepeaterId;
+
+  /// Map of repeaterId → favoriteId for update operations.
+  @override
+  @JsonKey()
+  Map<String, String> get favoriteIdByRepeaterId {
+    if (_favoriteIdByRepeaterId is EqualUnmodifiableMapView)
+      return _favoriteIdByRepeaterId;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_favoriteIdByRepeaterId);
+  }
+
   /// Create a copy of FavoriteRepeatersState
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -301,7 +376,11 @@ class _FavoriteRepeatersState implements FavoriteRepeatersState {
             const DeepCollectionEquality()
                 .equals(other._repeaters, _repeaters) &&
             const DeepCollectionEquality().equals(other._ids, _ids) &&
-            (identical(other.count, count) || other.count == count));
+            (identical(other.count, count) || other.count == count) &&
+            const DeepCollectionEquality()
+                .equals(other._clusterNotifications, _clusterNotifications) &&
+            const DeepCollectionEquality().equals(
+                other._favoriteIdByRepeaterId, _favoriteIdByRepeaterId));
   }
 
   @override
@@ -309,11 +388,13 @@ class _FavoriteRepeatersState implements FavoriteRepeatersState {
       runtimeType,
       const DeepCollectionEquality().hash(_repeaters),
       const DeepCollectionEquality().hash(_ids),
-      count);
+      count,
+      const DeepCollectionEquality().hash(_clusterNotifications),
+      const DeepCollectionEquality().hash(_favoriteIdByRepeaterId));
 
   @override
   String toString() {
-    return 'FavoriteRepeatersState(repeaters: $repeaters, ids: $ids, count: $count)';
+    return 'FavoriteRepeatersState(repeaters: $repeaters, ids: $ids, count: $count, clusterNotifications: $clusterNotifications, favoriteIdByRepeaterId: $favoriteIdByRepeaterId)';
   }
 }
 
@@ -325,7 +406,12 @@ abstract mixin class _$FavoriteRepeatersStateCopyWith<$Res>
       __$FavoriteRepeatersStateCopyWithImpl;
   @override
   @useResult
-  $Res call({List<Repeater> repeaters, List<String> ids, int count});
+  $Res call(
+      {List<Repeater> repeaters,
+      List<String> ids,
+      int count,
+      Map<String, bool> clusterNotifications,
+      Map<String, String> favoriteIdByRepeaterId});
 }
 
 /// @nodoc
@@ -344,6 +430,8 @@ class __$FavoriteRepeatersStateCopyWithImpl<$Res>
     Object? repeaters = null,
     Object? ids = null,
     Object? count = null,
+    Object? clusterNotifications = null,
+    Object? favoriteIdByRepeaterId = null,
   }) {
     return _then(_FavoriteRepeatersState(
       repeaters: null == repeaters
@@ -358,6 +446,14 @@ class __$FavoriteRepeatersStateCopyWithImpl<$Res>
           ? _self.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      clusterNotifications: null == clusterNotifications
+          ? _self._clusterNotifications
+          : clusterNotifications // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
+      favoriteIdByRepeaterId: null == favoriteIdByRepeaterId
+          ? _self._favoriteIdByRepeaterId
+          : favoriteIdByRepeaterId // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
     ));
   }
 }

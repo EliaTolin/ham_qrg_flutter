@@ -727,5 +727,64 @@
         "type": "int"
       }
     }
+  },
+
+  "spotCreateTitle": "Spottati",
+  "spotCreateOtherTitle": "Spotta un OM",
+  "spotCreateDuration": "Durata",
+  "spotCreateAccess": "Modalità (opzionale)",
+  "spotCreateCallsign": "Callsign dell'OM sentito",
+  "spotCreateCallsignHint": "Es. IZ0ABC",
+  "spotCreateConfirm": "Conferma",
+  "spotCreateSuccessSelf": "Spot creato!",
+  "spotCreateSuccessOther": "OM spottato!",
+  "spotActiveYou": "Sei spottato",
+  "spotActiveClose": "Chiudi spot",
+  "spotActiveOn": "su {repeaterName}",
+  "@spotActiveOn": {
+    "placeholders": {
+      "repeaterName": {
+        "type": "String"
+      }
+    }
+  },
+  "spotActiveNone": "Nessuno spottato al momento",
+  "spotActiveCta": "Spottati tu!",
+  "spotActiveSection": "Spot attivi",
+  "spotListTitle": "Ultimi spot",
+  "spotListViewAll": "Vedi tutti",
+  "spotListBadgeActive": "In ascolto",
+  "spotListBadgeClosed": "Concluso",
+  "spotListBadgeReport": "Segnalazione",
+  "spotListEmpty": "Nessuno spot nelle ultime 24 ore",
+  "spotListSpottedBy": "Segnalato da {callsign}",
+  "@spotListSpottedBy": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNotificationToggle": "Notifiche cluster",
+  "spotNotificationDisabled": "Notifiche cluster disattivate nelle impostazioni profilo",
+  "spotNotificationPerFavorite": "Notifiche spot",
+  "spotPreviousClosed": "Il tuo spot precedente non è più attivo",
+  "spotErrorAuthRequired": "Devi effettuare l'accesso.",
+  "spotErrorCallsignRequired": "Imposta il tuo callsign nel profilo per usare il cluster.",
+  "spotErrorInvalidDuration": "La durata deve essere tra 5 e 60 minuti.",
+  "spotErrorRepeaterNotFound": "Ponte non trovato.",
+  "spotErrorInvalidAccess": "Modalità di accesso non valida per questo ponte.",
+  "spotErrorSpotNotFound": "Spot non trovato.",
+  "spotErrorForbidden": "Non puoi chiudere uno spot che non è tuo.",
+  "spotErrorAlreadyClosed": "Lo spot è già stato chiuso.",
+  "spotErrorGeneric": "Errore nella creazione dello spot. Riprova.",
+  "spotAccessUnavailable": "(modalità non più disponibile)",
+  "spotDurationMinutes": "{minutes} min",
+  "@spotDurationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
   }
 }

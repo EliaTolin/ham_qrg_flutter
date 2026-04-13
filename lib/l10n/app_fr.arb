@@ -720,5 +720,63 @@
         "type": "int"
       }
     }
+  },
+  "spotCreateTitle": "Spot yourself",
+  "spotCreateOtherTitle": "Spot an OM",
+  "spotCreateDuration": "Duration",
+  "spotCreateAccess": "Mode (optional)",
+  "spotCreateCallsign": "Callsign of OM heard",
+  "spotCreateCallsignHint": "E.g. IZ0ABC",
+  "spotCreateConfirm": "Confirm",
+  "spotCreateSuccessSelf": "Spot created!",
+  "spotCreateSuccessOther": "OM spotted!",
+  "spotActiveYou": "You are spotted",
+  "spotActiveClose": "Close spot",
+  "spotActiveOn": "on {repeaterName}",
+  "@spotActiveOn": {
+    "placeholders": {
+      "repeaterName": {
+        "type": "String"
+      }
+    }
+  },
+  "spotActiveNone": "Nobody spotted at the moment",
+  "spotActiveCta": "Be the first!",
+  "spotActiveSection": "Active spots",
+  "spotListTitle": "Latest spots",
+  "spotListViewAll": "View all",
+  "spotListBadgeActive": "Listening",
+  "spotListBadgeClosed": "Ended",
+  "spotListBadgeReport": "Report",
+  "spotListEmpty": "No spots in the last 24 hours",
+  "spotListSpottedBy": "Reported by {callsign}",
+  "@spotListSpottedBy": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNotificationToggle": "Cluster notifications",
+  "spotNotificationDisabled": "Cluster notifications disabled in profile settings",
+  "spotNotificationPerFavorite": "Spot notifications",
+  "spotPreviousClosed": "Your previous spot is no longer active",
+  "spotErrorAuthRequired": "You must be logged in.",
+  "spotErrorCallsignRequired": "Set your callsign in your profile to use the cluster.",
+  "spotErrorInvalidDuration": "Duration must be between 5 and 60 minutes.",
+  "spotErrorRepeaterNotFound": "Repeater not found.",
+  "spotErrorInvalidAccess": "Invalid access mode for this repeater.",
+  "spotErrorSpotNotFound": "Spot not found.",
+  "spotErrorForbidden": "You cannot close a spot that isn't yours.",
+  "spotErrorAlreadyClosed": "The spot is already closed.",
+  "spotErrorGeneric": "Error creating spot. Please try again.",
+  "spotAccessUnavailable": "(mode no longer available)",
+  "spotDurationMinutes": "{minutes} min",
+  "@spotDurationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
   }
 }

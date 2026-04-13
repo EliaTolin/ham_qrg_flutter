@@ -14,6 +14,7 @@ class ProfileMappers implements Mapper<Profile, ProfileModel> {
       propic: user.propic.clearedValue(),
       userType: user.userType,
       lastSeenVersion: user.lastSeenVersion,
+      clusterNotificationsEnabled: user.clusterNotificationsEnabled,
     );
   }
 
@@ -27,6 +28,7 @@ class ProfileMappers implements Mapper<Profile, ProfileModel> {
       propic: user.propic.clearedValue(),
       userType: user.userType,
       lastSeenVersion: user.lastSeenVersion,
+      clusterNotificationsEnabled: user.clusterNotificationsEnabled,
     );
   }
 }
