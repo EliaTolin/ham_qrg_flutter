@@ -46,8 +46,7 @@ class SpotDashboardTab extends HookConsumerWidget {
                   child: Text(
                     l10n.spotListEmpty,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color:
-                          theme.colorScheme.onSurface.withValues(alpha: .5),
+                      color: theme.colorScheme.onSurface.withValues(alpha: .5),
                     ),
                   ),
                 );

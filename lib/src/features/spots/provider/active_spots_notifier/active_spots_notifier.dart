@@ -49,7 +49,8 @@ class ActiveSpotsNotifier extends _$ActiveSpotsNotifier {
   }
 
   Future<void> _onRealtimeEvent(PostgresChangePayload payload) async {
-    final spotId = (payload.newRecord['id'] ?? payload.oldRecord['id']) as String?;
+    final spotId =
+        (payload.newRecord['id'] ?? payload.oldRecord['id']) as String?;
     if (spotId == null) return;
 
     final currentSpots = state.value ?? [];
@@ -65,16 +66,12 @@ class ActiveSpotsNotifier extends _$ActiveSpotsNotifier {
     // INSERT or UPDATE → re-fetch enriched
     try {
       final client = Supabase.instance.client;
-      final row = await client
-          .from('repeater_spots')
-          .select('''
+      final row = await client.from('repeater_spots').select('''
             id, user_id, repeater_id, callsign_snapshot, spotted_callsign,
             access_id, started_at, expires_at, closed_at, duration_minutes,
             profiles!user_id(id, callsign, first_name),
             repeater_access!access_id(id, mode)
-          ''')
-          .eq('id', spotId)
-          .maybeSingle();
+          ''').eq('id', spotId).maybeSingle();
 
       final next = [...currentSpots]..removeWhere((s) => s.id == spotId);
 
