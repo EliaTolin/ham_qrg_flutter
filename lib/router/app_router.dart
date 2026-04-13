@@ -19,6 +19,7 @@ import 'package:hamqrg/src/features/repeaters/presentation/list/repeaters_list_p
 import 'package:hamqrg/src/features/repeaters/presentation/map/repeaters_map_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/report_issue/report_issue_page.dart';
 import 'package:hamqrg/src/features/splashscreen/presentation/splash_screen.dart';
+import 'package:hamqrg/src/features/spots/presentation/spot_list_page/spot_list_page.dart';
 import 'package:hamqrg/src/features/user_reports/presentation/user_reports_page/user_reports_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -60,6 +61,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                   path: 'repeater/:repeaterId/map',
                   page: RepeaterDetailMapRoute.page,
                 ),
+                AutoRoute(path: 'spots', page: SpotListRoute.page),
                 AutoRoute(path: 'pota', page: PotaSpotsRoute.page),
                 AutoRoute(path: 'pota/map', page: PotaSpotsMapRoute.page),
                 AutoRoute(

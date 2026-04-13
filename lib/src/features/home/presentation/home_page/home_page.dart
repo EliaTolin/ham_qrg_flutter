@@ -12,6 +12,7 @@ import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anon
 import 'package:hamqrg/src/features/home/presentation/home_page/controller/home_controller.dart';
 import 'package:hamqrg/src/features/home/presentation/home_page/controller/state/home_state.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
+import 'package:hamqrg/src/features/spots/presentation/widgets/active_spot_banner.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -109,25 +110,31 @@ class _HomeScaffold extends ConsumerWidget {
         }
 
         final l10n = context.localization;
-        return NavigationBar(
-          selectedIndex: tabsRouter.activeIndex,
-          onDestinationSelected: tabsRouter.setActiveIndex,
-          destinations: [
-            NavigationDestination(
-              icon: const Icon(Icons.home),
-              label: l10n.homeNavHome,
-            ),
-            NavigationDestination(
-              icon: const Icon(Icons.list),
-              label: l10n.homeNavList,
-            ),
-            NavigationDestination(
-              icon: const Icon(Icons.map),
-              label: l10n.homeNavMap,
-            ),
-            NavigationDestination(
-              icon: profileIcon,
-              label: profileLabel,
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const ActiveSpotBanner(),
+            NavigationBar(
+              selectedIndex: tabsRouter.activeIndex,
+              onDestinationSelected: tabsRouter.setActiveIndex,
+              destinations: [
+                NavigationDestination(
+                  icon: const Icon(Icons.home),
+                  label: l10n.homeNavHome,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.list),
+                  label: l10n.homeNavList,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.map),
+                  label: l10n.homeNavMap,
+                ),
+                NavigationDestination(
+                  icon: profileIcon,
+                  label: profileLabel,
+                ),
+              ],
             ),
           ],
         );
