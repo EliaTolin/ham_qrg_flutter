@@ -1,0 +1,111 @@
+import 'dart:async';
+
+import 'package:hamqrg/src/features/spots/data/mappers/spot_mapper.dart';
+import 'package:hamqrg/src/features/spots/data/model/spot_model.dart';
+import 'package:hamqrg/src/features/spots/data/repository/spots_repository.dart';
+import 'package:hamqrg/src/features/spots/domain/spot/repeater_spot.dart';
+import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+part 'active_spots_notifier.g.dart';
+
+@riverpod
+class ActiveSpotsNotifier extends _$ActiveSpotsNotifier {
+  RealtimeChannel? _channel;
+  final _mapper = SpotMapper();
+  late String _repeaterId;
+
+  @override
+  FutureOr<List<RepeaterSpot>> build(String repeaterId) async {
+    _repeaterId = repeaterId;
+    final repository = ref.read(spotsRepositoryProvider);
+    final spots = await repository.getActiveSpotsForRepeater(repeaterId);
+
+    _subscribeRealtime(repeaterId);
+
+    ref.onDispose(() {
+      _channel?.unsubscribe();
+    });
+
+    return spots;
+  }
+
+  void _subscribeRealtime(String repeaterId) {
+    final client = Supabase.instance.client;
+    _channel = client.channel('spots:repeater:$repeaterId')
+      ..onPostgresChanges(
+        event: PostgresChangeEvent.all,
+        schema: 'public',
+        table: 'repeater_spots',
+        filter: PostgresChangeFilter(
+          type: PostgresChangeFilterType.eq,
+          column: 'repeater_id',
+          value: repeaterId,
+        ),
+        callback: _onRealtimeEvent,
+      )
+      ..subscribe();
+  }
+
+  Future<void> _onRealtimeEvent(PostgresChangePayload payload) async {
+    final spotId = (payload.newRecord['id'] ?? payload.oldRecord['id']) as String?;
+    if (spotId == null) return;
+
+    final currentSpots = state.value ?? [];
+
+    // DELETE → remove
+    if (payload.eventType == PostgresChangeEvent.delete) {
+      state = AsyncData(
+        currentSpots.where((s) => s.id != spotId).toList(),
+      );
+      return;
+    }
+
+    // INSERT or UPDATE → re-fetch enriched
+    try {
+      final client = Supabase.instance.client;
+      final row = await client
+          .from('repeater_spots')
+          .select('''
+            id, user_id, repeater_id, callsign_snapshot, spotted_callsign,
+            access_id, started_at, expires_at, closed_at, duration_minutes,
+            profiles!user_id(id, callsign, first_name),
+            repeater_access!access_id(id, mode)
+          ''')
+          .eq('id', spotId)
+          .maybeSingle();
+
+      final next = [...currentSpots]..removeWhere((s) => s.id == spotId);
+
+      if (row != null) {
+        final model = SpotModel.fromJson(row);
+        final spot = _mapper.fromModel(model);
+        // Only show active self-spots in this section
+        if (spot.isSelfSpot && spot.isActive) {
+          next.insert(0, spot);
+        }
+      }
+
+      state = AsyncData(next);
+    } catch (_) {
+      // On error, do a full refresh
+      await _refreshFromRest();
+    }
+  }
+
+  Future<void> _refreshFromRest() async {
+    try {
+      final repository = ref.read(spotsRepositoryProvider);
+      final spots = await repository.getActiveSpotsForRepeater(_repeaterId);
+      state = AsyncData(spots);
+    } catch (_) {
+      // Keep current state on error (FR-035)
+    }
+  }
+
+  void removeExpired(String spotId) {
+    final current = state.value ?? [];
+    state = AsyncData(current.where((s) => s.id != spotId).toList());
+  }
+}

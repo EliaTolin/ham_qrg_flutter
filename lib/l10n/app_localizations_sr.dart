@@ -1654,4 +1654,124 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get changelogDismiss => 'Razumem!';
+
+  @override
+  String get spotCreateTitle => 'Spot yourself';
+
+  @override
+  String get spotCreateOtherTitle => 'Spot an OM';
+
+  @override
+  String get spotCreateDuration => 'Duration';
+
+  @override
+  String get spotCreateAccess => 'Mode (optional)';
+
+  @override
+  String get spotCreateCallsign => 'Callsign of OM heard';
+
+  @override
+  String get spotCreateCallsignHint => 'E.g. IZ0ABC';
+
+  @override
+  String get spotCreateConfirm => 'Confirm';
+
+  @override
+  String get spotCreateSuccessSelf => 'Spot created!';
+
+  @override
+  String get spotCreateSuccessOther => 'OM spotted!';
+
+  @override
+  String get spotActiveYou => 'You are spotted';
+
+  @override
+  String get spotActiveClose => 'Close spot';
+
+  @override
+  String spotActiveOn(String repeaterName) {
+    return 'on $repeaterName';
+  }
+
+  @override
+  String get spotActiveNone => 'Nobody spotted at the moment';
+
+  @override
+  String get spotActiveCta => 'Be the first!';
+
+  @override
+  String get spotActiveSection => 'Active spots';
+
+  @override
+  String get spotListTitle => 'Latest spots';
+
+  @override
+  String get spotListViewAll => 'View all';
+
+  @override
+  String get spotListBadgeActive => 'Listening';
+
+  @override
+  String get spotListBadgeClosed => 'Ended';
+
+  @override
+  String get spotListBadgeReport => 'Report';
+
+  @override
+  String get spotListEmpty => 'No spots in the last 24 hours';
+
+  @override
+  String spotListSpottedBy(String callsign) {
+    return 'Reported by $callsign';
+  }
+
+  @override
+  String get spotNotificationToggle => 'Cluster notifications';
+
+  @override
+  String get spotNotificationDisabled =>
+      'Cluster notifications disabled in profile settings';
+
+  @override
+  String get spotNotificationPerFavorite => 'Spot notifications';
+
+  @override
+  String get spotPreviousClosed => 'Your previous spot is no longer active';
+
+  @override
+  String get spotErrorAuthRequired => 'You must be logged in.';
+
+  @override
+  String get spotErrorCallsignRequired =>
+      'Set your callsign in your profile to use the cluster.';
+
+  @override
+  String get spotErrorInvalidDuration =>
+      'Duration must be between 5 and 60 minutes.';
+
+  @override
+  String get spotErrorRepeaterNotFound => 'Repeater not found.';
+
+  @override
+  String get spotErrorInvalidAccess => 'Invalid access mode for this repeater.';
+
+  @override
+  String get spotErrorSpotNotFound => 'Spot not found.';
+
+  @override
+  String get spotErrorForbidden => 'You cannot close a spot that isn\'t yours.';
+
+  @override
+  String get spotErrorAlreadyClosed => 'The spot is already closed.';
+
+  @override
+  String get spotErrorGeneric => 'Error creating spot. Please try again.';
+
+  @override
+  String get spotAccessUnavailable => '(mode no longer available)';
+
+  @override
+  String spotDurationMinutes(int minutes) {
+    return '$minutes min';
+  }
 }

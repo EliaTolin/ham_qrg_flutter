@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
@@ -12,6 +14,9 @@ import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/perfor
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_detail_action_buttons.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_header.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/technical_data_section.dart';
+import 'package:hamqrg/src/features/spots/presentation/create_spot_sheet/create_other_spot_sheet.dart';
+import 'package:hamqrg/src/features/spots/presentation/create_spot_sheet/create_spot_sheet.dart';
+import 'package:hamqrg/src/features/spots/presentation/widgets/active_spots_section.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -108,6 +113,16 @@ class _RepeaterDetailContent extends HookConsumerWidget {
                   // Access Modes
                   AccessModesSection(repeater: state.repeater),
                   const SizedBox(height: 16),
+                  // Cluster Spot buttons
+                  _ClusterSection(
+                    repeater: state.repeater,
+                  ),
+                  const SizedBox(height: 16),
+                  // Active spots (Realtime)
+                  ActiveSpotsSection(
+                    repeaterId: state.repeater.id,
+                  ),
+                  const SizedBox(height: 16),
                   // Info
                   InfoSection(repeater: state.repeater),
                   const SizedBox(height: 16),
@@ -134,6 +149,68 @@ class _RepeaterDetailContent extends HookConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ClusterSection extends HookConsumerWidget {
+  const _ClusterSection({required this.repeater});
+
+  final Repeater repeater;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.localization;
+    final theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Cluster',
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            Expanded(
+              child: FilledButton.icon(
+                onPressed: () async {
+                  final authenticated =
+                      await requireAuthentication(context, ref);
+                  if (!authenticated || !context.mounted) return;
+                  await showCreateSpotSheet(
+                    context,
+                    repeaterId: repeater.id,
+                    accesses: repeater.accesses,
+                  );
+                },
+                icon: const Icon(Icons.cell_tower, size: 18),
+                label: Text(l10n.spotCreateTitle),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: () async {
+                  final authenticated =
+                      await requireAuthentication(context, ref);
+                  if (!authenticated || !context.mounted) return;
+                  await showCreateOtherSpotSheet(
+                    context,
+                    repeaterId: repeater.id,
+                    accesses: repeater.accesses,
+                  );
+                },
+                icon: const Icon(Icons.person_search, size: 18),
+                label: Text(l10n.spotCreateOtherTitle),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

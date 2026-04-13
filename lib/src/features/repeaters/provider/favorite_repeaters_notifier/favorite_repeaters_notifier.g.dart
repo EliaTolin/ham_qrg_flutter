@@ -34,7 +34,7 @@ final class FavoriteRepeatersNotifierProvider extends $AsyncNotifierProvider<
 }
 
 String _$favoriteRepeatersNotifierHash() =>
-    r'db78f86df904285571e4b98b4149f635b0368eaa';
+    r'89ff93a86a37b2a14ccdd600d7b4fc6dc168c9fd';
 
 abstract class _$FavoriteRepeatersNotifier
     extends $AsyncNotifier<FavoriteRepeatersState> {
