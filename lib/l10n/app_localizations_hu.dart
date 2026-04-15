@@ -1632,6 +1632,17 @@ class AppLocalizationsHu extends AppLocalizations {
       'Bejelentések regisztráció nélkül is elérhetők';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Valós idejű cluster spotok: nézd meg, ki hallgat az átjátszókon, értesítésekkel és beállításokkal';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Átjátszó oldal Info, Cluster és Közösség fülekkel';
+
+  @override
+  String get changelog1020TabletLayout => 'Táblagépre optimalizált elrendezés';
+
+  @override
   String get changelogTitle => 'Újdonságok';
 
   @override

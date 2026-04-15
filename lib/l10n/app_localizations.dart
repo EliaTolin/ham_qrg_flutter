@@ -3040,6 +3040,24 @@ abstract class AppLocalizations {
   /// **'Segnalazioni disponibili anche senza registrazione'**
   String get changelog1017ReportAnonymous;
 
+  /// No description provided for @changelog1020ClusterSpots.
+  ///
+  /// In it, this message translates to:
+  /// **'Cluster spot in tempo reale: vedi chi è in ascolto sui ripetitori, con notifiche e preferenze'**
+  String get changelog1020ClusterSpots;
+
+  /// No description provided for @changelog1020DetailTabs.
+  ///
+  /// In it, this message translates to:
+  /// **'Pagina ripetitore con tab Info, Cluster e Community'**
+  String get changelog1020DetailTabs;
+
+  /// No description provided for @changelog1020TabletLayout.
+  ///
+  /// In it, this message translates to:
+  /// **'Layout ottimizzato per tablet'**
+  String get changelog1020TabletLayout;
+
   /// No description provided for @changelogTitle.
   ///
   /// In it, this message translates to:

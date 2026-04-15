@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Aplikace dostupná v angličtině, španělštině a francouzštině",
   "changelog1017Onboarding": "Nový zážitek při prvním spuštění",
   "changelog1017ReportAnonymous": "Hlášení dostupná bez registrace",
+  "changelog1020ClusterSpots": "Cluster spoty v reálném čase: uvidíte, kdo poslouchá na převaděčích, s oznámeními a preferencemi",
+  "changelog1020DetailTabs": "Stránka převaděče se záložkami Info, Cluster a Komunita",
+  "changelog1020TabletLayout": "Rozvržení optimalizované pro tablety",
 
   "changelogTitle": "Co je nového",
   "changelogSubtitle": "Zde je přehled novinek v této verzi",

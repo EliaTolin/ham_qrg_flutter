@@ -1638,6 +1638,18 @@ class AppLocalizationsFr extends AppLocalizations {
       'Signalements disponibles sans inscription';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster spots en temps réel : voyez qui écoute sur les répéteurs, avec notifications et préférences';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Page du répéteur avec onglets Info, Cluster et Communauté';
+
+  @override
+  String get changelog1020TabletLayout =>
+      'Mise en page optimisée pour tablettes';
+
+  @override
   String get changelogTitle => 'Nouveautés';
 
   @override

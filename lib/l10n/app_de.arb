@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "App verfügbar auf Englisch, Spanisch und Französisch",
   "changelog1017Onboarding": "Neues Erststart-Erlebnis",
   "changelog1017ReportAnonymous": "Meldungen ohne Registrierung möglich",
+  "changelog1020ClusterSpots": "Cluster-Spots in Echtzeit: Sieh, wer auf Relais zuhört, mit Benachrichtigungen und Einstellungen",
+  "changelog1020DetailTabs": "Relaisseite mit Reitern Info, Cluster und Community",
+  "changelog1020TabletLayout": "Für Tablets optimiertes Layout",
 
   "changelogTitle": "Neuigkeiten",
   "changelogSubtitle": "Das ist neu in dieser Version",
