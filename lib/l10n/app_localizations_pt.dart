@@ -1631,6 +1631,17 @@ class AppLocalizationsPt extends AppLocalizations {
       'Relatórios disponíveis sem registo';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster spots em tempo real: vê quem está à escuta nos repetidores, com notificações e preferências';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Página do repetidor com separadores Info, Cluster e Comunidade';
+
+  @override
+  String get changelog1020TabletLayout => 'Layout otimizado para tablets';
+
+  @override
   String get changelogTitle => 'Novidades';
 
   @override

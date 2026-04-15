@@ -50,8 +50,7 @@ class PotaLocationMap extends StatelessWidget {
                   child: MapWidget(
                     cameraOptions: CameraOptions(
                       center: Point(
-                        coordinates:
-                            Position(park.longitude!, park.latitude!),
+                        coordinates: Position(park.longitude!, park.latitude!),
                       ),
                       zoom: 13,
                       bearing: 0,
@@ -68,7 +67,10 @@ class PotaLocationMap extends StatelessWidget {
                 // Dark overlay
                 Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.2),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .shadow
+                        .withValues(alpha: 0.2),
                   ),
                 ),
                 // Park marker
@@ -82,7 +84,10 @@ class PotaLocationMap extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.5),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .shadow
+                          .withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(

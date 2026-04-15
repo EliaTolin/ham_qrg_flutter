@@ -1630,6 +1630,18 @@ class AppLocalizationsNl extends AppLocalizations {
       'Meldingen beschikbaar zonder registratie';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Realtime cluster spots: zie wie er luistert op repeaters, met meldingen en voorkeuren';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Repeaterpagina met tabbladen Info, Cluster en Community';
+
+  @override
+  String get changelog1020TabletLayout =>
+      'Geoptimaliseerde lay-out voor tablets';
+
+  @override
   String get changelogTitle => 'Wat is er nieuw';
 
   @override

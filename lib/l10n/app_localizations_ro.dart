@@ -1700,6 +1700,17 @@ class AppLocalizationsRo extends AppLocalizations {
       'Rapoarte disponibile fără înregistrare';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster spot în timp real: vezi cine ascultă pe repetoare, cu notificări și preferințe';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Pagina repetorului cu filele Info, Cluster și Comunitate';
+
+  @override
+  String get changelog1020TabletLayout => 'Aspect optimizat pentru tablete';
+
+  @override
   String get changelogTitle => 'Ce este nou';
 
   @override

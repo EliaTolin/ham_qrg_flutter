@@ -1632,6 +1632,18 @@ class AppLocalizationsCs extends AppLocalizations {
   String get changelog1017ReportAnonymous => 'Hlášení dostupná bez registrace';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster spoty v reálném čase: uvidíte, kdo poslouchá na převaděčích, s oznámeními a preferencemi';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Stránka převaděče se záložkami Info, Cluster a Komunita';
+
+  @override
+  String get changelog1020TabletLayout =>
+      'Rozvržení optimalizované pro tablety';
+
+  @override
   String get changelogTitle => 'Co je nového';
 
   @override

@@ -1,21 +1,16 @@
 <!--
 ## Sync Impact Report
-- **Version change**: 0.0.0 → 1.0.0
-- **Bump rationale**: Initial adoption — all principles are new (MAJOR)
+- **Version change**: 1.0.0 → 1.1.0
+- **Bump rationale**: New principle added — V. Responsive Layout (MINOR)
 - **Added principles**:
-  - I. Clean Architecture Discipline
-  - II. Testing Standards
-  - III. User Experience Consistency
-  - IV. Performance & Reliability
-- **Added sections**:
-  - Technology Constraints
-  - Development Workflow
-  - Governance
-- **Removed sections**: None (initial version)
+  - V. Responsive Layout (Mobile + Tablet)
+- **Modified principles**: None
+- **Added sections**: None
+- **Removed sections**: None
 - **Templates requiring updates**:
   - `.specify/templates/plan-template.md` — ✅ No updates needed (Constitution Check section is generic)
-  - `.specify/templates/spec-template.md` — ✅ No updates needed (requirements section compatible)
-  - `.specify/templates/tasks-template.md` — ✅ No updates needed (phase structure compatible)
+  - `.specify/templates/spec-template.md` — ✅ No updates needed
+  - `.specify/templates/tasks-template.md` — ✅ No updates needed
 - **Follow-up TODOs**: None
 -->
 
@@ -114,6 +109,39 @@ network. Silent data loss from PostgREST join bugs caused production
 issues. Stale auth cache after anonymous→authenticated transition
 caused RLS violations.
 
+### V. Responsive Layout (Mobile + Tablet)
+
+Every page MUST be usable on both mobile and tablet form factors. A new
+page is NOT considered complete until both layouts are verified.
+
+- The mobile layout is the baseline and MUST always be implemented.
+- For pages where the mobile layout would waste space or feel awkward
+  on tablet (≥ 840 logical pixels width), a dedicated tablet layout
+  MUST be provided.
+- The mobile/tablet split MUST be wired through the shared
+  `ResponsiveLayout` widget (`lib/common/widgets/responsive/`), passing
+  `mobile` (required) and `tablet` (optional) builders. Inline
+  `LayoutBuilder` + width comparisons in pages are forbidden.
+- The breakpoint constant (`kTabletBreakpoint`, default 840) MUST NOT
+  be hardcoded inside pages.
+- Tablet-specific widgets MUST live alongside the page they belong to,
+  named `<page>_tablet.dart`.
+- Tablet layouts MUST reuse the same domain entities, controllers, and
+  state classes as the mobile layout — no duplicated business logic.
+- Tablet layouts SHOULD share the same visual language across the app
+  (console aesthetic: monospace section labels, access-mode color
+  bands, `surfaceContainerLowest` rails) so the tablet experience
+  feels coherent screen-to-screen.
+- When a UI bug is reported, the developer MUST verify the fix on both
+  layouts before closing the task.
+
+**Rationale**: Ham operators use the app on both phones (in the field)
+and tablets (at the rig desk). A mobile-only layout stretched to tablet
+width wastes the screen real estate that makes a tablet useful in the
+first place. Centralizing the breakpoint and switch logic in one
+widget prevents drift between pages and keeps the breakpoint a single
+point of change.
+
 ## Technology Constraints
 
 - **Framework**: Flutter (Dart) with Riverpod 3.x (`riverpod_annotation:
@@ -158,4 +186,4 @@ standards. It supersedes ad-hoc decisions and informal conventions.
 - **Runtime guidance**: `CLAUDE.md` provides detailed implementation
   patterns and MUST remain aligned with this constitution.
 
-**Version**: 1.0.0 | **Ratified**: 2026-04-05 | **Last Amended**: 2026-04-05
+**Version**: 1.1.0 | **Ratified**: 2026-04-05 | **Last Amended**: 2026-04-15

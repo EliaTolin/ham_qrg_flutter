@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Aplikacija na voljo v angleščini, španščini in francoščini",
   "changelog1017Onboarding": "Nova izkušnja ob prvem zagonu",
   "changelog1017ReportAnonymous": "Prijave na voljo brez registracije",
+  "changelog1020ClusterSpots": "Cluster spoti v realnem času: glej, kdo posluša na repetitorjih, z obvestili in nastavitvami",
+  "changelog1020DetailTabs": "Stran repetitorja z zavihki Info, Cluster in Skupnost",
+  "changelog1020TabletLayout": "Postavitev, optimizirana za tablice",
 
   "changelogTitle": "Novosti",
   "changelogSubtitle": "Tukaj so novosti v tej različici",

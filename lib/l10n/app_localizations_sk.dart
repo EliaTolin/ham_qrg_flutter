@@ -1640,6 +1640,18 @@ class AppLocalizationsSk extends AppLocalizations {
       'Hlásenia dostupné bez registrácie';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster spoty v reálnom čase: uvidíte, kto počúva na prevádzačoch, s oznámeniami a preferenciami';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Stránka prevádzača s kartami Info, Cluster a Komunita';
+
+  @override
+  String get changelog1020TabletLayout =>
+      'Rozloženie optimalizované pre tablety';
+
+  @override
   String get changelogTitle => 'Čo je nové';
 
   @override

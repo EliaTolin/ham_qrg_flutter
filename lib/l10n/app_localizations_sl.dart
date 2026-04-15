@@ -1695,6 +1695,17 @@ class AppLocalizationsSl extends AppLocalizations {
       'Prijave na voljo brez registracije';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster spoti v realnem času: glej, kdo posluša na repetitorjih, z obvestili in nastavitvami';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Stran repetitorja z zavihki Info, Cluster in Skupnost';
+
+  @override
+  String get changelog1020TabletLayout => 'Postavitev, optimizirana za tablice';
+
+  @override
   String get changelogTitle => 'Novosti';
 
   @override
