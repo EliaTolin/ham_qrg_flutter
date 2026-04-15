@@ -6,12 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
+import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/repeaters_list_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_list_state.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/list/controller/state/repeaters_sort_order.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/list/repeaters_list_tablet.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/repeater_card.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_feedback_stats_from_ids/get_repeaters_feedback_stats_from_ids_provider.dart';
 import 'package:hamqrg/src/features/repeaters/provider/search_repeaters/search_repeaters_provider.dart';
@@ -206,8 +208,7 @@ class RepeatersListPage extends HookConsumerWidget {
           // Count + Sort row
           if (listState != null)
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: _CountAndSortRow(
                 count: isSearchMode
                     ? (searchRepeaters?.length ?? 0)
@@ -301,16 +302,22 @@ class RepeatersListPage extends HookConsumerWidget {
 
         return RefreshIndicator(
           onRefresh: onRefresh,
-          child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            itemCount: sorted.length,
-            itemBuilder: (context, index) {
-              final repeater = sorted[index];
-              return RepeaterCard(
-                repeater: repeater,
-                feedbackStats: feedbackStats[repeater.id],
-              );
-            },
+          child: ResponsiveLayout(
+            mobile: (_) => ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              itemCount: sorted.length,
+              itemBuilder: (context, index) {
+                final repeater = sorted[index];
+                return RepeaterCard(
+                  repeater: repeater,
+                  feedbackStats: feedbackStats[repeater.id],
+                );
+              },
+            ),
+            tablet: (_) => RepeatersListTablet(
+              repeaters: sorted,
+              feedbackStats: feedbackStats,
+            ),
           ),
         );
       },
@@ -363,9 +370,7 @@ class RepeatersListPage extends HookConsumerWidget {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
-                  ref
-                      .read(repeatersListControllerProvider.notifier)
-                      .reload();
+                  ref.read(repeatersListControllerProvider.notifier).reload();
                 },
                 child: Text(l10n.repeatersMapRetry),
               ),
@@ -398,19 +403,24 @@ class RepeatersListPage extends HookConsumerWidget {
     }
 
     return RefreshIndicator(
-      onRefresh: () => ref
-          .read(repeatersListControllerProvider.notifier)
-          .refreshAndReload(),
-      child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        itemCount: listState.repeaters.length,
-        itemBuilder: (context, index) {
-          final repeater = listState.repeaters[index];
-          return RepeaterCard(
-            repeater: repeater,
-            feedbackStats: listState.feedbackStats[repeater.id],
-          );
-        },
+      onRefresh: () =>
+          ref.read(repeatersListControllerProvider.notifier).refreshAndReload(),
+      child: ResponsiveLayout(
+        mobile: (_) => ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          itemCount: listState.repeaters.length,
+          itemBuilder: (context, index) {
+            final repeater = listState.repeaters[index];
+            return RepeaterCard(
+              repeater: repeater,
+              feedbackStats: listState.feedbackStats[repeater.id],
+            );
+          },
+        ),
+        tablet: (_) => RepeatersListTablet(
+          repeaters: listState.repeaters,
+          feedbackStats: listState.feedbackStats,
+        ),
       ),
     );
   }
