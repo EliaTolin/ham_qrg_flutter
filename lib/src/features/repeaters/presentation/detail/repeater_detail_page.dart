@@ -68,7 +68,7 @@ class RepeaterDetailPage extends HookConsumerWidget {
   }
 }
 
-class _RepeaterDetailContent extends HookConsumerWidget {
+class _RepeaterDetailContent extends StatefulWidget {
   const _RepeaterDetailContent({
     required this.state,
     required this.controller,
@@ -78,75 +78,178 @@ class _RepeaterDetailContent extends HookConsumerWidget {
   final RepeaterDetailController controller;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<_RepeaterDetailContent> createState() => _RepeaterDetailContentState();
+}
+
+class _RepeaterDetailContentState extends State<_RepeaterDetailContent>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: CustomScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        slivers: [
-          // Header
-          RepeaterHeader(
-            repeater: state.repeater,
-          ),
-          // Action buttons
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          RepeaterHeader(repeater: widget.state.repeater),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: RepeaterDetailActionButtons(repeater: state.repeater),
-            ),
-          ),
-          // Content
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Performance Metrics
-                  PerformanceMetricsSection(
-                    stats: state.feedbackStats,
-                  ),
-                  const SizedBox(height: 16),
-                  // Technical Data
-                  TechnicalDataSection(repeater: state.repeater),
-                  const SizedBox(height: 16),
-                  // Access Modes
-                  AccessModesSection(repeater: state.repeater),
-                  const SizedBox(height: 16),
-                  // Cluster Spot buttons
-                  _ClusterSection(
-                    repeater: state.repeater,
-                  ),
-                  const SizedBox(height: 16),
-                  // Active spots (Realtime)
-                  ActiveSpotsSection(
-                    repeaterId: state.repeater.id,
-                  ),
-                  const SizedBox(height: 16),
-                  // Info
-                  InfoSection(repeater: state.repeater),
-                  const SizedBox(height: 16),
-                  // Location
-                  LocationSection(
-                    repeater: state.repeater,
-                    calculatedDistanceKm: controller.getDistanceToRepeater(),
-                  ),
-                  const SizedBox(height: 16),
-                  // Fun Facts
-                  FrequencyFunFactsSection(
-                    repeater: state.repeater,
-                    distanceKm: controller.getDistanceToRepeater(),
-                  ),
-                  const SizedBox(height: 16),
-                  // Community Reports
-                  CommunityReportsSection(
-                    state: state,
-                    controller: controller,
-                  ),
-                ],
+              child: RepeaterDetailActionButtons(
+                repeater: widget.state.repeater,
               ),
             ),
           ),
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: _TabBarDelegate(
+              tabBar: TabBar(
+                controller: _tabController,
+                labelColor: theme.colorScheme.primary,
+                unselectedLabelColor: theme.colorScheme.onSurfaceVariant,
+                indicatorColor: theme.colorScheme.primary,
+                indicatorWeight: 3,
+                labelStyle: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                unselectedLabelStyle: theme.textTheme.titleSmall,
+                tabs: const [
+                  Tab(text: 'Info'),
+                  Tab(text: 'Cluster'),
+                  Tab(text: 'Community'),
+                ],
+              ),
+              backgroundColor: theme.colorScheme.surface,
+            ),
+          ),
+        ],
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            _InfoTab(state: widget.state, controller: widget.controller),
+            _ClusterTab(state: widget.state),
+            _CommunityTab(state: widget.state, controller: widget.controller),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _TabBarDelegate extends SliverPersistentHeaderDelegate {
+  _TabBarDelegate({
+    required this.tabBar,
+    required this.backgroundColor,
+  });
+
+  final TabBar tabBar;
+  final Color backgroundColor;
+
+  @override
+  double get minExtent => tabBar.preferredSize.height;
+
+  @override
+  double get maxExtent => tabBar.preferredSize.height;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Material(
+      color: backgroundColor,
+      elevation: overlapsContent ? 2 : 0,
+      child: tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_TabBarDelegate oldDelegate) =>
+      oldDelegate.tabBar != tabBar ||
+      oldDelegate.backgroundColor != backgroundColor;
+}
+
+class _InfoTab extends StatelessWidget {
+  const _InfoTab({required this.state, required this.controller});
+
+  final RepeaterDetailState state;
+  final RepeaterDetailController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TechnicalDataSection(repeater: state.repeater),
+          const SizedBox(height: 16),
+          AccessModesSection(repeater: state.repeater),
+          const SizedBox(height: 16),
+          InfoSection(repeater: state.repeater),
+          const SizedBox(height: 16),
+          LocationSection(
+            repeater: state.repeater,
+            calculatedDistanceKm: controller.getDistanceToRepeater(),
+          ),
+          const SizedBox(height: 16),
+          FrequencyFunFactsSection(
+            repeater: state.repeater,
+            distanceKm: controller.getDistanceToRepeater(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ClusterTab extends StatelessWidget {
+  const _ClusterTab({required this.state});
+
+  final RepeaterDetailState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _ClusterSection(repeater: state.repeater),
+          const SizedBox(height: 16),
+          ActiveSpotsSection(repeaterId: state.repeater.id),
+        ],
+      ),
+    );
+  }
+}
+
+class _CommunityTab extends StatelessWidget {
+  const _CommunityTab({required this.state, required this.controller});
+
+  final RepeaterDetailState state;
+  final RepeaterDetailController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PerformanceMetricsSection(stats: state.feedbackStats),
+          const SizedBox(height: 16),
+          CommunityReportsSection(state: state, controller: controller),
         ],
       ),
     );
