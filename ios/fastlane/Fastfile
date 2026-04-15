@@ -65,6 +65,7 @@ platform :ios do
       submit_for_review: true,
       automatic_release: true,
       force: true,
+      overwrite_screenshots: true,
       submission_information: {
         export_compliance_uses_encryption: false,
       }
