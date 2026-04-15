@@ -3,9 +3,11 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/controller/pota_spot_detail_controller.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/controller/state/pota_spot_detail_state.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/pota_spot_detail_tablet.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/widgets/pota_park_info_section.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/widgets/pota_spot_header.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart'
@@ -65,7 +67,10 @@ class PotaSpotDetailPage extends HookConsumerWidget {
             ),
           );
         },
-        data: (state) => _PotaSpotDetailContent(state: state),
+        data: (state) => ResponsiveLayout(
+          mobile: (_) => _PotaSpotDetailContent(state: state),
+          tablet: (_) => PotaSpotDetailTablet(state: state),
+        ),
       ),
     );
   }

@@ -8,6 +8,7 @@ import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/utils/version_utils.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/common/widgets/sheet/sheet_drag_handle.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
@@ -15,6 +16,7 @@ import 'package:hamqrg/src/features/changelog/data/changelog_data.dart';
 import 'package:hamqrg/src/features/changelog/presentation/changelog_sheet.dart';
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
+import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashboard_tablet.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
@@ -41,82 +43,95 @@ class DashboardPage extends HookConsumerWidget {
     final l10n = context.localization;
 
     return controller.when(
-      data: (state) => Scaffold(
-        body: Stack(
+      data: (state) => ResponsiveLayout(
+        tablet: (_) => Stack(
           children: [
-            // Changelog trigger (invisible, fires once)
             _ChangelogTrigger(profile: state.profile),
-
-            // Map Section (full screen, non-interactive preview)
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.6,
-              child: IgnorePointer(
-                child: MapSectionWidget(
-                  nearbyRepeaters: state.nearbyRepeaters,
-                  initialPosition: (
-                    lat: state.initialPosition.lat,
-                    lon: state.initialPosition.lon,
-                    zoom: 8.5
-                  ),
-                ),
-              ),
-            ),
-            // Locator Chip
-            Positioned(
-              top: MediaQuery.paddingOf(context).top + 16,
-              right: 16,
-              child: Chip(
-                avatar: Icon(
-                  Icons.grid_on,
-                  size: 16,
-                  color: colorScheme.primary,
-                ),
-                label: Text(
-                  MaidenheadLocator.fromCoordinates(
-                    latitude: state.initialPosition.lat,
-                    longitude: state.initialPosition.lon,
-                  ),
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-                backgroundColor: colorScheme.surface,
-                side: BorderSide(
-                  color: colorScheme.outline.withValues(alpha: 0.2),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-            ),
-            // Map tap target — below the sheet so sheet items take priority
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: MediaQuery.sizeOf(context).height * 0.42,
-              child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  AutoTabsRouter.of(context).setActiveIndex(2);
-                },
-              ),
-            ),
-            // Draggable Content Sheet
-            DraggableScrollableSheet(
-              initialChildSize: 0.42,
-              minChildSize: 0.42,
-              maxChildSize: 1.0 -
-                  (MediaQuery.paddingOf(context).top /
-                      MediaQuery.sizeOf(context).height),
-              builder: (context, scrollController) => _ContentSection(
-                statistics: state.statistics,
-                nearbyRepeaters: state.nearbyRepeaters,
-                potaSpots: state.potaSpots,
-                scrollController: scrollController,
-              ),
+            DashboardTablet(
+              statistics: state.statistics,
+              initialPosition: state.initialPosition,
+              nearbyRepeaters: state.nearbyRepeaters,
+              potaSpots: state.potaSpots,
             ),
           ],
+        ),
+        mobile: (_) => Scaffold(
+          body: Stack(
+            children: [
+              // Changelog trigger (invisible, fires once)
+              _ChangelogTrigger(profile: state.profile),
+
+              // Map Section (full screen, non-interactive preview)
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * 0.6,
+                child: IgnorePointer(
+                  child: MapSectionWidget(
+                    nearbyRepeaters: state.nearbyRepeaters,
+                    initialPosition: (
+                      lat: state.initialPosition.lat,
+                      lon: state.initialPosition.lon,
+                      zoom: 8.5
+                    ),
+                  ),
+                ),
+              ),
+              // Locator Chip
+              Positioned(
+                top: MediaQuery.paddingOf(context).top + 16,
+                right: 16,
+                child: Chip(
+                  avatar: Icon(
+                    Icons.grid_on,
+                    size: 16,
+                    color: colorScheme.primary,
+                  ),
+                  label: Text(
+                    MaidenheadLocator.fromCoordinates(
+                      latitude: state.initialPosition.lat,
+                      longitude: state.initialPosition.lon,
+                    ),
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  backgroundColor: colorScheme.surface,
+                  side: BorderSide(
+                    color: colorScheme.outline.withValues(alpha: 0.2),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+              ),
+              // Map tap target — below the sheet so sheet items take priority
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: MediaQuery.sizeOf(context).height * 0.42,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    AutoTabsRouter.of(context).setActiveIndex(2);
+                  },
+                ),
+              ),
+              // Draggable Content Sheet
+              DraggableScrollableSheet(
+                initialChildSize: 0.42,
+                minChildSize: 0.42,
+                maxChildSize: 1.0 -
+                    (MediaQuery.paddingOf(context).top /
+                        MediaQuery.sizeOf(context).height),
+                builder: (context, scrollController) => _ContentSection(
+                  statistics: state.statistics,
+                  nearbyRepeaters: state.nearbyRepeaters,
+                  potaSpots: state.potaSpots,
+                  scrollController: scrollController,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       error: (error, stackTrace) => Center(
@@ -756,7 +771,7 @@ class _NearbyRepeaterItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          repeater.name ?? repeater.callsign ?? '',
+                          repeater.callsign ?? repeater.name ?? '',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),

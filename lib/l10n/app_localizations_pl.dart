@@ -1696,6 +1696,17 @@ class AppLocalizationsPl extends AppLocalizations {
       'Zgłoszenia dostępne bez rejestracji';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster spoty w czasie rzeczywistym: zobacz, kto słucha na przemiennikach, z powiadomieniami i preferencjami';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Strona przemiennika z zakładkami Info, Cluster i Społeczność';
+
+  @override
+  String get changelog1020TabletLayout => 'Układ zoptymalizowany dla tabletów';
+
+  @override
   String get changelogTitle => 'Co nowego';
 
   @override

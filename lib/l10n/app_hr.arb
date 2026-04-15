@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Aplikacija dostupna na engleskom, španjolskom i francuskom",
   "changelog1017Onboarding": "Novo iskustvo prvog pokretanja",
   "changelog1017ReportAnonymous": "Prijave dostupne bez registracije",
+  "changelog1020ClusterSpots": "Cluster spotovi u stvarnom vremenu: vidite tko sluša na repetitorima, s obavijestima i postavkama",
+  "changelog1020DetailTabs": "Stranica repetitora s karticama Info, Cluster i Zajednica",
+  "changelog1020TabletLayout": "Raspored optimiziran za tablete",
 
   "changelogTitle": "Što je novo",
   "changelogSubtitle": "Evo što je novo u ovoj verziji",

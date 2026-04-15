@@ -1634,6 +1634,17 @@ class AppLocalizationsDe extends AppLocalizations {
       'Meldungen ohne Registrierung möglich';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster-Spots in Echtzeit: Sieh, wer auf Relais zuhört, mit Benachrichtigungen und Einstellungen';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Relaisseite mit Reitern Info, Cluster und Community';
+
+  @override
+  String get changelog1020TabletLayout => 'Für Tablets optimiertes Layout';
+
+  @override
   String get changelogTitle => 'Neuigkeiten';
 
   @override
