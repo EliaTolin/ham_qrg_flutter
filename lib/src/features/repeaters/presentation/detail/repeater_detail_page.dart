@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/repeater_detail_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/repeater_detail_tablet.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/community_reports_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/frequency_fun_facts_section.dart';
@@ -14,9 +16,11 @@ import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/perfor
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_detail_action_buttons.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_header.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/technical_data_section.dart';
+import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
 import 'package:hamqrg/src/features/spots/presentation/create_spot_sheet/create_other_spot_sheet.dart';
 import 'package:hamqrg/src/features/spots/presentation/create_spot_sheet/create_spot_sheet.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/active_spots_section.dart';
+import 'package:hamqrg/src/features/spots/provider/active_spots_notifier/active_spots_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -39,9 +43,15 @@ class RepeaterDetailPage extends HookConsumerWidget {
 
     return Scaffold(
       body: controllerAsync.when(
-        data: (state) => _RepeaterDetailContent(
-          state: state,
-          controller: controllerNotifier,
+        data: (state) => ResponsiveLayout(
+          mobile: (_) => _RepeaterDetailContent(
+            state: state,
+            controller: controllerNotifier,
+          ),
+          tablet: (_) => RepeaterDetailTablet(
+            state: state,
+            controller: controllerNotifier,
+          ),
         ),
         loading: () => const Center(
           child: CircularProgressIndicator.adaptive(),
@@ -126,10 +136,18 @@ class _RepeaterDetailContentState extends State<_RepeaterDetailContent>
                   fontWeight: FontWeight.bold,
                 ),
                 unselectedLabelStyle: theme.textTheme.titleSmall,
-                tabs: const [
-                  Tab(text: 'Info'),
-                  Tab(text: 'Cluster'),
-                  Tab(text: 'Community'),
+                tabs: [
+                  const Tab(text: 'Info'),
+                  Tab(
+                    child: _ClusterTabLabel(
+                      repeaterId: widget.state.repeater.id,
+                    ),
+                  ),
+                  Tab(
+                    child: _CommunityTabLabel(
+                      likesTotal: widget.state.feedbackStats?.likesTotal ?? 0,
+                    ),
+                  ),
                 ],
               ),
               backgroundColor: theme.colorScheme.surface,
@@ -165,7 +183,11 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => tabBar.preferredSize.height;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Material(
       color: backgroundColor,
       elevation: overlapsContent ? 2 : 0,
@@ -252,6 +274,159 @@ class _CommunityTab extends StatelessWidget {
           CommunityReportsSection(state: state, controller: controller),
         ],
       ),
+    );
+  }
+}
+
+class _ClusterTabLabel extends ConsumerWidget {
+  const _ClusterTabLabel({required this.repeaterId});
+
+  final String repeaterId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final spotsAsync = ref.watch(activeSpotsProvider(repeaterId));
+    final hasActive = spotsAsync.maybeWhen(
+      data: (spots) => spots.any((s) => s.isActive),
+      orElse: () => false,
+    );
+
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Flexible(
+            child: Text('Cluster', overflow: TextOverflow.ellipsis),
+          ),
+          if (hasActive) ...[
+            const SizedBox(width: 6),
+            const _LiveDot(),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _CommunityTabLabel extends StatelessWidget {
+  const _CommunityTabLabel({required this.likesTotal});
+
+  final int likesTotal;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Flexible(
+            child: Text('Community', overflow: TextOverflow.ellipsis),
+          ),
+          if (likesTotal > 0) ...[
+            const SizedBox(width: 6),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.tertiaryContainer,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.thumb_up_rounded,
+                    size: 11,
+                    color: theme.colorScheme.onTertiaryContainer,
+                  ),
+                  const SizedBox(width: 3),
+                  Text(
+                    '$likesTotal',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.onTertiaryContainer,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _LiveDot extends StatefulWidget {
+  const _LiveDot();
+
+  @override
+  State<_LiveDot> createState() => _LiveDotState();
+}
+
+class _LiveDotState extends State<_LiveDot>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1100),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.error;
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, _) {
+        final t = _controller.value;
+        return SizedBox(
+          width: 14,
+          height: 14,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 14,
+                height: 14,
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.25 * (1 - t)),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Container(
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: color,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: color.withValues(alpha: 0.6),
+                      blurRadius: 4 + 4 * t,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
