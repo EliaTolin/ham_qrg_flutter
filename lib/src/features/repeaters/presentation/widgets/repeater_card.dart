@@ -18,19 +18,21 @@ class RepeaterCard extends StatelessWidget {
     required this.repeater,
     this.feedbackStats,
     this.onFavoritePressed,
+    this.hasActiveSpot = false,
     super.key,
   });
 
   final Repeater repeater;
   final RepeaterFeedbackStats? feedbackStats;
   final VoidCallback? onFavoritePressed;
+  final bool hasActiveSpot;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Container(
+    final card = Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         color: colorScheme.surface,
@@ -40,7 +42,7 @@ class RepeaterCard extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
+            color: colorScheme.shadow.withValues(alpha: 0.04),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -85,9 +87,31 @@ class RepeaterCard extends StatelessWidget {
         ),
       ),
     );
+
+    if (!hasActiveSpot) return card;
+
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        card,
+        Positioned(
+          top: 4,
+          right: 4,
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.error,
+              shape: BoxShape.circle,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
-  bool get _hasFooter => feedbackStats != null || repeater.distanceMeters != null;
+  bool get _hasFooter =>
+      feedbackStats != null || repeater.distanceMeters != null;
 }
 
 // ---------------------------------------------------------------------------
@@ -133,7 +157,9 @@ class _Header extends StatelessWidget {
                     const SizedBox(width: 2),
                     Expanded(
                       child: Text(
-                        [repeater.locality, repeater.region].whereType<String>().join(', '),
+                        [repeater.locality, repeater.region]
+                            .whereType<String>()
+                            .join(', '),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: colorScheme.onSurfaceVariant,
                         ),
@@ -149,9 +175,9 @@ class _Header extends StatelessWidget {
         ),
         if (onFavoritePressed != null)
           IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.favorite,
-              color: Colors.red,
+              color: colorScheme.error,
               size: 24,
             ),
             onPressed: onFavoritePressed,
@@ -307,7 +333,7 @@ class _StatsFooter extends StatelessWidget {
           Icon(
             Icons.thumb_up_rounded,
             size: 16,
-            color: hasMyLike ? Colors.green : colorScheme.outlineVariant,
+            color: hasMyLike ? colorScheme.tertiary : colorScheme.outlineVariant,
           ),
           const SizedBox(width: 4),
           Text(
@@ -321,15 +347,14 @@ class _StatsFooter extends StatelessWidget {
           Icon(
             Icons.flag_rounded,
             size: 16,
-            color: downTotal > 0 ? Colors.amber : colorScheme.outlineVariant,
+            color: downTotal > 0 ? colorScheme.error : colorScheme.outlineVariant,
           ),
           const SizedBox(width: 4),
           Text(
             '$downTotal',
             style: theme.textTheme.bodySmall?.copyWith(
-              color: downTotal > 0
-                  ? Colors.amber
-                  : colorScheme.onSurfaceVariant,
+              color:
+                  downTotal > 0 ? colorScheme.error : colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
             ),
           ),

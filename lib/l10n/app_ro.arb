@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Aplicație disponibilă în engleză, spaniolă și franceză",
   "changelog1017Onboarding": "Experiență nouă la prima lansare",
   "changelog1017ReportAnonymous": "Rapoarte disponibile fără înregistrare",
+  "changelog1020ClusterSpots": "Cluster spot în timp real: vezi cine ascultă pe repetoare, cu notificări și preferințe",
+  "changelog1020DetailTabs": "Pagina repetorului cu filele Info, Cluster și Comunitate",
+  "changelog1020TabletLayout": "Aspect optimizat pentru tablete",
 
   "changelogTitle": "Ce este nou",
   "changelogSubtitle": "Iată ce este nou în această versiune",
@@ -717,6 +720,65 @@
   "@repeatersResultsCount": {
     "placeholders": {
       "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spotCreateTitle": "Spottează-te",
+  "spotCreateOtherTitle": "Spottează un OM",
+  "spotCreateDuration": "Durată",
+  "spotCreateAccess": "Mod (opțional)",
+  "spotCreateCallsign": "Indicativul OM-ului auzit",
+  "spotCreateCallsignHint": "Ex. YO1ABC",
+  "spotCreateConfirm": "Confirmă",
+  "spotCreateSuccessSelf": "Spot creat!",
+  "spotCreateSuccessOther": "OM spottat!",
+  "spotActiveYou": "Ești spottat",
+  "spotActiveClose": "Închide spot",
+  "spotActiveOn": "pe {repeaterName}",
+  "@spotActiveOn": {
+    "placeholders": {
+      "repeaterName": {
+        "type": "String"
+      }
+    }
+  },
+  "spotActiveNone": "Nimeni spottat momentan",
+  "spotActiveCta": "Fii primul!",
+  "spotActiveSection": "Spoturi active",
+  "spotHistorySection": "Istoric spoturi",
+  "spotListTitle": "Ultimele spoturi",
+  "spotListViewAll": "Vezi toate",
+  "spotListBadgeActive": "Ascultă",
+  "spotListBadgeClosed": "Încheiat",
+  "spotListBadgeReport": "Raportează",
+  "spotListEmpty": "Niciun spot în ultimele 24 de ore",
+  "spotListSpottedBy": "Raportat de {callsign}",
+  "@spotListSpottedBy": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNotificationToggle": "Notificări cluster",
+  "spotNotificationDisabled": "Notificările cluster sunt dezactivate în setările profilului",
+  "spotNotificationPerFavorite": "Notificări de spoturi",
+  "spotPreviousClosed": "Spotul tău anterior nu mai este activ",
+  "spotErrorAuthRequired": "Trebuie să fii autentificat.",
+  "spotErrorCallsignRequired": "Setează indicativul în profil pentru a folosi clusterul.",
+  "spotErrorInvalidDuration": "Durata trebuie să fie între 5 și 60 de minute.",
+  "spotErrorRepeaterNotFound": "Repetor negăsit.",
+  "spotErrorInvalidAccess": "Mod de acces invalid pentru acest repetor.",
+  "spotErrorSpotNotFound": "Spot negăsit.",
+  "spotErrorForbidden": "Nu poți închide un spot care nu este al tău.",
+  "spotErrorAlreadyClosed": "Spotul este deja închis.",
+  "spotErrorGeneric": "Eroare la crearea spotului. Încearcă din nou.",
+  "spotAccessUnavailable": "(mod nu mai este disponibil)",
+  "spotDurationMinutes": "{minutes} min",
+  "@spotDurationMinutes": {
+    "placeholders": {
+      "minutes": {
         "type": "int"
       }
     }

@@ -25,6 +25,8 @@ mixin _$ProfileModel {
   UserType? get userType;
   @JsonKey(name: 'last_seen_version')
   String? get lastSeenVersion;
+  @JsonKey(name: 'cluster_notifications_enabled', defaultValue: true)
+  bool get clusterNotificationsEnabled;
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -53,17 +55,21 @@ mixin _$ProfileModel {
             (identical(other.userType, userType) ||
                 other.userType == userType) &&
             (identical(other.lastSeenVersion, lastSeenVersion) ||
-                other.lastSeenVersion == lastSeenVersion));
+                other.lastSeenVersion == lastSeenVersion) &&
+            (identical(other.clusterNotificationsEnabled,
+                    clusterNotificationsEnabled) ||
+                other.clusterNotificationsEnabled ==
+                    clusterNotificationsEnabled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, firstName, lastName,
-      callsign, propic, userType, lastSeenVersion);
+      callsign, propic, userType, lastSeenVersion, clusterNotificationsEnabled);
 
   @override
   String toString() {
-    return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, callsign: $callsign, propic: $propic, userType: $userType, lastSeenVersion: $lastSeenVersion)';
+    return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, callsign: $callsign, propic: $propic, userType: $userType, lastSeenVersion: $lastSeenVersion, clusterNotificationsEnabled: $clusterNotificationsEnabled)';
   }
 }
 
@@ -80,7 +86,9 @@ abstract mixin class $ProfileModelCopyWith<$Res> {
       String? callsign,
       String? propic,
       @JsonKey(name: 'user_type') UserType? userType,
-      @JsonKey(name: 'last_seen_version') String? lastSeenVersion});
+      @JsonKey(name: 'last_seen_version') String? lastSeenVersion,
+      @JsonKey(name: 'cluster_notifications_enabled', defaultValue: true)
+      bool clusterNotificationsEnabled});
 }
 
 /// @nodoc
@@ -102,6 +110,7 @@ class _$ProfileModelCopyWithImpl<$Res> implements $ProfileModelCopyWith<$Res> {
     Object? propic = freezed,
     Object? userType = freezed,
     Object? lastSeenVersion = freezed,
+    Object? clusterNotificationsEnabled = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -132,6 +141,10 @@ class _$ProfileModelCopyWithImpl<$Res> implements $ProfileModelCopyWith<$Res> {
           ? _self.lastSeenVersion
           : lastSeenVersion // ignore: cast_nullable_to_non_nullable
               as String?,
+      clusterNotificationsEnabled: null == clusterNotificationsEnabled
+          ? _self.clusterNotificationsEnabled
+          : clusterNotificationsEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -236,7 +249,9 @@ extension ProfileModelPatterns on ProfileModel {
             String? callsign,
             String? propic,
             @JsonKey(name: 'user_type') UserType? userType,
-            @JsonKey(name: 'last_seen_version') String? lastSeenVersion)?
+            @JsonKey(name: 'last_seen_version') String? lastSeenVersion,
+            @JsonKey(name: 'cluster_notifications_enabled', defaultValue: true)
+            bool clusterNotificationsEnabled)?
         $default, {
     required TResult orElse(),
   }) {
@@ -250,7 +265,8 @@ extension ProfileModelPatterns on ProfileModel {
             _that.callsign,
             _that.propic,
             _that.userType,
-            _that.lastSeenVersion);
+            _that.lastSeenVersion,
+            _that.clusterNotificationsEnabled);
       case _:
         return orElse();
     }
@@ -278,7 +294,9 @@ extension ProfileModelPatterns on ProfileModel {
             String? callsign,
             String? propic,
             @JsonKey(name: 'user_type') UserType? userType,
-            @JsonKey(name: 'last_seen_version') String? lastSeenVersion)
+            @JsonKey(name: 'last_seen_version') String? lastSeenVersion,
+            @JsonKey(name: 'cluster_notifications_enabled', defaultValue: true)
+            bool clusterNotificationsEnabled)
         $default,
   ) {
     final _that = this;
@@ -291,7 +309,8 @@ extension ProfileModelPatterns on ProfileModel {
             _that.callsign,
             _that.propic,
             _that.userType,
-            _that.lastSeenVersion);
+            _that.lastSeenVersion,
+            _that.clusterNotificationsEnabled);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -318,7 +337,9 @@ extension ProfileModelPatterns on ProfileModel {
             String? callsign,
             String? propic,
             @JsonKey(name: 'user_type') UserType? userType,
-            @JsonKey(name: 'last_seen_version') String? lastSeenVersion)?
+            @JsonKey(name: 'last_seen_version') String? lastSeenVersion,
+            @JsonKey(name: 'cluster_notifications_enabled', defaultValue: true)
+            bool clusterNotificationsEnabled)?
         $default,
   ) {
     final _that = this;
@@ -331,7 +352,8 @@ extension ProfileModelPatterns on ProfileModel {
             _that.callsign,
             _that.propic,
             _that.userType,
-            _that.lastSeenVersion);
+            _that.lastSeenVersion,
+            _that.clusterNotificationsEnabled);
       case _:
         return null;
     }
@@ -348,7 +370,9 @@ class _ProfileModel implements ProfileModel {
       required this.callsign,
       required this.propic,
       @JsonKey(name: 'user_type') this.userType,
-      @JsonKey(name: 'last_seen_version') this.lastSeenVersion});
+      @JsonKey(name: 'last_seen_version') this.lastSeenVersion,
+      @JsonKey(name: 'cluster_notifications_enabled', defaultValue: true)
+      this.clusterNotificationsEnabled = true});
   factory _ProfileModel.fromJson(Map<String, dynamic> json) =>
       _$ProfileModelFromJson(json);
 
@@ -370,6 +394,9 @@ class _ProfileModel implements ProfileModel {
   @override
   @JsonKey(name: 'last_seen_version')
   final String? lastSeenVersion;
+  @override
+  @JsonKey(name: 'cluster_notifications_enabled', defaultValue: true)
+  final bool clusterNotificationsEnabled;
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -402,17 +429,21 @@ class _ProfileModel implements ProfileModel {
             (identical(other.userType, userType) ||
                 other.userType == userType) &&
             (identical(other.lastSeenVersion, lastSeenVersion) ||
-                other.lastSeenVersion == lastSeenVersion));
+                other.lastSeenVersion == lastSeenVersion) &&
+            (identical(other.clusterNotificationsEnabled,
+                    clusterNotificationsEnabled) ||
+                other.clusterNotificationsEnabled ==
+                    clusterNotificationsEnabled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, firstName, lastName,
-      callsign, propic, userType, lastSeenVersion);
+      callsign, propic, userType, lastSeenVersion, clusterNotificationsEnabled);
 
   @override
   String toString() {
-    return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, callsign: $callsign, propic: $propic, userType: $userType, lastSeenVersion: $lastSeenVersion)';
+    return 'ProfileModel(id: $id, firstName: $firstName, lastName: $lastName, callsign: $callsign, propic: $propic, userType: $userType, lastSeenVersion: $lastSeenVersion, clusterNotificationsEnabled: $clusterNotificationsEnabled)';
   }
 }
 
@@ -431,7 +462,9 @@ abstract mixin class _$ProfileModelCopyWith<$Res>
       String? callsign,
       String? propic,
       @JsonKey(name: 'user_type') UserType? userType,
-      @JsonKey(name: 'last_seen_version') String? lastSeenVersion});
+      @JsonKey(name: 'last_seen_version') String? lastSeenVersion,
+      @JsonKey(name: 'cluster_notifications_enabled', defaultValue: true)
+      bool clusterNotificationsEnabled});
 }
 
 /// @nodoc
@@ -454,6 +487,7 @@ class __$ProfileModelCopyWithImpl<$Res>
     Object? propic = freezed,
     Object? userType = freezed,
     Object? lastSeenVersion = freezed,
+    Object? clusterNotificationsEnabled = null,
   }) {
     return _then(_ProfileModel(
       id: null == id
@@ -484,6 +518,10 @@ class __$ProfileModelCopyWithImpl<$Res>
           ? _self.lastSeenVersion
           : lastSeenVersion // ignore: cast_nullable_to_non_nullable
               as String?,
+      clusterNotificationsEnabled: null == clusterNotificationsEnabled
+          ? _self.clusterNotificationsEnabled
+          : clusterNotificationsEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }

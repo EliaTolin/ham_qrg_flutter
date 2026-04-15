@@ -225,7 +225,7 @@ class _RepeaterCard extends StatelessWidget {
                       const SizedBox(height: 8),
                       // Name
                       Text(
-                        repeater.name ?? repeater.callsign ?? '',
+                        repeater.callsign ?? repeater.name ?? '',
                         style: theme.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),

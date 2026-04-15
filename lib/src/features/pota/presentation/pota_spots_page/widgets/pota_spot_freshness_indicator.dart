@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/utils/freshness_color_helper.dart';
 
 class PotaSpotFreshnessIndicator extends StatelessWidget {
   const PotaSpotFreshnessIndicator({
@@ -11,7 +12,7 @@ class PotaSpotFreshnessIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final age = DateTime.now().difference(spotTime);
-    final color = _colorForAge(age);
+    final color = freshnessColor(age, Theme.of(context).colorScheme);
 
     return Container(
       width: 10,
@@ -21,12 +22,6 @@ class PotaSpotFreshnessIndicator extends StatelessWidget {
         shape: BoxShape.circle,
       ),
     );
-  }
-
-  Color _colorForAge(Duration age) {
-    if (age.inMinutes < 5) return Colors.green;
-    if (age.inMinutes < 15) return Colors.amber;
-    return Colors.grey;
   }
 }
 

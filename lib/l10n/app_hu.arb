@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Alkalmazás elérhető angolul, spanyolul és franciául",
   "changelog1017Onboarding": "Új első indítási élmény",
   "changelog1017ReportAnonymous": "Bejelentések regisztráció nélkül is elérhetők",
+  "changelog1020ClusterSpots": "Valós idejű cluster spotok: nézd meg, ki hallgat az átjátszókon, értesítésekkel és beállításokkal",
+  "changelog1020DetailTabs": "Átjátszó oldal Info, Cluster és Közösség fülekkel",
+  "changelog1020TabletLayout": "Táblagépre optimalizált elrendezés",
 
   "changelogTitle": "Újdonságok",
   "changelogSubtitle": "Íme, mi újság ebben a verzióban",
@@ -717,6 +720,65 @@
   "@repeatersResultsCount": {
     "placeholders": {
       "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spotCreateTitle": "Magad spottolása",
+  "spotCreateOtherTitle": "OM spottolása",
+  "spotCreateDuration": "Időtartam",
+  "spotCreateAccess": "Üzemmód (opcionális)",
+  "spotCreateCallsign": "A hallott OM hívójele",
+  "spotCreateCallsignHint": "Pl. HA1ABC",
+  "spotCreateConfirm": "Megerősítés",
+  "spotCreateSuccessSelf": "Spot létrehozva!",
+  "spotCreateSuccessOther": "OM spottolva!",
+  "spotActiveYou": "Spottolva vagy",
+  "spotActiveClose": "Spot lezárása",
+  "spotActiveOn": "a következőn: {repeaterName}",
+  "@spotActiveOn": {
+    "placeholders": {
+      "repeaterName": {
+        "type": "String"
+      }
+    }
+  },
+  "spotActiveNone": "Jelenleg senki sincs spottolva",
+  "spotActiveCta": "Légy te az első!",
+  "spotActiveSection": "Aktív spotok",
+  "spotHistorySection": "Spot előzmények",
+  "spotListTitle": "Legújabb spotok",
+  "spotListViewAll": "Összes megtekintése",
+  "spotListBadgeActive": "Hallgatózik",
+  "spotListBadgeClosed": "Befejezve",
+  "spotListBadgeReport": "Jelentés",
+  "spotListEmpty": "Nincs spot az elmúlt 24 órában",
+  "spotListSpottedBy": "Jelentette: {callsign}",
+  "@spotListSpottedBy": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNotificationToggle": "Klaszter értesítések",
+  "spotNotificationDisabled": "Klaszter értesítések kikapcsolva a profilbeállításokban",
+  "spotNotificationPerFavorite": "Spot értesítések",
+  "spotPreviousClosed": "Az előző spotod már nem aktív",
+  "spotErrorAuthRequired": "Be kell jelentkezned.",
+  "spotErrorCallsignRequired": "Állítsd be a hívójeledet a profilodban a klaszter használatához.",
+  "spotErrorInvalidDuration": "Az időtartamnak 5 és 60 perc között kell lennie.",
+  "spotErrorRepeaterNotFound": "Átjátszó nem található.",
+  "spotErrorInvalidAccess": "Érvénytelen hozzáférési mód ehhez az átjátszóhoz.",
+  "spotErrorSpotNotFound": "Spot nem található.",
+  "spotErrorForbidden": "Nem zárhatod le más spotját.",
+  "spotErrorAlreadyClosed": "A spot már le van zárva.",
+  "spotErrorGeneric": "Hiba a spot létrehozásakor. Kérjük, próbáld újra.",
+  "spotAccessUnavailable": "(üzemmód már nem elérhető)",
+  "spotDurationMinutes": "{minutes} perc",
+  "@spotDurationMinutes": {
+    "placeholders": {
+      "minutes": {
         "type": "int"
       }
     }

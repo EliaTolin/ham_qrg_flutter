@@ -34,6 +34,9 @@ abstract interface class RepeatersDatasource {
 
   Future<List<RepeaterModel>> getFavoriteRepeaters(String userId);
 
+  /// Returns favorite metadata: list of {id, repeater_id, cluster_notifications_enabled}.
+  Future<List<Map<String, dynamic>>> getFavoritesMeta(String userId);
+
   Future<RepeaterModel?> getRepeaterById(String repeaterId);
 
   Future<void> addFavoriteRepeater(String userId, String repeaterId);

@@ -8,12 +8,15 @@ import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/utils/version_utils.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
+import 'package:hamqrg/common/widgets/sheet/sheet_drag_handle.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:hamqrg/src/features/changelog/data/changelog_data.dart';
 import 'package:hamqrg/src/features/changelog/presentation/changelog_sheet.dart';
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
+import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashboard_tablet.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
@@ -23,9 +26,10 @@ import 'package:hamqrg/src/features/pota/presentation/widgets/pota_mode_badge.da
 import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 import 'package:hamqrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/spots/presentation/widgets/spot_dashboard_tab.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-enum _DashboardTab { repeaters, pota }
+enum _DashboardTab { repeaters, spots, pota }
 
 @RoutePage()
 class DashboardPage extends HookConsumerWidget {
@@ -39,81 +43,95 @@ class DashboardPage extends HookConsumerWidget {
     final l10n = context.localization;
 
     return controller.when(
-      data: (state) => Scaffold(
-        body: Stack(
+      data: (state) => ResponsiveLayout(
+        tablet: (_) => Stack(
           children: [
-            // Changelog trigger (invisible, fires once)
             _ChangelogTrigger(profile: state.profile),
-
-            // Map Section (full screen, non-interactive preview)
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.6,
-              child: IgnorePointer(
-                child: MapSectionWidget(
-                  nearbyRepeaters: state.nearbyRepeaters,
-                  initialPosition: (
-                    lat: state.initialPosition.lat,
-                    lon: state.initialPosition.lon,
-                    zoom: 8.5
-                  ),
-                ),
-              ),
-            ),
-            // Locator Chip
-            Positioned(
-              top: MediaQuery.paddingOf(context).top + 16,
-              right: 16,
-              child: Chip(
-                avatar: Icon(
-                  Icons.grid_on,
-                  size: 16,
-                  color: colorScheme.primary,
-                ),
-                label: Text(
-                  MaidenheadLocator.fromCoordinates(
-                    latitude: state.initialPosition.lat,
-                    longitude: state.initialPosition.lon,
-                  ),
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-                backgroundColor: colorScheme.surface,
-                side: BorderSide(
-                  color: colorScheme.outline.withValues(alpha: 0.2),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-            ),
-            // Map tap target — below the sheet so sheet items take priority
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: MediaQuery.sizeOf(context).height * 0.42,
-              child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  AutoTabsRouter.of(context).setActiveIndex(2);
-                },
-              ),
-            ),
-            // Draggable Content Sheet
-            DraggableScrollableSheet(
-              initialChildSize: 0.42,
-              minChildSize: 0.42,
-              maxChildSize:
-                  1.0 - (MediaQuery.paddingOf(context).top / MediaQuery.sizeOf(context).height),
-              builder: (context, scrollController) => _ContentSection(
-                statistics: state.statistics,
-                nearbyRepeaters: state.nearbyRepeaters,
-                potaSpots: state.potaSpots,
-                scrollController: scrollController,
-              ),
+            DashboardTablet(
+              statistics: state.statistics,
+              initialPosition: state.initialPosition,
+              nearbyRepeaters: state.nearbyRepeaters,
+              potaSpots: state.potaSpots,
             ),
           ],
+        ),
+        mobile: (_) => Scaffold(
+          body: Stack(
+            children: [
+              // Changelog trigger (invisible, fires once)
+              _ChangelogTrigger(profile: state.profile),
+
+              // Map Section (full screen, non-interactive preview)
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * 0.6,
+                child: IgnorePointer(
+                  child: MapSectionWidget(
+                    nearbyRepeaters: state.nearbyRepeaters,
+                    initialPosition: (
+                      lat: state.initialPosition.lat,
+                      lon: state.initialPosition.lon,
+                      zoom: 8.5
+                    ),
+                  ),
+                ),
+              ),
+              // Locator Chip
+              Positioned(
+                top: MediaQuery.paddingOf(context).top + 16,
+                right: 16,
+                child: Chip(
+                  avatar: Icon(
+                    Icons.grid_on,
+                    size: 16,
+                    color: colorScheme.primary,
+                  ),
+                  label: Text(
+                    MaidenheadLocator.fromCoordinates(
+                      latitude: state.initialPosition.lat,
+                      longitude: state.initialPosition.lon,
+                    ),
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  backgroundColor: colorScheme.surface,
+                  side: BorderSide(
+                    color: colorScheme.outline.withValues(alpha: 0.2),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+              ),
+              // Map tap target — below the sheet so sheet items take priority
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: MediaQuery.sizeOf(context).height * 0.42,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    AutoTabsRouter.of(context).setActiveIndex(2);
+                  },
+                ),
+              ),
+              // Draggable Content Sheet
+              DraggableScrollableSheet(
+                initialChildSize: 0.42,
+                minChildSize: 0.42,
+                maxChildSize: 1.0 -
+                    (MediaQuery.paddingOf(context).top /
+                        MediaQuery.sizeOf(context).height),
+                builder: (context, scrollController) => _ContentSection(
+                  statistics: state.statistics,
+                  nearbyRepeaters: state.nearbyRepeaters,
+                  potaSpots: state.potaSpots,
+                  scrollController: scrollController,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       error: (error, stackTrace) => Center(
@@ -128,7 +146,8 @@ class DashboardPage extends HookConsumerWidget {
             ),
             const SizedBox(height: 16),
             FilledButton(
-              onPressed: () => ref.read(dashboardControllerProvider.notifier).reload(),
+              onPressed: () =>
+                  ref.read(dashboardControllerProvider.notifier).reload(),
               child: Text(l10n.retry),
             ),
           ],
@@ -160,7 +179,6 @@ class _ContentSection extends HookWidget {
   Widget build(BuildContext context) {
     final selectedTab = useState(_DashboardTab.repeaters);
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return RepaintBoundary(
       child: Container(
@@ -169,7 +187,7 @@ class _ContentSection extends HookWidget {
           borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
+              color: theme.colorScheme.shadow.withValues(alpha: 0.2),
               blurRadius: 30,
               offset: const Offset(0, -4),
             ),
@@ -178,21 +196,15 @@ class _ContentSection extends HookWidget {
         child: Column(
           children: [
             // Handle
-            Container(
-              margin: const EdgeInsets.only(top: 12, bottom: 8),
-              width: 48,
-              height: 6,
-              decoration: BoxDecoration(
-                color: colorScheme.outlineVariant,
-                borderRadius: BorderRadius.circular(3),
-              ),
-            ),
+            const SheetDragHandle(),
             // Scrollable Content
             Expanded(
               child: SingleChildScrollView(
                 controller: scrollController,
-                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -213,6 +225,9 @@ class _ContentSection extends HookWidget {
                         _DashboardTab.repeaters => _RepeatersTabContent(
                             key: const ValueKey('repeaters'),
                             nearbyRepeaters: nearbyRepeaters.take(10).toList(),
+                          ),
+                        _DashboardTab.spots => const SpotDashboardTab(
+                            key: ValueKey('spots'),
                           ),
                         _DashboardTab.pota => _PotaTabContent(
                             key: const ValueKey('pota'),
@@ -261,7 +276,7 @@ class _StatsRow extends ConsumerWidget {
         Expanded(
           child: _StatChip(
             icon: Icons.favorite,
-            iconColor: Colors.redAccent,
+            iconColor: colorScheme.error,
             label: l10n.homeSaved(statistics.favoritesCount ?? 0),
             onTap: () async {
               final isAuthenticated = await requireAuthentication(context, ref);
@@ -356,7 +371,10 @@ class _TabSelector extends StatelessWidget {
           ButtonSegment(
             value: _DashboardTab.repeaters,
             label: Text(l10n.dashboardTabRepeaters),
-            icon: const Icon(Icons.cell_tower, size: 18),
+          ),
+          ButtonSegment(
+            value: _DashboardTab.spots,
+            label: Text(l10n.spotListTitle),
           ),
           ButtonSegment(
             value: _DashboardTab.pota,
@@ -369,11 +387,6 @@ class _TabSelector extends StatelessWidget {
                   _LiveBadge(count: potaSpotsCount),
                 ],
               ],
-            ),
-            icon: Image.asset(
-              'assets/images/pota_logo.png',
-              width: 24,
-              height: 24,
             ),
           ),
         ],
@@ -628,7 +641,9 @@ class _PotaSpotItem extends StatelessWidget {
                             '${spot.frequency} kHz',
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: colorScheme.onSurfaceVariant,
-                              fontFeatures: const [FontFeature.tabularFigures()],
+                              fontFeatures: const [
+                                FontFeature.tabularFigures(),
+                              ],
                             ),
                           ),
                           if (band != null) ...[
@@ -682,7 +697,8 @@ class _PotaSpotItem extends StatelessWidget {
                           Text(
                             spot.reference,
                             style: theme.textTheme.labelSmall?.copyWith(
-                              color: colorScheme.onSurface.withValues(alpha: 0.5),
+                              color:
+                                  colorScheme.onSurface.withValues(alpha: 0.5),
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -755,7 +771,7 @@ class _NearbyRepeaterItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          repeater.name ?? repeater.callsign ?? '',
+                          repeater.callsign ?? repeater.name ?? '',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),

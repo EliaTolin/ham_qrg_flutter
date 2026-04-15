@@ -37,7 +37,7 @@ class PerformanceMetricsSection extends StatelessWidget {
             Expanded(
               child: MetricCard(
                 icon: Icons.thumb_up,
-                iconColor: Colors.green,
+                iconColor: colorScheme.tertiary,
                 value: likesTotal.toString(),
                 label: l10n.repeaterDetailTotalLikes,
               ),
@@ -46,7 +46,7 @@ class PerformanceMetricsSection extends StatelessWidget {
             Expanded(
               child: MetricCard(
                 icon: Icons.warning_amber_rounded,
-                iconColor: Colors.amber,
+                iconColor: colorScheme.error,
                 value: downTotal.toString(),
                 label: l10n.repeaterDetailReports1Yr,
               ),
@@ -146,7 +146,7 @@ class PerformanceMetricsSection extends StatelessWidget {
             Expanded(
               child: LastActivityCard(
                 icon: Icons.thumb_up,
-                iconColor: Colors.green,
+                iconColor: colorScheme.tertiary,
                 label: l10n.repeaterDetailLastLike,
                 timeAgo: lastLikeAt != null ? TimeHelper.formatTimeAgo(lastLikeAt, l10n) : null,
               ),
@@ -155,7 +155,7 @@ class PerformanceMetricsSection extends StatelessWidget {
             Expanded(
               child: LastActivityCard(
                 icon: Icons.warning_amber_rounded,
-                iconColor: Colors.amber,
+                iconColor: colorScheme.error,
                 label: l10n.repeaterDetailLastDownReport,
                 timeAgo: lastDownAt != null ? TimeHelper.formatTimeAgo(lastDownAt, l10n) : null,
               ),
@@ -171,14 +171,15 @@ class PerformanceMetricsSection extends StatelessWidget {
     BuildContext context,
   ) {
     final l10n = context.localization;
+    final colorScheme = Theme.of(context).colorScheme;
     if (score >= 80) {
-      return (label: l10n.repeaterDetailExcellent, color: Colors.green);
+      return (label: l10n.repeaterDetailExcellent, color: colorScheme.tertiary);
     } else if (score >= 60) {
-      return (label: l10n.repeaterDetailGood, color: Colors.blue);
+      return (label: l10n.repeaterDetailGood, color: colorScheme.primary);
     } else if (score >= 40) {
-      return (label: l10n.repeaterDetailFair, color: Colors.amber);
+      return (label: l10n.repeaterDetailFair, color: colorScheme.error);
     } else {
-      return (label: l10n.repeaterDetailToVerify, color: Colors.orange);
+      return (label: l10n.repeaterDetailToVerify, color: colorScheme.error);
     }
   }
 }
@@ -286,7 +287,7 @@ class CircularProgressPainter extends CustomPainter {
 
     // Background circle
     final backgroundPaint = Paint()
-      ..color = Colors.grey.withValues(alpha: 0.2)
+      ..color = color.withValues(alpha: 0.2)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 6;
 

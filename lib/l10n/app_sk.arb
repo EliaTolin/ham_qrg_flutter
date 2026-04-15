@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Aplikácia dostupná v angličtine, španielčine a francúzštine",
   "changelog1017Onboarding": "Nový zážitok pri prvom spustení",
   "changelog1017ReportAnonymous": "Hlásenia dostupné bez registrácie",
+  "changelog1020ClusterSpots": "Cluster spoty v reálnom čase: uvidíte, kto počúva na prevádzačoch, s oznámeniami a preferenciami",
+  "changelog1020DetailTabs": "Stránka prevádzača s kartami Info, Cluster a Komunita",
+  "changelog1020TabletLayout": "Rozloženie optimalizované pre tablety",
 
   "changelogTitle": "Čo je nové",
   "changelogSubtitle": "Tu je prehľad noviniek v tejto verzii",
@@ -717,6 +720,65 @@
   "@repeatersResultsCount": {
     "placeholders": {
       "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spotCreateTitle": "Spottovať seba",
+  "spotCreateOtherTitle": "Spottovať OM",
+  "spotCreateDuration": "Trvanie",
+  "spotCreateAccess": "Režim (voliteľný)",
+  "spotCreateCallsign": "Značka počutého OM",
+  "spotCreateCallsignHint": "Napr. OM1ABC",
+  "spotCreateConfirm": "Potvrdiť",
+  "spotCreateSuccessSelf": "Spot vytvorený!",
+  "spotCreateSuccessOther": "OM spottovaný!",
+  "spotActiveYou": "Ste spottovaný",
+  "spotActiveClose": "Zatvoriť spot",
+  "spotActiveOn": "na {repeaterName}",
+  "@spotActiveOn": {
+    "placeholders": {
+      "repeaterName": {
+        "type": "String"
+      }
+    }
+  },
+  "spotActiveNone": "Momentálne nikto spottovaný",
+  "spotActiveCta": "Buďte prvý!",
+  "spotActiveSection": "Aktívne spoty",
+  "spotHistorySection": "História spotov",
+  "spotListTitle": "Najnovšie spoty",
+  "spotListViewAll": "Zobraziť všetko",
+  "spotListBadgeActive": "Počúva",
+  "spotListBadgeClosed": "Ukončené",
+  "spotListBadgeReport": "Nahlásiť",
+  "spotListEmpty": "Žiadne spoty za posledných 24 hodín",
+  "spotListSpottedBy": "Nahlásil {callsign}",
+  "@spotListSpottedBy": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNotificationToggle": "Oznámenia klastra",
+  "spotNotificationDisabled": "Oznámenia klastra vypnuté v nastaveniach profilu",
+  "spotNotificationPerFavorite": "Oznámenia o spotoch",
+  "spotPreviousClosed": "Váš predchádzajúci spot už nie je aktívny",
+  "spotErrorAuthRequired": "Musíte byť prihlásený.",
+  "spotErrorCallsignRequired": "Nastavte svoju značku v profile na používanie klastra.",
+  "spotErrorInvalidDuration": "Trvanie musí byť medzi 5 a 60 minútami.",
+  "spotErrorRepeaterNotFound": "Prevádzač nenájdený.",
+  "spotErrorInvalidAccess": "Neplatný prístupový režim pre tento prevádzač.",
+  "spotErrorSpotNotFound": "Spot nenájdený.",
+  "spotErrorForbidden": "Nemôžete zatvoriť spot, ktorý nie je váš.",
+  "spotErrorAlreadyClosed": "Spot je už zatvorený.",
+  "spotErrorGeneric": "Chyba pri vytváraní spotu. Skúste to prosím znova.",
+  "spotAccessUnavailable": "(režim už nie je dostupný)",
+  "spotDurationMinutes": "{minutes} min",
+  "@spotDurationMinutes": {
+    "placeholders": {
+      "minutes": {
         "type": "int"
       }
     }

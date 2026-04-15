@@ -52,7 +52,23 @@
       "Bash(which deploy_flutter 2>/dev/null || type deploy_flutter 2>/dev/null || command -v deploy_flutter 2>/dev/null)",
       "Read(//opt/homebrew/bin/**)",
       "Bash(brew list:*)",
-      "Bash(dart pub:*)"
+      "Bash(dart pub:*)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g format -g hasAlpha /Users/eliatolin/Desktop/Aurora/Progetti/HamQRG/ham_qrg_flutter/image.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/0_APP_IPAD_PRO_3GEN_129_0.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/1_APP_IPAD_PRO_3GEN_129_1.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/2_APP_IPAD_PRO_3GEN_129_2.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/3_APP_IPAD_PRO_3GEN_129_3.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/4_APP_IPAD_PRO_3GEN_129_4.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha -g format \"image copy 5.png\")",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/0_APP_IPHONE_69_0.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/1_APP_IPHONE_69_1.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/2_APP_IPHONE_69_2.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/3_APP_IPHONE_69_3.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/4_APP_IPHONE_69_4.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/5_APP_IPHONE_69_5.png)",
+      "Bash(mv 4_APP_IPHONE_69_4.png _tmp.png)",
+      "Bash(mv 5_APP_IPHONE_69_5.png 4_APP_IPHONE_69_4.png)",
+      "Bash(mv _tmp.png 5_APP_IPHONE_69_5.png)"
     ]
   }
 }

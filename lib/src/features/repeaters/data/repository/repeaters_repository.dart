@@ -87,6 +87,22 @@ class RepeatersRepository {
     return data.map(_mapper.fromModel).toList();
   }
 
+  /// Returns favorite metadata: maps of repeaterId → clusterNotificationsEnabled
+  /// and repeaterId → favoriteId.
+  Future<({Map<String, bool> clusterNotifications, Map<String, String> favoriteIds})>
+      getFavoritesMeta(String userId) async {
+    final rows = await _datasource.getFavoritesMeta(userId);
+    final clusterNotifications = <String, bool>{};
+    final favoriteIds = <String, String>{};
+    for (final row in rows) {
+      final repeaterId = row['repeater_id'] as String;
+      clusterNotifications[repeaterId] =
+          row['cluster_notifications_enabled'] as bool? ?? true;
+      favoriteIds[repeaterId] = row['id'] as String;
+    }
+    return (clusterNotifications: clusterNotifications, favoriteIds: favoriteIds);
+  }
+
   Future<Repeater?> getRepeaterById(String repeaterId) async {
     final model = await _datasource.getRepeaterById(repeaterId);
     if (model == null) {

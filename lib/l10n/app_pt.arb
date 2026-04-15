@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Aplicação disponível em inglês, espanhol e francês",
   "changelog1017Onboarding": "Nova experiência de primeiro arranque",
   "changelog1017ReportAnonymous": "Relatórios disponíveis sem registo",
+  "changelog1020ClusterSpots": "Cluster spots em tempo real: vê quem está à escuta nos repetidores, com notificações e preferências",
+  "changelog1020DetailTabs": "Página do repetidor com separadores Info, Cluster e Comunidade",
+  "changelog1020TabletLayout": "Layout otimizado para tablets",
 
   "changelogTitle": "Novidades",
   "changelogSubtitle": "Eis o que há de novo nesta versão",
@@ -717,6 +720,65 @@
   "@repeatersResultsCount": {
     "placeholders": {
       "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spotCreateTitle": "Spottar-se",
+  "spotCreateOtherTitle": "Spottar um OM",
+  "spotCreateDuration": "Duração",
+  "spotCreateAccess": "Modo (opcional)",
+  "spotCreateCallsign": "Indicativo do OM ouvido",
+  "spotCreateCallsignHint": "Ex. CT1ABC",
+  "spotCreateConfirm": "Confirmar",
+  "spotCreateSuccessSelf": "Spot criado!",
+  "spotCreateSuccessOther": "OM spottado!",
+  "spotActiveYou": "Está spottado",
+  "spotActiveClose": "Fechar spot",
+  "spotActiveOn": "em {repeaterName}",
+  "@spotActiveOn": {
+    "placeholders": {
+      "repeaterName": {
+        "type": "String"
+      }
+    }
+  },
+  "spotActiveNone": "Ninguém spottado de momento",
+  "spotActiveCta": "Seja o primeiro!",
+  "spotActiveSection": "Spots ativos",
+  "spotHistorySection": "Histórico de spots",
+  "spotListTitle": "Últimos spots",
+  "spotListViewAll": "Ver todos",
+  "spotListBadgeActive": "A escutar",
+  "spotListBadgeClosed": "Terminado",
+  "spotListBadgeReport": "Reportar",
+  "spotListEmpty": "Sem spots nas últimas 24 horas",
+  "spotListSpottedBy": "Reportado por {callsign}",
+  "@spotListSpottedBy": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNotificationToggle": "Notificações do cluster",
+  "spotNotificationDisabled": "Notificações do cluster desativadas nas definições do perfil",
+  "spotNotificationPerFavorite": "Notificações de spots",
+  "spotPreviousClosed": "O seu spot anterior já não está ativo",
+  "spotErrorAuthRequired": "Tem de ter sessão iniciada.",
+  "spotErrorCallsignRequired": "Defina o seu indicativo no perfil para usar o cluster.",
+  "spotErrorInvalidDuration": "A duração deve ser entre 5 e 60 minutos.",
+  "spotErrorRepeaterNotFound": "Repetidor não encontrado.",
+  "spotErrorInvalidAccess": "Modo de acesso inválido para este repetidor.",
+  "spotErrorSpotNotFound": "Spot não encontrado.",
+  "spotErrorForbidden": "Não pode fechar um spot que não é seu.",
+  "spotErrorAlreadyClosed": "O spot já está fechado.",
+  "spotErrorGeneric": "Erro ao criar o spot. Tente novamente.",
+  "spotAccessUnavailable": "(modo já não disponível)",
+  "spotDurationMinutes": "{minutes} min",
+  "@spotDurationMinutes": {
+    "placeholders": {
+      "minutes": {
         "type": "int"
       }
     }

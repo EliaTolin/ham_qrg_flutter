@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/sheet/sheet_drag_handle.dart';
 import 'package:hamqrg/src/features/repeaters/domain/altimetric_profile/altimetric_profile.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_altimetric_profile/get_altimetric_profile_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -48,16 +49,9 @@ class AltimetricProfileBottomSheet extends ConsumerWidget {
           child: Column(
             children: [
               // Handle
-              Padding(
-                padding: const EdgeInsets.only(top: 12, bottom: 8),
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
+              const Padding(
+                padding: EdgeInsets.only(top: 12, bottom: 8),
+                child: SheetDragHandle(),
               ),
               // Title
               Padding(
@@ -202,12 +196,12 @@ class _ProfileChart extends StatelessWidget {
           decoration: BoxDecoration(
             color: losObstructed
                 ? colorScheme.errorContainer.withValues(alpha: 0.5)
-                : Colors.green.withValues(alpha: 0.12),
+                : colorScheme.tertiary.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
               color: losObstructed
                   ? colorScheme.error.withValues(alpha: 0.3)
-                  : Colors.green.withValues(alpha: 0.3),
+                  : colorScheme.tertiary.withValues(alpha: 0.3),
             ),
           ),
           child: Row(
@@ -216,7 +210,7 @@ class _ProfileChart extends StatelessWidget {
               Icon(
                 losObstructed ? Icons.visibility_off : Icons.visibility,
                 size: 18,
-                color: losObstructed ? colorScheme.error : Colors.green,
+                color: losObstructed ? colorScheme.error : colorScheme.tertiary,
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -226,7 +220,7 @@ class _ProfileChart extends StatelessWidget {
                       : l10n.repeaterDetailLosClear,
                   style: theme.textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: losObstructed ? colorScheme.error : Colors.green,
+                    color: losObstructed ? colorScheme.error : colorScheme.tertiary,
                   ),
                 ),
               ),
@@ -243,7 +237,7 @@ class _ProfileChart extends StatelessWidget {
             ),
             const SizedBox(width: 16),
             _LegendItem(
-              color: losObstructed ? colorScheme.error : Colors.green,
+              color: losObstructed ? colorScheme.error : colorScheme.tertiary,
               label: l10n.repeaterDetailLineOfSight,
               dashed: true,
             ),
@@ -386,13 +380,13 @@ class _ProfileChart extends StatelessWidget {
                 // Line of sight (dashed)
                 LineChartBarData(
                   spots: losSpots,
-                  color: losObstructed ? colorScheme.error : Colors.green,
+                  color: losObstructed ? colorScheme.error : colorScheme.tertiary,
                   dashArray: [8, 4],
                   dotData: FlDotData(
                     getDotPainter: (spot, percent, bar, index) =>
                         FlDotCirclePainter(
                       radius: 4,
-                      color: losObstructed ? colorScheme.error : Colors.green,
+                      color: losObstructed ? colorScheme.error : colorScheme.tertiary,
                       strokeWidth: 2,
                       strokeColor: colorScheme.surface,
                     ),

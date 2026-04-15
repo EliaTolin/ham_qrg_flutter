@@ -19,11 +19,14 @@ class FavoriteRepeatersNotifier extends _$FavoriteRepeatersNotifier {
     final repeaters = await repository.getFavoriteRepeaters(userId);
     final ids = await repository.getFavoriteRepeatersIds(userId);
     final count = await repository.getTotalFavoritesCount(userId);
-    
+    final meta = await repository.getFavoritesMeta(userId);
+
     return FavoriteRepeatersState(
       repeaters: repeaters,
       ids: ids,
       count: count ?? 0,
+      clusterNotifications: meta.clusterNotifications,
+      favoriteIdByRepeaterId: meta.favoriteIds,
     );
   }
 

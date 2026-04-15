@@ -40,7 +40,7 @@ class PotaParkInfoSection extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: Colors.green.shade700.withValues(alpha: 0.1),
+                  color: colorScheme.tertiary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
@@ -184,21 +184,21 @@ class PotaParkInfoSection extends StatelessWidget {
       if (park.locationName != null)
         (
           icon: Icons.place,
-          color: Colors.orange,
+          color: colorScheme.error,
           label: l10n.potaLocation,
           value: park.locationName!,
         ),
       if (park.entityName != null)
         (
           icon: Icons.flag,
-          color: Colors.blue,
+          color: colorScheme.primary,
           label: l10n.potaCountry,
           value: park.entityName!,
         ),
       if (park.firstActivator != null)
         (
           icon: Icons.person,
-          color: Colors.purple,
+          color: colorScheme.tertiary,
           label: l10n.potaFirstActivation,
           value:
               '${park.firstActivator!}${park.firstActivationDate != null ? " (${park.firstActivationDate!})" : ""}',

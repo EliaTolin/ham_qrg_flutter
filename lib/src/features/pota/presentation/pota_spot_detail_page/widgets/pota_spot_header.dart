@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/utils/freshness_color_helper.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart';
@@ -10,18 +11,12 @@ class PotaSpotHeader extends StatelessWidget {
 
   final PotaSpot spot;
 
-  Color _freshnessColor(Duration age) {
-    if (age.inMinutes < 5) return const Color(0xFF4ADE80); // green-400
-    if (age.inMinutes < 15) return const Color(0xFFFBBF24); // amber-400
-    return const Color(0xFF9CA3AF); // gray-400
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final band = bandFromFrequencyKhz(spot.frequency);
     final age = DateTime.now().difference(spot.spotTime);
-    final freshColor = _freshnessColor(age);
+    final freshColor = freshnessColor(age, theme.colorScheme);
 
     return SliverAppBar(
       expandedHeight: 240,
@@ -29,9 +24,9 @@ class PotaSpotHeader extends StatelessWidget {
       leading: Padding(
         padding: const EdgeInsets.all(8),
         child: CircleAvatar(
-          backgroundColor: Colors.black.withValues(alpha: 0.2),
+          backgroundColor: theme.colorScheme.shadow.withValues(alpha: 0.2),
           child: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            icon: Icon(Icons.arrow_back, color: theme.colorScheme.onPrimary),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
@@ -61,7 +56,7 @@ class PotaSpotHeader extends StatelessWidget {
                         child: Text(
                           spot.activator,
                           style: theme.textTheme.headlineMedium?.copyWith(
-                            color: Colors.white,
+                            color: theme.colorScheme.onPrimary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -95,7 +90,7 @@ class PotaSpotHeader extends StatelessWidget {
                   Text(
                     spot.name,
                     style: theme.textTheme.titleMedium?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.9),
+                      color: theme.colorScheme.onPrimary.withValues(alpha: 0.9),
                       fontWeight: FontWeight.w500,
                     ),
                     maxLines: 2,
@@ -106,7 +101,7 @@ class PotaSpotHeader extends StatelessWidget {
                   Text(
                     spot.reference,
                     style: theme.textTheme.labelMedium?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.6),
+                      color: theme.colorScheme.onPrimary.withValues(alpha: 0.6),
                       letterSpacing: 0.5,
                     ),
                   ),
@@ -155,15 +150,16 @@ class _HeaderBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final onPrimary = Theme.of(context).colorScheme.onPrimary;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: filled
-            ? Colors.white.withValues(alpha: 0.2)
-            : Colors.white.withValues(alpha: 0.1),
+            ? onPrimary.withValues(alpha: 0.2)
+            : onPrimary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Colors.white.withValues(alpha: filled ? 0.3 : 0.15),
+          color: onPrimary.withValues(alpha: filled ? 0.3 : 0.15),
         ),
       ),
       child: Row(
@@ -173,14 +169,14 @@ class _HeaderBadge extends StatelessWidget {
             Icon(
               icon,
               size: 14,
-              color: Colors.white.withValues(alpha: 0.9),
+              color: onPrimary.withValues(alpha: 0.9),
             ),
             const SizedBox(width: 4),
           ],
           Text(
             label,
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: onPrimary,
               fontSize: 12,
               fontWeight: FontWeight.w700,
               letterSpacing: 0.3,

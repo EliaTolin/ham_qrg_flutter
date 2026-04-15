@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Aplikacija na voljo v angleščini, španščini in francoščini",
   "changelog1017Onboarding": "Nova izkušnja ob prvem zagonu",
   "changelog1017ReportAnonymous": "Prijave na voljo brez registracije",
+  "changelog1020ClusterSpots": "Cluster spoti v realnem času: glej, kdo posluša na repetitorjih, z obvestili in nastavitvami",
+  "changelog1020DetailTabs": "Stran repetitorja z zavihki Info, Cluster in Skupnost",
+  "changelog1020TabletLayout": "Postavitev, optimizirana za tablice",
 
   "changelogTitle": "Novosti",
   "changelogSubtitle": "Tukaj so novosti v tej različici",
@@ -717,6 +720,65 @@
   "@repeatersResultsCount": {
     "placeholders": {
       "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spotCreateTitle": "Spottaj sebe",
+  "spotCreateOtherTitle": "Spottaj OM-a",
+  "spotCreateDuration": "Trajanje",
+  "spotCreateAccess": "Način (neobvezno)",
+  "spotCreateCallsign": "Klicni znak slišanega OM-a",
+  "spotCreateCallsignHint": "Npr. S51ABC",
+  "spotCreateConfirm": "Potrdi",
+  "spotCreateSuccessSelf": "Spot ustvarjen!",
+  "spotCreateSuccessOther": "OM spottan!",
+  "spotActiveYou": "Ste spottani",
+  "spotActiveClose": "Zapri spot",
+  "spotActiveOn": "na {repeaterName}",
+  "@spotActiveOn": {
+    "placeholders": {
+      "repeaterName": {
+        "type": "String"
+      }
+    }
+  },
+  "spotActiveNone": "Trenutno ni nikogar spottanega",
+  "spotActiveCta": "Bodite prvi!",
+  "spotActiveSection": "Aktivni spoti",
+  "spotHistorySection": "Zgodovina spotov",
+  "spotListTitle": "Najnovejši spoti",
+  "spotListViewAll": "Prikaži vse",
+  "spotListBadgeActive": "Posluša",
+  "spotListBadgeClosed": "Končano",
+  "spotListBadgeReport": "Prijavi",
+  "spotListEmpty": "Ni spotov v zadnjih 24 urah",
+  "spotListSpottedBy": "Prijavil {callsign}",
+  "@spotListSpottedBy": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNotificationToggle": "Obvestila klastra",
+  "spotNotificationDisabled": "Obvestila klastra onemogočena v nastavitvah profila",
+  "spotNotificationPerFavorite": "Obvestila o spotih",
+  "spotPreviousClosed": "Vaš prejšnji spot ni več aktiven",
+  "spotErrorAuthRequired": "Morate biti prijavljeni.",
+  "spotErrorCallsignRequired": "Nastavite klicni znak v profilu za uporabo klastra.",
+  "spotErrorInvalidDuration": "Trajanje mora biti med 5 in 60 minutami.",
+  "spotErrorRepeaterNotFound": "Repetitor ni najden.",
+  "spotErrorInvalidAccess": "Neveljaven dostopni način za ta repetitor.",
+  "spotErrorSpotNotFound": "Spot ni najden.",
+  "spotErrorForbidden": "Ne morete zapreti spota, ki ni vaš.",
+  "spotErrorAlreadyClosed": "Spot je že zaprt.",
+  "spotErrorGeneric": "Napaka pri ustvarjanju spota. Poskusite znova.",
+  "spotAccessUnavailable": "(način ni več na voljo)",
+  "spotDurationMinutes": "{minutes} min",
+  "@spotDurationMinutes": {
+    "placeholders": {
+      "minutes": {
         "type": "int"
       }
     }
