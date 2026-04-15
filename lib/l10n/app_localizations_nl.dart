@@ -1630,6 +1630,18 @@ class AppLocalizationsNl extends AppLocalizations {
       'Meldingen beschikbaar zonder registratie';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Realtime cluster spots: zie wie er luistert op repeaters, met meldingen en voorkeuren';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Repeaterpagina met tabbladen Info, Cluster en Community';
+
+  @override
+  String get changelog1020TabletLayout =>
+      'Geoptimaliseerde lay-out voor tablets';
+
+  @override
   String get changelogTitle => 'Wat is er nieuw';
 
   @override
@@ -1646,4 +1658,130 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get changelogDismiss => 'Begrepen!';
+
+  @override
+  String get spotCreateTitle => 'Jezelf spotten';
+
+  @override
+  String get spotCreateOtherTitle => 'Een OM spotten';
+
+  @override
+  String get spotCreateDuration => 'Duur';
+
+  @override
+  String get spotCreateAccess => 'Modus (optioneel)';
+
+  @override
+  String get spotCreateCallsign => 'Roepnaam van gehoorde OM';
+
+  @override
+  String get spotCreateCallsignHint => 'Bijv. PA0ABC';
+
+  @override
+  String get spotCreateConfirm => 'Bevestigen';
+
+  @override
+  String get spotCreateSuccessSelf => 'Spot aangemaakt!';
+
+  @override
+  String get spotCreateSuccessOther => 'OM gespot!';
+
+  @override
+  String get spotActiveYou => 'Je bent gespot';
+
+  @override
+  String get spotActiveClose => 'Spot sluiten';
+
+  @override
+  String spotActiveOn(String repeaterName) {
+    return 'op $repeaterName';
+  }
+
+  @override
+  String get spotActiveNone => 'Momenteel niemand gespot';
+
+  @override
+  String get spotActiveCta => 'Wees de eerste!';
+
+  @override
+  String get spotActiveSection => 'Actieve spots';
+
+  @override
+  String get spotHistorySection => 'Spotgeschiedenis';
+
+  @override
+  String get spotListTitle => 'Laatste spots';
+
+  @override
+  String get spotListViewAll => 'Alles bekijken';
+
+  @override
+  String get spotListBadgeActive => 'Luistert';
+
+  @override
+  String get spotListBadgeClosed => 'Beëindigd';
+
+  @override
+  String get spotListBadgeReport => 'Melden';
+
+  @override
+  String get spotListEmpty => 'Geen spots in de afgelopen 24 uur';
+
+  @override
+  String spotListSpottedBy(String callsign) {
+    return 'Gemeld door $callsign';
+  }
+
+  @override
+  String get spotNotificationToggle => 'Clustermeldingen';
+
+  @override
+  String get spotNotificationDisabled =>
+      'Clustermeldingen uitgeschakeld in profielinstellingen';
+
+  @override
+  String get spotNotificationPerFavorite => 'Spotmeldingen';
+
+  @override
+  String get spotPreviousClosed => 'Je vorige spot is niet meer actief';
+
+  @override
+  String get spotErrorAuthRequired => 'Je moet ingelogd zijn.';
+
+  @override
+  String get spotErrorCallsignRequired =>
+      'Stel je roepnaam in je profiel in om het cluster te gebruiken.';
+
+  @override
+  String get spotErrorInvalidDuration =>
+      'De duur moet tussen 5 en 60 minuten zijn.';
+
+  @override
+  String get spotErrorRepeaterNotFound => 'Repeater niet gevonden.';
+
+  @override
+  String get spotErrorInvalidAccess =>
+      'Ongeldige toegangsmodus voor deze repeater.';
+
+  @override
+  String get spotErrorSpotNotFound => 'Spot niet gevonden.';
+
+  @override
+  String get spotErrorForbidden =>
+      'Je kunt een spot die niet van jou is niet sluiten.';
+
+  @override
+  String get spotErrorAlreadyClosed => 'De spot is al gesloten.';
+
+  @override
+  String get spotErrorGeneric =>
+      'Fout bij het aanmaken van de spot. Probeer het opnieuw.';
+
+  @override
+  String get spotAccessUnavailable => '(modus niet meer beschikbaar)';
+
+  @override
+  String spotDurationMinutes(int minutes) {
+    return '$minutes min';
+  }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WelcomeStep extends StatelessWidget {
@@ -261,11 +263,11 @@ class _RepeaterVisual extends StatelessWidget {
 class _ModeFilterVisual extends StatelessWidget {
   const _ModeFilterVisual();
 
-  static const _modes = [
-    ('Analog', Color(0xFF3B82F6)),
-    ('DMR', Color(0xFFA855F7)),
-    ('C4FM', Color(0xFF14B8A6)),
-    ('D-STAR', Color(0xFFFF6B35)),
+  static final _modes = [
+    ('Analog', AccessModeHelper.getAccessModeColorObject(AccessMode.analog)),
+    ('DMR', AccessModeHelper.getAccessModeColorObject(AccessMode.dmr)),
+    ('C4FM', AccessModeHelper.getAccessModeColorObject(AccessMode.c4fm)),
+    ('D-STAR', AccessModeHelper.getAccessModeColorObject(AccessMode.dstar)),
   ];
 
   @override
@@ -319,6 +321,8 @@ class _ModeFilterVisual extends StatelessWidget {
 class _PotaVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final potaColor = Theme.of(context).colorScheme.tertiary;
+
     return SizedBox(
       width: 140,
       height: 140,
@@ -332,7 +336,7 @@ class _PotaVisual extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: const Color(0xFF16A34A).withValues(alpha: 0.1),
+                color: potaColor.withValues(alpha: 0.1),
                 width: 2,
               ),
             ),
@@ -345,8 +349,8 @@ class _PotaVisual extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  const Color(0xFF16A34A).withValues(alpha: 0.12),
-                  const Color(0xFF16A34A).withValues(alpha: 0.04),
+                  potaColor.withValues(alpha: 0.12),
+                  potaColor.withValues(alpha: 0.04),
                 ],
               ),
             ),
@@ -370,6 +374,10 @@ class _PotaVisual extends StatelessWidget {
 class _FavoritesVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final errorColor = colorScheme.error;
+    final tertiaryColor = colorScheme.tertiary;
+
     return SizedBox(
       width: 140,
       height: 140,
@@ -383,7 +391,7 @@ class _FavoritesVisual extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.redAccent.withValues(alpha: 0.1),
+                color: errorColor.withValues(alpha: 0.1),
                 width: 2,
               ),
             ),
@@ -396,17 +404,17 @@ class _FavoritesVisual extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  Colors.redAccent.withValues(alpha: 0.12),
-                  Colors.redAccent.withValues(alpha: 0.04),
+                  errorColor.withValues(alpha: 0.12),
+                  errorColor.withValues(alpha: 0.04),
                 ],
               ),
             ),
           ),
           // Heart icon
-          const Icon(
+          Icon(
             Icons.favorite,
             size: 56,
-            color: Colors.redAccent,
+            color: errorColor,
           ),
           // Star accent
           Positioned(
@@ -415,7 +423,7 @@ class _FavoritesVisual extends StatelessWidget {
             child: Icon(
               Icons.star,
               size: 20,
-              color: Colors.amber.withValues(alpha: 0.6),
+              color: tertiaryColor.withValues(alpha: 0.6),
             ),
           ),
         ],

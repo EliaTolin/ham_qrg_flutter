@@ -1700,6 +1700,17 @@ class AppLocalizationsRo extends AppLocalizations {
       'Rapoarte disponibile fără înregistrare';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster spot în timp real: vezi cine ascultă pe repetoare, cu notificări și preferințe';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Pagina repetorului cu filele Info, Cluster și Comunitate';
+
+  @override
+  String get changelog1020TabletLayout => 'Aspect optimizat pentru tablete';
+
+  @override
   String get changelogTitle => 'Ce este nou';
 
   @override
@@ -1716,4 +1727,130 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get changelogDismiss => 'Am înțeles!';
+
+  @override
+  String get spotCreateTitle => 'Spottează-te';
+
+  @override
+  String get spotCreateOtherTitle => 'Spottează un OM';
+
+  @override
+  String get spotCreateDuration => 'Durată';
+
+  @override
+  String get spotCreateAccess => 'Mod (opțional)';
+
+  @override
+  String get spotCreateCallsign => 'Indicativul OM-ului auzit';
+
+  @override
+  String get spotCreateCallsignHint => 'Ex. YO1ABC';
+
+  @override
+  String get spotCreateConfirm => 'Confirmă';
+
+  @override
+  String get spotCreateSuccessSelf => 'Spot creat!';
+
+  @override
+  String get spotCreateSuccessOther => 'OM spottat!';
+
+  @override
+  String get spotActiveYou => 'Ești spottat';
+
+  @override
+  String get spotActiveClose => 'Închide spot';
+
+  @override
+  String spotActiveOn(String repeaterName) {
+    return 'pe $repeaterName';
+  }
+
+  @override
+  String get spotActiveNone => 'Nimeni spottat momentan';
+
+  @override
+  String get spotActiveCta => 'Fii primul!';
+
+  @override
+  String get spotActiveSection => 'Spoturi active';
+
+  @override
+  String get spotHistorySection => 'Istoric spoturi';
+
+  @override
+  String get spotListTitle => 'Ultimele spoturi';
+
+  @override
+  String get spotListViewAll => 'Vezi toate';
+
+  @override
+  String get spotListBadgeActive => 'Ascultă';
+
+  @override
+  String get spotListBadgeClosed => 'Încheiat';
+
+  @override
+  String get spotListBadgeReport => 'Raportează';
+
+  @override
+  String get spotListEmpty => 'Niciun spot în ultimele 24 de ore';
+
+  @override
+  String spotListSpottedBy(String callsign) {
+    return 'Raportat de $callsign';
+  }
+
+  @override
+  String get spotNotificationToggle => 'Notificări cluster';
+
+  @override
+  String get spotNotificationDisabled =>
+      'Notificările cluster sunt dezactivate în setările profilului';
+
+  @override
+  String get spotNotificationPerFavorite => 'Notificări de spoturi';
+
+  @override
+  String get spotPreviousClosed => 'Spotul tău anterior nu mai este activ';
+
+  @override
+  String get spotErrorAuthRequired => 'Trebuie să fii autentificat.';
+
+  @override
+  String get spotErrorCallsignRequired =>
+      'Setează indicativul în profil pentru a folosi clusterul.';
+
+  @override
+  String get spotErrorInvalidDuration =>
+      'Durata trebuie să fie între 5 și 60 de minute.';
+
+  @override
+  String get spotErrorRepeaterNotFound => 'Repetor negăsit.';
+
+  @override
+  String get spotErrorInvalidAccess =>
+      'Mod de acces invalid pentru acest repetor.';
+
+  @override
+  String get spotErrorSpotNotFound => 'Spot negăsit.';
+
+  @override
+  String get spotErrorForbidden =>
+      'Nu poți închide un spot care nu este al tău.';
+
+  @override
+  String get spotErrorAlreadyClosed => 'Spotul este deja închis.';
+
+  @override
+  String get spotErrorGeneric =>
+      'Eroare la crearea spotului. Încearcă din nou.';
+
+  @override
+  String get spotAccessUnavailable => '(mod nu mai este disponibil)';
+
+  @override
+  String spotDurationMinutes(int minutes) {
+    return '$minutes min';
+  }
 }

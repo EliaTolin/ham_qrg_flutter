@@ -1632,6 +1632,17 @@ class AppLocalizationsHu extends AppLocalizations {
       'Bejelentések regisztráció nélkül is elérhetők';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Valós idejű cluster spotok: nézd meg, ki hallgat az átjátszókon, értesítésekkel és beállításokkal';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Átjátszó oldal Info, Cluster és Közösség fülekkel';
+
+  @override
+  String get changelog1020TabletLayout => 'Táblagépre optimalizált elrendezés';
+
+  @override
   String get changelogTitle => 'Újdonságok';
 
   @override
@@ -1648,4 +1659,129 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get changelogDismiss => 'Értem!';
+
+  @override
+  String get spotCreateTitle => 'Magad spottolása';
+
+  @override
+  String get spotCreateOtherTitle => 'OM spottolása';
+
+  @override
+  String get spotCreateDuration => 'Időtartam';
+
+  @override
+  String get spotCreateAccess => 'Üzemmód (opcionális)';
+
+  @override
+  String get spotCreateCallsign => 'A hallott OM hívójele';
+
+  @override
+  String get spotCreateCallsignHint => 'Pl. HA1ABC';
+
+  @override
+  String get spotCreateConfirm => 'Megerősítés';
+
+  @override
+  String get spotCreateSuccessSelf => 'Spot létrehozva!';
+
+  @override
+  String get spotCreateSuccessOther => 'OM spottolva!';
+
+  @override
+  String get spotActiveYou => 'Spottolva vagy';
+
+  @override
+  String get spotActiveClose => 'Spot lezárása';
+
+  @override
+  String spotActiveOn(String repeaterName) {
+    return 'a következőn: $repeaterName';
+  }
+
+  @override
+  String get spotActiveNone => 'Jelenleg senki sincs spottolva';
+
+  @override
+  String get spotActiveCta => 'Légy te az első!';
+
+  @override
+  String get spotActiveSection => 'Aktív spotok';
+
+  @override
+  String get spotHistorySection => 'Spot előzmények';
+
+  @override
+  String get spotListTitle => 'Legújabb spotok';
+
+  @override
+  String get spotListViewAll => 'Összes megtekintése';
+
+  @override
+  String get spotListBadgeActive => 'Hallgatózik';
+
+  @override
+  String get spotListBadgeClosed => 'Befejezve';
+
+  @override
+  String get spotListBadgeReport => 'Jelentés';
+
+  @override
+  String get spotListEmpty => 'Nincs spot az elmúlt 24 órában';
+
+  @override
+  String spotListSpottedBy(String callsign) {
+    return 'Jelentette: $callsign';
+  }
+
+  @override
+  String get spotNotificationToggle => 'Klaszter értesítések';
+
+  @override
+  String get spotNotificationDisabled =>
+      'Klaszter értesítések kikapcsolva a profilbeállításokban';
+
+  @override
+  String get spotNotificationPerFavorite => 'Spot értesítések';
+
+  @override
+  String get spotPreviousClosed => 'Az előző spotod már nem aktív';
+
+  @override
+  String get spotErrorAuthRequired => 'Be kell jelentkezned.';
+
+  @override
+  String get spotErrorCallsignRequired =>
+      'Állítsd be a hívójeledet a profilodban a klaszter használatához.';
+
+  @override
+  String get spotErrorInvalidDuration =>
+      'Az időtartamnak 5 és 60 perc között kell lennie.';
+
+  @override
+  String get spotErrorRepeaterNotFound => 'Átjátszó nem található.';
+
+  @override
+  String get spotErrorInvalidAccess =>
+      'Érvénytelen hozzáférési mód ehhez az átjátszóhoz.';
+
+  @override
+  String get spotErrorSpotNotFound => 'Spot nem található.';
+
+  @override
+  String get spotErrorForbidden => 'Nem zárhatod le más spotját.';
+
+  @override
+  String get spotErrorAlreadyClosed => 'A spot már le van zárva.';
+
+  @override
+  String get spotErrorGeneric =>
+      'Hiba a spot létrehozásakor. Kérjük, próbáld újra.';
+
+  @override
+  String get spotAccessUnavailable => '(üzemmód már nem elérhető)';
+
+  @override
+  String spotDurationMinutes(int minutes) {
+    return '$minutes perc';
+  }
 }

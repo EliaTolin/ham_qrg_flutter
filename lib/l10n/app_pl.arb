@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Aplikacja dostępna w języku angielskim, hiszpańskim i francuskim",
   "changelog1017Onboarding": "Nowe doświadczenie pierwszego uruchomienia",
   "changelog1017ReportAnonymous": "Zgłoszenia dostępne bez rejestracji",
+  "changelog1020ClusterSpots": "Cluster spoty w czasie rzeczywistym: zobacz, kto słucha na przemiennikach, z powiadomieniami i preferencjami",
+  "changelog1020DetailTabs": "Strona przemiennika z zakładkami Info, Cluster i Społeczność",
+  "changelog1020TabletLayout": "Układ zoptymalizowany dla tabletów",
 
   "changelogTitle": "Co nowego",
   "changelogSubtitle": "Oto nowości w tej wersji",
@@ -717,6 +720,65 @@
   "@repeatersResultsCount": {
     "placeholders": {
       "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spotCreateTitle": "Spottuj siebie",
+  "spotCreateOtherTitle": "Spottuj OM-a",
+  "spotCreateDuration": "Czas trwania",
+  "spotCreateAccess": "Tryb (opcjonalnie)",
+  "spotCreateCallsign": "Znak wywoławczy usłyszanego OM-a",
+  "spotCreateCallsignHint": "Np. SP1ABC",
+  "spotCreateConfirm": "Potwierdź",
+  "spotCreateSuccessSelf": "Spot utworzony!",
+  "spotCreateSuccessOther": "OM spottowany!",
+  "spotActiveYou": "Jesteś spottowany",
+  "spotActiveClose": "Zamknij spot",
+  "spotActiveOn": "na {repeaterName}",
+  "@spotActiveOn": {
+    "placeholders": {
+      "repeaterName": {
+        "type": "String"
+      }
+    }
+  },
+  "spotActiveNone": "Aktualnie nikt nie jest spottowany",
+  "spotActiveCta": "Bądź pierwszy!",
+  "spotActiveSection": "Aktywne spoty",
+  "spotHistorySection": "Historia spotów",
+  "spotListTitle": "Najnowsze spoty",
+  "spotListViewAll": "Pokaż wszystkie",
+  "spotListBadgeActive": "Nasłuchuje",
+  "spotListBadgeClosed": "Zakończony",
+  "spotListBadgeReport": "Zgłoś",
+  "spotListEmpty": "Brak spotów w ostatnich 24 godzinach",
+  "spotListSpottedBy": "Zgłoszony przez {callsign}",
+  "@spotListSpottedBy": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNotificationToggle": "Powiadomienia klastra",
+  "spotNotificationDisabled": "Powiadomienia klastra wyłączone w ustawieniach profilu",
+  "spotNotificationPerFavorite": "Powiadomienia o spotach",
+  "spotPreviousClosed": "Twój poprzedni spot nie jest już aktywny",
+  "spotErrorAuthRequired": "Musisz być zalogowany.",
+  "spotErrorCallsignRequired": "Ustaw swój znak wywoławczy w profilu, aby korzystać z klastra.",
+  "spotErrorInvalidDuration": "Czas trwania musi wynosić od 5 do 60 minut.",
+  "spotErrorRepeaterNotFound": "Przemiennik nie znaleziony.",
+  "spotErrorInvalidAccess": "Nieprawidłowy tryb dostępu dla tego przemiennika.",
+  "spotErrorSpotNotFound": "Spot nie znaleziony.",
+  "spotErrorForbidden": "Nie możesz zamknąć spota, który nie jest twój.",
+  "spotErrorAlreadyClosed": "Spot jest już zamknięty.",
+  "spotErrorGeneric": "Błąd tworzenia spota. Spróbuj ponownie.",
+  "spotAccessUnavailable": "(tryb nie jest już dostępny)",
+  "spotDurationMinutes": "{minutes} min",
+  "@spotDurationMinutes": {
+    "placeholders": {
+      "minutes": {
         "type": "int"
       }
     }

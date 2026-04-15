@@ -1631,6 +1631,17 @@ class AppLocalizationsPt extends AppLocalizations {
       'Relatórios disponíveis sem registo';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Cluster spots em tempo real: vê quem está à escuta nos repetidores, com notificações e preferências';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Página do repetidor com separadores Info, Cluster e Comunidade';
+
+  @override
+  String get changelog1020TabletLayout => 'Layout otimizado para tablets';
+
+  @override
   String get changelogTitle => 'Novidades';
 
   @override
@@ -1647,4 +1658,128 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get changelogDismiss => 'Entendido!';
+
+  @override
+  String get spotCreateTitle => 'Spottar-se';
+
+  @override
+  String get spotCreateOtherTitle => 'Spottar um OM';
+
+  @override
+  String get spotCreateDuration => 'Duração';
+
+  @override
+  String get spotCreateAccess => 'Modo (opcional)';
+
+  @override
+  String get spotCreateCallsign => 'Indicativo do OM ouvido';
+
+  @override
+  String get spotCreateCallsignHint => 'Ex. CT1ABC';
+
+  @override
+  String get spotCreateConfirm => 'Confirmar';
+
+  @override
+  String get spotCreateSuccessSelf => 'Spot criado!';
+
+  @override
+  String get spotCreateSuccessOther => 'OM spottado!';
+
+  @override
+  String get spotActiveYou => 'Está spottado';
+
+  @override
+  String get spotActiveClose => 'Fechar spot';
+
+  @override
+  String spotActiveOn(String repeaterName) {
+    return 'em $repeaterName';
+  }
+
+  @override
+  String get spotActiveNone => 'Ninguém spottado de momento';
+
+  @override
+  String get spotActiveCta => 'Seja o primeiro!';
+
+  @override
+  String get spotActiveSection => 'Spots ativos';
+
+  @override
+  String get spotHistorySection => 'Histórico de spots';
+
+  @override
+  String get spotListTitle => 'Últimos spots';
+
+  @override
+  String get spotListViewAll => 'Ver todos';
+
+  @override
+  String get spotListBadgeActive => 'A escutar';
+
+  @override
+  String get spotListBadgeClosed => 'Terminado';
+
+  @override
+  String get spotListBadgeReport => 'Reportar';
+
+  @override
+  String get spotListEmpty => 'Sem spots nas últimas 24 horas';
+
+  @override
+  String spotListSpottedBy(String callsign) {
+    return 'Reportado por $callsign';
+  }
+
+  @override
+  String get spotNotificationToggle => 'Notificações do cluster';
+
+  @override
+  String get spotNotificationDisabled =>
+      'Notificações do cluster desativadas nas definições do perfil';
+
+  @override
+  String get spotNotificationPerFavorite => 'Notificações de spots';
+
+  @override
+  String get spotPreviousClosed => 'O seu spot anterior já não está ativo';
+
+  @override
+  String get spotErrorAuthRequired => 'Tem de ter sessão iniciada.';
+
+  @override
+  String get spotErrorCallsignRequired =>
+      'Defina o seu indicativo no perfil para usar o cluster.';
+
+  @override
+  String get spotErrorInvalidDuration =>
+      'A duração deve ser entre 5 e 60 minutos.';
+
+  @override
+  String get spotErrorRepeaterNotFound => 'Repetidor não encontrado.';
+
+  @override
+  String get spotErrorInvalidAccess =>
+      'Modo de acesso inválido para este repetidor.';
+
+  @override
+  String get spotErrorSpotNotFound => 'Spot não encontrado.';
+
+  @override
+  String get spotErrorForbidden => 'Não pode fechar um spot que não é seu.';
+
+  @override
+  String get spotErrorAlreadyClosed => 'O spot já está fechado.';
+
+  @override
+  String get spotErrorGeneric => 'Erro ao criar o spot. Tente novamente.';
+
+  @override
+  String get spotAccessUnavailable => '(modo já não disponível)';
+
+  @override
+  String spotDurationMinutes(int minutes) {
+    return '$minutes min';
+  }
 }

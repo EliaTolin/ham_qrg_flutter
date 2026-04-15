@@ -3040,6 +3040,24 @@ abstract class AppLocalizations {
   /// **'Segnalazioni disponibili anche senza registrazione'**
   String get changelog1017ReportAnonymous;
 
+  /// No description provided for @changelog1020ClusterSpots.
+  ///
+  /// In it, this message translates to:
+  /// **'Cluster spot in tempo reale: vedi chi è in ascolto sui ripetitori, con notifiche e preferenze'**
+  String get changelog1020ClusterSpots;
+
+  /// No description provided for @changelog1020DetailTabs.
+  ///
+  /// In it, this message translates to:
+  /// **'Pagina ripetitore con tab Info, Cluster e Community'**
+  String get changelog1020DetailTabs;
+
+  /// No description provided for @changelog1020TabletLayout.
+  ///
+  /// In it, this message translates to:
+  /// **'Layout ottimizzato per tablet'**
+  String get changelog1020TabletLayout;
+
   /// No description provided for @changelogTitle.
   ///
   /// In it, this message translates to:
@@ -3075,6 +3093,234 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Ho capito!'**
   String get changelogDismiss;
+
+  /// No description provided for @spotCreateTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Spottati'**
+  String get spotCreateTitle;
+
+  /// No description provided for @spotCreateOtherTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Spotta un OM'**
+  String get spotCreateOtherTitle;
+
+  /// No description provided for @spotCreateDuration.
+  ///
+  /// In it, this message translates to:
+  /// **'Durata'**
+  String get spotCreateDuration;
+
+  /// No description provided for @spotCreateAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Modalità (opzionale)'**
+  String get spotCreateAccess;
+
+  /// No description provided for @spotCreateCallsign.
+  ///
+  /// In it, this message translates to:
+  /// **'Callsign dell\'OM sentito'**
+  String get spotCreateCallsign;
+
+  /// No description provided for @spotCreateCallsignHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. IZ0ABC'**
+  String get spotCreateCallsignHint;
+
+  /// No description provided for @spotCreateConfirm.
+  ///
+  /// In it, this message translates to:
+  /// **'Conferma'**
+  String get spotCreateConfirm;
+
+  /// No description provided for @spotCreateSuccessSelf.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot creato!'**
+  String get spotCreateSuccessSelf;
+
+  /// No description provided for @spotCreateSuccessOther.
+  ///
+  /// In it, this message translates to:
+  /// **'OM spottato!'**
+  String get spotCreateSuccessOther;
+
+  /// No description provided for @spotActiveYou.
+  ///
+  /// In it, this message translates to:
+  /// **'Sei spottato'**
+  String get spotActiveYou;
+
+  /// No description provided for @spotActiveClose.
+  ///
+  /// In it, this message translates to:
+  /// **'Chiudi spot'**
+  String get spotActiveClose;
+
+  /// No description provided for @spotActiveOn.
+  ///
+  /// In it, this message translates to:
+  /// **'su {repeaterName}'**
+  String spotActiveOn(String repeaterName);
+
+  /// No description provided for @spotActiveNone.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuno spottato al momento'**
+  String get spotActiveNone;
+
+  /// No description provided for @spotActiveCta.
+  ///
+  /// In it, this message translates to:
+  /// **'Spottati tu!'**
+  String get spotActiveCta;
+
+  /// No description provided for @spotActiveSection.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot attivi'**
+  String get spotActiveSection;
+
+  /// No description provided for @spotHistorySection.
+  ///
+  /// In it, this message translates to:
+  /// **'Storico spot'**
+  String get spotHistorySection;
+
+  /// No description provided for @spotListTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Ultimi spot'**
+  String get spotListTitle;
+
+  /// No description provided for @spotListViewAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi tutti'**
+  String get spotListViewAll;
+
+  /// No description provided for @spotListBadgeActive.
+  ///
+  /// In it, this message translates to:
+  /// **'In ascolto'**
+  String get spotListBadgeActive;
+
+  /// No description provided for @spotListBadgeClosed.
+  ///
+  /// In it, this message translates to:
+  /// **'Concluso'**
+  String get spotListBadgeClosed;
+
+  /// No description provided for @spotListBadgeReport.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazione'**
+  String get spotListBadgeReport;
+
+  /// No description provided for @spotListEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuno spot nelle ultime 24 ore'**
+  String get spotListEmpty;
+
+  /// No description provided for @spotListSpottedBy.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalato da {callsign}'**
+  String spotListSpottedBy(String callsign);
+
+  /// No description provided for @spotNotificationToggle.
+  ///
+  /// In it, this message translates to:
+  /// **'Notifiche cluster'**
+  String get spotNotificationToggle;
+
+  /// No description provided for @spotNotificationDisabled.
+  ///
+  /// In it, this message translates to:
+  /// **'Notifiche cluster disattivate nelle impostazioni profilo'**
+  String get spotNotificationDisabled;
+
+  /// No description provided for @spotNotificationPerFavorite.
+  ///
+  /// In it, this message translates to:
+  /// **'Notifiche spot'**
+  String get spotNotificationPerFavorite;
+
+  /// No description provided for @spotPreviousClosed.
+  ///
+  /// In it, this message translates to:
+  /// **'Il tuo spot precedente non è più attivo'**
+  String get spotPreviousClosed;
+
+  /// No description provided for @spotErrorAuthRequired.
+  ///
+  /// In it, this message translates to:
+  /// **'Devi effettuare l\'accesso.'**
+  String get spotErrorAuthRequired;
+
+  /// No description provided for @spotErrorCallsignRequired.
+  ///
+  /// In it, this message translates to:
+  /// **'Imposta il tuo callsign nel profilo per usare il cluster.'**
+  String get spotErrorCallsignRequired;
+
+  /// No description provided for @spotErrorInvalidDuration.
+  ///
+  /// In it, this message translates to:
+  /// **'La durata deve essere tra 5 e 60 minuti.'**
+  String get spotErrorInvalidDuration;
+
+  /// No description provided for @spotErrorRepeaterNotFound.
+  ///
+  /// In it, this message translates to:
+  /// **'Ponte non trovato.'**
+  String get spotErrorRepeaterNotFound;
+
+  /// No description provided for @spotErrorInvalidAccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Modalità di accesso non valida per questo ponte.'**
+  String get spotErrorInvalidAccess;
+
+  /// No description provided for @spotErrorSpotNotFound.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot non trovato.'**
+  String get spotErrorSpotNotFound;
+
+  /// No description provided for @spotErrorForbidden.
+  ///
+  /// In it, this message translates to:
+  /// **'Non puoi chiudere uno spot che non è tuo.'**
+  String get spotErrorForbidden;
+
+  /// No description provided for @spotErrorAlreadyClosed.
+  ///
+  /// In it, this message translates to:
+  /// **'Lo spot è già stato chiuso.'**
+  String get spotErrorAlreadyClosed;
+
+  /// No description provided for @spotErrorGeneric.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore nella creazione dello spot. Riprova.'**
+  String get spotErrorGeneric;
+
+  /// No description provided for @spotAccessUnavailable.
+  ///
+  /// In it, this message translates to:
+  /// **'(modalità non più disponibile)'**
+  String get spotAccessUnavailable;
+
+  /// No description provided for @spotDurationMinutes.
+  ///
+  /// In it, this message translates to:
+  /// **'{minutes} min'**
+  String spotDurationMinutes(int minutes);
 }
 
 class _AppLocalizationsDelegate

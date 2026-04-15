@@ -15,6 +15,8 @@ _ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) =>
       propic: json['propic'] as String?,
       userType: $enumDecodeNullable(_$UserTypeEnumMap, json['user_type']),
       lastSeenVersion: json['last_seen_version'] as String?,
+      clusterNotificationsEnabled:
+          json['cluster_notifications_enabled'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$ProfileModelToJson(_ProfileModel instance) =>
@@ -26,6 +28,7 @@ Map<String, dynamic> _$ProfileModelToJson(_ProfileModel instance) =>
       'propic': instance.propic,
       'user_type': _$UserTypeEnumMap[instance.userType],
       'last_seen_version': instance.lastSeenVersion,
+      'cluster_notifications_enabled': instance.clusterNotificationsEnabled,
     };
 
 const _$UserTypeEnumMap = {

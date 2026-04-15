@@ -453,6 +453,22 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SpotListPage]
+class SpotListRoute extends PageRouteInfo<void> {
+  const SpotListRoute({List<PageRouteInfo>? children})
+      : super(SpotListRoute.name, initialChildren: children);
+
+  static const String name = 'SpotListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SpotListPage();
+    },
+  );
+}
+
+/// generated route for
 /// [UserReportsPage]
 class UserReportsRoute extends PageRouteInfo<void> {
   const UserReportsRoute({List<PageRouteInfo>? children})

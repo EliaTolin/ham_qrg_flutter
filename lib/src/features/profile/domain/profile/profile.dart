@@ -13,5 +13,6 @@ abstract class Profile with _$Profile {
     required String? propic,
     UserType? userType,
     String? lastSeenVersion,
+    @Default(true) bool clusterNotificationsEnabled,
   }) = _Profile;
 }

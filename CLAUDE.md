@@ -178,8 +178,18 @@ Defined in `lib/themes/app_colors.dart` and `lib/common/utils/access_mode_helper
 - C4FM: Teal (#14B8A6)
 - D-STAR: Orange (#FF6B35)
 
+## UI & Theme Rules
+
+- **NEVER hardcode colors** (`Color(0x...)`, `Colors.xxx`, `AppColors.xxx`) in widgets. ALWAYS use `theme.colorScheme.*` (`error`, `surface`, `primary`, `onSurface`, etc.).
+- **NEVER hardcode text styles**. ALWAYS use `theme.textTheme.*`.
+- **Shadows**: use `theme.shadowColor`, not `Colors.black`.
+- **Surfaces** (bottom sheets, cards, dialogs): use `theme.colorScheme.surface`, never `isDark ? AppColors.x : AppColors.y`.
+- **Access mode colors** (`AccessModeHelper`) are the only exception — they are brand colors defined in the design system.
+- If the theme doesn't have the right token for a use case, **flag it to the user** instead of inventing workarounds.
+
 ## Coding Conventions
 
+- **DRY principle**: Before creating any widget, helper, or utility, check if a similar one already exists in `lib/common/widgets/` or other features. If it does, extend/generalize it. If a new widget could be reused elsewhere, place it in `lib/common/widgets/` from the start.
 - Files/directories: `snake_case`
 - Classes: `UpperCamelCase`
 - Variables/methods: `lowerCamelCase`

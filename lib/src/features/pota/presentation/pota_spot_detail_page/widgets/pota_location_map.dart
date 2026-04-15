@@ -50,8 +50,7 @@ class PotaLocationMap extends StatelessWidget {
                   child: MapWidget(
                     cameraOptions: CameraOptions(
                       center: Point(
-                        coordinates:
-                            Position(park.longitude!, park.latitude!),
+                        coordinates: Position(park.longitude!, park.latitude!),
                       ),
                       zoom: 13,
                       bearing: 0,
@@ -68,7 +67,10 @@ class PotaLocationMap extends StatelessWidget {
                 // Dark overlay
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.2),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .shadow
+                        .withValues(alpha: 0.2),
                   ),
                 ),
                 // Park marker
@@ -82,12 +84,15 @@ class PotaLocationMap extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.5),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .shadow
+                          .withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.fullscreen,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                       size: 18,
                     ),
                   ),
@@ -170,15 +175,15 @@ class _PotaMarker extends StatelessWidget {
       width: 40,
       height: 40,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.onPrimary,
         shape: BoxShape.circle,
         border: Border.all(
-          color: Colors.green.shade700,
+          color: Theme.of(context).colorScheme.tertiary,
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.25),
+            color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.25),
             blurRadius: 8,
             spreadRadius: 2,
           ),

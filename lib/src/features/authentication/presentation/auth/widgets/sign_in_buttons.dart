@@ -8,9 +8,8 @@ import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/src/features/authentication/provider/sign_in_apple/sign_in_apple_provider.dart';
 import 'package:hamqrg/src/features/authentication/provider/sign_in_google/sign_in_google_provider.dart';
-import 'package:social_auth_buttons/social_auth_buttons.dart';
 
-class SignInButtons extends ConsumerWidget {
+class SignInButtons extends ConsumerStatefulWidget {
   const SignInButtons({
     required this.onSignInComplete,
     super.key,
@@ -18,42 +17,61 @@ class SignInButtons extends ConsumerWidget {
   final Future<void> Function() onSignInComplete;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SignInButtons> createState() => _SignInButtonsState();
+}
+
+class _SignInButtonsState extends ConsumerState<SignInButtons> {
+  bool _isLoading = false;
+
+  Future<void> _handleAppleSignIn() async {
+    if (_isLoading) return;
+    setState(() => _isLoading = true);
+    try {
+      await ref.read(signInWithAppleProvider.future);
+      await widget.onSignInComplete();
+    } on Exception catch (e) {
+      if (mounted) {
+        showErrorSnackbar(context, 'Errore durante il login');
+      }
+      log(e.toString());
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _handleGoogleSignIn() async {
+    if (_isLoading) return;
+    setState(() => _isLoading = true);
+    try {
+      await ref.read(signInWithGoogleProvider.future);
+      await widget.onSignInComplete();
+    } on Exception catch (e) {
+      if (mounted) {
+        showErrorSnackbar(context, 'Errore durante il login');
+      }
+      log(e.toString());
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.sizeOf(context).width * 0.8,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (Platform.isIOS) ...[
-            AppleAuthButton(
-              text: 'Accedi con Apple',
-              onPressed: () async {
-                try {
-                  await ref.read(signInWithAppleProvider.future);
-                  await onSignInComplete();
-                } on Exception catch (e) {
-                  if (context.mounted) {
-                    showErrorSnackbar(context, 'Errore durante il login');
-                  }
-                  log(e.toString());
-                }
-              },
+            AppleSignInButton(
+              onPressed: _handleAppleSignIn,
+              isLoading: _isLoading,
             ),
             const Gap(10),
           ],
-          GoogleAuthButton(
-            text: 'Accedi con Google',
-            onPressed: () async {
-              try {
-                await ref.read(signInWithGoogleProvider.future);
-                await onSignInComplete();
-              } on Exception catch (e) {
-                if (context.mounted) {
-                  showErrorSnackbar(context, 'Errore durante il login');
-                }
-                log(e.toString());
-              }
-            },
+          GoogleSignInButton(
+            onPressed: _handleGoogleSignIn,
+            isLoading: _isLoading,
           ),
         ],
       ),
@@ -86,6 +104,7 @@ class AppleSignInButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
+          // Apple brand colors
           backgroundColor: isDark ? Colors.white : Colors.black,
           foregroundColor: isDark ? Colors.black : Colors.white,
           elevation: 0,
@@ -99,7 +118,7 @@ class AppleSignInButton extends StatelessWidget {
             Icon(
               Icons.apple,
               size: 24,
-              color: isDark ? Colors.black : Colors.white,
+              color: isDark ? Colors.black : Colors.white, // Apple brand color
             ),
             const Gap(12),
             Text(
@@ -107,7 +126,7 @@ class AppleSignInButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: isDark ? Colors.black : Colors.white,
+                color: isDark ? Colors.black : Colors.white, // Apple brand color
               ),
             ),
           ],
@@ -133,7 +152,8 @@ class GoogleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.localization;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     final buttonLabel = label ?? l10n.registrationSignInGoogle;
 
     return SizedBox(
@@ -142,10 +162,9 @@ class GoogleSignInButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: isLoading ? null : onPressed,
         style: OutlinedButton.styleFrom(
-          backgroundColor: isDark ? Colors.transparent : Colors.white,
-          side: BorderSide(
-            color: isDark ? Colors.white24 : Colors.grey.shade300,
-          ),
+          backgroundColor: colorScheme.surface,
+          foregroundColor: colorScheme.onSurface,
+          side: BorderSide(color: colorScheme.outline),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
@@ -161,7 +180,7 @@ class GoogleSignInButton extends StatelessWidget {
               errorBuilder: (context, error, stackTrace) => Icon(
                 Icons.g_mobiledata,
                 size: 24,
-                color: isDark ? Colors.white : Colors.black87,
+                color: colorScheme.onSurface,
               ),
             ),
             const Gap(12),
@@ -170,7 +189,7 @@ class GoogleSignInButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: isDark ? Colors.white : Colors.black87,
+                color: colorScheme.onSurface,
               ),
             ),
           ],

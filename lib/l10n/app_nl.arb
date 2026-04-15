@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "App beschikbaar in het Engels, Spaans en Frans",
   "changelog1017Onboarding": "Nieuwe eerste-keer-ervaring",
   "changelog1017ReportAnonymous": "Meldingen beschikbaar zonder registratie",
+  "changelog1020ClusterSpots": "Realtime cluster spots: zie wie er luistert op repeaters, met meldingen en voorkeuren",
+  "changelog1020DetailTabs": "Repeaterpagina met tabbladen Info, Cluster en Community",
+  "changelog1020TabletLayout": "Geoptimaliseerde lay-out voor tablets",
 
   "changelogTitle": "Wat is er nieuw",
   "changelogSubtitle": "Dit is nieuw in deze versie",
@@ -717,6 +720,65 @@
   "@repeatersResultsCount": {
     "placeholders": {
       "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spotCreateTitle": "Jezelf spotten",
+  "spotCreateOtherTitle": "Een OM spotten",
+  "spotCreateDuration": "Duur",
+  "spotCreateAccess": "Modus (optioneel)",
+  "spotCreateCallsign": "Roepnaam van gehoorde OM",
+  "spotCreateCallsignHint": "Bijv. PA0ABC",
+  "spotCreateConfirm": "Bevestigen",
+  "spotCreateSuccessSelf": "Spot aangemaakt!",
+  "spotCreateSuccessOther": "OM gespot!",
+  "spotActiveYou": "Je bent gespot",
+  "spotActiveClose": "Spot sluiten",
+  "spotActiveOn": "op {repeaterName}",
+  "@spotActiveOn": {
+    "placeholders": {
+      "repeaterName": {
+        "type": "String"
+      }
+    }
+  },
+  "spotActiveNone": "Momenteel niemand gespot",
+  "spotActiveCta": "Wees de eerste!",
+  "spotActiveSection": "Actieve spots",
+  "spotHistorySection": "Spotgeschiedenis",
+  "spotListTitle": "Laatste spots",
+  "spotListViewAll": "Alles bekijken",
+  "spotListBadgeActive": "Luistert",
+  "spotListBadgeClosed": "Beëindigd",
+  "spotListBadgeReport": "Melden",
+  "spotListEmpty": "Geen spots in de afgelopen 24 uur",
+  "spotListSpottedBy": "Gemeld door {callsign}",
+  "@spotListSpottedBy": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "spotNotificationToggle": "Clustermeldingen",
+  "spotNotificationDisabled": "Clustermeldingen uitgeschakeld in profielinstellingen",
+  "spotNotificationPerFavorite": "Spotmeldingen",
+  "spotPreviousClosed": "Je vorige spot is niet meer actief",
+  "spotErrorAuthRequired": "Je moet ingelogd zijn.",
+  "spotErrorCallsignRequired": "Stel je roepnaam in je profiel in om het cluster te gebruiken.",
+  "spotErrorInvalidDuration": "De duur moet tussen 5 en 60 minuten zijn.",
+  "spotErrorRepeaterNotFound": "Repeater niet gevonden.",
+  "spotErrorInvalidAccess": "Ongeldige toegangsmodus voor deze repeater.",
+  "spotErrorSpotNotFound": "Spot niet gevonden.",
+  "spotErrorForbidden": "Je kunt een spot die niet van jou is niet sluiten.",
+  "spotErrorAlreadyClosed": "De spot is al gesloten.",
+  "spotErrorGeneric": "Fout bij het aanmaken van de spot. Probeer het opnieuw.",
+  "spotAccessUnavailable": "(modus niet meer beschikbaar)",
+  "spotDurationMinutes": "{minutes} min",
+  "@spotDurationMinutes": {
+    "placeholders": {
+      "minutes": {
         "type": "int"
       }
     }

@@ -191,9 +191,9 @@ class FeedbackFormCard extends ConsumerWidget {
             hintText: l10n.repeaterDetailLocationPlaceholder,
             prefixIcon: const Icon(Icons.location_on, size: 20),
             suffixIcon: isValidated
-                ? const Icon(
+                ? Icon(
                     Icons.check_circle,
-                    color: Colors.green,
+                    color: colorScheme.tertiary,
                     size: 20,
                   )
                 : null,
@@ -207,14 +207,14 @@ class FeedbackFormCard extends ConsumerWidget {
                 ? OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(
-                      color: Colors.orange.withValues(alpha: 0.6),
+                      color: colorScheme.error.withValues(alpha: 0.6),
                     ),
                   )
                 : null,
             focusedBorder: showError
                 ? OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.orange),
+                    borderSide: BorderSide(color: colorScheme.error),
                   )
                 : null,
             contentPadding: const EdgeInsets.symmetric(
@@ -232,13 +232,13 @@ class FeedbackFormCard extends ConsumerWidget {
                 Icon(
                   Icons.info_outline,
                   size: 14,
-                  color: Colors.orange.shade700,
+                  color: colorScheme.error,
                 ),
                 const SizedBox(width: 4),
                 Text(
                   l10n.repeaterDetailLocationSelectHint,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.orange.shade700,
+                    color: colorScheme.error,
                     fontSize: 11,
                   ),
                 ),
@@ -258,7 +258,7 @@ class FeedbackFormCard extends ConsumerWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
+                  color: colorScheme.shadow.withValues(alpha: 0.1),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -394,10 +394,10 @@ class FeedbackFormCard extends ConsumerWidget {
                         ),
                       ),
                       child: isSelected
-                          ? const Icon(
+                          ? Icon(
                               Icons.check,
                               size: 16,
-                              color: Colors.white,
+                              color: colorScheme.onPrimary,
                             )
                           : null,
                     ),
@@ -473,20 +473,21 @@ class FeedbackFormCard extends ConsumerWidget {
     ThemeData theme,
     AppLocalizations l10n,
   ) {
+    final colorScheme = theme.colorScheme;
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.amber.withValues(alpha: 0.1),
+        color: colorScheme.error.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Colors.amber.withValues(alpha: 0.3),
+          color: colorScheme.error.withValues(alpha: 0.3),
         ),
       ),
       child: Row(
         children: [
-          const Icon(
+          Icon(
             Icons.warning_amber_rounded,
-            color: Colors.amber,
+            color: colorScheme.error,
             size: 20,
           ),
           const SizedBox(width: 8),
@@ -496,7 +497,7 @@ class FeedbackFormCard extends ConsumerWidget {
                 AppConfigs.maxFeedbackDistanceKm.toInt(),
               ),
               style: theme.textTheme.bodySmall?.copyWith(
-                color: Colors.amber.shade800,
+                color: colorScheme.error,
               ),
             ),
           ),
@@ -544,7 +545,7 @@ class FeedbackFormCard extends ConsumerWidget {
         ),
         icon: Icon(
           Icons.share_location,
-          color: Colors.orange.shade700,
+          color: colorScheme.error,
           size: 32,
         ),
         title: Text(
@@ -571,7 +572,7 @@ class FeedbackFormCard extends ConsumerWidget {
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
             style: FilledButton.styleFrom(
-              backgroundColor: Colors.orange.shade700,
+              backgroundColor: colorScheme.error,
             ),
             child: Text(l10n.feedbackDistanceConfirmButton),
           ),
@@ -596,10 +597,10 @@ class FeedbackFormCard extends ConsumerWidget {
                 ? () => _handleSubmit(context, ref, FeedbackType.like)
                 : null,
             style: FilledButton.styleFrom(
-              backgroundColor: Colors.green,
-              foregroundColor: Colors.white,
-              disabledBackgroundColor: Colors.green.withValues(alpha: 0.12),
-              disabledForegroundColor: Colors.green.withValues(alpha: 0.5),
+              backgroundColor: theme.colorScheme.tertiary,
+              foregroundColor: theme.colorScheme.onTertiary,
+              disabledBackgroundColor: theme.colorScheme.tertiary.withValues(alpha: 0.12),
+              disabledForegroundColor: theme.colorScheme.tertiary.withValues(alpha: 0.5),
               padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
               textStyle: theme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.bold,
@@ -609,12 +610,12 @@ class FeedbackFormCard extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (state.isSubmittingFeedback)
-                  const SizedBox(
+                  SizedBox(
                     width: 18,
                     height: 18,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
-                      color: Colors.white,
+                      color: theme.colorScheme.onTertiary,
                     ),
                   )
                 else
@@ -637,10 +638,10 @@ class FeedbackFormCard extends ConsumerWidget {
                 ? () => _handleSubmit(context, ref, FeedbackType.down)
                 : null,
             style: FilledButton.styleFrom(
-              backgroundColor: Colors.amber.shade700,
-              foregroundColor: Colors.white,
-              disabledBackgroundColor: Colors.amber.shade700.withValues(alpha: 0.12),
-              disabledForegroundColor: Colors.amber.shade700.withValues(alpha: 0.5),
+              backgroundColor: theme.colorScheme.error,
+              foregroundColor: theme.colorScheme.onError,
+              disabledBackgroundColor: theme.colorScheme.error.withValues(alpha: 0.12),
+              disabledForegroundColor: theme.colorScheme.error.withValues(alpha: 0.5),
               padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
               textStyle: theme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.bold,
@@ -650,12 +651,12 @@ class FeedbackFormCard extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (state.isSubmittingFeedback)
-                  const SizedBox(
+                  SizedBox(
                     width: 18,
                     height: 18,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
-                      color: Colors.white,
+                      color: theme.colorScheme.onError,
                     ),
                   )
                 else

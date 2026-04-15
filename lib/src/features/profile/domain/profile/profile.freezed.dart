@@ -21,6 +21,7 @@ mixin _$Profile {
   String? get propic;
   UserType? get userType;
   String? get lastSeenVersion;
+  bool get clusterNotificationsEnabled;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -43,16 +44,20 @@ mixin _$Profile {
             (identical(other.userType, userType) ||
                 other.userType == userType) &&
             (identical(other.lastSeenVersion, lastSeenVersion) ||
-                other.lastSeenVersion == lastSeenVersion));
+                other.lastSeenVersion == lastSeenVersion) &&
+            (identical(other.clusterNotificationsEnabled,
+                    clusterNotificationsEnabled) ||
+                other.clusterNotificationsEnabled ==
+                    clusterNotificationsEnabled));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, surname, callsign,
-      propic, userType, lastSeenVersion);
+      propic, userType, lastSeenVersion, clusterNotificationsEnabled);
 
   @override
   String toString() {
-    return 'Profile(id: $id, name: $name, surname: $surname, callsign: $callsign, propic: $propic, userType: $userType, lastSeenVersion: $lastSeenVersion)';
+    return 'Profile(id: $id, name: $name, surname: $surname, callsign: $callsign, propic: $propic, userType: $userType, lastSeenVersion: $lastSeenVersion, clusterNotificationsEnabled: $clusterNotificationsEnabled)';
   }
 }
 
@@ -68,7 +73,8 @@ abstract mixin class $ProfileCopyWith<$Res> {
       String? callsign,
       String? propic,
       UserType? userType,
-      String? lastSeenVersion});
+      String? lastSeenVersion,
+      bool clusterNotificationsEnabled});
 }
 
 /// @nodoc
@@ -90,6 +96,7 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
     Object? propic = freezed,
     Object? userType = freezed,
     Object? lastSeenVersion = freezed,
+    Object? clusterNotificationsEnabled = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -120,6 +127,10 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
           ? _self.lastSeenVersion
           : lastSeenVersion // ignore: cast_nullable_to_non_nullable
               as String?,
+      clusterNotificationsEnabled: null == clusterNotificationsEnabled
+          ? _self.clusterNotificationsEnabled
+          : clusterNotificationsEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -217,16 +228,30 @@ extension ProfilePatterns on Profile {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String name, String surname, String? callsign,
-            String? propic, UserType? userType, String? lastSeenVersion)?
+    TResult Function(
+            String id,
+            String name,
+            String surname,
+            String? callsign,
+            String? propic,
+            UserType? userType,
+            String? lastSeenVersion,
+            bool clusterNotificationsEnabled)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _Profile() when $default != null:
-        return $default(_that.id, _that.name, _that.surname, _that.callsign,
-            _that.propic, _that.userType, _that.lastSeenVersion);
+        return $default(
+            _that.id,
+            _that.name,
+            _that.surname,
+            _that.callsign,
+            _that.propic,
+            _that.userType,
+            _that.lastSeenVersion,
+            _that.clusterNotificationsEnabled);
       case _:
         return orElse();
     }
@@ -247,15 +272,29 @@ extension ProfilePatterns on Profile {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String name, String surname, String? callsign,
-            String? propic, UserType? userType, String? lastSeenVersion)
+    TResult Function(
+            String id,
+            String name,
+            String surname,
+            String? callsign,
+            String? propic,
+            UserType? userType,
+            String? lastSeenVersion,
+            bool clusterNotificationsEnabled)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Profile():
-        return $default(_that.id, _that.name, _that.surname, _that.callsign,
-            _that.propic, _that.userType, _that.lastSeenVersion);
+        return $default(
+            _that.id,
+            _that.name,
+            _that.surname,
+            _that.callsign,
+            _that.propic,
+            _that.userType,
+            _that.lastSeenVersion,
+            _that.clusterNotificationsEnabled);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -275,15 +314,29 @@ extension ProfilePatterns on Profile {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String id, String name, String surname, String? callsign,
-            String? propic, UserType? userType, String? lastSeenVersion)?
+    TResult? Function(
+            String id,
+            String name,
+            String surname,
+            String? callsign,
+            String? propic,
+            UserType? userType,
+            String? lastSeenVersion,
+            bool clusterNotificationsEnabled)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _Profile() when $default != null:
-        return $default(_that.id, _that.name, _that.surname, _that.callsign,
-            _that.propic, _that.userType, _that.lastSeenVersion);
+        return $default(
+            _that.id,
+            _that.name,
+            _that.surname,
+            _that.callsign,
+            _that.propic,
+            _that.userType,
+            _that.lastSeenVersion,
+            _that.clusterNotificationsEnabled);
       case _:
         return null;
     }
@@ -300,7 +353,8 @@ class _Profile implements Profile {
       required this.callsign,
       required this.propic,
       this.userType,
-      this.lastSeenVersion});
+      this.lastSeenVersion,
+      this.clusterNotificationsEnabled = true});
 
   @override
   final String id;
@@ -316,6 +370,9 @@ class _Profile implements Profile {
   final UserType? userType;
   @override
   final String? lastSeenVersion;
+  @override
+  @JsonKey()
+  final bool clusterNotificationsEnabled;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -339,16 +396,20 @@ class _Profile implements Profile {
             (identical(other.userType, userType) ||
                 other.userType == userType) &&
             (identical(other.lastSeenVersion, lastSeenVersion) ||
-                other.lastSeenVersion == lastSeenVersion));
+                other.lastSeenVersion == lastSeenVersion) &&
+            (identical(other.clusterNotificationsEnabled,
+                    clusterNotificationsEnabled) ||
+                other.clusterNotificationsEnabled ==
+                    clusterNotificationsEnabled));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, surname, callsign,
-      propic, userType, lastSeenVersion);
+      propic, userType, lastSeenVersion, clusterNotificationsEnabled);
 
   @override
   String toString() {
-    return 'Profile(id: $id, name: $name, surname: $surname, callsign: $callsign, propic: $propic, userType: $userType, lastSeenVersion: $lastSeenVersion)';
+    return 'Profile(id: $id, name: $name, surname: $surname, callsign: $callsign, propic: $propic, userType: $userType, lastSeenVersion: $lastSeenVersion, clusterNotificationsEnabled: $clusterNotificationsEnabled)';
   }
 }
 
@@ -365,7 +426,8 @@ abstract mixin class _$ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String? callsign,
       String? propic,
       UserType? userType,
-      String? lastSeenVersion});
+      String? lastSeenVersion,
+      bool clusterNotificationsEnabled});
 }
 
 /// @nodoc
@@ -387,6 +449,7 @@ class __$ProfileCopyWithImpl<$Res> implements _$ProfileCopyWith<$Res> {
     Object? propic = freezed,
     Object? userType = freezed,
     Object? lastSeenVersion = freezed,
+    Object? clusterNotificationsEnabled = null,
   }) {
     return _then(_Profile(
       id: null == id
@@ -417,6 +480,10 @@ class __$ProfileCopyWithImpl<$Res> implements _$ProfileCopyWith<$Res> {
           ? _self.lastSeenVersion
           : lastSeenVersion // ignore: cast_nullable_to_non_nullable
               as String?,
+      clusterNotificationsEnabled: null == clusterNotificationsEnabled
+          ? _self.clusterNotificationsEnabled
+          : clusterNotificationsEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }

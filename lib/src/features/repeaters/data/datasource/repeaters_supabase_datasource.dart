@@ -297,6 +297,24 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   }
 
   @override
+  Future<List<Map<String, dynamic>>> getFavoritesMeta(String userId) async {
+    final sw = Stopwatch()..start();
+    try {
+      if (userId.isEmpty) return [];
+      final data = await _client
+          .from('user_favorite_repeaters')
+          .select('id, repeater_id, cluster_notifications_enabled')
+          .eq('user_id', userId);
+      _logTiming('getFavoritesMeta', sw, extra: '${(data as List).length}');
+      return (data as List).cast<Map<String, dynamic>>();
+    } catch (error, stackTrace) {
+      _logTiming('getFavoritesMeta', sw, extra: '❌ error');
+      _talker.handle(error, stackTrace, 'Error fetching favorites meta');
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> addFavoriteRepeater(String userId, String repeaterId) async {
     final sw = Stopwatch()..start();
     try {
