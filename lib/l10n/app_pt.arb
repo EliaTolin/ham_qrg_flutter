@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Aplicação disponível em inglês, espanhol e francês",
   "changelog1017Onboarding": "Nova experiência de primeiro arranque",
   "changelog1017ReportAnonymous": "Relatórios disponíveis sem registo",
+  "changelog1020ClusterSpots": "Cluster spots em tempo real: vê quem está à escuta nos repetidores, com notificações e preferências",
+  "changelog1020DetailTabs": "Página do repetidor com separadores Info, Cluster e Comunidade",
+  "changelog1020TabletLayout": "Layout otimizado para tablets",
 
   "changelogTitle": "Novidades",
   "changelogSubtitle": "Eis o que há de novo nesta versão",

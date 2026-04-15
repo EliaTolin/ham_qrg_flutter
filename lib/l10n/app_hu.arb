@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "Alkalmazás elérhető angolul, spanyolul és franciául",
   "changelog1017Onboarding": "Új első indítási élmény",
   "changelog1017ReportAnonymous": "Bejelentések regisztráció nélkül is elérhetők",
+  "changelog1020ClusterSpots": "Valós idejű cluster spotok: nézd meg, ki hallgat az átjátszókon, értesítésekkel és beállításokkal",
+  "changelog1020DetailTabs": "Átjátszó oldal Info, Cluster és Közösség fülekkel",
+  "changelog1020TabletLayout": "Táblagépre optimalizált elrendezés",
 
   "changelogTitle": "Újdonságok",
   "changelogSubtitle": "Íme, mi újság ebben a verzióban",

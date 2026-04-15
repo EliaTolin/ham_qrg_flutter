@@ -657,6 +657,9 @@
   "changelog1017MultiLanguage": "App beschikbaar in het Engels, Spaans en Frans",
   "changelog1017Onboarding": "Nieuwe eerste-keer-ervaring",
   "changelog1017ReportAnonymous": "Meldingen beschikbaar zonder registratie",
+  "changelog1020ClusterSpots": "Realtime cluster spots: zie wie er luistert op repeaters, met meldingen en voorkeuren",
+  "changelog1020DetailTabs": "Repeaterpagina met tabbladen Info, Cluster en Community",
+  "changelog1020TabletLayout": "Geoptimaliseerde lay-out voor tablets",
 
   "changelogTitle": "Wat is er nieuw",
   "changelogSubtitle": "Dit is nieuw in deze versie",

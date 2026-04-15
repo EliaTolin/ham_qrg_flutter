@@ -1624,6 +1624,17 @@ class AppLocalizationsEn extends AppLocalizations {
       'Reports available without registration';
 
   @override
+  String get changelog1020ClusterSpots =>
+      'Real-time cluster spots: see who\'s listening on repeaters, with notifications and preferences';
+
+  @override
+  String get changelog1020DetailTabs =>
+      'Repeater page with Info, Cluster and Community tabs';
+
+  @override
+  String get changelog1020TabletLayout => 'Optimized layout for tablets';
+
+  @override
   String get changelogTitle => 'What\'s New';
 
   @override

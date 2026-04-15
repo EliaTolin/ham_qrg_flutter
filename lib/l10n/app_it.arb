@@ -714,6 +714,9 @@
   "changelog1017MultiLanguage": "App disponibile in inglese, spagnolo e francese",
   "changelog1017Onboarding": "Nuova esperienza di primo avvio",
   "changelog1017ReportAnonymous": "Segnalazioni disponibili anche senza registrazione",
+  "changelog1020ClusterSpots": "Cluster spot in tempo reale: vedi chi è in ascolto sui ripetitori, con notifiche e preferenze",
+  "changelog1020DetailTabs": "Pagina ripetitore con tab Info, Cluster e Community",
+  "changelog1020TabletLayout": "Layout ottimizzato per tablet",
 
   "changelogTitle": "Novità",
   "changelogSubtitle": "Ecco cosa c'è di nuovo in questa versione",
