@@ -77,7 +77,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
               // Dark overlay
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.2),
+                  color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.2),
                 ),
               ),
               // Repeater marker
@@ -89,7 +89,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
                     color: Theme.of(context).colorScheme.primary,
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                       width: 3,
                     ),
                     boxShadow: [
@@ -100,9 +100,9 @@ class RepeaterLocationMap extends HookConsumerWidget {
                       ),
                     ],
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.settings_input_antenna,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onPrimary,
                     size: 18,
                   ),
                 ),

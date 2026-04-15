@@ -4,7 +4,7 @@ abstract class SpotsDatasource {
   Future<SpotModel> createSelfSpot({
     required String repeaterId,
     required int durationMinutes,
-    String? accessId,
+    required String accessId,
   });
 
   Future<SpotModel> createOtherSpot({
@@ -17,7 +17,11 @@ abstract class SpotsDatasource {
 
   Future<List<SpotModel>> getActiveSpotsForRepeater(String repeaterId);
 
-  Future<List<SpotModel>> getAllSpotsForRepeater(String repeaterId);
+  Future<List<SpotModel>> getAllSpotsForRepeater(
+    String repeaterId, {
+    int limit = 20,
+    int offset = 0,
+  });
 
   Future<List<SpotModel>> getRecentSpots();
 

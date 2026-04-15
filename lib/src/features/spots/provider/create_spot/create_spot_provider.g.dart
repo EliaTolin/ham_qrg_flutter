@@ -20,7 +20,7 @@ final class CreateSpotProvider extends $FunctionalProvider<
       required ({
         String repeaterId,
         int durationMinutes,
-        String? accessId,
+        String accessId,
       })
           super.argument})
       : super(
@@ -52,7 +52,7 @@ final class CreateSpotProvider extends $FunctionalProvider<
     final argument = this.argument as ({
       String repeaterId,
       int durationMinutes,
-      String? accessId,
+      String accessId,
     });
     return createSpot(
       ref,
@@ -73,7 +73,7 @@ final class CreateSpotProvider extends $FunctionalProvider<
   }
 }
 
-String _$createSpotHash() => r'ced32adcb7c89aca6a9763520862ce8618d9a591';
+String _$createSpotHash() => r'0c723c0ed8d31017abfbacd978a3322def9b87d7';
 
 final class CreateSpotFamily extends $Family
     with
@@ -82,7 +82,7 @@ final class CreateSpotFamily extends $Family
             ({
               String repeaterId,
               int durationMinutes,
-              String? accessId,
+              String accessId,
             })> {
   CreateSpotFamily._()
       : super(
@@ -96,7 +96,7 @@ final class CreateSpotFamily extends $Family
   CreateSpotProvider call({
     required String repeaterId,
     required int durationMinutes,
-    String? accessId,
+    required String accessId,
   }) =>
       CreateSpotProvider._(argument: (
         repeaterId: repeaterId,

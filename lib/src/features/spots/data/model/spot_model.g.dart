@@ -10,7 +10,7 @@ _SpotModel _$SpotModelFromJson(Map<String, dynamic> json) => _SpotModel(
       id: json['id'] as String,
       userId: json['user_id'] as String,
       repeaterId: json['repeater_id'] as String,
-      callsignSnapshot: json['callsign_snapshot'] as String,
+      callsignSnapshot: json['callsign_snapshot'] as String?,
       startedAt: DateTime.parse(json['started_at'] as String),
       spottedCallsign: json['spotted_callsign'] as String?,
       accessId: json['access_id'] as String?,

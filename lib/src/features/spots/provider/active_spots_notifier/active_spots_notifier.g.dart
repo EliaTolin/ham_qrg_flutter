@@ -8,15 +8,18 @@ part of 'active_spots_notifier.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Provides the full spot history for a repeater (active + expired + closed).
+/// Provides the paginated spot history for a repeater
+/// (active + expired + closed), with Realtime updates.
 
 @ProviderFor(ActiveSpotsNotifier)
 final activeSpotsProvider = ActiveSpotsNotifierFamily._();
 
-/// Provides the full spot history for a repeater (active + expired + closed).
+/// Provides the paginated spot history for a repeater
+/// (active + expired + closed), with Realtime updates.
 final class ActiveSpotsNotifierProvider
     extends $AsyncNotifierProvider<ActiveSpotsNotifier, List<RepeaterSpot>> {
-  /// Provides the full spot history for a repeater (active + expired + closed).
+  /// Provides the paginated spot history for a repeater
+  /// (active + expired + closed), with Realtime updates.
   ActiveSpotsNotifierProvider._(
       {required ActiveSpotsNotifierFamily super.from,
       required String super.argument})
@@ -54,9 +57,10 @@ final class ActiveSpotsNotifierProvider
 }
 
 String _$activeSpotsNotifierHash() =>
-    r'9baf0a868e8233d09ab4d63d0dbffb860552a7a4';
+    r'11cb255720fa9419deee78d94f37998ab865a162';
 
-/// Provides the full spot history for a repeater (active + expired + closed).
+/// Provides the paginated spot history for a repeater
+/// (active + expired + closed), with Realtime updates.
 
 final class ActiveSpotsNotifierFamily extends $Family
     with
@@ -75,7 +79,8 @@ final class ActiveSpotsNotifierFamily extends $Family
           isAutoDispose: true,
         );
 
-  /// Provides the full spot history for a repeater (active + expired + closed).
+  /// Provides the paginated spot history for a repeater
+  /// (active + expired + closed), with Realtime updates.
 
   ActiveSpotsNotifierProvider call(
     String repeaterId,
@@ -86,7 +91,8 @@ final class ActiveSpotsNotifierFamily extends $Family
   String toString() => r'activeSpotsProvider';
 }
 
-/// Provides the full spot history for a repeater (active + expired + closed).
+/// Provides the paginated spot history for a repeater
+/// (active + expired + closed), with Realtime updates.
 
 abstract class _$ActiveSpotsNotifier
     extends $AsyncNotifier<List<RepeaterSpot>> {

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/empty_state_widget.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/spot_card.dart';
@@ -42,17 +43,10 @@ class SpotDashboardTab extends HookConsumerWidget {
         recentSpotsAsync.when(
           data: (spots) {
             if (spots.isEmpty) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                child: Center(
-                  child: Text(
-                    l10n.spotListEmpty,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color:
-                          theme.colorScheme.onSurface.withValues(alpha: .5),
-                    ),
-                  ),
-                ),
+              return EmptyStateWidget(
+                icon: Icons.cell_tower,
+                message: l10n.spotListEmpty,
+                iconSize: 36,
               );
             }
             return ListView.builder(

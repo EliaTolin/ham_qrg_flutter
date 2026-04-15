@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/empty_state_widget.dart';
 import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/spot_card.dart';
 import 'package:hamqrg/src/features/spots/provider/active_spots_notifier/active_spots_notifier.dart';
@@ -33,30 +34,53 @@ class ActiveSpotsSection extends HookConsumerWidget {
         spotsAsync.when(
           data: (spots) {
             if (spots.isEmpty) {
-              return _EmptyState(
+              return EmptyStateWidget(
+                icon: Icons.cell_tower,
                 message: l10n.spotActiveNone,
                 cta: l10n.spotActiveCta,
               );
             }
+            final notifier =
+                ref.read(activeSpotsProvider(repeaterId).notifier);
             return Column(
-              children: spots
-                  .map(
-                    (spot) => SpotCard(
-                      spot: spot,
-                      currentUserId: currentUserId,
-                      onClose: spot.isSelfSpot &&
-                              spot.isActive &&
-                              currentUserId != null &&
-                              spot.userId == currentUserId
-                          ? () async {
-                              await ref.read(
-                                closeSpotProvider(spotId: spot.id).future,
-                              );
-                            }
-                          : null,
-                    ),
-                  )
-                  .toList(),
+              children: [
+                ...spots.map(
+                  (spot) => SpotCard(
+                    spot: spot,
+                    currentUserId: currentUserId,
+                    onClose: spot.isSelfSpot &&
+                            spot.isActive &&
+                            currentUserId != null &&
+                            spot.userId == currentUserId
+                        ? () async {
+                            await ref.read(
+                              closeSpotProvider(spotId: spot.id).future,
+                            );
+                          }
+                        : null,
+                  ),
+                ),
+                if (notifier.hasMore)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: notifier.isLoadingMore
+                        ? const Center(
+                            child: SizedBox(
+                              height: 24,
+                              width: 24,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 2,
+                              ),
+                            ),
+                          )
+                        : Center(
+                            child: TextButton(
+                              onPressed: notifier.loadMore,
+                              child: Text(l10n.spotListViewAll),
+                            ),
+                          ),
+                  ),
+              ],
             );
           },
           loading: () => const _LoadingSkeleton(),
@@ -67,45 +91,6 @@ class ActiveSpotsSection extends HookConsumerWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _EmptyState extends StatelessWidget {
-  const _EmptyState({required this.message, required this.cta});
-  final String message;
-  final String cta;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 24),
-      child: Column(
-        children: [
-          Icon(
-            Icons.cell_tower,
-            size: 36,
-            color: theme.colorScheme.onSurface.withValues(alpha: .3),
-          ),
-          const Gap(8),
-          Text(
-            message,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withValues(alpha: .5),
-            ),
-          ),
-          const Gap(4),
-          Text(
-            cta,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.primary,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

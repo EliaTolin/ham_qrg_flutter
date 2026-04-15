@@ -9,7 +9,7 @@ abstract class RepeaterSpot with _$RepeaterSpot {
     required String id,
     required String userId,
     required String repeaterId,
-    required String callsignSnapshot,
+    String? callsignSnapshot,
     required DateTime startedAt,
     String? spottedCallsign,
     String? accessId,

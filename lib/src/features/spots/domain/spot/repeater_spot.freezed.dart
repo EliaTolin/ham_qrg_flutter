@@ -17,7 +17,7 @@ mixin _$RepeaterSpot {
   String get id;
   String get userId;
   String get repeaterId;
-  String get callsignSnapshot;
+  String? get callsignSnapshot;
   DateTime get startedAt;
   String? get spottedCallsign;
   String? get accessId;
@@ -104,7 +104,7 @@ abstract mixin class $RepeaterSpotCopyWith<$Res> {
       {String id,
       String userId,
       String repeaterId,
-      String callsignSnapshot,
+      String? callsignSnapshot,
       DateTime startedAt,
       String? spottedCallsign,
       String? accessId,
@@ -132,7 +132,7 @@ class _$RepeaterSpotCopyWithImpl<$Res> implements $RepeaterSpotCopyWith<$Res> {
     Object? id = null,
     Object? userId = null,
     Object? repeaterId = null,
-    Object? callsignSnapshot = null,
+    Object? callsignSnapshot = freezed,
     Object? startedAt = null,
     Object? spottedCallsign = freezed,
     Object? accessId = freezed,
@@ -157,10 +157,10 @@ class _$RepeaterSpotCopyWithImpl<$Res> implements $RepeaterSpotCopyWith<$Res> {
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
               as String,
-      callsignSnapshot: null == callsignSnapshot
+      callsignSnapshot: freezed == callsignSnapshot
           ? _self.callsignSnapshot
           : callsignSnapshot // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       startedAt: null == startedAt
           ? _self.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable
@@ -302,7 +302,7 @@ extension RepeaterSpotPatterns on RepeaterSpot {
             String id,
             String userId,
             String repeaterId,
-            String callsignSnapshot,
+            String? callsignSnapshot,
             DateTime startedAt,
             String? spottedCallsign,
             String? accessId,
@@ -358,7 +358,7 @@ extension RepeaterSpotPatterns on RepeaterSpot {
             String id,
             String userId,
             String repeaterId,
-            String callsignSnapshot,
+            String? callsignSnapshot,
             DateTime startedAt,
             String? spottedCallsign,
             String? accessId,
@@ -412,7 +412,7 @@ extension RepeaterSpotPatterns on RepeaterSpot {
             String id,
             String userId,
             String repeaterId,
-            String callsignSnapshot,
+            String? callsignSnapshot,
             DateTime startedAt,
             String? spottedCallsign,
             String? accessId,
@@ -456,7 +456,7 @@ class _RepeaterSpot implements RepeaterSpot {
       {required this.id,
       required this.userId,
       required this.repeaterId,
-      required this.callsignSnapshot,
+      this.callsignSnapshot,
       required this.startedAt,
       this.spottedCallsign,
       this.accessId,
@@ -475,7 +475,7 @@ class _RepeaterSpot implements RepeaterSpot {
   @override
   final String repeaterId;
   @override
-  final String callsignSnapshot;
+  final String? callsignSnapshot;
   @override
   final DateTime startedAt;
   @override
@@ -574,7 +574,7 @@ abstract mixin class _$RepeaterSpotCopyWith<$Res>
       {String id,
       String userId,
       String repeaterId,
-      String callsignSnapshot,
+      String? callsignSnapshot,
       DateTime startedAt,
       String? spottedCallsign,
       String? accessId,
@@ -603,7 +603,7 @@ class __$RepeaterSpotCopyWithImpl<$Res>
     Object? id = null,
     Object? userId = null,
     Object? repeaterId = null,
-    Object? callsignSnapshot = null,
+    Object? callsignSnapshot = freezed,
     Object? startedAt = null,
     Object? spottedCallsign = freezed,
     Object? accessId = freezed,
@@ -628,10 +628,10 @@ class __$RepeaterSpotCopyWithImpl<$Res>
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
               as String,
-      callsignSnapshot: null == callsignSnapshot
+      callsignSnapshot: freezed == callsignSnapshot
           ? _self.callsignSnapshot
           : callsignSnapshot // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       startedAt: null == startedAt
           ? _self.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable

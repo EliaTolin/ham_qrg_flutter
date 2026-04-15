@@ -10,7 +10,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
   final Talker _talker;
 
   static const _enrichedSelect = '''
-    id, user_id, callsign_snapshot, spotted_callsign,
+    id, user_id, repeater_id, callsign_snapshot, spotted_callsign,
     access_id, started_at, expires_at, closed_at, duration_minutes,
     profiles!user_id(id, callsign, first_name),
     repeaters!repeater_id(id, callsign, name),
@@ -40,7 +40,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
   Future<SpotModel> createSelfSpot({
     required String repeaterId,
     required int durationMinutes,
-    String? accessId,
+    required String accessId,
   }) async {
     try {
       final response = await _client.functions.invoke(
@@ -48,7 +48,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
         body: {
           'repeater_id': repeaterId,
           'duration_minutes': durationMinutes,
-          if (accessId != null) 'access_id': accessId,
+          'access_id': accessId,
         },
       );
       return _parseResponse(response);
@@ -131,14 +131,17 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
 
   @override
   Future<List<SpotModel>> getAllSpotsForRepeater(
-    String repeaterId,
-  ) async {
+    String repeaterId, {
+    int limit = 20,
+    int offset = 0,
+  }) async {
     try {
       final rows = await _client
           .from('repeater_spots')
           .select(_enrichedSelectNoRepeater)
           .eq('repeater_id', repeaterId)
-          .order('started_at', ascending: false);
+          .order('started_at', ascending: false)
+          .range(offset, offset + limit - 1);
       return (rows as List<dynamic>)
           .map((r) => SpotModel.fromJson(r as Map<String, dynamic>))
           .toList();

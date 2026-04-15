@@ -86,6 +86,7 @@ class AppleSignInButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
+          // Apple brand colors
           backgroundColor: isDark ? Colors.white : Colors.black,
           foregroundColor: isDark ? Colors.black : Colors.white,
           elevation: 0,
@@ -99,7 +100,7 @@ class AppleSignInButton extends StatelessWidget {
             Icon(
               Icons.apple,
               size: 24,
-              color: isDark ? Colors.black : Colors.white,
+              color: isDark ? Colors.black : Colors.white, // Apple brand color
             ),
             const Gap(12),
             Text(
@@ -107,7 +108,7 @@ class AppleSignInButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: isDark ? Colors.black : Colors.white,
+                color: isDark ? Colors.black : Colors.white, // Apple brand color
               ),
             ),
           ],
@@ -133,7 +134,9 @@ class GoogleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.localization;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final colorScheme = theme.colorScheme;
     final buttonLabel = label ?? l10n.registrationSignInGoogle;
 
     return SizedBox(
@@ -142,9 +145,10 @@ class GoogleSignInButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: isLoading ? null : onPressed,
         style: OutlinedButton.styleFrom(
-          backgroundColor: isDark ? Colors.transparent : Colors.white,
+          backgroundColor:
+              isDark ? Colors.transparent : colorScheme.onPrimary,
           side: BorderSide(
-            color: isDark ? Colors.white24 : Colors.grey.shade300,
+            color: isDark ? Colors.white24 : colorScheme.outline,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
@@ -161,7 +165,7 @@ class GoogleSignInButton extends StatelessWidget {
               errorBuilder: (context, error, stackTrace) => Icon(
                 Icons.g_mobiledata,
                 size: 24,
-                color: isDark ? Colors.white : Colors.black87,
+                color: colorScheme.onSurface,
               ),
             ),
             const Gap(12),
@@ -170,7 +174,7 @@ class GoogleSignInButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: isDark ? Colors.white : Colors.black87,
+                color: colorScheme.onSurface,
               ),
             ),
           ],

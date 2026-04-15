@@ -36,7 +36,7 @@ class MyFeedbackCard extends StatelessWidget {
 
     final displayCallsign = userCallsign ?? userName ?? feedback.userId.substring(0, 6).toUpperCase();
     final isLike = feedback.type == FeedbackType.like;
-    final badgeColor = isLike ? Colors.green : Colors.amber;
+    final badgeColor = isLike ? colorScheme.tertiary : colorScheme.error;
     final accessColor = AccessModeHelper.getAccessModeColorObject(feedback.repeaterAccess.mode);
 
     return Container(

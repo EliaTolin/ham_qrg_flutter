@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/common/widgets/sheet/sheet_drag_handle.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
 
@@ -54,14 +55,9 @@ class ClusterRepeatersSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           // Handle bar
-          Container(
-            margin: const EdgeInsets.only(top: 12, bottom: 8),
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              color: colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
-              borderRadius: BorderRadius.circular(2),
-            ),
+          const Padding(
+            padding: EdgeInsets.only(top: 12, bottom: 8),
+            child: SheetDragHandle(),
           ),
           // Title
           Padding(

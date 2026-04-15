@@ -147,7 +147,7 @@ class _ActionButtonsRow extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: colorScheme.shadow.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -324,7 +324,7 @@ class _SpotDetailsSection extends StatelessWidget {
               icon: Icons.hearing,
               label: l10n.potaSpotter,
               value: spot.spotter!,
-              iconColor: Colors.teal,
+              iconColor: colorScheme.primary,
             ),
           ],
 
@@ -338,7 +338,7 @@ class _SpotDetailsSection extends StatelessWidget {
               icon: Icons.chat_bubble_outline,
               label: l10n.potaComments,
               value: spot.comments!,
-              iconColor: Colors.amber.shade700,
+              iconColor: colorScheme.error,
             ),
           ],
 

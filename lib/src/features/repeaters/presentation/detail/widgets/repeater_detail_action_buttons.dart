@@ -35,7 +35,7 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: colorScheme.shadow.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -46,7 +46,7 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
           Expanded(
             child: _ActionButton(
               icon: isFavorite ? Icons.favorite : Icons.favorite_border,
-              iconColor: isFavorite ? Colors.pink : null,
+              iconColor: isFavorite ? colorScheme.error : null,
               label: isFavorite ? l10n.repeaterDetailSaved : l10n.repeaterDetailSave,
               onTap: () => _onFavoriteTap(context, ref, isFavorite),
             ),
