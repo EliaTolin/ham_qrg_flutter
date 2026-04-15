@@ -463,22 +463,22 @@ class _UserReportCard extends StatelessWidget {
     return switch (status) {
       UserReportStatus.pending => _StatusInfo(
           icon: Icons.hourglass_empty,
-          color: Colors.amber.shade700,
+          color: colorScheme.tertiary,
           label: l10n.userReportsStatusPending,
         ),
       UserReportStatus.reviewed => _StatusInfo(
           icon: Icons.manage_search,
-          color: Colors.blue.shade600,
+          color: colorScheme.primary,
           label: l10n.userReportsStatusReviewed,
         ),
       UserReportStatus.resolved => _StatusInfo(
           icon: Icons.check_circle_outline,
-          color: Colors.green.shade600,
+          color: colorScheme.tertiary,
           label: l10n.userReportsStatusResolved,
         ),
       UserReportStatus.rejected => _StatusInfo(
           icon: Icons.cancel_outlined,
-          color: Colors.red.shade600,
+          color: colorScheme.error,
           label: l10n.userReportsStatusRejected,
         ),
     };

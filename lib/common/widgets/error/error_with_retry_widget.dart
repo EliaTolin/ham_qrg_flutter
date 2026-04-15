@@ -7,6 +7,8 @@ class ErrorWidgetWithRetry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = context.localization;
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -15,38 +17,29 @@ class ErrorWidgetWithRetry extends StatelessWidget {
           children: [
             Icon(
               Icons.error_outline,
-              color: Theme.of(context).colorScheme.error,
+              color: theme.colorScheme.error,
               size: 64,
             ),
             const SizedBox(height: 16),
             Text(
-              context.localization.error,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.error,
-                    fontWeight: FontWeight.bold,
-                  ),
+              l10n.error,
+              style: theme.textTheme.titleLarge?.copyWith(
+                color: theme.colorScheme.error,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
-              context.localization.error_message_retry,
+              l10n.error_message_retry,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
             ),
             const SizedBox(height: 24),
-            ElevatedButton(
+            FilledButton(
               onPressed: onRetry,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-              ),
-              child: Text(
-                context.localization.retry,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+              child: Text(l10n.retry),
             ),
           ],
         ),

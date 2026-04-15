@@ -25,6 +25,24 @@ class SpotCard extends StatelessWidget {
   final VoidCallback? onExpired;
   final String? currentUserId;
 
+  /// Formats a timestamp as relative ("5m fa", "2h fa") for recent spots,
+  /// or as "dd/MM HH:mm" for older ones.
+  String _formatTimestamp(DateTime timestamp) {
+    final now = DateTime.now();
+    final local = timestamp.toLocal();
+    final diff = now.difference(local);
+
+    if (diff.inSeconds < 60) return '${diff.inSeconds}s fa';
+    if (diff.inMinutes < 60) return '${diff.inMinutes}m fa';
+    if (diff.inHours < 24) return '${diff.inHours}h fa';
+
+    final d = local.day.toString().padLeft(2, '0');
+    final m = local.month.toString().padLeft(2, '0');
+    final h = local.hour.toString().padLeft(2, '0');
+    final min = local.minute.toString().padLeft(2, '0');
+    return '$d/$m $h:$min';
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.localization;
@@ -75,7 +93,7 @@ class SpotCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        l10n.spotListSpottedBy(spot.callsignSnapshot),
+                        l10n.spotListSpottedBy(spot.callsignSnapshot ?? ''),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurface.withValues(
                             alpha: .6,
@@ -84,7 +102,7 @@ class SpotCard extends StatelessWidget {
                       ),
                     ] else
                       Text(
-                        spot.callsignSnapshot,
+                        spot.callsignSnapshot ?? '',
                         style: theme.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -100,16 +118,40 @@ class SpotCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                    // Access mode label
-                    if (spot.accessMode != null)
-                      Text(
-                        AccessModeHelper.getAccessModeLabel(spot.accessMode!),
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: AccessModeHelper.getAccessModeColorObject(
-                            spot.accessMode!,
+                    // Access mode + timestamp
+                    Row(
+                      children: [
+                        if (spot.accessMode != null) ...[
+                          Text(
+                            AccessModeHelper.getAccessModeLabel(
+                              spot.accessMode!,
+                            ),
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color:
+                                  AccessModeHelper.getAccessModeColorObject(
+                                spot.accessMode!,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            ' · ',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: theme.colorScheme.onSurface.withValues(
+                                alpha: .4,
+                              ),
+                            ),
+                          ),
+                        ],
+                        Text(
+                          _formatTimestamp(spot.startedAt),
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: theme.colorScheme.onSurface.withValues(
+                              alpha: .5,
+                            ),
                           ),
                         ),
-                      ),
+                      ],
+                    ),
                   ],
                 ),
               ),

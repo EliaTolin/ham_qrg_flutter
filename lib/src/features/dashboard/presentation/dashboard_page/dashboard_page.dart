@@ -8,6 +8,7 @@ import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/utils/version_utils.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/common/widgets/sheet/sheet_drag_handle.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:hamqrg/src/features/changelog/data/changelog_data.dart';
@@ -163,7 +164,6 @@ class _ContentSection extends HookWidget {
   Widget build(BuildContext context) {
     final selectedTab = useState(_DashboardTab.repeaters);
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return RepaintBoundary(
       child: Container(
@@ -172,7 +172,7 @@ class _ContentSection extends HookWidget {
           borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
+              color: theme.colorScheme.shadow.withValues(alpha: 0.2),
               blurRadius: 30,
               offset: const Offset(0, -4),
             ),
@@ -181,15 +181,7 @@ class _ContentSection extends HookWidget {
         child: Column(
           children: [
             // Handle
-            Container(
-              margin: const EdgeInsets.only(top: 12, bottom: 8),
-              width: 48,
-              height: 6,
-              decoration: BoxDecoration(
-                color: colorScheme.outlineVariant,
-                borderRadius: BorderRadius.circular(3),
-              ),
-            ),
+            const SheetDragHandle(),
             // Scrollable Content
             Expanded(
               child: SingleChildScrollView(
@@ -269,7 +261,7 @@ class _StatsRow extends ConsumerWidget {
         Expanded(
           child: _StatChip(
             icon: Icons.favorite,
-            iconColor: Colors.redAccent,
+            iconColor: colorScheme.error,
             label: l10n.homeSaved(statistics.favoritesCount ?? 0),
             onTap: () async {
               final isAuthenticated = await requireAuthentication(context, ref);
@@ -635,7 +627,7 @@ class _PotaSpotItem extends StatelessWidget {
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: colorScheme.onSurfaceVariant,
                               fontFeatures: const [
-                                FontFeature.tabularFigures()
+                                FontFeature.tabularFigures(),
                               ],
                             ),
                           ),

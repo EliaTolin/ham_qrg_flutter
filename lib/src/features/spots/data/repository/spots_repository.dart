@@ -17,7 +17,7 @@ class SpotsRepository {
   Future<RepeaterSpot> createSelfSpot({
     required String repeaterId,
     required int durationMinutes,
-    String? accessId,
+    required String accessId,
   }) async {
     final model = await _datasource.createSelfSpot(
       repeaterId: repeaterId,
@@ -53,9 +53,15 @@ class SpotsRepository {
   }
 
   Future<List<RepeaterSpot>> getAllSpotsForRepeater(
-    String repeaterId,
-  ) async {
-    final models = await _datasource.getAllSpotsForRepeater(repeaterId);
+    String repeaterId, {
+    int limit = 20,
+    int offset = 0,
+  }) async {
+    final models = await _datasource.getAllSpotsForRepeater(
+      repeaterId,
+      limit: limit,
+      offset: offset,
+    );
     return models.map(_mapper.fromModel).toList();
   }
 

@@ -11,20 +11,33 @@ import 'package:talker_flutter/talker_flutter.dart';
 
 part 'active_spots_notifier.g.dart';
 
-/// Provides the full spot history for a repeater (active + expired + closed).
+const _pageSize = 20;
+
+/// Provides the paginated spot history for a repeater
+/// (active + expired + closed), with Realtime updates.
 @riverpod
 class ActiveSpotsNotifier extends _$ActiveSpotsNotifier {
   RealtimeChannel? _channel;
   final _mapper = SpotMapper();
   late String _repeaterId;
   late Talker _talker;
+  bool _hasMore = true;
+  bool _isLoadingMore = false;
+
+  bool get hasMore => _hasMore;
+  bool get isLoadingMore => _isLoadingMore;
 
   @override
   FutureOr<List<RepeaterSpot>> build(String repeaterId) async {
     _repeaterId = repeaterId;
     _talker = ref.read(talkerServiceProvider);
+    _hasMore = true;
+    _isLoadingMore = false;
+
     final repository = ref.read(spotsRepositoryProvider);
     final spots = await repository.getAllSpotsForRepeater(repeaterId);
+
+    _hasMore = spots.length >= _pageSize;
 
     _subscribeRealtime(repeaterId);
 
@@ -33,6 +46,30 @@ class ActiveSpotsNotifier extends _$ActiveSpotsNotifier {
     });
 
     return spots;
+  }
+
+  Future<void> loadMore() async {
+    if (!_hasMore || _isLoadingMore) return;
+    final current = state.value ?? [];
+
+    _isLoadingMore = true;
+    // Notify UI to show loading indicator
+    state = AsyncData(current);
+
+    try {
+      final repository = ref.read(spotsRepositoryProvider);
+      final moreSpots = await repository.getAllSpotsForRepeater(
+        _repeaterId,
+        offset: current.length,
+      );
+
+      _hasMore = moreSpots.length >= _pageSize;
+      state = AsyncData([...current, ...moreSpots]);
+    } catch (error, stackTrace) {
+      _talker.handle(error, stackTrace, 'Error loading more spots');
+    } finally {
+      _isLoadingMore = false;
+    }
   }
 
   void _subscribeRealtime(String repeaterId) {
@@ -96,7 +133,14 @@ class ActiveSpotsNotifier extends _$ActiveSpotsNotifier {
   Future<void> _refreshFromRest() async {
     try {
       final repository = ref.read(spotsRepositoryProvider);
-      final spots = await repository.getAllSpotsForRepeater(_repeaterId);
+      final current = state.value ?? [];
+      // Refresh up to the currently loaded amount
+      final count = current.length.clamp(_pageSize, 1000);
+      final spots = await repository.getAllSpotsForRepeater(
+        _repeaterId,
+        limit: count,
+      );
+      _hasMore = spots.length >= count;
       state = AsyncData(spots);
     } catch (error, stackTrace) {
       _talker.handle(

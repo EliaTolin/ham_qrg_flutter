@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/freshness_color_helper.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
@@ -17,12 +18,6 @@ class PotaSpotListItem extends StatelessWidget {
   final PotaSpot spot;
   final double? distanceKm;
 
-  Color _freshnessColor(Duration age) {
-    if (age.inMinutes < 5) return const Color(0xFF16A34A);
-    if (age.inMinutes < 15) return const Color(0xFFD97706);
-    return const Color(0xFF6B7280);
-  }
-
   String _formatDistance(double km) {
     if (km < 1) return '${(km * 1000).round()} m';
     if (km < 100) return '${km.toStringAsFixed(1)} km';
@@ -36,7 +31,7 @@ class PotaSpotListItem extends StatelessWidget {
     final l10n = context.localization;
     final band = bandFromFrequencyKhz(spot.frequency);
     final age = DateTime.now().difference(spot.spotTime);
-    final freshColor = _freshnessColor(age);
+    final freshColor = freshnessColor(age, colorScheme);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),

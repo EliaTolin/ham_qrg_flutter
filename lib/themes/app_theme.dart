@@ -245,6 +245,12 @@ class AppTheme {
         backgroundColor: AppColors.surfaceCardLight,
         selectedColor: AppColors.primary,
         labelStyle: GoogleFonts.inter(
+          color: AppColors.textPrimaryLight,
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
+        secondaryLabelStyle: GoogleFonts.inter(
+          color: Colors.white,
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
@@ -523,6 +529,12 @@ class AppTheme {
         backgroundColor: AppColors.surfaceElevatedDark,
         selectedColor: AppColors.primary,
         labelStyle: GoogleFonts.inter(
+          color: AppColors.textPrimaryDark,
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
+        secondaryLabelStyle: GoogleFonts.inter(
+          color: Colors.white,
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),

@@ -25,8 +25,8 @@ class CommunityFeedbackCard extends ConsumerWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final borderColor = feedback.type == FeedbackType.like ? Colors.green : Colors.amber;
-    final avatarColor = feedback.type == FeedbackType.like ? Colors.indigo : Colors.amber;
+    final borderColor = feedback.type == FeedbackType.like ? colorScheme.tertiary : colorScheme.error;
+    final avatarColor = feedback.type == FeedbackType.like ? colorScheme.primary : colorScheme.error;
     final displayName = feedback.userCallsign ??
         feedback.userDisplayName ??
         feedback.userId.substring(0, 6).toUpperCase();

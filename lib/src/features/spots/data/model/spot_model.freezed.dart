@@ -20,7 +20,7 @@ mixin _$SpotModel {
   @JsonKey(name: 'repeater_id')
   String get repeaterId;
   @JsonKey(name: 'callsign_snapshot')
-  String get callsignSnapshot;
+  String? get callsignSnapshot;
   @JsonKey(name: 'started_at')
   DateTime get startedAt;
   @JsonKey(name: 'spotted_callsign')
@@ -112,7 +112,7 @@ abstract mixin class $SpotModelCopyWith<$Res> {
       {String id,
       @JsonKey(name: 'user_id') String userId,
       @JsonKey(name: 'repeater_id') String repeaterId,
-      @JsonKey(name: 'callsign_snapshot') String callsignSnapshot,
+      @JsonKey(name: 'callsign_snapshot') String? callsignSnapshot,
       @JsonKey(name: 'started_at') DateTime startedAt,
       @JsonKey(name: 'spotted_callsign') String? spottedCallsign,
       @JsonKey(name: 'access_id') String? accessId,
@@ -143,7 +143,7 @@ class _$SpotModelCopyWithImpl<$Res> implements $SpotModelCopyWith<$Res> {
     Object? id = null,
     Object? userId = null,
     Object? repeaterId = null,
-    Object? callsignSnapshot = null,
+    Object? callsignSnapshot = freezed,
     Object? startedAt = null,
     Object? spottedCallsign = freezed,
     Object? accessId = freezed,
@@ -167,10 +167,10 @@ class _$SpotModelCopyWithImpl<$Res> implements $SpotModelCopyWith<$Res> {
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
               as String,
-      callsignSnapshot: null == callsignSnapshot
+      callsignSnapshot: freezed == callsignSnapshot
           ? _self.callsignSnapshot
           : callsignSnapshot // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       startedAt: null == startedAt
           ? _self.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable
@@ -350,7 +350,7 @@ extension SpotModelPatterns on SpotModel {
             String id,
             @JsonKey(name: 'user_id') String userId,
             @JsonKey(name: 'repeater_id') String repeaterId,
-            @JsonKey(name: 'callsign_snapshot') String callsignSnapshot,
+            @JsonKey(name: 'callsign_snapshot') String? callsignSnapshot,
             @JsonKey(name: 'started_at') DateTime startedAt,
             @JsonKey(name: 'spotted_callsign') String? spottedCallsign,
             @JsonKey(name: 'access_id') String? accessId,
@@ -404,7 +404,7 @@ extension SpotModelPatterns on SpotModel {
             String id,
             @JsonKey(name: 'user_id') String userId,
             @JsonKey(name: 'repeater_id') String repeaterId,
-            @JsonKey(name: 'callsign_snapshot') String callsignSnapshot,
+            @JsonKey(name: 'callsign_snapshot') String? callsignSnapshot,
             @JsonKey(name: 'started_at') DateTime startedAt,
             @JsonKey(name: 'spotted_callsign') String? spottedCallsign,
             @JsonKey(name: 'access_id') String? accessId,
@@ -456,7 +456,7 @@ extension SpotModelPatterns on SpotModel {
             String id,
             @JsonKey(name: 'user_id') String userId,
             @JsonKey(name: 'repeater_id') String repeaterId,
-            @JsonKey(name: 'callsign_snapshot') String callsignSnapshot,
+            @JsonKey(name: 'callsign_snapshot') String? callsignSnapshot,
             @JsonKey(name: 'started_at') DateTime startedAt,
             @JsonKey(name: 'spotted_callsign') String? spottedCallsign,
             @JsonKey(name: 'access_id') String? accessId,
@@ -498,7 +498,7 @@ class _SpotModel implements SpotModel {
       {required this.id,
       @JsonKey(name: 'user_id') required this.userId,
       @JsonKey(name: 'repeater_id') required this.repeaterId,
-      @JsonKey(name: 'callsign_snapshot') required this.callsignSnapshot,
+      @JsonKey(name: 'callsign_snapshot') this.callsignSnapshot,
       @JsonKey(name: 'started_at') required this.startedAt,
       @JsonKey(name: 'spotted_callsign') this.spottedCallsign,
       @JsonKey(name: 'access_id') this.accessId,
@@ -521,7 +521,7 @@ class _SpotModel implements SpotModel {
   final String repeaterId;
   @override
   @JsonKey(name: 'callsign_snapshot')
-  final String callsignSnapshot;
+  final String? callsignSnapshot;
   @override
   @JsonKey(name: 'started_at')
   final DateTime startedAt;
@@ -630,7 +630,7 @@ abstract mixin class _$SpotModelCopyWith<$Res>
       {String id,
       @JsonKey(name: 'user_id') String userId,
       @JsonKey(name: 'repeater_id') String repeaterId,
-      @JsonKey(name: 'callsign_snapshot') String callsignSnapshot,
+      @JsonKey(name: 'callsign_snapshot') String? callsignSnapshot,
       @JsonKey(name: 'started_at') DateTime startedAt,
       @JsonKey(name: 'spotted_callsign') String? spottedCallsign,
       @JsonKey(name: 'access_id') String? accessId,
@@ -664,7 +664,7 @@ class __$SpotModelCopyWithImpl<$Res> implements _$SpotModelCopyWith<$Res> {
     Object? id = null,
     Object? userId = null,
     Object? repeaterId = null,
-    Object? callsignSnapshot = null,
+    Object? callsignSnapshot = freezed,
     Object? startedAt = null,
     Object? spottedCallsign = freezed,
     Object? accessId = freezed,
@@ -688,10 +688,10 @@ class __$SpotModelCopyWithImpl<$Res> implements _$SpotModelCopyWith<$Res> {
           ? _self.repeaterId
           : repeaterId // ignore: cast_nullable_to_non_nullable
               as String,
-      callsignSnapshot: null == callsignSnapshot
+      callsignSnapshot: freezed == callsignSnapshot
           ? _self.callsignSnapshot
           : callsignSnapshot // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       startedAt: null == startedAt
           ? _self.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable

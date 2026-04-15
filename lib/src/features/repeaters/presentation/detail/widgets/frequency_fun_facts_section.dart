@@ -134,7 +134,7 @@ class _FrequencyFunFactsSectionState extends State<FrequencyFunFactsSection>
                         // Wavelength
                         _FunFactRow(
                           icon: Icons.straighten,
-                          iconColor: Colors.blue,
+                          iconColor: colorScheme.primary,
                           label: l10n.repeaterDetailWavelength,
                           value: l10n.repeaterDetailWavelengthValue(
                             _formatWavelength(wavelengthM),
@@ -144,7 +144,7 @@ class _FrequencyFunFactsSectionState extends State<FrequencyFunFactsSection>
                         // Oscillations per second
                         _FunFactRow(
                           icon: Icons.waves,
-                          iconColor: Colors.purple,
+                          iconColor: colorScheme.tertiary,
                           label: l10n.repeaterDetailOscillations,
                           value: l10n.repeaterDetailOscillationsValue(
                             _formatOscillations(frequencyHz),
@@ -155,7 +155,7 @@ class _FrequencyFunFactsSectionState extends State<FrequencyFunFactsSection>
                           _funFactDivider(colorScheme),
                           _FunFactRow(
                             icon: Icons.speed,
-                            iconColor: Colors.orange,
+                            iconColor: colorScheme.error,
                             label: l10n.repeaterDetailPropagationTime,
                             value: l10n.repeaterDetailPropagationTimeValue(
                               _formatPropagationTime(distanceM),
@@ -167,7 +167,7 @@ class _FrequencyFunFactsSectionState extends State<FrequencyFunFactsSection>
                           _funFactDivider(colorScheme),
                           _FunFactRow(
                             icon: Icons.repeat,
-                            iconColor: Colors.teal,
+                            iconColor: colorScheme.primary,
                             label: l10n.repeaterDetailWaveCycles,
                             value: l10n.repeaterDetailWaveCyclesValue(
                               _formatWaveCycles(distanceM, wavelengthM),

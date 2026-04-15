@@ -9,7 +9,7 @@ Future<RepeaterSpot> createSpot(
   Ref ref, {
   required String repeaterId,
   required int durationMinutes,
-  String? accessId,
+  required String accessId,
 }) async {
   final repository = ref.read(spotsRepositoryProvider);
   return repository.createSelfSpot(
