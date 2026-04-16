@@ -1125,7 +1125,13 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'Bejelentéseim';
+  String get userReportsTitle => 'Tevékenységeim';
+
+  @override
+  String get userReportsTabReports => 'Bejelentések';
+
+  @override
+  String get userReportsTabSubmissions => 'Új átjátszók';
 
   @override
   String get userReportsFilterAll => 'Összes';
@@ -1173,6 +1179,31 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Koordinátor válasza';
+
+  @override
+  String get userSubmissionsEmpty => 'Nincs javasolt átjátszó';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'A javasolt átjátszók itt jelennek meg';
+
+  @override
+  String get userSubmissionsEmptyFiltered => 'Nincs átjátszó ezzel a szűrővel';
+
+  @override
+  String get userSubmissionsStatusPending => 'Függőben';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Jóváhagyva';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Elutasítva';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Koordinátor válasza';
+
+  @override
+  String get userSubmissionsFrequency => 'Frekvencia';
 
   @override
   String get potaTitle => 'POTA Spotok';

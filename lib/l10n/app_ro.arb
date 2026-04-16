@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Rapoartele mele",
+  "userReportsTitle": "Activitățile mele",
+  "userReportsTabReports": "Raportări",
+  "userReportsTabSubmissions": "Repetoare noi",
   "userReportsFilterAll": "Toate",
   "userReportsFilterOpen": "Deschise",
   "userReportsFilterClosed": "Închise",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Vezi starea rapoartelor tale",
   "userReportsError": "Eroare la încărcarea rapoartelor",
   "userReportsCoordinatorResponse": "Răspunsul coordonatorului",
+  "userSubmissionsEmpty": "Niciun repetor propus",
+  "userSubmissionsEmptyDescription": "Repetoarele propuse vor apărea aici",
+  "userSubmissionsEmptyFiltered": "Niciun repetor cu acest filtru",
+  "userSubmissionsStatusPending": "În așteptare",
+  "userSubmissionsStatusApproved": "Aprobat",
+  "userSubmissionsStatusRejected": "Respins",
+  "userSubmissionsCoordinatorResponse": "Răspuns coordonator",
+  "userSubmissionsFrequency": "Frecvență",
 
   "potaTitle": "Spoturi POTA",
   "potaSearchHint": "Caută după activator, parc sau mod…",

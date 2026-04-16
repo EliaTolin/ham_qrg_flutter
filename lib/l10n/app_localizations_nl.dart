@@ -1122,7 +1122,13 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'Mijn meldingen';
+  String get userReportsTitle => 'Mijn activiteiten';
+
+  @override
+  String get userReportsTabReports => 'Meldingen';
+
+  @override
+  String get userReportsTabSubmissions => 'Nieuwe repeaters';
 
   @override
   String get userReportsFilterAll => 'Alle';
@@ -1170,6 +1176,31 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Reactie coördinator';
+
+  @override
+  String get userSubmissionsEmpty => 'Geen repeaters voorgesteld';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'Voorgestelde repeaters verschijnen hier';
+
+  @override
+  String get userSubmissionsEmptyFiltered => 'Geen repeaters met dit filter';
+
+  @override
+  String get userSubmissionsStatusPending => 'In afwachting';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Goedgekeurd';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Afgewezen';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Reactie coördinator';
+
+  @override
+  String get userSubmissionsFrequency => 'Frequentie';
 
   @override
   String get potaTitle => 'POTA Spots';

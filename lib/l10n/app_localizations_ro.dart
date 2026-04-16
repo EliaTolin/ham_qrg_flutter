@@ -1187,7 +1187,13 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'Rapoartele mele';
+  String get userReportsTitle => 'Activitățile mele';
+
+  @override
+  String get userReportsTabReports => 'Raportări';
+
+  @override
+  String get userReportsTabSubmissions => 'Repetoare noi';
 
   @override
   String get userReportsFilterAll => 'Toate';
@@ -1234,6 +1240,31 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Răspunsul coordonatorului';
+
+  @override
+  String get userSubmissionsEmpty => 'Niciun repetor propus';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'Repetoarele propuse vor apărea aici';
+
+  @override
+  String get userSubmissionsEmptyFiltered => 'Niciun repetor cu acest filtru';
+
+  @override
+  String get userSubmissionsStatusPending => 'În așteptare';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Aprobat';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Respins';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Răspuns coordonator';
+
+  @override
+  String get userSubmissionsFrequency => 'Frecvență';
 
   @override
   String get potaTitle => 'Spoturi POTA';

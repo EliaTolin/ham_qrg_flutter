@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Bejelentéseim",
+  "userReportsTitle": "Tevékenységeim",
+  "userReportsTabReports": "Bejelentések",
+  "userReportsTabSubmissions": "Új átjátszók",
   "userReportsFilterAll": "Összes",
   "userReportsFilterOpen": "Nyitott",
   "userReportsFilterClosed": "Lezárt",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Bejelentéseid állapotának megtekintése",
   "userReportsError": "Hiba a bejelentések betöltésekor",
   "userReportsCoordinatorResponse": "Koordinátor válasza",
+  "userSubmissionsEmpty": "Nincs javasolt átjátszó",
+  "userSubmissionsEmptyDescription": "A javasolt átjátszók itt jelennek meg",
+  "userSubmissionsEmptyFiltered": "Nincs átjátszó ezzel a szűrővel",
+  "userSubmissionsStatusPending": "Függőben",
+  "userSubmissionsStatusApproved": "Jóváhagyva",
+  "userSubmissionsStatusRejected": "Elutasítva",
+  "userSubmissionsCoordinatorResponse": "Koordinátor válasza",
+  "userSubmissionsFrequency": "Frekvencia",
 
   "potaTitle": "POTA Spotok",
   "potaSearchHint": "Keresés aktiváló, park vagy üzemmód alapján…",

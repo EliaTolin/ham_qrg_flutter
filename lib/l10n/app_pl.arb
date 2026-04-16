@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Moje zgłoszenia",
+  "userReportsTitle": "Moje aktywności",
+  "userReportsTabReports": "Zgłoszenia",
+  "userReportsTabSubmissions": "Nowe przemienniki",
   "userReportsFilterAll": "Wszystkie",
   "userReportsFilterOpen": "Otwarte",
   "userReportsFilterClosed": "Zamknięte",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Zobacz status swoich zgłoszeń",
   "userReportsError": "Błąd ładowania zgłoszeń",
   "userReportsCoordinatorResponse": "Odpowiedź koordynatora",
+  "userSubmissionsEmpty": "Brak zgłoszonych przemienników",
+  "userSubmissionsEmptyDescription": "Zaproponowane przemienniki pojawią się tutaj",
+  "userSubmissionsEmptyFiltered": "Brak przemienników z tym filtrem",
+  "userSubmissionsStatusPending": "Oczekujące",
+  "userSubmissionsStatusApproved": "Zatwierdzone",
+  "userSubmissionsStatusRejected": "Odrzucone",
+  "userSubmissionsCoordinatorResponse": "Odpowiedź koordynatora",
+  "userSubmissionsFrequency": "Częstotliwość",
 
   "potaTitle": "Spoty POTA",
   "potaSearchHint": "Szukaj po aktywatorze, parku lub trybie…",

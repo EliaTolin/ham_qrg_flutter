@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Moje prijave",
+  "userReportsTitle": "Moje aktivnosti",
+  "userReportsTabReports": "Prijave",
+  "userReportsTabSubmissions": "Novi repetitori",
   "userReportsFilterAll": "Sve",
   "userReportsFilterOpen": "Otvorene",
   "userReportsFilterClosed": "Zatvorene",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Pogledajte status svojih prijava",
   "userReportsError": "Greška pri učitavanju prijava",
   "userReportsCoordinatorResponse": "Odgovor koordinatora",
+  "userSubmissionsEmpty": "Nema predloženih repetitora",
+  "userSubmissionsEmptyDescription": "Predloženi repetitori će se prikazati ovdje",
+  "userSubmissionsEmptyFiltered": "Nema repetitora s ovim filtrom",
+  "userSubmissionsStatusPending": "Na čekanju",
+  "userSubmissionsStatusApproved": "Odobreno",
+  "userSubmissionsStatusRejected": "Odbijeno",
+  "userSubmissionsCoordinatorResponse": "Odgovor koordinatora",
+  "userSubmissionsFrequency": "Frekvencija",
 
   "potaTitle": "POTA spotovi",
   "potaSearchHint": "Pretraži po aktivatoru, parku ili načinu rada…",

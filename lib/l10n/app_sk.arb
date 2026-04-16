@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Moje hlásenia",
+  "userReportsTitle": "Moje aktivity",
+  "userReportsTabReports": "Hlásenia",
+  "userReportsTabSubmissions": "Nové prevádzače",
   "userReportsFilterAll": "Všetky",
   "userReportsFilterOpen": "Otvorené",
   "userReportsFilterClosed": "Uzavreté",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Zobraziť stav vašich hlásení",
   "userReportsError": "Chyba pri načítavaní hlásení",
   "userReportsCoordinatorResponse": "Odpoveď koordinátora",
+  "userSubmissionsEmpty": "Žiadne navrhnuté prevádzače",
+  "userSubmissionsEmptyDescription": "Navrhnuté prevádzače sa zobrazia tu",
+  "userSubmissionsEmptyFiltered": "Žiadne prevádzače s týmto filtrom",
+  "userSubmissionsStatusPending": "Čakajúce",
+  "userSubmissionsStatusApproved": "Schválené",
+  "userSubmissionsStatusRejected": "Zamietnuté",
+  "userSubmissionsCoordinatorResponse": "Odpoveď koordinátora",
+  "userSubmissionsFrequency": "Frekvencia",
 
   "potaTitle": "POTA Spoty",
   "potaSearchHint": "Hľadať podľa aktivátora, parku alebo režimu…",

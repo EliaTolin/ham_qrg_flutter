@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Mis reportes",
+  "userReportsTitle": "Mis actividades",
+  "userReportsTabReports": "Reportes",
+  "userReportsTabSubmissions": "Nuevos repetidores",
   "userReportsFilterAll": "Todos",
   "userReportsFilterOpen": "Abiertos",
   "userReportsFilterClosed": "Cerrados",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Ver el estado de tus reportes",
   "userReportsError": "Error al cargar los reportes",
   "userReportsCoordinatorResponse": "Respuesta del coordinador",
+  "userSubmissionsEmpty": "Ningún repetidor propuesto",
+  "userSubmissionsEmptyDescription": "Los repetidores que propongas aparecerán aquí",
+  "userSubmissionsEmptyFiltered": "Ningún repetidor con este filtro",
+  "userSubmissionsStatusPending": "Pendiente",
+  "userSubmissionsStatusApproved": "Aprobado",
+  "userSubmissionsStatusRejected": "Rechazado",
+  "userSubmissionsCoordinatorResponse": "Respuesta del coordinador",
+  "userSubmissionsFrequency": "Frecuencia",
 
   "potaTitle": "POTA Spots",
   "potaSearchHint": "Buscar por activador, parque o modo…",

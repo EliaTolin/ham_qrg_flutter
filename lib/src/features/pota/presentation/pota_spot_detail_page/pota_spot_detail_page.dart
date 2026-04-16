@@ -3,12 +3,14 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/utils/freshness_color_helper.dart';
 import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
+import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/controller/pota_spot_detail_controller.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/controller/state/pota_spot_detail_state.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/pota_spot_detail_tablet.dart';
-import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/widgets/pota_park_info_section.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/widgets/pota_location_map.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/widgets/pota_spot_header.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart'
     show spotTimeAgo;
@@ -46,10 +48,7 @@ class PotaSpotDetailPage extends HookConsumerWidget {
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: Theme.of(context)
-                      .colorScheme
-                      .error
-                      .withValues(alpha: 0.6),
+                  color: Theme.of(context).colorScheme.error.withValues(alpha: 0.6),
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -68,7 +67,7 @@ class PotaSpotDetailPage extends HookConsumerWidget {
           );
         },
         data: (state) => ResponsiveLayout(
-          mobile: (_) => _PotaSpotDetailContent(state: state),
+          mobile: (_) => _PotaSpotDetailMobile(state: state),
           tablet: (_) => PotaSpotDetailTablet(state: state),
         ),
       ),
@@ -76,50 +75,54 @@ class PotaSpotDetailPage extends HookConsumerWidget {
   }
 }
 
-class _PotaSpotDetailContent extends StatelessWidget {
-  const _PotaSpotDetailContent({required this.state});
+// ═══════════════════════════════════════════════════════════════════════════
+// MOBILE — green header, normal theme body
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PotaSpotDetailMobile extends StatelessWidget {
+  const _PotaSpotDetailMobile({required this.state});
 
   final PotaSpotDetailState state;
 
   @override
   Widget build(BuildContext context) {
+    final spot = state.spot;
+    final park = state.park;
+
     return CustomScrollView(
       slivers: [
-        // Header
-        PotaSpotHeader(spot: state.spot),
+        // ── Grain-gradient hero header ──
+        PotaSpotHeader(spot: spot),
 
-        // Action buttons
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: _ActionButtonsRow(
-              activator: state.spot.activator,
-              parkWebsite: state.park?.website,
-            ),
-          ),
-        ),
+        // ── Content body (theme colors) ──
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(16, 4, 16, 40),
+          sliver: SliverList.list(
+            children: [
+              const SizedBox(height: 16),
+              // ── External actions ──
+              _ExternalActions(
+                activator: spot.activator,
+                parkWebsite: park?.website,
+              ),
 
-        // Content
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Park info
-                if (state.park != null)
-                  PotaParkInfoSection(
-                    park: state.park!,
-                    distanceKm: state.distanceKm,
-                  ),
+              const SizedBox(height: 16),
 
-                // Spot details section
+              // ── Park card ──
+              if (park != null) ...[
+                _ParkCard(park: park, distanceKm: state.distanceKm),
                 const SizedBox(height: 16),
-                _SpotDetailsSection(state: state),
-
-                const SizedBox(height: 32),
               ],
-            ),
+
+              // ── Map ──
+              if (park != null && park.latitude != null && park.longitude != null) ...[
+                _MapSection(park: park),
+                const SizedBox(height: 16),
+              ],
+
+              // ── Spot info ──
+              _SpotInfoSection(state: state),
+            ],
           ),
         ),
       ],
@@ -127,8 +130,50 @@ class _PotaSpotDetailContent extends StatelessWidget {
   }
 }
 
-class _ActionButtonsRow extends StatelessWidget {
-  const _ActionButtonsRow({
+// ═══════════════════════════════════════════════════════════════════════════
+// Console-style section label (reusable)
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _SectionLabel extends StatelessWidget {
+  const _SectionLabel({required this.icon, required this.text});
+
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Row(
+      children: [
+        Icon(icon, size: 14, color: colorScheme.onSurfaceVariant),
+        const SizedBox(width: 6),
+        Text(
+          text,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                letterSpacing: 1.2,
+                fontWeight: FontWeight.w700,
+                color: colorScheme.onSurfaceVariant,
+              ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Container(
+            height: 1,
+            color: colorScheme.outlineVariant.withValues(alpha: 0.4),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// External action chips
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _ExternalActions extends StatelessWidget {
+  const _ExternalActions({
     required this.activator,
     this.parkWebsite,
   });
@@ -138,82 +183,36 @@ class _ActionButtonsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
     final l10n = context.localization;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.1),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        _ActionChip(
+          icon: Icons.person_search,
+          label: l10n.potaOpenQrz,
+          onTap: () => _launchUrl(
+            context,
+            'https://www.qrz.com/db/$activator',
           ),
-        ],
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          children: [
-            // QRZ.com lookup
-            Expanded(
-              child: _ActionButton(
-                icon: Icons.person_search,
-                label: l10n.potaOpenQrz,
-                onTap: () => _openQrz(context, activator),
-              ),
-            ),
-            VerticalDivider(
-              width: 1,
-              color: colorScheme.outline.withValues(alpha: 0.15),
-            ),
-            // Park website
-            if (parkWebsite != null) ...[
-              Expanded(
-                child: _ActionButton(
-                  icon: Icons.language,
-                  label: l10n.potaParkWebsite,
-                  onTap: () => _openUrl(context, parkWebsite!),
-                ),
-              ),
-              VerticalDivider(
-                width: 1,
-                color: colorScheme.outline.withValues(alpha: 0.15),
-              ),
-            ],
-            // POTA page
-            Expanded(
-              child: _ActionButton(
-                icon: Icons.open_in_new,
-                label: 'POTA',
-                onTap: () => _openUrl(
-                  context,
-                  'https://pota.app',
-                ),
-              ),
-            ),
-          ],
         ),
-      ),
+        if (parkWebsite != null)
+          _ActionChip(
+            icon: Icons.language,
+            label: l10n.potaParkWebsite,
+            onTap: () => _launchUrl(context, parkWebsite!),
+          ),
+        _ActionChip(
+          icon: Icons.open_in_new,
+          label: 'POTA',
+          onTap: () => _launchUrl(context, 'https://pota.app'),
+        ),
+      ],
     );
   }
 
-  Future<void> _openQrz(BuildContext context, String callsign) async {
-    final uri = Uri.parse('https://www.qrz.com/db/$callsign');
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.inAppBrowserView);
-    } else if (context.mounted) {
-      showErrorSnackbar(context, context.localization.potaQrzError);
-    }
-  }
-
-  Future<void> _openUrl(BuildContext context, String url) async {
+  Future<void> _launchUrl(BuildContext context, String url) async {
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.inAppBrowserView);
@@ -223,8 +222,8 @@ class _ActionButtonsRow extends StatelessWidget {
   }
 }
 
-class _ActionButton extends StatelessWidget {
-  const _ActionButton({
+class _ActionChip extends StatelessWidget {
+  const _ActionChip({
     required this.icon,
     required this.label,
     required this.onTap,
@@ -239,34 +238,389 @@ class _ActionButton extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 22, color: colorScheme.onSurfaceVariant),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: theme.textTheme.labelSmall?.copyWith(
+    return Material(
+      color: colorScheme.surface,
+      borderRadius: BorderRadius.circular(10),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: colorScheme.outlineVariant.withValues(alpha: 0.4),
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 16, color: colorScheme.primary),
+              const SizedBox(width: 6),
+              Text(
+                label,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(width: 4),
+              Icon(
+                Icons.chevron_right,
+                size: 14,
                 color: colorScheme.onSurfaceVariant,
               ),
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _SpotDetailsSection extends StatelessWidget {
-  const _SpotDetailsSection({required this.state});
+// ═══════════════════════════════════════════════════════════════════════════
+// Park card — identity + 2-column info grid
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _ParkCard extends StatelessWidget {
+  const _ParkCard({required this.park, this.distanceKm});
+
+  final PotaPark park;
+  final double? distanceKm;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final l10n = context.localization;
+
+    final tiles = <_InfoTileData>[];
+
+    if (park.parktypeDesc != null) {
+      tiles.add(
+        _InfoTileData(
+          icon: Icons.category,
+          label: l10n.potaParkType,
+          value: park.parktypeDesc!,
+          color: colorScheme.primary,
+        ),
+      );
+    }
+    if (park.locationName != null) {
+      tiles.add(
+        _InfoTileData(
+          icon: Icons.place,
+          label: l10n.potaLocation,
+          value: park.locationName!,
+          color: colorScheme.error,
+        ),
+      );
+    }
+    if (park.entityName != null) {
+      tiles.add(
+        _InfoTileData(
+          icon: Icons.flag,
+          label: l10n.potaCountry,
+          value: park.entityName!,
+          color: colorScheme.primary,
+        ),
+      );
+    }
+    if (distanceKm != null) {
+      tiles.add(
+        _InfoTileData(
+          icon: Icons.straighten,
+          label: l10n.potaDistanceAway(_formatDistance(distanceKm!)),
+          value: '',
+          color: colorScheme.tertiary,
+        ),
+      );
+    }
+    if (park.grid6 != null || park.grid4 != null) {
+      tiles.add(
+        _InfoTileData(
+          icon: Icons.grid_on,
+          label: 'Grid',
+          value: park.grid6 ?? park.grid4 ?? '',
+          color: colorScheme.tertiary,
+        ),
+      );
+    }
+    if (park.firstActivator != null) {
+      final dateStr = park.firstActivationDate != null ? ' (${park.firstActivationDate!})' : '';
+      tiles.add(
+        _InfoTileData(
+          icon: Icons.person,
+          label: l10n.potaFirstActivation,
+          value: '${park.firstActivator!}$dateStr',
+          color: colorScheme.secondary,
+        ),
+      );
+    }
+
+    return Container(
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.3),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withValues(alpha: 0.06),
+            blurRadius: 16,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // ── Park identity header ──
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
+            child: Row(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: colorScheme.tertiary.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/pota_logo.png',
+                      width: 24,
+                      height: 24,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        park.reference,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.8,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        park.name,
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          if (tiles.isNotEmpty) ...[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Divider(
+                height: 24,
+                color: colorScheme.outlineVariant.withValues(alpha: 0.25),
+              ),
+            ),
+
+            // ── 2-column info grid ──
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 14),
+              child: _InfoTileGrid(tiles: tiles),
+            ),
+          ] else
+            const SizedBox(height: 14),
+        ],
+      ),
+    );
+  }
+
+  String _formatDistance(double km) {
+    if (km < 1) return '${(km * 1000).round()} m';
+    if (km < 10) return '${km.toStringAsFixed(1)} km';
+    return '${km.round()} km';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 2-column info tile grid
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _InfoTileData {
+  const _InfoTileData({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.color,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color color;
+}
+
+class _InfoTileGrid extends StatelessWidget {
+  const _InfoTileGrid({required this.tiles});
+
+  final List<_InfoTileData> tiles;
+
+  @override
+  Widget build(BuildContext context) {
+    final rows = <Widget>[];
+    for (var i = 0; i < tiles.length; i += 2) {
+      final hasSecond = i + 1 < tiles.length;
+      rows.add(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: _InfoTile(data: tiles[i])),
+            if (hasSecond) ...[
+              const SizedBox(width: 8),
+              Expanded(child: _InfoTile(data: tiles[i + 1])),
+            ] else
+              const Expanded(child: SizedBox.shrink()),
+          ],
+        ),
+      );
+    }
+
+    return Column(
+      children: [
+        for (var i = 0; i < rows.length; i++) ...[
+          if (i > 0) const SizedBox(height: 8),
+          rows[i],
+        ],
+      ],
+    );
+  }
+}
+
+class _InfoTile extends StatelessWidget {
+  const _InfoTile({required this.data});
+
+  final _InfoTileData data;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final hasValue = data.value.isNotEmpty;
+
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: data.color.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 28,
+            height: 28,
+            decoration: BoxDecoration(
+              color: data.color.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(7),
+            ),
+            child: Icon(data.icon, size: 14, color: data.color),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  data.label,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontSize: 10,
+                  ),
+                ),
+                if (hasValue)
+                  Text(
+                    data.value,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Map section
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _MapSection extends StatelessWidget {
+  const _MapSection({required this.park});
+
+  final PotaPark park;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const _SectionLabel(icon: Icons.map_outlined, text: 'LOCATION'),
+        const SizedBox(height: 10),
+        Stack(
+          children: [
+            PotaLocationMap(park: park, height: 160),
+            if (park.latitude != null && park.longitude != null)
+              Positioned(
+                left: 10,
+                bottom: 10,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: colorScheme.shadow.withValues(alpha: 0.6),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    '${park.latitude!.toStringAsFixed(4)}, '
+                    '${park.longitude!.toStringAsFixed(4)}',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Spot info section
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _SpotInfoSection extends StatelessWidget {
+  const _SpotInfoSection({required this.state});
 
   final PotaSpotDetailState state;
 
@@ -276,108 +630,102 @@ class _SpotDetailsSection extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
     final spot = state.spot;
+    final age = DateTime.now().difference(spot.spotTime);
+    final freshColor = freshnessColor(age, colorScheme);
 
-    final hasDetails = spot.spotter != null ||
-        (spot.comments != null && spot.comments!.isNotEmpty) ||
-        spot.source != null;
-
-    if (!hasDetails) return const SizedBox.shrink();
-
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.1),
-        ),
+    final rows = <_DetailRowData>[
+      _DetailRowData(
+        icon: Icons.access_time,
+        label: l10n.potaLastSpotted,
+        value: spotTimeAgo(spot.spotTime),
+        accent: freshColor,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Section title
-          Row(
+    ];
+
+    if (spot.spotter != null) {
+      rows.add(
+        _DetailRowData(
+          icon: Icons.hearing,
+          label: l10n.potaSpotter,
+          value: spot.spotter!,
+          accent: colorScheme.primary,
+        ),
+      );
+    }
+    if (spot.comments != null && spot.comments!.isNotEmpty) {
+      rows.add(
+        _DetailRowData(
+          icon: Icons.chat_bubble_outline,
+          label: l10n.potaComments,
+          value: spot.comments!,
+          accent: colorScheme.tertiary,
+        ),
+      );
+    }
+    if (spot.source != null) {
+      rows.add(
+        _DetailRowData(
+          icon: Icons.source,
+          label: 'Source',
+          value: spot.source!,
+          accent: colorScheme.onSurfaceVariant,
+        ),
+      );
+    }
+
+    if (rows.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const _SectionLabel(icon: Icons.info_outline, text: 'SPOT INFO'),
+        const SizedBox(height: 12),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: colorScheme.outlineVariant.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Column(
             children: [
-              Icon(Icons.info_outline, size: 18, color: colorScheme.primary),
-              const SizedBox(width: 8),
-              Text(
-                'Spot Info',
-                style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              for (var i = 0; i < rows.length; i++) ...[
+                if (i > 0)
+                  Divider(
+                    height: 18,
+                    color: colorScheme.outlineVariant.withValues(alpha: 0.2),
+                  ),
+                _DetailRow(data: rows[i]),
+              ],
             ],
           ),
-          const SizedBox(height: 12),
-
-          // Spotted time
-          _SpotDetailTile(
-            icon: Icons.access_time,
-            label: l10n.potaLastSpotted,
-            value: spotTimeAgo(spot.spotTime),
-            iconColor: colorScheme.primary,
-          ),
-
-          // Spotter
-          if (spot.spotter != null) ...[
-            Divider(
-              height: 20,
-              color: colorScheme.outline.withValues(alpha: 0.1),
-            ),
-            _SpotDetailTile(
-              icon: Icons.hearing,
-              label: l10n.potaSpotter,
-              value: spot.spotter!,
-              iconColor: colorScheme.primary,
-            ),
-          ],
-
-          // Comments
-          if (spot.comments != null && spot.comments!.isNotEmpty) ...[
-            Divider(
-              height: 20,
-              color: colorScheme.outline.withValues(alpha: 0.1),
-            ),
-            _SpotDetailTile(
-              icon: Icons.chat_bubble_outline,
-              label: l10n.potaComments,
-              value: spot.comments!,
-              iconColor: colorScheme.error,
-            ),
-          ],
-
-          // Source
-          if (spot.source != null) ...[
-            Divider(
-              height: 20,
-              color: colorScheme.outline.withValues(alpha: 0.1),
-            ),
-            _SpotDetailTile(
-              icon: Icons.source,
-              label: 'Source',
-              value: spot.source!,
-              iconColor: colorScheme.onSurfaceVariant,
-            ),
-          ],
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-class _SpotDetailTile extends StatelessWidget {
-  const _SpotDetailTile({
+class _DetailRowData {
+  const _DetailRowData({
     required this.icon,
     required this.label,
     required this.value,
-    required this.iconColor,
+    required this.accent,
   });
 
   final IconData icon;
   final String label;
   final String value;
-  final Color iconColor;
+  final Color accent;
+}
+
+class _DetailRow extends StatelessWidget {
+  const _DetailRow({required this.data});
+
+  final _DetailRowData data;
 
   @override
   Widget build(BuildContext context) {
@@ -388,27 +736,28 @@ class _SpotDetailTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 32,
-          height: 32,
+          width: 30,
+          height: 30,
           decoration: BoxDecoration(
-            color: iconColor.withValues(alpha: 0.1),
+            color: data.accent.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(icon, size: 16, color: iconColor),
+          child: Icon(data.icon, size: 15, color: data.accent),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 10),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                label,
+                data.label,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
               ),
+              const SizedBox(height: 1),
               Text(
-                value,
+                data.value,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),

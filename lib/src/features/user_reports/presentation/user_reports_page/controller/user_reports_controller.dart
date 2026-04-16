@@ -1,5 +1,6 @@
 import 'package:hamqrg/src/features/user_reports/presentation/user_reports_page/controller/state/user_reports_state.dart';
 import 'package:hamqrg/src/features/user_reports/provider/get_user_reports/get_user_reports_provider.dart';
+import 'package:hamqrg/src/features/user_reports/provider/get_user_submissions/get_user_submissions_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'user_reports_controller.g.dart';
@@ -8,8 +9,14 @@ part 'user_reports_controller.g.dart';
 class UserReportsController extends _$UserReportsController {
   @override
   FutureOr<UserReportsState> build() async {
-    final reports = await ref.watch(getUserReportsProvider.future);
-    return UserReportsState(reports: reports);
+    final results = await (
+      ref.watch(getUserReportsProvider.future),
+      ref.watch(getUserSubmissionsProvider.future),
+    ).wait;
+    return UserReportsState(
+      reports: results.$1,
+      submissions: results.$2,
+    );
   }
 
   void setFilter(UserReportStatusFilter filter) {
@@ -21,11 +28,17 @@ class UserReportsController extends _$UserReportsController {
   Future<void> reload() async {
     final currentState = state.value;
     try {
-      ref.invalidate(getUserReportsProvider);
-      final reports = await ref.read(getUserReportsProvider.future);
+      ref
+        ..invalidate(getUserReportsProvider)
+        ..invalidate(getUserSubmissionsProvider);
+      final results = await (
+        ref.read(getUserReportsProvider.future),
+        ref.read(getUserSubmissionsProvider.future),
+      ).wait;
       state = AsyncData(
         (currentState ?? const UserReportsState(reports: [])).copyWith(
-          reports: reports,
+          reports: results.$1,
+          submissions: results.$2,
           hasLoadError: false,
         ),
       );

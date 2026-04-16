@@ -15,6 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserReportsState {
   List<UserReport> get reports;
+  List<UserSubmission> get submissions;
   UserReportStatusFilter get activeFilter;
   bool get hasLoadError;
 
@@ -32,6 +33,8 @@ mixin _$UserReportsState {
         (other.runtimeType == runtimeType &&
             other is UserReportsState &&
             const DeepCollectionEquality().equals(other.reports, reports) &&
+            const DeepCollectionEquality()
+                .equals(other.submissions, submissions) &&
             (identical(other.activeFilter, activeFilter) ||
                 other.activeFilter == activeFilter) &&
             (identical(other.hasLoadError, hasLoadError) ||
@@ -39,12 +42,16 @@ mixin _$UserReportsState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(reports), activeFilter, hasLoadError);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(reports),
+      const DeepCollectionEquality().hash(submissions),
+      activeFilter,
+      hasLoadError);
 
   @override
   String toString() {
-    return 'UserReportsState(reports: $reports, activeFilter: $activeFilter, hasLoadError: $hasLoadError)';
+    return 'UserReportsState(reports: $reports, submissions: $submissions, activeFilter: $activeFilter, hasLoadError: $hasLoadError)';
   }
 }
 
@@ -56,6 +63,7 @@ abstract mixin class $UserReportsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<UserReport> reports,
+      List<UserSubmission> submissions,
       UserReportStatusFilter activeFilter,
       bool hasLoadError});
 }
@@ -74,6 +82,7 @@ class _$UserReportsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? reports = null,
+    Object? submissions = null,
     Object? activeFilter = null,
     Object? hasLoadError = null,
   }) {
@@ -82,6 +91,10 @@ class _$UserReportsStateCopyWithImpl<$Res>
           ? _self.reports
           : reports // ignore: cast_nullable_to_non_nullable
               as List<UserReport>,
+      submissions: null == submissions
+          ? _self.submissions
+          : submissions // ignore: cast_nullable_to_non_nullable
+              as List<UserSubmission>,
       activeFilter: null == activeFilter
           ? _self.activeFilter
           : activeFilter // ignore: cast_nullable_to_non_nullable
@@ -187,7 +200,7 @@ extension UserReportsStatePatterns on UserReportsState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<UserReport> reports,
+    TResult Function(List<UserReport> reports, List<UserSubmission> submissions,
             UserReportStatusFilter activeFilter, bool hasLoadError)?
         $default, {
     required TResult orElse(),
@@ -195,7 +208,8 @@ extension UserReportsStatePatterns on UserReportsState {
     final _that = this;
     switch (_that) {
       case _UserReportsState() when $default != null:
-        return $default(_that.reports, _that.activeFilter, _that.hasLoadError);
+        return $default(_that.reports, _that.submissions, _that.activeFilter,
+            _that.hasLoadError);
       case _:
         return orElse();
     }
@@ -216,14 +230,15 @@ extension UserReportsStatePatterns on UserReportsState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<UserReport> reports,
+    TResult Function(List<UserReport> reports, List<UserSubmission> submissions,
             UserReportStatusFilter activeFilter, bool hasLoadError)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserReportsState():
-        return $default(_that.reports, _that.activeFilter, _that.hasLoadError);
+        return $default(_that.reports, _that.submissions, _that.activeFilter,
+            _that.hasLoadError);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -243,14 +258,18 @@ extension UserReportsStatePatterns on UserReportsState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<UserReport> reports,
-            UserReportStatusFilter activeFilter, bool hasLoadError)?
+    TResult? Function(
+            List<UserReport> reports,
+            List<UserSubmission> submissions,
+            UserReportStatusFilter activeFilter,
+            bool hasLoadError)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserReportsState() when $default != null:
-        return $default(_that.reports, _that.activeFilter, _that.hasLoadError);
+        return $default(_that.reports, _that.submissions, _that.activeFilter,
+            _that.hasLoadError);
       case _:
         return null;
     }
@@ -262,9 +281,11 @@ extension UserReportsStatePatterns on UserReportsState {
 class _UserReportsState implements UserReportsState {
   const _UserReportsState(
       {required final List<UserReport> reports,
+      final List<UserSubmission> submissions = const [],
       this.activeFilter = UserReportStatusFilter.all,
       this.hasLoadError = false})
-      : _reports = reports;
+      : _reports = reports,
+        _submissions = submissions;
 
   final List<UserReport> _reports;
   @override
@@ -272,6 +293,15 @@ class _UserReportsState implements UserReportsState {
     if (_reports is EqualUnmodifiableListView) return _reports;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_reports);
+  }
+
+  final List<UserSubmission> _submissions;
+  @override
+  @JsonKey()
+  List<UserSubmission> get submissions {
+    if (_submissions is EqualUnmodifiableListView) return _submissions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_submissions);
   }
 
   @override
@@ -295,6 +325,8 @@ class _UserReportsState implements UserReportsState {
         (other.runtimeType == runtimeType &&
             other is _UserReportsState &&
             const DeepCollectionEquality().equals(other._reports, _reports) &&
+            const DeepCollectionEquality()
+                .equals(other._submissions, _submissions) &&
             (identical(other.activeFilter, activeFilter) ||
                 other.activeFilter == activeFilter) &&
             (identical(other.hasLoadError, hasLoadError) ||
@@ -305,12 +337,13 @@ class _UserReportsState implements UserReportsState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_reports),
+      const DeepCollectionEquality().hash(_submissions),
       activeFilter,
       hasLoadError);
 
   @override
   String toString() {
-    return 'UserReportsState(reports: $reports, activeFilter: $activeFilter, hasLoadError: $hasLoadError)';
+    return 'UserReportsState(reports: $reports, submissions: $submissions, activeFilter: $activeFilter, hasLoadError: $hasLoadError)';
   }
 }
 
@@ -324,6 +357,7 @@ abstract mixin class _$UserReportsStateCopyWith<$Res>
   @useResult
   $Res call(
       {List<UserReport> reports,
+      List<UserSubmission> submissions,
       UserReportStatusFilter activeFilter,
       bool hasLoadError});
 }
@@ -342,6 +376,7 @@ class __$UserReportsStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? reports = null,
+    Object? submissions = null,
     Object? activeFilter = null,
     Object? hasLoadError = null,
   }) {
@@ -350,6 +385,10 @@ class __$UserReportsStateCopyWithImpl<$Res>
           ? _self._reports
           : reports // ignore: cast_nullable_to_non_nullable
               as List<UserReport>,
+      submissions: null == submissions
+          ? _self._submissions
+          : submissions // ignore: cast_nullable_to_non_nullable
+              as List<UserSubmission>,
       activeFilter: null == activeFilter
           ? _self.activeFilter
           : activeFilter // ignore: cast_nullable_to_non_nullable
