@@ -1124,7 +1124,13 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'I miei report';
+  String get userReportsTitle => 'Le mie attività';
+
+  @override
+  String get userReportsTabReports => 'Segnalazioni';
+
+  @override
+  String get userReportsTabSubmissions => 'Nuovi ponti';
 
   @override
   String get userReportsFilterAll => 'Tutti';
@@ -1173,6 +1179,31 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Risposta coordinatore';
+
+  @override
+  String get userSubmissionsEmpty => 'Nessun ponte segnalato';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'I ponti che proponi appariranno qui';
+
+  @override
+  String get userSubmissionsEmptyFiltered => 'Nessun ponte con questo filtro';
+
+  @override
+  String get userSubmissionsStatusPending => 'In attesa';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Approvato';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Rifiutato';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Risposta coordinatore';
+
+  @override
+  String get userSubmissionsFrequency => 'Frequenza';
 
   @override
   String get potaTitle => 'POTA Spots';

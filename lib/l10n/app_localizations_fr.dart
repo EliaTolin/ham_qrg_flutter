@@ -1129,7 +1129,13 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'Mes signalements';
+  String get userReportsTitle => 'Mes activités';
+
+  @override
+  String get userReportsTabReports => 'Signalements';
+
+  @override
+  String get userReportsTabSubmissions => 'Nouveaux relais';
 
   @override
   String get userReportsFilterAll => 'Tous';
@@ -1177,6 +1183,31 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Réponse du coordinateur';
+
+  @override
+  String get userSubmissionsEmpty => 'Aucun relais proposé';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'Les relais que vous proposez apparaîtront ici';
+
+  @override
+  String get userSubmissionsEmptyFiltered => 'Aucun relais avec ce filtre';
+
+  @override
+  String get userSubmissionsStatusPending => 'En attente';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Approuvé';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Rejeté';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Réponse du coordinateur';
+
+  @override
+  String get userSubmissionsFrequency => 'Fréquence';
 
   @override
   String get potaTitle => 'POTA Spots';

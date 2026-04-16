@@ -1182,7 +1182,13 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'Moje zgłoszenia';
+  String get userReportsTitle => 'Moje aktywności';
+
+  @override
+  String get userReportsTabReports => 'Zgłoszenia';
+
+  @override
+  String get userReportsTabSubmissions => 'Nowe przemienniki';
 
   @override
   String get userReportsFilterAll => 'Wszystkie';
@@ -1229,6 +1235,31 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Odpowiedź koordynatora';
+
+  @override
+  String get userSubmissionsEmpty => 'Brak zgłoszonych przemienników';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'Zaproponowane przemienniki pojawią się tutaj';
+
+  @override
+  String get userSubmissionsEmptyFiltered => 'Brak przemienników z tym filtrem';
+
+  @override
+  String get userSubmissionsStatusPending => 'Oczekujące';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Zatwierdzone';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Odrzucone';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Odpowiedź koordynatora';
+
+  @override
+  String get userSubmissionsFrequency => 'Częstotliwość';
 
   @override
   String get potaTitle => 'Spoty POTA';

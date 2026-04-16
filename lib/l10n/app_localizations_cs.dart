@@ -1128,7 +1128,13 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'Moje hlášení';
+  String get userReportsTitle => 'Moje aktivity';
+
+  @override
+  String get userReportsTabReports => 'Hlášení';
+
+  @override
+  String get userReportsTabSubmissions => 'Nové převaděče';
 
   @override
   String get userReportsFilterAll => 'Vše';
@@ -1175,6 +1181,31 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Odpověď koordinátora';
+
+  @override
+  String get userSubmissionsEmpty => 'Žádné navržené převaděče';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'Navržené převaděče se zobrazí zde';
+
+  @override
+  String get userSubmissionsEmptyFiltered => 'Žádné převaděče s tímto filtrem';
+
+  @override
+  String get userSubmissionsStatusPending => 'Čekající';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Schváleno';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Zamítnuto';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Odpověď koordinátora';
+
+  @override
+  String get userSubmissionsFrequency => 'Frekvence';
 
   @override
   String get potaTitle => 'POTA spoty';

@@ -93,4 +93,19 @@ class DashboardController extends _$DashboardController {
     final countRepeaters = await ref.read(getTotalRepeatersCountProvider.future);
     state = await AsyncValue.guard(() => _loadInitialData(favoritesState.count, countRepeaters));
   }
+
+  Future<void> refreshPota() async {
+    final currentState = state.value;
+    if (currentState == null) return;
+    ref.invalidate(getPotaSpotsProvider);
+    try {
+      final spots = await ref.read(getPotaSpotsProvider.future);
+      state = AsyncData(
+        currentState.copyWith(potaSpots: spots, hasPotaError: false),
+      );
+    } catch (e) {
+      log('POTA spots refresh error: $e');
+      state = AsyncData(currentState.copyWith(hasPotaError: true));
+    }
+  }
 }

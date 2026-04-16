@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Moje prijave",
+  "userReportsTitle": "Моје активности",
+  "userReportsTabReports": "Пријаве",
+  "userReportsTabSubmissions": "Нови репетитори",
   "userReportsFilterAll": "Sve",
   "userReportsFilterOpen": "Otvorene",
   "userReportsFilterClosed": "Zatvorene",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Pogledajte status vaših prijava",
   "userReportsError": "Greška prilikom učitavanja prijava",
   "userReportsCoordinatorResponse": "Odgovor koordinatora",
+  "userSubmissionsEmpty": "Нема предложених репетитора",
+  "userSubmissionsEmptyDescription": "Предложени репетитори ће се приказати овде",
+  "userSubmissionsEmptyFiltered": "Нема репетитора са овим филтером",
+  "userSubmissionsStatusPending": "На чекању",
+  "userSubmissionsStatusApproved": "Одобрено",
+  "userSubmissionsStatusRejected": "Одбијено",
+  "userSubmissionsCoordinatorResponse": "Одговор координатора",
+  "userSubmissionsFrequency": "Фреквенција",
 
   "potaTitle": "POTA spotovi",
   "potaSearchHint": "Pretražite po aktivatoru, parku ili režimu…",

@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Mes signalements",
+  "userReportsTitle": "Mes activités",
+  "userReportsTabReports": "Signalements",
+  "userReportsTabSubmissions": "Nouveaux relais",
   "userReportsFilterAll": "Tous",
   "userReportsFilterOpen": "Ouverts",
   "userReportsFilterClosed": "Fermés",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Voir le statut de vos signalements",
   "userReportsError": "Erreur lors du chargement des signalements",
   "userReportsCoordinatorResponse": "Réponse du coordinateur",
+  "userSubmissionsEmpty": "Aucun relais proposé",
+  "userSubmissionsEmptyDescription": "Les relais que vous proposez apparaîtront ici",
+  "userSubmissionsEmptyFiltered": "Aucun relais avec ce filtre",
+  "userSubmissionsStatusPending": "En attente",
+  "userSubmissionsStatusApproved": "Approuvé",
+  "userSubmissionsStatusRejected": "Rejeté",
+  "userSubmissionsCoordinatorResponse": "Réponse du coordinateur",
+  "userSubmissionsFrequency": "Fréquence",
 
   "potaTitle": "POTA Spots",
   "potaSearchHint": "Rechercher par activateur, parc ou mode…",

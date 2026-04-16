@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Moje hlášení",
+  "userReportsTitle": "Moje aktivity",
+  "userReportsTabReports": "Hlášení",
+  "userReportsTabSubmissions": "Nové převaděče",
   "userReportsFilterAll": "Vše",
   "userReportsFilterOpen": "Otevřená",
   "userReportsFilterClosed": "Uzavřená",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Zobrazit stav vašich hlášení",
   "userReportsError": "Chyba při načítání hlášení",
   "userReportsCoordinatorResponse": "Odpověď koordinátora",
+  "userSubmissionsEmpty": "Žádné navržené převaděče",
+  "userSubmissionsEmptyDescription": "Navržené převaděče se zobrazí zde",
+  "userSubmissionsEmptyFiltered": "Žádné převaděče s tímto filtrem",
+  "userSubmissionsStatusPending": "Čekající",
+  "userSubmissionsStatusApproved": "Schváleno",
+  "userSubmissionsStatusRejected": "Zamítnuto",
+  "userSubmissionsCoordinatorResponse": "Odpověď koordinátora",
+  "userSubmissionsFrequency": "Frekvence",
 
   "potaTitle": "POTA spoty",
   "potaSearchHint": "Hledat podle aktivátora, parku nebo režimu…",

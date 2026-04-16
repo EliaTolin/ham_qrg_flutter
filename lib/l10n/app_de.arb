@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Meine Meldungen",
+  "userReportsTitle": "Meine Aktivitäten",
+  "userReportsTabReports": "Meldungen",
+  "userReportsTabSubmissions": "Neue Relais",
   "userReportsFilterAll": "Alle",
   "userReportsFilterOpen": "Offen",
   "userReportsFilterClosed": "Geschlossen",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Status deiner Meldungen anzeigen",
   "userReportsError": "Fehler beim Laden der Meldungen",
   "userReportsCoordinatorResponse": "Antwort des Koordinators",
+  "userSubmissionsEmpty": "Keine Relais vorgeschlagen",
+  "userSubmissionsEmptyDescription": "Vorgeschlagene Relais werden hier angezeigt",
+  "userSubmissionsEmptyFiltered": "Keine Relais mit diesem Filter",
+  "userSubmissionsStatusPending": "Ausstehend",
+  "userSubmissionsStatusApproved": "Genehmigt",
+  "userSubmissionsStatusRejected": "Abgelehnt",
+  "userSubmissionsCoordinatorResponse": "Antwort des Koordinators",
+  "userSubmissionsFrequency": "Frequenz",
 
   "potaTitle": "POTA Spots",
   "potaSearchHint": "Nach Aktivierer, Park oder Betriebsart suchen…",

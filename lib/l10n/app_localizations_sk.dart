@@ -1134,7 +1134,13 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'Moje hlásenia';
+  String get userReportsTitle => 'Moje aktivity';
+
+  @override
+  String get userReportsTabReports => 'Hlásenia';
+
+  @override
+  String get userReportsTabSubmissions => 'Nové prevádzače';
 
   @override
   String get userReportsFilterAll => 'Všetky';
@@ -1181,6 +1187,32 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Odpoveď koordinátora';
+
+  @override
+  String get userSubmissionsEmpty => 'Žiadne navrhnuté prevádzače';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'Navrhnuté prevádzače sa zobrazia tu';
+
+  @override
+  String get userSubmissionsEmptyFiltered =>
+      'Žiadne prevádzače s týmto filtrom';
+
+  @override
+  String get userSubmissionsStatusPending => 'Čakajúce';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Schválené';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Zamietnuté';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Odpoveď koordinátora';
+
+  @override
+  String get userSubmissionsFrequency => 'Frekvencia';
 
   @override
   String get potaTitle => 'POTA Spoty';

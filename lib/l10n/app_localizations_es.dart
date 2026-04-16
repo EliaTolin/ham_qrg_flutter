@@ -1124,7 +1124,13 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'Mis reportes';
+  String get userReportsTitle => 'Mis actividades';
+
+  @override
+  String get userReportsTabReports => 'Reportes';
+
+  @override
+  String get userReportsTabSubmissions => 'Nuevos repetidores';
 
   @override
   String get userReportsFilterAll => 'Todos';
@@ -1171,6 +1177,31 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Respuesta del coordinador';
+
+  @override
+  String get userSubmissionsEmpty => 'Ningún repetidor propuesto';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'Los repetidores que propongas aparecerán aquí';
+
+  @override
+  String get userSubmissionsEmptyFiltered => 'Ningún repetidor con este filtro';
+
+  @override
+  String get userSubmissionsStatusPending => 'Pendiente';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Aprobado';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Rechazado';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Respuesta del coordinador';
+
+  @override
+  String get userSubmissionsFrequency => 'Frecuencia';
 
   @override
   String get potaTitle => 'POTA Spots';

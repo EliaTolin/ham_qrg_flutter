@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Mijn meldingen",
+  "userReportsTitle": "Mijn activiteiten",
+  "userReportsTabReports": "Meldingen",
+  "userReportsTabSubmissions": "Nieuwe repeaters",
   "userReportsFilterAll": "Alle",
   "userReportsFilterOpen": "Open",
   "userReportsFilterClosed": "Gesloten",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Bekijk de status van je meldingen",
   "userReportsError": "Fout bij het laden van meldingen",
   "userReportsCoordinatorResponse": "Reactie coördinator",
+  "userSubmissionsEmpty": "Geen repeaters voorgesteld",
+  "userSubmissionsEmptyDescription": "Voorgestelde repeaters verschijnen hier",
+  "userSubmissionsEmptyFiltered": "Geen repeaters met dit filter",
+  "userSubmissionsStatusPending": "In afwachting",
+  "userSubmissionsStatusApproved": "Goedgekeurd",
+  "userSubmissionsStatusRejected": "Afgewezen",
+  "userSubmissionsCoordinatorResponse": "Reactie coördinator",
+  "userSubmissionsFrequency": "Frequentie",
 
   "potaTitle": "POTA Spots",
   "potaSearchHint": "Zoek op activeerder, park of modus…",

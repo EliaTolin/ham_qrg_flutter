@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "My reports",
+  "userReportsTitle": "My activities",
+  "userReportsTabReports": "Reports",
+  "userReportsTabSubmissions": "New repeaters",
   "userReportsFilterAll": "All",
   "userReportsFilterOpen": "Open",
   "userReportsFilterClosed": "Closed",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "View the status of your reports",
   "userReportsError": "Error loading reports",
   "userReportsCoordinatorResponse": "Coordinator response",
+  "userSubmissionsEmpty": "No repeaters submitted",
+  "userSubmissionsEmptyDescription": "Repeaters you suggest will appear here",
+  "userSubmissionsEmptyFiltered": "No repeaters with this filter",
+  "userSubmissionsStatusPending": "Pending",
+  "userSubmissionsStatusApproved": "Approved",
+  "userSubmissionsStatusRejected": "Rejected",
+  "userSubmissionsCoordinatorResponse": "Coordinator response",
+  "userSubmissionsFrequency": "Frequency",
 
   "potaTitle": "POTA Spots",
   "potaSearchHint": "Search by activator, park or mode…",

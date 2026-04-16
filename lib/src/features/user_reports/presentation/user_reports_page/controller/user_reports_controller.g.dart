@@ -34,7 +34,7 @@ final class UserReportsControllerProvider
 }
 
 String _$userReportsControllerHash() =>
-    r'f8049ddbd437e82af6b85c0460b6cbc80481db0b';
+    r'aa7caf407cf1266c0bec04e764d69d8ada6193dc';
 
 abstract class _$UserReportsController
     extends $AsyncNotifier<UserReportsState> {

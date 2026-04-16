@@ -529,7 +529,9 @@
     }
   },
 
-  "userReportsTitle": "I miei report",
+  "userReportsTitle": "Le mie attività",
+  "userReportsTabReports": "Segnalazioni",
+  "userReportsTabSubmissions": "Nuovi ponti",
   "userReportsFilterAll": "Tutti",
   "userReportsFilterOpen": "Aperte",
   "userReportsFilterClosed": "Chiuse",
@@ -545,6 +547,15 @@
   "userReportsProfileTileSubtitle": "Visualizza lo stato delle tue segnalazioni",
   "userReportsError": "Errore durante il caricamento dei report",
   "userReportsCoordinatorResponse": "Risposta coordinatore",
+
+  "userSubmissionsEmpty": "Nessun ponte segnalato",
+  "userSubmissionsEmptyDescription": "I ponti che proponi appariranno qui",
+  "userSubmissionsEmptyFiltered": "Nessun ponte con questo filtro",
+  "userSubmissionsStatusPending": "In attesa",
+  "userSubmissionsStatusApproved": "Approvato",
+  "userSubmissionsStatusRejected": "Rifiutato",
+  "userSubmissionsCoordinatorResponse": "Risposta coordinatore",
+  "userSubmissionsFrequency": "Frequenza",
 
   "potaTitle": "POTA Spots",
   "potaSearchHint": "Cerca per attivatore, parco o modo…",

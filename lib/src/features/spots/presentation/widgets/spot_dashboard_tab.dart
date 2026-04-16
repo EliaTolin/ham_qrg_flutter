@@ -32,9 +32,23 @@ class SpotDashboardTab extends HookConsumerWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            TextButton(
-              onPressed: () => context.router.push(const SpotListRoute()),
-              child: Text(l10n.spotListViewAll),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () => ref.invalidate(recentSpotsProvider),
+                  icon: Icon(
+                    Icons.refresh,
+                    size: 20,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                  visualDensity: VisualDensity.compact,
+                ),
+                TextButton(
+                  onPressed: () => context.router.push(const SpotListRoute()),
+                  child: Text(l10n.spotListViewAll),
+                ),
+              ],
             ),
           ],
         ),

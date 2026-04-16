@@ -508,7 +508,9 @@
     }
   },
 
-  "userReportsTitle": "Moja poročila",
+  "userReportsTitle": "Moje dejavnosti",
+  "userReportsTabReports": "Prijave",
+  "userReportsTabSubmissions": "Novi repetitorji",
   "userReportsFilterAll": "Vsa",
   "userReportsFilterOpen": "Odprta",
   "userReportsFilterClosed": "Zaprta",
@@ -524,6 +526,14 @@
   "userReportsProfileTileSubtitle": "Oglejte si stanje svojih poročil",
   "userReportsError": "Napaka pri nalaganju poročil",
   "userReportsCoordinatorResponse": "Odgovor koordinatorja",
+  "userSubmissionsEmpty": "Ni predlaganih repetitorjev",
+  "userSubmissionsEmptyDescription": "Predlagani repetitorji se bodo prikazali tukaj",
+  "userSubmissionsEmptyFiltered": "Ni repetitorjev s tem filtrom",
+  "userSubmissionsStatusPending": "V čakanju",
+  "userSubmissionsStatusApproved": "Odobreno",
+  "userSubmissionsStatusRejected": "Zavrnjeno",
+  "userSubmissionsCoordinatorResponse": "Odgovor koordinatorja",
+  "userSubmissionsFrequency": "Frekvenca",
 
   "potaTitle": "POTA spoti",
   "potaSearchHint": "Išči po aktivatorju, parku ali načinu…",

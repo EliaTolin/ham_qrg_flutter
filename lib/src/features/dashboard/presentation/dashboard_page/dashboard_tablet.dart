@@ -7,6 +7,7 @@ import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
+import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
@@ -239,7 +240,7 @@ class _LocatorChipState extends State<_LocatorChip>
 // ---------------------------------------------------------------------------
 // SIDE PANEL — stats + 3 console sections
 // ---------------------------------------------------------------------------
-class _SidePanel extends StatelessWidget {
+class _SidePanel extends ConsumerWidget {
   const _SidePanel({
     required this.statistics,
     required this.nearbyRepeaters,
@@ -251,7 +252,7 @@ class _SidePanel extends StatelessWidget {
   final List<PotaSpot> potaSpots;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
 
     return SingleChildScrollView(
@@ -265,6 +266,8 @@ class _SidePanel extends StatelessWidget {
             label: 'NEARBY REPEATERS',
             actionLabel: l10n.dashboardViewAllRepeaters,
             onAction: () => AutoTabsRouter.of(context).setActiveIndex(1),
+            onRefresh: () =>
+                ref.read(dashboardControllerProvider.notifier).reload(),
             child: _NearbyRepeatersList(
               repeaters: nearbyRepeaters.take(5).toList(),
             ),
@@ -276,6 +279,8 @@ class _SidePanel extends StatelessWidget {
             label: 'POTA SPOTS',
             actionLabel: l10n.dashboardViewAllPotaSpots,
             onAction: () => context.router.push(const PotaSpotsRoute()),
+            onRefresh: () =>
+                ref.read(dashboardControllerProvider.notifier).refreshPota(),
             child: _PotaList(spots: potaSpots.take(5).toList()),
           ),
         ],
@@ -293,12 +298,14 @@ class _ConsoleSection extends StatelessWidget {
     required this.child,
     this.actionLabel,
     this.onAction,
+    this.onRefresh,
   });
 
   final String label;
   final Widget child;
   final String? actionLabel;
   final VoidCallback? onAction;
+  final VoidCallback? onRefresh;
 
   @override
   Widget build(BuildContext context) {
@@ -324,6 +331,21 @@ class _ConsoleSection extends StatelessWidget {
                 color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
               ),
             ),
+            if (onRefresh != null) ...[
+              const SizedBox(width: 8),
+              InkWell(
+                onTap: onRefresh,
+                borderRadius: BorderRadius.circular(6),
+                child: Padding(
+                  padding: const EdgeInsets.all(4),
+                  child: Icon(
+                    Icons.refresh,
+                    size: 14,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+            ],
             if (actionLabel != null && onAction != null) ...[
               const SizedBox(width: 10),
               InkWell(

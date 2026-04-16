@@ -1132,7 +1132,13 @@ class AppLocalizationsSr extends AppLocalizations {
   }
 
   @override
-  String get userReportsTitle => 'Moje prijave';
+  String get userReportsTitle => 'Моје активности';
+
+  @override
+  String get userReportsTabReports => 'Пријаве';
+
+  @override
+  String get userReportsTabSubmissions => 'Нови репетитори';
 
   @override
   String get userReportsFilterAll => 'Sve';
@@ -1180,6 +1186,31 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get userReportsCoordinatorResponse => 'Odgovor koordinatora';
+
+  @override
+  String get userSubmissionsEmpty => 'Нема предложених репетитора';
+
+  @override
+  String get userSubmissionsEmptyDescription =>
+      'Предложени репетитори ће се приказати овде';
+
+  @override
+  String get userSubmissionsEmptyFiltered => 'Нема репетитора са овим филтером';
+
+  @override
+  String get userSubmissionsStatusPending => 'На чекању';
+
+  @override
+  String get userSubmissionsStatusApproved => 'Одобрено';
+
+  @override
+  String get userSubmissionsStatusRejected => 'Одбијено';
+
+  @override
+  String get userSubmissionsCoordinatorResponse => 'Одговор координатора';
+
+  @override
+  String get userSubmissionsFrequency => 'Фреквенција';
 
   @override
   String get potaTitle => 'POTA spotovi';

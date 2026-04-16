@@ -2083,8 +2083,20 @@ abstract class AppLocalizations {
   /// No description provided for @userReportsTitle.
   ///
   /// In it, this message translates to:
-  /// **'I miei report'**
+  /// **'Le mie attività'**
   String get userReportsTitle;
+
+  /// No description provided for @userReportsTabReports.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnalazioni'**
+  String get userReportsTabReports;
+
+  /// No description provided for @userReportsTabSubmissions.
+  ///
+  /// In it, this message translates to:
+  /// **'Nuovi ponti'**
+  String get userReportsTabSubmissions;
 
   /// No description provided for @userReportsFilterAll.
   ///
@@ -2175,6 +2187,54 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Risposta coordinatore'**
   String get userReportsCoordinatorResponse;
+
+  /// No description provided for @userSubmissionsEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ponte segnalato'**
+  String get userSubmissionsEmpty;
+
+  /// No description provided for @userSubmissionsEmptyDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'I ponti che proponi appariranno qui'**
+  String get userSubmissionsEmptyDescription;
+
+  /// No description provided for @userSubmissionsEmptyFiltered.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ponte con questo filtro'**
+  String get userSubmissionsEmptyFiltered;
+
+  /// No description provided for @userSubmissionsStatusPending.
+  ///
+  /// In it, this message translates to:
+  /// **'In attesa'**
+  String get userSubmissionsStatusPending;
+
+  /// No description provided for @userSubmissionsStatusApproved.
+  ///
+  /// In it, this message translates to:
+  /// **'Approvato'**
+  String get userSubmissionsStatusApproved;
+
+  /// No description provided for @userSubmissionsStatusRejected.
+  ///
+  /// In it, this message translates to:
+  /// **'Rifiutato'**
+  String get userSubmissionsStatusRejected;
+
+  /// No description provided for @userSubmissionsCoordinatorResponse.
+  ///
+  /// In it, this message translates to:
+  /// **'Risposta coordinatore'**
+  String get userSubmissionsCoordinatorResponse;
+
+  /// No description provided for @userSubmissionsFrequency.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza'**
+  String get userSubmissionsFrequency;
 
   /// No description provided for @potaTitle.
   ///

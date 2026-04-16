@@ -103,7 +103,16 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
       l10n.repeaterDetailShareMessage,
     );
 
-    await SharePlus.instance.share(ShareParams(text: shareText));
+    final box = context.findRenderObject() as RenderBox?;
+    final sharePositionOrigin =
+        box != null ? box.localToGlobal(Offset.zero) & box.size : null;
+
+    await SharePlus.instance.share(
+      ShareParams(
+        text: shareText,
+        sharePositionOrigin: sharePositionOrigin,
+      ),
+    );
   }
 
   Future<void> _onReportTap(BuildContext context, WidgetRef ref) async {
