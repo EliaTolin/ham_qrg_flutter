@@ -82,6 +82,22 @@ class PotaSpotHeader extends StatelessWidget {
               ),
             ),
 
+            // ── Large POTA logo watermark ──
+            Positioned(
+              right: -20,
+              top: 30,
+              child: Opacity(
+                opacity: 0.08,
+                child: Image.asset(
+                  'assets/images/pota_logo.png',
+                  width: 220,
+                  height: 220,
+                  color: Colors.white,
+                  colorBlendMode: BlendMode.srcIn,
+                ),
+              ),
+            ),
+
             // ── Bottom edge: thin fade to scaffold (last 30px only) ──
             Positioned(
               left: 0,
