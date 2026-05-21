@@ -6,8 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'get_repeaters_feedback_stats_from_ids_provider.g.dart';
 
 @riverpod
-Future<Map<String, RepeaterFeedbackStats>>
-    getRepeatersFeedbackStatsFromIds(
+Future<Map<String, RepeaterFeedbackStats>> getRepeatersFeedbackStatsFromIds(
   Ref ref,
   List<String> repeaterIds,
 ) async {

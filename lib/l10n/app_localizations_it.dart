@@ -1815,4 +1815,154 @@ class AppLocalizationsIt extends AppLocalizations {
   String spotDurationMinutes(int minutes) {
     return '$minutes min';
   }
+
+  @override
+  String get sotaTitle => 'SOTA Spots';
+
+  @override
+  String get sotaListEmpty => 'Nessuno spot SOTA al momento';
+
+  @override
+  String get sotaLoadError => 'Errore nel caricamento spot SOTA';
+
+  @override
+  String get sotaRetry => 'Riprova';
+
+  @override
+  String get sotaSummitPursuit => 'Vista verso la cima';
+
+  @override
+  String get sotaLosClear => 'Vista libera';
+
+  @override
+  String get sotaLosObstructed => 'Possibile ostruzione';
+
+  @override
+  String sotaLosObstructionAt(String distance, String height) {
+    return 'Ostacolo a $distance km, +$height m';
+  }
+
+  @override
+  String sotaPointsBadge(int count) {
+    return '$count pt';
+  }
+
+  @override
+  String sotaAltitudeMeters(int m) {
+    return '$m m';
+  }
+
+  @override
+  String get sotaFilterAll => 'Tutti';
+
+  @override
+  String get sotaSortByTime => 'Tempo';
+
+  @override
+  String get sotaSortByDistance => 'Distanza';
+
+  @override
+  String get sotaFilterPoints => 'Punti';
+
+  @override
+  String get sotaFilterAssociation => 'Paese';
+
+  @override
+  String get sotaSpotQrt => 'QRT';
+
+  @override
+  String sotaSummitInvalidFrom(String date) {
+    return 'Cima non più valida dal $date';
+  }
+
+  @override
+  String get sotaSummitRestrictions => 'Accesso con restrizioni';
+
+  @override
+  String get sotaPursuitNoLocation =>
+      'Attiva la posizione per vedere il profilo verso la cima';
+
+  @override
+  String get sotaPursuitTooClose => 'Sei praticamente sulla cima';
+
+  @override
+  String get sotaPursuitTooFar =>
+      'Cima troppo distante per il profilo di terreno';
+
+  @override
+  String get sotaPursuitError => 'Impossibile calcolare il profilo. Riprova.';
+
+  @override
+  String get sotaPursuitLoading => 'Calcolo profilo altimetrico…';
+
+  @override
+  String get sotaCopyFrequency => 'Copia frequenza';
+
+  @override
+  String get sotaOpenOnMap => 'Apri sulla mappa';
+
+  @override
+  String get sotaShare => 'Condividi';
+
+  @override
+  String get sotaViewAll => 'Vedi tutti';
+
+  @override
+  String get sotaTabDashboard => 'SOTA';
+
+  @override
+  String get sotaIntroEmpty =>
+      'SOTA: Summits On The Air. Insegui i radioamatori che attivano cime montane.';
+
+  @override
+  String sotaSpotCount(int count) {
+    return '$count spot';
+  }
+
+  @override
+  String get sotaActivator => 'Attivatore';
+
+  @override
+  String get sotaSummit => 'Cima';
+
+  @override
+  String get sotaAssociation => 'Associazione';
+
+  @override
+  String get sotaRegion => 'Regione';
+
+  @override
+  String get sotaLocator => 'Locatore';
+
+  @override
+  String get sotaDistance => 'Distanza';
+
+  @override
+  String get sotaBearing => 'Direzione';
+
+  @override
+  String get sotaElevationDelta => 'Dislivello';
+
+  @override
+  String get sotaRemoveFilters => 'Rimuovi filtri';
+
+  @override
+  String get sotaPointsTitle => 'Punti';
+
+  @override
+  String get sotaSpotInfo => 'Info spot';
+
+  @override
+  String get sotaTime => 'Orario';
+
+  @override
+  String get sotaCopiedToClipboard => 'Frequenza copiata';
+
+  @override
+  String sotaPointsAbove(int count) {
+    return '$count+ pt';
+  }
+
+  @override
+  String get sotaFilterPointsAll => 'Punti: tutti';
 }

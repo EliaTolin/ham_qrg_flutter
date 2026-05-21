@@ -3381,6 +3381,276 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'{minutes} min'**
   String spotDurationMinutes(int minutes);
+
+  /// No description provided for @sotaTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'SOTA Spots'**
+  String get sotaTitle;
+
+  /// No description provided for @sotaListEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuno spot SOTA al momento'**
+  String get sotaListEmpty;
+
+  /// No description provided for @sotaLoadError.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore nel caricamento spot SOTA'**
+  String get sotaLoadError;
+
+  /// No description provided for @sotaRetry.
+  ///
+  /// In it, this message translates to:
+  /// **'Riprova'**
+  String get sotaRetry;
+
+  /// No description provided for @sotaSummitPursuit.
+  ///
+  /// In it, this message translates to:
+  /// **'Vista verso la cima'**
+  String get sotaSummitPursuit;
+
+  /// No description provided for @sotaLosClear.
+  ///
+  /// In it, this message translates to:
+  /// **'Vista libera'**
+  String get sotaLosClear;
+
+  /// No description provided for @sotaLosObstructed.
+  ///
+  /// In it, this message translates to:
+  /// **'Possibile ostruzione'**
+  String get sotaLosObstructed;
+
+  /// No description provided for @sotaLosObstructionAt.
+  ///
+  /// In it, this message translates to:
+  /// **'Ostacolo a {distance} km, +{height} m'**
+  String sotaLosObstructionAt(String distance, String height);
+
+  /// No description provided for @sotaPointsBadge.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} pt'**
+  String sotaPointsBadge(int count);
+
+  /// No description provided for @sotaAltitudeMeters.
+  ///
+  /// In it, this message translates to:
+  /// **'{m} m'**
+  String sotaAltitudeMeters(int m);
+
+  /// No description provided for @sotaFilterAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Tutti'**
+  String get sotaFilterAll;
+
+  /// No description provided for @sotaSortByTime.
+  ///
+  /// In it, this message translates to:
+  /// **'Tempo'**
+  String get sotaSortByTime;
+
+  /// No description provided for @sotaSortByDistance.
+  ///
+  /// In it, this message translates to:
+  /// **'Distanza'**
+  String get sotaSortByDistance;
+
+  /// No description provided for @sotaFilterPoints.
+  ///
+  /// In it, this message translates to:
+  /// **'Punti'**
+  String get sotaFilterPoints;
+
+  /// No description provided for @sotaFilterAssociation.
+  ///
+  /// In it, this message translates to:
+  /// **'Paese'**
+  String get sotaFilterAssociation;
+
+  /// No description provided for @sotaSpotQrt.
+  ///
+  /// In it, this message translates to:
+  /// **'QRT'**
+  String get sotaSpotQrt;
+
+  /// No description provided for @sotaSummitInvalidFrom.
+  ///
+  /// In it, this message translates to:
+  /// **'Cima non più valida dal {date}'**
+  String sotaSummitInvalidFrom(String date);
+
+  /// No description provided for @sotaSummitRestrictions.
+  ///
+  /// In it, this message translates to:
+  /// **'Accesso con restrizioni'**
+  String get sotaSummitRestrictions;
+
+  /// No description provided for @sotaPursuitNoLocation.
+  ///
+  /// In it, this message translates to:
+  /// **'Attiva la posizione per vedere il profilo verso la cima'**
+  String get sotaPursuitNoLocation;
+
+  /// No description provided for @sotaPursuitTooClose.
+  ///
+  /// In it, this message translates to:
+  /// **'Sei praticamente sulla cima'**
+  String get sotaPursuitTooClose;
+
+  /// No description provided for @sotaPursuitTooFar.
+  ///
+  /// In it, this message translates to:
+  /// **'Cima troppo distante per il profilo di terreno'**
+  String get sotaPursuitTooFar;
+
+  /// No description provided for @sotaPursuitError.
+  ///
+  /// In it, this message translates to:
+  /// **'Impossibile calcolare il profilo. Riprova.'**
+  String get sotaPursuitError;
+
+  /// No description provided for @sotaPursuitLoading.
+  ///
+  /// In it, this message translates to:
+  /// **'Calcolo profilo altimetrico…'**
+  String get sotaPursuitLoading;
+
+  /// No description provided for @sotaCopyFrequency.
+  ///
+  /// In it, this message translates to:
+  /// **'Copia frequenza'**
+  String get sotaCopyFrequency;
+
+  /// No description provided for @sotaOpenOnMap.
+  ///
+  /// In it, this message translates to:
+  /// **'Apri sulla mappa'**
+  String get sotaOpenOnMap;
+
+  /// No description provided for @sotaShare.
+  ///
+  /// In it, this message translates to:
+  /// **'Condividi'**
+  String get sotaShare;
+
+  /// No description provided for @sotaViewAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Vedi tutti'**
+  String get sotaViewAll;
+
+  /// No description provided for @sotaTabDashboard.
+  ///
+  /// In it, this message translates to:
+  /// **'SOTA'**
+  String get sotaTabDashboard;
+
+  /// No description provided for @sotaIntroEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'SOTA: Summits On The Air. Insegui i radioamatori che attivano cime montane.'**
+  String get sotaIntroEmpty;
+
+  /// No description provided for @sotaSpotCount.
+  ///
+  /// In it, this message translates to:
+  /// **'{count} spot'**
+  String sotaSpotCount(int count);
+
+  /// No description provided for @sotaActivator.
+  ///
+  /// In it, this message translates to:
+  /// **'Attivatore'**
+  String get sotaActivator;
+
+  /// No description provided for @sotaSummit.
+  ///
+  /// In it, this message translates to:
+  /// **'Cima'**
+  String get sotaSummit;
+
+  /// No description provided for @sotaAssociation.
+  ///
+  /// In it, this message translates to:
+  /// **'Associazione'**
+  String get sotaAssociation;
+
+  /// No description provided for @sotaRegion.
+  ///
+  /// In it, this message translates to:
+  /// **'Regione'**
+  String get sotaRegion;
+
+  /// No description provided for @sotaLocator.
+  ///
+  /// In it, this message translates to:
+  /// **'Locatore'**
+  String get sotaLocator;
+
+  /// No description provided for @sotaDistance.
+  ///
+  /// In it, this message translates to:
+  /// **'Distanza'**
+  String get sotaDistance;
+
+  /// No description provided for @sotaBearing.
+  ///
+  /// In it, this message translates to:
+  /// **'Direzione'**
+  String get sotaBearing;
+
+  /// No description provided for @sotaElevationDelta.
+  ///
+  /// In it, this message translates to:
+  /// **'Dislivello'**
+  String get sotaElevationDelta;
+
+  /// No description provided for @sotaRemoveFilters.
+  ///
+  /// In it, this message translates to:
+  /// **'Rimuovi filtri'**
+  String get sotaRemoveFilters;
+
+  /// No description provided for @sotaPointsTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Punti'**
+  String get sotaPointsTitle;
+
+  /// No description provided for @sotaSpotInfo.
+  ///
+  /// In it, this message translates to:
+  /// **'Info spot'**
+  String get sotaSpotInfo;
+
+  /// No description provided for @sotaTime.
+  ///
+  /// In it, this message translates to:
+  /// **'Orario'**
+  String get sotaTime;
+
+  /// No description provided for @sotaCopiedToClipboard.
+  ///
+  /// In it, this message translates to:
+  /// **'Frequenza copiata'**
+  String get sotaCopiedToClipboard;
+
+  /// No description provided for @sotaPointsAbove.
+  ///
+  /// In it, this message translates to:
+  /// **'{count}+ pt'**
+  String sotaPointsAbove(int count);
+
+  /// No description provided for @sotaFilterPointsAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Punti: tutti'**
+  String get sotaFilterPointsAll;
 }
 
 class _AppLocalizationsDelegate

@@ -76,7 +76,8 @@ class SplashController extends _$SplashController {
 
       // Check if first-launch onboarding is needed (for all users)
       talker.info('[Splash] step: needsOnboarding');
-      final needsFirstLaunchOnboarding = await ref.read(needsOnboardingProvider.future);
+      final needsFirstLaunchOnboarding =
+          await ref.read(needsOnboardingProvider.future);
       if (needsFirstLaunchOnboarding) {
         talker.info('[Splash] -> OnboardingRoute');
         return const SplashAction.navigate(OnboardingRoute());
@@ -87,7 +88,8 @@ class SplashController extends _$SplashController {
       final isAnonymous = await ref.read(isAnonymousProvider.future);
       if (!isAnonymous) {
         talker.info('[Splash] step: checkNeedsPostLoginOnboarding');
-        final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+        final needsOnboarding =
+            await ref.read(checkNeedsPostLoginOnboardingProvider.future);
         if (needsOnboarding) {
           talker.info('[Splash] -> PostLoginOnboardingRoute');
           return const SplashAction.navigate(PostLoginOnboardingRoute());
@@ -122,7 +124,8 @@ class SplashController extends _$SplashController {
 
       // Location + nearby repeaters
       talker.info('[Splash] prefetch: currentPosition');
-      final position = await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
+      final position =
+          await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
       talker.info(
         '[Splash] prefetch: repeatersNearby '
         '(${position.latitude}, ${position.longitude})',
@@ -135,7 +138,8 @@ class SplashController extends _$SplashController {
       );
       // Pre-generate all icon combinations
       for (final repeater in repeatersNearby) {
-        final accessModes = repeater.accesses.map((e) => e.mode).toSet().toList();
+        final accessModes =
+            repeater.accesses.map((e) => e.mode).toSet().toList();
         await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
           accessModes,
         );
@@ -153,10 +157,12 @@ class SplashController extends _$SplashController {
   Future<void> _ensureMinimumVersion(PackageInfo packageInfo) async {
     final talker = _talker;
     final installedVersion = packageInfo.version;
-    final minVersionKey = Platform.isIOS ? 'min_version_app_store' : 'min_version_play_store';
+    final minVersionKey =
+        Platform.isIOS ? 'min_version_app_store' : 'min_version_play_store';
 
     try {
-      final minVersionParam = await ref.read(getParamByKeyProvider(minVersionKey).future);
+      final minVersionParam =
+          await ref.read(getParamByKeyProvider(minVersionKey).future);
       if (minVersionParam == null) return;
 
       final minVersion = minVersionParam.value;

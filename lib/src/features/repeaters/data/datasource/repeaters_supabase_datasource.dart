@@ -59,7 +59,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         repeaterData['accesses'] = row['accesses'];
         return RepeaterModel.fromJson(repeaterData);
       }).toList();
-      _logTiming('getRepeatersInBounds', sw, extra: '${results.length} results');
+      _logTiming(
+        'getRepeatersInBounds',
+        sw,
+        extra: '${results.length} results',
+      );
       return results;
     } catch (error, stackTrace) {
       _logTiming('getRepeatersInBounds', sw, extra: '❌ error');
@@ -150,7 +154,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         return RepeaterModel.fromJson(repeaterData);
       }).toList();
 
-      _logTiming('searchRepeaters', sw, extra: '"$query" → ${results.length} results');
+      _logTiming(
+        'searchRepeaters',
+        sw,
+        extra: '"$query" → ${results.length} results',
+      );
       return results;
     } catch (error, stackTrace) {
       _logTiming('searchRepeaters', sw, extra: '❌ error');
@@ -210,7 +218,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       return results;
     } catch (error, stackTrace) {
       _logTiming('getFavoriteRepeatersIds', sw, extra: '❌ error');
-      _talker.handle(error, stackTrace, 'Error fetching favorite repeaters IDs');
+      _talker.handle(
+        error,
+        stackTrace,
+        'Error fetching favorite repeaters IDs',
+      );
       rethrow;
     }
   }
@@ -274,7 +286,9 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       }
       final data = await _client
           .from('user_favorite_repeaters')
-          .select('repeater:repeaters(*, accesses:repeater_access(*, network:networks(*)))')
+          .select(
+            'repeater:repeaters(*, accesses:repeater_access(*, network:networks(*)))',
+          )
           .eq('user_id', userId);
 
       final results = (data as List)
@@ -287,7 +301,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
           })
           .whereType<RepeaterModel>()
           .toList();
-      _logTiming('getFavoriteRepeaters', sw, extra: '${results.length} results');
+      _logTiming(
+        'getFavoriteRepeaters',
+        sw,
+        extra: '${results.length} results',
+      );
       return results;
     } catch (error, stackTrace) {
       _logTiming('getFavoriteRepeaters', sw, extra: '❌ error');
@@ -415,7 +433,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       });
     } catch (error, stackTrace) {
       _logTiming('getRepeaterFeedbackStats', sw, extra: '❌ error');
-      _talker.handle(error, stackTrace, 'Error fetching repeater feedback stats');
+      _talker.handle(
+        error,
+        stackTrace,
+        'Error fetching repeater feedback stats',
+      );
       rethrow;
     }
   }
@@ -464,14 +486,12 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         if (type == 'like') {
           agg.likesTotal++;
           if (userId != null && rowUserId == userId) agg.hasMyLike = true;
-          if (agg.lastLikeAt == null ||
-              createdAt.compareTo(agg.lastLikeAt!) > 0) {
+          if (agg.lastLikeAt == null || createdAt.compareTo(agg.lastLikeAt!) > 0) {
             agg.lastLikeAt = createdAt;
           }
         } else if (type == 'down') {
           agg.downTotal++;
-          if (agg.lastDownAt == null ||
-              createdAt.compareTo(agg.lastDownAt!) > 0) {
+          if (agg.lastDownAt == null || createdAt.compareTo(agg.lastDownAt!) > 0) {
             agg.lastDownAt = createdAt;
           }
         }
@@ -586,7 +606,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
             ),
           )
           .toList();
-      _logTiming('getRepeaterFeedbacks', sw, extra: '${results.length} results');
+      _logTiming(
+        'getRepeaterFeedbacks',
+        sw,
+        extra: '${results.length} results',
+      );
       return results;
     } catch (error, stackTrace) {
       _logTiming('getRepeaterFeedbacks', sw, extra: '❌ error');
@@ -609,7 +633,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
           .eq('user_id', userId)
           .maybeSingle();
 
-      _logTiming('getMyRepeaterFeedback', sw, extra: data != null ? '✅ found' : '⚠️ null');
+      _logTiming(
+        'getMyRepeaterFeedback',
+        sw,
+        extra: data != null ? '✅ found' : '⚠️ null',
+      );
 
       if (data == null) {
         return null;
@@ -648,7 +676,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
             ),
           )
           .toList();
-      _logTiming('getMyRepeaterFeedbacks', sw, extra: '${results.length} results');
+      _logTiming(
+        'getMyRepeaterFeedbacks',
+        sw,
+        extra: '${results.length} results',
+      );
       return results;
     } catch (error, stackTrace) {
       _logTiming('getMyRepeaterFeedbacks', sw, extra: '❌ error');

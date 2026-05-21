@@ -296,7 +296,8 @@ class RepeatersMapPage extends HookConsumerWidget {
         final exists = await mapboxMap.style.hasStyleImage(imageId);
         if (exists) continue;
 
-        final iconBytes = await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+        final iconBytes =
+            await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
           entry.value,
         );
 
@@ -386,7 +387,8 @@ class RepeatersMapPage extends HookConsumerWidget {
           ),
         );
       } else {
-        final source = await mapboxMap.style.getSource(MapKeys.repeatersSource) as GeoJsonSource?;
+        final source = await mapboxMap.style.getSource(MapKeys.repeatersSource)
+            as GeoJsonSource?;
         if (source != null) {
           await source.updateGeoJSON(geoJson);
         }
@@ -399,7 +401,8 @@ class RepeatersMapPage extends HookConsumerWidget {
   /// Convert repeaters to GeoJSON format.
   /// Groups repeaters at identical coordinates into synthetic clusters.
   String _repeatersToGeoJson(List<Repeater> repeaters) {
-    final validRepeaters = repeaters.where((r) => r.latitude != null && r.longitude != null);
+    final validRepeaters =
+        repeaters.where((r) => r.latitude != null && r.longitude != null);
 
     // Group repeaters by exact coordinates
     final groupedByCoords = <String, List<Repeater>>{};
@@ -417,7 +420,8 @@ class RepeatersMapPage extends HookConsumerWidget {
       if (repeatersAtLocation.length == 1) {
         // Generate marker key based on access modes
         final accessModes = first.accesses.map((a) => a.mode).toList();
-        final markerKey = 'marker-${RepeaterModeHelper.getAccessModesKey(accessModes)}';
+        final markerKey =
+            'marker-${RepeaterModeHelper.getAccessModesKey(accessModes)}';
 
         // Use callsign as label, fallback to name
         final label = first.callsign ?? first.name ?? '';
@@ -454,7 +458,8 @@ class RepeatersMapPage extends HookConsumerWidget {
             'point_count_abbreviated': repeatersAtLocation.length.toString(),
             // Custom properties for tap handling
             'is_same_location_cluster': true,
-            'cluster_repeater_ids': repeatersAtLocation.map((r) => r.id).toList(),
+            'cluster_repeater_ids':
+                repeatersAtLocation.map((r) => r.id).toList(),
             'latitude': first.latitude,
             'longitude': first.longitude,
           },
@@ -508,8 +513,8 @@ class RepeatersMapPage extends HookConsumerWidget {
           ),
         );
       } else {
-        final source =
-            await mapboxMap.style.getSource(MapKeys.potaSource) as GeoJsonSource?;
+        final source = await mapboxMap.style.getSource(MapKeys.potaSource)
+            as GeoJsonSource?;
         if (source != null) {
           await source.updateGeoJSON(geoJson);
         }
@@ -617,9 +622,11 @@ class RepeatersMapPage extends HookConsumerWidget {
       if (sameLocationFeatures.isNotEmpty) {
         final feature = sameLocationFeatures.first;
         if (feature != null) {
-          final featureMap = feature.queriedFeature.feature as Map<dynamic, dynamic>;
+          final featureMap =
+              feature.queriedFeature.feature as Map<dynamic, dynamic>;
           final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
-          final clusterIds = properties?['cluster_repeater_ids'] as List<dynamic>?;
+          final clusterIds =
+              properties?['cluster_repeater_ids'] as List<dynamic>?;
 
           if (clusterIds != null && clusterIds.isNotEmpty) {
             final repeaters = _extractRepeatersFromIds(
@@ -645,7 +652,8 @@ class RepeatersMapPage extends HookConsumerWidget {
       final feature = features.first;
       if (feature == null) return false;
 
-      final featureMap = feature.queriedFeature.feature as Map<dynamic, dynamic>;
+      final featureMap =
+          feature.queriedFeature.feature as Map<dynamic, dynamic>;
 
       // Native Mapbox cluster - use getGeoJsonClusterLeaves
       final clusterLeaves = await mapboxMap.getGeoJsonClusterLeaves(
@@ -739,7 +747,9 @@ class RepeatersMapPage extends HookConsumerWidget {
       }
     }
 
-    return currentState.repeaters.where((r) => repeaterIds.contains(r.id)).toList();
+    return currentState.repeaters
+        .where((r) => repeaterIds.contains(r.id))
+        .toList();
   }
 
   /// Handle tap on a single point
@@ -760,7 +770,8 @@ class RepeatersMapPage extends HookConsumerWidget {
       final feature = features.first;
       if (feature == null) return;
 
-      final featureMap = feature.queriedFeature.feature as Map<dynamic, dynamic>;
+      final featureMap =
+          feature.queriedFeature.feature as Map<dynamic, dynamic>;
       final properties = featureMap['properties'] as Map<dynamic, dynamic>?;
       if (properties == null) return;
 
@@ -893,94 +904,93 @@ class RepeatersMapPage extends HookConsumerWidget {
           left: 0,
           right: 0,
           child: SafeArea(
-              bottom: false,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Filter chips
-                  ModeFilterChipsHorizontal(
-                    allLabel: context.localization.repeaterModeAllmode,
-                    selectedModes: mapState?.selectedModes ?? {},
-                    onModeToggled: (mode) async {
-                      if (mapController != null) {
-                        final visibleBounds =
-                            await _getVisibleBounds(mapController);
-                        await notifier.toggleModeFilter(
-                          lat1: visibleBounds.lat1,
-                          lon1: visibleBounds.lon1,
-                          lat2: visibleBounds.lat2,
-                          lon2: visibleBounds.lon2,
-                          mode: mode,
-                        );
-                      }
-                    },
-                    onAllSelected: () async {
-                      if (mapController != null) {
-                        final visibleBounds =
-                            await _getVisibleBounds(mapController);
-                        await notifier.clearAllModes(
-                          lat1: visibleBounds.lat1,
-                          lon1: visibleBounds.lon1,
-                          lat2: visibleBounds.lat2,
-                          lon2: visibleBounds.lon2,
-                        );
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  // Banner / Summary (below filter chips)
-                  if (mapState?.locationError != null)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: PermissionBanner(
-                        errorType: mapState!.locationError!,
-                        onRetry: () async {
-                          ref.invalidate(repeatersMapControllerProvider);
+            bottom: false,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Filter chips
+                ModeFilterChipsHorizontal(
+                  allLabel: context.localization.repeaterModeAllmode,
+                  selectedModes: mapState?.selectedModes ?? {},
+                  onModeToggled: (mode) async {
+                    if (mapController != null) {
+                      final visibleBounds =
+                          await _getVisibleBounds(mapController);
+                      await notifier.toggleModeFilter(
+                        lat1: visibleBounds.lat1,
+                        lon1: visibleBounds.lon1,
+                        lat2: visibleBounds.lat2,
+                        lon2: visibleBounds.lon2,
+                        mode: mode,
+                      );
+                    }
+                  },
+                  onAllSelected: () async {
+                    if (mapController != null) {
+                      final visibleBounds =
+                          await _getVisibleBounds(mapController);
+                      await notifier.clearAllModes(
+                        lat1: visibleBounds.lat1,
+                        lon1: visibleBounds.lon1,
+                        lat2: visibleBounds.lat2,
+                        lon2: visibleBounds.lon2,
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(height: 8),
+                // Banner / Summary (below filter chips)
+                if (mapState?.locationError != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: PermissionBanner(
+                      errorType: mapState!.locationError!,
+                      onRetry: () async {
+                        ref.invalidate(repeatersMapControllerProvider);
+                      },
+                    ),
+                  )
+                else if (mapState?.hasLoadError ?? false)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: InfoBanner(
+                      icon: const Icon(Icons.warning_amber_rounded),
+                      label: context.localization.repeatersMapGenericError,
+                      trailing: TextButton(
+                        onPressed: () async {
+                          if (mapController != null) {
+                            await _loadRepeatersForVisibleBounds(
+                              ref,
+                              mapController,
+                            );
+                          }
                         },
-                      ),
-                    )
-                  else if (mapState?.hasLoadError ?? false)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: InfoBanner(
-                        icon: const Icon(Icons.warning_amber_rounded),
-                        label: context.localization.repeatersMapGenericError,
-                        trailing: TextButton(
-                          onPressed: () async {
-                            if (mapController != null) {
-                              await _loadRepeatersForVisibleBounds(
-                                ref,
-                                mapController,
-                              );
-                            }
-                          },
-                          child:
-                              Text(context.localization.repeatersMapRetry),
-                        ),
-                      ),
-                    )
-                  else if (!asyncState.isLoading &&
-                      mapState?.locationError == null &&
-                      (mapState?.repeaters.isEmpty ?? false))
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: InfoBanner(
-                        icon: const Icon(Icons.location_off_outlined),
-                        label: context.localization.repeatersMapEmpty,
-                      ),
-                    )
-                  else if (mapState?.repeaters.isNotEmpty ?? false)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: SummaryChip(
-                        count: mapState!.repeaters.length,
+                        child: Text(context.localization.repeatersMapRetry),
                       ),
                     ),
-                  const SizedBox(height: 8),
-                ],
-              ),
+                  )
+                else if (!asyncState.isLoading &&
+                    mapState?.locationError == null &&
+                    (mapState?.repeaters.isEmpty ?? false))
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: InfoBanner(
+                      icon: const Icon(Icons.location_off_outlined),
+                      label: context.localization.repeatersMapEmpty,
+                    ),
+                  )
+                else if (mapState?.repeaters.isNotEmpty ?? false)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: SummaryChip(
+                      count: mapState!.repeaters.length,
+                    ),
+                  ),
+                const SizedBox(height: 8),
+              ],
             ),
           ),
+        ),
         // Bottom buttons
         Positioned(
           left: 16,
@@ -1059,7 +1069,8 @@ class _MapCircleButton extends StatelessWidget {
   }
 }
 
-Future<({double lat1, double lon1, double lat2, double lon2})> _getVisibleBounds(
+Future<({double lat1, double lon1, double lat2, double lon2})>
+    _getVisibleBounds(
   MapboxMap map,
 ) async {
   final bounds = await map.coordinateBoundsForCamera(

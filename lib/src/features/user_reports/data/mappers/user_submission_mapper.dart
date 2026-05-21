@@ -17,9 +17,8 @@ class UserSubmissionMapper
       ),
       coordinatorResponse: model.coordinatorResponse,
       createdAt: DateTime.parse(model.createdAt),
-      respondedAt: model.respondedAt != null
-          ? DateTime.parse(model.respondedAt!)
-          : null,
+      respondedAt:
+          model.respondedAt != null ? DateTime.parse(model.respondedAt!) : null,
     );
   }
 

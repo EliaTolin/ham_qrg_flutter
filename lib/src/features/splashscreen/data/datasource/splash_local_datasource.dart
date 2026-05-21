@@ -22,6 +22,7 @@ class SplashLocalDatasource implements SplashDatasource {
 
 @riverpod
 Future<SplashDatasource> splashLocalDatasource(Ref ref) async {
-  final sharedPreferences = await ref.watch(sharedPrefStorageClientProvider.future);
+  final sharedPreferences =
+      await ref.watch(sharedPrefStorageClientProvider.future);
   return SplashLocalDatasource(sharedPreferences);
 }

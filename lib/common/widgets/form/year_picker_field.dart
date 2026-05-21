@@ -44,7 +44,8 @@ class YearPickerField extends StatelessWidget {
   }
 
   Future<void> selectDate(BuildContext context) async {
-    final newDate = await showYearPicker(context: context, selectedDate: selectedDate);
+    final newDate =
+        await showYearPicker(context: context, selectedDate: selectedDate);
     if (newDate != null) {
       onChanged(newDate);
     }

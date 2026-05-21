@@ -106,7 +106,6 @@ class OnboardingLocalDatasource implements OnboardingDatasource {
 
 @riverpod
 Future<OnboardingDatasource> onboardingLocalDatasource(Ref ref) async {
-  final storageClient =
-      await ref.watch(sharedPrefStorageClientProvider.future);
+  final storageClient = await ref.watch(sharedPrefStorageClientProvider.future);
   return OnboardingLocalDatasource(storageClient);
 }

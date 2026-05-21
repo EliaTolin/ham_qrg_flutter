@@ -155,6 +155,7 @@ class _AccessModeSegmentsPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _AccessModeSegmentsPainter oldDelegate) {
-    return modes != oldDelegate.modes || backgroundColor != oldDelegate.backgroundColor;
+    return modes != oldDelegate.modes ||
+        backgroundColor != oldDelegate.backgroundColor;
   }
 }

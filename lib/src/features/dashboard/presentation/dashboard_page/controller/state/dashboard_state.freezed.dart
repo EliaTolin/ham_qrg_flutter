@@ -21,6 +21,8 @@ mixin _$DashboardState {
   LocationErrorType? get locationError;
   List<PotaSpot> get potaSpots;
   bool get hasPotaError;
+  List<SotaSpot> get sotaSpots;
+  bool get hasSotaError;
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
@@ -46,7 +48,10 @@ mixin _$DashboardState {
                 other.locationError == locationError) &&
             const DeepCollectionEquality().equals(other.potaSpots, potaSpots) &&
             (identical(other.hasPotaError, hasPotaError) ||
-                other.hasPotaError == hasPotaError));
+                other.hasPotaError == hasPotaError) &&
+            const DeepCollectionEquality().equals(other.sotaSpots, sotaSpots) &&
+            (identical(other.hasSotaError, hasSotaError) ||
+                other.hasSotaError == hasSotaError));
   }
 
   @override
@@ -58,11 +63,13 @@ mixin _$DashboardState {
       profile,
       locationError,
       const DeepCollectionEquality().hash(potaSpots),
-      hasPotaError);
+      hasPotaError,
+      const DeepCollectionEquality().hash(sotaSpots),
+      hasSotaError);
 
   @override
   String toString() {
-    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError, potaSpots: $potaSpots, hasPotaError: $hasPotaError)';
+    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError, potaSpots: $potaSpots, hasPotaError: $hasPotaError, sotaSpots: $sotaSpots, hasSotaError: $hasSotaError)';
   }
 }
 
@@ -79,7 +86,9 @@ abstract mixin class $DashboardStateCopyWith<$Res> {
       Profile? profile,
       LocationErrorType? locationError,
       List<PotaSpot> potaSpots,
-      bool hasPotaError});
+      bool hasPotaError,
+      List<SotaSpot> sotaSpots,
+      bool hasSotaError});
 
   $DashboardStatisticsCopyWith<$Res> get statistics;
   $ProfileCopyWith<$Res>? get profile;
@@ -105,6 +114,8 @@ class _$DashboardStateCopyWithImpl<$Res>
     Object? locationError = freezed,
     Object? potaSpots = null,
     Object? hasPotaError = null,
+    Object? sotaSpots = null,
+    Object? hasSotaError = null,
   }) {
     return _then(_self.copyWith(
       statistics: null == statistics
@@ -134,6 +145,14 @@ class _$DashboardStateCopyWithImpl<$Res>
       hasPotaError: null == hasPotaError
           ? _self.hasPotaError
           : hasPotaError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      sotaSpots: null == sotaSpots
+          ? _self.sotaSpots
+          : sotaSpots // ignore: cast_nullable_to_non_nullable
+              as List<SotaSpot>,
+      hasSotaError: null == hasSotaError
+          ? _self.hasSotaError
+          : hasSotaError // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -263,7 +282,9 @@ extension DashboardStatePatterns on DashboardState {
             Profile? profile,
             LocationErrorType? locationError,
             List<PotaSpot> potaSpots,
-            bool hasPotaError)?
+            bool hasPotaError,
+            List<SotaSpot> sotaSpots,
+            bool hasSotaError)?
         $default, {
     required TResult orElse(),
   }) {
@@ -277,7 +298,9 @@ extension DashboardStatePatterns on DashboardState {
             _that.profile,
             _that.locationError,
             _that.potaSpots,
-            _that.hasPotaError);
+            _that.hasPotaError,
+            _that.sotaSpots,
+            _that.hasSotaError);
       case _:
         return orElse();
     }
@@ -305,7 +328,9 @@ extension DashboardStatePatterns on DashboardState {
             Profile? profile,
             LocationErrorType? locationError,
             List<PotaSpot> potaSpots,
-            bool hasPotaError)
+            bool hasPotaError,
+            List<SotaSpot> sotaSpots,
+            bool hasSotaError)
         $default,
   ) {
     final _that = this;
@@ -318,7 +343,9 @@ extension DashboardStatePatterns on DashboardState {
             _that.profile,
             _that.locationError,
             _that.potaSpots,
-            _that.hasPotaError);
+            _that.hasPotaError,
+            _that.sotaSpots,
+            _that.hasSotaError);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -345,7 +372,9 @@ extension DashboardStatePatterns on DashboardState {
             Profile? profile,
             LocationErrorType? locationError,
             List<PotaSpot> potaSpots,
-            bool hasPotaError)?
+            bool hasPotaError,
+            List<SotaSpot> sotaSpots,
+            bool hasSotaError)?
         $default,
   ) {
     final _that = this;
@@ -358,7 +387,9 @@ extension DashboardStatePatterns on DashboardState {
             _that.profile,
             _that.locationError,
             _that.potaSpots,
-            _that.hasPotaError);
+            _that.hasPotaError,
+            _that.sotaSpots,
+            _that.hasSotaError);
       case _:
         return null;
     }
@@ -375,9 +406,12 @@ class _DashboardState implements DashboardState {
       required this.profile,
       this.locationError,
       final List<PotaSpot> potaSpots = const <PotaSpot>[],
-      this.hasPotaError = false})
+      this.hasPotaError = false,
+      final List<SotaSpot> sotaSpots = const <SotaSpot>[],
+      this.hasSotaError = false})
       : _nearbyRepeaters = nearbyRepeaters,
-        _potaSpots = potaSpots;
+        _potaSpots = potaSpots,
+        _sotaSpots = sotaSpots;
 
   @override
   final DashboardStatistics statistics;
@@ -407,6 +441,18 @@ class _DashboardState implements DashboardState {
   @override
   @JsonKey()
   final bool hasPotaError;
+  final List<SotaSpot> _sotaSpots;
+  @override
+  @JsonKey()
+  List<SotaSpot> get sotaSpots {
+    if (_sotaSpots is EqualUnmodifiableListView) return _sotaSpots;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sotaSpots);
+  }
+
+  @override
+  @JsonKey()
+  final bool hasSotaError;
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
@@ -433,7 +479,11 @@ class _DashboardState implements DashboardState {
             const DeepCollectionEquality()
                 .equals(other._potaSpots, _potaSpots) &&
             (identical(other.hasPotaError, hasPotaError) ||
-                other.hasPotaError == hasPotaError));
+                other.hasPotaError == hasPotaError) &&
+            const DeepCollectionEquality()
+                .equals(other._sotaSpots, _sotaSpots) &&
+            (identical(other.hasSotaError, hasSotaError) ||
+                other.hasSotaError == hasSotaError));
   }
 
   @override
@@ -445,11 +495,13 @@ class _DashboardState implements DashboardState {
       profile,
       locationError,
       const DeepCollectionEquality().hash(_potaSpots),
-      hasPotaError);
+      hasPotaError,
+      const DeepCollectionEquality().hash(_sotaSpots),
+      hasSotaError);
 
   @override
   String toString() {
-    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError, potaSpots: $potaSpots, hasPotaError: $hasPotaError)';
+    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError, potaSpots: $potaSpots, hasPotaError: $hasPotaError, sotaSpots: $sotaSpots, hasSotaError: $hasSotaError)';
   }
 }
 
@@ -468,7 +520,9 @@ abstract mixin class _$DashboardStateCopyWith<$Res>
       Profile? profile,
       LocationErrorType? locationError,
       List<PotaSpot> potaSpots,
-      bool hasPotaError});
+      bool hasPotaError,
+      List<SotaSpot> sotaSpots,
+      bool hasSotaError});
 
   @override
   $DashboardStatisticsCopyWith<$Res> get statistics;
@@ -496,6 +550,8 @@ class __$DashboardStateCopyWithImpl<$Res>
     Object? locationError = freezed,
     Object? potaSpots = null,
     Object? hasPotaError = null,
+    Object? sotaSpots = null,
+    Object? hasSotaError = null,
   }) {
     return _then(_DashboardState(
       statistics: null == statistics
@@ -525,6 +581,14 @@ class __$DashboardStateCopyWithImpl<$Res>
       hasPotaError: null == hasPotaError
           ? _self.hasPotaError
           : hasPotaError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      sotaSpots: null == sotaSpots
+          ? _self._sotaSpots
+          : sotaSpots // ignore: cast_nullable_to_non_nullable
+              as List<SotaSpot>,
+      hasSotaError: null == hasSotaError
+          ? _self.hasSotaError
+          : hasSotaError // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }

@@ -77,7 +77,9 @@ class MapSectionWidget extends HookConsumerWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Theme.of(context).scaffoldBackgroundColor.withValues(alpha: 0.6),
+                  Theme.of(context)
+                      .scaffoldBackgroundColor
+                      .withValues(alpha: 0.6),
                   Colors.transparent,
                   Colors.transparent,
                   Theme.of(context).scaffoldBackgroundColor,
@@ -177,8 +179,10 @@ class MapSectionWidget extends HookConsumerWidget {
 
         if (repeatersAtLocation.length == 1) {
           // Single repeater - use marker with access mode segments
-          final accessModes = firstRepeater.accesses.map((a) => a.mode).toList();
-          final iconBytes = await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+          final accessModes =
+              firstRepeater.accesses.map((a) => a.mode).toList();
+          final iconBytes =
+              await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
             accessModes,
           );
           if (lon == null || lat == null) return;

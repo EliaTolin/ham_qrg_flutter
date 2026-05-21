@@ -525,7 +525,8 @@ class _AccessCard extends StatelessWidget {
                     if (access.nodeId != null &&
                         AccessModeHelper.getNodeIdLabel(access.mode) != null)
                       _AccessDetailItem(
-                        label: AccessModeHelper.getNodeIdLabel(access.mode)!.toUpperCase(),
+                        label: AccessModeHelper.getNodeIdLabel(access.mode)!
+                            .toUpperCase(),
                         value: access.nodeId.toString(),
                       ),
                   ],

@@ -10,8 +10,10 @@ class AppColors {
   static const Color primaryLight = Color(0xFF4DD5F0);
 
   static const Color secondary = Color(0xFF1A5FFF); // Purple-500
-  static const Color secondaryDark = Color.fromARGB(255, 13, 74, 158); // Violet-500
-  static const Color secondaryLight = Color.fromARGB(255, 100, 184, 255); // Pink-500
+  static const Color secondaryDark =
+      Color.fromARGB(255, 13, 74, 158); // Violet-500
+  static const Color secondaryLight =
+      Color.fromARGB(255, 100, 184, 255); // Pink-500
 
   // Background Colors
   static const Color backgroundLight = Color(0xFFF6F8F8);
@@ -63,4 +65,43 @@ class AppColors {
   // Favorite/Heart Color
   static const Color favorite = Color(0xFFEF4444); // red-500
   static const Color favoriteLight = Color(0xFFFCA5A5); // red-300
+}
+
+/// SOTA points trophy palette. Brand-specific (exception analogous to
+/// repeater mode colors): not representable via theme.colorScheme.
+class SotaPointsColors {
+  SotaPointsColors._();
+
+  static const Color tier1 = Color(0xFF94A3B8); // slate-400
+  static const Color tier2 = Color(0xFF64748B); // slate-500
+  static const Color tier4 = Color(0xFF16A34A); // green-600
+  static const Color tier6 = Color(0xFFD97706); // amber-600
+  static const Color tier8 = Color(0xFFEA580C); // orange-600
+  static const Color tier10 = Color(0xFFCA8A04); // yellow-700 (gold)
+
+  /// Returns the closest tier color for a given SOTA points value
+  /// (1, 2, 4, 6, 8, 10). Non-standard values are rounded down.
+  static Color forPoints(int points) {
+    if (points >= 10) return tier10;
+    if (points >= 8) return tier8;
+    if (points >= 6) return tier6;
+    if (points >= 4) return tier4;
+    if (points >= 2) return tier2;
+    return tier1;
+  }
+}
+
+/// SOTA summit altitude bands for map markers. Brand-specific.
+class SotaAltitudeColors {
+  SotaAltitudeColors._();
+
+  static const Color low = Color(0xFF16A34A); // green-600 (<1000 m)
+  static const Color mid = Color(0xFFD97706); // amber-600 (1000–2000 m)
+  static const Color high = Color(0xFF3B82F6); // blue-500 (>2000 m)
+
+  static Color forAltitudeM(int meters) {
+    if (meters >= 2000) return high;
+    if (meters >= 1000) return mid;
+    return low;
+  }
 }

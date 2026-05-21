@@ -15,8 +15,7 @@ part 'sync_onboarding_profile_provider.g.dart';
 @riverpod
 Future<void> syncOnboardingProfile(Ref ref) async {
   try {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
+    final datasource = await ref.read(onboardingLocalDatasourceProvider.future);
 
     final localUserType = await datasource.getUserType();
     final localCallsign = await datasource.getCallsign();

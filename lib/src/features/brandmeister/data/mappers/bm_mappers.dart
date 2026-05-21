@@ -21,9 +21,8 @@ class BmMappers {
       powerWatts: model.pep,
       antennaHeightM: model.agl,
       description: model.description,
-      lastSeen: model.lastSeen != null
-          ? DateTime.tryParse(model.lastSeen!)
-          : null,
+      lastSeen:
+          model.lastSeen != null ? DateTime.tryParse(model.lastSeen!) : null,
     );
   }
 

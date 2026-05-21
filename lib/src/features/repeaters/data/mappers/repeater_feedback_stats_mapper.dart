@@ -11,8 +11,10 @@ class RepeaterFeedbackStatsMapper
       likesTotal: model.likesTotal,
       downTotal: model.downTotal,
       hasMyLike: model.hasMyLike,
-      lastLikeAt: model.lastLikeAt != null ? DateTime.parse(model.lastLikeAt!) : null,
-      lastDownAt: model.lastDownAt != null ? DateTime.parse(model.lastDownAt!) : null,
+      lastLikeAt:
+          model.lastLikeAt != null ? DateTime.parse(model.lastLikeAt!) : null,
+      lastDownAt:
+          model.lastDownAt != null ? DateTime.parse(model.lastDownAt!) : null,
     );
   }
 

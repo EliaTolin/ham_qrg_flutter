@@ -1,0 +1,1 @@
+enum SotaSpotsSortOrder { time, distance }

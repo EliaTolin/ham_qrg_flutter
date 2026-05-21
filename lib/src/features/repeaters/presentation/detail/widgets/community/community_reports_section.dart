@@ -39,8 +39,9 @@ class CommunityReportsSection extends HookConsumerWidget {
 
     // Filter out user's own feedbacks from community list
     final myFeedbackIds = state.myFeedbacks.map((f) => f.id).toSet();
-    final communityFeedbacks =
-        state.communityFeedbacks.where((f) => !myFeedbackIds.contains(f.id)).toList();
+    final communityFeedbacks = state.communityFeedbacks
+        .where((f) => !myFeedbackIds.contains(f.id))
+        .toList();
 
     // Get user info from profile
     final userCallsign = profileAsync.value?.callsign;
@@ -165,8 +166,7 @@ class CommunityReportsSection extends HookConsumerWidget {
                 userName: userName,
                 userAvatarUrl: userAvatarUrl,
                 onDelete: () async {
-                  final confirmed =
-                      await showAreYouSureToDeleteDialog(context);
+                  final confirmed = await showAreYouSureToDeleteDialog(context);
                   if (confirmed) {
                     await controller.deleteFeedback(feedback.id);
                   }
@@ -198,7 +198,8 @@ class CommunityReportsSection extends HookConsumerWidget {
             ),
           ),
           if (state.feedbackStats != null &&
-              (state.feedbackStats!.likesTotal + state.feedbackStats!.downTotal) >
+              (state.feedbackStats!.likesTotal +
+                      state.feedbackStats!.downTotal) >
                   communityFeedbacks.length + state.myFeedbacks.length)
             Center(
               child: TextButton(
@@ -207,7 +208,8 @@ class CommunityReportsSection extends HookConsumerWidget {
                 },
                 child: Text(
                   l10n.repeaterDetailViewAllReports(
-                    state.feedbackStats!.likesTotal + state.feedbackStats!.downTotal,
+                    state.feedbackStats!.likesTotal +
+                        state.feedbackStats!.downTotal,
                   ),
                 ),
               ),

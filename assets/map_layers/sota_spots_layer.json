@@ -1,0 +1,23 @@
+{
+  "id": "sota-spots",
+  "type": "symbol",
+  "source": "sota-source",
+  "layout": {
+    "icon-image": "sota-logo",
+    "icon-size": 0.55,
+    "icon-allow-overlap": true,
+    "icon-anchor": "center",
+    "text-field": ["get", "activator"],
+    "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
+    "text-size": 12,
+    "text-anchor": "top",
+    "text-offset": [0, 1.6],
+    "text-allow-overlap": false,
+    "text-optional": true
+  },
+  "paint": {
+    "text-color": "#1E40AF",
+    "text-halo-color": "#FFFFFF",
+    "text-halo-width": 2
+  }
+}

@@ -333,7 +333,8 @@ class _StatsFooter extends StatelessWidget {
           Icon(
             Icons.thumb_up_rounded,
             size: 16,
-            color: hasMyLike ? colorScheme.tertiary : colorScheme.outlineVariant,
+            color:
+                hasMyLike ? colorScheme.tertiary : colorScheme.outlineVariant,
           ),
           const SizedBox(width: 4),
           Text(
@@ -347,14 +348,16 @@ class _StatsFooter extends StatelessWidget {
           Icon(
             Icons.flag_rounded,
             size: 16,
-            color: downTotal > 0 ? colorScheme.error : colorScheme.outlineVariant,
+            color:
+                downTotal > 0 ? colorScheme.error : colorScheme.outlineVariant,
           ),
           const SizedBox(width: 4),
           Text(
             '$downTotal',
             style: theme.textTheme.bodySmall?.copyWith(
-              color:
-                  downTotal > 0 ? colorScheme.error : colorScheme.onSurfaceVariant,
+              color: downTotal > 0
+                  ? colorScheme.error
+                  : colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
             ),
           ),

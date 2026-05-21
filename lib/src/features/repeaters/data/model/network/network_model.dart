@@ -15,5 +15,6 @@ abstract class NetworkModel with _$NetworkModel {
     String? notes,
   }) = _NetworkModel;
 
-  factory NetworkModel.fromJson(Map<String, dynamic> json) => _$NetworkModelFromJson(json);
+  factory NetworkModel.fromJson(Map<String, dynamic> json) =>
+      _$NetworkModelFromJson(json);
 }

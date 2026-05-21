@@ -4,7 +4,8 @@ import 'package:hamqrg/src/features/repeaters/data/model/access/repeater_access_
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
 
-class RepeaterAccessMapper implements Mapper<RepeaterAccess, RepeaterAccessModel> {
+class RepeaterAccessMapper
+    implements Mapper<RepeaterAccess, RepeaterAccessModel> {
   final _networkMapper = NetworkMapper();
 
   @override
@@ -13,7 +14,9 @@ class RepeaterAccessMapper implements Mapper<RepeaterAccess, RepeaterAccessModel
       id: model.id,
       repeaterId: model.repeaterId,
       networkId: model.networkId,
-      network: model.network != null ? _networkMapper.fromModel(model.network!) : null,
+      network: model.network != null
+          ? _networkMapper.fromModel(model.network!)
+          : null,
       mode: AccessMode.values.firstWhere(
         (e) => e.name.toUpperCase() == model.mode.toUpperCase(),
         orElse: () => AccessMode.analog,
@@ -37,7 +40,9 @@ class RepeaterAccessMapper implements Mapper<RepeaterAccess, RepeaterAccessModel
       id: entity.id,
       repeaterId: entity.repeaterId,
       networkId: entity.networkId,
-      network: entity.network != null ? _networkMapper.toModel(entity.network!) : null,
+      network: entity.network != null
+          ? _networkMapper.toModel(entity.network!)
+          : null,
       mode: entity.mode.name.toUpperCase(),
       ctcssTxHz: entity.ctcssTxHz,
       ctcssRxHz: entity.ctcssRxHz,

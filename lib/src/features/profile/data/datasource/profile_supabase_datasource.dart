@@ -16,7 +16,8 @@ class ProfileSupabaseDatasource implements ProfileDatasource {
   @override
   Future<ProfileModel> getProfile(String userId) async {
     try {
-      final data = await _client.from('profiles').select().eq('id', userId).single();
+      final data =
+          await _client.from('profiles').select().eq('id', userId).single();
       return ProfileModel.fromJson(data);
     } catch (e) {
       log('Error to fetch profile: $e');
@@ -36,7 +37,8 @@ class ProfileSupabaseDatasource implements ProfileDatasource {
   @override
   Future<void> uploadPropics(String userId, File image) async {
     try {
-      final fileName = '/public/$userId-${DateTime.now().millisecondsSinceEpoch}';
+      final fileName =
+          '/public/$userId-${DateTime.now().millisecondsSinceEpoch}';
       final profile = await getProfile(userId);
       if (profile.propic != null) {
         await _client.storage.from('propics').remove([profile.propic!]);
@@ -78,7 +80,9 @@ class ProfileSupabaseDatasource implements ProfileDatasource {
       final profile = await getProfile(userId);
       if (profile.propic != null) {
         await _client.storage.from('propics').remove([profile.propic!]);
-        await _client.from('profiles').update({'propic': null}).eq('id', userId);
+        await _client
+            .from('profiles')
+            .update({'propic': null}).eq('id', userId);
       }
     } catch (e) {
       rethrow;

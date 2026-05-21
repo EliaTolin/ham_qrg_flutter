@@ -14,7 +14,8 @@ class HomeController extends _$HomeController {
     final talker = ref.read(talkerServiceProvider);
     try {
       talker.info('[Home] build() start');
-      final needToShowTelegram = await ref.read(needToShowTelegramInviteProvider.future);
+      final needToShowTelegram =
+          await ref.read(needToShowTelegramInviteProvider.future);
       talker.info('[Home] needToShowTelegram: $needToShowTelegram');
       return HomeState(
         showTelegramRePrompt: needToShowTelegram,

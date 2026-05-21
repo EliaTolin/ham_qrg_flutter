@@ -91,7 +91,8 @@ class UploadImageButton extends ConsumerWidget {
           builder: (context) {
             return AlertDialog(
               title: Text('Errore'.hardcoded),
-              content: Text("Errore durante il caricamento dell'immagine".hardcoded),
+              content:
+                  Text("Errore durante il caricamento dell'immagine".hardcoded),
               actions: [
                 TextButton(
                   onPressed: () {

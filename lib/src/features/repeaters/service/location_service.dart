@@ -22,7 +22,8 @@ class LocationService {
 
   /// Returns the current position, falling back to Rome if location
   /// services or permissions are unavailable.
-  Future<({double latitude, double longitude})> getCurrentPositionOrDefault() async {
+  Future<({double latitude, double longitude})>
+      getCurrentPositionOrDefault() async {
     try {
       return await getCurrentPosition();
     } catch (_) {

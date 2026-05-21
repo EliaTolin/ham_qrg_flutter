@@ -47,14 +47,16 @@ class RepeatersMapController extends _$RepeatersMapController {
         lon1: lon1,
         lat2: lat2,
         lon2: lon2,
-        selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
+        selectedModes:
+            newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
       );
     } else {
       // Fallback to initial load
       state = const AsyncLoading();
       state = await AsyncValue.guard(
         () => _initalLoad(
-          selectedModes: newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
+          selectedModes:
+              newSelectedModes.isEmpty ? null : newSelectedModes.toList(),
         ),
       );
     }
@@ -118,7 +120,8 @@ class RepeatersMapController extends _$RepeatersMapController {
           repeaters: repeaters,
           latitude: currentState?.latitude,
           longitude: currentState?.longitude,
-          selectedModes: modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
+          selectedModes:
+              modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
           selectedRepeater: currentState?.selectedRepeater,
         ),
       );
@@ -129,7 +132,8 @@ class RepeatersMapController extends _$RepeatersMapController {
           repeaters: currentState?.repeaters ?? const [],
           latitude: currentState?.latitude,
           longitude: currentState?.longitude,
-          selectedModes: currentState?.selectedModes ?? (modesToFilter?.toSet() ?? {}),
+          selectedModes:
+              currentState?.selectedModes ?? (modesToFilter?.toSet() ?? {}),
           selectedRepeater: currentState?.selectedRepeater,
         ),
       );
@@ -149,7 +153,8 @@ class RepeatersMapController extends _$RepeatersMapController {
     final currentState = state.value;
     final modesToFilter = selectedModes ?? currentState?.selectedModes.toList();
 
-    final position = await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
+    final position =
+        await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
 
     try {
       return RepeatersMapState(

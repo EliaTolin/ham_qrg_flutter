@@ -82,7 +82,9 @@ Future<DioApiClient> dioApiClient(
   String? baseUrl,
   String? token,
 }) async {
-  ref.watch(talkerServiceProvider).info('Init DioApiClient with baseUrl: $baseUrl, token: $token');
+  ref
+      .watch(talkerServiceProvider)
+      .info('Init DioApiClient with baseUrl: $baseUrl, token: $token');
   final talkerDioLogger = ref.watch(talkerDioLoggerProvider);
   final dio = ref.watch(
     _dioProvider(

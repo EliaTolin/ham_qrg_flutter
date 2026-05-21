@@ -88,7 +88,8 @@ class CallsignEntryStep extends StatelessWidget {
                 UpperCaseTextFormatter(),
               ],
               decoration: InputDecoration(
-                labelText: context.localization.postLoginOnboardingCallsignLabel,
+                labelText:
+                    context.localization.postLoginOnboardingCallsignLabel,
                 hintText: context.localization.postLoginOnboardingCallsignHint,
                 prefixIcon: Icon(Icons.radio, color: color.primary),
                 border: OutlineInputBorder(
@@ -96,7 +97,8 @@ class CallsignEntryStep extends StatelessWidget {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: color.primary.withValues(alpha: .4)),
+                  borderSide:
+                      BorderSide(color: color.primary.withValues(alpha: .4)),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),

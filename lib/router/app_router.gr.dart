@@ -437,6 +437,109 @@ class ReportIssueRouteArgs {
 }
 
 /// generated route for
+/// [SotaSpotDetailPage]
+class SotaSpotDetailRoute extends PageRouteInfo<SotaSpotDetailRouteArgs> {
+  SotaSpotDetailRoute({
+    required int spotId,
+    required String summitCode,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SotaSpotDetailRoute.name,
+          args: SotaSpotDetailRouteArgs(
+            spotId: spotId,
+            summitCode: summitCode,
+            key: key,
+          ),
+          rawPathParams: {'spotId': spotId, 'summitCode': summitCode},
+          initialChildren: children,
+        );
+
+  static const String name = 'SotaSpotDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<SotaSpotDetailRouteArgs>(
+        orElse: () => SotaSpotDetailRouteArgs(
+          spotId: pathParams.getInt('spotId'),
+          summitCode: pathParams.getString('summitCode'),
+        ),
+      );
+      return SotaSpotDetailPage(
+        spotId: args.spotId,
+        summitCode: args.summitCode,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class SotaSpotDetailRouteArgs {
+  const SotaSpotDetailRouteArgs({
+    required this.spotId,
+    required this.summitCode,
+    this.key,
+  });
+
+  final int spotId;
+
+  final String summitCode;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SotaSpotDetailRouteArgs{spotId: $spotId, summitCode: $summitCode, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SotaSpotDetailRouteArgs) return false;
+    return spotId == other.spotId &&
+        summitCode == other.summitCode &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode => spotId.hashCode ^ summitCode.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [SotaSpotsMapPage]
+class SotaSpotsMapRoute extends PageRouteInfo<void> {
+  const SotaSpotsMapRoute({List<PageRouteInfo>? children})
+      : super(SotaSpotsMapRoute.name, initialChildren: children);
+
+  static const String name = 'SotaSpotsMapRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SotaSpotsMapPage();
+    },
+  );
+}
+
+/// generated route for
+/// [SotaSpotsPage]
+class SotaSpotsRoute extends PageRouteInfo<void> {
+  const SotaSpotsRoute({List<PageRouteInfo>? children})
+      : super(SotaSpotsRoute.name, initialChildren: children);
+
+  static const String name = 'SotaSpotsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SotaSpotsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})

@@ -61,7 +61,8 @@ class PotaSpotsMapPage extends HookConsumerWidget {
       [spotsState?.spots, spotsState?.parkCache, isStyleLoaded.value],
     );
 
-    final initialLat = userPosition?.latitude ?? LocationService.defaultLatitude;
+    final initialLat =
+        userPosition?.latitude ?? LocationService.defaultLatitude;
     final initialLon =
         userPosition?.longitude ?? LocationService.defaultLongitude;
 
@@ -149,7 +150,10 @@ class PotaSpotsMapPage extends HookConsumerWidget {
                   borderRadius: BorderRadius.circular(18),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.06),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .shadow
+                          .withValues(alpha: 0.06),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),

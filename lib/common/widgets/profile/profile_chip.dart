@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hamqrg/common/widgets/profile/profile_avatar.dart';
 
 class ProfileChip extends StatelessWidget {
-  const ProfileChip({required this.imageProfilePath, required this.callSign, super.key});
+  const ProfileChip({
+    required this.imageProfilePath,
+    required this.callSign,
+    super.key,
+  });
   final String? imageProfilePath;
   final String? callSign;
 

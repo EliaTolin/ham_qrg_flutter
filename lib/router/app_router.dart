@@ -18,6 +18,9 @@ import 'package:hamqrg/src/features/repeaters/presentation/favorites_page/favori
 import 'package:hamqrg/src/features/repeaters/presentation/list/repeaters_list_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/map/repeaters_map_page.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/report_issue/report_issue_page.dart';
+import 'package:hamqrg/src/features/sota/presentation/sota_spot_detail_page/sota_spot_detail_page.dart';
+import 'package:hamqrg/src/features/sota/presentation/sota_spots_map_page/sota_spots_map_page.dart';
+import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/sota_spots_page.dart';
 import 'package:hamqrg/src/features/splashscreen/presentation/splash_screen.dart';
 import 'package:hamqrg/src/features/spots/presentation/spot_list_page/spot_list_page.dart';
 import 'package:hamqrg/src/features/user_reports/presentation/user_reports_page/user_reports_page.dart';
@@ -67,6 +70,12 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(
                   path: 'pota/:spotId/:reference',
                   page: PotaSpotDetailRoute.page,
+                ),
+                AutoRoute(path: 'sota', page: SotaSpotsRoute.page),
+                AutoRoute(path: 'sota/map', page: SotaSpotsMapRoute.page),
+                AutoRoute(
+                  path: 'sota/:spotId/:summitCode',
+                  page: SotaSpotDetailRoute.page,
                 ),
               ],
             ),

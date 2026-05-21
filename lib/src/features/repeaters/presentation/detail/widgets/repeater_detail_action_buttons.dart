@@ -47,7 +47,9 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
             child: _ActionButton(
               icon: isFavorite ? Icons.favorite : Icons.favorite_border,
               iconColor: isFavorite ? colorScheme.error : null,
-              label: isFavorite ? l10n.repeaterDetailSaved : l10n.repeaterDetailSave,
+              label: isFavorite
+                  ? l10n.repeaterDetailSaved
+                  : l10n.repeaterDetailSave,
               onTap: () => _onFavoriteTap(context, ref, isFavorite),
             ),
           ),

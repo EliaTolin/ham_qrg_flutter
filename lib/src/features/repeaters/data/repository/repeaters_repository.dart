@@ -89,8 +89,11 @@ class RepeatersRepository {
 
   /// Returns favorite metadata: maps of repeaterId → clusterNotificationsEnabled
   /// and repeaterId → favoriteId.
-  Future<({Map<String, bool> clusterNotifications, Map<String, String> favoriteIds})>
-      getFavoritesMeta(String userId) async {
+  Future<
+      ({
+        Map<String, bool> clusterNotifications,
+        Map<String, String> favoriteIds
+      })> getFavoritesMeta(String userId) async {
     final rows = await _datasource.getFavoritesMeta(userId);
     final clusterNotifications = <String, bool>{};
     final favoriteIds = <String, String>{};
@@ -100,7 +103,10 @@ class RepeatersRepository {
           row['cluster_notifications_enabled'] as bool? ?? true;
       favoriteIds[repeaterId] = row['id'] as String;
     }
-    return (clusterNotifications: clusterNotifications, favoriteIds: favoriteIds);
+    return (
+      clusterNotifications: clusterNotifications,
+      favoriteIds: favoriteIds
+    );
   }
 
   Future<Repeater?> getRepeaterById(String repeaterId) async {

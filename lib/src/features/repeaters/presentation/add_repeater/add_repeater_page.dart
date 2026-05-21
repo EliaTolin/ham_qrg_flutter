@@ -204,8 +204,8 @@ class AddRepeaterPage extends HookConsumerWidget {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: colorScheme.surfaceContainerHighest
-                      .withValues(alpha: .2),
+                  color:
+                      colorScheme.surfaceContainerHighest.withValues(alpha: .2),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
                     color: colorScheme.onSurface.withValues(alpha: .1),
@@ -318,8 +318,7 @@ class AddRepeaterPage extends HookConsumerWidget {
                         Text(
                           l10n.addRepeaterVerifiedDescription,
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color:
-                                colorScheme.onSurface.withValues(alpha: .7),
+                            color: colorScheme.onSurface.withValues(alpha: .7),
                           ),
                         ),
                       ],
@@ -471,8 +470,7 @@ class _FormField extends StatelessWidget {
         labelText: label,
         hintText: hint,
         filled: true,
-        fillColor:
-            colorScheme.surfaceContainerHighest.withValues(alpha: .3),
+        fillColor: colorScheme.surfaceContainerHighest.withValues(alpha: .3),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(

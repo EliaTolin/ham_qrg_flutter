@@ -28,7 +28,8 @@ class RepeaterDetailMapPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controllerAsync = ref.watch(repeaterDetailMapControllerProvider(repeaterId));
+    final controllerAsync =
+        ref.watch(repeaterDetailMapControllerProvider(repeaterId));
 
     return controllerAsync.when(
       loading: () => Scaffold(
@@ -87,7 +88,8 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
       () {
         Future<void> fetchPosition() async {
           try {
-            final position = await ref.read(locationServiceProvider).getCurrentPosition();
+            final position =
+                await ref.read(locationServiceProvider).getCurrentPosition();
             userPosition.value = position;
             distanceMeters.value = Geolocator.distanceBetween(
               position.latitude,
@@ -144,8 +146,10 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
             styleUri: MapboxStyles.OUTDOORS,
             onMapCreated: (mapboxMap) async {
               await Future.wait([
-                mapboxMap.scaleBar.updateSettings(ScaleBarSettings(enabled: false)),
-                mapboxMap.compass.updateSettings(CompassSettings(enabled: false)),
+                mapboxMap.scaleBar
+                    .updateSettings(ScaleBarSettings(enabled: false)),
+                mapboxMap.compass
+                    .updateSettings(CompassSettings(enabled: false)),
                 mapboxMap.gestures.updateSettings(
                   GesturesSettings(pitchEnabled: false),
                 ),
@@ -173,10 +177,12 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
                 distanceMeters: distanceMeters.value,
                 repeaterLocality: repeater.locality,
                 repeaterLocator: repeater.locator,
-                locationUnavailable: context.localization.repeaterDistanceMapNoLocation,
+                locationUnavailable:
+                    context.localization.repeaterDistanceMapNoLocation,
               ),
             ),
-          if (isLoading.value) const Center(child: CircularProgressIndicator.adaptive()),
+          if (isLoading.value)
+            const Center(child: CircularProgressIndicator.adaptive()),
         ],
       ),
     );
@@ -192,8 +198,7 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
           await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
         accessModes,
       );
-      final pointManager =
-          await map.annotations.createPointAnnotationManager();
+      final pointManager = await map.annotations.createPointAnnotationManager();
       await pointManager.create(
         PointAnnotationOptions(
           geometry: Point(
@@ -219,7 +224,8 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
   ) async {
     try {
       // Draw polyline between user and repeater
-      final polylineManager = await map.annotations.createPolylineAnnotationManager();
+      final polylineManager =
+          await map.annotations.createPolylineAnnotationManager();
       await polylineManager.create(
         PolylineAnnotationOptions(
           geometry: LineString(
@@ -328,7 +334,9 @@ class _DistanceCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      [repeaterLocality, repeaterLocator].whereType<String>().join(' \u2022 '),
+                      [repeaterLocality, repeaterLocator]
+                          .whereType<String>()
+                          .join(' \u2022 '),
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurfaceVariant,
                       ),
@@ -348,7 +356,8 @@ class _DistanceCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    RepeaterFormatHelper.formatDistance(distanceMeters).replaceAll(' away', ''),
+                    RepeaterFormatHelper.formatDistance(distanceMeters)
+                        .replaceAll(' away', ''),
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: colorScheme.onSurface,

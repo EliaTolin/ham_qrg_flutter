@@ -1878,4 +1878,153 @@ class AppLocalizationsSl extends AppLocalizations {
   String spotDurationMinutes(int minutes) {
     return '$minutes min';
   }
+
+  @override
+  String get sotaTitle => 'SOTA Spots';
+
+  @override
+  String get sotaListEmpty => 'No SOTA spots at the moment';
+
+  @override
+  String get sotaLoadError => 'Failed to load SOTA spots';
+
+  @override
+  String get sotaRetry => 'Retry';
+
+  @override
+  String get sotaSummitPursuit => 'View toward the summit';
+
+  @override
+  String get sotaLosClear => 'Clear line of sight';
+
+  @override
+  String get sotaLosObstructed => 'Possible obstruction';
+
+  @override
+  String sotaLosObstructionAt(String distance, String height) {
+    return 'Obstacle at $distance km, +$height m';
+  }
+
+  @override
+  String sotaPointsBadge(int count) {
+    return '$count pt';
+  }
+
+  @override
+  String sotaAltitudeMeters(int m) {
+    return '$m m';
+  }
+
+  @override
+  String get sotaFilterAll => 'All';
+
+  @override
+  String get sotaSortByTime => 'Time';
+
+  @override
+  String get sotaSortByDistance => 'Distance';
+
+  @override
+  String get sotaFilterPoints => 'Points';
+
+  @override
+  String get sotaFilterAssociation => 'Country';
+
+  @override
+  String get sotaSpotQrt => 'QRT';
+
+  @override
+  String sotaSummitInvalidFrom(String date) {
+    return 'Summit no longer valid since $date';
+  }
+
+  @override
+  String get sotaSummitRestrictions => 'Restricted access';
+
+  @override
+  String get sotaPursuitNoLocation =>
+      'Enable location to see the profile toward the summit';
+
+  @override
+  String get sotaPursuitTooClose => 'You are practically on the summit';
+
+  @override
+  String get sotaPursuitTooFar => 'Summit too far for terrain profile';
+
+  @override
+  String get sotaPursuitError => 'Unable to compute profile. Retry.';
+
+  @override
+  String get sotaPursuitLoading => 'Computing terrain profile…';
+
+  @override
+  String get sotaCopyFrequency => 'Copy frequency';
+
+  @override
+  String get sotaOpenOnMap => 'Open on map';
+
+  @override
+  String get sotaShare => 'Share';
+
+  @override
+  String get sotaViewAll => 'View all';
+
+  @override
+  String get sotaTabDashboard => 'SOTA';
+
+  @override
+  String get sotaIntroEmpty =>
+      'SOTA: Summits On The Air. Chase ham operators activating mountain summits.';
+
+  @override
+  String sotaSpotCount(int count) {
+    return '$count spots';
+  }
+
+  @override
+  String get sotaActivator => 'Activator';
+
+  @override
+  String get sotaSummit => 'Summit';
+
+  @override
+  String get sotaAssociation => 'Association';
+
+  @override
+  String get sotaRegion => 'Region';
+
+  @override
+  String get sotaLocator => 'Locator';
+
+  @override
+  String get sotaDistance => 'Distance';
+
+  @override
+  String get sotaBearing => 'Bearing';
+
+  @override
+  String get sotaElevationDelta => 'Elevation delta';
+
+  @override
+  String get sotaRemoveFilters => 'Remove filters';
+
+  @override
+  String get sotaPointsTitle => 'Points';
+
+  @override
+  String get sotaSpotInfo => 'Spot info';
+
+  @override
+  String get sotaTime => 'Time';
+
+  @override
+  String get sotaCopiedToClipboard => 'Frequency copied';
+
+  @override
+  String sotaPointsAbove(int count) {
+    return '$count+ pt';
+  }
+
+  @override
+  String get sotaFilterPointsAll => 'All points';
 }

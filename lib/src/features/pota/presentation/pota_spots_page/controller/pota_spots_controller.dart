@@ -56,8 +56,7 @@ class PotaSpotsController extends _$PotaSpotsController {
     final currentState = state.value;
     try {
       state = AsyncData(
-        (currentState ?? const PotaSpotsState())
-            .copyWith(isRefreshing: true),
+        (currentState ?? const PotaSpotsState()).copyWith(isRefreshing: true),
       );
       ref.invalidate(getPotaSpotsProvider);
       final spots = await ref.read(getPotaSpotsProvider.future);
@@ -176,9 +175,8 @@ class PotaSpotsController extends _$PotaSpotsController {
     Map<String, PotaPark> parks,
   ) async {
     try {
-      final position = await ref
-          .read(locationServiceProvider)
-          .getCurrentPositionOrDefault();
+      final position =
+          await ref.read(locationServiceProvider).getCurrentPositionOrDefault();
 
       final distances = <String, double>{};
       for (final entry in parks.entries) {
@@ -208,8 +206,19 @@ class PotaSpotsController extends _$PotaSpotsController {
     }
     // Sort by wavelength (descending → 160m first)
     final order = [
-      '160m', '80m', '60m', '40m', '30m', '20m',
-      '17m', '15m', '12m', '10m', '6m', '2m', '70cm',
+      '160m',
+      '80m',
+      '60m',
+      '40m',
+      '30m',
+      '20m',
+      '17m',
+      '15m',
+      '12m',
+      '10m',
+      '6m',
+      '2m',
+      '70cm',
     ];
     return bands.toList()
       ..sort((a, b) => order.indexOf(a).compareTo(order.indexOf(b)));

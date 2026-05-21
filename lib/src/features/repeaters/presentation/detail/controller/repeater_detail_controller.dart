@@ -46,10 +46,13 @@ class RepeaterDetailController extends _$RepeaterDetailController {
     );
 
     // Pre-select access if only one is available
-    final feedbackAccessIds = myFeedbacks.map((f) => f.repeaterAccess.id).toSet();
-    final availableAccesses =
-        repeater.accesses.where((access) => !feedbackAccessIds.contains(access.id)).toList();
-    final preSelectedAccessId = availableAccesses.length == 1 ? availableAccesses.first.id : null;
+    final feedbackAccessIds =
+        myFeedbacks.map((f) => f.repeaterAccess.id).toSet();
+    final availableAccesses = repeater.accesses
+        .where((access) => !feedbackAccessIds.contains(access.id))
+        .toList();
+    final preSelectedAccessId =
+        availableAccesses.length == 1 ? availableAccesses.first.id : null;
 
     return RepeaterDetailState(
       repeater: repeater,
@@ -65,7 +68,8 @@ class RepeaterDetailController extends _$RepeaterDetailController {
     final currentState = state.value;
     if (currentState == null) return [];
 
-    final feedbackAccessIds = currentState.myFeedbacks.map((f) => f.repeaterAccess.id).toSet();
+    final feedbackAccessIds =
+        currentState.myFeedbacks.map((f) => f.repeaterAccess.id).toSet();
 
     return currentState.repeater.accesses
         .where((access) => !feedbackAccessIds.contains(access.id))

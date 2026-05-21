@@ -148,7 +148,9 @@ class PerformanceMetricsSection extends StatelessWidget {
                 icon: Icons.thumb_up,
                 iconColor: colorScheme.tertiary,
                 label: l10n.repeaterDetailLastLike,
-                timeAgo: lastLikeAt != null ? TimeHelper.formatTimeAgo(lastLikeAt, l10n) : null,
+                timeAgo: lastLikeAt != null
+                    ? TimeHelper.formatTimeAgo(lastLikeAt, l10n)
+                    : null,
               ),
             ),
             const SizedBox(width: 12),
@@ -157,7 +159,9 @@ class PerformanceMetricsSection extends StatelessWidget {
                 icon: Icons.warning_amber_rounded,
                 iconColor: colorScheme.error,
                 label: l10n.repeaterDetailLastDownReport,
-                timeAgo: lastDownAt != null ? TimeHelper.formatTimeAgo(lastDownAt, l10n) : null,
+                timeAgo: lastDownAt != null
+                    ? TimeHelper.formatTimeAgo(lastDownAt, l10n)
+                    : null,
               ),
             ),
           ],

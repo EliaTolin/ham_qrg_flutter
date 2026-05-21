@@ -33,7 +33,8 @@ abstract class RepeaterModel with _$RepeaterModel {
     List<RepeaterAccessModel>? accesses,
   }) = _RepeaterModel;
 
-  factory RepeaterModel.fromJson(Map<String, dynamic> json) => _$RepeaterModelFromJson(json);
+  factory RepeaterModel.fromJson(Map<String, dynamic> json) =>
+      _$RepeaterModelFromJson(json);
 }
 
 List<RepeaterAccessModel>? _accessesFromJson(dynamic json) {

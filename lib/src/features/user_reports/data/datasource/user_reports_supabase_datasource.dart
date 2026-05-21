@@ -54,6 +54,7 @@ class UserReportsSupabaseDatasource implements UserReportsDatasource {
       rethrow;
     }
   }
+
   @override
   Future<List<UserSubmissionModel>> getUserSubmissions(String userId) async {
     final sw = Stopwatch()..start();

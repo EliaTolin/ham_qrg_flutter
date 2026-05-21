@@ -189,7 +189,9 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
                   child: Column(
                     children: [
                       // Spacer to push content below hero
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.12),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.12,
+                      ),
 
                       // Icon
                       _buildAntennaIcon(isDark),

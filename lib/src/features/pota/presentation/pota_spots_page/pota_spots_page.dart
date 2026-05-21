@@ -59,8 +59,7 @@ class PotaSpotsPage extends ConsumerWidget {
                 Text(l10n.potaLoadError),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: () =>
-                      ref.invalidate(potaSpotsControllerProvider),
+                  onPressed: () => ref.invalidate(potaSpotsControllerProvider),
                   child: Text(l10n.potaRetry),
                 ),
               ],
@@ -215,8 +214,7 @@ class _PotaSpotsBody extends StatelessWidget {
                       final spot = state.filteredSpots[index];
                       return PotaSpotListItem(
                         spot: spot,
-                        distanceKm:
-                            state.distanceByReference[spot.reference],
+                        distanceKm: state.distanceByReference[spot.reference],
                       );
                     },
                   ),

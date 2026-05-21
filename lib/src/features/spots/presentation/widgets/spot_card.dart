@@ -127,8 +127,7 @@ class SpotCard extends StatelessWidget {
                               spot.accessMode!,
                             ),
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color:
-                                  AccessModeHelper.getAccessModeColorObject(
+                              color: AccessModeHelper.getAccessModeColorObject(
                                 spot.accessMode!,
                               ),
                             ),

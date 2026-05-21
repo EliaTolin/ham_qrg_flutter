@@ -20,7 +20,8 @@ class RepeaterModeHelper {
   /// Used to cache and identify marker images
   static String getAccessModesKey(List<AccessMode> modes) {
     if (modes.isEmpty) return 'default';
-    final sortedModes = modes.toList()..sort((a, b) => a.index.compareTo(b.index));
+    final sortedModes = modes.toList()
+      ..sort((a, b) => a.index.compareTo(b.index));
     return sortedModes.map((m) => m.name).join('-');
   }
 

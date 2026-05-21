@@ -64,7 +64,8 @@ enum FrequencyBand {
   final int maxHz;
 
   /// Returns `true` if [frequencyHz] falls within this band's range.
-  bool contains(int frequencyHz) => frequencyHz >= minHz && frequencyHz <= maxHz;
+  bool contains(int frequencyHz) =>
+      frequencyHz >= minHz && frequencyHz <= maxHz;
 
   /// Finds the band that contains [frequencyHz], or `null` if none matches.
   static FrequencyBand? fromFrequency(int frequencyHz) {

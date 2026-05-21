@@ -126,7 +126,8 @@ class AppleSignInButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: isDark ? Colors.black : Colors.white, // Apple brand color
+                color:
+                    isDark ? Colors.black : Colors.white, // Apple brand color
               ),
             ),
           ],

@@ -19,7 +19,8 @@ class SplashRepository {
 
 @riverpod
 Future<SplashRepository> splashRepository(Ref ref) async {
-  final splashDatasource = await ref.watch(splashLocalDatasourceProvider.future);
+  final splashDatasource =
+      await ref.watch(splashLocalDatasourceProvider.future);
 
   return SplashRepository(splashDatasource);
 }

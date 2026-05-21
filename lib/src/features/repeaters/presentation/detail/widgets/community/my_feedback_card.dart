@@ -34,10 +34,13 @@ class MyFeedbackCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final displayCallsign = userCallsign ?? userName ?? feedback.userId.substring(0, 6).toUpperCase();
+    final displayCallsign = userCallsign ??
+        userName ??
+        feedback.userId.substring(0, 6).toUpperCase();
     final isLike = feedback.type == FeedbackType.like;
     final badgeColor = isLike ? colorScheme.tertiary : colorScheme.error;
-    final accessColor = AccessModeHelper.getAccessModeColorObject(feedback.repeaterAccess.mode);
+    final accessColor =
+        AccessModeHelper.getAccessModeColorObject(feedback.repeaterAccess.mode);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -99,7 +102,9 @@ class MyFeedbackCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      isLike ? l10n.repeaterDetailLike : l10n.repeaterDetailReportLabel,
+                      isLike
+                          ? l10n.repeaterDetailLike
+                          : l10n.repeaterDetailReportLabel,
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: badgeColor,
                         fontWeight: FontWeight.bold,

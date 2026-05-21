@@ -29,10 +29,12 @@ class LocationSection extends StatelessWidget {
         (calculatedDistanceKm != null ? calculatedDistanceKm! * 1000 : null);
 
     final distanceText = effectiveDistanceMeters != null
-        ? RepeaterFormatHelper.formatDistance(effectiveDistanceMeters).replaceAll(' away', '')
+        ? RepeaterFormatHelper.formatDistance(effectiveDistanceMeters)
+            .replaceAll(' away', '')
         : null;
 
-    final hasCoordinates = repeater.latitude != null && repeater.longitude != null;
+    final hasCoordinates =
+        repeater.latitude != null && repeater.longitude != null;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,8 +130,7 @@ class LocationSection extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border(
                         top: BorderSide(
-                          color:
-                              colorScheme.outline.withValues(alpha: 0.08),
+                          color: colorScheme.outline.withValues(alpha: 0.08),
                         ),
                       ),
                       color: colorScheme.surfaceContainerHighest,
@@ -139,8 +140,7 @@ class LocationSection extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(6),
                           decoration: BoxDecoration(
-                            color:
-                                colorScheme.primary.withValues(alpha: 0.1),
+                            color: colorScheme.primary.withValues(alpha: 0.1),
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
@@ -156,17 +156,14 @@ class LocationSection extends StatelessWidget {
                             children: [
                               Text(
                                 l10n.repeaterDetailViewFeedbackMap,
-                                style:
-                                    theme.textTheme.bodyMedium?.copyWith(
+                                style: theme.textTheme.bodyMedium?.copyWith(
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                               const SizedBox(height: 2),
                               Text(
-                                l10n
-                                    .repeaterDetailViewFeedbackMapSubtitle,
-                                style:
-                                    theme.textTheme.labelSmall?.copyWith(
+                                l10n.repeaterDetailViewFeedbackMapSubtitle,
+                                style: theme.textTheme.labelSmall?.copyWith(
                                   color: colorScheme.onSurfaceVariant,
                                 ),
                               ),
@@ -431,5 +428,6 @@ class _TerrainPreviewPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _TerrainPreviewPainter oldDelegate) =>
-      terrainColor != oldDelegate.terrainColor || losColor != oldDelegate.losColor;
+      terrainColor != oldDelegate.terrainColor ||
+      losColor != oldDelegate.losColor;
 }
