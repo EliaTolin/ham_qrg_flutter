@@ -21,7 +21,6 @@ class RepeatersMappers implements Mapper<Repeater, RepeaterModel> {
       frequencyHz: model.frequencyHz,
       shiftHz: model.shiftHz,
       shiftRaw: model.shiftRaw,
-      
       region: model.region,
       provinceCode: model.provinceCode,
       locality: model.locality,

@@ -41,10 +41,12 @@ class AuthSupabaseDatasource implements AuthDatasource {
   @override
   Future<String?> getUserIdFromEmail(String email) async {
     try {
-      final data = await supabaseClient.rpc('get_user_id_by_email', params: {'email': email});
+      final data = await supabaseClient
+          .rpc('get_user_id_by_email', params: {'email': email});
 
       if (data is List) {
-        final parsedData = data.map((e) => Map<String, String>.from(e as Map)).toList();
+        final parsedData =
+            data.map((e) => Map<String, String>.from(e as Map)).toList();
 
         return parsedData[0]['id'];
       } else {
@@ -63,8 +65,10 @@ class AuthSupabaseDatasource implements AuthDatasource {
 
   @override
   Future<bool> signInGoogle() async {
-    const webClientId = '45512016232-j0l5f9b3tnf1hp2p60c3pn6g473h0nqv.apps.googleusercontent.com';
-    const iosClientId = '45512016232-48r7t9ek849c1dm2mkghlqv1o3l883kj.apps.googleusercontent.com';
+    const webClientId =
+        '45512016232-j0l5f9b3tnf1hp2p60c3pn6g473h0nqv.apps.googleusercontent.com';
+    const iosClientId =
+        '45512016232-48r7t9ek849c1dm2mkghlqv1o3l883kj.apps.googleusercontent.com';
 
     final googleSignIn = GoogleSignIn(
       clientId: Platform.isIOS ? iosClientId : null,
@@ -106,8 +110,11 @@ class AuthSupabaseDatasource implements AuthDatasource {
       // Metadati robusti
       final meta = user.userMetadata ?? {};
       final fullName =
-          (meta['full_name'] ?? meta['name'] ?? googleUser.displayName ?? '').toString().trim();
-      final parts = fullName.split(RegExp(r'\s+')).where((p) => p.isNotEmpty).toList();
+          (meta['full_name'] ?? meta['name'] ?? googleUser.displayName ?? '')
+              .toString()
+              .trim();
+      final parts =
+          fullName.split(RegExp(r'\s+')).where((p) => p.isNotEmpty).toList();
       final firstName = parts.isNotEmpty ? parts.first : null;
       final lastName = parts.length > 1 ? parts.sublist(1).join(' ') : null;
 

@@ -7,8 +7,8 @@ class PotaMappers {
   PotaSpot spotFromModel(PotaSpotModel model) {
     return PotaSpot(
       spotId: model.spotId,
-      spotTime: DateTime.tryParse('${model.spotTime}Z')?.toLocal() ??
-          DateTime.now(),
+      spotTime:
+          DateTime.tryParse('${model.spotTime}Z')?.toLocal() ?? DateTime.now(),
       activator: model.activator,
       frequency: model.frequency,
       mode: model.mode,

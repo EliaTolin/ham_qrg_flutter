@@ -26,10 +26,17 @@ import 'package:hamqrg/src/features/pota/presentation/widgets/pota_mode_badge.da
 import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 import 'package:hamqrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/sota/data/mappers/sota_mappers.dart'
+    as sota_mappers;
+import 'package:hamqrg/src/features/sota/domain/sota_spot.dart';
+import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/widgets/sota_spot_freshness_indicator.dart'
+    as sota_fresh;
+import 'package:hamqrg/src/features/sota/presentation/widgets/sota_mode_badge.dart';
+import 'package:hamqrg/src/features/sota/provider/get_sota_spots/get_sota_spots_provider.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/spot_dashboard_tab.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-enum _DashboardTab { repeaters, spots, pota }
+enum _DashboardTab { repeaters, spots, pota, sota }
 
 @RoutePage()
 class DashboardPage extends HookConsumerWidget {
@@ -52,6 +59,7 @@ class DashboardPage extends HookConsumerWidget {
               initialPosition: state.initialPosition,
               nearbyRepeaters: state.nearbyRepeaters,
               potaSpots: state.potaSpots,
+              sotaSpots: state.sotaSpots,
             ),
           ],
         ),
@@ -120,12 +128,14 @@ class DashboardPage extends HookConsumerWidget {
               DraggableScrollableSheet(
                 initialChildSize: 0.42,
                 minChildSize: 0.42,
-                maxChildSize:
-                    1.0 - (MediaQuery.paddingOf(context).top / MediaQuery.sizeOf(context).height),
+                maxChildSize: 1.0 -
+                    (MediaQuery.paddingOf(context).top /
+                        MediaQuery.sizeOf(context).height),
                 builder: (context, scrollController) => _ContentSection(
                   statistics: state.statistics,
                   nearbyRepeaters: state.nearbyRepeaters,
                   potaSpots: state.potaSpots,
+                  sotaSpots: state.sotaSpots,
                   scrollController: scrollController,
                 ),
               ),
@@ -145,7 +155,8 @@ class DashboardPage extends HookConsumerWidget {
             ),
             const SizedBox(height: 16),
             FilledButton(
-              onPressed: () => ref.read(dashboardControllerProvider.notifier).reload(),
+              onPressed: () =>
+                  ref.read(dashboardControllerProvider.notifier).reload(),
               child: Text(l10n.retry),
             ),
           ],
@@ -165,12 +176,14 @@ class _ContentSection extends HookWidget {
     required this.statistics,
     required this.nearbyRepeaters,
     required this.potaSpots,
+    required this.sotaSpots,
     required this.scrollController,
   });
 
   final DashboardStatistics statistics;
   final List<Repeater> nearbyRepeaters;
   final List<PotaSpot> potaSpots;
+  final List<SotaSpot> sotaSpots;
   final ScrollController scrollController;
 
   @override
@@ -199,8 +212,10 @@ class _ContentSection extends HookWidget {
             Expanded(
               child: SingleChildScrollView(
                 controller: scrollController,
-                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 child: Column(
                   spacing: 4,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,6 +226,7 @@ class _ContentSection extends HookWidget {
                     _TabSelector(
                       selectedTab: selectedTab.value,
                       potaSpotsCount: potaSpots.length,
+                      sotaSpotsCount: sotaSpots.length,
                       onTabChanged: (tab) => selectedTab.value = tab,
                     ),
                     // Tab Content
@@ -227,6 +243,10 @@ class _ContentSection extends HookWidget {
                         _DashboardTab.pota => _PotaTabContent(
                             key: const ValueKey('pota'),
                             potaSpots: potaSpots.take(5).toList(),
+                          ),
+                        _DashboardTab.sota => _SotaTabContent(
+                            key: const ValueKey('sota'),
+                            sotaSpots: sotaSpots.take(5).toList(),
                           ),
                       },
                     ),
@@ -347,70 +367,196 @@ class _TabSelector extends StatelessWidget {
   const _TabSelector({
     required this.selectedTab,
     required this.potaSpotsCount,
+    required this.sotaSpotsCount,
     required this.onTabChanged,
   });
 
   final _DashboardTab selectedTab;
   final int potaSpotsCount;
+  final int sotaSpotsCount;
   final ValueChanged<_DashboardTab> onTabChanged;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.localization;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
-    return SizedBox(
-      width: double.infinity,
-      child: SegmentedButton<_DashboardTab>(
-        segments: [
-          ButtonSegment(
-            value: _DashboardTab.repeaters,
-            label: Text(l10n.dashboardTabRepeaters),
-          ),
-          ButtonSegment(
-            value: _DashboardTab.spots,
-            label: Text(l10n.spotListTitle),
-          ),
-          ButtonSegment(
-            value: _DashboardTab.pota,
-            label: Row(
-              mainAxisSize: MainAxisSize.min,
+    final items = <_TabItem>[
+      _TabItem(
+        value: _DashboardTab.repeaters,
+        icon: Icons.cell_tower,
+        label: l10n.dashboardTabRepeaters,
+      ),
+      _TabItem(
+        value: _DashboardTab.spots,
+        icon: Icons.podcasts,
+        label: l10n.spotListTitle,
+      ),
+      _TabItem(
+        value: _DashboardTab.pota,
+        icon: Icons.park,
+        label: l10n.dashboardTabPota,
+        badgeCount: potaSpotsCount,
+      ),
+      _TabItem(
+        value: _DashboardTab.sota,
+        icon: Icons.terrain,
+        label: l10n.sotaTabDashboard,
+        badgeCount: sotaSpotsCount,
+      ),
+    ];
+
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final isTight = constraints.maxWidth < 360;
+          final collapsedWidth = isTight ? 46.0 : 52.0;
+          const tabMargin = 4.0;
+          final totalMargins = items.length * tabMargin;
+          final expandedWidth = constraints.maxWidth -
+              (items.length - 1) * collapsedWidth -
+              totalMargins;
+          final showCollapsedBadges = constraints.maxWidth >= 380;
+
+          return Row(
+            children: [
+              for (final item in items)
+                _ExpandableTab(
+                  item: item,
+                  isSelected: selectedTab == item.value,
+                  collapsedWidth: collapsedWidth,
+                  expandedWidth:
+                      expandedWidth.clamp(collapsedWidth, double.infinity),
+                  showCollapsedBadge: showCollapsedBadges,
+                  onTap: () => onTabChanged(item.value),
+                ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _TabItem {
+  const _TabItem({
+    required this.value,
+    required this.icon,
+    required this.label,
+    this.badgeCount = 0,
+  });
+
+  final _DashboardTab value;
+  final IconData icon;
+  final String label;
+  final int badgeCount;
+}
+
+class _ExpandableTab extends StatelessWidget {
+  const _ExpandableTab({
+    required this.item,
+    required this.isSelected,
+    required this.collapsedWidth,
+    required this.expandedWidth,
+    required this.showCollapsedBadge,
+    required this.onTap,
+  });
+
+  final _TabItem item;
+  final bool isSelected;
+  final double collapsedWidth;
+  final double expandedWidth;
+  final bool showCollapsedBadge;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final foreground =
+        isSelected ? colorScheme.onPrimary : colorScheme.onSurfaceVariant;
+    final showBadge = item.badgeCount > 0 && (isSelected || showCollapsedBadge);
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 280),
+      curve: Curves.easeOutCubic,
+      width: isSelected ? expandedWidth : collapsedWidth,
+      height: 44,
+      margin: const EdgeInsets.symmetric(horizontal: 2),
+      decoration: BoxDecoration(
+        color: isSelected ? colorScheme.primary : Colors.transparent,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(10),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(l10n.dashboardTabPota),
-                if (potaSpotsCount > 0) ...[
+                Icon(item.icon, size: 18, color: foreground),
+                if (isSelected) ...[
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: Text(
+                      item.label,
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: foreground,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      maxLines: 1,
+                      softWrap: false,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+                if (showBadge) ...[
                   const SizedBox(width: 6),
-                  _LiveBadge(count: potaSpotsCount),
+                  _LiveBadge(
+                    count: item.badgeCount,
+                    onPrimary: isSelected,
+                  ),
                 ],
               ],
             ),
           ),
-        ],
-        selected: {selectedTab},
-        onSelectionChanged: (selected) => onTabChanged(selected.first),
-        showSelectedIcon: false,
+        ),
       ),
     );
   }
 }
 
 class _LiveBadge extends StatelessWidget {
-  const _LiveBadge({required this.count});
+  const _LiveBadge({required this.count, this.onPrimary = false});
 
   final int count;
+  final bool onPrimary;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final bg = onPrimary ? colorScheme.onPrimary : colorScheme.primary;
+    final fg = onPrimary ? colorScheme.primary : colorScheme.onPrimary;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
       decoration: BoxDecoration(
-        color: colorScheme.primary,
+        color: bg,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         '$count',
         style: TextStyle(
-          color: colorScheme.onPrimary,
+          color: fg,
           fontSize: 10,
           fontWeight: FontWeight.bold,
         ),
@@ -508,7 +654,9 @@ class _PotaTabContent extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  onPressed: () => ref.read(dashboardControllerProvider.notifier).refreshPota(),
+                  onPressed: () => ref
+                      .read(dashboardControllerProvider.notifier)
+                      .refreshPota(),
                   icon: Icon(
                     Icons.refresh,
                     size: 20,
@@ -529,6 +677,300 @@ class _PotaTabContent extends ConsumerWidget {
           (spot) => _PotaSpotItem(spot: spot),
         ),
       ],
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// SOTA Tab Content
+// ---------------------------------------------------------------------------
+
+class _SotaTabContent extends ConsumerWidget {
+  const _SotaTabContent({required this.sotaSpots, super.key});
+
+  final List<SotaSpot> sotaSpots;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final l10n = context.localization;
+    final asyncSpots = ref.watch(getSotaSpotsProvider);
+    final visibleSpots = asyncSpots.asData?.value ?? sotaSpots;
+
+    if (asyncSpots.isLoading && visibleSpots.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 32),
+        child: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (asyncSpots.hasError && visibleSpots.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 24),
+        child: Column(
+          children: [
+            Icon(
+              Icons.cloud_off,
+              size: 40,
+              color: colorScheme.onSurface.withValues(alpha: 0.4),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              l10n.sotaLoadError,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            TextButton.icon(
+              onPressed: () {
+                ref
+                  ..invalidate(getSotaSpotsProvider)
+                  ..read(dashboardControllerProvider.notifier).refreshSota();
+              },
+              icon: const Icon(Icons.refresh, size: 18),
+              label: Text(l10n.sotaRetry),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (visibleSpots.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 24),
+        child: Column(
+          children: [
+            Icon(
+              Icons.terrain,
+              size: 40,
+              color: colorScheme.onSurface.withValues(alpha: 0.4),
+            ),
+            const SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                l10n.sotaIntroEmpty,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              l10n.sotaTitle,
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () => ref
+                      .read(dashboardControllerProvider.notifier)
+                      .refreshSota(),
+                  icon: Icon(
+                    Icons.refresh,
+                    size: 20,
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                  visualDensity: VisualDensity.compact,
+                ),
+                TextButton(
+                  onPressed: () => context.router.push(const SotaSpotsRoute()),
+                  child: Text(l10n.sotaViewAll),
+                ),
+              ],
+            ),
+          ],
+        ),
+        const SizedBox(height: 4),
+        ...visibleSpots.take(5).map(
+              (spot) => _SotaSpotItem(spot: spot),
+            ),
+      ],
+    );
+  }
+}
+
+class _SotaSpotItem extends StatelessWidget {
+  const _SotaSpotItem({required this.spot});
+
+  final SotaSpot spot;
+
+  Color _freshnessColor(Duration age) {
+    if (age.inMinutes < 5) return const Color(0xFF16A34A); // green-600
+    if (age.inMinutes < 15) return const Color(0xFFD97706); // amber-600
+    return const Color(0xFF6B7280); // gray-500
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final band = sota_mappers.bandFromFrequencyMhz(spot.frequencyMhz);
+    final age = DateTime.now().difference(spot.timestamp);
+    final freshColor = _freshnessColor(age);
+
+    return InkWell(
+      onTap: () {
+        context.router.push(
+          SotaSpotDetailRoute(
+            spotId: spot.id,
+            summitCode: spot.summitCode,
+          ),
+        );
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerHighest,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.1),
+          ),
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              Container(width: 4, color: freshColor),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            spot.activator,
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Spacer(),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: freshColor.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              sota_fresh.sotaSpotTimeAgo(spot.timestamp),
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: freshColor,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      // Row 2: Frequency + band + mode badges
+                      Row(
+                        children: [
+                          Text(
+                            '${spot.frequencyMhz.toStringAsFixed(3)} MHz',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                              fontFeatures: const [
+                                FontFeature.tabularFigures(),
+                              ],
+                            ),
+                          ),
+                          if (band != null) ...[
+                            const SizedBox(width: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 1,
+                              ),
+                              decoration: BoxDecoration(
+                                color: colorScheme.primaryContainer,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                band,
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: colorScheme.onPrimaryContainer,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ],
+                          if (normalizeSotaMode(spot.mode) != null) ...[
+                            const SizedBox(width: 6),
+                            SotaModeBadge(mode: spot.mode),
+                          ],
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      // Row 3: Summit name + reference
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/images/sota_logo.png',
+                            width: 18,
+                            height: 18,
+                          ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              spot.summitName,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            spot.summitCode,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color:
+                                  colorScheme.onSurface.withValues(alpha: 0.5),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Icon(
+                  Icons.chevron_right,
+                  color: colorScheme.onSurfaceVariant,
+                  size: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -716,7 +1158,8 @@ class _PotaSpotItem extends StatelessWidget {
                           Text(
                             spot.reference,
                             style: theme.textTheme.labelSmall?.copyWith(
-                              color: colorScheme.onSurface.withValues(alpha: 0.5),
+                              color:
+                                  colorScheme.onSurface.withValues(alpha: 0.5),
                               fontWeight: FontWeight.w600,
                             ),
                           ),

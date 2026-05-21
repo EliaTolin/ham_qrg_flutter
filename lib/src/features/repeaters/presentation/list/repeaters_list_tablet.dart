@@ -133,13 +133,9 @@ class _CatalogRow extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final distinctModes = repeater.accesses
-        .map((a) => a.mode)
-        .toSet()
-        .toList();
-    final accessColors = distinctModes
-        .map(AccessModeHelper.getAccessModeColorObject)
-        .toList();
+    final distinctModes = repeater.accesses.map((a) => a.mode).toSet().toList();
+    final accessColors =
+        distinctModes.map(AccessModeHelper.getAccessModeColorObject).toList();
     final bandColors = accessColors.isEmpty
         ? [colorScheme.outlineVariant, colorScheme.outlineVariant]
         : accessColors.length == 1
@@ -212,14 +208,13 @@ class _CatalogRow extends StatelessWidget {
                       children: [
                         for (final mode in distinctModes) ...[
                           _ModeChip(
-                            color: AccessModeHelper
-                                .getAccessModeColorObject(mode),
+                            color:
+                                AccessModeHelper.getAccessModeColorObject(mode),
                             label: AccessModeHelper.getAccessModeLabel(mode),
                           ),
                           const SizedBox(width: 4),
                         ],
-                        if (distinctModes.isNotEmpty)
-                          const SizedBox(width: 4),
+                        if (distinctModes.isNotEmpty) const SizedBox(width: 4),
                         if (repeater.locality != null) ...[
                           Flexible(
                             child: Text(

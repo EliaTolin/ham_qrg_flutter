@@ -17,8 +17,10 @@ abstract class BmDevice with _$BmDevice {
     double? longitude,
     String? city,
     String? website,
+
     /// Power in watts
     int? powerWatts,
+
     /// Antenna height above ground level (m)
     int? antennaHeightM,
     String? description,

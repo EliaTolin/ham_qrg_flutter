@@ -19,7 +19,8 @@ class ProfileRepository {
   }
 
   Future<Profile> getProfile(String userId) async {
-    return ProfileMappers().fromModel(await _profileDatasource.getProfile(userId));
+    return ProfileMappers()
+        .fromModel(await _profileDatasource.getProfile(userId));
   }
 
   Future<void> uploadPropics(String userId, File image) async {
@@ -50,6 +51,7 @@ class ProfileRepository {
 @riverpod
 Future<ProfileRepository> profileRepository(Ref ref) async {
   final datasource = ref.read(profileSupabaseDatasourceProvider);
-  final imageCachingService = await ref.read(imageCachingServiceProvider.future);
+  final imageCachingService =
+      await ref.read(imageCachingServiceProvider.future);
   return ProfileRepository(datasource, imageCachingService);
 }

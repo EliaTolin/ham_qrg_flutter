@@ -69,8 +69,7 @@ class SpotListPage extends HookConsumerWidget {
                       Text(l10n.error_message_retry),
                       const Gap(8),
                       TextButton(
-                        onPressed: () =>
-                            ref.invalidate(recentSpotsProvider),
+                        onPressed: () => ref.invalidate(recentSpotsProvider),
                         child: Text(l10n.retry),
                       ),
                     ],

@@ -48,7 +48,10 @@ class PotaSpotDetailPage extends HookConsumerWidget {
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: Theme.of(context).colorScheme.error.withValues(alpha: 0.6),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .error
+                      .withValues(alpha: 0.6),
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -115,7 +118,9 @@ class _PotaSpotDetailMobile extends StatelessWidget {
               ],
 
               // ── Map ──
-              if (park != null && park.latitude != null && park.longitude != null) ...[
+              if (park != null &&
+                  park.latitude != null &&
+                  park.longitude != null) ...[
                 _MapSection(park: park),
                 const SizedBox(height: 16),
               ],
@@ -346,7 +351,9 @@ class _ParkCard extends StatelessWidget {
       );
     }
     if (park.firstActivator != null) {
-      final dateStr = park.firstActivationDate != null ? ' (${park.firstActivationDate!})' : '';
+      final dateStr = park.firstActivationDate != null
+          ? ' (${park.firstActivationDate!})'
+          : '';
       tiles.add(
         _InfoTileData(
           icon: Icons.person,
@@ -592,7 +599,8 @@ class _MapSection extends StatelessWidget {
                 left: 10,
                 bottom: 10,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: colorScheme.shadow.withValues(alpha: 0.6),
                     borderRadius: BorderRadius.circular(6),

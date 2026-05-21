@@ -490,7 +490,6 @@
   "repeaterDetailYourElevation": "Quota tua",
   "repeaterDetailYou": "Tu",
   "repeaterDetailRepeaterLabel": "Ripetitore",
-
   "repeaterDetailFunFacts": "Lo sapevi?",
   "repeaterDetailWavelength": "Lunghezza d'onda",
   "repeaterDetailWavelengthValue": "La lunghezza d'onda di questo ripetitore è {value}",
@@ -528,7 +527,6 @@
       }
     }
   },
-
   "userReportsTitle": "Le mie attività",
   "userReportsTabReports": "Segnalazioni",
   "userReportsTabSubmissions": "Nuovi ponti",
@@ -547,7 +545,6 @@
   "userReportsProfileTileSubtitle": "Visualizza lo stato delle tue segnalazioni",
   "userReportsError": "Errore durante il caricamento dei report",
   "userReportsCoordinatorResponse": "Risposta coordinatore",
-
   "userSubmissionsEmpty": "Nessun ponte segnalato",
   "userSubmissionsEmptyDescription": "I ponti che proponi appariranno qui",
   "userSubmissionsEmptyFiltered": "Nessun ponte con questo filtro",
@@ -556,7 +553,6 @@
   "userSubmissionsStatusRejected": "Rifiutato",
   "userSubmissionsCoordinatorResponse": "Risposta coordinatore",
   "userSubmissionsFrequency": "Frequenza",
-
   "potaTitle": "POTA Spots",
   "potaSearchHint": "Cerca per attivatore, parco o modo…",
   "potaNoSpots": "Nessuno spot POTA attivo al momento.",
@@ -617,29 +613,22 @@
   "profileLanguageCzech": "Čeština",
   "profileLanguageSlovak": "Slovenčina",
   "profileLanguageSerbian": "Srpski",
-
   "onboardingSkip": "Salta",
   "onboardingGetStarted": "Inizia",
   "onboardingNext": "Avanti",
-
   "onboardingWelcomeTitle1": "Trova i ripetitori vicino a te",
   "onboardingWelcomeSubtitle1": "Scopri i ponti radio attivi nella tua zona, con frequenze, toni e dettagli tecnici.",
   "onboardingWelcomeCredits": "Dati dei ponti radio forniti da IZ8WNH",
-
   "onboardingWelcomeTitle2": "Filtra per modo",
   "onboardingWelcomeSubtitle2": "Analogico, DMR, C4FM, D-STAR — trova subito il ripetitore che fa per te.",
-
   "onboardingWelcomeTitle3": "Spot POTA in tempo reale",
   "onboardingWelcomeSubtitle3": "Segui le attivazioni Parks on the Air con aggiornamenti live, filtri per banda e distanza.",
-
   "onboardingWelcomeTitle4": "Salva i preferiti",
   "onboardingWelcomeSubtitle4": "Tieni a portata di mano i ripetitori che usi di più per accesso rapido.",
-
   "onboardingLocationTitle": "Posizione",
   "onboardingLocationSubtitle": "Usiamo la tua posizione per mostrarti i ripetitori e le attivazioni POTA vicine.",
   "onboardingLocationEnable": "Attiva Posizione",
   "onboardingLocationSkip": "Non ora",
-
   "onboardingDiscoveryTitle": "Il tuo primo ripetitore",
   "onboardingDiscoverySubtitle": "Ecco cosa c'è vicino a te!",
   "onboardingDiscoveryViewDetails": "Vedi Dettagli",
@@ -649,13 +638,11 @@
   "onboardingDiscoveryNearbyRepeater": "Ripetitore vicino",
   "onboardingDiscoveryLivePota": "Spot POTA attivo",
   "onboardingDiscoveryNoRepeaters": "Nessun ripetitore trovato nelle vicinanze",
-
   "onboardingTelegramTitle": "Unisciti alla community",
   "onboardingTelegramSubtitle": "Entra nel gruppo Telegram di HamQRG per ricevere aggiornamenti, segnalare ripetitori e conoscere altri radioamatori.",
   "onboardingTelegramJoin": "Unisciti al Gruppo Telegram",
   "onboardingTelegramLater": "Forse dopo",
   "onboardingTelegramAlreadyMember": "Sono già membro",
-
   "addRepeaterProfileTile": "Proponi nuovo ripetitore",
   "addRepeaterProfileTileSubtitle": "Segnala un ripetitore non ancora presente",
   "addRepeaterTitle": "Nuovo Ripetitore",
@@ -719,7 +706,6 @@
   "addRepeaterError": "Errore durante l'invio della segnalazione",
   "addRepeaterAtLeastOneAccess": "Aggiungi almeno un accesso",
   "addRepeaterAccessNumber": "Accesso {number}",
-
   "changelog1017PotaSpots": "Spot POTA in tempo reale con mappa e dettagli parco",
   "changelog1017SubmitRepeater": "Proponi un nuovo ripetitore direttamente dall'app",
   "changelog1017MultiLanguage": "App disponibile in inglese, spagnolo e francese",
@@ -728,7 +714,6 @@
   "changelog1020ClusterSpots": "Cluster spot in tempo reale: vedi chi è in ascolto sui ripetitori, con notifiche e preferenze",
   "changelog1020DetailTabs": "Pagina ripetitore con tab Info, Cluster e Community",
   "changelog1020TabletLayout": "Layout ottimizzato per tablet",
-
   "changelogTitle": "Novità",
   "changelogSubtitle": "Ecco cosa c'è di nuovo in questa versione",
   "changelogCategoryAdded": "Nuovo",
@@ -742,7 +727,6 @@
       }
     }
   },
-
   "spotCreateTitle": "Spottati",
   "spotCreateOtherTitle": "Spotta un OM",
   "spotCreateDuration": "Durata",
@@ -798,6 +782,96 @@
   "@spotDurationMinutes": {
     "placeholders": {
       "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "sotaTitle": "SOTA Spots",
+  "sotaListEmpty": "Nessuno spot SOTA al momento",
+  "sotaLoadError": "Errore nel caricamento spot SOTA",
+  "sotaRetry": "Riprova",
+  "sotaSummitPursuit": "Vista verso la cima",
+  "sotaLosClear": "Vista libera",
+  "sotaLosObstructed": "Possibile ostruzione",
+  "sotaLosObstructionAt": "Ostacolo a {distance} km, +{height} m",
+  "sotaPointsBadge": "{count} pt",
+  "sotaAltitudeMeters": "{m} m",
+  "sotaFilterAll": "Tutti",
+  "sotaSortByTime": "Tempo",
+  "sotaSortByDistance": "Distanza",
+  "sotaFilterPoints": "Punti",
+  "sotaFilterAssociation": "Paese",
+  "sotaSpotQrt": "QRT",
+  "sotaSummitInvalidFrom": "Cima non più valida dal {date}",
+  "sotaSummitRestrictions": "Accesso con restrizioni",
+  "sotaPursuitNoLocation": "Attiva la posizione per vedere il profilo verso la cima",
+  "sotaPursuitTooClose": "Sei praticamente sulla cima",
+  "sotaPursuitTooFar": "Cima troppo distante per il profilo di terreno",
+  "sotaPursuitError": "Impossibile calcolare il profilo. Riprova.",
+  "sotaPursuitLoading": "Calcolo profilo altimetrico…",
+  "sotaCopyFrequency": "Copia frequenza",
+  "sotaOpenOnMap": "Apri sulla mappa",
+  "sotaShare": "Condividi",
+  "sotaViewAll": "Vedi tutti",
+  "sotaTabDashboard": "SOTA",
+  "sotaIntroEmpty": "SOTA: Summits On The Air. Insegui i radioamatori che attivano cime montane.",
+  "sotaSpotCount": "{count} spot",
+  "sotaActivator": "Attivatore",
+  "sotaSummit": "Cima",
+  "sotaAssociation": "Associazione",
+  "sotaRegion": "Regione",
+  "sotaLocator": "Locatore",
+  "sotaDistance": "Distanza",
+  "sotaBearing": "Direzione",
+  "sotaElevationDelta": "Dislivello",
+  "sotaRemoveFilters": "Rimuovi filtri",
+  "sotaPointsTitle": "Punti",
+  "sotaSpotInfo": "Info spot",
+  "sotaTime": "Orario",
+  "sotaCopiedToClipboard": "Frequenza copiata",
+  "sotaPointsAbove": "{count}+ pt",
+  "sotaFilterPointsAll": "Punti: tutti",
+  "@sotaLosObstructionAt": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "height": {
+        "type": "String"
+      }
+    }
+  },
+  "@sotaPointsBadge": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@sotaAltitudeMeters": {
+    "placeholders": {
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "@sotaSummitInvalidFrom": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@sotaSpotCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@sotaPointsAbove": {
+    "placeholders": {
+      "count": {
         "type": "int"
       }
     }

@@ -469,7 +469,6 @@
   "repeaterDetailYourElevation": "Vaša nadmorska visina",
   "repeaterDetailYou": "Vi",
   "repeaterDetailRepeaterLabel": "Repetitor",
-
   "repeaterDetailFunFacts": "Da li ste znali?",
   "repeaterDetailWavelength": "Talasna dužina",
   "repeaterDetailWavelengthValue": "Talasna dužina ovog repetitora je {value}",
@@ -507,7 +506,6 @@
       }
     }
   },
-
   "userReportsTitle": "Моје активности",
   "userReportsTabReports": "Пријаве",
   "userReportsTabSubmissions": "Нови репетитори",
@@ -534,7 +532,6 @@
   "userSubmissionsStatusRejected": "Одбијено",
   "userSubmissionsCoordinatorResponse": "Одговор координатора",
   "userSubmissionsFrequency": "Фреквенција",
-
   "potaTitle": "POTA spotovi",
   "potaSearchHint": "Pretražite po aktivatoru, parku ili režimu…",
   "potaNoSpots": "Trenutno nema aktivnih POTA spotova.",
@@ -590,7 +587,6 @@
   "profileLanguageCzech": "Čeština",
   "profileLanguageSlovak": "Slovenčina",
   "profileLanguageSerbian": "Srpski",
-
   "addRepeaterProfileTile": "Predloži novi repetitor",
   "addRepeaterProfileTileSubtitle": "Prijavite repetitor koji još nije u listi",
   "addRepeaterTitle": "Novi repetitor",
@@ -661,7 +657,6 @@
       }
     }
   },
-
   "changelog1017PotaSpots": "POTA spotovi u realnom vremenu sa mapom i detaljima parka",
   "changelog1017SubmitRepeater": "Predložite novi repetitor direktno iz aplikacije",
   "changelog1017MultiLanguage": "Aplikacija dostupna na engleskom, španskom i francuskom",
@@ -670,14 +665,12 @@
   "changelog1020ClusterSpots": "Cluster spotovi u realnom vremenu: vidi ko sluša na repetitorima, sa obaveštenjima i podešavanjima",
   "changelog1020DetailTabs": "Stranica repetitora sa karticama Info, Cluster i Zajednica",
   "changelog1020TabletLayout": "Raspored optimizovan za tablete",
-
   "changelogTitle": "Šta je novo",
   "changelogSubtitle": "Evo šta je novo u ovoj verziji",
   "changelogCategoryAdded": "Novo",
   "changelogCategoryImproved": "Poboljšano",
   "changelogCategoryFixed": "Ispravljeno",
   "changelogDismiss": "Razumem!",
-
   "dashboardNearbyEmpty": "Nema repetitora u blizini",
   "dashboardTabPota": "POTA",
   "dashboardTabRepeaters": "Repetitori",
@@ -789,6 +782,96 @@
   "@spotDurationMinutes": {
     "placeholders": {
       "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "sotaTitle": "SOTA Spots",
+  "sotaListEmpty": "No SOTA spots at the moment",
+  "sotaLoadError": "Failed to load SOTA spots",
+  "sotaRetry": "Retry",
+  "sotaSummitPursuit": "View toward the summit",
+  "sotaLosClear": "Clear line of sight",
+  "sotaLosObstructed": "Possible obstruction",
+  "sotaLosObstructionAt": "Obstacle at {distance} km, +{height} m",
+  "sotaPointsBadge": "{count} pt",
+  "sotaAltitudeMeters": "{m} m",
+  "sotaFilterAll": "All",
+  "sotaSortByTime": "Time",
+  "sotaSortByDistance": "Distance",
+  "sotaFilterPoints": "Points",
+  "sotaFilterAssociation": "Country",
+  "sotaSpotQrt": "QRT",
+  "sotaSummitInvalidFrom": "Summit no longer valid since {date}",
+  "sotaSummitRestrictions": "Restricted access",
+  "sotaPursuitNoLocation": "Enable location to see the profile toward the summit",
+  "sotaPursuitTooClose": "You are practically on the summit",
+  "sotaPursuitTooFar": "Summit too far for terrain profile",
+  "sotaPursuitError": "Unable to compute profile. Retry.",
+  "sotaPursuitLoading": "Computing terrain profile…",
+  "sotaCopyFrequency": "Copy frequency",
+  "sotaOpenOnMap": "Open on map",
+  "sotaShare": "Share",
+  "sotaViewAll": "View all",
+  "sotaTabDashboard": "SOTA",
+  "sotaIntroEmpty": "SOTA: Summits On The Air. Chase ham operators activating mountain summits.",
+  "sotaSpotCount": "{count} spots",
+  "sotaActivator": "Activator",
+  "sotaSummit": "Summit",
+  "sotaAssociation": "Association",
+  "sotaRegion": "Region",
+  "sotaLocator": "Locator",
+  "sotaDistance": "Distance",
+  "sotaBearing": "Bearing",
+  "sotaElevationDelta": "Elevation delta",
+  "sotaRemoveFilters": "Remove filters",
+  "sotaPointsTitle": "Points",
+  "sotaSpotInfo": "Spot info",
+  "sotaTime": "Time",
+  "sotaCopiedToClipboard": "Frequency copied",
+  "sotaPointsAbove": "{count}+ pt",
+  "sotaFilterPointsAll": "All points",
+  "@sotaLosObstructionAt": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "height": {
+        "type": "String"
+      }
+    }
+  },
+  "@sotaPointsBadge": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@sotaAltitudeMeters": {
+    "placeholders": {
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "@sotaSummitInvalidFrom": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@sotaSpotCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@sotaPointsAbove": {
+    "placeholders": {
+      "count": {
         "type": "int"
       }
     }

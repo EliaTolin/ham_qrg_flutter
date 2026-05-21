@@ -4,8 +4,7 @@ part 'altimetric_profile_point_model.freezed.dart';
 part 'altimetric_profile_point_model.g.dart';
 
 @freezed
-abstract class AltimetricProfilePointModel
-    with _$AltimetricProfilePointModel {
+abstract class AltimetricProfilePointModel with _$AltimetricProfilePointModel {
   const factory AltimetricProfilePointModel({
     required double lat,
     required double lon,

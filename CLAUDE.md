@@ -245,6 +245,8 @@ Prefix format: `[type]: [description]`
 ## Active Technologies
 - Dart 3.x / Flutter 3.x + Riverpod 3.x (`riverpod_annotation: ^4.0`), `@freezed`, `auto_route`, `supabase_flutter`, `onesignal_flutter`, `mapbox_maps_flutter` (002-cluster-spots-frontend)
 - Supabase (PostgreSQL via Edge Functions + PostgREST + Realtime) (002-cluster-spots-frontend)
+- Dart 3.x / Flutter 3.x (versione vincolata da `pubspec.yaml` del progetto) + Riverpod 3.x (`riverpod_annotation: ^4.0`), `freezed_annotation`, `json_serializable`, `auto_route`, `dio` (HTTP), `supabase_flutter` (edge function invocation), `mapbox_maps_flutter`, `geolocator` (location), `fl_chart` (grafico altimetrico, già presente) (004-sota-integration)
+- Nessuno per MVP — solo cache in-memory via `ProviderContainer` Riverpod. Nessuna scrittura su SharedPreferences/SQLite per SOTA. (004-sota-integration)
 
 ## Recent Changes
 - 002-cluster-spots-frontend: Added Dart 3.x / Flutter 3.x + Riverpod 3.x (`riverpod_annotation: ^4.0`), `@freezed`, `auto_route`, `supabase_flutter`, `onesignal_flutter`, `mapbox_maps_flutter`

@@ -16,7 +16,9 @@ class ParamSupabaseDatasource implements ParamDatasource {
   Future<List<ParamModel>> getAllParams() async {
     try {
       final data = await _client.from('params').select();
-      return (data as List).map((e) => ParamModel.fromJson(e as Map<String, dynamic>)).toList();
+      return (data as List)
+          .map((e) => ParamModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e) {
       log('Error to fetch params: $e');
       rethrow;
@@ -26,7 +28,8 @@ class ParamSupabaseDatasource implements ParamDatasource {
   @override
   Future<ParamModel?> getParamByKey(String key) async {
     try {
-      final data = await _client.from('params').select().eq('key', key).maybeSingle();
+      final data =
+          await _client.from('params').select().eq('key', key).maybeSingle();
       if (data == null) {
         return null;
       }

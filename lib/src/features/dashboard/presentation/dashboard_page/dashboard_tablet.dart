@@ -14,6 +14,13 @@ import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart'
     show spotTimeAgo;
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/sota/data/mappers/sota_mappers.dart'
+    as sota_mappers;
+import 'package:hamqrg/src/features/sota/domain/sota_spot.dart';
+import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/widgets/sota_altitude_badge.dart';
+import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/widgets/sota_points_badge.dart';
+import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/widgets/sota_spot_freshness_indicator.dart'
+    as sota_fresh;
 import 'package:hamqrg/src/features/spots/presentation/widgets/spot_dashboard_tab.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,6 +36,7 @@ class DashboardTablet extends StatelessWidget {
     required this.initialPosition,
     required this.nearbyRepeaters,
     required this.potaSpots,
+    required this.sotaSpots,
     super.key,
   });
 
@@ -36,6 +44,7 @@ class DashboardTablet extends StatelessWidget {
   final ({double lat, double lon}) initialPosition;
   final List<Repeater> nearbyRepeaters;
   final List<PotaSpot> potaSpots;
+  final List<SotaSpot> sotaSpots;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +71,7 @@ class DashboardTablet extends StatelessWidget {
                 statistics: statistics,
                 nearbyRepeaters: nearbyRepeaters,
                 potaSpots: potaSpots,
+                sotaSpots: sotaSpots,
               ),
             ),
           ),
@@ -245,11 +255,13 @@ class _SidePanel extends ConsumerWidget {
     required this.statistics,
     required this.nearbyRepeaters,
     required this.potaSpots,
+    required this.sotaSpots,
   });
 
   final DashboardStatistics statistics;
   final List<Repeater> nearbyRepeaters;
   final List<PotaSpot> potaSpots;
+  final List<SotaSpot> sotaSpots;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -282,6 +294,15 @@ class _SidePanel extends ConsumerWidget {
             onRefresh: () =>
                 ref.read(dashboardControllerProvider.notifier).refreshPota(),
             child: _PotaList(spots: potaSpots.take(5).toList()),
+          ),
+          const SizedBox(height: 20),
+          _ConsoleSection(
+            label: 'SOTA SPOTS',
+            actionLabel: l10n.sotaViewAll,
+            onAction: () => context.router.push(const SotaSpotsRoute()),
+            onRefresh: () =>
+                ref.read(dashboardControllerProvider.notifier).refreshSota(),
+            child: _SotaList(spots: sotaSpots.take(5).toList()),
           ),
         ],
       ),
@@ -737,6 +758,134 @@ class _CompactPotaRow extends StatelessWidget {
                 ),
                 child: Text(
                   spotTimeAgo(spot.spotTime),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: freshColor,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 10,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SotaList extends StatelessWidget {
+  const _SotaList({required this.spots});
+
+  final List<SotaSpot> spots;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = context.localization;
+    if (spots.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Text(
+          l10n.sotaListEmpty,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+        ),
+      );
+    }
+    return Column(
+      children: [for (final s in spots) _CompactSotaRow(spot: s)],
+    );
+  }
+}
+
+class _CompactSotaRow extends StatelessWidget {
+  const _CompactSotaRow({required this.spot});
+
+  final SotaSpot spot;
+
+  Color _freshnessColor(BuildContext context, Duration age) {
+    final colorScheme = Theme.of(context).colorScheme;
+    if (age.inMinutes < 5) return colorScheme.tertiary;
+    if (age.inMinutes < 15) return colorScheme.secondary;
+    return colorScheme.outlineVariant;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final age = DateTime.now().difference(spot.timestamp);
+    final freshColor = _freshnessColor(context, age);
+    final band = sota_mappers.bandFromFrequencyMhz(spot.frequencyMhz);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => context.router.push(
+          SotaSpotDetailRoute(
+            spotId: spot.id,
+            summitCode: spot.summitCode,
+          ),
+        ),
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+          child: Row(
+            children: [
+              Container(
+                width: 3,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: freshColor,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      spot.activator,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      '${spot.summitCode} · ${band ?? '?'}',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
+                    Wrap(
+                      spacing: 4,
+                      children: [
+                        SotaAltitudeBadge(altitudeM: spot.altitudeM),
+                        SotaPointsBadge(points: spot.points),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 6,
+                  vertical: 2,
+                ),
+                decoration: BoxDecoration(
+                  color: freshColor.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  sota_fresh.sotaSpotTimeAgo(spot.timestamp),
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: freshColor,
                     fontWeight: FontWeight.w700,

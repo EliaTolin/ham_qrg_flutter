@@ -21,7 +21,8 @@ class ImageCarousel extends StatelessWidget {
           return Stack(
             children: [
               ImageCard(imageUrl: url),
-              if (onDeleteImage != null) // Conditionally render the delete button
+              if (onDeleteImage !=
+                  null) // Conditionally render the delete button
                 Positioned(
                   top: 10,
                   right: 10,
@@ -30,7 +31,8 @@ class ImageCarousel extends StatelessWidget {
                     child: IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () async {
-                        final shouldDelete = await showAreYouSureToDeleteDialog(context);
+                        final shouldDelete =
+                            await showAreYouSureToDeleteDialog(context);
                         if (shouldDelete) {
                           onDeleteImage!(url);
                         }

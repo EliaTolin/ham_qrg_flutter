@@ -9,8 +9,7 @@ part 'repeater_detail_map_controller.g.dart';
 class RepeaterDetailMapController extends _$RepeaterDetailMapController {
   @override
   FutureOr<RepeaterDetailMapState> build(String repeaterId) async {
-    final repeater =
-        await ref.read(getRepeaterByIdProvider(repeaterId).future);
+    final repeater = await ref.read(getRepeaterByIdProvider(repeaterId).future);
     if (repeater == null) {
       throw Exception('Repeater not found');
     }

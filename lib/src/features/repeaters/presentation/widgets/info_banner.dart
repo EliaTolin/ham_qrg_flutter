@@ -23,7 +23,8 @@ class InfoBanner extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.08),
+              color:
+                  Theme.of(context).colorScheme.shadow.withValues(alpha: 0.08),
               blurRadius: 12,
               offset: const Offset(0, 6),
             ),

@@ -10,4 +10,5 @@ abstract final class MapLayers {
   static const String unclusteredPointLayer =
       'assets/map_layers/unclustered_point_layer.json';
   static const String potaLayer = 'assets/map_layers/pota_spots_layer.json';
+  static const String sotaLayer = 'assets/map_layers/sota_spots_layer.json';
 }

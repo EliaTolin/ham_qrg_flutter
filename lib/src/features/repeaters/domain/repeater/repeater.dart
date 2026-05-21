@@ -3,7 +3,6 @@ import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart
 
 part 'repeater.freezed.dart';
 
-
 @freezed
 abstract class Repeater with _$Repeater {
   const factory Repeater({

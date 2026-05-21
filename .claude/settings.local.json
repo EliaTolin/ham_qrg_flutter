@@ -68,7 +68,23 @@
       "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha ios/fastlane/screenshots/it/5_APP_IPHONE_69_5.png)",
       "Bash(mv 4_APP_IPHONE_69_4.png _tmp.png)",
       "Bash(mv 5_APP_IPHONE_69_5.png 4_APP_IPHONE_69_4.png)",
-      "Bash(mv _tmp.png 5_APP_IPHONE_69_5.png)"
+      "Bash(mv _tmp.png 5_APP_IPHONE_69_5.png)",
+      "Read(//Users/eliatolin/**)",
+      "WebFetch(domain:api-db2.sota.org.uk)",
+      "Bash(.specify/scripts/bash/create-new-feature.sh \"Voglio integrare SOTA. Questa è l'API: https://api-db2.sota.org.uk/api/spots/200/all/all https://api-db2.sota.org.uk//api/summits/{summit_code} ritorna le informazioni del summit. E' analogo al POTA e similare. Studia i risultati dell'api e forniamo una funzionalità WOW a riguardo. Che sia studiata a livello di UI e UX anche come posizionata nell'app.\" --json --short-name \"sota-integration\" \"Integrate SOTA with terrain pursuit WOW feature\")",
+      "Bash(pod --version)",
+      "Bash(ruby --version)",
+      "Read(//opt/homebrew/opt/**)",
+      "Bash(brew search *)",
+      "Bash(gem install *)",
+      "Bash(ruby -e 'puts Gem.user_dir')",
+      "Bash(/opt/homebrew/opt/ruby@3.4/bin/ruby -e 'puts Gem.user_dir')",
+      "Bash(flutter doctor *)",
+      "Bash(flutter devices *)",
+      "Bash(flutter logs *)"
+    ],
+    "additionalDirectories": [
+      "/Users/eliatolin"
     ]
   }
 }

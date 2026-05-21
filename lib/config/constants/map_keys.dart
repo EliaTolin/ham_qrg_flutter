@@ -28,4 +28,13 @@ abstract final class MapKeys {
 
   /// Image ID for POTA logo marker
   static const String potaLogoImage = 'pota-logo';
+
+  /// Source ID for SOTA spots GeoJSON data
+  static const String sotaSource = 'sota-source';
+
+  /// Layer ID for SOTA spot markers
+  static const String sotaLayer = 'sota-spots';
+
+  /// Image ID for SOTA logo marker
+  static const String sotaLogoImage = 'sota-logo';
 }

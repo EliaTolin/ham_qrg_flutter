@@ -52,7 +52,10 @@ class AuthScreen extends ConsumerWidget {
                 Text(
                   '73!'.hardcoded,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.8),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withValues(alpha: 0.8),
                         fontSize: 18,
                       ),
                 ),
@@ -69,8 +72,7 @@ class AuthScreen extends ConsumerWidget {
                       ..invalidate(checkNeedsPostLoginOnboardingProvider);
 
                     // Register with OneSignal using the new user ID
-                    final userId =
-                        await ref.refresh(getUserIdProvider.future);
+                    final userId = await ref.refresh(getUserIdProvider.future);
                     if (userId != null) {
                       await OneSignal.login(userId);
                     }
@@ -82,8 +84,8 @@ class AuthScreen extends ConsumerWidget {
 
                     log('AuthScreen: checking needsOnboarding...');
                     try {
-                      final needsOnboarding =
-                          await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+                      final needsOnboarding = await ref
+                          .read(checkNeedsPostLoginOnboardingProvider.future);
                       log('AuthScreen: needsOnboarding=$needsOnboarding');
 
                       if (context.mounted) {

@@ -144,8 +144,7 @@ class AddRepeaterController extends _$AddRepeaterController {
               state.locality.trim().isEmpty ? null : state.locality.trim(),
           lat: double.tryParse(state.latitude.trim()),
           lon: double.tryParse(state.longitude.trim()),
-          locator:
-              state.locator.trim().isEmpty ? null : state.locator.trim(),
+          locator: state.locator.trim().isEmpty ? null : state.locator.trim(),
           notes: state.notes.trim().isEmpty ? null : state.notes.trim(),
         ).future,
       );

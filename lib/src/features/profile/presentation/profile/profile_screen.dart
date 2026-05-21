@@ -71,8 +71,7 @@ class ProfileScreen extends HookConsumerWidget {
                           ),
                         ],
                         // Email
-                        if (state.email != null &&
-                            state.email!.isNotEmpty) ...[
+                        if (state.email != null && state.email!.isNotEmpty) ...[
                           const Gap(4),
                           Text(
                             state.email!,
@@ -245,8 +244,7 @@ class ProfileScreen extends HookConsumerWidget {
                                   ),
                                 ),
                                 onTap: () {
-                                  context.router
-                                      .push(const AddRepeaterRoute());
+                                  context.router.push(const AddRepeaterRoute());
                                 },
                               ),
                               Divider(

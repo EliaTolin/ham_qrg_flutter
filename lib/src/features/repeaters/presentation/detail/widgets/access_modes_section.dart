@@ -331,7 +331,11 @@ class AccessModeCard extends StatelessWidget {
     final nodeIdLabel = AccessModeHelper.getNodeIdLabel(access.mode);
     if (nodeIdLabel != null && access.nodeId != null) {
       details.add(
-        _buildDetailRow(context, nodeIdLabel.toUpperCase(), access.nodeId.toString()),
+        _buildDetailRow(
+          context,
+          nodeIdLabel.toUpperCase(),
+          access.nodeId.toString(),
+        ),
       );
     }
 

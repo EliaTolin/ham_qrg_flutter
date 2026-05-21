@@ -4,6 +4,7 @@ import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
+import 'package:hamqrg/src/features/sota/domain/sota_spot.dart';
 
 part 'dashboard_state.freezed.dart';
 
@@ -17,5 +18,7 @@ abstract class DashboardState with _$DashboardState {
     LocationErrorType? locationError,
     @Default(<PotaSpot>[]) List<PotaSpot> potaSpots,
     @Default(false) bool hasPotaError,
+    @Default(<SotaSpot>[]) List<SotaSpot> sotaSpots,
+    @Default(false) bool hasSotaError,
   }) = _DashboardState;
 }

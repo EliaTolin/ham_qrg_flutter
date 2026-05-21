@@ -195,7 +195,8 @@ class FavoritesPage extends HookConsumerWidget {
           child: filteredFavorites.isEmpty
               ? _buildEmptyState(context)
               : ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   itemCount: filteredFavorites.length + 1,
                   itemBuilder: (context, index) {
                     if (index == filteredFavorites.length) {
@@ -292,7 +293,8 @@ class FavoritesPage extends HookConsumerWidget {
     // Apply mode filter - check if repeater has any access with selected mode
     if (selectedModes.isNotEmpty) {
       filtered = filtered.where((repeater) {
-        return repeater.accesses.any((access) => selectedModes.contains(access.mode));
+        return repeater.accesses
+            .any((access) => selectedModes.contains(access.mode));
       }).toList();
     }
 

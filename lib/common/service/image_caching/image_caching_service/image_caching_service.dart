@@ -20,8 +20,9 @@ class ImageCachingService {
     DateTime? expiring,
   }) async {
     final imageCached = ImageCached(
-      expiresAt:
-          expiring ?? DateTime.now().add(Duration(days: AppConfigs.defaultExpiresInSecondsImage())),
+      expiresAt: expiring ??
+          DateTime.now()
+              .add(Duration(days: AppConfigs.defaultExpiresInSecondsImage())),
       url: url,
       path: path,
     );

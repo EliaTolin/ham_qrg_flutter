@@ -6,7 +6,8 @@ import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart
 import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
 
-class RepeaterFeedbackMapper implements Mapper<RepeaterFeedback, RepeaterFeedbackModel> {
+class RepeaterFeedbackMapper
+    implements Mapper<RepeaterFeedback, RepeaterFeedbackModel> {
   @override
   RepeaterFeedback fromModel(RepeaterFeedbackModel model) {
     final profile = model.profile;

@@ -21,7 +21,8 @@ class ProfileController extends _$ProfileController {
       final profile = await ref.read(getProfileProvider.future);
       String? imagePath;
       if (profile.propic != null) {
-        imagePath = await ref.read(getImageProfileProvider(profile.propic!).future);
+        imagePath =
+            await ref.read(getImageProfileProvider(profile.propic!).future);
       }
       final isAnonymous = await ref.read(isAnonymousProvider.future);
       final email = await ref.read(getEmailProfileProvider.future);

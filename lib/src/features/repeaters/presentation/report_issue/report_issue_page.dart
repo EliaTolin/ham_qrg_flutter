@@ -24,8 +24,10 @@ class ReportIssuePage extends HookConsumerWidget {
     final colorScheme = theme.colorScheme;
 
     final descriptionController = useTextEditingController();
-    final controllerAsync = ref.watch(reportIssueControllerProvider(repeaterId));
-    final controller = ref.read(reportIssueControllerProvider(repeaterId).notifier);
+    final controllerAsync =
+        ref.watch(reportIssueControllerProvider(repeaterId));
+    final controller =
+        ref.read(reportIssueControllerProvider(repeaterId).notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -184,8 +186,10 @@ class ReportIssuePage extends HookConsumerWidget {
                     builder: (context) {
                       final length = state.description.length;
                       final hasStartedTyping = length > 0;
-                      final isBelowMin = length < ReportIssueController.minChars;
-                      final isAboveMax = length > ReportIssueController.maxChars;
+                      final isBelowMin =
+                          length < ReportIssueController.minChars;
+                      final isAboveMax =
+                          length > ReportIssueController.maxChars;
 
                       if (hasStartedTyping && isBelowMin) {
                         return Text(
@@ -271,7 +275,8 @@ class ReportIssuePage extends HookConsumerWidget {
                   children: [
                     Checkbox(
                       value: state.isConfirmed,
-                      onChanged: (value) => controller.setConfirmed(confirmed: value ?? false),
+                      onChanged: (value) =>
+                          controller.setConfirmed(confirmed: value ?? false),
                     ),
                     Expanded(
                       child: GestureDetector(
@@ -283,7 +288,8 @@ class ReportIssuePage extends HookConsumerWidget {
                           child: Text(
                             l10n.reportIssueConfirmCheckbox,
                             style: theme.textTheme.bodyMedium?.copyWith(
-                              color: colorScheme.onSurface.withValues(alpha: .7),
+                              color:
+                                  colorScheme.onSurface.withValues(alpha: .7),
                             ),
                           ),
                         ),

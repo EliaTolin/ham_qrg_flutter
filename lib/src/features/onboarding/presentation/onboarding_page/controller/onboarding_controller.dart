@@ -86,8 +86,7 @@ class OnboardingController extends _$OnboardingController {
     try {
       if (state.locationGranted) {
         final locationService = ref.read(locationServiceProvider);
-        final position =
-            await locationService.getCurrentPositionOrDefault();
+        final position = await locationService.getCurrentPositionOrDefault();
         final repeaters = await ref.read(
           getRepeatersNearbyProvider(
             latitude: position.latitude,
@@ -114,22 +113,19 @@ class OnboardingController extends _$OnboardingController {
   // -- Telegram --
 
   Future<void> joinTelegram() async {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
+    final datasource = await ref.read(onboardingLocalDatasourceProvider.future);
     await datasource.setJoinedTelegram();
     await datasource.setTelegramInviteShown();
   }
 
   Future<void> declineTelegram() async {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
+    final datasource = await ref.read(onboardingLocalDatasourceProvider.future);
     await datasource.setDeclinedTelegram();
     await datasource.setTelegramInviteShown();
   }
 
   Future<void> alreadyTelegramMember() async {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
+    final datasource = await ref.read(onboardingLocalDatasourceProvider.future);
     await datasource.setJoinedTelegram();
     await datasource.setTelegramInviteShown();
   }
@@ -137,8 +133,7 @@ class OnboardingController extends _$OnboardingController {
   // -- Complete --
 
   Future<void> completeOnboarding() async {
-    final datasource =
-        await ref.read(onboardingLocalDatasourceProvider.future);
+    final datasource = await ref.read(onboardingLocalDatasourceProvider.future);
     await datasource.setOnboardingCompleted();
   }
 }

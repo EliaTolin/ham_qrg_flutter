@@ -232,7 +232,8 @@ class _FreshnessBadge extends StatefulWidget {
   State<_FreshnessBadge> createState() => _FreshnessBadgeState();
 }
 
-class _FreshnessBadgeState extends State<_FreshnessBadge> with SingleTickerProviderStateMixin {
+class _FreshnessBadgeState extends State<_FreshnessBadge>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _pulse;
 
   @override

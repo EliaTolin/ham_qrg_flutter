@@ -56,7 +56,8 @@ class FavoriteRepeatersNotifier extends _$FavoriteRepeatersNotifier {
     state.whenData((currentState) {
       state = AsyncData(
         currentState.copyWith(
-          repeaters: currentState.repeaters.where((r) => r.id != repeaterId).toList(),
+          repeaters:
+              currentState.repeaters.where((r) => r.id != repeaterId).toList(),
           ids: currentState.ids.where((id) => id != repeaterId).toList(),
           count: (currentState.count - 1).clamp(0, currentState.count),
         ),

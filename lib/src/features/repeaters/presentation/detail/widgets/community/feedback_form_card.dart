@@ -112,7 +112,8 @@ class FeedbackFormCard extends ConsumerWidget {
                   icon: Icons.smartphone,
                   label: l10n.repeaterDetailStationPortable,
                   isSelected: state.selectedStation == StationKind.portable,
-                  onTap: () => controller.setSelectedStation(StationKind.portable),
+                  onTap: () =>
+                      controller.setSelectedStation(StationKind.portable),
                 ),
               ),
               const SizedBox(width: 8),
@@ -121,7 +122,8 @@ class FeedbackFormCard extends ConsumerWidget {
                   icon: Icons.directions_car,
                   label: l10n.repeaterDetailStationMobile,
                   isSelected: state.selectedStation == StationKind.mobile,
-                  onTap: () => controller.setSelectedStation(StationKind.mobile),
+                  onTap: () =>
+                      controller.setSelectedStation(StationKind.mobile),
                 ),
               ),
               const SizedBox(width: 8),
@@ -163,7 +165,8 @@ class FeedbackFormCard extends ConsumerWidget {
     ColorScheme colorScheme,
     AppLocalizations l10n,
   ) {
-    final hasText = state.locationText != null && state.locationText!.isNotEmpty;
+    final hasText =
+        state.locationText != null && state.locationText!.isNotEmpty;
     final isValidated = state.isFeedbackLocationValidated;
     final showError = hasText && !isValidated;
 
@@ -324,7 +327,8 @@ class FeedbackFormCard extends ConsumerWidget {
         const SizedBox(height: 8),
         ...availableAccesses.map((access) {
           final isSelected = state.selectedAccessId == access.id;
-          final accessColor = AccessModeHelper.getAccessModeColorObject(access.mode);
+          final accessColor =
+              AccessModeHelper.getAccessModeColorObject(access.mode);
           final accessIcon = AccessModeHelper.getAccessModeIcon(access.mode);
 
           return Padding(
@@ -340,7 +344,9 @@ class FeedbackFormCard extends ConsumerWidget {
                       : colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: isSelected ? accessColor : colorScheme.outline.withValues(alpha: 0.2),
+                    color: isSelected
+                        ? accessColor
+                        : colorScheme.outline.withValues(alpha: 0.2),
                     width: isSelected ? 2 : 1,
                   ),
                 ),
@@ -357,7 +363,9 @@ class FeedbackFormCard extends ConsumerWidget {
                       ),
                       child: Icon(
                         accessIcon,
-                        color: isSelected ? accessColor : colorScheme.onSurfaceVariant,
+                        color: isSelected
+                            ? accessColor
+                            : colorScheme.onSurfaceVariant,
                         size: 20,
                       ),
                     ),
@@ -388,8 +396,9 @@ class FeedbackFormCard extends ConsumerWidget {
                         shape: BoxShape.circle,
                         color: isSelected ? accessColor : Colors.transparent,
                         border: Border.all(
-                          color:
-                              isSelected ? accessColor : colorScheme.outline.withValues(alpha: 0.3),
+                          color: isSelected
+                              ? accessColor
+                              : colorScheme.outline.withValues(alpha: 0.3),
                           width: 2,
                         ),
                       ),
@@ -521,7 +530,9 @@ class FeedbackFormCard extends ConsumerWidget {
     if (!controller.isWithinAllowedDistance()) return;
 
     final distance = controller.getDistanceToRepeater();
-    if (distance != null && distance > AppConfigs.feedbackDistanceWarningKm && context.mounted) {
+    if (distance != null &&
+        distance > AppConfigs.feedbackDistanceWarningKm &&
+        context.mounted) {
       final confirmed = await _showDistanceConfirmDialog(context, distance);
       if (!confirmed) return;
     }
@@ -599,8 +610,10 @@ class FeedbackFormCard extends ConsumerWidget {
             style: FilledButton.styleFrom(
               backgroundColor: theme.colorScheme.tertiary,
               foregroundColor: theme.colorScheme.onTertiary,
-              disabledBackgroundColor: theme.colorScheme.tertiary.withValues(alpha: 0.12),
-              disabledForegroundColor: theme.colorScheme.tertiary.withValues(alpha: 0.5),
+              disabledBackgroundColor:
+                  theme.colorScheme.tertiary.withValues(alpha: 0.12),
+              disabledForegroundColor:
+                  theme.colorScheme.tertiary.withValues(alpha: 0.5),
               padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
               textStyle: theme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.bold,
@@ -640,8 +653,10 @@ class FeedbackFormCard extends ConsumerWidget {
             style: FilledButton.styleFrom(
               backgroundColor: theme.colorScheme.error,
               foregroundColor: theme.colorScheme.onError,
-              disabledBackgroundColor: theme.colorScheme.error.withValues(alpha: 0.12),
-              disabledForegroundColor: theme.colorScheme.error.withValues(alpha: 0.5),
+              disabledBackgroundColor:
+                  theme.colorScheme.error.withValues(alpha: 0.12),
+              disabledForegroundColor:
+                  theme.colorScheme.error.withValues(alpha: 0.5),
               padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
               textStyle: theme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.bold,

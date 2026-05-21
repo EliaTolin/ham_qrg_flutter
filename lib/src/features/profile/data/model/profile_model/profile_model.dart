@@ -19,5 +19,6 @@ abstract class ProfileModel with _$ProfileModel {
     bool clusterNotificationsEnabled,
   }) = _ProfileModel;
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json) => _$ProfileModelFromJson(json);
+  factory ProfileModel.fromJson(Map<String, dynamic> json) =>
+      _$ProfileModelFromJson(json);
 }

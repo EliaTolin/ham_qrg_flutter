@@ -57,7 +57,8 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
         }
 
         // Check onboarding with fresh user ID and profile
-        final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+        final needsOnboarding =
+            await ref.read(checkNeedsPostLoginOnboardingProvider.future);
 
         if (needsOnboarding) {
           await router.pushAndPopUntil(
@@ -158,7 +159,8 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
                               packageInfo.buildNumber,
                             ),
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color: colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
+                              color: colorScheme.onSurfaceVariant
+                                  .withValues(alpha: 0.4),
                             ),
                           ),
                           loading: () => const SizedBox.shrink(),
@@ -204,8 +206,9 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
           height: 128,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color:
-                isDark ? colorScheme.surfaceContainerHighest : colorScheme.surfaceContainerHighest,
+            color: isDark
+                ? colorScheme.surfaceContainerHighest
+                : colorScheme.surfaceContainerHighest,
             border: Border.all(
               color: isDark
                   ? colorScheme.outline.withValues(alpha: 0.2)

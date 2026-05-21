@@ -39,8 +39,7 @@ class AccessChipsSelector extends StatelessWidget {
             onSelected: (_) => onSelected(null),
           ),
         ...accesses.map((access) {
-          final color =
-              AccessModeHelper.getAccessModeColorObject(access.mode);
+          final color = AccessModeHelper.getAccessModeColorObject(access.mode);
           return ChoiceChip(
             label: Text(_accessLabel(access)),
             selected: selectedAccessId == access.id,

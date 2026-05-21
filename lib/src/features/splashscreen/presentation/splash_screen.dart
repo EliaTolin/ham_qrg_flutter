@@ -190,7 +190,8 @@ class _SplashView extends ConsumerWidget {
                               Icon(
                                 Icons.public,
                                 size: 18,
-                                color: colorScheme.primary.withValues(alpha: 0.8),
+                                color:
+                                    colorScheme.primary.withValues(alpha: 0.8),
                               ),
                               const SizedBox(width: 8),
                               Text(
@@ -339,7 +340,8 @@ class _LoadingBar extends StatefulWidget {
   State<_LoadingBar> createState() => _LoadingBarState();
 }
 
-class _LoadingBarState extends State<_LoadingBar> with SingleTickerProviderStateMixin {
+class _LoadingBarState extends State<_LoadingBar>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 

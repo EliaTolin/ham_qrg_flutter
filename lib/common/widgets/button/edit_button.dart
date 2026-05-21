@@ -14,7 +14,8 @@ class EditButton extends StatelessWidget {
       onPressed: onEdit,
       label: Text(
         text ?? 'Modifica'.hardcoded,
-        style: const TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
+        style:
+            const TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
       ),
     );
   }

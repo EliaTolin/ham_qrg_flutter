@@ -40,8 +40,7 @@ class ActiveSpotsSection extends HookConsumerWidget {
                 cta: l10n.spotActiveCta,
               );
             }
-            final notifier =
-                ref.read(activeSpotsProvider(repeaterId).notifier);
+            final notifier = ref.read(activeSpotsProvider(repeaterId).notifier);
             return Column(
               children: [
                 ...spots.map(

@@ -168,8 +168,7 @@ class OnboardingPage extends HookConsumerWidget {
         predicate: (_) => false,
       );
       if (context.mounted) {
-        await context.router
-            .push(RepeaterDetailRoute(repeaterId: repeaterId));
+        await context.router.push(RepeaterDetailRoute(repeaterId: repeaterId));
       }
     }
   }

@@ -40,8 +40,9 @@ class EquipmentButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color:
-                  isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
+              color: isSelected
+                  ? colorScheme.primary
+                  : colorScheme.onSurfaceVariant,
               size: 20,
             ),
             const SizedBox(height: 4),

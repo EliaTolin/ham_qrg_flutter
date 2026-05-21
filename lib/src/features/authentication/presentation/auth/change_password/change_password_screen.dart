@@ -72,7 +72,8 @@ class ChangePasswordScreen extends HookConsumerWidget {
               child: SaveButton(
                 onSave: () async {
                   if (!formKey.currentState!.validate()) return;
-                  if (newPasswordController.text != confirmPasswordController.text) {
+                  if (newPasswordController.text !=
+                      confirmPasswordController.text) {
                     showErrorSnackbar(
                       context,
                       'Le password non corrispondono'.hardcoded,

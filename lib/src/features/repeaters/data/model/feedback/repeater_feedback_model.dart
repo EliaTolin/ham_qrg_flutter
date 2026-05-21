@@ -16,7 +16,8 @@ abstract class RepeaterFeedbackModel with _$RepeaterFeedbackModel {
     required double lat,
     required double lon,
     required String comment,
-    @JsonKey(name: 'repeater_access') required RepeaterAccessModel repeaterAccess,
+    @JsonKey(name: 'repeater_access')
+    required RepeaterAccessModel repeaterAccess,
     @JsonKey(name: 'created_at') required String createdAt,
     Map<String, dynamic>? profile,
   }) = _RepeaterFeedbackModel;

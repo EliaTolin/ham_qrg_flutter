@@ -80,8 +80,9 @@ class _BmContent extends ConsumerWidget {
     final asyncTalkgroups = ref.watch(getBmTalkgroupsProvider(deviceId));
     final asyncNames = ref.watch(getBmTalkgroupNamesProvider);
 
-    final isLoading =
-        asyncTalkgroups.isLoading || asyncDevice.isLoading || asyncNames.isLoading;
+    final isLoading = asyncTalkgroups.isLoading ||
+        asyncDevice.isLoading ||
+        asyncNames.isLoading;
 
     if (isLoading) {
       return const Padding(
@@ -90,8 +91,7 @@ class _BmContent extends ConsumerWidget {
       );
     }
 
-    final hasError =
-        asyncTalkgroups.hasError && asyncDevice.hasError;
+    final hasError = asyncTalkgroups.hasError && asyncDevice.hasError;
     if (hasError) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),

@@ -43,7 +43,10 @@ class RepeaterLocationMap extends HookConsumerWidget {
           child: Icon(
             Icons.map,
             size: 48,
-            color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
+            color: Theme.of(context)
+                .colorScheme
+                .onSurfaceVariant
+                .withValues(alpha: 0.3),
           ),
         ),
       );
@@ -59,7 +62,8 @@ class RepeaterLocationMap extends HookConsumerWidget {
               MapWidget(
                 cameraOptions: CameraOptions(
                   center: Point(
-                    coordinates: Position(repeater.longitude!, repeater.latitude!),
+                    coordinates:
+                        Position(repeater.longitude!, repeater.latitude!),
                   ),
                   zoom: 13,
                   bearing: 0,
@@ -77,7 +81,10 @@ class RepeaterLocationMap extends HookConsumerWidget {
               // Dark overlay
               Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.2),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .shadow
+                      .withValues(alpha: 0.2),
                 ),
               ),
               // Repeater marker
@@ -94,7 +101,10 @@ class RepeaterLocationMap extends HookConsumerWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withValues(alpha: 0.3),
                         blurRadius: 8,
                         spreadRadius: 4,
                       ),
@@ -145,7 +155,8 @@ class RepeaterLocationMap extends HookConsumerWidget {
       if (repeater.latitude == null || repeater.longitude == null) return;
 
       final accessModes = repeater.accesses.map((a) => a.mode).toList();
-      final iconBytes = await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
+      final iconBytes =
+          await RepeaterModeHelper.generateRepeaterIconWithAccessModes(
         accessModes,
       );
       await manager.create(
