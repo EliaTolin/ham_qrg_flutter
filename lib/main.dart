@@ -3,6 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hamqrg/clients/revenue_cat/impl/revenue_cat_client_impl.dart';
+import 'package:hamqrg/clients/revenue_cat/revenue_cat_client.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/src/app.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
@@ -29,6 +31,8 @@ Future<void> main() async {
   );
 
   MapboxOptions.setAccessToken(AppConfigs.getMapboxAccessToken());
+
+  await _initRevenueCat();
 
   // Enable verbose logging for debugging (remove in production)
   await OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
@@ -60,4 +64,42 @@ Future<void> main() async {
       );
     },
   );
+}
+
+/// Configures RevenueCat and keeps its customer linked to the Supabase user,
+/// so Pro entitlements follow the account across devices and sessions.
+///
+/// Never throws: a misconfigured key must not block app startup — the failure
+/// is reported and Pro simply stays unavailable.
+Future<void> _initRevenueCat() async {
+  final RevenueCatClient revenueCatClient = RevenueCatClientImpl();
+
+  try {
+    await revenueCatClient.configure();
+
+    final currentUserId = Supabase.instance.client.auth.currentUser?.id;
+    if (currentUserId != null) {
+      await revenueCatClient.login(currentUserId);
+    }
+  } catch (error, stackTrace) {
+    await Sentry.captureException(error, stackTrace: stackTrace);
+    return;
+  }
+
+  // Keep RevenueCat in sync with future auth changes.
+  Supabase.instance.client.auth.onAuthStateChange.listen((data) {
+    final userId = data.session?.user.id;
+    switch (data.event) {
+      case AuthChangeEvent.signedIn:
+      case AuthChangeEvent.userUpdated:
+        if (userId != null) {
+          unawaited(revenueCatClient.login(userId));
+        }
+      case AuthChangeEvent.signedOut:
+        unawaited(revenueCatClient.logout());
+      // ignore: no_default_cases
+      default:
+        break;
+    }
+  });
 }

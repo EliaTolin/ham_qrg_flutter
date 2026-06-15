@@ -69,15 +69,20 @@ class UploadImageButton extends ConsumerWidget {
     try {
       final imagePicker = ref.read(imagePickerProvider);
 
-      final hasPermission = await _requestPermission(
-        context,
-        source == ImageSource.gallery ? Permission.photos : Permission.camera,
-        source == ImageSource.gallery
-            ? "Per caricare un'immagine, consenti l'accesso alla galleria dalle impostazioni."
-            : "Per scattare una foto, consenti l'accesso alla fotocamera dalle impostazioni.",
-      );
+      // Gallery uses the system photo picker (Android Photo Picker / iOS
+      // PHPicker), which grants one-time access without any media permission.
+      // Requesting Permission.photos here would reintroduce READ_MEDIA_IMAGES,
+      // which violates Google Play's Photo and Video Permissions policy.
+      // Only the camera flow needs a runtime permission.
+      if (source == ImageSource.camera) {
+        final hasPermission = await _requestPermission(
+          context,
+          Permission.camera,
+          "Per scattare una foto, consenti l'accesso alla fotocamera dalle impostazioni.",
+        );
 
-      if (!hasPermission) return;
+        if (!hasPermission) return;
+      }
 
       final image = await imagePicker.pickImage(source: source);
 

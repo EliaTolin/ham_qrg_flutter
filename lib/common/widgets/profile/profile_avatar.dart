@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/src/features/profile/provider/get_image_profile/get_image_profile_provider.dart';
+import 'package:hamqrg/themes/app_colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileAvatar extends ConsumerWidget {
@@ -8,6 +9,7 @@ class ProfileAvatar extends ConsumerWidget {
     this.imageProfileUrl,
     this.imageProfilePath,
     this.size = 100,
+    this.isPro = false,
     super.key,
   }) : assert(
           imageProfileUrl == null || imageProfilePath == null,
@@ -22,39 +24,30 @@ class ProfileAvatar extends ConsumerWidget {
 
   final double size;
 
+  /// When true, the avatar is wrapped in a gold ring marking a HamQRG Pro user.
+  final bool isPro;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // If no image is provided, show default icon
+    final Widget avatar;
+
     if (imageProfileUrl == null && imageProfilePath == null) {
-      return SizedBox(
-        width: size,
-        height: size,
-        child: CircleAvatar(
-          backgroundColor: Colors.grey[300],
-          child: Icon(Icons.person, size: size * 0.5),
-        ),
+      // No image provided: default icon.
+      avatar = CircleAvatar(
+        backgroundColor: Colors.grey[300],
+        child: Icon(Icons.person, size: size * 0.5),
       );
-    }
-
-    // If imageProfileUrl is provided, use it directly
-    if (imageProfileUrl != null) {
-      return SizedBox(
-        width: size,
-        height: size,
-        child: CircleAvatar(
-          backgroundColor: Colors.grey[300],
-          backgroundImage: CachedNetworkImageProvider(imageProfileUrl!),
-        ),
+    } else if (imageProfileUrl != null) {
+      // Direct URL.
+      avatar = CircleAvatar(
+        backgroundColor: Colors.grey[300],
+        backgroundImage: CachedNetworkImageProvider(imageProfileUrl!),
       );
-    }
-
-    // If imageProfilePath is provided, use the provider
-    final imageUrlAsync = ref.watch(getImageProfileProvider(imageProfilePath!));
-
-    return SizedBox(
-      width: size,
-      height: size,
-      child: imageUrlAsync.when(
+    } else {
+      // Resolve the path via the provider.
+      final imageUrlAsync =
+          ref.watch(getImageProfileProvider(imageProfilePath!));
+      avatar = imageUrlAsync.when(
         data: (url) => CircleAvatar(
           backgroundColor: Colors.grey[300],
           backgroundImage: CachedNetworkImageProvider(url),
@@ -73,7 +66,26 @@ class ProfileAvatar extends ConsumerWidget {
           backgroundColor: Colors.grey[300],
           child: Icon(Icons.person, size: size * 0.5),
         ),
+      );
+    }
+
+    final sizedAvatar = SizedBox(width: size, height: size, child: avatar);
+
+    if (!isPro) return sizedAvatar;
+
+    // Gold ring for Pro users.
+    final ringWidth = (size * 0.04).clamp(2.0, 5.0);
+    return Container(
+      padding: EdgeInsets.all(ringWidth),
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [AppColors.proGoldLight, AppColors.proGold],
+        ),
       ),
+      child: sizedAvatar,
     );
   }
 }

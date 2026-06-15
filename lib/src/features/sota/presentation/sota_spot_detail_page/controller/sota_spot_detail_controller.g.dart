@@ -77,7 +77,7 @@ final class SotaSpotDetailControllerProvider extends $AsyncNotifierProvider<
 }
 
 String _$sotaSpotDetailControllerHash() =>
-    r'3451d96581e1d819d4002bd057774601e051d485';
+    r'437f141abb9659166d9f21802bd1c0b2a1eb3012';
 
 /// Detail controller for a SOTA spot.
 ///

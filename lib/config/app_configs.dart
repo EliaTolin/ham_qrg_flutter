@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/foundation.dart';
 
 class AppConfigs {
@@ -45,6 +47,37 @@ class AppConfigs {
   static String getOneSignalAppId() {
     return 'b25acb1c-1194-4f0d-8d7a-346e6deb747b';
   }
+
+  /// RevenueCat public SDK API key.
+  ///
+  /// These are the *public* SDK keys from the RevenueCat dashboard
+  /// (Project → API Keys), safe to ship in the client.
+  ///
+  /// In debug builds we always use the shared TEST key; release builds use the
+  /// platform-specific PRODUCTION keys: `appl_…` (iOS), `goog_…` (Android).
+  static String getRevenueCatApiKey() {
+    if (kDebugMode) {
+      return 'test_hUOcyfFjPhkgBamQlEYAyIflXpb';
+    }
+
+    const iosKey = 'appl_NknezsTohLBhtcBYuPNGUlVOOfq';
+    const androidKey = 'goog_EoiJjcfLUFuxAnFLQYlwbfLrGfd';
+
+    if (Platform.isIOS || Platform.isMacOS) {
+      return iosKey;
+    }
+    if (Platform.isAndroid) {
+      return androidKey;
+    }
+    return '';
+  }
+
+  /// Identifier of the RevenueCat entitlement that unlocks HamQRG Pro.
+  /// Must match the entitlement identifier configured in the dashboard.
+  static String get revenueCatProEntitlementId => 'pro';
+
+  /// Identifier of the default RevenueCat offering shown in the paywall.
+  static String get revenueCatDefaultOfferingId => 'default';
 
   /// Distance in kilometers beyond which a confirmation dialog is shown.
   static double get feedbackDistanceWarningKm => 100;
