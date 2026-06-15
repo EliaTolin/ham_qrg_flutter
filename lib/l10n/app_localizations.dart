@@ -124,6 +124,36 @@ abstract class AppLocalizations {
     Locale('sr')
   ];
 
+  /// No description provided for @proSectionTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Abbonamento'**
+  String get proSectionTitle;
+
+  /// No description provided for @proCardUpgradeTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Passa a HamQRG Pro'**
+  String get proCardUpgradeTitle;
+
+  /// No description provided for @proCardUpgradeSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Sblocca tutte le funzioni premium'**
+  String get proCardUpgradeSubtitle;
+
+  /// No description provided for @proCardActiveTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'HamQRG Pro attivo'**
+  String get proCardActiveTitle;
+
+  /// No description provided for @proCardActiveSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Grazie per il supporto!'**
+  String get proCardActiveSubtitle;
+
   /// No description provided for @error.
   ///
   /// In it, this message translates to:

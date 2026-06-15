@@ -9,6 +9,21 @@ class AppLocalizationsSk extends AppLocalizations {
   AppLocalizationsSk([String locale = 'sk']) : super(locale);
 
   @override
+  String get proSectionTitle => 'Abbonamento';
+
+  @override
+  String get proCardUpgradeTitle => 'Passa a HamQRG Pro';
+
+  @override
+  String get proCardUpgradeSubtitle => 'Sblocca tutte le funzioni premium';
+
+  @override
+  String get proCardActiveTitle => 'HamQRG Pro attivo';
+
+  @override
+  String get proCardActiveSubtitle => 'Grazie per il supporto!';
+
+  @override
   String get error => 'Chyba';
 
   @override

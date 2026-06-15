@@ -65,6 +65,11 @@ class AppColors {
   // Favorite/Heart Color
   static const Color favorite = Color(0xFFEF4444); // red-500
   static const Color favoriteLight = Color(0xFFFCA5A5); // red-300
+
+  // HamQRG Pro accent. Brand-specific (exception analogous to the mode colors):
+  // the "Pro" gold is not representable via theme.colorScheme.
+  static const Color proGold = Color(0xFFD4AF37); // metallic gold
+  static const Color proGoldLight = Color(0xFFF1D27A);
 }
 
 /// SOTA points trophy palette. Brand-specific (exception analogous to

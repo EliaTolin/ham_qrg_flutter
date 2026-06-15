@@ -9,6 +9,8 @@ import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/unregistered_profile_screen.dart';
+import 'package:hamqrg/src/features/subscriptions/presentation/widgets/pro_status_card.dart';
+import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -34,6 +36,7 @@ class ProfileScreen extends HookConsumerWidget {
               final fullName = '${profile.name} ${profile.surname}'.trim();
               final theme = Theme.of(context);
               final colorScheme = theme.colorScheme;
+              final isPro = ref.watch(isProProvider).value ?? false;
 
               return SafeArea(
                 child: Scaffold(
@@ -47,6 +50,7 @@ class ProfileScreen extends HookConsumerWidget {
                         ProfileAvatar(
                           imageProfileUrl: state.imageProfilePath,
                           size: 160,
+                          isPro: isPro,
                         ),
                         const Gap(20),
                         // Callsign or Name (primary)
@@ -100,7 +104,22 @@ class ProfileScreen extends HookConsumerWidget {
                             ),
                           ),
                         ),
-                        const Gap(16),
+                        const Gap(24),
+                        // HamQRG Pro
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            l10n.proSectionTitle.toUpperCase(),
+                            style: theme.textTheme.labelMedium?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                        ),
+                        const Gap(12),
+                        const ProStatusCard(),
+                        const Gap(24),
                         // Section header
                         Align(
                           alignment: Alignment.centerLeft,

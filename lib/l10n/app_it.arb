@@ -1,5 +1,10 @@
 {
   "@@locale": "it",
+  "proSectionTitle": "Abbonamento",
+  "proCardUpgradeTitle": "Passa a HamQRG Pro",
+  "proCardUpgradeSubtitle": "Sblocca tutte le funzioni premium",
+  "proCardActiveTitle": "HamQRG Pro attivo",
+  "proCardActiveSubtitle": "Grazie per il supporto!",
   "error": "Errore",
   "error_message": "Si è verificato un errore durante il caricamento",
   "error_message_retry": "Si è verificato un errore durante il caricamento. Riprova più tardi",
