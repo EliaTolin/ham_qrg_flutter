@@ -7,6 +7,7 @@ import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/rep
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/community_reports_section.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/coverage_promo_card.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/frequency_fun_facts_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/location_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/performance_metrics_section.dart';
@@ -99,6 +100,8 @@ class _LeftRail extends StatelessWidget {
             const _ConsoleLabel(text: 'ACCESS MODES'),
             const SizedBox(height: 12),
             AccessModesSection(repeater: state.repeater),
+            const SizedBox(height: 24),
+            CoveragePromoCard(repeater: state.repeater),
             const SizedBox(height: 24),
             const _ConsoleLabel(text: 'LOCATION'),
             const SizedBox(height: 12),

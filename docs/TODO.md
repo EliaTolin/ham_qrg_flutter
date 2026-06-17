@@ -2,6 +2,16 @@
 
 Funzionalità ancora da implementare, organizzate per priorità.
 
+> Ultimo aggiornamento stato: 2026-06-15
+> Legenda: `[ ]` da fare · `[~]` parziale/in corso · `[x]` completato
+
+---
+
+## ✅ Completato (non in roadmap originale)
+
+- [x] **Abbonamenti RevenueCat + PRO gating** — Client RevenueCat, `requirePro()`, `openProPaywall()`, modelli stato subscription
+- [x] **Integrazione SOTA** — Feature `sota/` completa (datasource, repository, domain, presentation), pagine spot + dettaglio con bearing, integrazione dashboard
+
 ---
 
 ## Fase 1 - Quick Wins
@@ -9,7 +19,7 @@ Funzionalità ancora da implementare, organizzate per priorità.
 - [ ] **"Vedi tutti i feedback"** — Navigazione dal pulsante esistente (skeleton in `community_reports_section.dart`)
 - [ ] **Filtro per banda nella lista** — Usare enum `FrequencyBand` già nel dominio
 - [ ] **"Portami là" — Navigazione al sito** — Pulsante apertura Google Maps / Apple Maps / Waze via `url_launcher` (già presente)
-- [ ] **Richiesta di recensione (In-App Review)** — Prompt per invitare l'utente a lasciare una recensione sullo store (iOS/Android) tramite `in_app_review`
+- [~] **Richiesta di recensione (In-App Review)** — Provider `in_app_review` già presente (`lib/clients/in_app_review/`), ma manca il trigger effettivo (`requestReview`) nelle feature
 
 ---
 
@@ -31,9 +41,8 @@ Funzionalità ancora da implementare, organizzate per priorità.
   - [ ] Mappe offline Mapbox (`OfflineManager`)
   - [ ] Provider con fallback su dati locali
   - [ ] Indicatore stato connessione
-- [ ] **Copertura RF stimata**
-  - [ ] Edge Function `estimate_coverage`
-  - [ ] Mappa di copertura a raggiera
+- [~] **Copertura RF stimata** — Feature `coverage_map/` implementata (datasource HTTP, repository, domain, mapper, pagina mappa copertura, PRO-gated)
+  - [x] Servizio copertura + mappa di copertura
   - [ ] Verdetto "Mi copre?" (coperto / parziale / non coperto)
   - [ ] Integrazione potenza e altezza antenna da BrandMeister
 - [ ] **Logbook QSO (avanzato)**
@@ -61,8 +70,9 @@ Funzionalità ancora da implementare, organizzate per priorità.
 - [ ] **F2 — Meteo in tempo reale al sito**
   - Open-Meteo Forecast API (gratuita, no API key)
   - Card con temperatura, vento, umidita, visibilita
-- [ ] **F4 — Bearing e bussola**
-  - Azimut, bussola visuale rotante, angolo di elevazione
+- [~] **F4 — Bearing e bussola**
+  - Calcolo bearing già presente in feature SOTA (`sota/data/mappers/sota_mappers.dart`)
+  - Azimut, bussola visuale rotante, angolo di elevazione — da portare sul dettaglio ripetitore
   - Tutto lato client (formula haversine)
 - [ ] **F12 — Indice di propagazione in tempo reale**
   - Solar Flux Index, K-index (API NOAA/HamQSL gratuite)
@@ -84,9 +94,10 @@ Funzionalità ancora da implementare, organizzate per priorità.
 
 ### Sprint 4 (dati aggregati)
 
-- [ ] **F8 — Storia e attivita del ripetitore**
-  - Timeline: data inserimento, ultimo aggiornamento, ultimo feedback
-  - Grafico sparkline health score
+- [~] **F8 — Storia e attivita del ripetitore**
+  - Health score + likes/reports + timestamp ultima attività già mostrati (`detail/widgets/performance_metrics_section.dart`)
+  - [ ] Timeline: data inserimento, ultimo aggiornamento, ultimo feedback
+  - [ ] Grafico sparkline health score
 - [ ] **F9 — Confronto con la media regionale**
   - RPC statistiche aggregate per regione
   - Quota, health score, banda vs media
@@ -98,8 +109,8 @@ Funzionalità ancora da implementare, organizzate per priorità.
 
 ## Altre Feature (priorita da definire)
 
-- [ ] **Push notifications intelligenti** — Ripetitore preferito down/up, nuovo ripetitore nella zona, aggiornamento su report
-- [ ] **Ricerca avanzata e filtri** — Per rete, CTCSS/DCS, health score, locator Maidenhead
+- [~] **Push notifications intelligenti** — Preferenza `cluster_notifications_enabled` nel profilo; manca la logica intelligente (preferito down/up, nuovo ripetitore in zona, aggiornamento su report)
+- [~] **Ricerca avanzata e filtri** — Ricerca testuale + filtri AccessMode (CTCSS/DCS) e raggio/distanza già presenti; mancano filtro per rete, health score e locator Maidenhead
 - [ ] **Integrazione servizi esterni** — QRZ.com lookup, APRS tracking, EchoLink status, Cluster DX
 - [ ] **Apple Watch complication** — Frequenza e tono ripetitore piu vicino
 - [ ] **Quick Actions (3D Touch)** — Accesso rapido a mappa, ricerca, preferiti

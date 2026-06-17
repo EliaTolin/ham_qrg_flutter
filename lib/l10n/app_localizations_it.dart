@@ -1075,6 +1075,31 @@ class AppLocalizationsIt extends AppLocalizations {
       'Visualizza il profilo del terreno tra te e il ripetitore';
 
   @override
+  String get repeaterCoverageTitle => 'Copertura';
+
+  @override
+  String get repeaterCoverageCardTitle => 'Mappa di copertura';
+
+  @override
+  String get repeaterCoverageCardSubtitle =>
+      'Stima il segnale del ripetitore sul territorio';
+
+  @override
+  String get repeaterCoverageLoading => 'Calcolo della copertura in corso…';
+
+  @override
+  String get repeaterCoverageError => 'Impossibile calcolare la copertura';
+
+  @override
+  String get repeaterCoverageRetry => 'Riprova';
+
+  @override
+  String get repeaterCoverageLegendTitle => 'Segnale stimato (dBm)';
+
+  @override
+  String get repeaterCoverageCta => 'Visualizza la copertura';
+
+  @override
   String get repeaterDetailLosClear =>
       'Visione ottica libera tra te e il ripetitore';
 

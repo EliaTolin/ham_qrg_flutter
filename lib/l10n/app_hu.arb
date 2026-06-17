@@ -875,5 +875,18 @@
         "type": "int"
       }
     }
-  }
+  },
+  "proSectionTitle": "Előfizetés",
+  "proCardUpgradeTitle": "Váltás HamQRG Pro-ra",
+  "proCardUpgradeSubtitle": "Oldd fel az összes prémium funkciót",
+  "proCardActiveTitle": "HamQRG Pro aktív",
+  "proCardActiveSubtitle": "Köszönjük a támogatást!",
+  "repeaterCoverageTitle": "Lefedettség",
+  "repeaterCoverageCardTitle": "Lefedettségi térkép",
+  "repeaterCoverageCardSubtitle": "Megbecsüli az átjátszó jelét a területen",
+  "repeaterCoverageLoading": "Lefedettség számítása…",
+  "repeaterCoverageError": "Nem sikerült kiszámítani a lefedettséget",
+  "repeaterCoverageRetry": "Újrapróbálkozás",
+  "repeaterCoverageLegendTitle": "Becsült jel (dBm)",
+  "repeaterCoverageCta": "Lefedettség megtekintése"
 }

@@ -9,19 +9,19 @@ class AppLocalizationsRo extends AppLocalizations {
   AppLocalizationsRo([String locale = 'ro']) : super(locale);
 
   @override
-  String get proSectionTitle => 'Abbonamento';
+  String get proSectionTitle => 'Abonament';
 
   @override
-  String get proCardUpgradeTitle => 'Passa a HamQRG Pro';
+  String get proCardUpgradeTitle => 'Treci la HamQRG Pro';
 
   @override
-  String get proCardUpgradeSubtitle => 'Sblocca tutte le funzioni premium';
+  String get proCardUpgradeSubtitle => 'Deblochează toate funcțiile premium';
 
   @override
-  String get proCardActiveTitle => 'HamQRG Pro attivo';
+  String get proCardActiveTitle => 'HamQRG Pro activ';
 
   @override
-  String get proCardActiveSubtitle => 'Grazie per il supporto!';
+  String get proCardActiveSubtitle => 'Mulțumim pentru sprijin!';
 
   @override
   String get error => 'Eroare';
@@ -1136,6 +1136,31 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get repeaterDetailAltimetricProfileSubtitle =>
       'Vezi profilul terenului între tine și repetor';
+
+  @override
+  String get repeaterCoverageTitle => 'Acoperire';
+
+  @override
+  String get repeaterCoverageCardTitle => 'Hartă de acoperire';
+
+  @override
+  String get repeaterCoverageCardSubtitle =>
+      'Estimează semnalul releului pe teritoriu';
+
+  @override
+  String get repeaterCoverageLoading => 'Se calculează acoperirea…';
+
+  @override
+  String get repeaterCoverageError => 'Acoperirea nu a putut fi calculată';
+
+  @override
+  String get repeaterCoverageRetry => 'Reîncearcă';
+
+  @override
+  String get repeaterCoverageLegendTitle => 'Semnal estimat (dBm)';
+
+  @override
+  String get repeaterCoverageCta => 'Vezi acoperirea';
 
   @override
   String get repeaterDetailLosClear =>

@@ -875,5 +875,18 @@
         "type": "int"
       }
     }
-  }
+  },
+  "proSectionTitle": "Abonnement",
+  "proCardUpgradeTitle": "Upgrade naar HamQRG Pro",
+  "proCardUpgradeSubtitle": "Ontgrendel alle premiumfuncties",
+  "proCardActiveTitle": "HamQRG Pro actief",
+  "proCardActiveSubtitle": "Bedankt voor je steun!",
+  "repeaterCoverageTitle": "Dekking",
+  "repeaterCoverageCardTitle": "Dekkingskaart",
+  "repeaterCoverageCardSubtitle": "Schat het signaal van de repeater in het gebied",
+  "repeaterCoverageLoading": "Dekking berekenen…",
+  "repeaterCoverageError": "Kan de dekking niet berekenen",
+  "repeaterCoverageRetry": "Opnieuw proberen",
+  "repeaterCoverageLegendTitle": "Geschat signaal (dBm)",
+  "repeaterCoverageCta": "Dekking bekijken"
 }

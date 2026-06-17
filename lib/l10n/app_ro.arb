@@ -875,5 +875,18 @@
         "type": "int"
       }
     }
-  }
+  },
+  "proSectionTitle": "Abonament",
+  "proCardUpgradeTitle": "Treci la HamQRG Pro",
+  "proCardUpgradeSubtitle": "Deblochează toate funcțiile premium",
+  "proCardActiveTitle": "HamQRG Pro activ",
+  "proCardActiveSubtitle": "Mulțumim pentru sprijin!",
+  "repeaterCoverageTitle": "Acoperire",
+  "repeaterCoverageCardTitle": "Hartă de acoperire",
+  "repeaterCoverageCardSubtitle": "Estimează semnalul releului pe teritoriu",
+  "repeaterCoverageLoading": "Se calculează acoperirea…",
+  "repeaterCoverageError": "Acoperirea nu a putut fi calculată",
+  "repeaterCoverageRetry": "Reîncearcă",
+  "repeaterCoverageLegendTitle": "Semnal estimat (dBm)",
+  "repeaterCoverageCta": "Vezi acoperirea"
 }

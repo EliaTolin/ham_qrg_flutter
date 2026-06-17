@@ -9,19 +9,19 @@ class AppLocalizationsHu extends AppLocalizations {
   AppLocalizationsHu([String locale = 'hu']) : super(locale);
 
   @override
-  String get proSectionTitle => 'Abbonamento';
+  String get proSectionTitle => 'Előfizetés';
 
   @override
-  String get proCardUpgradeTitle => 'Passa a HamQRG Pro';
+  String get proCardUpgradeTitle => 'Váltás HamQRG Pro-ra';
 
   @override
-  String get proCardUpgradeSubtitle => 'Sblocca tutte le funzioni premium';
+  String get proCardUpgradeSubtitle => 'Oldd fel az összes prémium funkciót';
 
   @override
-  String get proCardActiveTitle => 'HamQRG Pro attivo';
+  String get proCardActiveTitle => 'HamQRG Pro aktív';
 
   @override
-  String get proCardActiveSubtitle => 'Grazie per il supporto!';
+  String get proCardActiveSubtitle => 'Köszönjük a támogatást!';
 
   @override
   String get error => 'Hiba';
@@ -1075,6 +1075,32 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get repeaterDetailAltimetricProfileSubtitle =>
       'Nézd meg a terep profilt közted és az átjátszó között';
+
+  @override
+  String get repeaterCoverageTitle => 'Lefedettség';
+
+  @override
+  String get repeaterCoverageCardTitle => 'Lefedettségi térkép';
+
+  @override
+  String get repeaterCoverageCardSubtitle =>
+      'Megbecsüli az átjátszó jelét a területen';
+
+  @override
+  String get repeaterCoverageLoading => 'Lefedettség számítása…';
+
+  @override
+  String get repeaterCoverageError =>
+      'Nem sikerült kiszámítani a lefedettséget';
+
+  @override
+  String get repeaterCoverageRetry => 'Újrapróbálkozás';
+
+  @override
+  String get repeaterCoverageLegendTitle => 'Becsült jel (dBm)';
+
+  @override
+  String get repeaterCoverageCta => 'Lefedettség megtekintése';
 
   @override
   String get repeaterDetailLosClear =>

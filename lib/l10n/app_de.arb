@@ -875,5 +875,18 @@
         "type": "int"
       }
     }
-  }
+  },
+  "proSectionTitle": "Abonnement",
+  "proCardUpgradeTitle": "Auf HamQRG Pro upgraden",
+  "proCardUpgradeSubtitle": "Schalte alle Premium-Funktionen frei",
+  "proCardActiveTitle": "HamQRG Pro aktiv",
+  "proCardActiveSubtitle": "Danke für deine Unterstützung!",
+  "repeaterCoverageTitle": "Abdeckung",
+  "repeaterCoverageCardTitle": "Abdeckungskarte",
+  "repeaterCoverageCardSubtitle": "Schätzt das Signal des Relais im Gebiet",
+  "repeaterCoverageLoading": "Abdeckung wird berechnet…",
+  "repeaterCoverageError": "Abdeckung konnte nicht berechnet werden",
+  "repeaterCoverageRetry": "Erneut versuchen",
+  "repeaterCoverageLegendTitle": "Geschätztes Signal (dBm)",
+  "repeaterCoverageCta": "Abdeckung ansehen"
 }

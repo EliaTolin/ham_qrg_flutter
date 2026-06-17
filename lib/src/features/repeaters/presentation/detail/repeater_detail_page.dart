@@ -9,6 +9,7 @@ import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/sta
 import 'package:hamqrg/src/features/repeaters/presentation/detail/repeater_detail_tablet.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/access_modes_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/community/community_reports_section.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/coverage_promo_card.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/frequency_fun_facts_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/info_section.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/location_section.dart';
@@ -219,6 +220,8 @@ class _InfoTab extends StatelessWidget {
           AccessModesSection(repeater: state.repeater),
           const SizedBox(height: 16),
           InfoSection(repeater: state.repeater),
+          const SizedBox(height: 16),
+          CoveragePromoCard(repeater: state.repeater),
           const SizedBox(height: 16),
           LocationSection(
             repeater: state.repeater,

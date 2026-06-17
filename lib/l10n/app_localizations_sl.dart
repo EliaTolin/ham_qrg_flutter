@@ -9,19 +9,19 @@ class AppLocalizationsSl extends AppLocalizations {
   AppLocalizationsSl([String locale = 'sl']) : super(locale);
 
   @override
-  String get proSectionTitle => 'Abbonamento';
+  String get proSectionTitle => 'Naročnina';
 
   @override
-  String get proCardUpgradeTitle => 'Passa a HamQRG Pro';
+  String get proCardUpgradeTitle => 'Nadgradi na HamQRG Pro';
 
   @override
-  String get proCardUpgradeSubtitle => 'Sblocca tutte le funzioni premium';
+  String get proCardUpgradeSubtitle => 'Odkleni vse premium funkcije';
 
   @override
-  String get proCardActiveTitle => 'HamQRG Pro attivo';
+  String get proCardActiveTitle => 'HamQRG Pro aktiven';
 
   @override
-  String get proCardActiveSubtitle => 'Grazie per il supporto!';
+  String get proCardActiveSubtitle => 'Hvala za podporo!';
 
   @override
   String get error => 'Napaka';
@@ -1131,6 +1131,31 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get repeaterDetailAltimetricProfileSubtitle =>
       'Oglejte si profil terena med vami in repetitorjem';
+
+  @override
+  String get repeaterCoverageTitle => 'Pokritost';
+
+  @override
+  String get repeaterCoverageCardTitle => 'Zemljevid pokritosti';
+
+  @override
+  String get repeaterCoverageCardSubtitle =>
+      'Oceni signal pretvornika na območju';
+
+  @override
+  String get repeaterCoverageLoading => 'Izračun pokritosti…';
+
+  @override
+  String get repeaterCoverageError => 'Pokritosti ni mogoče izračunati';
+
+  @override
+  String get repeaterCoverageRetry => 'Poskusi znova';
+
+  @override
+  String get repeaterCoverageLegendTitle => 'Ocenjeni signal (dBm)';
+
+  @override
+  String get repeaterCoverageCta => 'Prikaži pokritost';
 
   @override
   String get repeaterDetailLosClear =>

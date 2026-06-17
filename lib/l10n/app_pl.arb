@@ -875,5 +875,18 @@
         "type": "int"
       }
     }
-  }
+  },
+  "proSectionTitle": "Subskrypcja",
+  "proCardUpgradeTitle": "Przejdź na HamQRG Pro",
+  "proCardUpgradeSubtitle": "Odblokuj wszystkie funkcje premium",
+  "proCardActiveTitle": "HamQRG Pro aktywny",
+  "proCardActiveSubtitle": "Dziękujemy za wsparcie!",
+  "repeaterCoverageTitle": "Zasięg",
+  "repeaterCoverageCardTitle": "Mapa zasięgu",
+  "repeaterCoverageCardSubtitle": "Szacuje sygnał przemiennika na obszarze",
+  "repeaterCoverageLoading": "Obliczanie zasięgu…",
+  "repeaterCoverageError": "Nie można obliczyć zasięgu",
+  "repeaterCoverageRetry": "Spróbuj ponownie",
+  "repeaterCoverageLegendTitle": "Szacowany sygnał (dBm)",
+  "repeaterCoverageCta": "Zobacz zasięg"
 }
