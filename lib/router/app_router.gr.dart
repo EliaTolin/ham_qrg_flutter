@@ -258,6 +258,97 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RepeaterCoveragePage]
+class RepeaterCoverageRoute extends PageRouteInfo<RepeaterCoverageRouteArgs> {
+  RepeaterCoverageRoute({
+    required String repeaterId,
+    required double latitude,
+    required double longitude,
+    required int frequencyHz,
+    String? callsign,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RepeaterCoverageRoute.name,
+          args: RepeaterCoverageRouteArgs(
+            repeaterId: repeaterId,
+            latitude: latitude,
+            longitude: longitude,
+            frequencyHz: frequencyHz,
+            callsign: callsign,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RepeaterCoverageRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RepeaterCoverageRouteArgs>();
+      return RepeaterCoveragePage(
+        repeaterId: args.repeaterId,
+        latitude: args.latitude,
+        longitude: args.longitude,
+        frequencyHz: args.frequencyHz,
+        callsign: args.callsign,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class RepeaterCoverageRouteArgs {
+  const RepeaterCoverageRouteArgs({
+    required this.repeaterId,
+    required this.latitude,
+    required this.longitude,
+    required this.frequencyHz,
+    this.callsign,
+    this.key,
+  });
+
+  final String repeaterId;
+
+  final double latitude;
+
+  final double longitude;
+
+  final int frequencyHz;
+
+  final String? callsign;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RepeaterCoverageRouteArgs{repeaterId: $repeaterId, latitude: $latitude, longitude: $longitude, frequencyHz: $frequencyHz, callsign: $callsign, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! RepeaterCoverageRouteArgs) return false;
+    return repeaterId == other.repeaterId &&
+        latitude == other.latitude &&
+        longitude == other.longitude &&
+        frequencyHz == other.frequencyHz &&
+        callsign == other.callsign &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode =>
+      repeaterId.hashCode ^
+      latitude.hashCode ^
+      longitude.hashCode ^
+      frequencyHz.hashCode ^
+      callsign.hashCode ^
+      key.hashCode;
+}
+
+/// generated route for
 /// [RepeaterDetailMapPage]
 class RepeaterDetailMapRoute extends PageRouteInfo<RepeaterDetailMapRouteArgs> {
   RepeaterDetailMapRoute({

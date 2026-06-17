@@ -875,5 +875,18 @@
         "type": "int"
       }
     }
-  }
+  },
+  "proSectionTitle": "Predplatné",
+  "proCardUpgradeTitle": "Prejsť na HamQRG Pro",
+  "proCardUpgradeSubtitle": "Odomknite všetky prémiové funkcie",
+  "proCardActiveTitle": "HamQRG Pro aktívny",
+  "proCardActiveSubtitle": "Ďakujeme za podporu!",
+  "repeaterCoverageTitle": "Pokrytie",
+  "repeaterCoverageCardTitle": "Mapa pokrytia",
+  "repeaterCoverageCardSubtitle": "Odhadne signál prevádzača v oblasti",
+  "repeaterCoverageLoading": "Výpočet pokrytia…",
+  "repeaterCoverageError": "Pokrytie sa nepodarilo vypočítať",
+  "repeaterCoverageRetry": "Skúsiť znova",
+  "repeaterCoverageLegendTitle": "Odhadovaný signál (dBm)",
+  "repeaterCoverageCta": "Zobraziť pokrytie"
 }

@@ -9,19 +9,19 @@ class AppLocalizationsCs extends AppLocalizations {
   AppLocalizationsCs([String locale = 'cs']) : super(locale);
 
   @override
-  String get proSectionTitle => 'Abbonamento';
+  String get proSectionTitle => 'Předplatné';
 
   @override
-  String get proCardUpgradeTitle => 'Passa a HamQRG Pro';
+  String get proCardUpgradeTitle => 'Přejít na HamQRG Pro';
 
   @override
-  String get proCardUpgradeSubtitle => 'Sblocca tutte le funzioni premium';
+  String get proCardUpgradeSubtitle => 'Odemkněte všechny prémiové funkce';
 
   @override
-  String get proCardActiveTitle => 'HamQRG Pro attivo';
+  String get proCardActiveTitle => 'HamQRG Pro aktivní';
 
   @override
-  String get proCardActiveSubtitle => 'Grazie per il supporto!';
+  String get proCardActiveSubtitle => 'Děkujeme za podporu!';
 
   @override
   String get error => 'Chyba';
@@ -1077,6 +1077,31 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get repeaterDetailAltimetricProfileSubtitle =>
       'Zobrazit profil terénu mezi vámi a převaděčem';
+
+  @override
+  String get repeaterCoverageTitle => 'Pokrytí';
+
+  @override
+  String get repeaterCoverageCardTitle => 'Mapa pokrytí';
+
+  @override
+  String get repeaterCoverageCardSubtitle =>
+      'Odhadne signál převaděče v oblasti';
+
+  @override
+  String get repeaterCoverageLoading => 'Výpočet pokrytí…';
+
+  @override
+  String get repeaterCoverageError => 'Pokrytí se nepodařilo vypočítat';
+
+  @override
+  String get repeaterCoverageRetry => 'Zkusit znovu';
+
+  @override
+  String get repeaterCoverageLegendTitle => 'Odhadovaný signál (dBm)';
+
+  @override
+  String get repeaterCoverageCta => 'Zobrazit pokrytí';
 
   @override
   String get repeaterDetailLosClear =>

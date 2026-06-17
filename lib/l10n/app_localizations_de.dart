@@ -9,19 +9,19 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get proSectionTitle => 'Abbonamento';
+  String get proSectionTitle => 'Abonnement';
 
   @override
-  String get proCardUpgradeTitle => 'Passa a HamQRG Pro';
+  String get proCardUpgradeTitle => 'Auf HamQRG Pro upgraden';
 
   @override
-  String get proCardUpgradeSubtitle => 'Sblocca tutte le funzioni premium';
+  String get proCardUpgradeSubtitle => 'Schalte alle Premium-Funktionen frei';
 
   @override
-  String get proCardActiveTitle => 'HamQRG Pro attivo';
+  String get proCardActiveTitle => 'HamQRG Pro aktiv';
 
   @override
-  String get proCardActiveSubtitle => 'Grazie per il supporto!';
+  String get proCardActiveSubtitle => 'Danke für deine Unterstützung!';
 
   @override
   String get error => 'Fehler';
@@ -1075,6 +1075,31 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get repeaterDetailAltimetricProfileSubtitle =>
       'Zeige das Geländeprofil zwischen dir und dem Relais';
+
+  @override
+  String get repeaterCoverageTitle => 'Abdeckung';
+
+  @override
+  String get repeaterCoverageCardTitle => 'Abdeckungskarte';
+
+  @override
+  String get repeaterCoverageCardSubtitle =>
+      'Schätzt das Signal des Relais im Gebiet';
+
+  @override
+  String get repeaterCoverageLoading => 'Abdeckung wird berechnet…';
+
+  @override
+  String get repeaterCoverageError => 'Abdeckung konnte nicht berechnet werden';
+
+  @override
+  String get repeaterCoverageRetry => 'Erneut versuchen';
+
+  @override
+  String get repeaterCoverageLegendTitle => 'Geschätztes Signal (dBm)';
+
+  @override
+  String get repeaterCoverageCta => 'Abdeckung ansehen';
 
   @override
   String get repeaterDetailLosClear =>

@@ -875,5 +875,18 @@
         "type": "int"
       }
     }
-  }
+  },
+  "proSectionTitle": "Abonnement",
+  "proCardUpgradeTitle": "Passer à HamQRG Pro",
+  "proCardUpgradeSubtitle": "Débloquez toutes les fonctions premium",
+  "proCardActiveTitle": "HamQRG Pro actif",
+  "proCardActiveSubtitle": "Merci pour votre soutien !",
+  "repeaterCoverageTitle": "Couverture",
+  "repeaterCoverageCardTitle": "Carte de couverture",
+  "repeaterCoverageCardSubtitle": "Estime le signal du relais sur le territoire",
+  "repeaterCoverageLoading": "Calcul de la couverture…",
+  "repeaterCoverageError": "Impossible de calculer la couverture",
+  "repeaterCoverageRetry": "Réessayer",
+  "repeaterCoverageLegendTitle": "Signal estimé (dBm)",
+  "repeaterCoverageCta": "Voir la couverture"
 }

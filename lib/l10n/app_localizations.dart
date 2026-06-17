@@ -2002,6 +2002,54 @@ abstract class AppLocalizations {
   /// **'Visualizza il profilo del terreno tra te e il ripetitore'**
   String get repeaterDetailAltimetricProfileSubtitle;
 
+  /// No description provided for @repeaterCoverageTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Copertura'**
+  String get repeaterCoverageTitle;
+
+  /// No description provided for @repeaterCoverageCardTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Mappa di copertura'**
+  String get repeaterCoverageCardTitle;
+
+  /// No description provided for @repeaterCoverageCardSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Stima il segnale del ripetitore sul territorio'**
+  String get repeaterCoverageCardSubtitle;
+
+  /// No description provided for @repeaterCoverageLoading.
+  ///
+  /// In it, this message translates to:
+  /// **'Calcolo della copertura in corso…'**
+  String get repeaterCoverageLoading;
+
+  /// No description provided for @repeaterCoverageError.
+  ///
+  /// In it, this message translates to:
+  /// **'Impossibile calcolare la copertura'**
+  String get repeaterCoverageError;
+
+  /// No description provided for @repeaterCoverageRetry.
+  ///
+  /// In it, this message translates to:
+  /// **'Riprova'**
+  String get repeaterCoverageRetry;
+
+  /// No description provided for @repeaterCoverageLegendTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnale stimato (dBm)'**
+  String get repeaterCoverageLegendTitle;
+
+  /// No description provided for @repeaterCoverageCta.
+  ///
+  /// In it, this message translates to:
+  /// **'Visualizza la copertura'**
+  String get repeaterCoverageCta;
+
   /// No description provided for @repeaterDetailLosClear.
   ///
   /// In it, this message translates to:

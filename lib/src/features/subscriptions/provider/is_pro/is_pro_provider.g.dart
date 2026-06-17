@@ -13,7 +13,7 @@ part of 'is_pro_provider.dart';
 /// Emits the initial entitlement state, then re-emits whenever RevenueCat
 /// reports a change (purchase, restore, expiration, webhook refresh).
 ///
-/// Read it as `ref.watch(isProProvider).valueOrNull ?? false`.
+/// Read it as `ref.watch(isProProvider).value ?? false`.
 
 @ProviderFor(isPro)
 final isProProvider = IsProProvider._();
@@ -23,7 +23,7 @@ final isProProvider = IsProProvider._();
 /// Emits the initial entitlement state, then re-emits whenever RevenueCat
 /// reports a change (purchase, restore, expiration, webhook refresh).
 ///
-/// Read it as `ref.watch(isProProvider).valueOrNull ?? false`.
+/// Read it as `ref.watch(isProProvider).value ?? false`.
 
 final class IsProProvider
     extends $FunctionalProvider<AsyncValue<bool>, bool, Stream<bool>>
@@ -33,7 +33,7 @@ final class IsProProvider
   /// Emits the initial entitlement state, then re-emits whenever RevenueCat
   /// reports a change (purchase, restore, expiration, webhook refresh).
   ///
-  /// Read it as `ref.watch(isProProvider).valueOrNull ?? false`.
+  /// Read it as `ref.watch(isProProvider).value ?? false`.
   IsProProvider._()
       : super(
           from: null,

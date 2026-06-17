@@ -875,5 +875,18 @@
         "type": "int"
       }
     }
-  }
+  },
+  "proSectionTitle": "Subscription",
+  "proCardUpgradeTitle": "Upgrade to HamQRG Pro",
+  "proCardUpgradeSubtitle": "Unlock all premium features",
+  "proCardActiveTitle": "HamQRG Pro active",
+  "proCardActiveSubtitle": "Thanks for your support!",
+  "repeaterCoverageTitle": "Coverage",
+  "repeaterCoverageCardTitle": "Coverage map",
+  "repeaterCoverageCardSubtitle": "Estimate the repeater's signal over the area",
+  "repeaterCoverageLoading": "Calculating coverage…",
+  "repeaterCoverageError": "Unable to calculate coverage",
+  "repeaterCoverageRetry": "Retry",
+  "repeaterCoverageLegendTitle": "Estimated signal (dBm)",
+  "repeaterCoverageCta": "View coverage"
 }

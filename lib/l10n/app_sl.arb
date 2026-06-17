@@ -875,5 +875,18 @@
         "type": "int"
       }
     }
-  }
+  },
+  "proSectionTitle": "Naročnina",
+  "proCardUpgradeTitle": "Nadgradi na HamQRG Pro",
+  "proCardUpgradeSubtitle": "Odkleni vse premium funkcije",
+  "proCardActiveTitle": "HamQRG Pro aktiven",
+  "proCardActiveSubtitle": "Hvala za podporo!",
+  "repeaterCoverageTitle": "Pokritost",
+  "repeaterCoverageCardTitle": "Zemljevid pokritosti",
+  "repeaterCoverageCardSubtitle": "Oceni signal pretvornika na območju",
+  "repeaterCoverageLoading": "Izračun pokritosti…",
+  "repeaterCoverageError": "Pokritosti ni mogoče izračunati",
+  "repeaterCoverageRetry": "Poskusi znova",
+  "repeaterCoverageLegendTitle": "Ocenjeni signal (dBm)",
+  "repeaterCoverageCta": "Prikaži pokritost"
 }

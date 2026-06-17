@@ -44,6 +44,26 @@ class AppConfigs {
     return 'pk.eyJ1IjoiZWxpYXRvbGluIiwiYSI6ImNtOTh3aWRweTA3ZTMybHNic3NoeGI1dmcifQ.e4bCIdcgXs0iddLhEbhhiA';
   }
 
+  /// Base URL of the RF coverage prediction service (ham_qrg_coverage).
+  static String getCoverageServiceBaseUrl() {
+    return 'https://t64usvmyfhe218lmqitrgchn.auroradigital.it';
+  }
+
+  /// API key sent as the `x-api-key` header to the coverage service.
+  ///
+  /// Note: embedding this in the client only raises the bar — it is not a
+  /// true secret. It gates casual abuse, not a determined attacker. For
+  /// stronger protection, proxy the service behind a Supabase edge function.
+  static String getCoverageServiceApiKey() {
+    return '8679783a324088f12f2120e2b1505c2f28378d4320117d84509f8ba715557801';
+  }
+
+  /// Whether the coverage map is gated behind HamQRG Pro.
+  ///
+  /// TEMP: open to all users during the coverage test phase. Set back to
+  /// `true` to restore the Pro paywall before release.
+  static bool get coverageRequiresPro => false;
+
   static String getOneSignalAppId() {
     return 'b25acb1c-1194-4f0d-8d7a-346e6deb747b';
   }
