@@ -123,7 +123,7 @@ class RepeatersMapPage extends HookConsumerWidget {
       body: Stack(
         children: [
           MapWidget(
-            cameraOptions: CameraOptions(
+            viewport: CameraViewportState(
               center: Point(
                 coordinates: Position(data.longitude!, data.latitude!),
               ),
@@ -141,6 +141,11 @@ class RepeatersMapPage extends HookConsumerWidget {
             },
             onMapCreated: (mapboxMap) async {
               mapController.value = mapboxMap;
+              mapboxMap.addInteraction(
+                TapInteraction.onMap((gestureContext) async {
+                  await _handleMapTap(mapboxMap, gestureContext, ref, context);
+                }),
+              );
               await _initializeMap(
                 mapboxMap,
                 ref,
@@ -152,16 +157,6 @@ class RepeatersMapPage extends HookConsumerWidget {
               if (mapController.value != null) {
                 await _onStyleLoaded(mapController.value!, context, ref);
                 isStyleLoaded.value = true;
-              }
-            },
-            onTapListener: (gestureContext) async {
-              if (mapController.value != null) {
-                await _handleMapTap(
-                  mapController.value!,
-                  gestureContext,
-                  ref,
-                  context,
-                );
               }
             },
           ),

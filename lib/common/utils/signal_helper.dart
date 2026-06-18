@@ -29,15 +29,15 @@ abstract final class SignalHelper {
         SignalLevel.none => 0,
       };
 
-  /// Semantic green→red scale (signal strength is inherently a quality scale;
-  /// these are the design system's success/warning/error tokens).
+  /// Maps a level to the design system's dedicated signal-scale tokens
+  /// (green → red), defined in [AppColors] as a domain palette.
   static Color colorFromDbm(double dbm) => switch (levelFromDbm(dbm)) {
-        SignalLevel.excellent => AppColors.success,
-        SignalLevel.good => AppColors.successLight,
-        SignalLevel.fair => AppColors.warning,
-        SignalLevel.weak => AppColors.warning,
-        SignalLevel.marginal => AppColors.error,
-        SignalLevel.none => AppColors.error,
+        SignalLevel.excellent => AppColors.signalExcellent,
+        SignalLevel.good => AppColors.signalGood,
+        SignalLevel.fair => AppColors.signalFair,
+        SignalLevel.weak => AppColors.signalWeak,
+        SignalLevel.marginal => AppColors.signalMarginal,
+        SignalLevel.none => AppColors.signalNone,
       };
 
   static String dbmLabel(double dbm) => '${dbm.round()} dBm';

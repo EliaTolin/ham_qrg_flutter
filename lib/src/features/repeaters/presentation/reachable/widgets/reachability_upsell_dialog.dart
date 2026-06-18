@@ -46,7 +46,7 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
                   child: const Text(
                     'PRO',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: AppColors.onProGold,
                       fontWeight: FontWeight.w800,
                       fontSize: 12,
                     ),
@@ -84,7 +84,7 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
                   child: FilledButton.icon(
                     style: FilledButton.styleFrom(
                       backgroundColor: AppColors.proGold,
-                      foregroundColor: Colors.black,
+                      foregroundColor: AppColors.onProGold,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
                     icon: const Icon(Icons.bolt_rounded),

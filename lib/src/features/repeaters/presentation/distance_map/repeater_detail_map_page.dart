@@ -137,7 +137,7 @@ class _RepeaterDetailMapContent extends HookConsumerWidget {
       body: Stack(
         children: [
           MapWidget(
-            cameraOptions: CameraOptions(
+            viewport: CameraViewportState(
               center: Point(
                 coordinates: Position(repeaterLongitude, repeaterLatitude),
               ),

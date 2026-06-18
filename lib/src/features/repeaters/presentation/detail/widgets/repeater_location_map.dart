@@ -60,7 +60,7 @@ class RepeaterLocationMap extends HookConsumerWidget {
           child: Stack(
             children: [
               MapWidget(
-                cameraOptions: CameraOptions(
+                viewport: CameraViewportState(
                   center: Point(
                     coordinates:
                         Position(repeater.longitude!, repeater.latitude!),

@@ -91,7 +91,7 @@ class _CoverageMapView extends HookWidget {
     return Stack(
       children: [
         MapWidget(
-          cameraOptions: CameraOptions(
+          viewport: CameraViewportState(
             center: Point(coordinates: Position(longitude, latitude)),
             zoom: 8.5,
           ),

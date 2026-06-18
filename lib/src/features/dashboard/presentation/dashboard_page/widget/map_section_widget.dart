@@ -51,7 +51,7 @@ class MapSectionWidget extends HookConsumerWidget {
         children: [
           // Mapbox Map (light/grey style)
           MapWidget(
-            cameraOptions: CameraOptions(
+            viewport: CameraViewportState(
               center: Point(
                 coordinates: Position(initialPosition.lon, initialPosition.lat),
               ),

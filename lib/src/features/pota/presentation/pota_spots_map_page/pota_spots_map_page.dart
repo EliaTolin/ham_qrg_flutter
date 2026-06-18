@@ -80,7 +80,7 @@ class PotaSpotsMapPage extends HookConsumerWidget {
       body: Stack(
         children: [
           MapWidget(
-            cameraOptions: CameraOptions(
+            viewport: CameraViewportState(
               center: Point(
                 coordinates: Position(initialLon, initialLat),
               ),
@@ -89,6 +89,11 @@ class PotaSpotsMapPage extends HookConsumerWidget {
             styleUri: MapboxStyles.OUTDOORS,
             onMapCreated: (mapboxMap) async {
               mapController.value = mapboxMap;
+              mapboxMap.addInteraction(
+                TapInteraction.onMap((gestureContext) async {
+                  await _handleTap(mapboxMap, gestureContext, context);
+                }),
+              );
               await Future.wait([
                 mapboxMap.scaleBar
                     .updateSettings(ScaleBarSettings(enabled: false)),
@@ -124,14 +129,6 @@ class PotaSpotsMapPage extends HookConsumerWidget {
                   spotsState.parkCache,
                 );
               }
-            },
-            onTapListener: (gestureContext) async {
-              if (mapController.value == null) return;
-              await _handleTap(
-                mapController.value!,
-                gestureContext,
-                context,
-              );
             },
           ),
           // Spot count chip
