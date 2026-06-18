@@ -37,3 +37,5 @@ HamQRG ist die ultimative App fuer Funkamateure und Hoerer. Finde ganz einfach R
 • Kontaktiere die Entwickler direkt
 
 Lade HamQRG herunter und entdecke die Welt der Amateurfunk-Relais!
+
+Nutzungsbedingungen (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

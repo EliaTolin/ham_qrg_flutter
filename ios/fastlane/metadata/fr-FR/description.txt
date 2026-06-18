@@ -37,3 +37,5 @@ HamQRG est l'application ultime pour les radioamateurs et les auditeurs. Trouvez
 • Contactez directement les développeurs
 
 Téléchargez HamQRG et explorez le monde des relais radioamateurs !
+
+Conditions d'utilisation (CLUF): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

@@ -37,3 +37,5 @@ HamQRG è l'app definitiva per radioamatori e ascoltatori. Trova facilmente i ri
 • Contatta direttamente gli sviluppatori
 
 Scarica HamQRG e scopri il mondo dei ripetitori radioamatoriali!
+
+Termini d'uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

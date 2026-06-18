@@ -37,3 +37,5 @@ HamQRG je dokonalá aplikácia pre rádioamatérov a poslucháčov. Jednoducho n
 • Kontaktujte priamo vývojárov
 
 Stiahnite si HamQRG a preskúmajte svet rádioamatérskych prevádzačov!
+
+Podmienky používání (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

@@ -1,0 +1,235 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hamqrg/common/utils/signal_helper.dart';
+import 'package:hamqrg/common/widgets/pro/pro_blur_gate.dart';
+import 'package:hamqrg/common/widgets/signal/signal_bars.dart';
+import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/src/features/repeaters/domain/reachable/reachable_link.dart';
+import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/reachable/widgets/link_profile_chart.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_reachable/get_repeater_link_provider.dart';
+import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
+import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
+import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
+import 'package:hamqrg/themes/app_colors.dart';
+
+/// "Do I reach this repeater from where I am?" — a Pro-gated badge for the
+/// repeater detail. Non-Pro users see a blurred teaser (no request); Pro users
+/// see the real verdict + signal, and can tap to open the link profile chart.
+class RepeaterReachBadge extends ConsumerWidget {
+  const RepeaterReachBadge({required this.repeater, super.key});
+
+  final Repeater repeater;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (repeater.latitude == null || repeater.longitude == null) {
+      return const SizedBox.shrink();
+    }
+    final isPro = ref.watch(isProProvider).maybeWhen(
+          data: (v) => v,
+          orElse: () => false,
+        );
+    final locked = AppConfigs.reachabilityRequiresPro && !isPro;
+
+    return ProBlurGate(
+      locked: locked,
+      title: 'Lo raggiungi da qui?',
+      subtitle: 'Scopri se questo ponte ti copre e con che segnale',
+      ctaLabel: 'Scoprilo con PRO',
+      onUnlock: () => openReachabilityPaywall(ref),
+      teaser: const _BadgeFrame(child: _MockBadgeRow()),
+      child: _RealReachBadge(repeater: repeater),
+    );
+  }
+}
+
+class _RealReachBadge extends ConsumerWidget {
+  const _RealReachBadge({required this.repeater});
+
+  final Repeater repeater;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final positionAsync = ref.watch(cachedUserPositionProvider);
+
+    return positionAsync.when(
+      loading: () => const _BadgeFrame(child: _BadgeLoading()),
+      error: (_, __) => const SizedBox.shrink(),
+      data: (pos) {
+        final linkAsync = ref.watch(
+          getRepeaterLinkProvider(
+            userLat: pos.latitude,
+            userLon: pos.longitude,
+            repeaterId: repeater.id,
+            repeaterLat: repeater.latitude!,
+            repeaterLon: repeater.longitude!,
+            frequencyHz: repeater.frequencyHz,
+          ),
+        );
+        return linkAsync.when(
+          loading: () => const _BadgeFrame(child: _BadgeLoading()),
+          error: (_, __) => const SizedBox.shrink(),
+          data: (link) => _BadgeFrame(
+            onTap: link.points.length >= 2
+                ? () => _openProfile(context, link)
+                : null,
+            child: _BadgeContent(link: link),
+          ),
+        );
+      },
+    );
+  }
+
+  void _openProfile(BuildContext context, LinkProfile link) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (ctx) => Padding(
+        padding: EdgeInsets.fromLTRB(
+          20,
+          0,
+          20,
+          20 + MediaQuery.of(ctx).viewInsets.bottom,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              repeater.callsign ?? repeater.name ?? 'Ponte',
+              style: Theme.of(ctx).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 16),
+            LinkProfileChart(link: link),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _BadgeFrame extends StatelessWidget {
+  const _BadgeFrame({required this.child, this.onTap});
+
+  final Widget child;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: theme.colorScheme.outline.withValues(alpha: 0.2),
+          ),
+        ),
+        child: child,
+      ),
+    );
+  }
+}
+
+class _BadgeContent extends StatelessWidget {
+  const _BadgeContent({required this.link});
+
+  final LinkProfile link;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final reachable = link.reachable;
+    final color = SignalHelper.colorFromDbm(link.dbm);
+
+    return Row(
+      children: [
+        Icon(
+          reachable ? Icons.check_circle_rounded : Icons.cancel_rounded,
+          color: reachable ? color : theme.colorScheme.onSurface.withValues(alpha: 0.4),
+          size: 22,
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                reachable ? 'Lo raggiungi' : 'Fuori copertura',
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                reachable
+                    ? '${SignalHelper.dbmLabel(link.dbm)} · ${link.distanceKm.toStringAsFixed(1)} km · tocca per il profilo'
+                    : '${link.distanceKm.toStringAsFixed(1)} km da qui',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.65),
+                ),
+              ),
+            ],
+          ),
+        ),
+        if (reachable) SignalBars(dbm: link.dbm),
+      ],
+    );
+  }
+}
+
+class _BadgeLoading extends StatelessWidget {
+  const _BadgeLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      children: [
+        const SizedBox(
+          width: 18,
+          height: 18,
+          child: CircularProgressIndicator(strokeWidth: 2),
+        ),
+        const SizedBox(width: 12),
+        Text('Calcolo copertura…', style: theme.textTheme.bodyMedium),
+      ],
+    );
+  }
+}
+
+/// Static mock shown (blurred) to non-Pro users — no data, no request.
+class _MockBadgeRow extends StatelessWidget {
+  const _MockBadgeRow();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      children: [
+        const Icon(Icons.check_circle_rounded, color: AppColors.success, size: 22),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Lo raggiungi',
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text('-•• dBm · •• km', style: theme.textTheme.bodySmall),
+            ],
+          ),
+        ),
+        const SignalBars(dbm: -88),
+      ],
+    );
+  }
+}
