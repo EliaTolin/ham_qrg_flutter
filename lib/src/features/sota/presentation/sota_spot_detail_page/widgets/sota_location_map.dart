@@ -28,7 +28,7 @@ class SotaLocationMap extends StatelessWidget {
               children: [
                 IgnorePointer(
                   child: MapWidget(
-                    cameraOptions: CameraOptions(
+                    viewport: CameraViewportState(
                       center: Point(
                         coordinates: Position(
                           summit.longitude,
@@ -89,7 +89,7 @@ class _FullMapDialog extends StatelessWidget {
           ),
         ),
         body: MapWidget(
-          cameraOptions: CameraOptions(
+          viewport: CameraViewportState(
             center: Point(
               coordinates: Position(summit.longitude, summit.latitude),
             ),

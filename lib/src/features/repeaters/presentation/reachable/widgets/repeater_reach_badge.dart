@@ -11,7 +11,6 @@ import 'package:hamqrg/src/features/repeaters/provider/get_reachable/get_repeate
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
-import 'package:hamqrg/themes/app_colors.dart';
 
 /// "Do I reach this repeater from where I am?" — a Pro-gated badge for the
 /// repeater detail. Non-Pro users see a blurred teaser (no request); Pro users
@@ -212,7 +211,11 @@ class _MockBadgeRow extends StatelessWidget {
     final theme = Theme.of(context);
     return Row(
       children: [
-        const Icon(Icons.check_circle_rounded, color: AppColors.success, size: 22),
+        Icon(
+          Icons.check_circle_rounded,
+          color: SignalHelper.colorFromDbm(-88),
+          size: 22,
+        ),
         const SizedBox(width: 12),
         Expanded(
           child: Column(

@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/common/utils/signal_helper.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/common/widgets/signal/signal_bars.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/repeaters/domain/band/frequency_band.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
@@ -19,6 +21,7 @@ class RepeaterCard extends StatelessWidget {
     this.feedbackStats,
     this.onFavoritePressed,
     this.hasActiveSpot = false,
+    this.signalDbm,
     super.key,
   });
 
@@ -26,6 +29,10 @@ class RepeaterCard extends StatelessWidget {
   final RepeaterFeedbackStats? feedbackStats;
   final VoidCallback? onFavoritePressed;
   final bool hasActiveSpot;
+
+  /// Predicted received signal (dBm) from this repeater to the user. When set
+  /// (reachability list), a signal meter is shown in the footer.
+  final double? signalDbm;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +86,7 @@ class RepeaterCard extends StatelessWidget {
                   _StatsFooter(
                     repeater: repeater,
                     feedbackStats: feedbackStats,
+                    signalDbm: signalDbm,
                   ),
                 ],
               ],
@@ -111,7 +119,9 @@ class RepeaterCard extends StatelessWidget {
   }
 
   bool get _hasFooter =>
-      feedbackStats != null || repeater.distanceMeters != null;
+      feedbackStats != null ||
+      repeater.distanceMeters != null ||
+      signalDbm != null;
 }
 
 // ---------------------------------------------------------------------------
@@ -313,10 +323,15 @@ class _AccessModes extends StatelessWidget {
 // Stats footer: likes + reports (left) + distance (right)
 // ---------------------------------------------------------------------------
 class _StatsFooter extends StatelessWidget {
-  const _StatsFooter({required this.repeater, this.feedbackStats});
+  const _StatsFooter({
+    required this.repeater,
+    this.feedbackStats,
+    this.signalDbm,
+  });
 
   final Repeater repeater;
   final RepeaterFeedbackStats? feedbackStats;
+  final double? signalDbm;
 
   @override
   Widget build(BuildContext context) {
@@ -363,6 +378,18 @@ class _StatsFooter extends StatelessWidget {
           ),
         ],
         const Spacer(),
+        if (signalDbm != null) ...[
+          SignalBars(dbm: signalDbm!),
+          const SizedBox(width: 6),
+          Text(
+            SignalHelper.dbmLabel(signalDbm!),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: SignalHelper.colorFromDbm(signalDbm!),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          if (repeater.distanceMeters != null) const SizedBox(width: 12),
+        ],
         if (repeater.distanceMeters != null) ...[
           Icon(
             Icons.near_me_outlined,

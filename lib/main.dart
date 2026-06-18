@@ -27,7 +27,7 @@ Future<void> main() async {
 
   await Supabase.initialize(
     url: AppConfigs.getSupabaseUrl(),
-    anonKey: AppConfigs.getSupabaseKey(),
+    publishableKey: AppConfigs.getSupabaseKey(),
   );
 
   MapboxOptions.setAccessToken(AppConfigs.getMapboxAccessToken());
@@ -37,7 +37,7 @@ Future<void> main() async {
   // Enable verbose logging for debugging (remove in production)
   await OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   // Initialize with your OneSignal App ID
-  OneSignal.initialize(AppConfigs.getOneSignalAppId());
+  await OneSignal.initialize(AppConfigs.getOneSignalAppId());
   // Use this method to prompt for push notifications.
   // We recommend removing this method after testing and instead use In-App Messages to prompt for notification permission.
   await OneSignal.Notifications.requestPermission(false);

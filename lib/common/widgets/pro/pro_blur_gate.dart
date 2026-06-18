@@ -115,7 +115,7 @@ class ProBlurGate extends StatelessWidget {
                       onPressed: onUnlock,
                       style: FilledButton.styleFrom(
                         backgroundColor: AppColors.proGold,
-                        foregroundColor: Colors.black,
+                        foregroundColor: AppColors.onProGold,
                       ),
                       icon: const Icon(Icons.bolt_rounded, size: 18),
                       label: Text(ctaLabel),

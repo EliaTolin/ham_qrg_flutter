@@ -43,6 +43,17 @@ class LinkProfileChart extends StatelessWidget {
 
     final signalColor = SignalHelper.colorFromDbm(link.dbm);
     final terrainColor = theme.colorScheme.onSurface.withValues(alpha: 0.55);
+    final obstructionColor = theme.colorScheme.error;
+
+    // Terrain points rising above the straight line of sight = obstacles.
+    final obstruction = <FlSpot>[];
+    for (final p in points) {
+      final losAt = maxDist == 0
+          ? losStart
+          : losStart + (losEnd - losStart) * (p.distanceKm / maxDist);
+      if (p.groundM > losAt) obstruction.add(FlSpot(p.distanceKm, p.groundM));
+    }
+    final isObstructed = obstruction.isNotEmpty;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,11 +142,46 @@ class LinkProfileChart extends StatelessWidget {
                   dashArray: [6, 4],
                   dotData: const FlDotData(show: false),
                 ),
+                // Obstacles: terrain rising above the line of sight, in red.
+                if (obstruction.isNotEmpty)
+                  LineChartBarData(
+                    spots: obstruction,
+                    barWidth: 0,
+                    color: obstructionColor,
+                    dotData: FlDotData(
+                      getDotPainter: (spot, _, __, ___) => FlDotCirclePainter(
+                        radius: 2.5,
+                        color: obstructionColor,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            Icon(
+              isObstructed ? Icons.terrain_rounded : Icons.visibility_rounded,
+              size: 16,
+              color: isObstructed ? obstructionColor : signalColor,
+            ),
+            const SizedBox(width: 6),
+            Expanded(
+              child: Text(
+                isObstructed
+                    ? 'Ostacolo sul percorso (segnale per diffrazione)'
+                    : 'Vista diretta libera',
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: isObstructed ? obstructionColor : signalColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 4),
         Text(
           'Profilo del terreno e linea di vista · TX ${txHeightM.round()} m · RX ${rxHeightM.round()} m',
           style: theme.textTheme.labelSmall?.copyWith(

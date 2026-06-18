@@ -48,7 +48,7 @@ class PotaLocationMap extends StatelessWidget {
               children: [
                 IgnorePointer(
                   child: MapWidget(
-                    cameraOptions: CameraOptions(
+                    viewport: CameraViewportState(
                       center: Point(
                         coordinates: Position(park.longitude!, park.latitude!),
                       ),
@@ -130,7 +130,7 @@ class _FullMapDialog extends StatelessWidget {
           ),
         ),
         body: MapWidget(
-          cameraOptions: CameraOptions(
+          viewport: CameraViewportState(
             center: Point(
               coordinates: Position(park.longitude!, park.latitude!),
             ),

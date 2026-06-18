@@ -70,6 +70,16 @@ class AppColors {
   // the "Pro" gold is not representable via theme.colorScheme.
   static const Color proGold = Color(0xFFD4AF37); // metallic gold
   static const Color proGoldLight = Color(0xFFF1D27A);
+  static const Color onProGold = Color(0xFF1A1A1A); // text/icons on proGold
+
+  // Signal-strength scale (green -> red). Domain token used by SignalHelper:
+  // signal quality is a semantic scale with no equivalent in theme.colorScheme.
+  static const Color signalExcellent = Color(0xFF10B981); // green-500
+  static const Color signalGood = Color(0xFF34D399); // green-400
+  static const Color signalFair = Color(0xFFF59E0B); // amber-500
+  static const Color signalWeak = Color(0xFFF97316); // orange-500
+  static const Color signalMarginal = Color(0xFFEF4444); // red-500
+  static const Color signalNone = Color(0xFF94A3B8); // slate-400 (out of reach)
 }
 
 /// SOTA points trophy palette. Brand-specific (exception analogous to

@@ -40,6 +40,8 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final cs = theme.colorScheme;
+    final onAccent = cs.onPrimary;
     final reveal = CurvedAnimation(
       parent: _intro,
       curve: const Interval(0, 0.55, curve: Curves.easeOutCubic),
@@ -70,15 +72,15 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
               builder: (context, _) => Positioned.fill(
                 child: ClipPath(
                   clipper: _RadialReveal(reveal.value),
-                  child: const DecoratedBox(
+                  child: DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Color(0xFF2E8BFF),
-                          Color(0xFF2FB4D6),
-                          Color(0xFF14B8A6),
+                          cs.primary,
+                          Color.lerp(cs.primary, cs.tertiary, 0.5) ?? cs.primary,
+                          cs.tertiary,
                         ],
                       ),
                     ),
@@ -94,6 +96,7 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                   painter: _WavesPainter(
                     t: _loop.value,
                     opacity: reveal.value,
+                    color: onAccent,
                   ),
                 ),
               ),
@@ -111,7 +114,7 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                         width: 92,
                         height: 92,
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.16),
+                          color: onAccent.withValues(alpha: 0.16),
                           shape: BoxShape.circle,
                           border: Border.all(color: AppColors.proGold, width: 2.5),
                         ),
@@ -131,7 +134,7 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                             'Benvenuto in PRO! 🎉',
                             textAlign: TextAlign.center,
                             style: theme.textTheme.headlineSmall?.copyWith(
-                              color: Colors.white,
+                              color: onAccent,
                               fontWeight: FontWeight.w900,
                             ),
                           ),
@@ -141,7 +144,7 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                             'raggiungi dalla tua posizione e tutte le funzioni PRO. 📡',
                             textAlign: TextAlign.center,
                             style: theme.textTheme.bodyMedium?.copyWith(
-                              color: Colors.white.withValues(alpha: 0.92),
+                              color: onAccent.withValues(alpha: 0.92),
                               height: 1.4,
                             ),
                           ),
@@ -155,8 +158,8 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                         width: double.infinity,
                         child: FilledButton(
                           style: FilledButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFF2E8BFF),
+                            backgroundColor: onAccent,
+                            foregroundColor: cs.primary,
                             padding: const EdgeInsets.symmetric(vertical: 14),
                           ),
                           onPressed: () => Navigator.of(context).pop(),
@@ -199,10 +202,11 @@ class _RadialReveal extends CustomClipper<Path> {
 
 /// Expanding concentric "signal" rings, looping.
 class _WavesPainter extends CustomPainter {
-  _WavesPainter({required this.t, required this.opacity});
+  _WavesPainter({required this.t, required this.opacity, required this.color});
 
   final double t;
   final double opacity;
+  final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -216,12 +220,14 @@ class _WavesPainter extends CustomPainter {
       final paint = Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = 2
-        ..color = Colors.white.withValues(alpha: alpha);
+        ..color = color.withValues(alpha: alpha);
       canvas.drawCircle(center, radius, paint);
     }
   }
 
   @override
   bool shouldRepaint(_WavesPainter oldDelegate) =>
-      oldDelegate.t != t || oldDelegate.opacity != opacity;
+      oldDelegate.t != t ||
+      oldDelegate.opacity != opacity ||
+      oldDelegate.color != color;
 }
