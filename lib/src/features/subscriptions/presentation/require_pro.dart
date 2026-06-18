@@ -1,12 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamqrg/clients/revenue_cat/impl/revenue_cat_client_impl.dart';
+import 'package:hamqrg/common/widgets/pro/pro_welcome_dialog.dart';
 import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 
-/// Forces every `isProProvider` watcher (badges, gates, upsells) to re-read the
-/// entitlement immediately after a purchase, instead of waiting for RevenueCat's
-/// async listener (which may lag, leaving stale "locked" UI until an app restart).
-void _refreshProStatus(WidgetRef ref) => ref.invalidate(isProProvider);
+/// Called after a successful purchase: (1) forces every `isProProvider` watcher
+/// (badges, gates, upsells) to re-read the entitlement immediately — instead of
+/// waiting for RevenueCat's async listener, which may lag and leave stale
+/// "locked" UI until restart — and (2) celebrates with the Pro welcome dialog.
+void _onProPurchased(WidgetRef ref) {
+  ref.invalidate(isProProvider);
+  final context = ref.read(appRouterProvider).navigatorKey.currentContext;
+  if (context != null) showProWelcome(context);
+}
 
 /// Pro gate used before protected (Pro-only) actions.
 ///
@@ -27,7 +34,7 @@ Future<bool> requirePro(WidgetRef ref) async {
   final client = ref.read(revenueCatClientProvider);
   if (await client.isPro()) return true;
   final purchased = await client.presentPaywallIfNeeded();
-  if (purchased) _refreshProStatus(ref);
+  if (purchased) _onProPurchased(ref);
   return purchased;
 }
 
@@ -35,7 +42,7 @@ Future<bool> requirePro(WidgetRef ref) async {
 /// (e.g. from a "Go Pro" button / upsell card).
 Future<bool> openProPaywall(WidgetRef ref) async {
   final purchased = await ref.read(revenueCatClientProvider).presentPaywall();
-  if (purchased) _refreshProStatus(ref);
+  if (purchased) _onProPurchased(ref);
   return purchased;
 }
 
@@ -46,6 +53,6 @@ Future<bool> openReachabilityPaywall(WidgetRef ref) async {
   final purchased = await ref.read(revenueCatClientProvider).presentPaywall(
         offeringId: AppConfigs.reachabilityPaywallOfferingId,
       );
-  if (purchased) _refreshProStatus(ref);
+  if (purchased) _onProPurchased(ref);
   return purchased;
 }

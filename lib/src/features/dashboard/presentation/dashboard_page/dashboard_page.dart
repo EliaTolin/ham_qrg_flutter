@@ -1340,6 +1340,7 @@ class _ChangelogTrigger extends HookConsumerWidget {
           if (!context.mounted) return;
 
           final packageInfo = await ref.read(packageInfoProvider.future);
+          if (!context.mounted) return;
           final appVersion = packageInfo.version;
 
           // Only show entries for versions <= current app version
@@ -1356,17 +1357,19 @@ class _ChangelogTrigger extends HookConsumerWidget {
                   lastSeenVersion: profile!.lastSeenVersion,
                 );
 
-          if (unseen.isNotEmpty && context.mounted) {
-            await showChangelogSheet(context, entries: unseen);
-          }
-
-          // Update lastSeenVersion to current app version
+          // Mark lastSeenVersion as seen BEFORE showing the sheet.
+          // The sheet await can outlive this widget (user navigates away),
+          // and using `ref` after the widget unmounts throws a StateError.
           if (profile!.lastSeenVersion != appVersion) {
             await ref.read(
               updateProfileProvider(
                 profile!.copyWith(lastSeenVersion: appVersion),
               ).future,
             );
+          }
+
+          if (unseen.isNotEmpty && context.mounted) {
+            await showChangelogSheet(context, entries: unseen);
           }
         });
 
