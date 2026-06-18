@@ -37,3 +37,5 @@ HamQRG is the ultimate app for ham radio operators and listeners. Easily find re
 • Contact the developers directly
 
 Download HamQRG and explore the world of ham radio repeaters!
+
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

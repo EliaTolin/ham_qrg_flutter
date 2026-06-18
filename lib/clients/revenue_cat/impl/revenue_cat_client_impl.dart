@@ -65,9 +65,9 @@ class RevenueCatClientImpl implements RevenueCatClient {
   }
 
   @override
-  Future<bool> presentPaywall() async {
+  Future<bool> presentPaywall({String? offeringId}) async {
     final result = await RevenueCatUI.presentPaywall(
-      offering: await _defaultOffering(),
+      offering: await _defaultOffering(offeringId),
     );
     return _isPurchaseSuccess(result);
   }
@@ -81,14 +81,15 @@ class RevenueCatClientImpl implements RevenueCatClient {
     return _isPurchaseSuccess(result);
   }
 
-  /// Resolves the "default" offering to display in the paywall, falling back
-  /// to the current offering. Returns `null` if offerings can't be fetched,
-  /// in which case the SDK shows the current offering's paywall.
-  Future<Offering?> _defaultOffering() async {
+  /// Resolves the offering to display: the explicit [offeringId] when given,
+  /// otherwise the configured default, falling back to the current offering.
+  /// Returns `null` if offerings can't be fetched, in which case the SDK shows
+  /// the current offering's paywall.
+  Future<Offering?> _defaultOffering([String? offeringId]) async {
     try {
       final offerings = await Purchases.getOfferings();
-      return offerings.all[AppConfigs.revenueCatDefaultOfferingId] ??
-          offerings.current;
+      final preferred = offeringId ?? AppConfigs.revenueCatDefaultOfferingId;
+      return offerings.all[preferred] ?? offerings.current;
     } catch (_) {
       return null;
     }

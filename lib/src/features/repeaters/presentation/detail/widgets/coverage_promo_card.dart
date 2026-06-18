@@ -22,7 +22,7 @@ class CoveragePromoCard extends ConsumerWidget {
       repeater.latitude != null && repeater.longitude != null;
 
   Future<void> _open(BuildContext context, WidgetRef ref) async {
-    // Pro gating is disabled during the coverage test phase (see AppConfigs).
+    // Pro-gated: opening the coverage map presents the paywall to non-Pro.
     if (AppConfigs.coverageRequiresPro && !await requirePro(ref)) return;
     if (!context.mounted) return;
     await context.router.push(

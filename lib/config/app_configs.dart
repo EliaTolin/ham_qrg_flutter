@@ -59,10 +59,18 @@ class AppConfigs {
   }
 
   /// Whether the coverage map is gated behind HamQRG Pro.
-  ///
-  /// TEMP: open to all users during the coverage test phase. Set back to
-  /// `true` to restore the Pro paywall before release.
-  static bool get coverageRequiresPro => false;
+  /// Pro-only for release: the promo card is shown to everyone (teaser), but
+  /// opening the map requires Pro (presents the default paywall).
+  static bool get coverageRequiresPro => true;
+
+  /// Whether "what can I reach from here" (reachability) is a Pro feature.
+  /// Pro-only by design: non-Pro users see a blurred teaser, never the data.
+  static bool get reachabilityRequiresPro => true;
+
+  /// RevenueCat offering id for the dedicated reachability paywall. When set,
+  /// the reachability upsell presents this offering instead of the default;
+  /// leave `null` to fall back to the default paywall.
+  static String? get reachabilityPaywallOfferingId => null;
 
   static String getOneSignalAppId() {
     return 'b25acb1c-1194-4f0d-8d7a-346e6deb747b';

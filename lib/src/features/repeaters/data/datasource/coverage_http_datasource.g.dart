@@ -51,4 +51,4 @@ final class CoverageDatasourceProvider extends $FunctionalProvider<
 }
 
 String _$coverageDatasourceHash() =>
-    r'89488862f463a993cc6122552c155120224f419e';
+    r'c46faa67817cfdbcf57d0adb0bb8e4c2e2e1d128';

@@ -20,6 +20,7 @@ import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/map/controller/repeaters_map_controller.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/reachable/widgets/reachable_map_button.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/utils/map_utils.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/info_banner.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/permission_banner.dart';
@@ -173,6 +174,14 @@ class RepeatersMapPage extends HookConsumerWidget {
             mapState,
             notifier,
             mapController.value,
+          ),
+
+          // Pro upsell: compact "what do I reach from here?" button
+          // (bottom-left, level with the location button on the right).
+          Positioned(
+            left: 16,
+            bottom: MediaQuery.of(context).padding.bottom + 24,
+            child: const ReachableMapButton(),
           ),
         ],
       ),

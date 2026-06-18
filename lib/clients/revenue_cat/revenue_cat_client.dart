@@ -23,7 +23,11 @@ abstract class RevenueCatClient {
 
   /// Presents the RevenueCat remote paywall unconditionally.
   /// Returns `true` if the user purchased or restored Pro.
-  Future<bool> presentPaywall();
+  ///
+  /// Pass [offeringId] to show a feature-specific paywall (a dedicated
+  /// offering, e.g. the "reachability" upsell); falls back to the default
+  /// offering when null or not found.
+  Future<bool> presentPaywall({String? offeringId});
 
   /// Presents the RevenueCat remote paywall only if the user does not already
   /// own the Pro entitlement. Returns `true` if Pro is (now) active.
