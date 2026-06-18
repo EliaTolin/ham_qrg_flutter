@@ -1782,6 +1782,14 @@ class AppLocalizationsRo extends AppLocalizations {
   String get changelog1020TabletLayout => 'Aspect optimizat pentru tablete';
 
   @override
+  String get changelog110Coverage =>
+      'Hartă de acoperire a releelor: vezi semnalul estimat direct pe hartă (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Ce prinzi de aici: descoperă releele pe care le atingi din poziția ta, cu semnal și profilul terenului (PRO)';
+
+  @override
   String get changelogTitle => 'Ce este nou';
 
   @override

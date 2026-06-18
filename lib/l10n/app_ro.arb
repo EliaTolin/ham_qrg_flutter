@@ -665,6 +665,8 @@
   "changelog1020ClusterSpots": "Cluster spot în timp real: vezi cine ascultă pe repetoare, cu notificări și preferințe",
   "changelog1020DetailTabs": "Pagina repetorului cu filele Info, Cluster și Comunitate",
   "changelog1020TabletLayout": "Aspect optimizat pentru tablete",
+  "changelog110Coverage": "Hartă de acoperire a releelor: vezi semnalul estimat direct pe hartă (PRO)",
+  "changelog110Reachable": "Ce prinzi de aici: descoperă releele pe care le atingi din poziția ta, cu semnal și profilul terenului (PRO)",
   "changelogTitle": "Ce este nou",
   "changelogSubtitle": "Iată ce este nou în această versiune",
   "changelogCategoryAdded": "Nou",

@@ -1713,6 +1713,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get changelog1020TabletLayout => 'Diseño optimizado para tablets';
 
   @override
+  String get changelog110Coverage =>
+      'Mapa de cobertura de repetidores: mira la señal estimada directamente en el mapa (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Qué alcanzas desde aquí: descubre los repetidores que recibes desde tu posición, con señal y perfil del terreno (PRO)';
+
+  @override
   String get changelogTitle => 'Novedades';
 
   @override

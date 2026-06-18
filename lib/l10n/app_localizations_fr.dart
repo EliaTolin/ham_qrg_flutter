@@ -1721,6 +1721,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Mise en page optimisée pour tablettes';
 
   @override
+  String get changelog110Coverage =>
+      'Carte de couverture des relais : visualisez le signal estimé directement sur la carte (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Ce que vous atteignez d’ici : découvrez les relais que vous captez depuis votre position, avec signal et profil du terrain (PRO)';
+
+  @override
   String get changelogTitle => 'Nouveautés';
 
   @override

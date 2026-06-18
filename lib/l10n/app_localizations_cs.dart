@@ -1715,6 +1715,14 @@ class AppLocalizationsCs extends AppLocalizations {
       'Rozvržení optimalizované pro tablety';
 
   @override
+  String get changelog110Coverage =>
+      'Mapa pokrytí převaděčů: zobrazte odhadovaný signál přímo na mapě (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Co odsud dosáhnete: objevte převaděče, které ze své pozice zachytíte, se signálem a profilem terénu (PRO)';
+
+  @override
   String get changelogTitle => 'Co je nového';
 
   @override

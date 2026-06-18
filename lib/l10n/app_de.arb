@@ -665,6 +665,8 @@
   "changelog1020ClusterSpots": "Cluster-Spots in Echtzeit: Sieh, wer auf Relais zuhört, mit Benachrichtigungen und Einstellungen",
   "changelog1020DetailTabs": "Relaisseite mit Reitern Info, Cluster und Community",
   "changelog1020TabletLayout": "Für Tablets optimiertes Layout",
+  "changelog110Coverage": "Funkabdeckungskarte der Relais: Sieh das vorhergesagte Signal direkt auf der Karte (PRO)",
+  "changelog110Reachable": "Was du von hier erreichst: Entdecke die Relais, die dich an deinem Standort erreichen – mit Signal und Geländeprofil (PRO)",
   "changelogTitle": "Neuigkeiten",
   "changelogSubtitle": "Das ist neu in dieser Version",
   "changelogCategoryAdded": "Neu",

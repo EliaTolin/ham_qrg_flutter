@@ -1715,6 +1715,14 @@ class AppLocalizationsHu extends AppLocalizations {
   String get changelog1020TabletLayout => 'Táblagépre optimalizált elrendezés';
 
   @override
+  String get changelog110Coverage =>
+      'Átjátszók lefedettségi térképe: nézd meg a becsült jelet közvetlenül a térképen (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Mit érsz el innen: fedezd fel az átjátszókat, amelyeket a helyzetedből elérsz, jellel és terepprofillal (PRO)';
+
+  @override
   String get changelogTitle => 'Újdonságok';
 
   @override

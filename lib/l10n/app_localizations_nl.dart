@@ -1713,6 +1713,14 @@ class AppLocalizationsNl extends AppLocalizations {
       'Geoptimaliseerde lay-out voor tablets';
 
   @override
+  String get changelog110Coverage =>
+      'Dekkingskaart van repeaters: bekijk het voorspelde signaal direct op de kaart (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Wat je van hier bereikt: ontdek de repeaters die je vanaf je locatie haalt, met signaal en terreinprofiel (PRO)';
+
+  @override
   String get changelogTitle => 'Wat is er nieuw';
 
   @override

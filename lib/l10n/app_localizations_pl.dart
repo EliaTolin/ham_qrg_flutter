@@ -1778,6 +1778,14 @@ class AppLocalizationsPl extends AppLocalizations {
   String get changelog1020TabletLayout => 'Układ zoptymalizowany dla tabletów';
 
   @override
+  String get changelog110Coverage =>
+      'Mapa zasięgu przemienników: zobacz szacowany sygnał bezpośrednio na mapie (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Co osiągniesz stąd: odkryj przemienniki, które złapiesz ze swojej pozycji, z sygnałem i profilem terenu (PRO)';
+
+  @override
   String get changelogTitle => 'Co nowego';
 
   @override

@@ -665,6 +665,8 @@
   "changelog1020ClusterSpots": "Cluster spoti v realnem času: glej, kdo posluša na repetitorjih, z obvestili in nastavitvami",
   "changelog1020DetailTabs": "Stran repetitorja z zavihki Info, Cluster in Skupnost",
   "changelog1020TabletLayout": "Postavitev, optimizirana za tablice",
+  "changelog110Coverage": "Zemljevid pokritosti pretvornikov: oglej si predvideni signal neposredno na zemljevidu (PRO)",
+  "changelog110Reachable": "Kaj dosežeš od tu: odkrij pretvornike, ki jih ujameš s svoje lokacije, s signalom in profilom terena (PRO)",
   "changelogTitle": "Novosti",
   "changelogSubtitle": "Tukaj so novosti v tej različici",
   "changelogCategoryAdded": "Novo",

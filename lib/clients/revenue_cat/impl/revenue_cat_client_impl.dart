@@ -50,7 +50,17 @@ class RevenueCatClientImpl implements RevenueCatClient {
   Future<bool> isPro() async {
     if (AppConfigs.getRevenueCatApiKey().isEmpty) return false;
     final info = await Purchases.getCustomerInfo();
-    return _hasProEntitlement(info);
+    final has = _hasProEntitlement(info);
+    if (kDebugMode) {
+      debugPrint(
+        '[RevenueCat] isPro=$has | expecting entitlement '
+        '"${AppConfigs.revenueCatProEntitlementId}" | active='
+        '${info.entitlements.active.keys.toList()} | all='
+        '${info.entitlements.all.keys.toList()} | activeSubs='
+        '${info.activeSubscriptions.toList()}',
+      );
+    }
+    return has;
   }
 
   @override

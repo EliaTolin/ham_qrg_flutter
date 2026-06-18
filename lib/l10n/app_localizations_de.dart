@@ -1716,6 +1716,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get changelog1020TabletLayout => 'Für Tablets optimiertes Layout';
 
   @override
+  String get changelog110Coverage =>
+      'Funkabdeckungskarte der Relais: Sieh das vorhergesagte Signal direkt auf der Karte (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Was du von hier erreichst: Entdecke die Relais, die dich an deinem Standort erreichen – mit Signal und Geländeprofil (PRO)';
+
+  @override
   String get changelogTitle => 'Neuigkeiten';
 
   @override
