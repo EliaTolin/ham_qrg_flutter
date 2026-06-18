@@ -14,6 +14,12 @@ part of 'is_pro_provider.dart';
 /// reports a change (purchase, restore, expiration, webhook refresh).
 ///
 /// Read it as `ref.watch(isProProvider).value ?? false`.
+///
+/// `keepAlive`: Pro status is global, app-wide and rarely changes, so we keep
+/// it warm. Otherwise each gate that mounts restarts the provider from
+/// `AsyncLoading` (a one-frame false → flash of "locked") and a cold
+/// `ref.read` from an event handler can read `false` before the stream
+/// resolves. Kept alive, once it resolves to `true` every reader sees `true`.
 
 @ProviderFor(isPro)
 final isProProvider = IsProProvider._();
@@ -24,6 +30,12 @@ final isProProvider = IsProProvider._();
 /// reports a change (purchase, restore, expiration, webhook refresh).
 ///
 /// Read it as `ref.watch(isProProvider).value ?? false`.
+///
+/// `keepAlive`: Pro status is global, app-wide and rarely changes, so we keep
+/// it warm. Otherwise each gate that mounts restarts the provider from
+/// `AsyncLoading` (a one-frame false → flash of "locked") and a cold
+/// `ref.read` from an event handler can read `false` before the stream
+/// resolves. Kept alive, once it resolves to `true` every reader sees `true`.
 
 final class IsProProvider
     extends $FunctionalProvider<AsyncValue<bool>, bool, Stream<bool>>
@@ -34,13 +46,19 @@ final class IsProProvider
   /// reports a change (purchase, restore, expiration, webhook refresh).
   ///
   /// Read it as `ref.watch(isProProvider).value ?? false`.
+  ///
+  /// `keepAlive`: Pro status is global, app-wide and rarely changes, so we keep
+  /// it warm. Otherwise each gate that mounts restarts the provider from
+  /// `AsyncLoading` (a one-frame false → flash of "locked") and a cold
+  /// `ref.read` from an event handler can read `false` before the stream
+  /// resolves. Kept alive, once it resolves to `true` every reader sees `true`.
   IsProProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'isProProvider',
-          isAutoDispose: true,
+          isAutoDispose: false,
           dependencies: null,
           $allTransitiveDependencies: null,
         );
@@ -59,4 +77,4 @@ final class IsProProvider
   }
 }
 
-String _$isProHash() => r'7dcdee09c29016621a97fcff02b83227cf339b40';
+String _$isProHash() => r'2f4efb5f362760c4cd99376914709efbf9324cdc';

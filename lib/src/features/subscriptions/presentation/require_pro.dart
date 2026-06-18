@@ -5,14 +5,24 @@ import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 
-/// Called after a successful purchase: (1) forces every `isProProvider` watcher
-/// (badges, gates, upsells) to re-read the entitlement immediately — instead of
-/// waiting for RevenueCat's async listener, which may lag and leave stale
-/// "locked" UI until restart — and (2) celebrates with the Pro welcome dialog.
-void _onProPurchased(WidgetRef ref) {
+/// Called after a successful purchase. In order:
+/// 1. Invalidate `isProProvider` so every watcher (badges, gates, upsells)
+///    re-reads the entitlement immediately instead of waiting for RevenueCat's
+///    async listener (which may lag and leave stale "locked" UI).
+/// 2. Celebrate with the WOW Pro welcome dialog (awaited).
+/// 3. Hard-refresh the whole navigation tree with `replaceAll([HomeRoute()])`:
+///    every page is torn down and rebuilt from scratch, so Pro gates that
+///    captured their state at build time (coverage button, blur gates,
+///    reachability) come back unlocked — equivalent to an app restart, but in
+///    place. The user lands back on the default tab.
+Future<void> _onProPurchased(WidgetRef ref) async {
   ref.invalidate(isProProvider);
-  final context = ref.read(appRouterProvider).navigatorKey.currentContext;
-  if (context != null) showProWelcome(context);
+
+  final router = ref.read(appRouterProvider);
+  final context = router.navigatorKey.currentContext;
+  if (context != null) await showProWelcome(context);
+
+  await router.replaceAll([const HomeRoute()]);
 }
 
 /// Pro gate used before protected (Pro-only) actions.
@@ -34,7 +44,7 @@ Future<bool> requirePro(WidgetRef ref) async {
   final client = ref.read(revenueCatClientProvider);
   if (await client.isPro()) return true;
   final purchased = await client.presentPaywallIfNeeded();
-  if (purchased) _onProPurchased(ref);
+  if (purchased) await _onProPurchased(ref);
   return purchased;
 }
 
@@ -42,7 +52,7 @@ Future<bool> requirePro(WidgetRef ref) async {
 /// (e.g. from a "Go Pro" button / upsell card).
 Future<bool> openProPaywall(WidgetRef ref) async {
   final purchased = await ref.read(revenueCatClientProvider).presentPaywall();
-  if (purchased) _onProPurchased(ref);
+  if (purchased) await _onProPurchased(ref);
   return purchased;
 }
 
@@ -53,6 +63,6 @@ Future<bool> openReachabilityPaywall(WidgetRef ref) async {
   final purchased = await ref.read(revenueCatClientProvider).presentPaywall(
         offeringId: AppConfigs.reachabilityPaywallOfferingId,
       );
-  if (purchased) _onProPurchased(ref);
+  if (purchased) await _onProPurchased(ref);
   return purchased;
 }
