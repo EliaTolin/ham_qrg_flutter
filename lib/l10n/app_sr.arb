@@ -665,6 +665,8 @@
   "changelog1020ClusterSpots": "Cluster spotovi u realnom vremenu: vidi ko sluša na repetitorima, sa obaveštenjima i podešavanjima",
   "changelog1020DetailTabs": "Stranica repetitora sa karticama Info, Cluster i Zajednica",
   "changelog1020TabletLayout": "Raspored optimizovan za tablete",
+  "changelog110Coverage": "Mapa pokrivenosti repetitora: pogledaj procenjeni signal direktno na mapi (PRO)",
+  "changelog110Reachable": "Šta dosežeš odavde: otkrij repetitore koje hvataš sa svoje lokacije, sa signalom i profilom terena (PRO)",
   "changelogTitle": "Šta je novo",
   "changelogSubtitle": "Evo šta je novo u ovoj verziji",
   "changelogCategoryAdded": "Novo",

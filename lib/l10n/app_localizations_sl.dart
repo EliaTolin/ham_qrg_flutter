@@ -1777,6 +1777,14 @@ class AppLocalizationsSl extends AppLocalizations {
   String get changelog1020TabletLayout => 'Postavitev, optimizirana za tablice';
 
   @override
+  String get changelog110Coverage =>
+      'Zemljevid pokritosti pretvornikov: oglej si predvideni signal neposredno na zemljevidu (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Kaj dosežeš od tu: odkrij pretvornike, ki jih ujameš s svoje lokacije, s signalom in profilom terena (PRO)';
+
+  @override
   String get changelogTitle => 'Novosti';
 
   @override

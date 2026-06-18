@@ -665,6 +665,8 @@
   "changelog1020ClusterSpots": "Valós idejű cluster spotok: nézd meg, ki hallgat az átjátszókon, értesítésekkel és beállításokkal",
   "changelog1020DetailTabs": "Átjátszó oldal Info, Cluster és Közösség fülekkel",
   "changelog1020TabletLayout": "Táblagépre optimalizált elrendezés",
+  "changelog110Coverage": "Átjátszók lefedettségi térképe: nézd meg a becsült jelet közvetlenül a térképen (PRO)",
+  "changelog110Reachable": "Mit érsz el innen: fedezd fel az átjátszókat, amelyeket a helyzetedből elérsz, jellel és terepprofillal (PRO)",
   "changelogTitle": "Újdonságok",
   "changelogSubtitle": "Íme, mi újság ebben a verzióban",
   "changelogCategoryAdded": "Új",

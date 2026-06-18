@@ -3196,6 +3196,18 @@ abstract class AppLocalizations {
   /// **'Layout ottimizzato per tablet'**
   String get changelog1020TabletLayout;
 
+  /// No description provided for @changelog110Coverage.
+  ///
+  /// In it, this message translates to:
+  /// **'Mappa di copertura dei ripetitori: vedi il segnale stimato direttamente sulla mappa (PRO)'**
+  String get changelog110Coverage;
+
+  /// No description provided for @changelog110Reachable.
+  ///
+  /// In it, this message translates to:
+  /// **'Cosa raggiungi da qui: scopri i ponti che prendi dalla tua posizione, con segnale e profilo del terreno (PRO)'**
+  String get changelog110Reachable;
+
   /// No description provided for @changelogTitle.
   ///
   /// In it, this message translates to:

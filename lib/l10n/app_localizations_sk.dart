@@ -1724,6 +1724,14 @@ class AppLocalizationsSk extends AppLocalizations {
       'Rozloženie optimalizované pre tablety';
 
   @override
+  String get changelog110Coverage =>
+      'Mapa pokrytia prevádzačov: pozri si odhadovaný signál priamo na mape (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Čo odtiaľto dosiahneš: objav prevádzače, ktoré zo svojej polohy zachytíš, so signálom a profilom terénu (PRO)';
+
+  @override
   String get changelogTitle => 'Čo je nové';
 
   @override

@@ -665,6 +665,8 @@
   "changelog1020ClusterSpots": "Cluster spoty w czasie rzeczywistym: zobacz, kto słucha na przemiennikach, z powiadomieniami i preferencjami",
   "changelog1020DetailTabs": "Strona przemiennika z zakładkami Info, Cluster i Społeczność",
   "changelog1020TabletLayout": "Układ zoptymalizowany dla tabletów",
+  "changelog110Coverage": "Mapa zasięgu przemienników: zobacz szacowany sygnał bezpośrednio na mapie (PRO)",
+  "changelog110Reachable": "Co osiągniesz stąd: odkryj przemienniki, które złapiesz ze swojej pozycji, z sygnałem i profilem terenu (PRO)",
   "changelogTitle": "Co nowego",
   "changelogSubtitle": "Oto nowości w tej wersji",
   "changelogCategoryAdded": "Nowe",

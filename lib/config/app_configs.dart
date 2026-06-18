@@ -101,8 +101,9 @@ class AppConfigs {
   }
 
   /// Identifier of the RevenueCat entitlement that unlocks HamQRG Pro.
-  /// Must match the entitlement identifier configured in the dashboard.
-  static String get revenueCatProEntitlementId => 'pro';
+  /// Must match the entitlement identifier configured in the dashboard
+  /// (verified at runtime: the active entitlement is "HamQRG Pro").
+  static String get revenueCatProEntitlementId => 'HamQRG Pro';
 
   /// Identifier of the default RevenueCat offering shown in the paywall.
   static String get revenueCatDefaultOfferingId => 'default';

@@ -665,6 +665,8 @@
   "changelog1020ClusterSpots": "Realtime cluster spots: zie wie er luistert op repeaters, met meldingen en voorkeuren",
   "changelog1020DetailTabs": "Repeaterpagina met tabbladen Info, Cluster en Community",
   "changelog1020TabletLayout": "Geoptimaliseerde lay-out voor tablets",
+  "changelog110Coverage": "Dekkingskaart van repeaters: bekijk het voorspelde signaal direct op de kaart (PRO)",
+  "changelog110Reachable": "Wat je van hier bereikt: ontdek de repeaters die je vanaf je locatie haalt, met signaal en terreinprofiel (PRO)",
   "changelogTitle": "Wat is er nieuw",
   "changelogSubtitle": "Dit is nieuw in deze versie",
   "changelogCategoryAdded": "Nieuw",

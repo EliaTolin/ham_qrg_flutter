@@ -665,6 +665,8 @@
   "changelog1020ClusterSpots": "Real-time cluster spots: see who's listening on repeaters, with notifications and preferences",
   "changelog1020DetailTabs": "Repeater page with Info, Cluster and Community tabs",
   "changelog1020TabletLayout": "Optimized layout for tablets",
+  "changelog110Coverage": "Repeater coverage map: see the predicted signal right on the map (PRO)",
+  "changelog110Reachable": "What you reach from here: discover the repeaters you hit from your position, with signal and terrain profile (PRO)",
   "changelogTitle": "What's New",
   "changelogSubtitle": "Here's what's new in this version",
   "changelogCategoryAdded": "New",

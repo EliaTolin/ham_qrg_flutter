@@ -1719,6 +1719,14 @@ class AppLocalizationsHr extends AppLocalizations {
   String get changelog1020TabletLayout => 'Raspored optimiziran za tablete';
 
   @override
+  String get changelog110Coverage =>
+      'Karta pokrivenosti repetitora: pogledajte procijenjeni signal izravno na karti (PRO)';
+
+  @override
+  String get changelog110Reachable =>
+      'Što dosežeš odavde: otkrij repetitore koje hvataš sa svoje lokacije, sa signalom i profilom terena (PRO)';
+
+  @override
   String get changelogTitle => 'Što je novo';
 
   @override

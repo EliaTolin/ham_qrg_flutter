@@ -665,6 +665,8 @@
   "changelog1020ClusterSpots": "Cluster spots em tempo real: vê quem está à escuta nos repetidores, com notificações e preferências",
   "changelog1020DetailTabs": "Página do repetidor com separadores Info, Cluster e Comunidade",
   "changelog1020TabletLayout": "Layout otimizado para tablets",
+  "changelog110Coverage": "Mapa de cobertura dos repetidores: veja o sinal estimado diretamente no mapa (PRO)",
+  "changelog110Reachable": "O que alcanças daqui: descobre os repetidores que captas da tua posição, com sinal e perfil do terreno (PRO)",
   "changelogTitle": "Novidades",
   "changelogSubtitle": "Eis o que há de novo nesta versão",
   "changelogCategoryAdded": "Novo",

@@ -5,6 +5,19 @@ import 'package:hamqrg/src/features/changelog/domain/changelog_entry.dart';
 /// Returns all changelog entries with localized descriptions.
 List<ChangelogEntry> getChangelogEntries(AppLocalizations l10n) => [
       ChangelogEntry(
+        version: '1.1.0',
+        changes: [
+          ChangelogChange(
+            category: ChangeCategory.added,
+            description: l10n.changelog110Coverage,
+          ),
+          ChangelogChange(
+            category: ChangeCategory.added,
+            description: l10n.changelog110Reachable,
+          ),
+        ],
+      ),
+      ChangelogEntry(
         version: '1.0.20',
         changes: [
           ChangelogChange(
