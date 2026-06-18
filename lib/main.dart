@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamqrg/clients/revenue_cat/impl/revenue_cat_client_impl.dart';
@@ -80,6 +80,12 @@ Future<void> _initRevenueCat() async {
     final currentUserId = Supabase.instance.client.auth.currentUser?.id;
     if (currentUserId != null) {
       await revenueCatClient.login(currentUserId);
+    }
+
+    if (kDebugMode) {
+      // Startup snapshot of the Pro entitlement, for diagnostics.
+      debugPrint('[RevenueCat] startup user=$currentUserId');
+      await revenueCatClient.isPro();
     }
   } catch (error, stackTrace) {
     await Sentry.captureException(error, stackTrace: stackTrace);

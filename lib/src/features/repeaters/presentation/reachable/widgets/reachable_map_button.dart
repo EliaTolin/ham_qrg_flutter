@@ -13,6 +13,9 @@ class ReachableMapButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    // Watch here so the provider stays warm and resolved while the button is
+    // visible; the tap handler then reads the settled value synchronously.
+    ref.watch(isProProvider);
 
     return Material(
       color: theme.colorScheme.primary,
@@ -44,6 +47,8 @@ class ReachableMapButton extends ConsumerWidget {
   }
 
   Future<void> _onTap(BuildContext context, WidgetRef ref) async {
+    // The provider is kept warm by the watch in build(), so the settled value
+    // is available synchronously here (no fragile `.future` await).
     final isPro = ref.read(isProProvider).value ?? false;
     if (!isPro) {
       await showReachabilityUpsell(context, ref);
