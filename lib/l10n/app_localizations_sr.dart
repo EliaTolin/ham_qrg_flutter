@@ -2018,4 +2018,204 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get sotaFilterPointsAll => 'All points';
+
+  @override
+  String get reachSheetError => 'Није могуће израчунати доступне репетиторе.';
+
+  @override
+  String reachSheetCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Досежеш $count репетитора',
+      few: 'Досежеш $count репетитора',
+      one: 'Досежеш 1 репетитор',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reachSheetSubtitle => 'Са твоје локације, сортирано по сигналу';
+
+  @override
+  String get reachSheetEmpty => 'Нема доступних репетитора у близини.';
+
+  @override
+  String get reachBadgeTitle => 'Досежеш ли га одавде?';
+
+  @override
+  String get reachBadgeSubtitle =>
+      'Сазнај да ли те овај репетитор покрива и с којим сигналом';
+
+  @override
+  String get reachDiscoverCta => 'Откриј уз PRO';
+
+  @override
+  String get reachReachable => 'Досежеш га';
+
+  @override
+  String get reachOutOfCoverage => 'Ван покривености';
+
+  @override
+  String reachReachableDetail(String signal, String distance) {
+    return '$signal · $distance km · додирни за профил';
+  }
+
+  @override
+  String reachDistanceFromHere(String distance) {
+    return '$distance km одавде';
+  }
+
+  @override
+  String get reachComputing => 'Израчунавање покривености…';
+
+  @override
+  String get reachRepeaterFallback => 'Репетитор';
+
+  @override
+  String get reachMapButton => 'Шта досежеш?';
+
+  @override
+  String get reachUpsellTitle => 'Шта досежеш одавде? 📡';
+
+  @override
+  String get reachUpsellBody =>
+      'Гледај у реалном времену СВЕ репетиторе које хваташ са своје локације, са предвиђеним сигналом и профилом терена. Колико их заиста досежеш одатле где си сада?';
+
+  @override
+  String get reachUpsellLater => 'Касније';
+
+  @override
+  String get linkProfileObstructed => 'Препрека на путањи (сигнал дифракцијом)';
+
+  @override
+  String get linkProfileClear => 'Слободна оптичка видљивост';
+
+  @override
+  String linkProfileCaption(int tx, int rx) {
+    return 'Профил терена и линија видљивости · TX $tx m · RX $rx m';
+  }
+
+  @override
+  String get proUnlockCta => 'Откључај уз PRO';
+
+  @override
+  String get proWelcomeTitle => 'Добро дошао у PRO! 🎉';
+
+  @override
+  String get proWelcomeBody =>
+      'Откључао си мапу покривености, репетиторе које досежеш са своје локације и све PRO функције. 📡';
+
+  @override
+  String get proWelcomeCta => 'Почни да истражујеш';
+
+  @override
+  String get commonCancel => 'Откажи';
+
+  @override
+  String get commonDelete => 'Обриши';
+
+  @override
+  String get commonEdit => 'Измени';
+
+  @override
+  String get commonOpenSettings => 'Отвори подешавања';
+
+  @override
+  String get commonFieldRequired => 'Обавезно поље';
+
+  @override
+  String get fieldName => 'Име';
+
+  @override
+  String get fieldAddress => 'Адреса';
+
+  @override
+  String get fieldCity => 'Град';
+
+  @override
+  String get fieldDescription => 'Опис';
+
+  @override
+  String get fieldYear => 'Година';
+
+  @override
+  String get fieldSelectDateHint => 'Изабери датум';
+
+  @override
+  String get validationInvalidYear => 'Изабери важећу годину';
+
+  @override
+  String get validationPasswordMinLength =>
+      'Лозинка мора имати најмање 6 знакова';
+
+  @override
+  String get permissionsMissingTitle => 'Недостају дозволе!';
+
+  @override
+  String get imageUploadError => 'Грешка при отпремању слике';
+
+  @override
+  String get uploadImageLabel => 'Отпреми слику';
+
+  @override
+  String get sourceGallery => 'Галерија';
+
+  @override
+  String get sourceCamera => 'Камера';
+
+  @override
+  String get changePasswordTitle => 'Промени лозинку';
+
+  @override
+  String get fieldNewPassword => 'Нова лозинка';
+
+  @override
+  String get fieldConfirmNewPassword => 'Потврди нову лозинку';
+
+  @override
+  String get validationPasswordsNoMatch => 'Лозинке се не подударају';
+
+  @override
+  String get passwordChangedSuccess => 'Лозинка успешно промењена';
+
+  @override
+  String errorWithMessage(String message) {
+    return 'Грешка: $message';
+  }
+
+  @override
+  String get updateRequiredTitle => 'Потребно ажурирање';
+
+  @override
+  String get updateRequiredAction => 'Ажурирај сада';
+
+  @override
+  String get yearPickerTitle => 'Изабери годину';
+
+  @override
+  String get repeaterTabInfo => 'Инфо';
+
+  @override
+  String get repeaterTabCluster => 'Cluster';
+
+  @override
+  String get repeaterTabCommunity => 'Заједница';
+
+  @override
+  String get updateRequiredBody =>
+      'Доступна је нова верзија апликације. Ажурирајте је да бисте наставили да је користите.';
+
+  @override
+  String get errorOpeningStore => 'Грешка при отварању продавнице';
+
+  @override
+  String get deleteConfirmTitle => 'Потврди брисање';
+
+  @override
+  String get deleteConfirmContent => 'Да ли сте сигурни да желите да обришете?';
+
+  @override
+  String get cameraPermissionRationale =>
+      'Да бисте снимили фотографију, дозволите приступ камери у подешавањима.';
 }

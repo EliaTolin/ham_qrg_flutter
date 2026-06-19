@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 
 class EditButton extends StatelessWidget {
   const EditButton({required this.onEdit, this.text, super.key});
@@ -13,7 +13,7 @@ class EditButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade50),
       onPressed: onEdit,
       label: Text(
-        text ?? 'Modifica'.hardcoded,
+        text ?? context.localization.commonEdit,
         style:
             const TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
       ),

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/button/save_button.dart';
 import 'package:hamqrg/common/widgets/card/error_card.dart';
 import 'package:hamqrg/common/widgets/form/password_field.dart';
@@ -23,7 +23,7 @@ class ChangePasswordScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cambia Password'.hardcoded),
+        title: Text(context.localization.changePasswordTitle),
       ),
       body: ref.watch(changePasswordControllerProvider).when(
             data: (state) => buildBody(
@@ -48,6 +48,7 @@ class ChangePasswordScreen extends HookConsumerWidget {
     TextEditingController newPasswordController,
     TextEditingController confirmPasswordController,
   ) {
+    final l10n = context.localization;
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Form(
@@ -58,13 +59,13 @@ class ChangePasswordScreen extends HookConsumerWidget {
             // Campo nuova password
             PasswordField(
               controller: newPasswordController,
-              label: 'Nuova Password'.hardcoded,
+              label: l10n.fieldNewPassword,
             ),
             const SizedBox(height: 16),
             // Campo conferma nuova password
             PasswordField(
               controller: confirmPasswordController,
-              label: 'Conferma Nuova Password'.hardcoded,
+              label: l10n.fieldConfirmNewPassword,
             ),
             const SizedBox(height: 24),
             // Bottone di salvataggio
@@ -76,7 +77,7 @@ class ChangePasswordScreen extends HookConsumerWidget {
                       confirmPasswordController.text) {
                     showErrorSnackbar(
                       context,
-                      'Le password non corrispondono'.hardcoded,
+                      l10n.validationPasswordsNoMatch,
                     );
                     return;
                   }
@@ -87,17 +88,20 @@ class ChangePasswordScreen extends HookConsumerWidget {
                     if (context.mounted) {
                       showSuccessSnackbar(
                         context,
-                        'Password cambiata con successo'.hardcoded,
+                        l10n.passwordChangedSuccess,
                       );
                       await context.replaceRoute(const HomeRoute());
                     }
                   } catch (e) {
                     if (context.mounted) {
-                      showErrorSnackbar(context, 'Errore: $e'.hardcoded);
+                      showErrorSnackbar(
+                        context,
+                        l10n.errorWithMessage(e.toString()),
+                      );
                     }
                   }
                 },
-                text: 'Cambia Password'.hardcoded,
+                text: l10n.changePasswordTitle,
               ),
             ),
           ],

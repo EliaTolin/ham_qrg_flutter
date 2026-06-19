@@ -129,6 +129,25 @@ File: `lib/l10n/app_it.arb` (template)
 - **Values**: ALWAYS in Italian
 - Pattern: `[feature][element]` (e.g., `homeQuickAccess`, `repeaterDetails`)
 
+### NEVER hardcode user-facing text
+
+- **NEVER** put a user-facing string literal in a widget (`Text('Ciao')`, button
+  labels, titles, snackbars, dialogs, tooltips, semantic labels, etc.). ALWAYS
+  use `context.localization.<key>` (extension in `lib/common/extension/l10n_extension.dart`).
+- This includes **default parameter values** of shared widgets: never
+  `this.ctaLabel = 'Sblocca con PRO'`. Make the param nullable and resolve the
+  default in `build` via `ctaLabel ?? context.localization.<key>`.
+- Strings with variables/plurals use ARB **placeholders / ICU plural**, never
+  string interpolation (`'Raggiungi $n ponti'` ❌ → `l10n.reachSheetCount(n)` ✅).
+- Workflow for every new string:
+  1. Add the key (English camelCase) + Italian value to `lib/l10n/app_it.arb`
+     (with `@key` placeholder metadata if it has args).
+  2. **Translate it into ALL locale files** (`app_en`, `app_es`, … all 15) —
+     do NOT leave other languages to fall back to Italian.
+  3. Run `flutter gen-l10n` and confirm **zero** "untranslated message(s)".
+- The only acceptable literals in widgets are non-linguistic symbols (e.g. the
+  blurred `'-•• dBm · •• km'` teaser mock, the `'PRO'` brand acronym).
+
 ## Backend & Services
 
 - **Supabase**: Database, authentication (Google, Apple, Anonymous)

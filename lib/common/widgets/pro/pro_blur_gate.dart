@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/themes/app_colors.dart';
 
 /// Gates a Pro-only block behind a tantalising blurred teaser.
@@ -17,7 +18,7 @@ class ProBlurGate extends StatelessWidget {
     required this.title,
     required this.onUnlock,
     this.subtitle,
-    this.ctaLabel = 'Sblocca con PRO',
+    this.ctaLabel,
     this.blurSigma = 9,
     super.key,
   });
@@ -33,7 +34,9 @@ class ProBlurGate extends StatelessWidget {
 
   final String title;
   final String? subtitle;
-  final String ctaLabel;
+
+  /// Call-to-action label. Defaults to the localized "unlock with Pro" text.
+  final String? ctaLabel;
   final VoidCallback onUnlock;
   final double blurSigma;
 
@@ -118,7 +121,7 @@ class ProBlurGate extends StatelessWidget {
                         foregroundColor: AppColors.onProGold,
                       ),
                       icon: const Icon(Icons.bolt_rounded, size: 18),
-                      label: Text(ctaLabel),
+                      label: Text(ctaLabel ?? context.localization.proUnlockCta),
                     ),
                   ],
                 ),

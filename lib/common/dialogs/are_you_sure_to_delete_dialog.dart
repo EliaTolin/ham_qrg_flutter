@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 
 Future<bool> showAreYouSureToDeleteDialog(
   BuildContext context, {
-  String title = 'Conferma cancellazione',
-  String content = 'Sei sicuro di voler cancellare?',
+  String? title,
+  String? content,
   bool barrierDismissible = false,
 }) async {
+  final l10n = context.localization;
+  final resolvedTitle = title ?? l10n.deleteConfirmTitle;
+  final resolvedContent = content ?? l10n.deleteConfirmContent;
   try {
     return await showDialog(
       barrierDismissible: barrierDismissible,
@@ -14,7 +17,7 @@ Future<bool> showAreYouSureToDeleteDialog(
       builder: (context) {
         return AlertDialog(
           title: Text(
-            title,
+            resolvedTitle,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
@@ -22,7 +25,7 @@ Future<bool> showAreYouSureToDeleteDialog(
                 ),
           ),
           content: Text(
-            content,
+            resolvedContent,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
           ),
@@ -31,14 +34,14 @@ Future<bool> showAreYouSureToDeleteDialog(
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
-              child: Text('Annulla'.hardcoded),
+              child: Text(l10n.commonCancel),
             ),
             TextButton(
               onPressed: () async {
                 Navigator.of(context).pop(true);
               },
               child: Text(
-                'Cancella'.hardcoded,
+                l10n.commonDelete,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.error,
                 ),

@@ -2081,4 +2081,205 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get sotaFilterPointsAll => 'All points';
+
+  @override
+  String get reachSheetError => 'Nu s-au putut calcula releele accesibile.';
+
+  @override
+  String reachSheetCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Atingi $count de relee',
+      few: 'Atingi $count relee',
+      one: 'Atingi 1 releu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reachSheetSubtitle => 'Din locația ta, sortate după semnal';
+
+  @override
+  String get reachSheetEmpty => 'Niciun releu accesibil în apropiere.';
+
+  @override
+  String get reachBadgeTitle => 'Îl atingi de aici?';
+
+  @override
+  String get reachBadgeSubtitle =>
+      'Află dacă acest releu te acoperă și cu ce semnal';
+
+  @override
+  String get reachDiscoverCta => 'Descoperă cu PRO';
+
+  @override
+  String get reachReachable => 'Îl atingi';
+
+  @override
+  String get reachOutOfCoverage => 'În afara acoperirii';
+
+  @override
+  String reachReachableDetail(String signal, String distance) {
+    return '$signal · $distance km · atinge pentru profil';
+  }
+
+  @override
+  String reachDistanceFromHere(String distance) {
+    return '$distance km de aici';
+  }
+
+  @override
+  String get reachComputing => 'Se calculează acoperirea…';
+
+  @override
+  String get reachRepeaterFallback => 'Releu';
+
+  @override
+  String get reachMapButton => 'Ce atingi?';
+
+  @override
+  String get reachUpsellTitle => 'Ce atingi de aici? 📡';
+
+  @override
+  String get reachUpsellBody =>
+      'Vezi în timp real TOATE releele pe care le prinzi din locația ta, cu semnal estimat și profil al terenului. Câte atingi cu adevărat de unde ești acum?';
+
+  @override
+  String get reachUpsellLater => 'Mai târziu';
+
+  @override
+  String get linkProfileObstructed =>
+      'Obstacol pe traseu (semnal prin difracție)';
+
+  @override
+  String get linkProfileClear => 'Linie de vedere liberă';
+
+  @override
+  String linkProfileCaption(int tx, int rx) {
+    return 'Profilul terenului și linia de vedere · TX $tx m · RX $rx m';
+  }
+
+  @override
+  String get proUnlockCta => 'Deblochează cu PRO';
+
+  @override
+  String get proWelcomeTitle => 'Bine ai venit în PRO! 🎉';
+
+  @override
+  String get proWelcomeBody =>
+      'Ai deblocat harta de acoperire, releele pe care le atingi din locația ta și toate funcțiile PRO. 📡';
+
+  @override
+  String get proWelcomeCta => 'Începe să explorezi';
+
+  @override
+  String get commonCancel => 'Anulează';
+
+  @override
+  String get commonDelete => 'Șterge';
+
+  @override
+  String get commonEdit => 'Editează';
+
+  @override
+  String get commonOpenSettings => 'Deschide setările';
+
+  @override
+  String get commonFieldRequired => 'Câmp obligatoriu';
+
+  @override
+  String get fieldName => 'Nume';
+
+  @override
+  String get fieldAddress => 'Adresă';
+
+  @override
+  String get fieldCity => 'Oraș';
+
+  @override
+  String get fieldDescription => 'Descriere';
+
+  @override
+  String get fieldYear => 'An';
+
+  @override
+  String get fieldSelectDateHint => 'Selectează o dată';
+
+  @override
+  String get validationInvalidYear => 'Selectează un an valid';
+
+  @override
+  String get validationPasswordMinLength =>
+      'Parola trebuie să aibă cel puțin 6 caractere';
+
+  @override
+  String get permissionsMissingTitle => 'Lipsesc permisiunile!';
+
+  @override
+  String get imageUploadError => 'Eroare la încărcarea imaginii';
+
+  @override
+  String get uploadImageLabel => 'Încarcă imagine';
+
+  @override
+  String get sourceGallery => 'Galerie';
+
+  @override
+  String get sourceCamera => 'Cameră';
+
+  @override
+  String get changePasswordTitle => 'Schimbă parola';
+
+  @override
+  String get fieldNewPassword => 'Parolă nouă';
+
+  @override
+  String get fieldConfirmNewPassword => 'Confirmă parola nouă';
+
+  @override
+  String get validationPasswordsNoMatch => 'Parolele nu coincid';
+
+  @override
+  String get passwordChangedSuccess => 'Parolă schimbată cu succes';
+
+  @override
+  String errorWithMessage(String message) {
+    return 'Eroare: $message';
+  }
+
+  @override
+  String get updateRequiredTitle => 'Actualizare necesară';
+
+  @override
+  String get updateRequiredAction => 'Actualizează acum';
+
+  @override
+  String get yearPickerTitle => 'Selectează anul';
+
+  @override
+  String get repeaterTabInfo => 'Info';
+
+  @override
+  String get repeaterTabCluster => 'Cluster';
+
+  @override
+  String get repeaterTabCommunity => 'Comunitate';
+
+  @override
+  String get updateRequiredBody =>
+      'Este disponibilă o nouă versiune a aplicației. Actualizează pentru a o folosi în continuare.';
+
+  @override
+  String get errorOpeningStore => 'Eroare la deschiderea magazinului';
+
+  @override
+  String get deleteConfirmTitle => 'Confirmă ștergerea';
+
+  @override
+  String get deleteConfirmContent => 'Sigur vrei să ștergi?';
+
+  @override
+  String get cameraPermissionRationale =>
+      'Pentru a face o fotografie, permite accesul la cameră în setări.';
 }

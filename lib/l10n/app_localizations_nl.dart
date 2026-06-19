@@ -2012,4 +2012,205 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get sotaFilterPointsAll => 'All points';
+
+  @override
+  String get reachSheetError =>
+      'Bereikbare relais konden niet worden berekend.';
+
+  @override
+  String reachSheetCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Je bereikt $count relais',
+      one: 'Je bereikt 1 relais',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reachSheetSubtitle => 'Vanaf je locatie, gesorteerd op signaal';
+
+  @override
+  String get reachSheetEmpty => 'Geen bereikbare relais in de buurt.';
+
+  @override
+  String get reachBadgeTitle => 'Bereik je het vanaf hier?';
+
+  @override
+  String get reachBadgeSubtitle =>
+      'Ontdek of dit relais je dekt en met welk signaal';
+
+  @override
+  String get reachDiscoverCta => 'Ontdek het met PRO';
+
+  @override
+  String get reachReachable => 'Je bereikt het';
+
+  @override
+  String get reachOutOfCoverage => 'Buiten dekking';
+
+  @override
+  String reachReachableDetail(String signal, String distance) {
+    return '$signal · $distance km · tik voor het profiel';
+  }
+
+  @override
+  String reachDistanceFromHere(String distance) {
+    return '$distance km vanaf hier';
+  }
+
+  @override
+  String get reachComputing => 'Dekking berekenen…';
+
+  @override
+  String get reachRepeaterFallback => 'Relais';
+
+  @override
+  String get reachMapButton => 'Wat bereik je?';
+
+  @override
+  String get reachUpsellTitle => 'Wat bereik je vanaf hier? 📡';
+
+  @override
+  String get reachUpsellBody =>
+      'Zie in realtime ALLE relais die je vanaf je locatie ontvangt, met voorspeld signaal en terreinprofiel. Hoeveel bereik je echt vanaf waar je nu bent?';
+
+  @override
+  String get reachUpsellLater => 'Later';
+
+  @override
+  String get linkProfileObstructed =>
+      'Obstakel op het pad (signaal via diffractie)';
+
+  @override
+  String get linkProfileClear => 'Vrij zicht';
+
+  @override
+  String linkProfileCaption(int tx, int rx) {
+    return 'Terreinprofiel en zichtlijn · TX $tx m · RX $rx m';
+  }
+
+  @override
+  String get proUnlockCta => 'Ontgrendel met PRO';
+
+  @override
+  String get proWelcomeTitle => 'Welkom bij PRO! 🎉';
+
+  @override
+  String get proWelcomeBody =>
+      'Je hebt de dekkingskaart, de relais die je vanaf je locatie bereikt en alle PRO-functies ontgrendeld. 📡';
+
+  @override
+  String get proWelcomeCta => 'Begin met verkennen';
+
+  @override
+  String get commonCancel => 'Annuleren';
+
+  @override
+  String get commonDelete => 'Verwijderen';
+
+  @override
+  String get commonEdit => 'Bewerken';
+
+  @override
+  String get commonOpenSettings => 'Instellingen openen';
+
+  @override
+  String get commonFieldRequired => 'Verplicht veld';
+
+  @override
+  String get fieldName => 'Naam';
+
+  @override
+  String get fieldAddress => 'Adres';
+
+  @override
+  String get fieldCity => 'Stad';
+
+  @override
+  String get fieldDescription => 'Beschrijving';
+
+  @override
+  String get fieldYear => 'Jaar';
+
+  @override
+  String get fieldSelectDateHint => 'Selecteer een datum';
+
+  @override
+  String get validationInvalidYear => 'Selecteer een geldig jaar';
+
+  @override
+  String get validationPasswordMinLength =>
+      'Het wachtwoord moet minstens 6 tekens lang zijn';
+
+  @override
+  String get permissionsMissingTitle => 'Ontbrekende rechten!';
+
+  @override
+  String get imageUploadError => 'Fout bij het uploaden van de afbeelding';
+
+  @override
+  String get uploadImageLabel => 'Afbeelding uploaden';
+
+  @override
+  String get sourceGallery => 'Galerij';
+
+  @override
+  String get sourceCamera => 'Camera';
+
+  @override
+  String get changePasswordTitle => 'Wachtwoord wijzigen';
+
+  @override
+  String get fieldNewPassword => 'Nieuw wachtwoord';
+
+  @override
+  String get fieldConfirmNewPassword => 'Bevestig nieuw wachtwoord';
+
+  @override
+  String get validationPasswordsNoMatch => 'De wachtwoorden komen niet overeen';
+
+  @override
+  String get passwordChangedSuccess => 'Wachtwoord succesvol gewijzigd';
+
+  @override
+  String errorWithMessage(String message) {
+    return 'Fout: $message';
+  }
+
+  @override
+  String get updateRequiredTitle => 'Update vereist';
+
+  @override
+  String get updateRequiredAction => 'Nu bijwerken';
+
+  @override
+  String get yearPickerTitle => 'Selecteer het jaar';
+
+  @override
+  String get repeaterTabInfo => 'Info';
+
+  @override
+  String get repeaterTabCluster => 'Cluster';
+
+  @override
+  String get repeaterTabCommunity => 'Community';
+
+  @override
+  String get updateRequiredBody =>
+      'Er is een nieuwe versie van de app beschikbaar. Werk bij om de app te blijven gebruiken.';
+
+  @override
+  String get errorOpeningStore => 'Fout bij het openen van de store';
+
+  @override
+  String get deleteConfirmTitle => 'Verwijderen bevestigen';
+
+  @override
+  String get deleteConfirmContent => 'Weet je zeker dat je wilt verwijderen?';
+
+  @override
+  String get cameraPermissionRationale =>
+      'Geef in de instellingen toegang tot de camera om een foto te maken.';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/repeater_card.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_reachable/get_reachable_repeaters_provider.dart';
 
@@ -34,6 +35,7 @@ class ReachableRepeatersSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = context.localization;
     final async = ref.watch(
       getReachableRepeatersProvider(latitude: latitude, longitude: longitude),
     );
@@ -50,7 +52,7 @@ class ReachableRepeatersSheet extends ConsumerWidget {
         error: (_, __) => Padding(
           padding: const EdgeInsets.all(24),
           child: Text(
-            'Impossibile calcolare i ponti raggiungibili.',
+            l10n.reachSheetError,
             style: theme.textTheme.bodyLarge,
           ),
         ),
@@ -66,13 +68,13 @@ class ReachableRepeatersSheet extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Raggiungi ${summary.reachableCount} ${summary.reachableCount == 1 ? "ponte" : "ponti"}',
+                        l10n.reachSheetCount(summary.reachableCount),
                         style: theme.textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.w800,
                         ),
                       ),
                       Text(
-                        'Dalla tua posizione, ordinati per segnale',
+                        l10n.reachSheetSubtitle,
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurface.withValues(alpha: 0.65),
                         ),
@@ -86,7 +88,7 @@ class ReachableRepeatersSheet extends ConsumerWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Text(
-                      'Nessun ponte raggiungibile nei dintorni.',
+                      l10n.reachSheetEmpty,
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),

@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/signal_helper.dart';
 import 'package:hamqrg/common/widgets/signal/signal_bars.dart';
 import 'package:hamqrg/src/features/repeaters/domain/reachable/reachable_link.dart';
@@ -22,6 +23,7 @@ class LinkProfileChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.localization;
     final points = link.points;
     if (points.length < 2) {
       return const SizedBox.shrink();
@@ -171,8 +173,8 @@ class LinkProfileChart extends StatelessWidget {
             Expanded(
               child: Text(
                 isObstructed
-                    ? 'Ostacolo sul percorso (segnale per diffrazione)'
-                    : 'Vista diretta libera',
+                    ? l10n.linkProfileObstructed
+                    : l10n.linkProfileClear,
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: isObstructed ? obstructionColor : signalColor,
                   fontWeight: FontWeight.w600,
@@ -183,7 +185,7 @@ class LinkProfileChart extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          'Profilo del terreno e linea di vista · TX ${txHeightM.round()} m · RX ${rxHeightM.round()} m',
+          l10n.linkProfileCaption(txHeightM.round(), rxHeightM.round()),
           style: theme.textTheme.labelSmall?.copyWith(
             color: theme.colorScheme.onSurface.withValues(alpha: 0.55),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hamqrg/common/dialogs/show_year_picker.dart';
-import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 
 class YearPickerField extends StatelessWidget {
   const YearPickerField({
@@ -16,6 +16,7 @@ class YearPickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.localization;
     return Row(
       children: [
         const Icon(Icons.calendar_today),
@@ -25,15 +26,15 @@ class YearPickerField extends StatelessWidget {
             readOnly: true, // Make the field read-only
             initialValue: selectedDate?.year.toString(),
             decoration: InputDecoration(
-              labelText: 'Anno'.hardcoded + (isRequired ? ' *' : ''),
-              hintText: 'Seleziona una data'.hardcoded,
+              labelText: l10n.fieldYear + (isRequired ? ' *' : ''),
+              hintText: l10n.fieldSelectDateHint,
             ),
             onTap: () {
               selectDate(context);
             },
             validator: (value) {
               if (isRequired && (value == null || value.isEmpty)) {
-                return 'Seleziona un anno valido'.hardcoded;
+                return l10n.validationInvalidYear;
               }
               return null;
             },

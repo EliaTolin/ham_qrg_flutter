@@ -3741,6 +3741,360 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Punti: tutti'**
   String get sotaFilterPointsAll;
+
+  /// No description provided for @reachSheetError.
+  ///
+  /// In it, this message translates to:
+  /// **'Impossibile calcolare i ponti raggiungibili.'**
+  String get reachSheetError;
+
+  /// No description provided for @reachSheetCount.
+  ///
+  /// In it, this message translates to:
+  /// **'{count, plural, =1{Raggiungi 1 ponte} other{Raggiungi {count} ponti}}'**
+  String reachSheetCount(int count);
+
+  /// No description provided for @reachSheetSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Dalla tua posizione, ordinati per segnale'**
+  String get reachSheetSubtitle;
+
+  /// No description provided for @reachSheetEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ponte raggiungibile nei dintorni.'**
+  String get reachSheetEmpty;
+
+  /// No description provided for @reachBadgeTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Lo raggiungi da qui?'**
+  String get reachBadgeTitle;
+
+  /// No description provided for @reachBadgeSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Scopri se questo ponte ti copre e con che segnale'**
+  String get reachBadgeSubtitle;
+
+  /// No description provided for @reachDiscoverCta.
+  ///
+  /// In it, this message translates to:
+  /// **'Scoprilo con PRO'**
+  String get reachDiscoverCta;
+
+  /// No description provided for @reachReachable.
+  ///
+  /// In it, this message translates to:
+  /// **'Lo raggiungi'**
+  String get reachReachable;
+
+  /// No description provided for @reachOutOfCoverage.
+  ///
+  /// In it, this message translates to:
+  /// **'Fuori copertura'**
+  String get reachOutOfCoverage;
+
+  /// No description provided for @reachReachableDetail.
+  ///
+  /// In it, this message translates to:
+  /// **'{signal} · {distance} km · tocca per il profilo'**
+  String reachReachableDetail(String signal, String distance);
+
+  /// No description provided for @reachDistanceFromHere.
+  ///
+  /// In it, this message translates to:
+  /// **'{distance} km da qui'**
+  String reachDistanceFromHere(String distance);
+
+  /// No description provided for @reachComputing.
+  ///
+  /// In it, this message translates to:
+  /// **'Calcolo copertura…'**
+  String get reachComputing;
+
+  /// No description provided for @reachRepeaterFallback.
+  ///
+  /// In it, this message translates to:
+  /// **'Ponte'**
+  String get reachRepeaterFallback;
+
+  /// No description provided for @reachMapButton.
+  ///
+  /// In it, this message translates to:
+  /// **'Cosa raggiungi?'**
+  String get reachMapButton;
+
+  /// No description provided for @reachUpsellTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Cosa raggiungi da qui? 📡'**
+  String get reachUpsellTitle;
+
+  /// No description provided for @reachUpsellBody.
+  ///
+  /// In it, this message translates to:
+  /// **'Scopri in tempo reale TUTTI i ponti che prendi dalla tua posizione — con segnale previsto e profilo del terreno. Quanti ne raggiungi davvero da dove sei adesso?'**
+  String get reachUpsellBody;
+
+  /// No description provided for @reachUpsellLater.
+  ///
+  /// In it, this message translates to:
+  /// **'Più tardi'**
+  String get reachUpsellLater;
+
+  /// No description provided for @linkProfileObstructed.
+  ///
+  /// In it, this message translates to:
+  /// **'Ostacolo sul percorso (segnale per diffrazione)'**
+  String get linkProfileObstructed;
+
+  /// No description provided for @linkProfileClear.
+  ///
+  /// In it, this message translates to:
+  /// **'Vista diretta libera'**
+  String get linkProfileClear;
+
+  /// No description provided for @linkProfileCaption.
+  ///
+  /// In it, this message translates to:
+  /// **'Profilo del terreno e linea di vista · TX {tx} m · RX {rx} m'**
+  String linkProfileCaption(int tx, int rx);
+
+  /// No description provided for @proUnlockCta.
+  ///
+  /// In it, this message translates to:
+  /// **'Sblocca con PRO'**
+  String get proUnlockCta;
+
+  /// No description provided for @proWelcomeTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Benvenuto in PRO! 🎉'**
+  String get proWelcomeTitle;
+
+  /// No description provided for @proWelcomeBody.
+  ///
+  /// In it, this message translates to:
+  /// **'Hai sbloccato la mappa di copertura, i ponti che raggiungi dalla tua posizione e tutte le funzioni PRO. 📡'**
+  String get proWelcomeBody;
+
+  /// No description provided for @proWelcomeCta.
+  ///
+  /// In it, this message translates to:
+  /// **'Inizia a esplorare'**
+  String get proWelcomeCta;
+
+  /// No description provided for @commonCancel.
+  ///
+  /// In it, this message translates to:
+  /// **'Annulla'**
+  String get commonCancel;
+
+  /// No description provided for @commonDelete.
+  ///
+  /// In it, this message translates to:
+  /// **'Cancella'**
+  String get commonDelete;
+
+  /// No description provided for @commonEdit.
+  ///
+  /// In it, this message translates to:
+  /// **'Modifica'**
+  String get commonEdit;
+
+  /// No description provided for @commonOpenSettings.
+  ///
+  /// In it, this message translates to:
+  /// **'Apri impostazioni'**
+  String get commonOpenSettings;
+
+  /// No description provided for @commonFieldRequired.
+  ///
+  /// In it, this message translates to:
+  /// **'Campo obbligatorio'**
+  String get commonFieldRequired;
+
+  /// No description provided for @fieldName.
+  ///
+  /// In it, this message translates to:
+  /// **'Nome'**
+  String get fieldName;
+
+  /// No description provided for @fieldAddress.
+  ///
+  /// In it, this message translates to:
+  /// **'Indirizzo'**
+  String get fieldAddress;
+
+  /// No description provided for @fieldCity.
+  ///
+  /// In it, this message translates to:
+  /// **'Città'**
+  String get fieldCity;
+
+  /// No description provided for @fieldDescription.
+  ///
+  /// In it, this message translates to:
+  /// **'Descrizione'**
+  String get fieldDescription;
+
+  /// No description provided for @fieldYear.
+  ///
+  /// In it, this message translates to:
+  /// **'Anno'**
+  String get fieldYear;
+
+  /// No description provided for @fieldSelectDateHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Seleziona una data'**
+  String get fieldSelectDateHint;
+
+  /// No description provided for @validationInvalidYear.
+  ///
+  /// In it, this message translates to:
+  /// **'Seleziona un anno valido'**
+  String get validationInvalidYear;
+
+  /// No description provided for @validationPasswordMinLength.
+  ///
+  /// In it, this message translates to:
+  /// **'La password deve essere lunga almeno 6 caratteri'**
+  String get validationPasswordMinLength;
+
+  /// No description provided for @permissionsMissingTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Mancano i permessi!'**
+  String get permissionsMissingTitle;
+
+  /// No description provided for @imageUploadError.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore durante il caricamento dell\'immagine'**
+  String get imageUploadError;
+
+  /// No description provided for @uploadImageLabel.
+  ///
+  /// In it, this message translates to:
+  /// **'Carica immagine'**
+  String get uploadImageLabel;
+
+  /// No description provided for @sourceGallery.
+  ///
+  /// In it, this message translates to:
+  /// **'Galleria'**
+  String get sourceGallery;
+
+  /// No description provided for @sourceCamera.
+  ///
+  /// In it, this message translates to:
+  /// **'Fotocamera'**
+  String get sourceCamera;
+
+  /// No description provided for @changePasswordTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Cambia Password'**
+  String get changePasswordTitle;
+
+  /// No description provided for @fieldNewPassword.
+  ///
+  /// In it, this message translates to:
+  /// **'Nuova Password'**
+  String get fieldNewPassword;
+
+  /// No description provided for @fieldConfirmNewPassword.
+  ///
+  /// In it, this message translates to:
+  /// **'Conferma Nuova Password'**
+  String get fieldConfirmNewPassword;
+
+  /// No description provided for @validationPasswordsNoMatch.
+  ///
+  /// In it, this message translates to:
+  /// **'Le password non corrispondono'**
+  String get validationPasswordsNoMatch;
+
+  /// No description provided for @passwordChangedSuccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Password cambiata con successo'**
+  String get passwordChangedSuccess;
+
+  /// No description provided for @errorWithMessage.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore: {message}'**
+  String errorWithMessage(String message);
+
+  /// No description provided for @updateRequiredTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiornamento richiesto'**
+  String get updateRequiredTitle;
+
+  /// No description provided for @updateRequiredAction.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiorna ora'**
+  String get updateRequiredAction;
+
+  /// No description provided for @yearPickerTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Seleziona l\'anno'**
+  String get yearPickerTitle;
+
+  /// No description provided for @repeaterTabInfo.
+  ///
+  /// In it, this message translates to:
+  /// **'Info'**
+  String get repeaterTabInfo;
+
+  /// No description provided for @repeaterTabCluster.
+  ///
+  /// In it, this message translates to:
+  /// **'Cluster'**
+  String get repeaterTabCluster;
+
+  /// No description provided for @repeaterTabCommunity.
+  ///
+  /// In it, this message translates to:
+  /// **'Community'**
+  String get repeaterTabCommunity;
+
+  /// No description provided for @updateRequiredBody.
+  ///
+  /// In it, this message translates to:
+  /// **'È disponibile una nuova versione dell\'app. Aggiorna per continuare a utilizzare l\'applicazione.'**
+  String get updateRequiredBody;
+
+  /// No description provided for @errorOpeningStore.
+  ///
+  /// In it, this message translates to:
+  /// **'Errore durante l\'apertura dello store'**
+  String get errorOpeningStore;
+
+  /// No description provided for @deleteConfirmTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Conferma cancellazione'**
+  String get deleteConfirmTitle;
+
+  /// No description provided for @deleteConfirmContent.
+  ///
+  /// In it, this message translates to:
+  /// **'Sei sicuro di voler cancellare?'**
+  String get deleteConfirmContent;
+
+  /// No description provided for @cameraPermissionRationale.
+  ///
+  /// In it, this message translates to:
+  /// **'Per scattare una foto, consenti l\'accesso alla fotocamera dalle impostazioni.'**
+  String get cameraPermissionRationale;
 }
 
 class _AppLocalizationsDelegate

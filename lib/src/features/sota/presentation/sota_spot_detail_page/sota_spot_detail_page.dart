@@ -717,7 +717,7 @@ class _MapPlaceholder extends StatelessWidget {
                     TextButton.icon(
                       onPressed: onRetry,
                       icon: const Icon(Icons.refresh, size: 16),
-                      label: const Text('Riprova'),
+                      label: Text(context.localization.retry),
                     ),
                   ],
                 ],

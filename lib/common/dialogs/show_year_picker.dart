@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 
 Future<DateTime?> showYearPicker({
   required BuildContext context,
   required DateTime? selectedDate,
 }) async {
+  final yearPickerTitle = context.localization.yearPickerTitle;
   return showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text("Seleziona l'anno"),
+        title: Text(yearPickerTitle),
         content: SizedBox(
           width: 300,
           height: 300,

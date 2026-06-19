@@ -2075,4 +2075,206 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get sotaFilterPointsAll => 'All points';
+
+  @override
+  String get reachSheetError =>
+      'Dosegljivih pretvornikov ni bilo mogoče izračunati.';
+
+  @override
+  String reachSheetCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Dosežeš $count pretvornikov',
+      few: 'Dosežeš $count pretvornike',
+      two: 'Dosežeš $count pretvornika',
+      one: 'Dosežeš 1 pretvornik',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reachSheetSubtitle => 'Z tvoje lokacije, razvrščeno po signalu';
+
+  @override
+  String get reachSheetEmpty => 'V bližini ni dosegljivih pretvornikov.';
+
+  @override
+  String get reachBadgeTitle => 'Ga dosežeš od tu?';
+
+  @override
+  String get reachBadgeSubtitle =>
+      'Ugotovi, ali te ta pretvornik pokriva in s kakšnim signalom';
+
+  @override
+  String get reachDiscoverCta => 'Odkrij s PRO';
+
+  @override
+  String get reachReachable => 'Dosežeš ga';
+
+  @override
+  String get reachOutOfCoverage => 'Zunaj pokritosti';
+
+  @override
+  String reachReachableDetail(String signal, String distance) {
+    return '$signal · $distance km · tapni za profil';
+  }
+
+  @override
+  String reachDistanceFromHere(String distance) {
+    return '$distance km od tu';
+  }
+
+  @override
+  String get reachComputing => 'Izračun pokritosti…';
+
+  @override
+  String get reachRepeaterFallback => 'Pretvornik';
+
+  @override
+  String get reachMapButton => 'Kaj dosežeš?';
+
+  @override
+  String get reachUpsellTitle => 'Kaj dosežeš od tu? 📡';
+
+  @override
+  String get reachUpsellBody =>
+      'V realnem času poglej VSE pretvornike, ki jih ujameš s svoje lokacije, s predvidenim signalom in profilom terena. Koliko jih zares dosežeš od tam, kjer si zdaj?';
+
+  @override
+  String get reachUpsellLater => 'Pozneje';
+
+  @override
+  String get linkProfileObstructed => 'Ovira na poti (signal z uklonom)';
+
+  @override
+  String get linkProfileClear => 'Prosta vidna linija';
+
+  @override
+  String linkProfileCaption(int tx, int rx) {
+    return 'Profil terena in vidna linija · TX $tx m · RX $rx m';
+  }
+
+  @override
+  String get proUnlockCta => 'Odkleni s PRO';
+
+  @override
+  String get proWelcomeTitle => 'Dobrodošel v PRO! 🎉';
+
+  @override
+  String get proWelcomeBody =>
+      'Odklenil si zemljevid pokritosti, pretvornike, ki jih dosežeš s svoje lokacije, in vse funkcije PRO. 📡';
+
+  @override
+  String get proWelcomeCta => 'Začni raziskovati';
+
+  @override
+  String get commonCancel => 'Prekliči';
+
+  @override
+  String get commonDelete => 'Izbriši';
+
+  @override
+  String get commonEdit => 'Uredi';
+
+  @override
+  String get commonOpenSettings => 'Odpri nastavitve';
+
+  @override
+  String get commonFieldRequired => 'Obvezno polje';
+
+  @override
+  String get fieldName => 'Ime';
+
+  @override
+  String get fieldAddress => 'Naslov';
+
+  @override
+  String get fieldCity => 'Mesto';
+
+  @override
+  String get fieldDescription => 'Opis';
+
+  @override
+  String get fieldYear => 'Leto';
+
+  @override
+  String get fieldSelectDateHint => 'Izberi datum';
+
+  @override
+  String get validationInvalidYear => 'Izberi veljavno leto';
+
+  @override
+  String get validationPasswordMinLength =>
+      'Geslo mora vsebovati vsaj 6 znakov';
+
+  @override
+  String get permissionsMissingTitle => 'Manjkajo dovoljenja!';
+
+  @override
+  String get imageUploadError => 'Napaka pri nalaganju slike';
+
+  @override
+  String get uploadImageLabel => 'Naloži sliko';
+
+  @override
+  String get sourceGallery => 'Galerija';
+
+  @override
+  String get sourceCamera => 'Kamera';
+
+  @override
+  String get changePasswordTitle => 'Spremeni geslo';
+
+  @override
+  String get fieldNewPassword => 'Novo geslo';
+
+  @override
+  String get fieldConfirmNewPassword => 'Potrdi novo geslo';
+
+  @override
+  String get validationPasswordsNoMatch => 'Gesli se ne ujemata';
+
+  @override
+  String get passwordChangedSuccess => 'Geslo uspešno spremenjeno';
+
+  @override
+  String errorWithMessage(String message) {
+    return 'Napaka: $message';
+  }
+
+  @override
+  String get updateRequiredTitle => 'Potrebna posodobitev';
+
+  @override
+  String get updateRequiredAction => 'Posodobi zdaj';
+
+  @override
+  String get yearPickerTitle => 'Izberi leto';
+
+  @override
+  String get repeaterTabInfo => 'Info';
+
+  @override
+  String get repeaterTabCluster => 'Cluster';
+
+  @override
+  String get repeaterTabCommunity => 'Skupnost';
+
+  @override
+  String get updateRequiredBody =>
+      'Na voljo je nova različica aplikacije. Posodobite jo za nadaljnjo uporabo.';
+
+  @override
+  String get errorOpeningStore => 'Napaka pri odpiranju trgovine';
+
+  @override
+  String get deleteConfirmTitle => 'Potrdi izbris';
+
+  @override
+  String get deleteConfirmContent => 'Ali ste prepričani, da želite izbrisati?';
+
+  @override
+  String get cameraPermissionRationale =>
+      'Za fotografiranje dovolite dostop do kamere v nastavitvah.';
 }

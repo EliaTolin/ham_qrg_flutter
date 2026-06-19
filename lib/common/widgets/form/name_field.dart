@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/form/base_field.dart';
 
 class NameField extends StatelessWidget {
@@ -13,17 +13,18 @@ class NameField extends StatelessWidget {
   final bool isRequired;
   @override
   Widget build(BuildContext context) {
+    final l10n = context.localization;
     return BaseField(
       isRequired: isRequired,
       validator: (value) {
         if (isRequired && (value == null || value == '')) {
-          return 'Campo obbligatorio'.hardcoded;
+          return l10n.commonFieldRequired;
         }
         return null;
       },
       controller: controller,
       icon: Icons.note,
-      label: 'Nome'.hardcoded,
+      label: l10n.fieldName,
     );
   }
 }

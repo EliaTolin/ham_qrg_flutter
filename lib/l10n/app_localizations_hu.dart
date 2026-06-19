@@ -2013,4 +2013,205 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get sotaFilterPointsAll => 'All points';
+
+  @override
+  String get reachSheetError =>
+      'Nem sikerült kiszámítani az elérhető átjátszókat.';
+
+  @override
+  String reachSheetCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count átjátszót érsz el',
+      one: '1 átjátszót érsz el',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reachSheetSubtitle => 'A helyzetedből, jel szerint rendezve';
+
+  @override
+  String get reachSheetEmpty => 'Nincs elérhető átjátszó a közelben.';
+
+  @override
+  String get reachBadgeTitle => 'Eléred innen?';
+
+  @override
+  String get reachBadgeSubtitle =>
+      'Tudd meg, hogy ez az átjátszó lefed-e, és milyen jellel';
+
+  @override
+  String get reachDiscoverCta => 'Fedezd fel a PRO-val';
+
+  @override
+  String get reachReachable => 'Eléred';
+
+  @override
+  String get reachOutOfCoverage => 'Lefedettségen kívül';
+
+  @override
+  String reachReachableDetail(String signal, String distance) {
+    return '$signal · $distance km · koppints a profilért';
+  }
+
+  @override
+  String reachDistanceFromHere(String distance) {
+    return '$distance km innen';
+  }
+
+  @override
+  String get reachComputing => 'Lefedettség számítása…';
+
+  @override
+  String get reachRepeaterFallback => 'Átjátszó';
+
+  @override
+  String get reachMapButton => 'Mit érsz el?';
+
+  @override
+  String get reachUpsellTitle => 'Mit érsz el innen? 📡';
+
+  @override
+  String get reachUpsellBody =>
+      'Lásd valós időben az ÖSSZES átjátszót, amelyet a helyzetedből fogsz, várható jellel és terepprofillal. Hányat érsz el valójában onnan, ahol most vagy?';
+
+  @override
+  String get reachUpsellLater => 'Később';
+
+  @override
+  String get linkProfileObstructed =>
+      'Akadály az útvonalon (jel diffrakcióval)';
+
+  @override
+  String get linkProfileClear => 'Szabad rálátás';
+
+  @override
+  String linkProfileCaption(int tx, int rx) {
+    return 'Terepprofil és rálátás · TX $tx m · RX $rx m';
+  }
+
+  @override
+  String get proUnlockCta => 'Feloldás PRO-val';
+
+  @override
+  String get proWelcomeTitle => 'Üdvözlünk a PRO-ban! 🎉';
+
+  @override
+  String get proWelcomeBody =>
+      'Feloldottad a lefedettségi térképet, a helyzetedből elérhető átjátszókat és az összes PRO funkciót. 📡';
+
+  @override
+  String get proWelcomeCta => 'Kezdj felfedezni';
+
+  @override
+  String get commonCancel => 'Mégse';
+
+  @override
+  String get commonDelete => 'Törlés';
+
+  @override
+  String get commonEdit => 'Szerkesztés';
+
+  @override
+  String get commonOpenSettings => 'Beállítások megnyitása';
+
+  @override
+  String get commonFieldRequired => 'Kötelező mező';
+
+  @override
+  String get fieldName => 'Név';
+
+  @override
+  String get fieldAddress => 'Cím';
+
+  @override
+  String get fieldCity => 'Város';
+
+  @override
+  String get fieldDescription => 'Leírás';
+
+  @override
+  String get fieldYear => 'Év';
+
+  @override
+  String get fieldSelectDateHint => 'Válassz dátumot';
+
+  @override
+  String get validationInvalidYear => 'Válassz érvényes évet';
+
+  @override
+  String get validationPasswordMinLength =>
+      'A jelszónak legalább 6 karakter hosszúnak kell lennie';
+
+  @override
+  String get permissionsMissingTitle => 'Hiányzó engedélyek!';
+
+  @override
+  String get imageUploadError => 'Hiba a kép feltöltése közben';
+
+  @override
+  String get uploadImageLabel => 'Kép feltöltése';
+
+  @override
+  String get sourceGallery => 'Galéria';
+
+  @override
+  String get sourceCamera => 'Kamera';
+
+  @override
+  String get changePasswordTitle => 'Jelszó módosítása';
+
+  @override
+  String get fieldNewPassword => 'Új jelszó';
+
+  @override
+  String get fieldConfirmNewPassword => 'Új jelszó megerősítése';
+
+  @override
+  String get validationPasswordsNoMatch => 'A jelszavak nem egyeznek';
+
+  @override
+  String get passwordChangedSuccess => 'Jelszó sikeresen módosítva';
+
+  @override
+  String errorWithMessage(String message) {
+    return 'Hiba: $message';
+  }
+
+  @override
+  String get updateRequiredTitle => 'Frissítés szükséges';
+
+  @override
+  String get updateRequiredAction => 'Frissítés most';
+
+  @override
+  String get yearPickerTitle => 'Válassz évet';
+
+  @override
+  String get repeaterTabInfo => 'Infó';
+
+  @override
+  String get repeaterTabCluster => 'Cluster';
+
+  @override
+  String get repeaterTabCommunity => 'Közösség';
+
+  @override
+  String get updateRequiredBody =>
+      'Elérhető az alkalmazás új verziója. Frissíts a további használathoz.';
+
+  @override
+  String get errorOpeningStore => 'Hiba az áruház megnyitásakor';
+
+  @override
+  String get deleteConfirmTitle => 'Törlés megerősítése';
+
+  @override
+  String get deleteConfirmContent => 'Biztosan törölni szeretnéd?';
+
+  @override
+  String get cameraPermissionRationale =>
+      'Fénykép készítéséhez engedélyezd a kamera-hozzáférést a beállításokban.';
 }
