@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/themes/app_colors.dart';
 
@@ -18,6 +19,7 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = context.localization;
 
     return Dialog(
       clipBehavior: Clip.antiAlias,
@@ -61,7 +63,7 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Cosa raggiungi da qui? 📡',
+                  l10n.reachUpsellTitle,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w800,
@@ -69,9 +71,7 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Scopri in tempo reale TUTTI i ponti che prendi dalla tua '
-                  'posizione — con segnale previsto e profilo del terreno. '
-                  'Quanti ne raggiungi davvero da dove sei adesso?',
+                  l10n.reachUpsellBody,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.75),
@@ -88,9 +88,12 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
                     icon: const Icon(Icons.bolt_rounded),
-                    label: const Text(
-                      'Scoprilo con PRO',
-                      style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
+                    label: Text(
+                      l10n.reachDiscoverCta,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16,
+                      ),
                     ),
                     onPressed: () async {
                       Navigator.of(context).pop();
@@ -102,7 +105,7 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
                   child: Text(
-                    'Più tardi',
+                    l10n.reachUpsellLater,
                     style: TextStyle(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),

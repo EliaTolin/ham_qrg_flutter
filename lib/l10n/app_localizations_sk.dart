@@ -2022,4 +2022,203 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get sotaFilterPointsAll => 'All points';
+
+  @override
+  String get reachSheetError => 'Dostupné prevádzače sa nepodarilo vypočítať.';
+
+  @override
+  String reachSheetCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Dosiahneš $count prevádzačov',
+      few: 'Dosiahneš $count prevádzače',
+      one: 'Dosiahneš 1 prevádzač',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reachSheetSubtitle => 'Z tvojej polohy, zoradené podľa signálu';
+
+  @override
+  String get reachSheetEmpty => 'V okolí nie sú žiadne dostupné prevádzače.';
+
+  @override
+  String get reachBadgeTitle => 'Dosiahneš ho odtiaľto?';
+
+  @override
+  String get reachBadgeSubtitle =>
+      'Zisti, či ťa tento prevádzač pokrýva a s akým signálom';
+
+  @override
+  String get reachDiscoverCta => 'Objav to s PRO';
+
+  @override
+  String get reachReachable => 'Dosiahneš ho';
+
+  @override
+  String get reachOutOfCoverage => 'Mimo pokrytia';
+
+  @override
+  String reachReachableDetail(String signal, String distance) {
+    return '$signal · $distance km · ťukni pre profil';
+  }
+
+  @override
+  String reachDistanceFromHere(String distance) {
+    return '$distance km odtiaľto';
+  }
+
+  @override
+  String get reachComputing => 'Výpočet pokrytia…';
+
+  @override
+  String get reachRepeaterFallback => 'Prevádzač';
+
+  @override
+  String get reachMapButton => 'Čo dosiahneš?';
+
+  @override
+  String get reachUpsellTitle => 'Čo dosiahneš odtiaľto? 📡';
+
+  @override
+  String get reachUpsellBody =>
+      'Sleduj v reálnom čase VŠETKY prevádzače, ktoré zo svojej polohy zachytíš, s predpokladaným signálom a profilom terénu. Na koľko z nich naozaj dosiahneš odtiaľ, kde práve si?';
+
+  @override
+  String get reachUpsellLater => 'Neskôr';
+
+  @override
+  String get linkProfileObstructed => 'Prekážka na trase (signál difrakciou)';
+
+  @override
+  String get linkProfileClear => 'Priama viditeľnosť';
+
+  @override
+  String linkProfileCaption(int tx, int rx) {
+    return 'Profil terénu a priama viditeľnosť · TX $tx m · RX $rx m';
+  }
+
+  @override
+  String get proUnlockCta => 'Odomknúť s PRO';
+
+  @override
+  String get proWelcomeTitle => 'Vitaj v PRO! 🎉';
+
+  @override
+  String get proWelcomeBody =>
+      'Odomkol si mapu pokrytia, prevádzače, na ktoré dosiahneš zo svojej polohy, a všetky funkcie PRO. 📡';
+
+  @override
+  String get proWelcomeCta => 'Začať objavovať';
+
+  @override
+  String get commonCancel => 'Zrušiť';
+
+  @override
+  String get commonDelete => 'Odstrániť';
+
+  @override
+  String get commonEdit => 'Upraviť';
+
+  @override
+  String get commonOpenSettings => 'Otvoriť nastavenia';
+
+  @override
+  String get commonFieldRequired => 'Povinné pole';
+
+  @override
+  String get fieldName => 'Meno';
+
+  @override
+  String get fieldAddress => 'Adresa';
+
+  @override
+  String get fieldCity => 'Mesto';
+
+  @override
+  String get fieldDescription => 'Popis';
+
+  @override
+  String get fieldYear => 'Rok';
+
+  @override
+  String get fieldSelectDateHint => 'Vyberte dátum';
+
+  @override
+  String get validationInvalidYear => 'Vyberte platný rok';
+
+  @override
+  String get validationPasswordMinLength => 'Heslo musí mať aspoň 6 znakov';
+
+  @override
+  String get permissionsMissingTitle => 'Chýbajú oprávnenia!';
+
+  @override
+  String get imageUploadError => 'Chyba pri nahrávaní obrázka';
+
+  @override
+  String get uploadImageLabel => 'Nahrať obrázok';
+
+  @override
+  String get sourceGallery => 'Galéria';
+
+  @override
+  String get sourceCamera => 'Fotoaparát';
+
+  @override
+  String get changePasswordTitle => 'Zmeniť heslo';
+
+  @override
+  String get fieldNewPassword => 'Nové heslo';
+
+  @override
+  String get fieldConfirmNewPassword => 'Potvrďte nové heslo';
+
+  @override
+  String get validationPasswordsNoMatch => 'Heslá sa nezhodujú';
+
+  @override
+  String get passwordChangedSuccess => 'Heslo úspešne zmenené';
+
+  @override
+  String errorWithMessage(String message) {
+    return 'Chyba: $message';
+  }
+
+  @override
+  String get updateRequiredTitle => 'Vyžaduje sa aktualizácia';
+
+  @override
+  String get updateRequiredAction => 'Aktualizovať teraz';
+
+  @override
+  String get yearPickerTitle => 'Vyberte rok';
+
+  @override
+  String get repeaterTabInfo => 'Info';
+
+  @override
+  String get repeaterTabCluster => 'Cluster';
+
+  @override
+  String get repeaterTabCommunity => 'Komunita';
+
+  @override
+  String get updateRequiredBody =>
+      'Je k dispozícii nová verzia aplikácie. Aktualizujte ju, aby ste ju mohli ďalej používať.';
+
+  @override
+  String get errorOpeningStore => 'Chyba pri otváraní obchodu';
+
+  @override
+  String get deleteConfirmTitle => 'Potvrdiť odstránenie';
+
+  @override
+  String get deleteConfirmContent => 'Naozaj chcete odstrániť?';
+
+  @override
+  String get cameraPermissionRationale =>
+      'Ak chcete urobiť fotku, povoľte prístup k fotoaparátu v nastaveniach.';
 }

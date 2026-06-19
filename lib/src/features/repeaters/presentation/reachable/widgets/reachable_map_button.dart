@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/reachable/reachable_repeaters_sheet.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/reachable/widgets/reachability_upsell_dialog.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
@@ -33,7 +34,7 @@ class ReachableMapButton extends ConsumerWidget {
               Icon(Icons.cell_tower_rounded, color: theme.colorScheme.onPrimary, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Cosa raggiungi?',
+                context.localization.reachMapButton,
                 style: theme.textTheme.labelLarge?.copyWith(
                   color: theme.colorScheme.onPrimary,
                   fontWeight: FontWeight.w700,

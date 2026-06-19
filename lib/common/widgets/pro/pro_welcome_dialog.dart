@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/themes/app_colors.dart';
 
 /// Celebratory "Welcome to Pro" dialog shown right after a successful purchase.
@@ -40,6 +41,7 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.localization;
     final cs = theme.colorScheme;
     final onAccent = cs.onPrimary;
     final reveal = CurvedAnimation(
@@ -131,7 +133,7 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                       child: Column(
                         children: [
                           Text(
-                            'Benvenuto in PRO! 🎉',
+                            l10n.proWelcomeTitle,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.headlineSmall?.copyWith(
                               color: onAccent,
@@ -140,8 +142,7 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            'Hai sbloccato la mappa di copertura, i ponti che '
-                            'raggiungi dalla tua posizione e tutte le funzioni PRO. 📡',
+                            l10n.proWelcomeBody,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: onAccent.withValues(alpha: 0.92),
@@ -163,9 +164,12 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                             padding: const EdgeInsets.symmetric(vertical: 14),
                           ),
                           onPressed: () => Navigator.of(context).pop(),
-                          child: const Text(
-                            'Inizia a esplorare',
-                            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
+                          child: Text(
+                            l10n.proWelcomeCta,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),

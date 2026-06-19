@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hamqrg/clients/image_picker/image_picker.dart';
-import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -37,24 +37,25 @@ class UploadImageButton extends ConsumerWidget {
     BuildContext context,
     String rationale,
   ) async {
+    final l10n = context.localization;
     await showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Mancano i permessi!'.hardcoded),
-        content: Text(rationale.hardcoded),
+        title: Text(l10n.permissionsMissingTitle),
+        content: Text(rationale),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text('Annulla'.hardcoded),
+            child: Text(l10n.commonCancel),
           ),
           TextButton(
             onPressed: () {
               openAppSettings();
               Navigator.of(context).pop();
             },
-            child: Text('Apri impostazioni'.hardcoded),
+            child: Text(l10n.commonOpenSettings),
           ),
         ],
       ),
@@ -66,6 +67,7 @@ class UploadImageButton extends ConsumerWidget {
     WidgetRef ref,
     ImageSource source,
   ) async {
+    final l10n = context.localization;
     try {
       final imagePicker = ref.read(imagePickerProvider);
 
@@ -78,7 +80,7 @@ class UploadImageButton extends ConsumerWidget {
         final hasPermission = await _requestPermission(
           context,
           Permission.camera,
-          "Per scattare una foto, consenti l'accesso alla fotocamera dalle impostazioni.",
+          l10n.cameraPermissionRationale,
         );
 
         if (!hasPermission) return;
@@ -95,15 +97,14 @@ class UploadImageButton extends ConsumerWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text('Errore'.hardcoded),
-              content:
-                  Text("Errore durante il caricamento dell'immagine".hardcoded),
+              title: Text(l10n.error),
+              content: Text(l10n.imageUploadError),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Chiudi'.hardcoded),
+                  child: Text(l10n.commonClose),
                 ),
               ],
             );
@@ -115,9 +116,10 @@ class UploadImageButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.localization;
     return ElevatedButton.icon(
       icon: const Icon(Icons.upload),
-      label: Text('Carica immagine'.hardcoded),
+      label: Text(l10n.uploadImageLabel),
       onPressed: () async {
         await showModalBottomSheet(
           context: context,
@@ -127,7 +129,7 @@ class UploadImageButton extends ConsumerWidget {
                 children: [
                   ListTile(
                     leading: const Icon(Icons.photo_library),
-                    title: Text('Galleria'.hardcoded),
+                    title: Text(l10n.sourceGallery),
                     onTap: () {
                       Navigator.of(context).pop();
                       _pickImage(context, ref, ImageSource.gallery);
@@ -135,7 +137,7 @@ class UploadImageButton extends ConsumerWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.camera_alt),
-                    title: Text('Fotocamera'.hardcoded),
+                    title: Text(l10n.sourceCamera),
                     onTap: () {
                       Navigator.of(context).pop();
                       _pickImage(context, ref, ImageSource.camera);

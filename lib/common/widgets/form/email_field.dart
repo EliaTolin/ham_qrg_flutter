@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/form/base_field.dart';
 
 class EmailField extends StatelessWidget {
@@ -8,11 +8,12 @@ class EmailField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.localization;
     return BaseField(
       isRequired: true,
       validator: (value) {
         if (value == null || value == '') {
-          return 'Campo obbligatorio'.hardcoded;
+          return l10n.commonFieldRequired;
         }
         return null;
       },

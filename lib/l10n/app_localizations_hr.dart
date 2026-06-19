@@ -2017,4 +2017,204 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get sotaFilterPointsAll => 'All points';
+
+  @override
+  String get reachSheetError => 'Nije moguće izračunati dostupne repetitore.';
+
+  @override
+  String reachSheetCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Dosežeš $count repetitora',
+      few: 'Dosežeš $count repetitora',
+      one: 'Dosežeš 1 repetitor',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reachSheetSubtitle => 'S tvoje lokacije, poredano po signalu';
+
+  @override
+  String get reachSheetEmpty => 'Nema dostupnih repetitora u blizini.';
+
+  @override
+  String get reachBadgeTitle => 'Dosežeš li ga odavde?';
+
+  @override
+  String get reachBadgeSubtitle =>
+      'Otkrij pokriva li te ovaj repetitor i s kojim signalom';
+
+  @override
+  String get reachDiscoverCta => 'Otkrij uz PRO';
+
+  @override
+  String get reachReachable => 'Dosežeš ga';
+
+  @override
+  String get reachOutOfCoverage => 'Izvan pokrivenosti';
+
+  @override
+  String reachReachableDetail(String signal, String distance) {
+    return '$signal · $distance km · dodirni za profil';
+  }
+
+  @override
+  String reachDistanceFromHere(String distance) {
+    return '$distance km odavde';
+  }
+
+  @override
+  String get reachComputing => 'Izračun pokrivenosti…';
+
+  @override
+  String get reachRepeaterFallback => 'Repetitor';
+
+  @override
+  String get reachMapButton => 'Što dosežeš?';
+
+  @override
+  String get reachUpsellTitle => 'Što dosežeš odavde? 📡';
+
+  @override
+  String get reachUpsellBody =>
+      'Vidi u stvarnom vremenu SVE repetitore koje hvataš sa svoje lokacije, s predviđenim signalom i profilom terena. Koliko ih stvarno dosežeš odakle si sada?';
+
+  @override
+  String get reachUpsellLater => 'Kasnije';
+
+  @override
+  String get linkProfileObstructed => 'Prepreka na putu (signal difrakcijom)';
+
+  @override
+  String get linkProfileClear => 'Slobodna optička vidljivost';
+
+  @override
+  String linkProfileCaption(int tx, int rx) {
+    return 'Profil terena i linija vidljivosti · TX $tx m · RX $rx m';
+  }
+
+  @override
+  String get proUnlockCta => 'Otključaj uz PRO';
+
+  @override
+  String get proWelcomeTitle => 'Dobro došao u PRO! 🎉';
+
+  @override
+  String get proWelcomeBody =>
+      'Otključao si kartu pokrivenosti, repetitore koje dosežeš sa svoje lokacije i sve PRO značajke. 📡';
+
+  @override
+  String get proWelcomeCta => 'Počni istraživati';
+
+  @override
+  String get commonCancel => 'Odustani';
+
+  @override
+  String get commonDelete => 'Izbriši';
+
+  @override
+  String get commonEdit => 'Uredi';
+
+  @override
+  String get commonOpenSettings => 'Otvori postavke';
+
+  @override
+  String get commonFieldRequired => 'Obavezno polje';
+
+  @override
+  String get fieldName => 'Ime';
+
+  @override
+  String get fieldAddress => 'Adresa';
+
+  @override
+  String get fieldCity => 'Grad';
+
+  @override
+  String get fieldDescription => 'Opis';
+
+  @override
+  String get fieldYear => 'Godina';
+
+  @override
+  String get fieldSelectDateHint => 'Odaberi datum';
+
+  @override
+  String get validationInvalidYear => 'Odaberi valjanu godinu';
+
+  @override
+  String get validationPasswordMinLength =>
+      'Lozinka mora imati najmanje 6 znakova';
+
+  @override
+  String get permissionsMissingTitle => 'Nedostaju dopuštenja!';
+
+  @override
+  String get imageUploadError => 'Pogreška pri učitavanju slike';
+
+  @override
+  String get uploadImageLabel => 'Učitaj sliku';
+
+  @override
+  String get sourceGallery => 'Galerija';
+
+  @override
+  String get sourceCamera => 'Kamera';
+
+  @override
+  String get changePasswordTitle => 'Promijeni lozinku';
+
+  @override
+  String get fieldNewPassword => 'Nova lozinka';
+
+  @override
+  String get fieldConfirmNewPassword => 'Potvrdi novu lozinku';
+
+  @override
+  String get validationPasswordsNoMatch => 'Lozinke se ne podudaraju';
+
+  @override
+  String get passwordChangedSuccess => 'Lozinka uspješno promijenjena';
+
+  @override
+  String errorWithMessage(String message) {
+    return 'Pogreška: $message';
+  }
+
+  @override
+  String get updateRequiredTitle => 'Potrebno ažuriranje';
+
+  @override
+  String get updateRequiredAction => 'Ažuriraj sada';
+
+  @override
+  String get yearPickerTitle => 'Odaberi godinu';
+
+  @override
+  String get repeaterTabInfo => 'Info';
+
+  @override
+  String get repeaterTabCluster => 'Cluster';
+
+  @override
+  String get repeaterTabCommunity => 'Zajednica';
+
+  @override
+  String get updateRequiredBody =>
+      'Dostupna je nova verzija aplikacije. Ažurirajte da biste je nastavili koristiti.';
+
+  @override
+  String get errorOpeningStore => 'Pogreška pri otvaranju trgovine';
+
+  @override
+  String get deleteConfirmTitle => 'Potvrdi brisanje';
+
+  @override
+  String get deleteConfirmContent => 'Jeste li sigurni da želite izbrisati?';
+
+  @override
+  String get cameraPermissionRationale =>
+      'Za snimanje fotografije dopustite pristup kameri u postavkama.';
 }

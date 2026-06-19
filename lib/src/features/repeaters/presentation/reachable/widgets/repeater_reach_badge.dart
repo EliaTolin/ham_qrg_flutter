@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/signal_helper.dart';
 import 'package:hamqrg/common/widgets/pro/pro_blur_gate.dart';
 import 'package:hamqrg/common/widgets/signal/signal_bars.dart';
@@ -30,12 +31,13 @@ class RepeaterReachBadge extends ConsumerWidget {
           orElse: () => false,
         );
     final locked = AppConfigs.reachabilityRequiresPro && !isPro;
+    final l10n = context.localization;
 
     return ProBlurGate(
       locked: locked,
-      title: 'Lo raggiungi da qui?',
-      subtitle: 'Scopri se questo ponte ti copre e con che segnale',
-      ctaLabel: 'Scoprilo con PRO',
+      title: l10n.reachBadgeTitle,
+      subtitle: l10n.reachBadgeSubtitle,
+      ctaLabel: l10n.reachDiscoverCta,
       onUnlock: () => openReachabilityPaywall(ref),
       teaser: const _BadgeFrame(child: _MockBadgeRow()),
       child: _RealReachBadge(repeater: repeater),
@@ -97,7 +99,9 @@ class _RealReachBadge extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              repeater.callsign ?? repeater.name ?? 'Ponte',
+              repeater.callsign ??
+                  repeater.name ??
+                  ctx.localization.reachRepeaterFallback,
               style: Theme.of(ctx).textTheme.titleLarge,
             ),
             const SizedBox(height: 16),
@@ -144,8 +148,10 @@ class _BadgeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.localization;
     final reachable = link.reachable;
     final color = SignalHelper.colorFromDbm(link.dbm);
+    final distance = link.distanceKm.toStringAsFixed(1);
 
     return Row(
       children: [
@@ -160,15 +166,18 @@ class _BadgeContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                reachable ? 'Lo raggiungi' : 'Fuori copertura',
+                reachable ? l10n.reachReachable : l10n.reachOutOfCoverage,
                 style: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
               Text(
                 reachable
-                    ? '${SignalHelper.dbmLabel(link.dbm)} · ${link.distanceKm.toStringAsFixed(1)} km · tocca per il profilo'
-                    : '${link.distanceKm.toStringAsFixed(1)} km da qui',
+                    ? l10n.reachReachableDetail(
+                        SignalHelper.dbmLabel(link.dbm),
+                        distance,
+                      )
+                    : l10n.reachDistanceFromHere(distance),
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.65),
                 ),
@@ -196,7 +205,7 @@ class _BadgeLoading extends StatelessWidget {
           child: CircularProgressIndicator(strokeWidth: 2),
         ),
         const SizedBox(width: 12),
-        Text('Calcolo copertura…', style: theme.textTheme.bodyMedium),
+        Text(context.localization.reachComputing, style: theme.textTheme.bodyMedium),
       ],
     );
   }
@@ -222,7 +231,7 @@ class _MockBadgeRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Lo raggiungi',
+                context.localization.reachReachable,
                 style: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),

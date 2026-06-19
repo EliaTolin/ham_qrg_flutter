@@ -2013,4 +2013,204 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get sotaFilterPointsAll => 'Punti: tutti';
+
+  @override
+  String get reachSheetError => 'Impossibile calcolare i ponti raggiungibili.';
+
+  @override
+  String reachSheetCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Raggiungi $count ponti',
+      one: 'Raggiungi 1 ponte',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reachSheetSubtitle => 'Dalla tua posizione, ordinati per segnale';
+
+  @override
+  String get reachSheetEmpty => 'Nessun ponte raggiungibile nei dintorni.';
+
+  @override
+  String get reachBadgeTitle => 'Lo raggiungi da qui?';
+
+  @override
+  String get reachBadgeSubtitle =>
+      'Scopri se questo ponte ti copre e con che segnale';
+
+  @override
+  String get reachDiscoverCta => 'Scoprilo con PRO';
+
+  @override
+  String get reachReachable => 'Lo raggiungi';
+
+  @override
+  String get reachOutOfCoverage => 'Fuori copertura';
+
+  @override
+  String reachReachableDetail(String signal, String distance) {
+    return '$signal · $distance km · tocca per il profilo';
+  }
+
+  @override
+  String reachDistanceFromHere(String distance) {
+    return '$distance km da qui';
+  }
+
+  @override
+  String get reachComputing => 'Calcolo copertura…';
+
+  @override
+  String get reachRepeaterFallback => 'Ponte';
+
+  @override
+  String get reachMapButton => 'Cosa raggiungi?';
+
+  @override
+  String get reachUpsellTitle => 'Cosa raggiungi da qui? 📡';
+
+  @override
+  String get reachUpsellBody =>
+      'Scopri in tempo reale TUTTI i ponti che prendi dalla tua posizione — con segnale previsto e profilo del terreno. Quanti ne raggiungi davvero da dove sei adesso?';
+
+  @override
+  String get reachUpsellLater => 'Più tardi';
+
+  @override
+  String get linkProfileObstructed =>
+      'Ostacolo sul percorso (segnale per diffrazione)';
+
+  @override
+  String get linkProfileClear => 'Vista diretta libera';
+
+  @override
+  String linkProfileCaption(int tx, int rx) {
+    return 'Profilo del terreno e linea di vista · TX $tx m · RX $rx m';
+  }
+
+  @override
+  String get proUnlockCta => 'Sblocca con PRO';
+
+  @override
+  String get proWelcomeTitle => 'Benvenuto in PRO! 🎉';
+
+  @override
+  String get proWelcomeBody =>
+      'Hai sbloccato la mappa di copertura, i ponti che raggiungi dalla tua posizione e tutte le funzioni PRO. 📡';
+
+  @override
+  String get proWelcomeCta => 'Inizia a esplorare';
+
+  @override
+  String get commonCancel => 'Annulla';
+
+  @override
+  String get commonDelete => 'Cancella';
+
+  @override
+  String get commonEdit => 'Modifica';
+
+  @override
+  String get commonOpenSettings => 'Apri impostazioni';
+
+  @override
+  String get commonFieldRequired => 'Campo obbligatorio';
+
+  @override
+  String get fieldName => 'Nome';
+
+  @override
+  String get fieldAddress => 'Indirizzo';
+
+  @override
+  String get fieldCity => 'Città';
+
+  @override
+  String get fieldDescription => 'Descrizione';
+
+  @override
+  String get fieldYear => 'Anno';
+
+  @override
+  String get fieldSelectDateHint => 'Seleziona una data';
+
+  @override
+  String get validationInvalidYear => 'Seleziona un anno valido';
+
+  @override
+  String get validationPasswordMinLength =>
+      'La password deve essere lunga almeno 6 caratteri';
+
+  @override
+  String get permissionsMissingTitle => 'Mancano i permessi!';
+
+  @override
+  String get imageUploadError => 'Errore durante il caricamento dell\'immagine';
+
+  @override
+  String get uploadImageLabel => 'Carica immagine';
+
+  @override
+  String get sourceGallery => 'Galleria';
+
+  @override
+  String get sourceCamera => 'Fotocamera';
+
+  @override
+  String get changePasswordTitle => 'Cambia Password';
+
+  @override
+  String get fieldNewPassword => 'Nuova Password';
+
+  @override
+  String get fieldConfirmNewPassword => 'Conferma Nuova Password';
+
+  @override
+  String get validationPasswordsNoMatch => 'Le password non corrispondono';
+
+  @override
+  String get passwordChangedSuccess => 'Password cambiata con successo';
+
+  @override
+  String errorWithMessage(String message) {
+    return 'Errore: $message';
+  }
+
+  @override
+  String get updateRequiredTitle => 'Aggiornamento richiesto';
+
+  @override
+  String get updateRequiredAction => 'Aggiorna ora';
+
+  @override
+  String get yearPickerTitle => 'Seleziona l\'anno';
+
+  @override
+  String get repeaterTabInfo => 'Info';
+
+  @override
+  String get repeaterTabCluster => 'Cluster';
+
+  @override
+  String get repeaterTabCommunity => 'Community';
+
+  @override
+  String get updateRequiredBody =>
+      'È disponibile una nuova versione dell\'app. Aggiorna per continuare a utilizzare l\'applicazione.';
+
+  @override
+  String get errorOpeningStore => 'Errore durante l\'apertura dello store';
+
+  @override
+  String get deleteConfirmTitle => 'Conferma cancellazione';
+
+  @override
+  String get deleteConfirmContent => 'Sei sicuro di voler cancellare?';
+
+  @override
+  String get cameraPermissionRationale =>
+      'Per scattare una foto, consenti l\'accesso alla fotocamera dalle impostazioni.';
 }

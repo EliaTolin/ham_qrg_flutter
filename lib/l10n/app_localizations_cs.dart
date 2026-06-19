@@ -2013,4 +2013,203 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get sotaFilterPointsAll => 'All points';
+
+  @override
+  String get reachSheetError => 'Dosažitelné převaděče nelze vypočítat.';
+
+  @override
+  String reachSheetCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Dosáhneš na $count převaděčů',
+      few: 'Dosáhneš na $count převaděče',
+      one: 'Dosáhneš na 1 převaděč',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reachSheetSubtitle => 'Z tvé polohy, seřazeno podle signálu';
+
+  @override
+  String get reachSheetEmpty => 'V okolí nejsou žádné dosažitelné převaděče.';
+
+  @override
+  String get reachBadgeTitle => 'Dosáhneš na něj odsud?';
+
+  @override
+  String get reachBadgeSubtitle =>
+      'Zjisti, zda tě tento převaděč pokrývá a s jakým signálem';
+
+  @override
+  String get reachDiscoverCta => 'Objev to s PRO';
+
+  @override
+  String get reachReachable => 'Dosáhneš na něj';
+
+  @override
+  String get reachOutOfCoverage => 'Mimo pokrytí';
+
+  @override
+  String reachReachableDetail(String signal, String distance) {
+    return '$signal · $distance km · klepni pro profil';
+  }
+
+  @override
+  String reachDistanceFromHere(String distance) {
+    return '$distance km odsud';
+  }
+
+  @override
+  String get reachComputing => 'Výpočet pokrytí…';
+
+  @override
+  String get reachRepeaterFallback => 'Převaděč';
+
+  @override
+  String get reachMapButton => 'Na co dosáhneš?';
+
+  @override
+  String get reachUpsellTitle => 'Na co dosáhneš odsud? 📡';
+
+  @override
+  String get reachUpsellBody =>
+      'Sleduj v reálném čase VŠECHNY převaděče, které ze své polohy zachytíš, s předpokládaným signálem a profilem terénu. Na kolik z nich opravdu dosáhneš odtud, kde právě jsi?';
+
+  @override
+  String get reachUpsellLater => 'Později';
+
+  @override
+  String get linkProfileObstructed => 'Překážka na trase (signál difrakcí)';
+
+  @override
+  String get linkProfileClear => 'Přímá viditelnost';
+
+  @override
+  String linkProfileCaption(int tx, int rx) {
+    return 'Profil terénu a přímá viditelnost · TX $tx m · RX $rx m';
+  }
+
+  @override
+  String get proUnlockCta => 'Odemknout s PRO';
+
+  @override
+  String get proWelcomeTitle => 'Vítej v PRO! 🎉';
+
+  @override
+  String get proWelcomeBody =>
+      'Odemkl jsi mapu pokrytí, převaděče, na které dosáhneš ze své polohy, a všechny funkce PRO. 📡';
+
+  @override
+  String get proWelcomeCta => 'Začít objevovat';
+
+  @override
+  String get commonCancel => 'Zrušit';
+
+  @override
+  String get commonDelete => 'Smazat';
+
+  @override
+  String get commonEdit => 'Upravit';
+
+  @override
+  String get commonOpenSettings => 'Otevřít nastavení';
+
+  @override
+  String get commonFieldRequired => 'Povinné pole';
+
+  @override
+  String get fieldName => 'Jméno';
+
+  @override
+  String get fieldAddress => 'Adresa';
+
+  @override
+  String get fieldCity => 'Město';
+
+  @override
+  String get fieldDescription => 'Popis';
+
+  @override
+  String get fieldYear => 'Rok';
+
+  @override
+  String get fieldSelectDateHint => 'Vyberte datum';
+
+  @override
+  String get validationInvalidYear => 'Vyberte platný rok';
+
+  @override
+  String get validationPasswordMinLength => 'Heslo musí mít alespoň 6 znaků';
+
+  @override
+  String get permissionsMissingTitle => 'Chybí oprávnění!';
+
+  @override
+  String get imageUploadError => 'Chyba při nahrávání obrázku';
+
+  @override
+  String get uploadImageLabel => 'Nahrát obrázek';
+
+  @override
+  String get sourceGallery => 'Galerie';
+
+  @override
+  String get sourceCamera => 'Fotoaparát';
+
+  @override
+  String get changePasswordTitle => 'Změnit heslo';
+
+  @override
+  String get fieldNewPassword => 'Nové heslo';
+
+  @override
+  String get fieldConfirmNewPassword => 'Potvrďte nové heslo';
+
+  @override
+  String get validationPasswordsNoMatch => 'Hesla se neshodují';
+
+  @override
+  String get passwordChangedSuccess => 'Heslo úspěšně změněno';
+
+  @override
+  String errorWithMessage(String message) {
+    return 'Chyba: $message';
+  }
+
+  @override
+  String get updateRequiredTitle => 'Vyžadována aktualizace';
+
+  @override
+  String get updateRequiredAction => 'Aktualizovat nyní';
+
+  @override
+  String get yearPickerTitle => 'Vyberte rok';
+
+  @override
+  String get repeaterTabInfo => 'Info';
+
+  @override
+  String get repeaterTabCluster => 'Cluster';
+
+  @override
+  String get repeaterTabCommunity => 'Komunita';
+
+  @override
+  String get updateRequiredBody =>
+      'Je k dispozici nová verze aplikace. Aktualizujte ji, abyste ji mohli dále používat.';
+
+  @override
+  String get errorOpeningStore => 'Chyba při otevírání obchodu';
+
+  @override
+  String get deleteConfirmTitle => 'Potvrdit smazání';
+
+  @override
+  String get deleteConfirmContent => 'Opravdu chcete smazat?';
+
+  @override
+  String get cameraPermissionRationale =>
+      'Chcete-li pořídit fotku, povolte přístup k fotoaparátu v nastavení.';
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,6 +10,7 @@ Future<void> showUpdateRequiredDialog(
   required String appStoreId,
   required String playStorePackageName,
 }) async {
+  final l10n = context.localization;
   await showDialog<void>(
     barrierDismissible: false,
     context: context,
@@ -27,12 +29,10 @@ Future<void> showUpdateRequiredDialog(
                 size: 28,
               ),
               const SizedBox(width: 12),
-              const Text('Aggiornamento richiesto'),
+              Text(l10n.updateRequiredTitle),
             ],
           ),
-          content: const Text(
-            "È disponibile una nuova versione dell'app. Aggiorna per continuare a utilizzare l'applicazione.",
-          ),
+          content: Text(l10n.updateRequiredBody),
           actions: [
             ElevatedButton(
               onPressed: () async {
@@ -58,7 +58,7 @@ Future<void> showUpdateRequiredDialog(
                       if (context.mounted) {
                         showErrorSnackbar(
                           context,
-                          "Errore durante l'apertura dello store",
+                          l10n.errorOpeningStore,
                         );
                       }
                     }
@@ -79,7 +79,7 @@ Future<void> showUpdateRequiredDialog(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text('Aggiorna ora'),
+              child: Text(l10n.updateRequiredAction),
             ),
           ],
         ),

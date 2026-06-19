@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hamqrg/common/extension/hard_coded_string.dart';
+import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/form/base_field.dart';
 
 class DescriptionField extends StatelessWidget {
@@ -13,17 +13,18 @@ class DescriptionField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.localization;
     return BaseField(
       isRequired: isRequired,
       validator: (value) {
         if (isRequired && (value == null || value == '')) {
-          return 'Campo obbligatorio';
+          return l10n.commonFieldRequired;
         }
         return null;
       },
       controller: controller,
       icon: Icons.description,
-      label: 'Descrizione'.hardcoded,
+      label: l10n.fieldDescription,
       maxLines: 3,
     );
   }

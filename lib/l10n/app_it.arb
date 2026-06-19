@@ -890,5 +890,105 @@
         "type": "int"
       }
     }
-  }
+  },
+  "reachSheetError": "Impossibile calcolare i ponti raggiungibili.",
+  "reachSheetCount": "{count, plural, =1{Raggiungi 1 ponte} other{Raggiungi {count} ponti}}",
+  "@reachSheetCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reachSheetSubtitle": "Dalla tua posizione, ordinati per segnale",
+  "reachSheetEmpty": "Nessun ponte raggiungibile nei dintorni.",
+  "reachBadgeTitle": "Lo raggiungi da qui?",
+  "reachBadgeSubtitle": "Scopri se questo ponte ti copre e con che segnale",
+  "reachDiscoverCta": "Scoprilo con PRO",
+  "reachReachable": "Lo raggiungi",
+  "reachOutOfCoverage": "Fuori copertura",
+  "reachReachableDetail": "{signal} · {distance} km · tocca per il profilo",
+  "@reachReachableDetail": {
+    "placeholders": {
+      "signal": {
+        "type": "String"
+      },
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "reachDistanceFromHere": "{distance} km da qui",
+  "@reachDistanceFromHere": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "reachComputing": "Calcolo copertura…",
+  "reachRepeaterFallback": "Ponte",
+  "reachMapButton": "Cosa raggiungi?",
+  "reachUpsellTitle": "Cosa raggiungi da qui? 📡",
+  "reachUpsellBody": "Scopri in tempo reale TUTTI i ponti che prendi dalla tua posizione — con segnale previsto e profilo del terreno. Quanti ne raggiungi davvero da dove sei adesso?",
+  "reachUpsellLater": "Più tardi",
+  "linkProfileObstructed": "Ostacolo sul percorso (segnale per diffrazione)",
+  "linkProfileClear": "Vista diretta libera",
+  "linkProfileCaption": "Profilo del terreno e linea di vista · TX {tx} m · RX {rx} m",
+  "@linkProfileCaption": {
+    "placeholders": {
+      "tx": {
+        "type": "int"
+      },
+      "rx": {
+        "type": "int"
+      }
+    }
+  },
+  "proUnlockCta": "Sblocca con PRO",
+  "proWelcomeTitle": "Benvenuto in PRO! 🎉",
+  "proWelcomeBody": "Hai sbloccato la mappa di copertura, i ponti che raggiungi dalla tua posizione e tutte le funzioni PRO. 📡",
+  "proWelcomeCta": "Inizia a esplorare",
+  "commonCancel": "Annulla",
+  "commonDelete": "Cancella",
+  "commonEdit": "Modifica",
+  "commonOpenSettings": "Apri impostazioni",
+  "commonFieldRequired": "Campo obbligatorio",
+  "fieldName": "Nome",
+  "fieldAddress": "Indirizzo",
+  "fieldCity": "Città",
+  "fieldDescription": "Descrizione",
+  "fieldYear": "Anno",
+  "fieldSelectDateHint": "Seleziona una data",
+  "validationInvalidYear": "Seleziona un anno valido",
+  "validationPasswordMinLength": "La password deve essere lunga almeno 6 caratteri",
+  "permissionsMissingTitle": "Mancano i permessi!",
+  "imageUploadError": "Errore durante il caricamento dell'immagine",
+  "uploadImageLabel": "Carica immagine",
+  "sourceGallery": "Galleria",
+  "sourceCamera": "Fotocamera",
+  "changePasswordTitle": "Cambia Password",
+  "fieldNewPassword": "Nuova Password",
+  "fieldConfirmNewPassword": "Conferma Nuova Password",
+  "validationPasswordsNoMatch": "Le password non corrispondono",
+  "passwordChangedSuccess": "Password cambiata con successo",
+  "errorWithMessage": "Errore: {message}",
+  "@errorWithMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "updateRequiredTitle": "Aggiornamento richiesto",
+  "updateRequiredAction": "Aggiorna ora",
+  "yearPickerTitle": "Seleziona l'anno",
+  "repeaterTabInfo": "Info",
+  "repeaterTabCluster": "Cluster",
+  "repeaterTabCommunity": "Community",
+  "updateRequiredBody": "È disponibile una nuova versione dell'app. Aggiorna per continuare a utilizzare l'applicazione.",
+  "errorOpeningStore": "Errore durante l'apertura dello store",
+  "deleteConfirmTitle": "Conferma cancellazione",
+  "deleteConfirmContent": "Sei sicuro di voler cancellare?",
+  "cameraPermissionRationale": "Per scattare una foto, consenti l'accesso alla fotocamera dalle impostazioni."
 }

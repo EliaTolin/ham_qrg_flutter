@@ -139,7 +139,7 @@ class _RepeaterDetailContentState extends State<_RepeaterDetailContent>
                 ),
                 unselectedLabelStyle: theme.textTheme.titleSmall,
                 tabs: [
-                  const Tab(text: 'Info'),
+                  Tab(text: context.localization.repeaterTabInfo),
                   Tab(
                     child: _ClusterTabLabel(
                       repeaterId: widget.state.repeater.id,
@@ -303,8 +303,11 @@ class _ClusterTabLabel extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Flexible(
-            child: Text('Cluster', overflow: TextOverflow.ellipsis),
+          Flexible(
+            child: Text(
+              context.localization.repeaterTabCluster,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           if (hasActive) ...[
             const SizedBox(width: 6),
@@ -330,8 +333,11 @@ class _CommunityTabLabel extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Flexible(
-            child: Text('Community', overflow: TextOverflow.ellipsis),
+          Flexible(
+            child: Text(
+              context.localization.repeaterTabCommunity,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           if (likesTotal > 0) ...[
             const SizedBox(width: 6),
