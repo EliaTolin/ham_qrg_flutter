@@ -47,6 +47,32 @@ class RevenueCatClientImpl implements RevenueCatClient {
   }
 
   @override
+  Future<void> setUserAttributes({
+    String? email,
+    String? displayName,
+    Map<String, String?> custom = const {},
+  }) async {
+    if (AppConfigs.getRevenueCatApiKey().isEmpty) return;
+
+    if (email != null && email.isNotEmpty) {
+      await Purchases.setEmail(email);
+    }
+    if (displayName != null && displayName.isNotEmpty) {
+      await Purchases.setDisplayName(displayName);
+    }
+
+    final attributes = <String, String>{};
+    custom.forEach((key, value) {
+      if (value != null && value.isNotEmpty) {
+        attributes[key] = value;
+      }
+    });
+    if (attributes.isNotEmpty) {
+      await Purchases.setAttributes(attributes);
+    }
+  }
+
+  @override
   Future<bool> isPro() async {
     if (AppConfigs.getRevenueCatApiKey().isEmpty) return false;
     final info = await Purchases.getCustomerInfo();
