@@ -79,7 +79,7 @@ Future<void> _initRevenueCat() async {
 
     final currentUserId = Supabase.instance.client.auth.currentUser?.id;
     if (currentUserId != null) {
-      await revenueCatClient.login(currentUserId);
+      await _linkRevenueCatIdentity(revenueCatClient, currentUserId);
     }
 
     if (kDebugMode) {
@@ -99,7 +99,7 @@ Future<void> _initRevenueCat() async {
       case AuthChangeEvent.signedIn:
       case AuthChangeEvent.userUpdated:
         if (userId != null) {
-          unawaited(revenueCatClient.login(userId));
+          unawaited(_linkRevenueCatIdentity(revenueCatClient, userId));
         }
       case AuthChangeEvent.signedOut:
         unawaited(revenueCatClient.logout());
@@ -108,4 +108,19 @@ Future<void> _initRevenueCat() async {
         break;
     }
   });
+}
+
+/// Links the RevenueCat customer to [userId] and attaches the user's email,
+/// sequenced AFTER [RevenueCatClient.login] so the attribute lands on the
+/// correct customer. Name/surname/callsign are pushed reactively once the
+/// profile is loaded (see `syncRevenueCatAttributesProvider`).
+Future<void> _linkRevenueCatIdentity(
+  RevenueCatClient client,
+  String userId,
+) async {
+  await client.login(userId);
+  final email = Supabase.instance.client.auth.currentUser?.email;
+  if (email != null && email.isNotEmpty) {
+    await client.setUserAttributes(email: email);
+  }
 }

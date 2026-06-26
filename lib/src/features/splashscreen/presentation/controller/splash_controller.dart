@@ -19,6 +19,7 @@ import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifi
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hamqrg/src/features/splashscreen/errors/update_required_exception.dart';
+import 'package:hamqrg/src/features/subscriptions/provider/sync_revenue_cat_attributes/sync_revenue_cat_attributes_provider.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -37,6 +38,10 @@ class SplashController extends _$SplashController {
     try {
       final startWatch = Stopwatch()..start();
       talker.info('[Splash] build() start');
+
+      // Mount the reactive RevenueCat attribute sync (keepAlive): from here on
+      // it re-pushes email/name/surname/callsign whenever the profile changes.
+      ref.read(syncRevenueCatAttributesProvider);
 
       var userId = await ref.read(getUserIdProvider.future);
       if (userId == null) {

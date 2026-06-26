@@ -14,6 +14,20 @@ abstract class RevenueCatClient {
   /// Resets RevenueCat back to an anonymous customer (e.g. on sign-out).
   Future<void> logout();
 
+  /// Attaches identity attributes to the current RevenueCat customer so they
+  /// surface in the dashboard and downstream integrations (email/marketing).
+  ///
+  /// [email] maps to RevenueCat's reserved `$email`, [displayName] to
+  /// `$displayName`; [custom] holds extra attributes (e.g. first/last name,
+  /// callsign). No-op when the API key is unset. Null/empty values are skipped.
+  ///
+  /// Must be called AFTER [login] so the attributes land on the right customer.
+  Future<void> setUserAttributes({
+    String? email,
+    String? displayName,
+    Map<String, String?> custom,
+  });
+
   /// Whether the customer currently owns the Pro entitlement.
   Future<bool> isPro();
 
