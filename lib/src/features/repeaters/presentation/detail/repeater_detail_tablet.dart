@@ -14,6 +14,7 @@ import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/perfor
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_detail_action_buttons.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_header.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/technical_data_section.dart';
+import 'package:hamqrg/src/features/repeaters/presentation/reachable/widgets/repeater_reach_badge.dart';
 import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
 import 'package:hamqrg/src/features/spots/presentation/create_spot_sheet/create_other_spot_sheet.dart';
 import 'package:hamqrg/src/features/spots/presentation/create_spot_sheet/create_spot_sheet.dart';
@@ -92,6 +93,8 @@ class _LeftRail extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             RepeaterDetailActionButtons(repeater: state.repeater),
+            const SizedBox(height: 24),
+            RepeaterReachBadge(repeater: state.repeater),
             const SizedBox(height: 24),
             const _ConsoleLabel(text: 'TECHNICAL DATA'),
             const SizedBox(height: 12),
