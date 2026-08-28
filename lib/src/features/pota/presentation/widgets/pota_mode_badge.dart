@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hamqrg/themes/app_colors.dart';
 
 /// Normalizes a POTA spot mode string.
 /// Returns null if the mode is blank/empty.
@@ -20,21 +21,23 @@ class PotaModeBadge extends StatelessWidget {
     final normalized = normalizePotaMode(mode);
     if (normalized == null) return const SizedBox.shrink();
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
+    final tone = SpotModeColors.forMode(normalized);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
       decoration: BoxDecoration(
-        color: colorScheme.tertiaryContainer,
+        color: tone.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: tone.withValues(alpha: 0.4)),
       ),
       child: Text(
         normalized,
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: colorScheme.onTertiaryContainer,
-              fontWeight: FontWeight.bold,
-              fontSize: 10,
-            ),
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: tone,
+          fontWeight: FontWeight.bold,
+          fontSize: 10,
+        ),
       ),
     );
   }

@@ -206,6 +206,28 @@ Defined in `lib/themes/app_colors.dart` and `lib/common/utils/access_mode_helper
 - **Access mode colors** (`AccessModeHelper`) are the only exception — they are brand colors defined in the design system.
 - If the theme doesn't have the right token for a use case, **flag it to the user** instead of inventing workarounds.
 
+## Cache condivisa dei ripetitori (`remote_caching`)
+
+La consultazione offline delle postazioni salvate poggia su una cache condivisa
+con chiave `repeater:v1:<id>`. Due invarianti **non verificabili dal
+compilatore** la tengono in piedi:
+
+- **Mai `RemoteCaching.instance.clearCache()`.** Svuota l'intera tabella e con
+  essa l'offline di ogni postazione salvata. Per invalidare un altro dominio si
+  usa `clearCacheByPrefix('<prefisso>:')`.
+- **Ogni voce `repeater:` si scrive con la sentinella `kNeverExpires`.**
+  `RemoteCaching.init()` esegue `DELETE FROM cache WHERE expires_at < now`: una
+  voce con scadenza normale verrebbe cancellata al riavvio successivo. Oggi la
+  garanzia è strutturale — esiste un solo metodo di scrittura e la scadenza non
+  è un suo parametro — ma va preservata se si aggiungono scrittori.
+
+La cache resta un **acceleratore, non una dipendenza dura**: `getRepeaterById`
+ricade sul repository se il database locale è inagibile.
+
+Entrambe le invarianti sparirebbero se `remote_caching` supportasse
+`expires_at NULL` = "non scade mai". Il pacchetto è interno: è un miglioramento
+realistico.
+
 ## Coding Conventions
 
 - **DRY principle**: Before creating any widget, helper, or utility, check if a similar one already exists in `lib/common/widgets/` or other features. If it does, extend/generalize it. If a new widget could be reused elsewhere, place it in `lib/common/widgets/` from the start.
@@ -266,6 +288,8 @@ Prefix format: `[type]: [description]`
 - Supabase (PostgreSQL via Edge Functions + PostgREST + Realtime) (002-cluster-spots-frontend)
 - Dart 3.x / Flutter 3.x (versione vincolata da `pubspec.yaml` del progetto) + Riverpod 3.x (`riverpod_annotation: ^4.0`), `freezed_annotation`, `json_serializable`, `auto_route`, `dio` (HTTP), `supabase_flutter` (edge function invocation), `mapbox_maps_flutter`, `geolocator` (location), `fl_chart` (grafico altimetrico, già presente) (004-sota-integration)
 - Nessuno per MVP — solo cache in-memory via `ProviderContainer` Riverpod. Nessuna scrittura su SharedPreferences/SQLite per SOTA. (004-sota-integration)
+- Dart 3.x / Flutter 3.x (vincolati da `pubspec.yaml`) + Riverpod 3.x (`riverpod_annotation ^4.0`), `freezed`, `auto_route`, `dio ^5.7`, `supabase_flutter`, `mapbox_maps_flutter ^2.4` (2.25 risolta), `shared_preferences ^2.3`, **`remote_caching ^1.0.19` (nuova, pacchetto interno)** (005-location-coverage-search)
+- due archivi distinti — `StorageClient`/SharedPreferences per le postazioni (dato utente, durata illimitata); `remote_caching` (SQLite) con scadenza sentinella per i payload ripetitore (dato rigenerabile e condiviso) (005-location-coverage-search)
 
 ## Recent Changes
 - 002-cluster-spots-frontend: Added Dart 3.x / Flutter 3.x + Riverpod 3.x (`riverpod_annotation: ^4.0`), `@freezed`, `auto_route`, `supabase_flutter`, `onesignal_flutter`, `mapbox_maps_flutter`

@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/auth_screen.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/change_password/change_password_screen.dart';
+import 'package:hamqrg/src/features/coverage_search/presentation/saved_stations_page/saved_stations_page.dart';
+import 'package:hamqrg/src/features/coverage_search/presentation/station_detail_page/station_detail_page.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashboard_page.dart';
 import 'package:hamqrg/src/features/home/presentation/home_page/home_page.dart';
 import 'package:hamqrg/src/features/onboarding/presentation/onboarding_page/onboarding_page.dart';
@@ -53,6 +55,11 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(path: 'map', page: RepeatersMapRoute.page),
                 AutoRoute(path: 'list', page: RepeatersListRoute.page),
                 AutoRoute(path: 'favorites', page: FavoritesRoute.page),
+                AutoRoute(path: 'stations', page: SavedStationsRoute.page),
+                AutoRoute(
+                  path: 'stations/:stationId',
+                  page: StationDetailRoute.page,
+                ),
                 AutoRoute(
                   path: 'repeater/:repeaterId',
                   page: RepeaterDetailRoute.page,

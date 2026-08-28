@@ -1904,6 +1904,21 @@ class AppLocalizationsNl extends AppLocalizations {
   String get sotaFilterAll => 'All';
 
   @override
+  String get spotsFiltersTitle => 'Filters';
+
+  @override
+  String get spotsFilterBand => 'Band';
+
+  @override
+  String get spotsFilterMode => 'Modus';
+
+  @override
+  String get spotsFilterAll => 'Alle';
+
+  @override
+  String get spotsFiltersReset => 'Filters wissen';
+
+  @override
   String get sotaSortByTime => 'Time';
 
   @override
@@ -2213,4 +2228,208 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'Geef in de instellingen toegang tot de camera om een foto te maken.';
+
+  @override
+  String get coverageSearchHint => 'Zoek een plaats of plak coördinaten';
+
+  @override
+  String get coverageSearchRecentTitle => 'Recente zoekopdrachten';
+
+  @override
+  String get coverageSearchNoResults => 'Geen plaats gevonden';
+
+  @override
+  String get coverageSearchTip =>
+      'Je kunt coördinaten plakken (46.4879, 11.8123) of lang op de kaart drukken';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Coördinaten buiten bereik: breedtegraad ±90, lengtegraad ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'Geen verbinding: zoeken naar plaatsen vereist netwerk';
+
+  @override
+  String get coverageSearchErrorFailed => 'Zoeken mislukt. Probeer opnieuw.';
+
+  @override
+  String get coverageSearchClearPoint => 'Punt verwijderen';
+
+  @override
+  String get coverageSearchPointSemantics => 'Geselecteerd zoekpunt';
+
+  @override
+  String get coverageBreadthTitle => 'Zoekbereik';
+
+  @override
+  String get coverageBreadthQuick => 'Snel';
+
+  @override
+  String get coverageBreadthMedium => 'Gemiddeld';
+
+  @override
+  String get coverageBreadthExtended => 'Uitgebreid';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · snelste antwoord';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · in balans';
+
+  @override
+  String get coverageBreadthExtendedHint =>
+      '150 km · verder, langere wachttijd';
+
+  @override
+  String get coverageResultSubtitle => 'Vanaf het geselecteerde punt';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'Geen enkele repeater is bereikbaar vanaf dit punt';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'Geen repeaters geregistreerd in dit gebied';
+
+  @override
+  String get coverageResultClearFilters => 'Filters wissen';
+
+  @override
+  String get coverageResultError => 'Berekening mislukt';
+
+  @override
+  String get coverageResultComputing => 'Ontvangst berekenen…';
+
+  @override
+  String get coverageResultCancel => 'Annuleren';
+
+  @override
+  String coverageResultCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bereikbare repeaters',
+      one: '1 bereikbare repeater',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bereikbare verborgen door filters',
+      one: '1 bereikbare verborgen door filters',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'Wat bereik je vanaf $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Elke repeater die je vanaf dat punt bereikt, met voorspeld signaal en afstand — nog voor je vertrekt.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'Elk punt op aarde';
+
+  @override
+  String get coverageTeaserBenefitOffline =>
+      'Zonder netwerk te raadplegen, in het veld';
+
+  @override
+  String get coverageTeaserBenefitSave => 'Bewaar de locatie en vind hem terug';
+
+  @override
+  String get coverageTeaserRestore => 'Aankopen herstellen';
+
+  @override
+  String get stationSaveCta => 'Locatie opslaan';
+
+  @override
+  String get stationSaveTitle => 'Naam van de locatie';
+
+  @override
+  String get stationRename => 'Hernoemen';
+
+  @override
+  String get stationDelete => 'Verwijderen';
+
+  @override
+  String get stationRefresh => 'Vernieuwen';
+
+  @override
+  String get stationRefreshAll => 'Alles vernieuwen';
+
+  @override
+  String get stationOfflineNotice => 'Gegevens opgeslagen op dit apparaat';
+
+  @override
+  String get stationStaleNotice => 'Deze gegevens zijn mogelijk verouderd';
+
+  @override
+  String get stationMissingEntry => 'Gegevens offline niet beschikbaar';
+
+  @override
+  String get stationDuplicateTitle => 'Punt al opgeslagen';
+
+  @override
+  String get stationDuplicateBody =>
+      'Er is al een locatie binnen 200 meter. Bijwerken of een aparte maken?';
+
+  @override
+  String get stationDuplicateUpdate => 'Bijwerken';
+
+  @override
+  String get stationDuplicateCreate => 'Apart maken';
+
+  @override
+  String get stationSaveFailed => 'Opslaan mislukt: onvoldoende ruimte';
+
+  @override
+  String get stationsTitle => 'Mijn locaties';
+
+  @override
+  String get stationsEmptyTitle => 'Nog geen locaties opgeslagen';
+
+  @override
+  String get stationsEmptyBody =>
+      'Kies een punt op de kaart, bekijk wat je bereikt en sla het op: je vindt het ook zonder netwerk terug.';
+
+  @override
+  String get stationsGoToMap => 'Naar de kaart';
+
+  @override
+  String get stationsRefreshDone => 'Vernieuwen voltooid';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Bijgewerkt $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Update over $seconds s';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Update over $minutes min';
+  }
+
+  @override
+  String get spotsUpdating => 'Bijwerken…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Automatisch bijwerken elke $seconds seconden';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Tik om bij te werken';
 }

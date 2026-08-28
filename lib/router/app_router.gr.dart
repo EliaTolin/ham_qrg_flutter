@@ -528,6 +528,22 @@ class ReportIssueRouteArgs {
 }
 
 /// generated route for
+/// [SavedStationsPage]
+class SavedStationsRoute extends PageRouteInfo<void> {
+  const SavedStationsRoute({List<PageRouteInfo>? children})
+      : super(SavedStationsRoute.name, initialChildren: children);
+
+  static const String name = 'SavedStationsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SavedStationsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [SotaSpotDetailPage]
 class SotaSpotDetailRoute extends PageRouteInfo<SotaSpotDetailRouteArgs> {
   SotaSpotDetailRoute({
@@ -660,6 +676,59 @@ class SpotListRoute extends PageRouteInfo<void> {
       return const SpotListPage();
     },
   );
+}
+
+/// generated route for
+/// [StationDetailPage]
+class StationDetailRoute extends PageRouteInfo<StationDetailRouteArgs> {
+  StationDetailRoute({
+    required String stationId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          StationDetailRoute.name,
+          args: StationDetailRouteArgs(stationId: stationId, key: key),
+          rawPathParams: {'stationId': stationId},
+          initialChildren: children,
+        );
+
+  static const String name = 'StationDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<StationDetailRouteArgs>(
+        orElse: () => StationDetailRouteArgs(
+          stationId: pathParams.getString('stationId'),
+        ),
+      );
+      return StationDetailPage(stationId: args.stationId, key: args.key);
+    },
+  );
+}
+
+class StationDetailRouteArgs {
+  const StationDetailRouteArgs({required this.stationId, this.key});
+
+  final String stationId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'StationDetailRouteArgs{stationId: $stationId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! StationDetailRouteArgs) return false;
+    return stationId == other.stationId && key == other.key;
+  }
+
+  @override
+  int get hashCode => stationId.hashCode ^ key.hashCode;
 }
 
 /// generated route for

@@ -7,6 +7,7 @@ import 'package:hamqrg/config/app_configs.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 part 'revenue_cat_client_impl.g.dart';
 
@@ -73,6 +74,18 @@ class RevenueCatClientImpl implements RevenueCatClient {
   }
 
   @override
+  Future<bool> restorePurchases() async {
+    if (AppConfigs.getRevenueCatApiKey().isEmpty) return false;
+    try {
+      final info = await Purchases.restorePurchases();
+      return _hasProEntitlement(info);
+    } catch (error, stackTrace) {
+      await Sentry.captureException(error, stackTrace: stackTrace);
+      return false;
+    }
+  }
+
+  @override
   Future<bool> isPro() async {
     if (AppConfigs.getRevenueCatApiKey().isEmpty) return false;
     final info = await Purchases.getCustomerInfo();
@@ -92,7 +105,8 @@ class RevenueCatClientImpl implements RevenueCatClient {
   @override
   Stream<bool> proStatusChanges() {
     final controller = StreamController<bool>();
-    void listener(CustomerInfo info) => controller.add(_hasProEntitlement(info));
+    void listener(CustomerInfo info) =>
+        controller.add(_hasProEntitlement(info));
 
     Purchases.addCustomerInfoUpdateListener(listener);
     controller.onCancel =

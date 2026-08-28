@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Filtri",
+  "spotsFilterBand": "Pas",
+  "spotsFilterMode": "Način",
+  "spotsFilterAll": "Vse",
+  "spotsFiltersReset": "Počisti filtre",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Napaka pri odpiranju trgovine",
   "deleteConfirmTitle": "Potrdi izbris",
   "deleteConfirmContent": "Ali ste prepričani, da želite izbrisati?",
-  "cameraPermissionRationale": "Za fotografiranje dovolite dostop do kamere v nastavitvah."
+  "cameraPermissionRationale": "Za fotografiranje dovolite dostop do kamere v nastavitvah.",
+  "coverageSearchHint": "Poiščite kraj ali prilepite koordinate",
+  "coverageSearchRecentTitle": "Nedavna iskanja",
+  "coverageSearchNoResults": "Nobenega kraja ni bilo mogoče najti",
+  "coverageSearchTip": "Prilepite lahko koordinate (46.4879, 11.8123) ali dolgo pritisnete na zemljevid",
+  "coverageSearchErrorOutOfRange": "Koordinate zunaj obsega: širina ±90, dolžina ±180",
+  "coverageSearchErrorOffline": "Ni povezave: iskanje krajev zahteva omrežje",
+  "coverageSearchErrorFailed": "Iskanje ni uspelo. Poskusite znova.",
+  "coverageSearchClearPoint": "Odstrani točko",
+  "coverageSearchPointSemantics": "Izbrana iskalna točka",
+  "coverageBreadthTitle": "Obseg iskanja",
+  "coverageBreadthQuick": "Hitro",
+  "coverageBreadthMedium": "Srednje",
+  "coverageBreadthExtended": "Razširjeno",
+  "coverageBreadthQuickHint": "80 km · najhitrejši odgovor",
+  "coverageBreadthMediumHint": "100 km · uravnoteženo",
+  "coverageBreadthExtendedHint": "150 km · dlje, daljše čakanje",
+  "coverageResultSubtitle": "Z izbrane točke",
+  "coverageResultEmptyNoReachable": "S te točke ni dosegljiv noben repetitor",
+  "coverageResultEmptyNoRepeaters": "Na tem območju ni evidentiranega repetitorja",
+  "coverageResultClearFilters": "Odstrani filtre",
+  "coverageResultError": "Izračun ni uspel",
+  "coverageResultComputing": "Izračun sprejema…",
+  "coverageResultCancel": "Prekliči",
+  "coverageResultCount": "Dosegljivi repetitorji: {count}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "Skrito s filtri: {count}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "Kaj dosežete z {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Vsak repetitor, dosegljiv s te točke, z napovedanim signalom in razdaljo — še preden se odpravite.",
+  "coverageTeaserBenefitAnywhere": "Katera koli točka na svetu",
+  "coverageTeaserBenefitOffline": "Na voljo brez omrežja, na terenu",
+  "coverageTeaserBenefitSave": "Shranite postojanko in jo najdete znova",
+  "coverageTeaserRestore": "Obnovi nakupe",
+  "stationSaveCta": "Shrani postojanko",
+  "stationSaveTitle": "Ime postojanke",
+  "stationRename": "Preimenuj",
+  "stationDelete": "Izbriši",
+  "stationRefresh": "Osveži",
+  "stationRefreshAll": "Osveži vse",
+  "stationOfflineNotice": "Podatki shranjeni v napravi",
+  "stationStaleNotice": "Podatki morda niso posodobljeni",
+  "stationMissingEntry": "Podatki niso na voljo brez povezave",
+  "stationDuplicateTitle": "Točka je že shranjena",
+  "stationDuplicateBody": "V 200 metrih že obstaja postojanka. Jo posodobim ali ustvarim ločeno?",
+  "stationDuplicateUpdate": "Posodobi",
+  "stationDuplicateCreate": "Ustvari ločeno",
+  "stationSaveFailed": "Shranjevanje ni uspelo: premalo prostora",
+  "stationsTitle": "Moje postojanke",
+  "stationsEmptyTitle": "Ni shranjenih postojank",
+  "stationsEmptyBody": "Izberite točko na zemljevidu, poglejte, kaj dosežete, in shranite: našli jo boste tudi brez omrežja.",
+  "stationsGoToMap": "Na zemljevid",
+  "stationsRefreshDone": "Osveževanje končano",
+  "spotsUpdatedAgo": "Posodobljeno {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Posodobitev čez {seconds} s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Posodobitev čez {minutes} min",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Posodabljanje…",
+  "spotsAutoRefreshHint": "Samodejna posodobitev vsakih {seconds} sekund",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Tapnite za posodobitev"
 }

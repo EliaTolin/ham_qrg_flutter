@@ -33,6 +33,7 @@ final class GetReachableRepeatersProvider extends $FunctionalProvider<
         double latitude,
         double longitude,
         double radiusKm,
+        int candidateLimit,
       })
           super.argument})
       : super(
@@ -65,12 +66,14 @@ final class GetReachableRepeatersProvider extends $FunctionalProvider<
       double latitude,
       double longitude,
       double radiusKm,
+      int candidateLimit,
     });
     return getReachableRepeaters(
       ref,
       latitude: argument.latitude,
       longitude: argument.longitude,
       radiusKm: argument.radiusKm,
+      candidateLimit: argument.candidateLimit,
     );
   }
 
@@ -86,7 +89,7 @@ final class GetReachableRepeatersProvider extends $FunctionalProvider<
 }
 
 String _$getReachableRepeatersHash() =>
-    r'04935deba80bb7030379492fee1bbfe1cb4f5d36';
+    r'855059c2a16f40136931f79d3236b1115cb7ff71';
 
 /// "Which repeaters can I reach from here?" — fetches nearby repeaters, asks the
 /// service which reach the user (point-to-point, same model as the map), and
@@ -100,6 +103,7 @@ final class GetReachableRepeatersFamily extends $Family
               double latitude,
               double longitude,
               double radiusKm,
+              int candidateLimit,
             })> {
   GetReachableRepeatersFamily._()
       : super(
@@ -118,11 +122,13 @@ final class GetReachableRepeatersFamily extends $Family
     required double latitude,
     required double longitude,
     double radiusKm = 80.0,
+    int candidateLimit = 50,
   }) =>
       GetReachableRepeatersProvider._(argument: (
         latitude: latitude,
         longitude: longitude,
         radiusKm: radiusKm,
+        candidateLimit: candidateLimit,
       ), from: this);
 
   @override

@@ -1904,6 +1904,21 @@ class AppLocalizationsIt extends AppLocalizations {
   String get sotaFilterAll => 'Tutti';
 
   @override
+  String get spotsFiltersTitle => 'Filtri';
+
+  @override
+  String get spotsFilterBand => 'Banda';
+
+  @override
+  String get spotsFilterMode => 'Modo';
+
+  @override
+  String get spotsFilterAll => 'Tutti';
+
+  @override
+  String get spotsFiltersReset => 'Azzera filtri';
+
+  @override
   String get sotaSortByTime => 'Tempo';
 
   @override
@@ -2213,4 +2228,209 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'Per scattare una foto, consenti l\'accesso alla fotocamera dalle impostazioni.';
+
+  @override
+  String get coverageSearchHint => 'Cerca una località o incolla coordinate';
+
+  @override
+  String get coverageSearchRecentTitle => 'Ricerche recenti';
+
+  @override
+  String get coverageSearchNoResults => 'Nessun luogo trovato';
+
+  @override
+  String get coverageSearchTip =>
+      'Puoi incollare coordinate (46.4879, 11.8123) o tenere premuto sulla mappa';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Coordinate fuori intervallo: latitudine ±90, longitudine ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'Nessuna connessione: la ricerca di località richiede rete';
+
+  @override
+  String get coverageSearchErrorFailed => 'Ricerca non riuscita. Riprova.';
+
+  @override
+  String get coverageSearchClearPoint => 'Rimuovi punto';
+
+  @override
+  String get coverageSearchPointSemantics => 'Punto di ricerca selezionato';
+
+  @override
+  String get coverageBreadthTitle => 'Ampiezza ricerca';
+
+  @override
+  String get coverageBreadthQuick => 'Rapida';
+
+  @override
+  String get coverageBreadthMedium => 'Media';
+
+  @override
+  String get coverageBreadthExtended => 'Estesa';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · risposta più veloce';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · equilibrata';
+
+  @override
+  String get coverageBreadthExtendedHint =>
+      '150 km · più lontano, attesa maggiore';
+
+  @override
+  String get coverageResultSubtitle => 'Dal punto selezionato';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'Nessun ripetitore raggiungibile da questo punto';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'Nessun ripetitore censito in quest\'area';
+
+  @override
+  String get coverageResultClearFilters => 'Rimuovi i filtri';
+
+  @override
+  String get coverageResultError => 'Calcolo non riuscito';
+
+  @override
+  String get coverageResultComputing => 'Calcolo della ricezione…';
+
+  @override
+  String get coverageResultCancel => 'Annulla';
+
+  @override
+  String coverageResultCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ripetitori raggiungibili',
+      one: '1 ripetitore raggiungibile',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count raggiungibili nascosti dai filtri',
+      one: '1 raggiungibile nascosto dai filtri',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'Cosa raggiungi da $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Ogni ponte che prendi da quel punto, con segnale previsto e distanza — prima ancora di partire.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'Qualunque punto del pianeta';
+
+  @override
+  String get coverageTeaserBenefitOffline =>
+      'Consultabile senza rete, in campo';
+
+  @override
+  String get coverageTeaserBenefitSave => 'Salvi la postazione e la ritrovi';
+
+  @override
+  String get coverageTeaserRestore => 'Ripristina acquisti';
+
+  @override
+  String get stationSaveCta => 'Salva postazione';
+
+  @override
+  String get stationSaveTitle => 'Nome della postazione';
+
+  @override
+  String get stationRename => 'Rinomina';
+
+  @override
+  String get stationDelete => 'Elimina';
+
+  @override
+  String get stationRefresh => 'Aggiorna';
+
+  @override
+  String get stationRefreshAll => 'Aggiorna tutte';
+
+  @override
+  String get stationOfflineNotice => 'Dato memorizzato sul dispositivo';
+
+  @override
+  String get stationStaleNotice => 'Il dato potrebbe non essere aggiornato';
+
+  @override
+  String get stationMissingEntry => 'Dato non disponibile offline';
+
+  @override
+  String get stationDuplicateTitle => 'Punto già salvato';
+
+  @override
+  String get stationDuplicateBody =>
+      'Esiste già una postazione a meno di 200 metri da qui. Vuoi aggiornarla o crearne una distinta?';
+
+  @override
+  String get stationDuplicateUpdate => 'Aggiorna quella';
+
+  @override
+  String get stationDuplicateCreate => 'Crea distinta';
+
+  @override
+  String get stationSaveFailed =>
+      'Salvataggio non riuscito: spazio insufficiente';
+
+  @override
+  String get stationsTitle => 'Le mie postazioni';
+
+  @override
+  String get stationsEmptyTitle => 'Nessuna postazione salvata';
+
+  @override
+  String get stationsEmptyBody =>
+      'Scegli un punto sulla mappa, valuta cosa raggiungi e salvalo: lo ritroverai anche senza rete.';
+
+  @override
+  String get stationsGoToMap => 'Vai alla mappa';
+
+  @override
+  String get stationsRefreshDone => 'Aggiornamento completato';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Aggiornato $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Aggiornamento tra $seconds s';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Aggiornamento tra $minutes min';
+  }
+
+  @override
+  String get spotsUpdating => 'Aggiornamento…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Aggiornamento automatico ogni $seconds secondi';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Tocca per aggiornare';
 }

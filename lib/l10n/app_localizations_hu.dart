@@ -1905,6 +1905,21 @@ class AppLocalizationsHu extends AppLocalizations {
   String get sotaFilterAll => 'All';
 
   @override
+  String get spotsFiltersTitle => 'Szűrők';
+
+  @override
+  String get spotsFilterBand => 'Sáv';
+
+  @override
+  String get spotsFilterMode => 'Mód';
+
+  @override
+  String get spotsFilterAll => 'Összes';
+
+  @override
+  String get spotsFiltersReset => 'Szűrők törlése';
+
+  @override
   String get sotaSortByTime => 'Time';
 
   @override
@@ -2214,4 +2229,199 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'Fénykép készítéséhez engedélyezd a kamera-hozzáférést a beállításokban.';
+
+  @override
+  String get coverageSearchHint =>
+      'Keressen helyet vagy illesszen be koordinátákat';
+
+  @override
+  String get coverageSearchRecentTitle => 'Legutóbbi keresések';
+
+  @override
+  String get coverageSearchNoResults => 'Nem található hely';
+
+  @override
+  String get coverageSearchTip =>
+      'Beilleszthet koordinátákat (46.4879, 11.8123) vagy hosszan nyomhat a térképen';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Koordináták tartományon kívül: szélesség ±90, hosszúság ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'Nincs kapcsolat: a helykereséshez hálózat kell';
+
+  @override
+  String get coverageSearchErrorFailed =>
+      'A keresés sikertelen. Próbálja újra.';
+
+  @override
+  String get coverageSearchClearPoint => 'Pont eltávolítása';
+
+  @override
+  String get coverageSearchPointSemantics => 'Kiválasztott keresési pont';
+
+  @override
+  String get coverageBreadthTitle => 'Keresési hatókör';
+
+  @override
+  String get coverageBreadthQuick => 'Gyors';
+
+  @override
+  String get coverageBreadthMedium => 'Közepes';
+
+  @override
+  String get coverageBreadthExtended => 'Kiterjesztett';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · leggyorsabb válasz';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · kiegyensúlyozott';
+
+  @override
+  String get coverageBreadthExtendedHint =>
+      '150 km · távolabb, hosszabb várakozás';
+
+  @override
+  String get coverageResultSubtitle => 'A kiválasztott pontból';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'Erről a pontról egyetlen átjátszó sem érhető el';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'Ezen a területen nincs nyilvántartott átjátszó';
+
+  @override
+  String get coverageResultClearFilters => 'Szűrők törlése';
+
+  @override
+  String get coverageResultError => 'A számítás sikertelen';
+
+  @override
+  String get coverageResultComputing => 'Vétel számítása…';
+
+  @override
+  String get coverageResultCancel => 'Mégse';
+
+  @override
+  String coverageResultCount(int count) {
+    return '$count elérhető átjátszó';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    return 'A szűrők $count elérhetőt rejtenek el';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'Mit érsz el innen: $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Minden átjátszó, amit onnan elérsz, várható jellel és távolsággal — még indulás előtt.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'A bolygó bármely pontja';
+
+  @override
+  String get coverageTeaserBenefitOffline =>
+      'Hálózat nélkül is olvasható, terepen';
+
+  @override
+  String get coverageTeaserBenefitSave =>
+      'Elmented a helyet és újra megtalálod';
+
+  @override
+  String get coverageTeaserRestore => 'Vásárlások visszaállítása';
+
+  @override
+  String get stationSaveCta => 'Hely mentése';
+
+  @override
+  String get stationSaveTitle => 'A hely neve';
+
+  @override
+  String get stationRename => 'Átnevezés';
+
+  @override
+  String get stationDelete => 'Törlés';
+
+  @override
+  String get stationRefresh => 'Frissítés';
+
+  @override
+  String get stationRefreshAll => 'Összes frissítése';
+
+  @override
+  String get stationOfflineNotice => 'Az eszközön tárolt adat';
+
+  @override
+  String get stationStaleNotice => 'Az adat elavult lehet';
+
+  @override
+  String get stationMissingEntry => 'Az adat offline nem érhető el';
+
+  @override
+  String get stationDuplicateTitle => 'A pont már mentve van';
+
+  @override
+  String get stationDuplicateBody =>
+      '200 méteren belül már van egy hely. Frissíted, vagy külön hozol létre?';
+
+  @override
+  String get stationDuplicateUpdate => 'Frissítés';
+
+  @override
+  String get stationDuplicateCreate => 'Külön létrehozás';
+
+  @override
+  String get stationSaveFailed => 'A mentés sikertelen: nincs elég hely';
+
+  @override
+  String get stationsTitle => 'Helyeim';
+
+  @override
+  String get stationsEmptyTitle => 'Még nincs mentett hely';
+
+  @override
+  String get stationsEmptyBody =>
+      'Válassz egy pontot a térképen, nézd meg mit érsz el, és mentsd el: hálózat nélkül is megtalálod.';
+
+  @override
+  String get stationsGoToMap => 'Ugrás a térképre';
+
+  @override
+  String get stationsRefreshDone => 'A frissítés kész';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Frissítve: $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Frissítés $seconds mp múlva';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Frissítés $minutes perc múlva';
+  }
+
+  @override
+  String get spotsUpdating => 'Frissítés…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Automatikus frissítés $seconds másodpercenként';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Koppintson a frissítéshez';
 }

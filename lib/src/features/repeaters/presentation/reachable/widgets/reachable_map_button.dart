@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hamqrg/clients/analytics/analytics_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/reachable/reachable_repeaters_sheet.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/reachable/widgets/reachability_upsell_dialog.dart';
@@ -31,7 +32,11 @@ class ReachableMapButton extends ConsumerWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.cell_tower_rounded, color: theme.colorScheme.onPrimary, size: 20),
+              Icon(
+                Icons.cell_tower_rounded,
+                color: theme.colorScheme.onPrimary,
+                size: 20,
+              ),
               const SizedBox(width: 8),
               Text(
                 context.localization.reachMapButton,
@@ -52,7 +57,11 @@ class ReachableMapButton extends ConsumerWidget {
     // is available synchronously here (no fragile `.future` await).
     final isPro = ref.read(isProProvider).value ?? false;
     if (!isPro) {
-      await showReachabilityUpsell(context, ref);
+      await showReachabilityUpsell(
+        context,
+        ref,
+        surface: AnalyticsSurface.reachButton,
+      );
       return;
     }
     final pos = await ref.read(cachedUserPositionProvider.future);

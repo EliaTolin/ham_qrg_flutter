@@ -20,12 +20,20 @@ Future<ReachableSummary> getReachableRepeaters(
   required double latitude,
   required double longitude,
   double radiusKm = 80,
+  int candidateLimit = 50,
 }) async {
+  // Il repository si legge PRIMA di qualunque await: dopo un salto asincrono il
+  // provider può essere già stato smontato — succede ogni volta che l'utente
+  // annulla il calcolo o cambia punto mentre è in corso — e `ref.read` a quel
+  // punto lancia invece di lasciar cadere il lavoro in silenzio.
+  final repository = ref.read(reachableRepositoryProvider);
+
   final nearby = await ref.watch(
     getRepeatersNearbyProvider(
       latitude: latitude,
       longitude: longitude,
       radiusKm: radiusKm,
+      limit: candidateLimit,
     ).future,
   );
 
@@ -45,9 +53,11 @@ Future<ReachableSummary> getReachableRepeaters(
 
   if (candidates.isEmpty) return const ReachableSummary(reachableCount: 0);
 
-  final outcomes = await ref
-      .read(reachableRepositoryProvider)
-      .getReachable(lat: latitude, lon: longitude, candidates: candidates);
+  final outcomes = await repository.getReachable(
+    lat: latitude,
+    lon: longitude,
+    candidates: candidates,
+  );
 
   // Outcomes already come strongest-first from the service.
   final entries = <ReachableEntry>[];

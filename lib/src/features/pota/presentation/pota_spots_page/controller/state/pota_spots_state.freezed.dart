@@ -19,6 +19,8 @@ mixin _$PotaSpotsState {
   String get searchQuery;
   bool get hasLoadError;
   bool get isRefreshing;
+  DateTime? get lastUpdatedAt;
+  DateTime? get nextRefreshAt;
   String? get selectedBand;
   String? get selectedMode;
   PotaSpotsSortOrder get sortOrder;
@@ -49,6 +51,10 @@ mixin _$PotaSpotsState {
                 other.hasLoadError == hasLoadError) &&
             (identical(other.isRefreshing, isRefreshing) ||
                 other.isRefreshing == isRefreshing) &&
+            (identical(other.lastUpdatedAt, lastUpdatedAt) ||
+                other.lastUpdatedAt == lastUpdatedAt) &&
+            (identical(other.nextRefreshAt, nextRefreshAt) ||
+                other.nextRefreshAt == nextRefreshAt) &&
             (identical(other.selectedBand, selectedBand) ||
                 other.selectedBand == selectedBand) &&
             (identical(other.selectedMode, selectedMode) ||
@@ -72,6 +78,8 @@ mixin _$PotaSpotsState {
       searchQuery,
       hasLoadError,
       isRefreshing,
+      lastUpdatedAt,
+      nextRefreshAt,
       selectedBand,
       selectedMode,
       sortOrder,
@@ -82,7 +90,7 @@ mixin _$PotaSpotsState {
 
   @override
   String toString() {
-    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, parkCache: $parkCache, availableBands: $availableBands, availableModes: $availableModes)';
+    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, lastUpdatedAt: $lastUpdatedAt, nextRefreshAt: $nextRefreshAt, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, parkCache: $parkCache, availableBands: $availableBands, availableModes: $availableModes)';
   }
 }
 
@@ -98,6 +106,8 @@ abstract mixin class $PotaSpotsStateCopyWith<$Res> {
       String searchQuery,
       bool hasLoadError,
       bool isRefreshing,
+      DateTime? lastUpdatedAt,
+      DateTime? nextRefreshAt,
       String? selectedBand,
       String? selectedMode,
       PotaSpotsSortOrder sortOrder,
@@ -125,6 +135,8 @@ class _$PotaSpotsStateCopyWithImpl<$Res>
     Object? searchQuery = null,
     Object? hasLoadError = null,
     Object? isRefreshing = null,
+    Object? lastUpdatedAt = freezed,
+    Object? nextRefreshAt = freezed,
     Object? selectedBand = freezed,
     Object? selectedMode = freezed,
     Object? sortOrder = null,
@@ -154,6 +166,14 @@ class _$PotaSpotsStateCopyWithImpl<$Res>
           ? _self.isRefreshing
           : isRefreshing // ignore: cast_nullable_to_non_nullable
               as bool,
+      lastUpdatedAt: freezed == lastUpdatedAt
+          ? _self.lastUpdatedAt
+          : lastUpdatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextRefreshAt: freezed == nextRefreshAt
+          ? _self.nextRefreshAt
+          : nextRefreshAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       selectedBand: freezed == selectedBand
           ? _self.selectedBand
           : selectedBand // ignore: cast_nullable_to_non_nullable
@@ -285,6 +305,8 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             String searchQuery,
             bool hasLoadError,
             bool isRefreshing,
+            DateTime? lastUpdatedAt,
+            DateTime? nextRefreshAt,
             String? selectedBand,
             String? selectedMode,
             PotaSpotsSortOrder sortOrder,
@@ -304,6 +326,8 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             _that.searchQuery,
             _that.hasLoadError,
             _that.isRefreshing,
+            _that.lastUpdatedAt,
+            _that.nextRefreshAt,
             _that.selectedBand,
             _that.selectedMode,
             _that.sortOrder,
@@ -337,6 +361,8 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             String searchQuery,
             bool hasLoadError,
             bool isRefreshing,
+            DateTime? lastUpdatedAt,
+            DateTime? nextRefreshAt,
             String? selectedBand,
             String? selectedMode,
             PotaSpotsSortOrder sortOrder,
@@ -355,6 +381,8 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             _that.searchQuery,
             _that.hasLoadError,
             _that.isRefreshing,
+            _that.lastUpdatedAt,
+            _that.nextRefreshAt,
             _that.selectedBand,
             _that.selectedMode,
             _that.sortOrder,
@@ -387,6 +415,8 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             String searchQuery,
             bool hasLoadError,
             bool isRefreshing,
+            DateTime? lastUpdatedAt,
+            DateTime? nextRefreshAt,
             String? selectedBand,
             String? selectedMode,
             PotaSpotsSortOrder sortOrder,
@@ -405,6 +435,8 @@ extension PotaSpotsStatePatterns on PotaSpotsState {
             _that.searchQuery,
             _that.hasLoadError,
             _that.isRefreshing,
+            _that.lastUpdatedAt,
+            _that.nextRefreshAt,
             _that.selectedBand,
             _that.selectedMode,
             _that.sortOrder,
@@ -427,6 +459,8 @@ class _PotaSpotsState implements PotaSpotsState {
       this.searchQuery = '',
       this.hasLoadError = false,
       this.isRefreshing = false,
+      this.lastUpdatedAt,
+      this.nextRefreshAt,
       this.selectedBand,
       this.selectedMode,
       this.sortOrder = PotaSpotsSortOrder.time,
@@ -468,6 +502,10 @@ class _PotaSpotsState implements PotaSpotsState {
   @override
   @JsonKey()
   final bool isRefreshing;
+  @override
+  final DateTime? lastUpdatedAt;
+  @override
+  final DateTime? nextRefreshAt;
   @override
   final String? selectedBand;
   @override
@@ -534,6 +572,10 @@ class _PotaSpotsState implements PotaSpotsState {
                 other.hasLoadError == hasLoadError) &&
             (identical(other.isRefreshing, isRefreshing) ||
                 other.isRefreshing == isRefreshing) &&
+            (identical(other.lastUpdatedAt, lastUpdatedAt) ||
+                other.lastUpdatedAt == lastUpdatedAt) &&
+            (identical(other.nextRefreshAt, nextRefreshAt) ||
+                other.nextRefreshAt == nextRefreshAt) &&
             (identical(other.selectedBand, selectedBand) ||
                 other.selectedBand == selectedBand) &&
             (identical(other.selectedMode, selectedMode) ||
@@ -558,6 +600,8 @@ class _PotaSpotsState implements PotaSpotsState {
       searchQuery,
       hasLoadError,
       isRefreshing,
+      lastUpdatedAt,
+      nextRefreshAt,
       selectedBand,
       selectedMode,
       sortOrder,
@@ -568,7 +612,7 @@ class _PotaSpotsState implements PotaSpotsState {
 
   @override
   String toString() {
-    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, parkCache: $parkCache, availableBands: $availableBands, availableModes: $availableModes)';
+    return 'PotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, searchQuery: $searchQuery, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, lastUpdatedAt: $lastUpdatedAt, nextRefreshAt: $nextRefreshAt, selectedBand: $selectedBand, selectedMode: $selectedMode, sortOrder: $sortOrder, distanceByReference: $distanceByReference, parkCache: $parkCache, availableBands: $availableBands, availableModes: $availableModes)';
   }
 }
 
@@ -586,6 +630,8 @@ abstract mixin class _$PotaSpotsStateCopyWith<$Res>
       String searchQuery,
       bool hasLoadError,
       bool isRefreshing,
+      DateTime? lastUpdatedAt,
+      DateTime? nextRefreshAt,
       String? selectedBand,
       String? selectedMode,
       PotaSpotsSortOrder sortOrder,
@@ -613,6 +659,8 @@ class __$PotaSpotsStateCopyWithImpl<$Res>
     Object? searchQuery = null,
     Object? hasLoadError = null,
     Object? isRefreshing = null,
+    Object? lastUpdatedAt = freezed,
+    Object? nextRefreshAt = freezed,
     Object? selectedBand = freezed,
     Object? selectedMode = freezed,
     Object? sortOrder = null,
@@ -642,6 +690,14 @@ class __$PotaSpotsStateCopyWithImpl<$Res>
           ? _self.isRefreshing
           : isRefreshing // ignore: cast_nullable_to_non_nullable
               as bool,
+      lastUpdatedAt: freezed == lastUpdatedAt
+          ? _self.lastUpdatedAt
+          : lastUpdatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextRefreshAt: freezed == nextRefreshAt
+          ? _self.nextRefreshAt
+          : nextRefreshAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       selectedBand: freezed == selectedBand
           ? _self.selectedBand
           : selectedBand // ignore: cast_nullable_to_non_nullable

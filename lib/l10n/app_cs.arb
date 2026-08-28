@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Filtry",
+  "spotsFilterBand": "Pásmo",
+  "spotsFilterMode": "Mód",
+  "spotsFilterAll": "Vše",
+  "spotsFiltersReset": "Zrušit filtry",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Chyba při otevírání obchodu",
   "deleteConfirmTitle": "Potvrdit smazání",
   "deleteConfirmContent": "Opravdu chcete smazat?",
-  "cameraPermissionRationale": "Chcete-li pořídit fotku, povolte přístup k fotoaparátu v nastavení."
+  "cameraPermissionRationale": "Chcete-li pořídit fotku, povolte přístup k fotoaparátu v nastavení.",
+  "coverageSearchHint": "Vyhledejte místo nebo vložte souřadnice",
+  "coverageSearchRecentTitle": "Nedávná hledání",
+  "coverageSearchNoResults": "Žádné místo nenalezeno",
+  "coverageSearchTip": "Můžete vložit souřadnice (46.4879, 11.8123) nebo dlouze podržet na mapě",
+  "coverageSearchErrorOutOfRange": "Souřadnice mimo rozsah: šířka ±90, délka ±180",
+  "coverageSearchErrorOffline": "Bez připojení: hledání míst vyžaduje síť",
+  "coverageSearchErrorFailed": "Hledání selhalo. Zkuste to znovu.",
+  "coverageSearchClearPoint": "Odebrat bod",
+  "coverageSearchPointSemantics": "Vybraný bod hledání",
+  "coverageBreadthTitle": "Rozsah hledání",
+  "coverageBreadthQuick": "Rychlé",
+  "coverageBreadthMedium": "Střední",
+  "coverageBreadthExtended": "Rozšířené",
+  "coverageBreadthQuickHint": "80 km · nejrychlejší odpověď",
+  "coverageBreadthMediumHint": "100 km · vyvážené",
+  "coverageBreadthExtendedHint": "150 km · dál, delší čekání",
+  "coverageResultSubtitle": "Z vybraného bodu",
+  "coverageResultEmptyNoReachable": "Z tohoto bodu není dosažitelný žádný převaděč",
+  "coverageResultEmptyNoRepeaters": "V této oblasti není evidován žádný převaděč",
+  "coverageResultClearFilters": "Zrušit filtry",
+  "coverageResultError": "Výpočet selhal",
+  "coverageResultComputing": "Výpočet příjmu…",
+  "coverageResultCancel": "Zrušit",
+  "coverageResultCount": "Dosažitelné převaděče: {count}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "Skryto filtry: {count}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "Co dosáhnete z {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Každý převaděč dosažitelný z toho místa, s předpovězeným signálem a vzdáleností — ještě než vyrazíte.",
+  "coverageTeaserBenefitAnywhere": "Jakýkoli bod na planetě",
+  "coverageTeaserBenefitOffline": "K nahlédnutí bez sítě, v terénu",
+  "coverageTeaserBenefitSave": "Uložíte stanoviště a najdete ho znovu",
+  "coverageTeaserRestore": "Obnovit nákupy",
+  "stationSaveCta": "Uložit stanoviště",
+  "stationSaveTitle": "Název stanoviště",
+  "stationRename": "Přejmenovat",
+  "stationDelete": "Smazat",
+  "stationRefresh": "Aktualizovat",
+  "stationRefreshAll": "Aktualizovat vše",
+  "stationOfflineNotice": "Data uložená v zařízení",
+  "stationStaleNotice": "Data nemusí být aktuální",
+  "stationMissingEntry": "Data nejsou offline k dispozici",
+  "stationDuplicateTitle": "Bod je již uložen",
+  "stationDuplicateBody": "Do 200 metrů už existuje stanoviště. Aktualizovat, nebo vytvořit samostatné?",
+  "stationDuplicateUpdate": "Aktualizovat",
+  "stationDuplicateCreate": "Vytvořit samostatné",
+  "stationSaveFailed": "Uložení selhalo: nedostatek místa",
+  "stationsTitle": "Moje stanoviště",
+  "stationsEmptyTitle": "Zatím žádná uložená stanoviště",
+  "stationsEmptyBody": "Vyberte bod na mapě, zjistěte, co dosáhnete, a uložte to: najdete to i bez sítě.",
+  "stationsGoToMap": "Přejít na mapu",
+  "stationsRefreshDone": "Aktualizace dokončena",
+  "spotsUpdatedAgo": "Aktualizováno {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Aktualizace za {seconds} s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Aktualizace za {minutes} min",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Aktualizuje se…",
+  "spotsAutoRefreshHint": "Automatická aktualizace každých {seconds} sekund",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Klepnutím obnovíte"
 }

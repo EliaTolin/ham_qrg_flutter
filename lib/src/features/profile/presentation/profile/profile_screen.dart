@@ -196,6 +196,47 @@ class ProfileScreen extends HookConsumerWidget {
                                   alpha: .3,
                                 ),
                               ),
+                              // Le mie postazioni
+                              ListTile(
+                                leading: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: colorScheme.primary,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Icon(
+                                    Icons.bookmark_outline_rounded,
+                                    color: colorScheme.onPrimary,
+                                    size: 20,
+                                  ),
+                                ),
+                                title: Text(l10n.stationsTitle),
+                                subtitle: Text(
+                                  l10n.coverageTeaserBenefitOffline,
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    color: colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                                trailing: Icon(
+                                  Icons.chevron_right,
+                                  color: colorScheme.onSurface.withValues(
+                                    alpha: .5,
+                                  ),
+                                ),
+                                onTap: () {
+                                  context.router.push(
+                                    const SavedStationsRoute(),
+                                  );
+                                },
+                              ),
+                              Divider(
+                                height: 1,
+                                indent: 16,
+                                endIndent: 16,
+                                color: colorScheme.outlineVariant.withValues(
+                                  alpha: .3,
+                                ),
+                              ),
                               // My Reports
                               ListTile(
                                 leading: Container(

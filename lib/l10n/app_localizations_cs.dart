@@ -1905,6 +1905,21 @@ class AppLocalizationsCs extends AppLocalizations {
   String get sotaFilterAll => 'All';
 
   @override
+  String get spotsFiltersTitle => 'Filtry';
+
+  @override
+  String get spotsFilterBand => 'Pásmo';
+
+  @override
+  String get spotsFilterMode => 'Mód';
+
+  @override
+  String get spotsFilterAll => 'Vše';
+
+  @override
+  String get spotsFiltersReset => 'Zrušit filtry';
+
+  @override
   String get sotaSortByTime => 'Time';
 
   @override
@@ -2212,4 +2227,195 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'Chcete-li pořídit fotku, povolte přístup k fotoaparátu v nastavení.';
+
+  @override
+  String get coverageSearchHint => 'Vyhledejte místo nebo vložte souřadnice';
+
+  @override
+  String get coverageSearchRecentTitle => 'Nedávná hledání';
+
+  @override
+  String get coverageSearchNoResults => 'Žádné místo nenalezeno';
+
+  @override
+  String get coverageSearchTip =>
+      'Můžete vložit souřadnice (46.4879, 11.8123) nebo dlouze podržet na mapě';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Souřadnice mimo rozsah: šířka ±90, délka ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'Bez připojení: hledání míst vyžaduje síť';
+
+  @override
+  String get coverageSearchErrorFailed => 'Hledání selhalo. Zkuste to znovu.';
+
+  @override
+  String get coverageSearchClearPoint => 'Odebrat bod';
+
+  @override
+  String get coverageSearchPointSemantics => 'Vybraný bod hledání';
+
+  @override
+  String get coverageBreadthTitle => 'Rozsah hledání';
+
+  @override
+  String get coverageBreadthQuick => 'Rychlé';
+
+  @override
+  String get coverageBreadthMedium => 'Střední';
+
+  @override
+  String get coverageBreadthExtended => 'Rozšířené';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · nejrychlejší odpověď';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · vyvážené';
+
+  @override
+  String get coverageBreadthExtendedHint => '150 km · dál, delší čekání';
+
+  @override
+  String get coverageResultSubtitle => 'Z vybraného bodu';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'Z tohoto bodu není dosažitelný žádný převaděč';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'V této oblasti není evidován žádný převaděč';
+
+  @override
+  String get coverageResultClearFilters => 'Zrušit filtry';
+
+  @override
+  String get coverageResultError => 'Výpočet selhal';
+
+  @override
+  String get coverageResultComputing => 'Výpočet příjmu…';
+
+  @override
+  String get coverageResultCancel => 'Zrušit';
+
+  @override
+  String coverageResultCount(int count) {
+    return 'Dosažitelné převaděče: $count';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    return 'Skryto filtry: $count';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'Co dosáhnete z $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Každý převaděč dosažitelný z toho místa, s předpovězeným signálem a vzdáleností — ještě než vyrazíte.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'Jakýkoli bod na planetě';
+
+  @override
+  String get coverageTeaserBenefitOffline => 'K nahlédnutí bez sítě, v terénu';
+
+  @override
+  String get coverageTeaserBenefitSave =>
+      'Uložíte stanoviště a najdete ho znovu';
+
+  @override
+  String get coverageTeaserRestore => 'Obnovit nákupy';
+
+  @override
+  String get stationSaveCta => 'Uložit stanoviště';
+
+  @override
+  String get stationSaveTitle => 'Název stanoviště';
+
+  @override
+  String get stationRename => 'Přejmenovat';
+
+  @override
+  String get stationDelete => 'Smazat';
+
+  @override
+  String get stationRefresh => 'Aktualizovat';
+
+  @override
+  String get stationRefreshAll => 'Aktualizovat vše';
+
+  @override
+  String get stationOfflineNotice => 'Data uložená v zařízení';
+
+  @override
+  String get stationStaleNotice => 'Data nemusí být aktuální';
+
+  @override
+  String get stationMissingEntry => 'Data nejsou offline k dispozici';
+
+  @override
+  String get stationDuplicateTitle => 'Bod je již uložen';
+
+  @override
+  String get stationDuplicateBody =>
+      'Do 200 metrů už existuje stanoviště. Aktualizovat, nebo vytvořit samostatné?';
+
+  @override
+  String get stationDuplicateUpdate => 'Aktualizovat';
+
+  @override
+  String get stationDuplicateCreate => 'Vytvořit samostatné';
+
+  @override
+  String get stationSaveFailed => 'Uložení selhalo: nedostatek místa';
+
+  @override
+  String get stationsTitle => 'Moje stanoviště';
+
+  @override
+  String get stationsEmptyTitle => 'Zatím žádná uložená stanoviště';
+
+  @override
+  String get stationsEmptyBody =>
+      'Vyberte bod na mapě, zjistěte, co dosáhnete, a uložte to: najdete to i bez sítě.';
+
+  @override
+  String get stationsGoToMap => 'Přejít na mapu';
+
+  @override
+  String get stationsRefreshDone => 'Aktualizace dokončena';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Aktualizováno $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Aktualizace za $seconds s';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Aktualizace za $minutes min';
+  }
+
+  @override
+  String get spotsUpdating => 'Aktualizuje se…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Automatická aktualizace každých $seconds sekund';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Klepnutím obnovíte';
 }

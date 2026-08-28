@@ -12,6 +12,7 @@ Future<List<Repeater>> getRepeatersNearby(
   required double longitude,
   double radiusKm = 50,
   List<AccessMode>? accessModes,
+  int limit = 50,
 }) async {
   final repository = ref.read(repeatersRepositoryProvider);
   return repository.getRepeatersNearby(
@@ -19,5 +20,6 @@ Future<List<Repeater>> getRepeatersNearby(
     longitude: longitude,
     radiusKm: radiusKm,
     accessModes: accessModes,
+    limit: limit,
   );
 }

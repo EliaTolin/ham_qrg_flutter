@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/freshness_color_helper.dart';
+import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/src/features/sota/data/mappers/sota_mappers.dart';
@@ -316,8 +317,8 @@ class _SotaSpotHeader extends StatelessWidget {
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       alignment: Alignment.centerLeft,
-                      child: Text(
-                        spot.activator,
+                      child: CallsignText(
+                        callsign: spot.activator,
                         style: theme.textTheme.displaySmall?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.w900,

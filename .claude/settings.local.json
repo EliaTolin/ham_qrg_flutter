@@ -81,7 +81,8 @@
       "Bash(/opt/homebrew/opt/ruby@3.4/bin/ruby -e 'puts Gem.user_dir')",
       "Bash(flutter doctor *)",
       "Bash(flutter devices *)",
-      "Bash(flutter logs *)"
+      "Bash(flutter logs *)",
+      "Bash(.specify/scripts/bash/create-new-feature.sh \"Integrare una barra di ricerca per localita o punto sulla mappa libero che permette per tutti gli utenti di vedere la ricezione in base a un punto arbitrario sulla mappa. Per gli utenti PRO e possibile salvarsi quella ricerca per una consultazione offline usando remote_caching. UI/UX responsive su tablet e mobile. Ricerche salvate in una lista con paywall ad alta CRO per utenti non premium.\" --json --short-name \"location-coverage-search\")"
     ],
     "additionalDirectories": [
       "/Users/eliatolin"

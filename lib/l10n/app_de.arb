@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Filter",
+  "spotsFilterBand": "Band",
+  "spotsFilterMode": "Modus",
+  "spotsFilterAll": "Alle",
+  "spotsFiltersReset": "Filter zurücksetzen",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Fehler beim Öffnen des Stores",
   "deleteConfirmTitle": "Löschen bestätigen",
   "deleteConfirmContent": "Möchtest du wirklich löschen?",
-  "cameraPermissionRationale": "Um ein Foto aufzunehmen, erlaube den Kamerazugriff in den Einstellungen."
+  "cameraPermissionRationale": "Um ein Foto aufzunehmen, erlaube den Kamerazugriff in den Einstellungen.",
+  "coverageSearchHint": "Ort suchen oder Koordinaten einfügen",
+  "coverageSearchRecentTitle": "Letzte Suchen",
+  "coverageSearchNoResults": "Kein Ort gefunden",
+  "coverageSearchTip": "Du kannst Koordinaten einfügen (46.4879, 11.8123) oder lange auf die Karte drücken",
+  "coverageSearchErrorOutOfRange": "Koordinaten außerhalb des Bereichs: Breite ±90, Länge ±180",
+  "coverageSearchErrorOffline": "Keine Verbindung: Die Ortssuche benötigt Netz",
+  "coverageSearchErrorFailed": "Suche fehlgeschlagen. Versuche es erneut.",
+  "coverageSearchClearPoint": "Punkt entfernen",
+  "coverageSearchPointSemantics": "Ausgewählter Suchpunkt",
+  "coverageBreadthTitle": "Suchradius",
+  "coverageBreadthQuick": "Schnell",
+  "coverageBreadthMedium": "Mittel",
+  "coverageBreadthExtended": "Erweitert",
+  "coverageBreadthQuickHint": "80 km · schnellste Antwort",
+  "coverageBreadthMediumHint": "100 km · ausgewogen",
+  "coverageBreadthExtendedHint": "150 km · weiter, längere Wartezeit",
+  "coverageResultSubtitle": "Vom ausgewählten Punkt",
+  "coverageResultEmptyNoReachable": "Von diesem Punkt ist kein Relais erreichbar",
+  "coverageResultEmptyNoRepeaters": "In diesem Gebiet ist kein Relais erfasst",
+  "coverageResultClearFilters": "Filter entfernen",
+  "coverageResultError": "Berechnung fehlgeschlagen",
+  "coverageResultComputing": "Empfang wird berechnet…",
+  "coverageResultCancel": "Abbrechen",
+  "coverageResultCount": "{count, plural, =1{1 erreichbares Relais} other{{count} erreichbare Relais}}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "{count, plural, =1{1 erreichbares durch Filter ausgeblendet} other{{count} erreichbare durch Filter ausgeblendet}}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "Was erreichst du von {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Jedes Relais, das du von dort erreichst, mit vorhergesagtem Signal und Entfernung — noch bevor du losfährst.",
+  "coverageTeaserBenefitAnywhere": "Jeder Punkt der Erde",
+  "coverageTeaserBenefitOffline": "Ohne Netz nutzbar, im Feld",
+  "coverageTeaserBenefitSave": "Standort speichern und wiederfinden",
+  "coverageTeaserRestore": "Käufe wiederherstellen",
+  "stationSaveCta": "Standort speichern",
+  "stationSaveTitle": "Name des Standorts",
+  "stationRename": "Umbenennen",
+  "stationDelete": "Löschen",
+  "stationRefresh": "Aktualisieren",
+  "stationRefreshAll": "Alle aktualisieren",
+  "stationOfflineNotice": "Auf dem Gerät gespeicherte Daten",
+  "stationStaleNotice": "Diese Daten könnten veraltet sein",
+  "stationMissingEntry": "Daten offline nicht verfügbar",
+  "stationDuplicateTitle": "Punkt bereits gespeichert",
+  "stationDuplicateBody": "Es gibt bereits einen Standort in weniger als 200 Metern Entfernung. Aktualisieren oder einen eigenen anlegen?",
+  "stationDuplicateUpdate": "Aktualisieren",
+  "stationDuplicateCreate": "Eigene anlegen",
+  "stationSaveFailed": "Speichern fehlgeschlagen: zu wenig Speicherplatz",
+  "stationsTitle": "Meine Standorte",
+  "stationsEmptyTitle": "Noch keine Standorte gespeichert",
+  "stationsEmptyBody": "Wähle einen Punkt auf der Karte, sieh, was du erreichst, und speichere ihn: Du findest ihn auch ohne Netz wieder.",
+  "stationsGoToMap": "Zur Karte",
+  "stationsRefreshDone": "Aktualisierung abgeschlossen",
+  "spotsUpdatedAgo": "Aktualisiert {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Aktualisierung in {seconds} s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Aktualisierung in {minutes} Min.",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Wird aktualisiert…",
+  "spotsAutoRefreshHint": "Automatische Aktualisierung alle {seconds} Sekunden",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Zum Aktualisieren tippen"
 }

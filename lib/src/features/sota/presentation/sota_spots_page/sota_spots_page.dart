@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/filter/spot_filter_chip.dart';
+import 'package:hamqrg/common/widgets/label/last_update_label.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/controller/sota_spots_controller.dart';
 import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/controller/state/sota_spots_sort_order.dart';
@@ -110,7 +112,7 @@ class SotaSpotsBody extends StatelessWidget {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      _FilterChip(
+                      SpotFilterChip(
                         label: l10n.sotaFilterAll,
                         selected: state.selectedBand == null,
                         onSelected: (_) => notifier.filterByBand(null),
@@ -119,7 +121,7 @@ class SotaSpotsBody extends StatelessWidget {
                       ...state.availableBands.map(
                         (band) => Padding(
                           padding: const EdgeInsets.only(right: 6),
-                          child: _FilterChip(
+                          child: SpotFilterChip(
                             label: band,
                             selected: state.selectedBand == band,
                             onSelected: (_) => notifier.filterByBand(
@@ -138,7 +140,7 @@ class SotaSpotsBody extends StatelessWidget {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      _FilterChip(
+                      SpotFilterChip(
                         label: l10n.sotaFilterAll,
                         selected: state.selectedMode == null,
                         onSelected: (_) => notifier.filterByMode(null),
@@ -147,7 +149,7 @@ class SotaSpotsBody extends StatelessWidget {
                       ...state.availableModes.map(
                         (mode) => Padding(
                           padding: const EdgeInsets.only(right: 6),
-                          child: _FilterChip(
+                          child: SpotFilterChip(
                             label: mode,
                             selected: state.selectedMode == mode,
                             onSelected: (_) => notifier.filterByMode(
@@ -169,7 +171,20 @@ class SotaSpotsBody extends StatelessWidget {
                       color: colorScheme.onSurfaceVariant,
                     ),
                   ),
-                  const Spacer(),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: LastUpdateLabel(
+                        lastUpdatedAt: state.lastUpdatedAt,
+                        nextUpdateAt: state.nextRefreshAt,
+                        isRefreshing: state.isRefreshing,
+                        autoRefreshInterval:
+                            SotaSpotsController.autoRefreshInterval,
+                        onRefresh: notifier.refresh,
+                      ),
+                    ),
+                  ),
                   _SortButton(
                     sortOrder: state.sortOrder,
                     hasDistances: state.distanceBySummitCode.isNotEmpty,
@@ -228,45 +243,6 @@ class SotaSpotsBody extends StatelessWidget {
   }
 }
 
-class _FilterChip extends StatelessWidget {
-  const _FilterChip({
-    required this.label,
-    required this.selected,
-    required this.onSelected,
-  });
-
-  final String label;
-  final bool selected;
-  final ValueChanged<bool> onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return FilterChip(
-      label: Text(
-        label,
-        style: TextStyle(
-          color: selected ? colorScheme.onPrimary : colorScheme.onSurface,
-        ),
-      ),
-      selected: selected,
-      onSelected: onSelected,
-      showCheckmark: false,
-      selectedColor: colorScheme.primary,
-      backgroundColor: colorScheme.surfaceContainerHighest,
-      side: BorderSide(
-        color: selected
-            ? colorScheme.primary
-            : colorScheme.outline.withValues(alpha: 0.3),
-      ),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-    );
-  }
-}
-
 class _SortButton extends StatelessWidget {
   const _SortButton({
     required this.sortOrder,
@@ -286,6 +262,11 @@ class _SortButton extends StatelessWidget {
     return PopupMenuButton<SotaSpotsSortOrder>(
       onSelected: onChanged,
       initialValue: sortOrder,
+      // Icon-only trigger: the active criterion lives in the tooltip and in
+      // the checked menu entry, so the row stays compact.
+      tooltip: sortOrder == SotaSpotsSortOrder.time
+          ? l10n.sotaSortByTime
+          : l10n.sotaSortByDistance,
       itemBuilder: (context) => [
         PopupMenuItem(
           value: SotaSpotsSortOrder.time,
@@ -306,26 +287,12 @@ class _SortButton extends StatelessWidget {
           ),
       ],
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
           color: colorScheme.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.sort, size: 16, color: colorScheme.onSurfaceVariant),
-            const SizedBox(width: 4),
-            Text(
-              sortOrder == SotaSpotsSortOrder.time
-                  ? l10n.sotaSortByTime
-                  : l10n.sotaSortByDistance,
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-            ),
-          ],
-        ),
+        child: Icon(Icons.sort, size: 18, color: colorScheme.onSurfaceVariant),
       ),
     );
   }

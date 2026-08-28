@@ -120,3 +120,50 @@ class SotaAltitudeColors {
     return low;
   }
 }
+
+/// Operating-mode palette for SOTA/POTA spot badges (CW, SSB, FT8, …).
+/// Brand-specific, same exception as the repeater access-mode colors: the
+/// point is that a mode is recognizable by hue before it is read.
+/// The 600-level tones stay legible as foreground over their own 15% tint
+/// in both themes.
+class SpotModeColors {
+  SpotModeColors._();
+
+  static const Color cw = Color(0xFFD97706); // amber-600
+  static const Color ssb = Color(0xFF2563EB); // blue-600
+  static const Color fm = Color(0xFF9333EA); // purple-600
+  static const Color am = Color(0xFFDB2777); // pink-600
+  static const Color ft8 = Color(0xFF0D9488); // teal-600
+  static const Color ft4 = Color(0xFF0891B2); // cyan-600
+  static const Color psk = Color(0xFF7C3AED); // violet-600
+  static const Color rtty = Color(0xFF65A30D); // lime-600
+  static const Color sstv = Color(0xFFEA580C); // orange-600
+  static const Color digitalVoice = Color(0xFF16A34A); // green-600
+  static const Color data = Color(0xFF4F46E5); // indigo-600
+  static const Color other = Color(0xFF64748B); // slate-500
+
+  /// Maps a normalized (uppercase, trimmed) mode string to its color.
+  /// Unknown modes fall back to a neutral slate so they still read as a badge.
+  static Color forMode(String mode) {
+    return switch (mode.trim().toUpperCase()) {
+      'CW' => cw,
+      'SSB' || 'USB' || 'LSB' || 'PHONE' || 'SSB/PHONE' => ssb,
+      'FM' => fm,
+      'AM' => am,
+      'FT8' => ft8,
+      'FT4' => ft4,
+      'PSK' || 'PSK31' || 'PSK63' => psk,
+      'RTTY' => rtty,
+      'SSTV' => sstv,
+      'DV' ||
+      'DMR' ||
+      'C4FM' ||
+      'DSTAR' ||
+      'D-STAR' ||
+      'FUSION' =>
+        digitalVoice,
+      'DATA' || 'DIGI' || 'DIGITAL' || 'JS8' || 'MFSK' || 'JT65' => data,
+      _ => other,
+    };
+  }
+}

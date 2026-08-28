@@ -34,7 +34,7 @@ final class SotaSpotsControllerProvider
 }
 
 String _$sotaSpotsControllerHash() =>
-    r'7b0843e1315b3e5dd8a4c6f1b8a3a1ecd2d58dc9';
+    r'f57d53f8faccc5f016a853e5df7b35ed5c670826';
 
 abstract class _$SotaSpotsController extends $AsyncNotifier<SotaSpotsState> {
   FutureOr<SotaSpotsState> build();

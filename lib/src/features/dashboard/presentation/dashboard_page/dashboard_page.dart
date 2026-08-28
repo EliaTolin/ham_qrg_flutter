@@ -8,6 +8,7 @@ import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/utils/version_utils.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
+import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/common/widgets/sheet/sheet_drag_handle.dart';
 import 'package:hamqrg/router/app_router.dart';
@@ -857,8 +858,8 @@ class _SotaSpotItem extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            spot.activator,
+                          CallsignText(
+                            callsign: spot.activator,
                             style: theme.textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -1067,8 +1068,8 @@ class _PotaSpotItem extends StatelessWidget {
                       // Row 1: Activator + time badge
                       Row(
                         children: [
-                          Text(
-                            spot.activator,
+                          CallsignText(
+                            callsign: spot.activator,
                             style: theme.textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),

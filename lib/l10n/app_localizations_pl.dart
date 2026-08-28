@@ -1968,6 +1968,21 @@ class AppLocalizationsPl extends AppLocalizations {
   String get sotaFilterAll => 'All';
 
   @override
+  String get spotsFiltersTitle => 'Filtry';
+
+  @override
+  String get spotsFilterBand => 'Pasmo';
+
+  @override
+  String get spotsFilterMode => 'Emisja';
+
+  @override
+  String get spotsFilterAll => 'Wszystkie';
+
+  @override
+  String get spotsFiltersReset => 'Wyczyść filtry';
+
+  @override
   String get sotaSortByTime => 'Time';
 
   @override
@@ -2280,4 +2295,197 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'Aby zrobić zdjęcie, zezwól na dostęp do aparatu w ustawieniach.';
+
+  @override
+  String get coverageSearchHint => 'Wyszukaj miejsce lub wklej współrzędne';
+
+  @override
+  String get coverageSearchRecentTitle => 'Ostatnie wyszukiwania';
+
+  @override
+  String get coverageSearchNoResults => 'Nie znaleziono miejsca';
+
+  @override
+  String get coverageSearchTip =>
+      'Możesz wkleić współrzędne (46.4879, 11.8123) lub przytrzymać palec na mapie';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Współrzędne poza zakresem: szerokość ±90, długość ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'Brak połączenia: wyszukiwanie miejsc wymaga sieci';
+
+  @override
+  String get coverageSearchErrorFailed =>
+      'Wyszukiwanie nie powiodło się. Spróbuj ponownie.';
+
+  @override
+  String get coverageSearchClearPoint => 'Usuń punkt';
+
+  @override
+  String get coverageSearchPointSemantics => 'Wybrany punkt wyszukiwania';
+
+  @override
+  String get coverageBreadthTitle => 'Zasięg wyszukiwania';
+
+  @override
+  String get coverageBreadthQuick => 'Szybka';
+
+  @override
+  String get coverageBreadthMedium => 'Średnia';
+
+  @override
+  String get coverageBreadthExtended => 'Rozszerzona';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · najszybsza odpowiedź';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · zrównoważona';
+
+  @override
+  String get coverageBreadthExtendedHint =>
+      '150 km · dalej, dłuższe oczekiwanie';
+
+  @override
+  String get coverageResultSubtitle => 'Z wybranego punktu';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'Z tego punktu nie można osiągnąć żadnego przemiennika';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'W tym obszarze nie ma zarejestrowanych przemienników';
+
+  @override
+  String get coverageResultClearFilters => 'Wyczyść filtry';
+
+  @override
+  String get coverageResultError => 'Obliczenie nie powiodło się';
+
+  @override
+  String get coverageResultComputing => 'Obliczanie odbioru…';
+
+  @override
+  String get coverageResultCancel => 'Anuluj';
+
+  @override
+  String coverageResultCount(int count) {
+    return 'Osiągalne przemienniki: $count';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    return 'Ukryte przez filtry: $count';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'Co osiągniesz z $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Każdy przemiennik osiągalny z tego punktu, z przewidywanym sygnałem i odległością — jeszcze przed wyjazdem.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'Dowolny punkt na świecie';
+
+  @override
+  String get coverageTeaserBenefitOffline => 'Dostępne bez sieci, w terenie';
+
+  @override
+  String get coverageTeaserBenefitSave =>
+      'Zapisujesz stanowisko i wracasz do niego';
+
+  @override
+  String get coverageTeaserRestore => 'Przywróć zakupy';
+
+  @override
+  String get stationSaveCta => 'Zapisz stanowisko';
+
+  @override
+  String get stationSaveTitle => 'Nazwa stanowiska';
+
+  @override
+  String get stationRename => 'Zmień nazwę';
+
+  @override
+  String get stationDelete => 'Usuń';
+
+  @override
+  String get stationRefresh => 'Odśwież';
+
+  @override
+  String get stationRefreshAll => 'Odśwież wszystkie';
+
+  @override
+  String get stationOfflineNotice => 'Dane zapisane na urządzeniu';
+
+  @override
+  String get stationStaleNotice => 'Dane mogą być nieaktualne';
+
+  @override
+  String get stationMissingEntry => 'Dane niedostępne offline';
+
+  @override
+  String get stationDuplicateTitle => 'Punkt już zapisany';
+
+  @override
+  String get stationDuplicateBody =>
+      'W promieniu 200 metrów istnieje już stanowisko. Zaktualizować je czy utworzyć osobne?';
+
+  @override
+  String get stationDuplicateUpdate => 'Zaktualizuj';
+
+  @override
+  String get stationDuplicateCreate => 'Utwórz osobne';
+
+  @override
+  String get stationSaveFailed => 'Zapis nie powiódł się: za mało miejsca';
+
+  @override
+  String get stationsTitle => 'Moje stanowiska';
+
+  @override
+  String get stationsEmptyTitle => 'Brak zapisanych stanowisk';
+
+  @override
+  String get stationsEmptyBody =>
+      'Wybierz punkt na mapie, sprawdź co osiągasz i zapisz: znajdziesz go nawet bez sieci.';
+
+  @override
+  String get stationsGoToMap => 'Przejdź do mapy';
+
+  @override
+  String get stationsRefreshDone => 'Odświeżanie zakończone';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Zaktualizowano $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Aktualizacja za $seconds s';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Aktualizacja za $minutes min';
+  }
+
+  @override
+  String get spotsUpdating => 'Aktualizowanie…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Automatyczne odświeżanie co $seconds sekund';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Dotknij, aby odświeżyć';
 }

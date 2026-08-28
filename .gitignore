@@ -46,3 +46,22 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+# Platform build artifacts (root /build/ above does not cover these)
+ios/build/
+android/build/
+android/.gradle/
+ios/Pods/
+ios/.symlinks/
+
+# Secrets
+.env
+.env.*
+
+# Local Claude Code worktrees
+.claude/worktrees/
+
+# Unrelated vendored skills checkout
+Product-Manager-Skills/
+
+# Xcode scheme backups
+*.xcscheme.backup

@@ -9,8 +9,9 @@ import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/src/app.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:remote_caching/remote_caching.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:supabase_auth_ui/supabase_auth_ui.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   SentryWidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,8 @@ Future<void> main() async {
   );
 
   MapboxOptions.setAccessToken(AppConfigs.getMapboxAccessToken());
+
+  await _initRemoteCaching();
 
   await _initRevenueCat();
 
@@ -64,6 +67,30 @@ Future<void> main() async {
       );
     },
   );
+}
+
+/// Initializes the shared repeater cache backing offline consultation of saved
+/// coverage stations.
+///
+/// [RemoteCaching.init] also runs `DELETE FROM cache WHERE expires_at < now`,
+/// which is exactly why every `repeater:` entry is written with the
+/// never-expires sentinel: an expiring entry would be physically dropped here
+/// on the next launch, taking a saved station's offline data with it.
+///
+/// The one-year `defaultCacheDuration` is defence in depth, not the real
+/// expiry: should a write ever forget the sentinel, the entry survives a year
+/// instead of the package default of one hour.
+///
+/// Never throws: a cache failure must not block startup — offline consultation
+/// degrades, the app still runs.
+Future<void> _initRemoteCaching() async {
+  try {
+    await RemoteCaching.instance.init(
+      defaultCacheDuration: const Duration(days: 365),
+    );
+  } catch (error, stackTrace) {
+    await Sentry.captureException(error, stackTrace: stackTrace);
+  }
 }
 
 /// Configures RevenueCat and keeps its customer linked to the Supabase user,

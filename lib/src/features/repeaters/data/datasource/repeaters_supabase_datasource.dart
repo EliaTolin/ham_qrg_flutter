@@ -44,7 +44,8 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
           'p_lon1': lon1,
           'p_lat2': lat2,
           'p_lon2': lon2,
-          if (accessModes != null && accessModes.isNotEmpty) 'p_access_modes': accessModes,
+          if (accessModes != null && accessModes.isNotEmpty)
+            'p_access_modes': accessModes,
         },
       );
 
@@ -78,6 +79,7 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     required double longitude,
     double radiusKm = 50,
     List<String>? accessModes,
+    int limit = 50,
   }) async {
     final sw = Stopwatch()..start();
     try {
@@ -87,7 +89,12 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
           'p_lat': latitude,
           'p_lon': longitude,
           'p_radius_km': radiusKm,
-          if (accessModes != null && accessModes.isNotEmpty) 'p_access_modes': accessModes,
+          // Finora mai passato: il RPC ripiegava sul suo default di 50, così
+          // allargare il raggio non cambiava nulla in un'area popolata — si
+          // riottenevano i 50 ripetitori più vicini e basta.
+          'p_limit': limit,
+          if (accessModes != null && accessModes.isNotEmpty)
+            'p_access_modes': accessModes,
         },
       );
 
@@ -174,8 +181,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       if (userId.isEmpty) {
         return null;
       }
-      final data =
-          await _client.from('user_favorite_repeaters').select('id').eq('user_id', userId).count();
+      final data = await _client
+          .from('user_favorite_repeaters')
+          .select('id')
+          .eq('user_id', userId)
+          .count();
       _logTiming('getTotalFavoritesCount', sw, extra: '${data.count}');
       return data.count;
     } catch (error, stackTrace) {
@@ -206,8 +216,10 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       if (userId.isEmpty) {
         return [];
       }
-      final data =
-          await _client.from('user_favorite_repeaters').select('repeater_id').eq('user_id', userId);
+      final data = await _client
+          .from('user_favorite_repeaters')
+          .select('repeater_id')
+          .eq('user_id', userId);
 
       final results = (data as List)
           .map(
@@ -232,10 +244,15 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
     final sw = Stopwatch()..start();
     try {
       // Run repeater and accesses queries in parallel (no joins)
-      final repeaterFuture = _client.from('repeaters').select().eq('id', repeaterId).maybeSingle();
-      final accessesFuture = _client.from('repeater_access').select().eq('repeater_id', repeaterId);
+      final repeaterFuture =
+          _client.from('repeaters').select().eq('id', repeaterId).maybeSingle();
+      final accessesFuture = _client
+          .from('repeater_access')
+          .select()
+          .eq('repeater_id', repeaterId);
 
-      final (repeaterData, accessesList) = await (repeaterFuture, accessesFuture).wait;
+      final (repeaterData, accessesList) =
+          await (repeaterFuture, accessesFuture).wait;
 
       if (repeaterData == null) {
         _logTiming('getRepeaterById', sw, extra: '⚠️ null');
@@ -243,14 +260,18 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
       }
 
       // Collect unique network IDs from accesses
-      final networkIds =
-          accessesList.map((e) => e['network_id'] as String?).whereType<String>().toSet();
+      final networkIds = accessesList
+          .map((e) => e['network_id'] as String?)
+          .whereType<String>()
+          .toSet();
 
       // Fetch networks in a single query if any exist
       final networksMap = <String, Map<String, dynamic>>{};
       if (networkIds.isNotEmpty) {
-        final networksData =
-            await _client.from('networks').select().inFilter('id', networkIds.toList());
+        final networksData = await _client
+            .from('networks')
+            .select()
+            .inFilter('id', networkIds.toList());
         for (final net in networksData) {
           networksMap[net['id'] as String] = net;
         }
@@ -486,12 +507,14 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
         if (type == 'like') {
           agg.likesTotal++;
           if (userId != null && rowUserId == userId) agg.hasMyLike = true;
-          if (agg.lastLikeAt == null || createdAt.compareTo(agg.lastLikeAt!) > 0) {
+          if (agg.lastLikeAt == null ||
+              createdAt.compareTo(agg.lastLikeAt!) > 0) {
             agg.lastLikeAt = createdAt;
           }
         } else if (type == 'down') {
           agg.downTotal++;
-          if (agg.lastDownAt == null || createdAt.compareTo(agg.lastDownAt!) > 0) {
+          if (agg.lastDownAt == null ||
+              createdAt.compareTo(agg.lastDownAt!) > 0) {
             agg.lastDownAt = createdAt;
           }
         }
@@ -569,7 +592,11 @@ class RepeatersSupabaseDatasource implements RepeatersDatasource {
   ) async {
     final sw = Stopwatch()..start();
     try {
-      await _client.from('repeater_feedback').delete().eq('id', feedbackId).eq('user_id', userId);
+      await _client
+          .from('repeater_feedback')
+          .delete()
+          .eq('id', feedbackId)
+          .eq('user_id', userId);
       _logTiming('deleteRepeaterFeedback', sw);
     } catch (error, stackTrace) {
       _logTiming('deleteRepeaterFeedback', sw, extra: '❌ error');

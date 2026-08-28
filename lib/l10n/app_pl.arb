@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Filtry",
+  "spotsFilterBand": "Pasmo",
+  "spotsFilterMode": "Emisja",
+  "spotsFilterAll": "Wszystkie",
+  "spotsFiltersReset": "Wyczyść filtry",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Błąd podczas otwierania sklepu",
   "deleteConfirmTitle": "Potwierdź usunięcie",
   "deleteConfirmContent": "Czy na pewno chcesz usunąć?",
-  "cameraPermissionRationale": "Aby zrobić zdjęcie, zezwól na dostęp do aparatu w ustawieniach."
+  "cameraPermissionRationale": "Aby zrobić zdjęcie, zezwól na dostęp do aparatu w ustawieniach.",
+  "coverageSearchHint": "Wyszukaj miejsce lub wklej współrzędne",
+  "coverageSearchRecentTitle": "Ostatnie wyszukiwania",
+  "coverageSearchNoResults": "Nie znaleziono miejsca",
+  "coverageSearchTip": "Możesz wkleić współrzędne (46.4879, 11.8123) lub przytrzymać palec na mapie",
+  "coverageSearchErrorOutOfRange": "Współrzędne poza zakresem: szerokość ±90, długość ±180",
+  "coverageSearchErrorOffline": "Brak połączenia: wyszukiwanie miejsc wymaga sieci",
+  "coverageSearchErrorFailed": "Wyszukiwanie nie powiodło się. Spróbuj ponownie.",
+  "coverageSearchClearPoint": "Usuń punkt",
+  "coverageSearchPointSemantics": "Wybrany punkt wyszukiwania",
+  "coverageBreadthTitle": "Zasięg wyszukiwania",
+  "coverageBreadthQuick": "Szybka",
+  "coverageBreadthMedium": "Średnia",
+  "coverageBreadthExtended": "Rozszerzona",
+  "coverageBreadthQuickHint": "80 km · najszybsza odpowiedź",
+  "coverageBreadthMediumHint": "100 km · zrównoważona",
+  "coverageBreadthExtendedHint": "150 km · dalej, dłuższe oczekiwanie",
+  "coverageResultSubtitle": "Z wybranego punktu",
+  "coverageResultEmptyNoReachable": "Z tego punktu nie można osiągnąć żadnego przemiennika",
+  "coverageResultEmptyNoRepeaters": "W tym obszarze nie ma zarejestrowanych przemienników",
+  "coverageResultClearFilters": "Wyczyść filtry",
+  "coverageResultError": "Obliczenie nie powiodło się",
+  "coverageResultComputing": "Obliczanie odbioru…",
+  "coverageResultCancel": "Anuluj",
+  "coverageResultCount": "Osiągalne przemienniki: {count}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "Ukryte przez filtry: {count}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "Co osiągniesz z {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Każdy przemiennik osiągalny z tego punktu, z przewidywanym sygnałem i odległością — jeszcze przed wyjazdem.",
+  "coverageTeaserBenefitAnywhere": "Dowolny punkt na świecie",
+  "coverageTeaserBenefitOffline": "Dostępne bez sieci, w terenie",
+  "coverageTeaserBenefitSave": "Zapisujesz stanowisko i wracasz do niego",
+  "coverageTeaserRestore": "Przywróć zakupy",
+  "stationSaveCta": "Zapisz stanowisko",
+  "stationSaveTitle": "Nazwa stanowiska",
+  "stationRename": "Zmień nazwę",
+  "stationDelete": "Usuń",
+  "stationRefresh": "Odśwież",
+  "stationRefreshAll": "Odśwież wszystkie",
+  "stationOfflineNotice": "Dane zapisane na urządzeniu",
+  "stationStaleNotice": "Dane mogą być nieaktualne",
+  "stationMissingEntry": "Dane niedostępne offline",
+  "stationDuplicateTitle": "Punkt już zapisany",
+  "stationDuplicateBody": "W promieniu 200 metrów istnieje już stanowisko. Zaktualizować je czy utworzyć osobne?",
+  "stationDuplicateUpdate": "Zaktualizuj",
+  "stationDuplicateCreate": "Utwórz osobne",
+  "stationSaveFailed": "Zapis nie powiódł się: za mało miejsca",
+  "stationsTitle": "Moje stanowiska",
+  "stationsEmptyTitle": "Brak zapisanych stanowisk",
+  "stationsEmptyBody": "Wybierz punkt na mapie, sprawdź co osiągasz i zapisz: znajdziesz go nawet bez sieci.",
+  "stationsGoToMap": "Przejdź do mapy",
+  "stationsRefreshDone": "Odświeżanie zakończone",
+  "spotsUpdatedAgo": "Zaktualizowano {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Aktualizacja za {seconds} s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Aktualizacja za {minutes} min",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Aktualizowanie…",
+  "spotsAutoRefreshHint": "Automatyczne odświeżanie co {seconds} sekund",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Dotknij, aby odświeżyć"
 }

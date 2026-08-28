@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hamqrg/clients/analytics/analytics_client.dart';
+import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/signal_helper.dart';
 import 'package:hamqrg/common/widgets/pro/pro_blur_gate.dart';
@@ -12,11 +14,12 @@ import 'package:hamqrg/src/features/repeaters/provider/get_reachable/get_repeate
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// "Do I reach this repeater from where I am?" — a Pro-gated badge for the
 /// repeater detail. Non-Pro users see a blurred teaser (no request); Pro users
 /// see the real verdict + signal, and can tap to open the link profile chart.
-class RepeaterReachBadge extends ConsumerWidget {
+class RepeaterReachBadge extends HookConsumerWidget {
   const RepeaterReachBadge({required this.repeater, super.key});
 
   final Repeater repeater;
@@ -32,13 +35,47 @@ class RepeaterReachBadge extends ConsumerWidget {
         );
     final locked = AppConfigs.reachabilityRequiresPro && !isPro;
     final l10n = context.localization;
+    final analytics = ref.read(analyticsClientProvider);
+
+    // Una sola registrazione per cambio di stato, non a ogni ricostruzione:
+    // il badge si ridisegna spesso e conteggiare i rebuild gonfierebbe il
+    // numeratore del funnel rendendo il tasso di conversione inutilizzabile.
+    useEffect(
+      () {
+        if (locked) {
+          analytics.track(
+            AnalyticsEvent.coverageTeaserShown,
+            surface: AnalyticsSurface.reachBadge,
+          );
+        }
+        return null;
+      },
+      [locked],
+    );
 
     return ProBlurGate(
       locked: locked,
       title: l10n.reachBadgeTitle,
       subtitle: l10n.reachBadgeSubtitle,
       ctaLabel: l10n.reachDiscoverCta,
-      onUnlock: () => openReachabilityPaywall(ref),
+      onUnlock: () async {
+        analytics
+          ..track(
+            AnalyticsEvent.coverageCtaTapped,
+            surface: AnalyticsSurface.reachBadge,
+          )
+          ..track(
+            AnalyticsEvent.coveragePaywallShown,
+            surface: AnalyticsSurface.reachBadge,
+          );
+        final purchased = await openReachabilityPaywall(ref);
+        analytics.track(
+          purchased
+              ? AnalyticsEvent.coveragePurchaseCompleted
+              : AnalyticsEvent.coveragePaywallDismissed,
+          surface: AnalyticsSurface.reachBadge,
+        );
+      },
       teaser: const _BadgeFrame(child: _MockBadgeRow()),
       child: _RealReachBadge(repeater: repeater),
     );
@@ -128,7 +165,8 @@ class _BadgeFrame extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
-          color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+          color:
+              theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: theme.colorScheme.outline.withValues(alpha: 0.2),
@@ -157,7 +195,9 @@ class _BadgeContent extends StatelessWidget {
       children: [
         Icon(
           reachable ? Icons.check_circle_rounded : Icons.cancel_rounded,
-          color: reachable ? color : theme.colorScheme.onSurface.withValues(alpha: 0.4),
+          color: reachable
+              ? color
+              : theme.colorScheme.onSurface.withValues(alpha: 0.4),
           size: 22,
         ),
         const SizedBox(width: 12),
@@ -205,7 +245,10 @@ class _BadgeLoading extends StatelessWidget {
           child: CircularProgressIndicator(strokeWidth: 2),
         ),
         const SizedBox(width: 12),
-        Text(context.localization.reachComputing, style: theme.textTheme.bodyMedium),
+        Text(
+          context.localization.reachComputing,
+          style: theme.textTheme.bodyMedium,
+        ),
       ],
     );
   }

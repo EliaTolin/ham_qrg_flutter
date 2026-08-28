@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/src/features/spots/domain/spot/repeater_spot.dart';
 import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/pulsing_live_dot.dart';
@@ -86,8 +87,8 @@ class SpotCard extends StatelessWidget {
                   children: [
                     // Callsign line
                     if (isOther) ...[
-                      Text(
-                        spot.spottedCallsign!,
+                      CallsignText(
+                        callsign: spot.spottedCallsign!,
                         style: theme.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -101,8 +102,8 @@ class SpotCard extends StatelessWidget {
                         ),
                       ),
                     ] else
-                      Text(
-                        spot.callsignSnapshot ?? '',
+                      CallsignText(
+                        callsign: spot.callsignSnapshot ?? '',
                         style: theme.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),

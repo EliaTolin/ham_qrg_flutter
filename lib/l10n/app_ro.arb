@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Filtre",
+  "spotsFilterBand": "Bandă",
+  "spotsFilterMode": "Mod",
+  "spotsFilterAll": "Toate",
+  "spotsFiltersReset": "Șterge filtrele",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Eroare la deschiderea magazinului",
   "deleteConfirmTitle": "Confirmă ștergerea",
   "deleteConfirmContent": "Sigur vrei să ștergi?",
-  "cameraPermissionRationale": "Pentru a face o fotografie, permite accesul la cameră în setări."
+  "cameraPermissionRationale": "Pentru a face o fotografie, permite accesul la cameră în setări.",
+  "coverageSearchHint": "Caută o localitate sau lipește coordonate",
+  "coverageSearchRecentTitle": "Căutări recente",
+  "coverageSearchNoResults": "Niciun loc găsit",
+  "coverageSearchTip": "Poți lipi coordonate (46.4879, 11.8123) sau apăsa lung pe hartă",
+  "coverageSearchErrorOutOfRange": "Coordonate în afara intervalului: latitudine ±90, longitudine ±180",
+  "coverageSearchErrorOffline": "Fără conexiune: căutarea locurilor necesită rețea",
+  "coverageSearchErrorFailed": "Căutarea a eșuat. Încearcă din nou.",
+  "coverageSearchClearPoint": "Elimină punctul",
+  "coverageSearchPointSemantics": "Punct de căutare selectat",
+  "coverageBreadthTitle": "Amploarea căutării",
+  "coverageBreadthQuick": "Rapidă",
+  "coverageBreadthMedium": "Medie",
+  "coverageBreadthExtended": "Extinsă",
+  "coverageBreadthQuickHint": "80 km · cel mai rapid răspuns",
+  "coverageBreadthMediumHint": "100 km · echilibrată",
+  "coverageBreadthExtendedHint": "150 km · mai departe, așteptare mai lungă",
+  "coverageResultSubtitle": "Din punctul selectat",
+  "coverageResultEmptyNoReachable": "Niciun releu nu este accesibil din acest punct",
+  "coverageResultEmptyNoRepeaters": "Niciun releu înregistrat în această zonă",
+  "coverageResultClearFilters": "Elimină filtrele",
+  "coverageResultError": "Calculul a eșuat",
+  "coverageResultComputing": "Se calculează recepția…",
+  "coverageResultCancel": "Anulează",
+  "coverageResultCount": "Relee accesibile: {count}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "Ascunse de filtre: {count}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "Ce prinzi din {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Fiecare releu pe care îl prinzi din acel punct, cu semnal estimat și distanță — încă înainte să pleci.",
+  "coverageTeaserBenefitAnywhere": "Orice punct de pe planetă",
+  "coverageTeaserBenefitOffline": "Consultabil fără rețea, pe teren",
+  "coverageTeaserBenefitSave": "Salvezi postul și îl regăsești",
+  "coverageTeaserRestore": "Restaurează achizițiile",
+  "stationSaveCta": "Salvează postul",
+  "stationSaveTitle": "Numele postului",
+  "stationRename": "Redenumește",
+  "stationDelete": "Șterge",
+  "stationRefresh": "Actualizează",
+  "stationRefreshAll": "Actualizează tot",
+  "stationOfflineNotice": "Date stocate pe dispozitiv",
+  "stationStaleNotice": "Datele ar putea fi neactualizate",
+  "stationMissingEntry": "Date indisponibile offline",
+  "stationDuplicateTitle": "Punct deja salvat",
+  "stationDuplicateBody": "Există deja un post la mai puțin de 200 de metri. Îl actualizezi sau creezi unul separat?",
+  "stationDuplicateUpdate": "Actualizează",
+  "stationDuplicateCreate": "Creează separat",
+  "stationSaveFailed": "Salvarea a eșuat: spațiu insuficient",
+  "stationsTitle": "Posturile mele",
+  "stationsEmptyTitle": "Niciun post salvat",
+  "stationsEmptyBody": "Alege un punct pe hartă, vezi ce prinzi și salvează-l: îl vei regăsi și fără rețea.",
+  "stationsGoToMap": "Mergi la hartă",
+  "stationsRefreshDone": "Actualizare finalizată",
+  "spotsUpdatedAgo": "Actualizat {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Actualizare în {seconds} s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Actualizare în {minutes} min",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Se actualizează…",
+  "spotsAutoRefreshHint": "Actualizare automată la fiecare {seconds} secunde",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Atinge pentru actualizare"
 }

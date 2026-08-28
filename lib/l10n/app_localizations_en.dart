@@ -1894,6 +1894,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sotaFilterAll => 'All';
 
   @override
+  String get spotsFiltersTitle => 'Filters';
+
+  @override
+  String get spotsFilterBand => 'Band';
+
+  @override
+  String get spotsFilterMode => 'Mode';
+
+  @override
+  String get spotsFilterAll => 'All';
+
+  @override
+  String get spotsFiltersReset => 'Clear filters';
+
+  @override
   String get sotaSortByTime => 'Time';
 
   @override
@@ -2202,4 +2217,207 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'To take a photo, allow camera access in settings.';
+
+  @override
+  String get coverageSearchHint => 'Search a place or paste coordinates';
+
+  @override
+  String get coverageSearchRecentTitle => 'Recent searches';
+
+  @override
+  String get coverageSearchNoResults => 'No place found';
+
+  @override
+  String get coverageSearchTip =>
+      'You can paste coordinates (46.4879, 11.8123) or long-press on the map';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Coordinates out of range: latitude ±90, longitude ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'No connection: place search needs the network';
+
+  @override
+  String get coverageSearchErrorFailed => 'Search failed. Try again.';
+
+  @override
+  String get coverageSearchClearPoint => 'Remove point';
+
+  @override
+  String get coverageSearchPointSemantics => 'Selected search point';
+
+  @override
+  String get coverageBreadthTitle => 'Search breadth';
+
+  @override
+  String get coverageBreadthQuick => 'Quick';
+
+  @override
+  String get coverageBreadthMedium => 'Medium';
+
+  @override
+  String get coverageBreadthExtended => 'Extended';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · fastest answer';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · balanced';
+
+  @override
+  String get coverageBreadthExtendedHint => '150 km · farther, longer wait';
+
+  @override
+  String get coverageResultSubtitle => 'From the selected point';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'No repeater is reachable from this point';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'No repeater is listed in this area';
+
+  @override
+  String get coverageResultClearFilters => 'Clear filters';
+
+  @override
+  String get coverageResultError => 'Calculation failed';
+
+  @override
+  String get coverageResultComputing => 'Calculating reception…';
+
+  @override
+  String get coverageResultCancel => 'Cancel';
+
+  @override
+  String coverageResultCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reachable repeaters',
+      one: '1 reachable repeater',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reachable hidden by filters',
+      one: '1 reachable hidden by filters',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'What do you reach from $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Every repeater you reach from that spot, with predicted signal and distance — before you even set off.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'Any point on the planet';
+
+  @override
+  String get coverageTeaserBenefitOffline =>
+      'Readable offline, out in the field';
+
+  @override
+  String get coverageTeaserBenefitSave => 'Save the spot and find it again';
+
+  @override
+  String get coverageTeaserRestore => 'Restore purchases';
+
+  @override
+  String get stationSaveCta => 'Save station';
+
+  @override
+  String get stationSaveTitle => 'Station name';
+
+  @override
+  String get stationRename => 'Rename';
+
+  @override
+  String get stationDelete => 'Delete';
+
+  @override
+  String get stationRefresh => 'Refresh';
+
+  @override
+  String get stationRefreshAll => 'Refresh all';
+
+  @override
+  String get stationOfflineNotice => 'Data stored on this device';
+
+  @override
+  String get stationStaleNotice => 'This data may be out of date';
+
+  @override
+  String get stationMissingEntry => 'Data not available offline';
+
+  @override
+  String get stationDuplicateTitle => 'Point already saved';
+
+  @override
+  String get stationDuplicateBody =>
+      'There is already a station within 200 metres of here. Update it, or create a separate one?';
+
+  @override
+  String get stationDuplicateUpdate => 'Update it';
+
+  @override
+  String get stationDuplicateCreate => 'Create separate';
+
+  @override
+  String get stationSaveFailed => 'Save failed: not enough space';
+
+  @override
+  String get stationsTitle => 'My stations';
+
+  @override
+  String get stationsEmptyTitle => 'No saved stations yet';
+
+  @override
+  String get stationsEmptyBody =>
+      'Pick a point on the map, see what you reach and save it: you will find it again even without a network.';
+
+  @override
+  String get stationsGoToMap => 'Go to the map';
+
+  @override
+  String get stationsRefreshDone => 'Refresh complete';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Updated $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Update in ${seconds}s';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Update in $minutes min';
+  }
+
+  @override
+  String get spotsUpdating => 'Updating…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Automatic refresh every $seconds seconds';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Tap to refresh';
 }

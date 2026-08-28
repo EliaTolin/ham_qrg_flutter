@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/utils/freshness_color_helper.dart';
+import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart';
@@ -176,8 +177,8 @@ class PotaSpotHeader extends StatelessWidget {
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       alignment: Alignment.centerLeft,
-                      child: Text(
-                        spot.activator,
+                      child: CallsignText(
+                        callsign: spot.activator,
                         style: theme.textTheme.displaySmall?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.w900,

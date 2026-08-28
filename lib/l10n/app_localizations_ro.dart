@@ -1973,6 +1973,21 @@ class AppLocalizationsRo extends AppLocalizations {
   String get sotaFilterAll => 'All';
 
   @override
+  String get spotsFiltersTitle => 'Filtre';
+
+  @override
+  String get spotsFilterBand => 'Bandă';
+
+  @override
+  String get spotsFilterMode => 'Mod';
+
+  @override
+  String get spotsFilterAll => 'Toate';
+
+  @override
+  String get spotsFiltersReset => 'Șterge filtrele';
+
+  @override
   String get sotaSortByTime => 'Time';
 
   @override
@@ -2282,4 +2297,195 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'Pentru a face o fotografie, permite accesul la cameră în setări.';
+
+  @override
+  String get coverageSearchHint => 'Caută o localitate sau lipește coordonate';
+
+  @override
+  String get coverageSearchRecentTitle => 'Căutări recente';
+
+  @override
+  String get coverageSearchNoResults => 'Niciun loc găsit';
+
+  @override
+  String get coverageSearchTip =>
+      'Poți lipi coordonate (46.4879, 11.8123) sau apăsa lung pe hartă';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Coordonate în afara intervalului: latitudine ±90, longitudine ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'Fără conexiune: căutarea locurilor necesită rețea';
+
+  @override
+  String get coverageSearchErrorFailed => 'Căutarea a eșuat. Încearcă din nou.';
+
+  @override
+  String get coverageSearchClearPoint => 'Elimină punctul';
+
+  @override
+  String get coverageSearchPointSemantics => 'Punct de căutare selectat';
+
+  @override
+  String get coverageBreadthTitle => 'Amploarea căutării';
+
+  @override
+  String get coverageBreadthQuick => 'Rapidă';
+
+  @override
+  String get coverageBreadthMedium => 'Medie';
+
+  @override
+  String get coverageBreadthExtended => 'Extinsă';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · cel mai rapid răspuns';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · echilibrată';
+
+  @override
+  String get coverageBreadthExtendedHint =>
+      '150 km · mai departe, așteptare mai lungă';
+
+  @override
+  String get coverageResultSubtitle => 'Din punctul selectat';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'Niciun releu nu este accesibil din acest punct';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'Niciun releu înregistrat în această zonă';
+
+  @override
+  String get coverageResultClearFilters => 'Elimină filtrele';
+
+  @override
+  String get coverageResultError => 'Calculul a eșuat';
+
+  @override
+  String get coverageResultComputing => 'Se calculează recepția…';
+
+  @override
+  String get coverageResultCancel => 'Anulează';
+
+  @override
+  String coverageResultCount(int count) {
+    return 'Relee accesibile: $count';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    return 'Ascunse de filtre: $count';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'Ce prinzi din $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Fiecare releu pe care îl prinzi din acel punct, cu semnal estimat și distanță — încă înainte să pleci.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'Orice punct de pe planetă';
+
+  @override
+  String get coverageTeaserBenefitOffline => 'Consultabil fără rețea, pe teren';
+
+  @override
+  String get coverageTeaserBenefitSave => 'Salvezi postul și îl regăsești';
+
+  @override
+  String get coverageTeaserRestore => 'Restaurează achizițiile';
+
+  @override
+  String get stationSaveCta => 'Salvează postul';
+
+  @override
+  String get stationSaveTitle => 'Numele postului';
+
+  @override
+  String get stationRename => 'Redenumește';
+
+  @override
+  String get stationDelete => 'Șterge';
+
+  @override
+  String get stationRefresh => 'Actualizează';
+
+  @override
+  String get stationRefreshAll => 'Actualizează tot';
+
+  @override
+  String get stationOfflineNotice => 'Date stocate pe dispozitiv';
+
+  @override
+  String get stationStaleNotice => 'Datele ar putea fi neactualizate';
+
+  @override
+  String get stationMissingEntry => 'Date indisponibile offline';
+
+  @override
+  String get stationDuplicateTitle => 'Punct deja salvat';
+
+  @override
+  String get stationDuplicateBody =>
+      'Există deja un post la mai puțin de 200 de metri. Îl actualizezi sau creezi unul separat?';
+
+  @override
+  String get stationDuplicateUpdate => 'Actualizează';
+
+  @override
+  String get stationDuplicateCreate => 'Creează separat';
+
+  @override
+  String get stationSaveFailed => 'Salvarea a eșuat: spațiu insuficient';
+
+  @override
+  String get stationsTitle => 'Posturile mele';
+
+  @override
+  String get stationsEmptyTitle => 'Niciun post salvat';
+
+  @override
+  String get stationsEmptyBody =>
+      'Alege un punct pe hartă, vezi ce prinzi și salvează-l: îl vei regăsi și fără rețea.';
+
+  @override
+  String get stationsGoToMap => 'Mergi la hartă';
+
+  @override
+  String get stationsRefreshDone => 'Actualizare finalizată';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Actualizat $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Actualizare în $seconds s';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Actualizare în $minutes min';
+  }
+
+  @override
+  String get spotsUpdating => 'Se actualizează…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Actualizare automată la fiecare $seconds secunde';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Atinge pentru actualizare';
 }
