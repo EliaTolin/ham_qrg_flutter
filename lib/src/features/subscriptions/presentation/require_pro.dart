@@ -25,6 +25,35 @@ Future<void> _onProPurchased(WidgetRef ref) async {
   await router.replaceAll([const HomeRoute()]);
 }
 
+/// Come [_onProPurchased], ma **senza** ricostruire l'albero di navigazione.
+///
+/// Serve dove la pagina deve sopravvivere all'acquisto. Il caso concreto è il
+/// teaser della ricerca di copertura: l'utente ha scelto un punto, ha comprato
+/// e deve ritrovare quel punto ancora lì con il calcolo che parte da solo
+/// (FR-031). Con `replaceAll` finirebbe invece sulla tab predefinita, e il
+/// lavoro di scegliere il posto andrebbe rifatto — esattamente nel momento in
+/// cui ha appena pagato.
+///
+/// È sicuro perché i gate coinvolti osservano `isProProvider` in modo
+/// reattivo: l'invalidazione basta a sbloccarli, senza bisogno del
+/// ricaricamento a martello.
+Future<void> _onProPurchasedInPlace(WidgetRef ref) async {
+  ref.invalidate(isProProvider);
+
+  final context = ref.read(appRouterProvider).navigatorKey.currentContext;
+  if (context != null) await showProWelcome(context);
+}
+
+/// Presenta il paywall della reachability lasciando in piedi la pagina
+/// chiamante. Da usare dal teaser della ricerca di copertura.
+Future<bool> openReachabilityPaywallInPlace(WidgetRef ref) async {
+  final purchased = await ref.read(revenueCatClientProvider).presentPaywall(
+        offeringId: AppConfigs.reachabilityPaywallOfferingId,
+      );
+  if (purchased) await _onProPurchasedInPlace(ref);
+  return purchased;
+}
+
 /// Pro gate used before protected (Pro-only) actions.
 ///
 /// Returns `true` if the user already owns Pro, or just purchased/restored it

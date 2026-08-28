@@ -1907,6 +1907,21 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sotaFilterAll => 'All';
 
   @override
+  String get spotsFiltersTitle => 'Filter';
+
+  @override
+  String get spotsFilterBand => 'Band';
+
+  @override
+  String get spotsFilterMode => 'Modus';
+
+  @override
+  String get spotsFilterAll => 'Alle';
+
+  @override
+  String get spotsFiltersReset => 'Filter zurücksetzen';
+
+  @override
   String get sotaSortByTime => 'Time';
 
   @override
@@ -2217,4 +2232,209 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'Um ein Foto aufzunehmen, erlaube den Kamerazugriff in den Einstellungen.';
+
+  @override
+  String get coverageSearchHint => 'Ort suchen oder Koordinaten einfügen';
+
+  @override
+  String get coverageSearchRecentTitle => 'Letzte Suchen';
+
+  @override
+  String get coverageSearchNoResults => 'Kein Ort gefunden';
+
+  @override
+  String get coverageSearchTip =>
+      'Du kannst Koordinaten einfügen (46.4879, 11.8123) oder lange auf die Karte drücken';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Koordinaten außerhalb des Bereichs: Breite ±90, Länge ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'Keine Verbindung: Die Ortssuche benötigt Netz';
+
+  @override
+  String get coverageSearchErrorFailed =>
+      'Suche fehlgeschlagen. Versuche es erneut.';
+
+  @override
+  String get coverageSearchClearPoint => 'Punkt entfernen';
+
+  @override
+  String get coverageSearchPointSemantics => 'Ausgewählter Suchpunkt';
+
+  @override
+  String get coverageBreadthTitle => 'Suchradius';
+
+  @override
+  String get coverageBreadthQuick => 'Schnell';
+
+  @override
+  String get coverageBreadthMedium => 'Mittel';
+
+  @override
+  String get coverageBreadthExtended => 'Erweitert';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · schnellste Antwort';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · ausgewogen';
+
+  @override
+  String get coverageBreadthExtendedHint =>
+      '150 km · weiter, längere Wartezeit';
+
+  @override
+  String get coverageResultSubtitle => 'Vom ausgewählten Punkt';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'Von diesem Punkt ist kein Relais erreichbar';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'In diesem Gebiet ist kein Relais erfasst';
+
+  @override
+  String get coverageResultClearFilters => 'Filter entfernen';
+
+  @override
+  String get coverageResultError => 'Berechnung fehlgeschlagen';
+
+  @override
+  String get coverageResultComputing => 'Empfang wird berechnet…';
+
+  @override
+  String get coverageResultCancel => 'Abbrechen';
+
+  @override
+  String coverageResultCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count erreichbare Relais',
+      one: '1 erreichbares Relais',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count erreichbare durch Filter ausgeblendet',
+      one: '1 erreichbares durch Filter ausgeblendet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'Was erreichst du von $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Jedes Relais, das du von dort erreichst, mit vorhergesagtem Signal und Entfernung — noch bevor du losfährst.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'Jeder Punkt der Erde';
+
+  @override
+  String get coverageTeaserBenefitOffline => 'Ohne Netz nutzbar, im Feld';
+
+  @override
+  String get coverageTeaserBenefitSave => 'Standort speichern und wiederfinden';
+
+  @override
+  String get coverageTeaserRestore => 'Käufe wiederherstellen';
+
+  @override
+  String get stationSaveCta => 'Standort speichern';
+
+  @override
+  String get stationSaveTitle => 'Name des Standorts';
+
+  @override
+  String get stationRename => 'Umbenennen';
+
+  @override
+  String get stationDelete => 'Löschen';
+
+  @override
+  String get stationRefresh => 'Aktualisieren';
+
+  @override
+  String get stationRefreshAll => 'Alle aktualisieren';
+
+  @override
+  String get stationOfflineNotice => 'Auf dem Gerät gespeicherte Daten';
+
+  @override
+  String get stationStaleNotice => 'Diese Daten könnten veraltet sein';
+
+  @override
+  String get stationMissingEntry => 'Daten offline nicht verfügbar';
+
+  @override
+  String get stationDuplicateTitle => 'Punkt bereits gespeichert';
+
+  @override
+  String get stationDuplicateBody =>
+      'Es gibt bereits einen Standort in weniger als 200 Metern Entfernung. Aktualisieren oder einen eigenen anlegen?';
+
+  @override
+  String get stationDuplicateUpdate => 'Aktualisieren';
+
+  @override
+  String get stationDuplicateCreate => 'Eigene anlegen';
+
+  @override
+  String get stationSaveFailed =>
+      'Speichern fehlgeschlagen: zu wenig Speicherplatz';
+
+  @override
+  String get stationsTitle => 'Meine Standorte';
+
+  @override
+  String get stationsEmptyTitle => 'Noch keine Standorte gespeichert';
+
+  @override
+  String get stationsEmptyBody =>
+      'Wähle einen Punkt auf der Karte, sieh, was du erreichst, und speichere ihn: Du findest ihn auch ohne Netz wieder.';
+
+  @override
+  String get stationsGoToMap => 'Zur Karte';
+
+  @override
+  String get stationsRefreshDone => 'Aktualisierung abgeschlossen';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Aktualisiert $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Aktualisierung in $seconds s';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Aktualisierung in $minutes Min.';
+  }
+
+  @override
+  String get spotsUpdating => 'Wird aktualisiert…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Automatische Aktualisierung alle $seconds Sekunden';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Zum Aktualisieren tippen';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/freshness_color_helper.dart';
+import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/src/features/sota/data/mappers/sota_mappers.dart';
 import 'package:hamqrg/src/features/sota/domain/sota_spot.dart';
@@ -102,8 +103,8 @@ class _OperatorRail extends StatelessWidget {
           const SizedBox(height: 20),
           const _ConsoleLabel(text: 'ACTIVATOR'),
           const SizedBox(height: 10),
-          Text(
-            spot.activator,
+          CallsignText(
+            callsign: spot.activator,
             style: theme.textTheme.displaySmall?.copyWith(
               fontWeight: FontWeight.w800,
               color: colorScheme.onSurface,

@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Szűrők",
+  "spotsFilterBand": "Sáv",
+  "spotsFilterMode": "Mód",
+  "spotsFilterAll": "Összes",
+  "spotsFiltersReset": "Szűrők törlése",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Hiba az áruház megnyitásakor",
   "deleteConfirmTitle": "Törlés megerősítése",
   "deleteConfirmContent": "Biztosan törölni szeretnéd?",
-  "cameraPermissionRationale": "Fénykép készítéséhez engedélyezd a kamera-hozzáférést a beállításokban."
+  "cameraPermissionRationale": "Fénykép készítéséhez engedélyezd a kamera-hozzáférést a beállításokban.",
+  "coverageSearchHint": "Keressen helyet vagy illesszen be koordinátákat",
+  "coverageSearchRecentTitle": "Legutóbbi keresések",
+  "coverageSearchNoResults": "Nem található hely",
+  "coverageSearchTip": "Beilleszthet koordinátákat (46.4879, 11.8123) vagy hosszan nyomhat a térképen",
+  "coverageSearchErrorOutOfRange": "Koordináták tartományon kívül: szélesség ±90, hosszúság ±180",
+  "coverageSearchErrorOffline": "Nincs kapcsolat: a helykereséshez hálózat kell",
+  "coverageSearchErrorFailed": "A keresés sikertelen. Próbálja újra.",
+  "coverageSearchClearPoint": "Pont eltávolítása",
+  "coverageSearchPointSemantics": "Kiválasztott keresési pont",
+  "coverageBreadthTitle": "Keresési hatókör",
+  "coverageBreadthQuick": "Gyors",
+  "coverageBreadthMedium": "Közepes",
+  "coverageBreadthExtended": "Kiterjesztett",
+  "coverageBreadthQuickHint": "80 km · leggyorsabb válasz",
+  "coverageBreadthMediumHint": "100 km · kiegyensúlyozott",
+  "coverageBreadthExtendedHint": "150 km · távolabb, hosszabb várakozás",
+  "coverageResultSubtitle": "A kiválasztott pontból",
+  "coverageResultEmptyNoReachable": "Erről a pontról egyetlen átjátszó sem érhető el",
+  "coverageResultEmptyNoRepeaters": "Ezen a területen nincs nyilvántartott átjátszó",
+  "coverageResultClearFilters": "Szűrők törlése",
+  "coverageResultError": "A számítás sikertelen",
+  "coverageResultComputing": "Vétel számítása…",
+  "coverageResultCancel": "Mégse",
+  "coverageResultCount": "{count} elérhető átjátszó",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "A szűrők {count} elérhetőt rejtenek el",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "Mit érsz el innen: {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Minden átjátszó, amit onnan elérsz, várható jellel és távolsággal — még indulás előtt.",
+  "coverageTeaserBenefitAnywhere": "A bolygó bármely pontja",
+  "coverageTeaserBenefitOffline": "Hálózat nélkül is olvasható, terepen",
+  "coverageTeaserBenefitSave": "Elmented a helyet és újra megtalálod",
+  "coverageTeaserRestore": "Vásárlások visszaállítása",
+  "stationSaveCta": "Hely mentése",
+  "stationSaveTitle": "A hely neve",
+  "stationRename": "Átnevezés",
+  "stationDelete": "Törlés",
+  "stationRefresh": "Frissítés",
+  "stationRefreshAll": "Összes frissítése",
+  "stationOfflineNotice": "Az eszközön tárolt adat",
+  "stationStaleNotice": "Az adat elavult lehet",
+  "stationMissingEntry": "Az adat offline nem érhető el",
+  "stationDuplicateTitle": "A pont már mentve van",
+  "stationDuplicateBody": "200 méteren belül már van egy hely. Frissíted, vagy külön hozol létre?",
+  "stationDuplicateUpdate": "Frissítés",
+  "stationDuplicateCreate": "Külön létrehozás",
+  "stationSaveFailed": "A mentés sikertelen: nincs elég hely",
+  "stationsTitle": "Helyeim",
+  "stationsEmptyTitle": "Még nincs mentett hely",
+  "stationsEmptyBody": "Válassz egy pontot a térképen, nézd meg mit érsz el, és mentsd el: hálózat nélkül is megtalálod.",
+  "stationsGoToMap": "Ugrás a térképre",
+  "stationsRefreshDone": "A frissítés kész",
+  "spotsUpdatedAgo": "Frissítve: {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Frissítés {seconds} mp múlva",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Frissítés {minutes} perc múlva",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Frissítés…",
+  "spotsAutoRefreshHint": "Automatikus frissítés {seconds} másodpercenként",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Koppintson a frissítéshez"
 }

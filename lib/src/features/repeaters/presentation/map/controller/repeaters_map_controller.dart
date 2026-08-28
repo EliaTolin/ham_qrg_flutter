@@ -1,5 +1,10 @@
 import 'dart:async';
 
+import 'package:hamqrg/src/features/coverage_search/data/repository/recent_searches_repository.dart';
+import 'package:hamqrg/src/features/coverage_search/data/repository/search_breadth_repository.dart';
+import 'package:hamqrg/src/features/coverage_search/domain/search_breadth.dart';
+import 'package:hamqrg/src/features/coverage_search/domain/search_point.dart';
+import 'package:hamqrg/src/features/coverage_search/domain/search_point_error.dart';
 import 'package:hamqrg/src/features/pota/data/repository/pota_repository.dart';
 import 'package:hamqrg/src/features/pota/provider/get_pota_spots/get_pota_spots_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
@@ -18,7 +23,18 @@ class RepeatersMapController extends _$RepeatersMapController {
     final mapState = await _initalLoad();
     // Load POTA spots in background (non-blocking)
     unawaited(loadPotaSpots());
-    return mapState;
+    return mapState.copyWith(searchBreadth: await _restoreBreadth());
+  }
+
+  /// Ripristina l'ultima ampiezza scelta (FR-026). Se la lettura fallisce si
+  /// riparte dal default: è una preferenza, non un dato da difendere.
+  Future<SearchBreadth> _restoreBreadth() async {
+    try {
+      final repository = await ref.read(searchBreadthRepositoryProvider.future);
+      return await repository.read();
+    } catch (_) {
+      return SearchBreadth.defaultBreadth;
+    }
   }
 
   Future<void> toggleModeFilter({
@@ -60,6 +76,73 @@ class RepeatersMapController extends _$RepeatersMapController {
         ),
       );
     }
+  }
+
+  /// Fissa il punto arbitrario da valutare (FR-006, FR-007).
+  ///
+  /// Sostituisce il punto precedente invece di affiancarlo: sulla mappa esiste
+  /// al massimo un pin di ricerca per volta. Azzera anche l'eventuale errore
+  /// precedente, perché una selezione riuscita lo rende obsoleto.
+  Future<void> selectPoint(SearchPoint point) async {
+    final currentState = state.value;
+    if (currentState == null) return;
+
+    state = AsyncData(
+      currentState.copyWith(searchPoint: point, pointError: null),
+    );
+
+    // La cronologia è una comodità: se fallisce, la selezione resta valida.
+    try {
+      final repository =
+          await ref.read(recentSearchesRepositoryProvider.future);
+      await repository.record(point, now: DateTime.now());
+    } catch (_) {
+      // Ignorato di proposito.
+    }
+  }
+
+  /// Rimuove il punto selezionato e torna alla vista mappa normale (FR-008).
+  void clearPoint() {
+    final currentState = state.value;
+    if (currentState == null) return;
+    state = AsyncData(
+      currentState.copyWith(searchPoint: null, pointError: null),
+    );
+  }
+
+  /// Cambia l'ampiezza della ricerca e la ricorda per le volte successive
+  /// (FR-024, FR-026).
+  ///
+  /// Il calcolo in corso non va fermato a mano: l'ampiezza fa parte della
+  /// chiave del provider di valutazione, quindi cambiarla ne monta una nuova
+  /// istanza e abbandona la precedente.
+  Future<void> setBreadth(SearchBreadth breadth) async {
+    final currentState = state.value;
+    if (currentState == null || currentState.searchBreadth == breadth) return;
+    state = AsyncData(currentState.copyWith(searchBreadth: breadth));
+
+    try {
+      final repository = await ref.read(searchBreadthRepositoryProvider.future);
+      await repository.write(breadth);
+    } catch (_) {
+      // La scelta resta valida per questa sessione anche se non si persiste.
+    }
+  }
+
+  /// Segnala un errore di selezione senza toccare il punto già fissato: un
+  /// tentativo fallito non deve cancellare il risultato che l'utente sta
+  /// guardando (Principio III).
+  void reportPointError(SearchPointError error) {
+    final currentState = state.value;
+    if (currentState == null) return;
+    state = AsyncData(currentState.copyWith(pointError: error));
+  }
+
+  /// Azzera il solo messaggio di errore, lasciando intatto il punto.
+  void clearPointError() {
+    final currentState = state.value;
+    if (currentState == null || currentState.pointError == null) return;
+    state = AsyncData(currentState.copyWith(pointError: null));
   }
 
   void selectRepeater(Repeater? repeater) {
@@ -115,26 +198,23 @@ class RepeatersMapController extends _$RepeatersMapController {
         accessModes: modesToFilter,
       );
 
+      // copyWith e non un nuovo RepeatersMapState: ricostruire lo stato da zero
+      // scarterebbe a ogni movimento della camera tutto ciò che non viene
+      // rielencato — spot POTA, cache dei parchi e, da qui in avanti, il punto
+      // di ricerca selezionato, che sparirebbe al primo pan della mappa.
       state = AsyncData(
-        RepeatersMapState(
+        (currentState ?? const RepeatersMapState()).copyWith(
           repeaters: repeaters,
-          latitude: currentState?.latitude,
-          longitude: currentState?.longitude,
           selectedModes:
               modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
-          selectedRepeater: currentState?.selectedRepeater,
+          hasLoadError: false,
+          locationError: null,
         ),
       );
     } on LocationException catch (error) {
       state = AsyncData(
-        RepeatersMapState(
+        (currentState ?? const RepeatersMapState()).copyWith(
           locationError: error.type,
-          repeaters: currentState?.repeaters ?? const [],
-          latitude: currentState?.latitude,
-          longitude: currentState?.longitude,
-          selectedModes:
-              currentState?.selectedModes ?? (modesToFilter?.toSet() ?? {}),
-          selectedRepeater: currentState?.selectedRepeater,
         ),
       );
     } catch (_) {

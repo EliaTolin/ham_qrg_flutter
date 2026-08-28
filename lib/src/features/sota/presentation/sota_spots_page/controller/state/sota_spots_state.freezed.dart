@@ -18,6 +18,8 @@ mixin _$SotaSpotsState {
   List<SotaSpot> get filteredSpots;
   bool get hasLoadError;
   bool get isRefreshing;
+  DateTime? get lastUpdatedAt;
+  DateTime? get nextRefreshAt;
   SotaSpotsSortOrder get sortOrder;
   Map<String, double> get distanceBySummitCode;
   List<String> get availableBands;
@@ -48,6 +50,10 @@ mixin _$SotaSpotsState {
                 other.hasLoadError == hasLoadError) &&
             (identical(other.isRefreshing, isRefreshing) ||
                 other.isRefreshing == isRefreshing) &&
+            (identical(other.lastUpdatedAt, lastUpdatedAt) ||
+                other.lastUpdatedAt == lastUpdatedAt) &&
+            (identical(other.nextRefreshAt, nextRefreshAt) ||
+                other.nextRefreshAt == nextRefreshAt) &&
             (identical(other.sortOrder, sortOrder) ||
                 other.sortOrder == sortOrder) &&
             const DeepCollectionEquality()
@@ -75,6 +81,8 @@ mixin _$SotaSpotsState {
       const DeepCollectionEquality().hash(filteredSpots),
       hasLoadError,
       isRefreshing,
+      lastUpdatedAt,
+      nextRefreshAt,
       sortOrder,
       const DeepCollectionEquality().hash(distanceBySummitCode),
       const DeepCollectionEquality().hash(availableBands),
@@ -87,7 +95,7 @@ mixin _$SotaSpotsState {
 
   @override
   String toString() {
-    return 'SotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, sortOrder: $sortOrder, distanceBySummitCode: $distanceBySummitCode, availableBands: $availableBands, availableModes: $availableModes, availableAssociations: $availableAssociations, selectedBand: $selectedBand, selectedMode: $selectedMode, minPoints: $minPoints, selectedAssociation: $selectedAssociation)';
+    return 'SotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, lastUpdatedAt: $lastUpdatedAt, nextRefreshAt: $nextRefreshAt, sortOrder: $sortOrder, distanceBySummitCode: $distanceBySummitCode, availableBands: $availableBands, availableModes: $availableModes, availableAssociations: $availableAssociations, selectedBand: $selectedBand, selectedMode: $selectedMode, minPoints: $minPoints, selectedAssociation: $selectedAssociation)';
   }
 }
 
@@ -102,6 +110,8 @@ abstract mixin class $SotaSpotsStateCopyWith<$Res> {
       List<SotaSpot> filteredSpots,
       bool hasLoadError,
       bool isRefreshing,
+      DateTime? lastUpdatedAt,
+      DateTime? nextRefreshAt,
       SotaSpotsSortOrder sortOrder,
       Map<String, double> distanceBySummitCode,
       List<String> availableBands,
@@ -130,6 +140,8 @@ class _$SotaSpotsStateCopyWithImpl<$Res>
     Object? filteredSpots = null,
     Object? hasLoadError = null,
     Object? isRefreshing = null,
+    Object? lastUpdatedAt = freezed,
+    Object? nextRefreshAt = freezed,
     Object? sortOrder = null,
     Object? distanceBySummitCode = null,
     Object? availableBands = null,
@@ -157,6 +169,14 @@ class _$SotaSpotsStateCopyWithImpl<$Res>
           ? _self.isRefreshing
           : isRefreshing // ignore: cast_nullable_to_non_nullable
               as bool,
+      lastUpdatedAt: freezed == lastUpdatedAt
+          ? _self.lastUpdatedAt
+          : lastUpdatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextRefreshAt: freezed == nextRefreshAt
+          ? _self.nextRefreshAt
+          : nextRefreshAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       sortOrder: null == sortOrder
           ? _self.sortOrder
           : sortOrder // ignore: cast_nullable_to_non_nullable
@@ -295,6 +315,8 @@ extension SotaSpotsStatePatterns on SotaSpotsState {
             List<SotaSpot> filteredSpots,
             bool hasLoadError,
             bool isRefreshing,
+            DateTime? lastUpdatedAt,
+            DateTime? nextRefreshAt,
             SotaSpotsSortOrder sortOrder,
             Map<String, double> distanceBySummitCode,
             List<String> availableBands,
@@ -315,6 +337,8 @@ extension SotaSpotsStatePatterns on SotaSpotsState {
             _that.filteredSpots,
             _that.hasLoadError,
             _that.isRefreshing,
+            _that.lastUpdatedAt,
+            _that.nextRefreshAt,
             _that.sortOrder,
             _that.distanceBySummitCode,
             _that.availableBands,
@@ -349,6 +373,8 @@ extension SotaSpotsStatePatterns on SotaSpotsState {
             List<SotaSpot> filteredSpots,
             bool hasLoadError,
             bool isRefreshing,
+            DateTime? lastUpdatedAt,
+            DateTime? nextRefreshAt,
             SotaSpotsSortOrder sortOrder,
             Map<String, double> distanceBySummitCode,
             List<String> availableBands,
@@ -368,6 +394,8 @@ extension SotaSpotsStatePatterns on SotaSpotsState {
             _that.filteredSpots,
             _that.hasLoadError,
             _that.isRefreshing,
+            _that.lastUpdatedAt,
+            _that.nextRefreshAt,
             _that.sortOrder,
             _that.distanceBySummitCode,
             _that.availableBands,
@@ -401,6 +429,8 @@ extension SotaSpotsStatePatterns on SotaSpotsState {
             List<SotaSpot> filteredSpots,
             bool hasLoadError,
             bool isRefreshing,
+            DateTime? lastUpdatedAt,
+            DateTime? nextRefreshAt,
             SotaSpotsSortOrder sortOrder,
             Map<String, double> distanceBySummitCode,
             List<String> availableBands,
@@ -420,6 +450,8 @@ extension SotaSpotsStatePatterns on SotaSpotsState {
             _that.filteredSpots,
             _that.hasLoadError,
             _that.isRefreshing,
+            _that.lastUpdatedAt,
+            _that.nextRefreshAt,
             _that.sortOrder,
             _that.distanceBySummitCode,
             _that.availableBands,
@@ -443,6 +475,8 @@ class _SotaSpotsState implements SotaSpotsState {
       final List<SotaSpot> filteredSpots = const <SotaSpot>[],
       this.hasLoadError = false,
       this.isRefreshing = false,
+      this.lastUpdatedAt,
+      this.nextRefreshAt,
       this.sortOrder = SotaSpotsSortOrder.time,
       final Map<String, double> distanceBySummitCode = const <String, double>{},
       final List<String> availableBands = const <String>[],
@@ -483,6 +517,10 @@ class _SotaSpotsState implements SotaSpotsState {
   @override
   @JsonKey()
   final bool isRefreshing;
+  @override
+  final DateTime? lastUpdatedAt;
+  @override
+  final DateTime? nextRefreshAt;
   @override
   @JsonKey()
   final SotaSpotsSortOrder sortOrder;
@@ -553,6 +591,10 @@ class _SotaSpotsState implements SotaSpotsState {
                 other.hasLoadError == hasLoadError) &&
             (identical(other.isRefreshing, isRefreshing) ||
                 other.isRefreshing == isRefreshing) &&
+            (identical(other.lastUpdatedAt, lastUpdatedAt) ||
+                other.lastUpdatedAt == lastUpdatedAt) &&
+            (identical(other.nextRefreshAt, nextRefreshAt) ||
+                other.nextRefreshAt == nextRefreshAt) &&
             (identical(other.sortOrder, sortOrder) ||
                 other.sortOrder == sortOrder) &&
             const DeepCollectionEquality()
@@ -580,6 +622,8 @@ class _SotaSpotsState implements SotaSpotsState {
       const DeepCollectionEquality().hash(_filteredSpots),
       hasLoadError,
       isRefreshing,
+      lastUpdatedAt,
+      nextRefreshAt,
       sortOrder,
       const DeepCollectionEquality().hash(_distanceBySummitCode),
       const DeepCollectionEquality().hash(_availableBands),
@@ -592,7 +636,7 @@ class _SotaSpotsState implements SotaSpotsState {
 
   @override
   String toString() {
-    return 'SotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, sortOrder: $sortOrder, distanceBySummitCode: $distanceBySummitCode, availableBands: $availableBands, availableModes: $availableModes, availableAssociations: $availableAssociations, selectedBand: $selectedBand, selectedMode: $selectedMode, minPoints: $minPoints, selectedAssociation: $selectedAssociation)';
+    return 'SotaSpotsState(spots: $spots, filteredSpots: $filteredSpots, hasLoadError: $hasLoadError, isRefreshing: $isRefreshing, lastUpdatedAt: $lastUpdatedAt, nextRefreshAt: $nextRefreshAt, sortOrder: $sortOrder, distanceBySummitCode: $distanceBySummitCode, availableBands: $availableBands, availableModes: $availableModes, availableAssociations: $availableAssociations, selectedBand: $selectedBand, selectedMode: $selectedMode, minPoints: $minPoints, selectedAssociation: $selectedAssociation)';
   }
 }
 
@@ -609,6 +653,8 @@ abstract mixin class _$SotaSpotsStateCopyWith<$Res>
       List<SotaSpot> filteredSpots,
       bool hasLoadError,
       bool isRefreshing,
+      DateTime? lastUpdatedAt,
+      DateTime? nextRefreshAt,
       SotaSpotsSortOrder sortOrder,
       Map<String, double> distanceBySummitCode,
       List<String> availableBands,
@@ -637,6 +683,8 @@ class __$SotaSpotsStateCopyWithImpl<$Res>
     Object? filteredSpots = null,
     Object? hasLoadError = null,
     Object? isRefreshing = null,
+    Object? lastUpdatedAt = freezed,
+    Object? nextRefreshAt = freezed,
     Object? sortOrder = null,
     Object? distanceBySummitCode = null,
     Object? availableBands = null,
@@ -664,6 +712,14 @@ class __$SotaSpotsStateCopyWithImpl<$Res>
           ? _self.isRefreshing
           : isRefreshing // ignore: cast_nullable_to_non_nullable
               as bool,
+      lastUpdatedAt: freezed == lastUpdatedAt
+          ? _self.lastUpdatedAt
+          : lastUpdatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextRefreshAt: freezed == nextRefreshAt
+          ? _self.nextRefreshAt
+          : nextRefreshAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       sortOrder: null == sortOrder
           ? _self.sortOrder
           : sortOrder // ignore: cast_nullable_to_non_nullable

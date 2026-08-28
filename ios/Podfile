@@ -105,7 +105,7 @@ post_install do |installer|
   end
 end
 
-target 'OneSignalNotificationServiceExtension' do
-  use_frameworks!
-  pod 'OneSignalXCFramework', '>= 5.0.0', '< 6.0'
-end
+# OneSignalNotificationServiceExtension usa Swift Package Manager
+# (OneSignal-XCFramework, exact 5.5.6 come onesignal_flutter): niente pod qui,
+# altrimenti CocoaPods incorpora i framework OneSignal anche in Runner.app
+# e va in conflitto con l'embed SPM ("Multiple commands produce ...").

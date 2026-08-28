@@ -8,6 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/sota_marker_helper.dart';
+import 'package:hamqrg/common/widgets/filter/spot_filters_button.dart';
+import 'package:hamqrg/common/widgets/filter/spot_filters_sheet.dart';
+import 'package:hamqrg/common/widgets/label/last_update_label.dart';
 import 'package:hamqrg/config/constants/map_keys.dart';
 import 'package:hamqrg/config/constants/map_layers.dart';
 import 'package:hamqrg/router/app_router.dart';
@@ -15,6 +18,7 @@ import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hamqrg/src/features/sota/data/repository/sota_repository.dart';
 import 'package:hamqrg/src/features/sota/domain/sota_spot.dart';
 import 'package:hamqrg/src/features/sota/domain/sota_summit.dart';
+import 'package:hamqrg/src/features/sota/presentation/sota_spot_filters.dart';
 import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/controller/sota_spots_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
@@ -35,7 +39,40 @@ class SotaSpotsMapPage extends HookConsumerWidget {
     final colorScheme = theme.colorScheme;
 
     final asyncState = ref.watch(sotaSpotsControllerProvider);
-    final spots = asyncState.value?.spots ?? const <SotaSpot>[];
+    final spotsState = asyncState.value;
+    final spots = spotsState?.spots ?? const <SotaSpot>[];
+
+    // Local copy of the filters coming from the spots list: seeded once, then
+    // edited only for this map (the list keeps its own selection).
+    final listState = ref.read(sotaSpotsControllerProvider).value;
+    final selectedBand = useState<String?>(listState?.selectedBand);
+    final selectedMode = useState<String?>(listState?.selectedMode);
+    final hasSeededFilters = useState(listState != null);
+
+    useEffect(
+      () {
+        if (!hasSeededFilters.value && spotsState != null) {
+          hasSeededFilters.value = true;
+          selectedBand.value = spotsState.selectedBand;
+          selectedMode.value = spotsState.selectedMode;
+        }
+        return null;
+      },
+      [spotsState == null],
+    );
+
+    final visibleSpots = useMemoized(
+      () => filterSotaSpots(
+        spots,
+        band: selectedBand.value,
+        mode: selectedMode.value,
+        minPoints: spotsState?.minPoints,
+        association: spotsState?.selectedAssociation,
+      ),
+      [spots, selectedBand.value, selectedMode.value],
+    );
+    final activeFilters = (selectedBand.value != null ? 1 : 0) +
+        (selectedMode.value != null ? 1 : 0);
 
     final userPosition = switch (ref.watch(cachedUserPositionProvider)) {
       AsyncData(:final value) => value,
@@ -62,16 +99,18 @@ class SotaSpotsMapPage extends HookConsumerWidget {
             isStyleLoaded.value &&
             summitsByCode.value.isNotEmpty) {
           unawaited(
-            _updateSotaSource(map, spots, summitsByCode.value),
+            _updateSotaSource(map, visibleSpots, summitsByCode.value),
           );
           if (!hasFittedBounds.value) {
             hasFittedBounds.value = true;
-            unawaited(_fitCameraToSummits(map, summitsByCode.value));
+            unawaited(
+              _fitCameraToSummits(map, visibleSpots, summitsByCode.value),
+            );
           }
         }
         return null;
       },
-      [spots.length, summitsByCode.value.length, isStyleLoaded.value],
+      [visibleSpots, summitsByCode.value.length, isStyleLoaded.value],
     );
 
     final initialLat =
@@ -89,6 +128,20 @@ class SotaSpotsMapPage extends HookConsumerWidget {
             Text(l10n.sotaTitle),
           ],
         ),
+        actions: [
+          SpotFiltersButton(
+            activeCount: activeFilters,
+            onPressed: () => showSpotFiltersSheet(
+              context: context,
+              availableBands: spotsState?.availableBands ?? const <String>[],
+              availableModes: spotsState?.availableModes ?? const <String>[],
+              selectedBand: selectedBand.value,
+              selectedMode: selectedMode.value,
+              onBandChanged: (band) => selectedBand.value = band,
+              onModeChanged: (mode) => selectedMode.value = mode,
+            ),
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -132,11 +185,11 @@ class SotaSpotsMapPage extends HookConsumerWidget {
               await _addSotaLayer(map);
               isStyleLoaded.value = true;
               if (summitsByCode.value.isNotEmpty) {
-                await _updateSotaSource(map, spots, summitsByCode.value);
+                await _updateSotaSource(map, visibleSpots, summitsByCode.value);
               }
             },
           ),
-          if (spots.isNotEmpty)
+          if (spotsState != null)
             Positioned(
               top: 12,
               left: 16,
@@ -156,18 +209,31 @@ class SotaSpotsMapPage extends HookConsumerWidget {
                     ),
                   ],
                 ),
-                child: Row(
+                child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(
-                      'assets/images/sota_logo.png',
-                      width: 18,
-                      height: 18,
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          'assets/images/sota_logo.png',
+                          width: 18,
+                          height: 18,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          l10n.sotaSpotCount(visibleSpots.length),
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      l10n.sotaSpotCount(spots.length),
-                      style: theme.textTheme.bodyMedium,
+                    LastUpdateLabel(
+                      lastUpdatedAt: spotsState.lastUpdatedAt,
+                      nextUpdateAt: spotsState.nextRefreshAt,
+                      isRefreshing: spotsState.isRefreshing,
+                      autoRefreshInterval:
+                          SotaSpotsController.autoRefreshInterval,
                     ),
                   ],
                 ),
@@ -354,6 +420,7 @@ Future<void> _handleTap(
 
 Future<void> _fitCameraToSummits(
   MapboxMap mapboxMap,
+  List<SotaSpot> spots,
   Map<String, SotaSummit> summits,
 ) async {
   try {
@@ -361,7 +428,9 @@ Future<void> _fitCameraToSummits(
     var maxLat = -90.0;
     var minLon = 180.0;
     var maxLon = -180.0;
-    for (final s in summits.values) {
+    for (final spot in spots) {
+      final s = summits[spot.summitCode];
+      if (s == null) continue;
       if (s.latitude < minLat) minLat = s.latitude;
       if (s.latitude > maxLat) maxLat = s.latitude;
       if (s.longitude < minLon) minLon = s.longitude;

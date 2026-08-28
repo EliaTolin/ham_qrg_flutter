@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hamqrg/themes/app_colors.dart';
 
 /// Normalizes a SOTA spot mode string.
 /// Returns null if the mode is blank/empty.
@@ -21,18 +22,19 @@ class SotaModeBadge extends StatelessWidget {
     if (normalized == null) return const SizedBox.shrink();
 
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    final tone = SpotModeColors.forMode(normalized);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
       decoration: BoxDecoration(
-        color: colorScheme.tertiaryContainer,
+        color: tone.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: tone.withValues(alpha: 0.4)),
       ),
       child: Text(
         normalized,
         style: theme.textTheme.labelSmall?.copyWith(
-          color: colorScheme.onTertiaryContainer,
+          color: tone,
           fontWeight: FontWeight.bold,
           fontSize: 10,
         ),

@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Filters",
+  "spotsFilterBand": "Band",
+  "spotsFilterMode": "Mode",
+  "spotsFilterAll": "All",
+  "spotsFiltersReset": "Clear filters",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Error while opening the store",
   "deleteConfirmTitle": "Confirm deletion",
   "deleteConfirmContent": "Are you sure you want to delete?",
-  "cameraPermissionRationale": "To take a photo, allow camera access in settings."
+  "cameraPermissionRationale": "To take a photo, allow camera access in settings.",
+  "coverageSearchHint": "Search a place or paste coordinates",
+  "coverageSearchRecentTitle": "Recent searches",
+  "coverageSearchNoResults": "No place found",
+  "coverageSearchTip": "You can paste coordinates (46.4879, 11.8123) or long-press on the map",
+  "coverageSearchErrorOutOfRange": "Coordinates out of range: latitude ±90, longitude ±180",
+  "coverageSearchErrorOffline": "No connection: place search needs the network",
+  "coverageSearchErrorFailed": "Search failed. Try again.",
+  "coverageSearchClearPoint": "Remove point",
+  "coverageSearchPointSemantics": "Selected search point",
+  "coverageBreadthTitle": "Search breadth",
+  "coverageBreadthQuick": "Quick",
+  "coverageBreadthMedium": "Medium",
+  "coverageBreadthExtended": "Extended",
+  "coverageBreadthQuickHint": "80 km · fastest answer",
+  "coverageBreadthMediumHint": "100 km · balanced",
+  "coverageBreadthExtendedHint": "150 km · farther, longer wait",
+  "coverageResultSubtitle": "From the selected point",
+  "coverageResultEmptyNoReachable": "No repeater is reachable from this point",
+  "coverageResultEmptyNoRepeaters": "No repeater is listed in this area",
+  "coverageResultClearFilters": "Clear filters",
+  "coverageResultError": "Calculation failed",
+  "coverageResultComputing": "Calculating reception…",
+  "coverageResultCancel": "Cancel",
+  "coverageResultCount": "{count, plural, =1{1 reachable repeater} other{{count} reachable repeaters}}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "{count, plural, =1{1 reachable hidden by filters} other{{count} reachable hidden by filters}}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "What do you reach from {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Every repeater you reach from that spot, with predicted signal and distance — before you even set off.",
+  "coverageTeaserBenefitAnywhere": "Any point on the planet",
+  "coverageTeaserBenefitOffline": "Readable offline, out in the field",
+  "coverageTeaserBenefitSave": "Save the spot and find it again",
+  "coverageTeaserRestore": "Restore purchases",
+  "stationSaveCta": "Save station",
+  "stationSaveTitle": "Station name",
+  "stationRename": "Rename",
+  "stationDelete": "Delete",
+  "stationRefresh": "Refresh",
+  "stationRefreshAll": "Refresh all",
+  "stationOfflineNotice": "Data stored on this device",
+  "stationStaleNotice": "This data may be out of date",
+  "stationMissingEntry": "Data not available offline",
+  "stationDuplicateTitle": "Point already saved",
+  "stationDuplicateBody": "There is already a station within 200 metres of here. Update it, or create a separate one?",
+  "stationDuplicateUpdate": "Update it",
+  "stationDuplicateCreate": "Create separate",
+  "stationSaveFailed": "Save failed: not enough space",
+  "stationsTitle": "My stations",
+  "stationsEmptyTitle": "No saved stations yet",
+  "stationsEmptyBody": "Pick a point on the map, see what you reach and save it: you will find it again even without a network.",
+  "stationsGoToMap": "Go to the map",
+  "stationsRefreshDone": "Refresh complete",
+  "spotsUpdatedAgo": "Updated {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Update in {seconds}s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Update in {minutes} min",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Updating…",
+  "spotsAutoRefreshHint": "Automatic refresh every {seconds} seconds",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Tap to refresh"
 }

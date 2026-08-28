@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Filters",
+  "spotsFilterBand": "Band",
+  "spotsFilterMode": "Modus",
+  "spotsFilterAll": "Alle",
+  "spotsFiltersReset": "Filters wissen",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Fout bij het openen van de store",
   "deleteConfirmTitle": "Verwijderen bevestigen",
   "deleteConfirmContent": "Weet je zeker dat je wilt verwijderen?",
-  "cameraPermissionRationale": "Geef in de instellingen toegang tot de camera om een foto te maken."
+  "cameraPermissionRationale": "Geef in de instellingen toegang tot de camera om een foto te maken.",
+  "coverageSearchHint": "Zoek een plaats of plak coördinaten",
+  "coverageSearchRecentTitle": "Recente zoekopdrachten",
+  "coverageSearchNoResults": "Geen plaats gevonden",
+  "coverageSearchTip": "Je kunt coördinaten plakken (46.4879, 11.8123) of lang op de kaart drukken",
+  "coverageSearchErrorOutOfRange": "Coördinaten buiten bereik: breedtegraad ±90, lengtegraad ±180",
+  "coverageSearchErrorOffline": "Geen verbinding: zoeken naar plaatsen vereist netwerk",
+  "coverageSearchErrorFailed": "Zoeken mislukt. Probeer opnieuw.",
+  "coverageSearchClearPoint": "Punt verwijderen",
+  "coverageSearchPointSemantics": "Geselecteerd zoekpunt",
+  "coverageBreadthTitle": "Zoekbereik",
+  "coverageBreadthQuick": "Snel",
+  "coverageBreadthMedium": "Gemiddeld",
+  "coverageBreadthExtended": "Uitgebreid",
+  "coverageBreadthQuickHint": "80 km · snelste antwoord",
+  "coverageBreadthMediumHint": "100 km · in balans",
+  "coverageBreadthExtendedHint": "150 km · verder, langere wachttijd",
+  "coverageResultSubtitle": "Vanaf het geselecteerde punt",
+  "coverageResultEmptyNoReachable": "Geen enkele repeater is bereikbaar vanaf dit punt",
+  "coverageResultEmptyNoRepeaters": "Geen repeaters geregistreerd in dit gebied",
+  "coverageResultClearFilters": "Filters wissen",
+  "coverageResultError": "Berekening mislukt",
+  "coverageResultComputing": "Ontvangst berekenen…",
+  "coverageResultCancel": "Annuleren",
+  "coverageResultCount": "{count, plural, =1{1 bereikbare repeater} other{{count} bereikbare repeaters}}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "{count, plural, =1{1 bereikbare verborgen door filters} other{{count} bereikbare verborgen door filters}}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "Wat bereik je vanaf {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Elke repeater die je vanaf dat punt bereikt, met voorspeld signaal en afstand — nog voor je vertrekt.",
+  "coverageTeaserBenefitAnywhere": "Elk punt op aarde",
+  "coverageTeaserBenefitOffline": "Zonder netwerk te raadplegen, in het veld",
+  "coverageTeaserBenefitSave": "Bewaar de locatie en vind hem terug",
+  "coverageTeaserRestore": "Aankopen herstellen",
+  "stationSaveCta": "Locatie opslaan",
+  "stationSaveTitle": "Naam van de locatie",
+  "stationRename": "Hernoemen",
+  "stationDelete": "Verwijderen",
+  "stationRefresh": "Vernieuwen",
+  "stationRefreshAll": "Alles vernieuwen",
+  "stationOfflineNotice": "Gegevens opgeslagen op dit apparaat",
+  "stationStaleNotice": "Deze gegevens zijn mogelijk verouderd",
+  "stationMissingEntry": "Gegevens offline niet beschikbaar",
+  "stationDuplicateTitle": "Punt al opgeslagen",
+  "stationDuplicateBody": "Er is al een locatie binnen 200 meter. Bijwerken of een aparte maken?",
+  "stationDuplicateUpdate": "Bijwerken",
+  "stationDuplicateCreate": "Apart maken",
+  "stationSaveFailed": "Opslaan mislukt: onvoldoende ruimte",
+  "stationsTitle": "Mijn locaties",
+  "stationsEmptyTitle": "Nog geen locaties opgeslagen",
+  "stationsEmptyBody": "Kies een punt op de kaart, bekijk wat je bereikt en sla het op: je vindt het ook zonder netwerk terug.",
+  "stationsGoToMap": "Naar de kaart",
+  "stationsRefreshDone": "Vernieuwen voltooid",
+  "spotsUpdatedAgo": "Bijgewerkt {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Update over {seconds} s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Update over {minutes} min",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Bijwerken…",
+  "spotsAutoRefreshHint": "Automatisch bijwerken elke {seconds} seconden",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Tik om bij te werken"
 }

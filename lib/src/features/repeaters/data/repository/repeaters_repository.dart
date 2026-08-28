@@ -43,12 +43,14 @@ class RepeatersRepository {
     required double longitude,
     double radiusKm = 50,
     List<AccessMode>? accessModes,
+    int limit = 50,
   }) async {
     final data = await _datasource.getRepeatersNearby(
       latitude: latitude,
       longitude: longitude,
       radiusKm: radiusKm,
       accessModes: _mapper.mapAccessModesToValues(accessModes),
+      limit: limit,
     );
     return data.map(_mapper.fromModel).toList();
   }

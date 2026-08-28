@@ -13,6 +13,8 @@ abstract class PotaSpotsState with _$PotaSpotsState {
     @Default('') String searchQuery,
     @Default(false) bool hasLoadError,
     @Default(false) bool isRefreshing,
+    DateTime? lastUpdatedAt,
+    DateTime? nextRefreshAt,
     String? selectedBand,
     String? selectedMode,
     @Default(PotaSpotsSortOrder.time) PotaSpotsSortOrder sortOrder,

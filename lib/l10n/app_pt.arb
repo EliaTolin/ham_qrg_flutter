@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Filtros",
+  "spotsFilterBand": "Banda",
+  "spotsFilterMode": "Modo",
+  "spotsFilterAll": "Todos",
+  "spotsFiltersReset": "Limpar filtros",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Erro ao abrir a loja",
   "deleteConfirmTitle": "Confirmar eliminação",
   "deleteConfirmContent": "Tens a certeza de que queres eliminar?",
-  "cameraPermissionRationale": "Para tirar uma foto, permite o acesso à câmara nas definições."
+  "cameraPermissionRationale": "Para tirar uma foto, permite o acesso à câmara nas definições.",
+  "coverageSearchHint": "Pesquisar um local ou colar coordenadas",
+  "coverageSearchRecentTitle": "Pesquisas recentes",
+  "coverageSearchNoResults": "Nenhum local encontrado",
+  "coverageSearchTip": "Podes colar coordenadas (46.4879, 11.8123) ou manter premido no mapa",
+  "coverageSearchErrorOutOfRange": "Coordenadas fora do intervalo: latitude ±90, longitude ±180",
+  "coverageSearchErrorOffline": "Sem ligação: a pesquisa de locais precisa de rede",
+  "coverageSearchErrorFailed": "A pesquisa falhou. Tenta novamente.",
+  "coverageSearchClearPoint": "Remover ponto",
+  "coverageSearchPointSemantics": "Ponto de pesquisa selecionado",
+  "coverageBreadthTitle": "Amplitude da pesquisa",
+  "coverageBreadthQuick": "Rápida",
+  "coverageBreadthMedium": "Média",
+  "coverageBreadthExtended": "Alargada",
+  "coverageBreadthQuickHint": "80 km · resposta mais rápida",
+  "coverageBreadthMediumHint": "100 km · equilibrada",
+  "coverageBreadthExtendedHint": "150 km · mais longe, espera maior",
+  "coverageResultSubtitle": "A partir do ponto selecionado",
+  "coverageResultEmptyNoReachable": "Nenhum repetidor é alcançável a partir deste ponto",
+  "coverageResultEmptyNoRepeaters": "Nenhum repetidor registado nesta área",
+  "coverageResultClearFilters": "Limpar filtros",
+  "coverageResultError": "O cálculo falhou",
+  "coverageResultComputing": "A calcular a receção…",
+  "coverageResultCancel": "Cancelar",
+  "coverageResultCount": "{count, plural, =1{1 repetidor alcançável} other{{count} repetidores alcançáveis}}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "{count, plural, =1{1 alcançável oculto pelos filtros} other{{count} alcançáveis ocultos pelos filtros}}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "O que alcanças a partir de {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Cada repetidor que alcanças a partir desse ponto, com sinal previsto e distância — antes mesmo de partires.",
+  "coverageTeaserBenefitAnywhere": "Qualquer ponto do planeta",
+  "coverageTeaserBenefitOffline": "Consultável sem rede, no terreno",
+  "coverageTeaserBenefitSave": "Guardas o posto e voltas a encontrá-lo",
+  "coverageTeaserRestore": "Restaurar compras",
+  "stationSaveCta": "Guardar posto",
+  "stationSaveTitle": "Nome do posto",
+  "stationRename": "Renomear",
+  "stationDelete": "Eliminar",
+  "stationRefresh": "Atualizar",
+  "stationRefreshAll": "Atualizar todas",
+  "stationOfflineNotice": "Dados guardados no dispositivo",
+  "stationStaleNotice": "Os dados podem estar desatualizados",
+  "stationMissingEntry": "Dados indisponíveis offline",
+  "stationDuplicateTitle": "Ponto já guardado",
+  "stationDuplicateBody": "Já existe um posto a menos de 200 metros. Atualizá-lo ou criar um distinto?",
+  "stationDuplicateUpdate": "Atualizar",
+  "stationDuplicateCreate": "Criar distinto",
+  "stationSaveFailed": "Falha ao guardar: espaço insuficiente",
+  "stationsTitle": "Os meus postos",
+  "stationsEmptyTitle": "Ainda sem postos guardados",
+  "stationsEmptyBody": "Escolhe um ponto no mapa, vê o que alcanças e guarda-o: vais reencontrá-lo mesmo sem rede.",
+  "stationsGoToMap": "Ir para o mapa",
+  "stationsRefreshDone": "Atualização concluída",
+  "spotsUpdatedAgo": "Atualizado {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Atualização em {seconds} s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Atualização em {minutes} min",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "A atualizar…",
+  "spotsAutoRefreshHint": "Atualização automática a cada {seconds} segundos",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Toque para atualizar"
 }

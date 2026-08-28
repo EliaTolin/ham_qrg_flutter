@@ -1,20 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hamqrg/clients/analytics/analytics_client.dart';
+import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/themes/app_colors.dart';
 
 /// Catchy upsell shown when a non-Pro user taps the map's "what do I reach"
 /// button: a punchy value proposition that drives the Pro paywall.
-Future<void> showReachabilityUpsell(BuildContext context, WidgetRef ref) {
+///
+/// [surface] dice da quale punto d'ingresso arriva l'utente, così i tassi di
+/// conversione delle diverse superfici restano confrontabili fra loro (FR-065).
+Future<void> showReachabilityUpsell(
+  BuildContext context,
+  WidgetRef ref, {
+  required AnalyticsSurface surface,
+}) {
+  ref.read(analyticsClientProvider).track(
+        AnalyticsEvent.coverageTeaserShown,
+        surface: surface,
+      );
   return showDialog<void>(
     context: context,
-    builder: (ctx) => const _ReachabilityUpsellDialog(),
+    builder: (ctx) => _ReachabilityUpsellDialog(surface: surface),
   );
 }
 
 class _ReachabilityUpsellDialog extends ConsumerWidget {
-  const _ReachabilityUpsellDialog();
+  const _ReachabilityUpsellDialog({required this.surface});
+
+  final AnalyticsSurface surface;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,7 +55,8 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
                 top: 12,
                 left: 12,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: AppColors.proGold,
                     borderRadius: BorderRadius.circular(8),
@@ -96,8 +112,23 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
                       ),
                     ),
                     onPressed: () async {
+                      final analytics = ref.read(analyticsClientProvider)
+                        ..track(
+                          AnalyticsEvent.coverageCtaTapped,
+                          surface: surface,
+                        )
+                        ..track(
+                          AnalyticsEvent.coveragePaywallShown,
+                          surface: surface,
+                        );
                       Navigator.of(context).pop();
-                      await openReachabilityPaywall(ref);
+                      final purchased = await openReachabilityPaywall(ref);
+                      analytics.track(
+                        purchased
+                            ? AnalyticsEvent.coveragePurchaseCompleted
+                            : AnalyticsEvent.coveragePaywallDismissed,
+                        surface: surface,
+                      );
                     },
                   ),
                 ),

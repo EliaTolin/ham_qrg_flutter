@@ -7,11 +7,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/pota_marker_helper.dart';
+import 'package:hamqrg/common/widgets/filter/spot_filters_button.dart';
+import 'package:hamqrg/common/widgets/filter/spot_filters_sheet.dart';
+import 'package:hamqrg/common/widgets/label/last_update_label.dart';
 import 'package:hamqrg/config/constants/map_keys.dart';
 import 'package:hamqrg/config/constants/map_layers.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spot_filters.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/controller/pota_spots_controller.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -30,6 +34,36 @@ class PotaSpotsMapPage extends HookConsumerWidget {
     final asyncState = ref.watch(potaSpotsControllerProvider);
     final spotsState = asyncState.value;
 
+    // Local copy of the filters coming from the spots list: seeded once, then
+    // edited only for this map (the list keeps its own selection).
+    final listState = ref.read(potaSpotsControllerProvider).value;
+    final selectedBand = useState<String?>(listState?.selectedBand);
+    final selectedMode = useState<String?>(listState?.selectedMode);
+    final hasSeededFilters = useState(listState != null);
+
+    useEffect(
+      () {
+        if (!hasSeededFilters.value && spotsState != null) {
+          hasSeededFilters.value = true;
+          selectedBand.value = spotsState.selectedBand;
+          selectedMode.value = spotsState.selectedMode;
+        }
+        return null;
+      },
+      [spotsState == null],
+    );
+
+    final visibleSpots = useMemoized(
+      () => filterPotaSpots(
+        spotsState?.spots ?? const <PotaSpot>[],
+        band: selectedBand.value,
+        mode: selectedMode.value,
+      ),
+      [spotsState?.spots, selectedBand.value, selectedMode.value],
+    );
+    final activeFilters = (selectedBand.value != null ? 1 : 0) +
+        (selectedMode.value != null ? 1 : 0);
+
     // User position for initial camera
     final userPosition = switch (ref.watch(cachedUserPositionProvider)) {
       AsyncData(:final value) => value,
@@ -46,19 +80,23 @@ class PotaSpotsMapPage extends HookConsumerWidget {
             spotsState != null) {
           _updatePotaSource(
             mapController.value!,
-            spotsState.spots,
+            visibleSpots,
             spotsState.parkCache,
           );
 
           // Fit camera to spot bounds on first load
           if (!hasFittedBounds.value && spotsState.parkCache.isNotEmpty) {
             hasFittedBounds.value = true;
-            _fitCameraToSpots(mapController.value!, spotsState.parkCache);
+            _fitCameraToSpots(
+              mapController.value!,
+              visibleSpots,
+              spotsState.parkCache,
+            );
           }
         }
         return null;
       },
-      [spotsState?.spots, spotsState?.parkCache, isStyleLoaded.value],
+      [visibleSpots, spotsState?.parkCache, isStyleLoaded.value],
     );
 
     final initialLat =
@@ -76,6 +114,20 @@ class PotaSpotsMapPage extends HookConsumerWidget {
             Text(l10n.potaTitle),
           ],
         ),
+        actions: [
+          SpotFiltersButton(
+            activeCount: activeFilters,
+            onPressed: () => showSpotFiltersSheet(
+              context: context,
+              availableBands: spotsState?.availableBands ?? const <String>[],
+              availableModes: spotsState?.availableModes ?? const <String>[],
+              selectedBand: selectedBand.value,
+              selectedMode: selectedMode.value,
+              onBandChanged: (band) => selectedBand.value = band,
+              onModeChanged: (mode) => selectedMode.value = mode,
+            ),
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -125,14 +177,14 @@ class PotaSpotsMapPage extends HookConsumerWidget {
               if (spotsState != null) {
                 await _updatePotaSource(
                   map,
-                  spotsState.spots,
+                  visibleSpots,
                   spotsState.parkCache,
                 );
               }
             },
           ),
           // Spot count chip
-          if (spotsState != null && spotsState.spots.isNotEmpty)
+          if (spotsState != null)
             Positioned(
               top: 12,
               left: 16,
@@ -156,18 +208,31 @@ class PotaSpotsMapPage extends HookConsumerWidget {
                     ),
                   ],
                 ),
-                child: Row(
+                child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(
-                      'assets/images/pota_logo.png',
-                      width: 18,
-                      height: 18,
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          'assets/images/pota_logo.png',
+                          width: 18,
+                          height: 18,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          l10n.potaSpotsCount(visibleSpots.length),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      l10n.potaSpotsCount(spotsState.spots.length),
-                      style: Theme.of(context).textTheme.bodyMedium,
+                    LastUpdateLabel(
+                      lastUpdatedAt: spotsState.lastUpdatedAt,
+                      nextUpdateAt: spotsState.nextRefreshAt,
+                      isRefreshing: spotsState.isRefreshing,
+                      autoRefreshInterval:
+                          PotaSpotsController.autoRefreshInterval,
                     ),
                   ],
                 ),
@@ -323,6 +388,7 @@ class PotaSpotsMapPage extends HookConsumerWidget {
 
   Future<void> _fitCameraToSpots(
     MapboxMap mapboxMap,
+    List<PotaSpot> spots,
     Map<String, PotaPark> parkCache,
   ) async {
     try {
@@ -331,8 +397,11 @@ class PotaSpotsMapPage extends HookConsumerWidget {
       var minLon = 180.0;
       var maxLon = -180.0;
 
-      for (final park in parkCache.values) {
-        if (park.latitude == null || park.longitude == null) continue;
+      for (final spot in spots) {
+        final park = parkCache[spot.reference];
+        if (park == null || park.latitude == null || park.longitude == null) {
+          continue;
+        }
         if (park.latitude! < minLat) minLat = park.latitude!;
         if (park.latitude! > maxLat) maxLat = park.latitude!;
         if (park.longitude! < minLon) minLon = park.longitude!;

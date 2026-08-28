@@ -3538,6 +3538,36 @@ abstract class AppLocalizations {
   /// **'Tutti'**
   String get sotaFilterAll;
 
+  /// No description provided for @spotsFiltersTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Filtri'**
+  String get spotsFiltersTitle;
+
+  /// No description provided for @spotsFilterBand.
+  ///
+  /// In it, this message translates to:
+  /// **'Banda'**
+  String get spotsFilterBand;
+
+  /// No description provided for @spotsFilterMode.
+  ///
+  /// In it, this message translates to:
+  /// **'Modo'**
+  String get spotsFilterMode;
+
+  /// No description provided for @spotsFilterAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Tutti'**
+  String get spotsFilterAll;
+
+  /// No description provided for @spotsFiltersReset.
+  ///
+  /// In it, this message translates to:
+  /// **'Azzera filtri'**
+  String get spotsFiltersReset;
+
   /// No description provided for @sotaSortByTime.
   ///
   /// In it, this message translates to:
@@ -4095,6 +4125,342 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Per scattare una foto, consenti l\'accesso alla fotocamera dalle impostazioni.'**
   String get cameraPermissionRationale;
+
+  /// No description provided for @coverageSearchHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Cerca una località o incolla coordinate'**
+  String get coverageSearchHint;
+
+  /// No description provided for @coverageSearchRecentTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Ricerche recenti'**
+  String get coverageSearchRecentTitle;
+
+  /// No description provided for @coverageSearchNoResults.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun luogo trovato'**
+  String get coverageSearchNoResults;
+
+  /// No description provided for @coverageSearchTip.
+  ///
+  /// In it, this message translates to:
+  /// **'Puoi incollare coordinate (46.4879, 11.8123) o tenere premuto sulla mappa'**
+  String get coverageSearchTip;
+
+  /// No description provided for @coverageSearchErrorOutOfRange.
+  ///
+  /// In it, this message translates to:
+  /// **'Coordinate fuori intervallo: latitudine ±90, longitudine ±180'**
+  String get coverageSearchErrorOutOfRange;
+
+  /// No description provided for @coverageSearchErrorOffline.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuna connessione: la ricerca di località richiede rete'**
+  String get coverageSearchErrorOffline;
+
+  /// No description provided for @coverageSearchErrorFailed.
+  ///
+  /// In it, this message translates to:
+  /// **'Ricerca non riuscita. Riprova.'**
+  String get coverageSearchErrorFailed;
+
+  /// No description provided for @coverageSearchClearPoint.
+  ///
+  /// In it, this message translates to:
+  /// **'Rimuovi punto'**
+  String get coverageSearchClearPoint;
+
+  /// No description provided for @coverageSearchPointSemantics.
+  ///
+  /// In it, this message translates to:
+  /// **'Punto di ricerca selezionato'**
+  String get coverageSearchPointSemantics;
+
+  /// No description provided for @coverageBreadthTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Ampiezza ricerca'**
+  String get coverageBreadthTitle;
+
+  /// No description provided for @coverageBreadthQuick.
+  ///
+  /// In it, this message translates to:
+  /// **'Rapida'**
+  String get coverageBreadthQuick;
+
+  /// No description provided for @coverageBreadthMedium.
+  ///
+  /// In it, this message translates to:
+  /// **'Media'**
+  String get coverageBreadthMedium;
+
+  /// No description provided for @coverageBreadthExtended.
+  ///
+  /// In it, this message translates to:
+  /// **'Estesa'**
+  String get coverageBreadthExtended;
+
+  /// No description provided for @coverageBreadthQuickHint.
+  ///
+  /// In it, this message translates to:
+  /// **'80 km · risposta più veloce'**
+  String get coverageBreadthQuickHint;
+
+  /// No description provided for @coverageBreadthMediumHint.
+  ///
+  /// In it, this message translates to:
+  /// **'100 km · equilibrata'**
+  String get coverageBreadthMediumHint;
+
+  /// No description provided for @coverageBreadthExtendedHint.
+  ///
+  /// In it, this message translates to:
+  /// **'150 km · più lontano, attesa maggiore'**
+  String get coverageBreadthExtendedHint;
+
+  /// No description provided for @coverageResultSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Dal punto selezionato'**
+  String get coverageResultSubtitle;
+
+  /// No description provided for @coverageResultEmptyNoReachable.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ripetitore raggiungibile da questo punto'**
+  String get coverageResultEmptyNoReachable;
+
+  /// No description provided for @coverageResultEmptyNoRepeaters.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun ripetitore censito in quest\'area'**
+  String get coverageResultEmptyNoRepeaters;
+
+  /// No description provided for @coverageResultClearFilters.
+  ///
+  /// In it, this message translates to:
+  /// **'Rimuovi i filtri'**
+  String get coverageResultClearFilters;
+
+  /// No description provided for @coverageResultError.
+  ///
+  /// In it, this message translates to:
+  /// **'Calcolo non riuscito'**
+  String get coverageResultError;
+
+  /// No description provided for @coverageResultComputing.
+  ///
+  /// In it, this message translates to:
+  /// **'Calcolo della ricezione…'**
+  String get coverageResultComputing;
+
+  /// No description provided for @coverageResultCancel.
+  ///
+  /// In it, this message translates to:
+  /// **'Annulla'**
+  String get coverageResultCancel;
+
+  /// No description provided for @coverageResultCount.
+  ///
+  /// In it, this message translates to:
+  /// **'{count, plural, =1{1 ripetitore raggiungibile} other{{count} ripetitori raggiungibili}}'**
+  String coverageResultCount(int count);
+
+  /// No description provided for @coverageResultHiddenByFilters.
+  ///
+  /// In it, this message translates to:
+  /// **'{count, plural, =1{1 raggiungibile nascosto dai filtri} other{{count} raggiungibili nascosti dai filtri}}'**
+  String coverageResultHiddenByFilters(int count);
+
+  /// No description provided for @coverageTeaserTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Cosa raggiungi da {place}? 📡'**
+  String coverageTeaserTitle(String place);
+
+  /// No description provided for @coverageTeaserBody.
+  ///
+  /// In it, this message translates to:
+  /// **'Ogni ponte che prendi da quel punto, con segnale previsto e distanza — prima ancora di partire.'**
+  String get coverageTeaserBody;
+
+  /// No description provided for @coverageTeaserBenefitAnywhere.
+  ///
+  /// In it, this message translates to:
+  /// **'Qualunque punto del pianeta'**
+  String get coverageTeaserBenefitAnywhere;
+
+  /// No description provided for @coverageTeaserBenefitOffline.
+  ///
+  /// In it, this message translates to:
+  /// **'Consultabile senza rete, in campo'**
+  String get coverageTeaserBenefitOffline;
+
+  /// No description provided for @coverageTeaserBenefitSave.
+  ///
+  /// In it, this message translates to:
+  /// **'Salvi la postazione e la ritrovi'**
+  String get coverageTeaserBenefitSave;
+
+  /// No description provided for @coverageTeaserRestore.
+  ///
+  /// In it, this message translates to:
+  /// **'Ripristina acquisti'**
+  String get coverageTeaserRestore;
+
+  /// No description provided for @stationSaveCta.
+  ///
+  /// In it, this message translates to:
+  /// **'Salva postazione'**
+  String get stationSaveCta;
+
+  /// No description provided for @stationSaveTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Nome della postazione'**
+  String get stationSaveTitle;
+
+  /// No description provided for @stationRename.
+  ///
+  /// In it, this message translates to:
+  /// **'Rinomina'**
+  String get stationRename;
+
+  /// No description provided for @stationDelete.
+  ///
+  /// In it, this message translates to:
+  /// **'Elimina'**
+  String get stationDelete;
+
+  /// No description provided for @stationRefresh.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiorna'**
+  String get stationRefresh;
+
+  /// No description provided for @stationRefreshAll.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiorna tutte'**
+  String get stationRefreshAll;
+
+  /// No description provided for @stationOfflineNotice.
+  ///
+  /// In it, this message translates to:
+  /// **'Dato memorizzato sul dispositivo'**
+  String get stationOfflineNotice;
+
+  /// No description provided for @stationStaleNotice.
+  ///
+  /// In it, this message translates to:
+  /// **'Il dato potrebbe non essere aggiornato'**
+  String get stationStaleNotice;
+
+  /// No description provided for @stationMissingEntry.
+  ///
+  /// In it, this message translates to:
+  /// **'Dato non disponibile offline'**
+  String get stationMissingEntry;
+
+  /// No description provided for @stationDuplicateTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Punto già salvato'**
+  String get stationDuplicateTitle;
+
+  /// No description provided for @stationDuplicateBody.
+  ///
+  /// In it, this message translates to:
+  /// **'Esiste già una postazione a meno di 200 metri da qui. Vuoi aggiornarla o crearne una distinta?'**
+  String get stationDuplicateBody;
+
+  /// No description provided for @stationDuplicateUpdate.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiorna quella'**
+  String get stationDuplicateUpdate;
+
+  /// No description provided for @stationDuplicateCreate.
+  ///
+  /// In it, this message translates to:
+  /// **'Crea distinta'**
+  String get stationDuplicateCreate;
+
+  /// No description provided for @stationSaveFailed.
+  ///
+  /// In it, this message translates to:
+  /// **'Salvataggio non riuscito: spazio insufficiente'**
+  String get stationSaveFailed;
+
+  /// No description provided for @stationsTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Le mie postazioni'**
+  String get stationsTitle;
+
+  /// No description provided for @stationsEmptyTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuna postazione salvata'**
+  String get stationsEmptyTitle;
+
+  /// No description provided for @stationsEmptyBody.
+  ///
+  /// In it, this message translates to:
+  /// **'Scegli un punto sulla mappa, valuta cosa raggiungi e salvalo: lo ritroverai anche senza rete.'**
+  String get stationsEmptyBody;
+
+  /// No description provided for @stationsGoToMap.
+  ///
+  /// In it, this message translates to:
+  /// **'Vai alla mappa'**
+  String get stationsGoToMap;
+
+  /// No description provided for @stationsRefreshDone.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiornamento completato'**
+  String get stationsRefreshDone;
+
+  /// No description provided for @spotsUpdatedAgo.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiornato {time}'**
+  String spotsUpdatedAgo(String time);
+
+  /// No description provided for @spotsNextUpdateSeconds.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiornamento tra {seconds} s'**
+  String spotsNextUpdateSeconds(int seconds);
+
+  /// No description provided for @spotsNextUpdateMinutes.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiornamento tra {minutes} min'**
+  String spotsNextUpdateMinutes(int minutes);
+
+  /// No description provided for @spotsUpdating.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiornamento…'**
+  String get spotsUpdating;
+
+  /// No description provided for @spotsAutoRefreshHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiornamento automatico ogni {seconds} secondi'**
+  String spotsAutoRefreshHint(int seconds);
+
+  /// No description provided for @spotsManualRefreshHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Tocca per aggiornare'**
+  String get spotsManualRefreshHint;
 }
 
 class _AppLocalizationsDelegate

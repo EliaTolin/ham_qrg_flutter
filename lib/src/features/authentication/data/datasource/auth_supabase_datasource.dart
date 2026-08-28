@@ -9,7 +9,7 @@ import 'package:hamqrg/src/features/authentication/data/datasource/auth_datasour
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:supabase_auth_ui/supabase_auth_ui.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'auth_supabase_datasource.g.dart';
 

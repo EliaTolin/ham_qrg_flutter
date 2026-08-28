@@ -799,6 +799,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
+  "spotsFiltersTitle": "Filtres",
+  "spotsFilterBand": "Bande",
+  "spotsFilterMode": "Mode",
+  "spotsFilterAll": "Tous",
+  "spotsFiltersReset": "Effacer les filtres",
   "sotaSortByTime": "Time",
   "sotaSortByDistance": "Distance",
   "sotaFilterPoints": "Points",
@@ -949,5 +954,92 @@
   "errorOpeningStore": "Erreur lors de l'ouverture du store",
   "deleteConfirmTitle": "Confirmer la suppression",
   "deleteConfirmContent": "Voulez-vous vraiment supprimer ?",
-  "cameraPermissionRationale": "Pour prendre une photo, autorisez l'accès à l'appareil photo dans les réglages."
+  "cameraPermissionRationale": "Pour prendre une photo, autorisez l'accès à l'appareil photo dans les réglages.",
+  "coverageSearchHint": "Rechercher un lieu ou coller des coordonnées",
+  "coverageSearchRecentTitle": "Recherches récentes",
+  "coverageSearchNoResults": "Aucun lieu trouvé",
+  "coverageSearchTip": "Vous pouvez coller des coordonnées (46.4879, 11.8123) ou appuyer longuement sur la carte",
+  "coverageSearchErrorOutOfRange": "Coordonnées hors limites : latitude ±90, longitude ±180",
+  "coverageSearchErrorOffline": "Pas de connexion : la recherche de lieux nécessite le réseau",
+  "coverageSearchErrorFailed": "Échec de la recherche. Réessayez.",
+  "coverageSearchClearPoint": "Supprimer le point",
+  "coverageSearchPointSemantics": "Point de recherche sélectionné",
+  "coverageBreadthTitle": "Étendue de recherche",
+  "coverageBreadthQuick": "Rapide",
+  "coverageBreadthMedium": "Moyenne",
+  "coverageBreadthExtended": "Étendue",
+  "coverageBreadthQuickHint": "80 km · réponse la plus rapide",
+  "coverageBreadthMediumHint": "100 km · équilibrée",
+  "coverageBreadthExtendedHint": "150 km · plus loin, attente plus longue",
+  "coverageResultSubtitle": "Depuis le point sélectionné",
+  "coverageResultEmptyNoReachable": "Aucun relais n'est accessible depuis ce point",
+  "coverageResultEmptyNoRepeaters": "Aucun relais répertorié dans cette zone",
+  "coverageResultClearFilters": "Effacer les filtres",
+  "coverageResultError": "Échec du calcul",
+  "coverageResultComputing": "Calcul de la réception…",
+  "coverageResultCancel": "Annuler",
+  "coverageResultCount": "{count, plural, =1{1 relais accessible} other{{count} relais accessibles}}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "{count, plural, =1{1 accessible masqué par les filtres} other{{count} accessibles masqués par les filtres}}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "Que capterez-vous depuis {place} ? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Chaque relais capté depuis ce point, avec signal prévu et distance — avant même de partir.",
+  "coverageTeaserBenefitAnywhere": "N'importe quel point du globe",
+  "coverageTeaserBenefitOffline": "Consultable hors réseau, sur le terrain",
+  "coverageTeaserBenefitSave": "Enregistrez le poste et retrouvez-le",
+  "coverageTeaserRestore": "Restaurer les achats",
+  "stationSaveCta": "Enregistrer le poste",
+  "stationSaveTitle": "Nom du poste",
+  "stationRename": "Renommer",
+  "stationDelete": "Supprimer",
+  "stationRefresh": "Actualiser",
+  "stationRefreshAll": "Tout actualiser",
+  "stationOfflineNotice": "Données enregistrées sur l'appareil",
+  "stationStaleNotice": "Ces données peuvent être obsolètes",
+  "stationMissingEntry": "Données indisponibles hors ligne",
+  "stationDuplicateTitle": "Point déjà enregistré",
+  "stationDuplicateBody": "Un poste existe déjà à moins de 200 mètres. Le mettre à jour ou en créer un autre ?",
+  "stationDuplicateUpdate": "La mettre à jour",
+  "stationDuplicateCreate": "En créer un autre",
+  "stationSaveFailed": "Échec de l'enregistrement : espace insuffisant",
+  "stationsTitle": "Mes postes",
+  "stationsEmptyTitle": "Aucun poste enregistré",
+  "stationsEmptyBody": "Choisissez un point sur la carte, voyez ce que vous captez et enregistrez-le : vous le retrouverez même sans réseau.",
+  "stationsGoToMap": "Aller à la carte",
+  "stationsRefreshDone": "Actualisation terminée",
+  "spotsUpdatedAgo": "Mis à jour {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Mise à jour dans {seconds} s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Mise à jour dans {minutes} min",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Mise à jour…",
+  "spotsAutoRefreshHint": "Actualisation automatique toutes les {seconds} secondes",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Touchez pour actualiser"
 }

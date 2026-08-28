@@ -38,9 +38,12 @@ class LinkProfileChart extends StatelessWidget {
     final maxDist = points.last.distanceKm;
     final los = [FlSpot(0, losStart), FlSpot(maxDist, losEnd)];
 
-    final groundMax = points.map((p) => p.groundM).reduce((a, b) => a > b ? a : b);
-    final groundMin = points.map((p) => p.groundM).reduce((a, b) => a < b ? a : b);
-    final maxY = [groundMax, losStart, losEnd].reduce((a, b) => a > b ? a : b) * 1.1;
+    final groundMax =
+        points.map((p) => p.groundM).reduce((a, b) => a > b ? a : b);
+    final groundMin =
+        points.map((p) => p.groundM).reduce((a, b) => a < b ? a : b);
+    final maxY =
+        [groundMax, losStart, losEnd].reduce((a, b) => a > b ? a : b) * 1.1;
     final minY = (groundMin * 0.9).clamp(0, double.infinity).toDouble();
 
     final signalColor = SignalHelper.colorFromDbm(link.dbm);
@@ -106,7 +109,8 @@ class LinkProfileChart extends StatelessWidget {
                     getTitlesWidget: (v, meta) => Text(
                       '${v.round()}',
                       style: theme.textTheme.labelSmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                        color:
+                            theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                   ),
@@ -117,7 +121,8 @@ class LinkProfileChart extends StatelessWidget {
                     getTitlesWidget: (v, meta) => Text(
                       '${v.round()}',
                       style: theme.textTheme.labelSmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                        color:
+                            theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                   ),

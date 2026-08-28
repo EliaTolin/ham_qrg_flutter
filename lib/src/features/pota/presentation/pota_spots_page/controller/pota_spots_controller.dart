@@ -6,6 +6,7 @@ import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/data/repository/pota_repository.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
+import 'package:hamqrg/src/features/pota/presentation/pota_spot_filters.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/controller/state/pota_spots_sort_order.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/controller/state/pota_spots_state.dart';
 import 'package:hamqrg/src/features/pota/presentation/widgets/pota_mode_badge.dart'
@@ -18,7 +19,12 @@ part 'pota_spots_controller.g.dart';
 
 @Riverpod(keepAlive: true)
 class PotaSpotsController extends _$PotaSpotsController {
+  /// Cadence of the automatic refresh, mirrored by the UI label so the
+  /// operator knows the list updates on its own.
+  static const autoRefreshInterval = Duration(seconds: 60);
+
   Timer? _refreshTimer;
+  DateTime? _nextRefreshAt;
 
   @override
   FutureOr<PotaSpotsState> build() async {
@@ -35,6 +41,8 @@ class PotaSpotsController extends _$PotaSpotsController {
     final distances = await _computeDistances(parks);
 
     return PotaSpotsState(
+      lastUpdatedAt: DateTime.now(),
+      nextRefreshAt: _nextRefreshAt,
       spots: spots,
       filteredSpots: spots,
       availableBands: availableBands,
@@ -46,10 +54,8 @@ class PotaSpotsController extends _$PotaSpotsController {
 
   void _startAutoRefresh() {
     _refreshTimer?.cancel();
-    _refreshTimer = Timer.periodic(
-      const Duration(seconds: 60),
-      (_) => refresh(),
-    );
+    _nextRefreshAt = DateTime.now().add(autoRefreshInterval);
+    _refreshTimer = Timer.periodic(autoRefreshInterval, (_) => refresh());
   }
 
   Future<void> refresh() async {
@@ -63,6 +69,7 @@ class PotaSpotsController extends _$PotaSpotsController {
       final repository = ref.read(potaRepositoryProvider);
       final parks = await repository.getParksForSpots(spots);
       final distances = await _computeDistances(parks);
+      _startAutoRefresh();
       final newState = (currentState ?? const PotaSpotsState()).copyWith(
         spots: spots,
         availableBands: _extractBands(spots),
@@ -71,15 +78,19 @@ class PotaSpotsController extends _$PotaSpotsController {
         parkCache: parks,
         isRefreshing: false,
         hasLoadError: false,
+        lastUpdatedAt: DateTime.now(),
+        nextRefreshAt: _nextRefreshAt,
       );
       state = AsyncData(
         newState.copyWith(filteredSpots: _applyFiltersAndSort(newState)),
       );
     } catch (_) {
+      _startAutoRefresh();
       state = AsyncData(
         (currentState ?? const PotaSpotsState()).copyWith(
           hasLoadError: true,
           isRefreshing: false,
+          nextRefreshAt: _nextRefreshAt,
         ),
       );
     }
@@ -122,38 +133,13 @@ class PotaSpotsController extends _$PotaSpotsController {
   }
 
   List<PotaSpot> _applyFiltersAndSort(PotaSpotsState s) {
-    var results = s.spots.toList();
+    final results = filterPotaSpots(
+      s.spots,
+      searchQuery: s.searchQuery,
+      band: s.selectedBand,
+      mode: s.selectedMode,
+    );
 
-    // Text search
-    if (s.searchQuery.isNotEmpty) {
-      final lower = s.searchQuery.toLowerCase();
-      results = results
-          .where(
-            (spot) =>
-                spot.activator.toLowerCase().contains(lower) ||
-                spot.reference.toLowerCase().contains(lower) ||
-                spot.name.toLowerCase().contains(lower) ||
-                spot.mode.toLowerCase().contains(lower),
-          )
-          .toList();
-    }
-
-    // Band filter
-    if (s.selectedBand != null) {
-      results = results.where((spot) {
-        final band = bandFromFrequencyKhz(spot.frequency);
-        return band == s.selectedBand;
-      }).toList();
-    }
-
-    // Mode filter
-    if (s.selectedMode != null) {
-      results = results
-          .where((spot) => normalizePotaMode(spot.mode) == s.selectedMode)
-          .toList();
-    }
-
-    // Sort
     switch (s.sortOrder) {
       case PotaSpotsSortOrder.time:
         results.sort((a, b) => b.spotTime.compareTo(a.spotTime));

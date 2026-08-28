@@ -812,6 +812,11 @@
   "sotaPointsBadge": "{count} pt",
   "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "Tutti",
+  "spotsFiltersTitle": "Filtri",
+  "spotsFilterBand": "Banda",
+  "spotsFilterMode": "Modo",
+  "spotsFilterAll": "Tutti",
+  "spotsFiltersReset": "Azzera filtri",
   "sotaSortByTime": "Tempo",
   "sotaSortByDistance": "Distanza",
   "sotaFilterPoints": "Punti",
@@ -990,5 +995,92 @@
   "errorOpeningStore": "Errore durante l'apertura dello store",
   "deleteConfirmTitle": "Conferma cancellazione",
   "deleteConfirmContent": "Sei sicuro di voler cancellare?",
-  "cameraPermissionRationale": "Per scattare una foto, consenti l'accesso alla fotocamera dalle impostazioni."
+  "cameraPermissionRationale": "Per scattare una foto, consenti l'accesso alla fotocamera dalle impostazioni.",
+  "coverageSearchHint": "Cerca una località o incolla coordinate",
+  "coverageSearchRecentTitle": "Ricerche recenti",
+  "coverageSearchNoResults": "Nessun luogo trovato",
+  "coverageSearchTip": "Puoi incollare coordinate (46.4879, 11.8123) o tenere premuto sulla mappa",
+  "coverageSearchErrorOutOfRange": "Coordinate fuori intervallo: latitudine ±90, longitudine ±180",
+  "coverageSearchErrorOffline": "Nessuna connessione: la ricerca di località richiede rete",
+  "coverageSearchErrorFailed": "Ricerca non riuscita. Riprova.",
+  "coverageSearchClearPoint": "Rimuovi punto",
+  "coverageSearchPointSemantics": "Punto di ricerca selezionato",
+  "coverageBreadthTitle": "Ampiezza ricerca",
+  "coverageBreadthQuick": "Rapida",
+  "coverageBreadthMedium": "Media",
+  "coverageBreadthExtended": "Estesa",
+  "coverageBreadthQuickHint": "80 km · risposta più veloce",
+  "coverageBreadthMediumHint": "100 km · equilibrata",
+  "coverageBreadthExtendedHint": "150 km · più lontano, attesa maggiore",
+  "coverageResultSubtitle": "Dal punto selezionato",
+  "coverageResultEmptyNoReachable": "Nessun ripetitore raggiungibile da questo punto",
+  "coverageResultEmptyNoRepeaters": "Nessun ripetitore censito in quest'area",
+  "coverageResultClearFilters": "Rimuovi i filtri",
+  "coverageResultError": "Calcolo non riuscito",
+  "coverageResultComputing": "Calcolo della ricezione…",
+  "coverageResultCancel": "Annulla",
+  "coverageResultCount": "{count, plural, =1{1 ripetitore raggiungibile} other{{count} ripetitori raggiungibili}}",
+  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "coverageResultHiddenByFilters": "{count, plural, =1{1 raggiungibile nascosto dai filtri} other{{count} raggiungibili nascosti dai filtri}}",
+  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "coverageTeaserTitle": "Cosa raggiungi da {place}? 📡",
+  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "coverageTeaserBody": "Ogni ponte che prendi da quel punto, con segnale previsto e distanza — prima ancora di partire.",
+  "coverageTeaserBenefitAnywhere": "Qualunque punto del pianeta",
+  "coverageTeaserBenefitOffline": "Consultabile senza rete, in campo",
+  "coverageTeaserBenefitSave": "Salvi la postazione e la ritrovi",
+  "coverageTeaserRestore": "Ripristina acquisti",
+  "stationSaveCta": "Salva postazione",
+  "stationSaveTitle": "Nome della postazione",
+  "stationRename": "Rinomina",
+  "stationDelete": "Elimina",
+  "stationRefresh": "Aggiorna",
+  "stationRefreshAll": "Aggiorna tutte",
+  "stationOfflineNotice": "Dato memorizzato sul dispositivo",
+  "stationStaleNotice": "Il dato potrebbe non essere aggiornato",
+  "stationMissingEntry": "Dato non disponibile offline",
+  "stationDuplicateTitle": "Punto già salvato",
+  "stationDuplicateBody": "Esiste già una postazione a meno di 200 metri da qui. Vuoi aggiornarla o crearne una distinta?",
+  "stationDuplicateUpdate": "Aggiorna quella",
+  "stationDuplicateCreate": "Crea distinta",
+  "stationSaveFailed": "Salvataggio non riuscito: spazio insufficiente",
+  "stationsTitle": "Le mie postazioni",
+  "stationsEmptyTitle": "Nessuna postazione salvata",
+  "stationsEmptyBody": "Scegli un punto sulla mappa, valuta cosa raggiungi e salvalo: lo ritroverai anche senza rete.",
+  "stationsGoToMap": "Vai alla mappa",
+  "stationsRefreshDone": "Aggiornamento completato",
+  "spotsUpdatedAgo": "Aggiornato {time}",
+  "@spotsUpdatedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "spotsNextUpdateSeconds": "Aggiornamento tra {seconds} s",
+  "@spotsNextUpdateSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsNextUpdateMinutes": "Aggiornamento tra {minutes} min",
+  "@spotsNextUpdateMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsUpdating": "Aggiornamento…",
+  "spotsAutoRefreshHint": "Aggiornamento automatico ogni {seconds} secondi",
+  "@spotsAutoRefreshHint": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "spotsManualRefreshHint": "Tocca per aggiornare"
 }

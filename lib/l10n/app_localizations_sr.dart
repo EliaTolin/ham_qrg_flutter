@@ -1910,6 +1910,21 @@ class AppLocalizationsSr extends AppLocalizations {
   String get sotaFilterAll => 'All';
 
   @override
+  String get spotsFiltersTitle => 'Filteri';
+
+  @override
+  String get spotsFilterBand => 'Opseg';
+
+  @override
+  String get spotsFilterMode => 'Način';
+
+  @override
+  String get spotsFilterAll => 'Sve';
+
+  @override
+  String get spotsFiltersReset => 'Obriši filtere';
+
+  @override
   String get sotaSortByTime => 'Time';
 
   @override
@@ -2218,4 +2233,195 @@ class AppLocalizationsSr extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'Да бисте снимили фотографију, дозволите приступ камери у подешавањима.';
+
+  @override
+  String get coverageSearchHint => 'Potražite mesto ili nalepite koordinate';
+
+  @override
+  String get coverageSearchRecentTitle => 'Nedavne pretrage';
+
+  @override
+  String get coverageSearchNoResults => 'Nije pronađeno nijedno mesto';
+
+  @override
+  String get coverageSearchTip =>
+      'Možete nalepiti koordinate (46.4879, 11.8123) ili dugo pritisnuti mapu';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Koordinate van opsega: širina ±90, dužina ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'Nema veze: pretraga mesta zahteva mrežu';
+
+  @override
+  String get coverageSearchErrorFailed =>
+      'Pretraga nije uspela. Pokušajte ponovo.';
+
+  @override
+  String get coverageSearchClearPoint => 'Ukloni tačku';
+
+  @override
+  String get coverageSearchPointSemantics => 'Izabrana tačka pretrage';
+
+  @override
+  String get coverageBreadthTitle => 'Opseg pretrage';
+
+  @override
+  String get coverageBreadthQuick => 'Brzo';
+
+  @override
+  String get coverageBreadthMedium => 'Srednje';
+
+  @override
+  String get coverageBreadthExtended => 'Prošireno';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · najbrži odgovor';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · uravnoteženo';
+
+  @override
+  String get coverageBreadthExtendedHint => '150 km · dalje, duže čekanje';
+
+  @override
+  String get coverageResultSubtitle => 'Sa izabrane tačke';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'Sa ove tačke nije dostupan nijedan repetitor';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'U ovoj oblasti nije zabeležen nijedan repetitor';
+
+  @override
+  String get coverageResultClearFilters => 'Ukloni filtere';
+
+  @override
+  String get coverageResultError => 'Izračunavanje nije uspelo';
+
+  @override
+  String get coverageResultComputing => 'Izračunavanje prijema…';
+
+  @override
+  String get coverageResultCancel => 'Otkaži';
+
+  @override
+  String coverageResultCount(int count) {
+    return 'Dostupni repetitori: $count';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    return 'Sakriveno filterima: $count';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'Šta dosežete sa lokacije $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Svaki repetitor dostupan sa te tačke, sa predviđenim signalom i udaljenošću — pre nego što krenete.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'Bilo koja tačka na planeti';
+
+  @override
+  String get coverageTeaserBenefitOffline => 'Dostupno bez mreže, na terenu';
+
+  @override
+  String get coverageTeaserBenefitSave => 'Sačuvate stanicu i ponovo je nađete';
+
+  @override
+  String get coverageTeaserRestore => 'Vrati kupovine';
+
+  @override
+  String get stationSaveCta => 'Sačuvaj stanicu';
+
+  @override
+  String get stationSaveTitle => 'Naziv stanice';
+
+  @override
+  String get stationRename => 'Preimenuj';
+
+  @override
+  String get stationDelete => 'Obriši';
+
+  @override
+  String get stationRefresh => 'Osveži';
+
+  @override
+  String get stationRefreshAll => 'Osveži sve';
+
+  @override
+  String get stationOfflineNotice => 'Podaci sačuvani na uređaju';
+
+  @override
+  String get stationStaleNotice => 'Podaci možda nisu ažurni';
+
+  @override
+  String get stationMissingEntry => 'Podaci nisu dostupni van mreže';
+
+  @override
+  String get stationDuplicateTitle => 'Tačka je već sačuvana';
+
+  @override
+  String get stationDuplicateBody =>
+      'U krugu od 200 metara već postoji stanica. Ažurirati je ili napraviti zasebnu?';
+
+  @override
+  String get stationDuplicateUpdate => 'Ažuriraj';
+
+  @override
+  String get stationDuplicateCreate => 'Napravi zasebnu';
+
+  @override
+  String get stationSaveFailed => 'Čuvanje nije uspelo: nedovoljno prostora';
+
+  @override
+  String get stationsTitle => 'Moje stanice';
+
+  @override
+  String get stationsEmptyTitle => 'Nema sačuvanih stanica';
+
+  @override
+  String get stationsEmptyBody =>
+      'Izaberite tačku na mapi, vidite šta dosežete i sačuvajte: naći ćete je i bez mreže.';
+
+  @override
+  String get stationsGoToMap => 'Idi na mapu';
+
+  @override
+  String get stationsRefreshDone => 'Osvežavanje završeno';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Ažurirano $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Ažuriranje za $seconds s';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Ažuriranje za $minutes min';
+  }
+
+  @override
+  String get spotsUpdating => 'Ažuriranje…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Automatsko ažuriranje na svakih $seconds sekundi';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Dodirnite za ažuriranje';
 }

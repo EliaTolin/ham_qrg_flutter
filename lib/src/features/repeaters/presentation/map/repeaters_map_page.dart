@@ -11,9 +11,17 @@ import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/pota_marker_helper.dart';
 import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
+import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/config/constants/map_keys.dart';
 import 'package:hamqrg/config/constants/map_layers.dart';
 import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/coverage_search/domain/coordinate_parser.dart';
+import 'package:hamqrg/src/features/coverage_search/domain/search_breadth.dart';
+import 'package:hamqrg/src/features/coverage_search/domain/search_point.dart';
+import 'package:hamqrg/src/features/coverage_search/domain/search_point_error.dart';
+import 'package:hamqrg/src/features/coverage_search/presentation/widgets/coverage_result_panel.dart';
+import 'package:hamqrg/src/features/coverage_search/presentation/widgets/coverage_result_sheet.dart';
+import 'package:hamqrg/src/features/coverage_search/presentation/widgets/place_search_bar.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
@@ -57,6 +65,14 @@ const double _clusterZoomIncrement = 1.5;
 /// - 19+: Building view
 const double _clusterMaxZoom = 6;
 
+/// Zoom applicato quando l'utente sceglie una località dalla ricerca: abbastanza
+/// stretto da vedere il territorio attorno al punto, abbastanza largo da
+/// mostrare i ripetitori vicini.
+const double _searchPointZoom = 10.5;
+
+/// Raggio, in pixel, del cerchio che segna il punto di ricerca.
+const double _searchPointRadius = 11;
+
 /// Radius in pixels within which points are clustered together.
 /// Smaller value = tighter clusters (more clusters visible)
 /// Larger value = looser clusters (fewer, bigger clusters)
@@ -72,9 +88,90 @@ class RepeatersMapPage extends HookConsumerWidget {
     final cameraChangeTimer = useRef<Timer?>(null);
     final isStyleLoaded = useState<bool>(false);
 
+    // Il pin del punto di ricerca è un'annotazione a cerchio e non un layer
+    // GeoJSON come i ripetitori: non serve alcun asset immagine e resta
+    // inconfondibile rispetto ai marker dei ripetitori e al puntino del GPS.
+    final searchMarkerManager = useState<CircleAnnotationManager?>(null);
+    final searchMarker = useRef<CircleAnnotation?>(null);
+
     final asyncState = ref.watch(repeatersMapControllerProvider);
     final notifier = ref.read(repeatersMapControllerProvider.notifier);
     final mapState = asyncState.value;
+
+    final searchPoint = mapState?.searchPoint;
+    final searchMarkerColor = Theme.of(context).colorScheme.primary.toARGB32();
+    final searchMarkerStroke = Theme.of(context).colorScheme.surface.toARGB32();
+
+    // Il foglio si apre a ogni nuovo punto. È keyed sul solo punto, così un
+    // cambio di ampiezza dall'interno non lo richiude e riapre: il contenuto si
+    // aggiorna da solo perché il Consumer qui sotto osserva il controller.
+    useEffect(
+      () {
+        if (searchPoint == null) return null;
+        // Su tablet il risultato vive nel pannello affiancato: aprire anche il
+        // foglio lo coprirebbe, che è esattamente ciò che il layout evita.
+        if (MediaQuery.sizeOf(context).width >= kTabletBreakpoint) return null;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!context.mounted) return;
+          unawaited(
+            showModalBottomSheet<void>(
+              context: context,
+              isScrollControlled: true,
+              showDragHandle: true,
+              builder: (_) => Consumer(
+                builder: (context, ref, _) {
+                  final state = ref.watch(repeatersMapControllerProvider).value;
+                  final point = state?.searchPoint;
+                  if (point == null) return const SizedBox.shrink();
+                  return CoverageResultSheet(
+                    point: point,
+                    breadth: state!.searchBreadth,
+                    selectedModes: state.selectedModes,
+                    onBreadthChanged: (breadth) =>
+                        unawaited(notifier.setBreadth(breadth)),
+                    onClearFilters: state.selectedModes.isEmpty
+                        ? null
+                        : () async {
+                            final map = mapController.value;
+                            if (map == null) return;
+                            final bounds = await _getVisibleBounds(map);
+                            await notifier.clearAllModes(
+                              lat1: bounds.lat1,
+                              lon1: bounds.lon1,
+                              lat2: bounds.lat2,
+                              lon2: bounds.lon2,
+                            );
+                          },
+                  );
+                },
+              ),
+            ),
+          );
+        });
+        return null;
+      },
+      [searchPoint],
+    );
+
+    // Un solo pin per volta (FR-007): la selezione successiva rimpiazza la
+    // precedente invece di affiancarla.
+    useEffect(
+      () {
+        final manager = searchMarkerManager.value;
+        if (manager == null) return null;
+        unawaited(
+          _syncSearchMarker(
+            manager: manager,
+            existing: searchMarker,
+            point: searchPoint,
+            fillColor: searchMarkerColor,
+            strokeColor: searchMarkerStroke,
+          ),
+        );
+        return null;
+      },
+      [searchPoint, searchMarkerManager.value],
+    );
 
     if (asyncState.isLoading) {
       return const Center(
@@ -88,6 +185,24 @@ class RepeatersMapPage extends HookConsumerWidget {
         child: CircularProgressIndicator.adaptive(),
       );
     }
+
+    // Build the initial viewport ONCE. Mapbox re-applies (and thus resets) the
+    // camera whenever a *new* viewport instance is passed on rebuild. Since the
+    // page rebuilds on every state change (e.g. after loading repeaters for the
+    // visible bounds), recreating the viewport inline would snap the camera back
+    // to its initial position right after a pinch-zoom. Memoizing on the initial
+    // coordinates keeps the same instance across rebuilds.
+    final initialViewport = useMemoized(
+      () => CameraViewportState(
+        center: Point(
+          coordinates: Position(data.longitude!, data.latitude!),
+        ),
+        zoom: _initialZoom,
+        bearing: 0,
+        pitch: 0,
+      ),
+      [data.latitude, data.longitude],
+    );
 
     // Update GeoJSON source when repeaters change
     useEffect(
@@ -123,14 +238,7 @@ class RepeatersMapPage extends HookConsumerWidget {
       body: Stack(
         children: [
           MapWidget(
-            viewport: CameraViewportState(
-              center: Point(
-                coordinates: Position(data.longitude!, data.latitude!),
-              ),
-              zoom: _initialZoom,
-              bearing: 0,
-              pitch: 0,
-            ),
+            viewport: initialViewport,
             styleUri: MapboxStyles.OUTDOORS,
             onCameraChangeListener: (cameraState) {
               _handleCameraChange(
@@ -141,17 +249,45 @@ class RepeatersMapPage extends HookConsumerWidget {
             },
             onMapCreated: (mapboxMap) async {
               mapController.value = mapboxMap;
-              mapboxMap.addInteraction(
-                TapInteraction.onMap((gestureContext) async {
-                  await _handleMapTap(mapboxMap, gestureContext, ref, context);
-                }),
-              );
+              mapboxMap
+                ..addInteraction(
+                  TapInteraction.onMap((gestureContext) async {
+                    await _handleMapTap(
+                      mapboxMap,
+                      gestureContext,
+                      ref,
+                      context,
+                    );
+                  }),
+                )
+                // Pressione prolungata: sceglie un punto qualsiasi senza
+                // passare dalla barra di ricerca (FR-005).
+                ..addInteraction(
+                  LongTapInteraction.onMap((gestureContext) async {
+                    final coordinates = gestureContext.point.coordinates;
+                    await notifier.selectPoint(
+                      SearchPoint(
+                        latitude: coordinates.lat.toDouble(),
+                        longitude: coordinates.lng.toDouble(),
+                        label: formatCoordinates(
+                          coordinates.lat.toDouble(),
+                          coordinates.lng.toDouble(),
+                        ),
+                        origin: SearchPointOrigin.mapLongPress,
+                      ),
+                    );
+                  }),
+                );
               await _initializeMap(
                 mapboxMap,
                 ref,
                 context,
                 data.latitude != null && data.longitude != null,
               );
+              // Dopo _initializeMap, così da non introdurre un salto asincrono
+              // prima dell'uso del BuildContext qui sopra.
+              searchMarkerManager.value =
+                  await mapboxMap.annotations.createCircleAnnotationManager();
             },
             onStyleLoadedListener: (styleLoaded) async {
               if (mapController.value != null) {
@@ -171,6 +307,36 @@ class RepeatersMapPage extends HookConsumerWidget {
             mapController.value,
           ),
 
+          // Su tablet il risultato si affianca alla mappa (FR-059).
+          if (searchPoint != null)
+            ResponsiveLayout(
+              mobile: (context) => const SizedBox.shrink(),
+              tablet: (context) => Align(
+                alignment: Alignment.centerRight,
+                child: CoverageResultPanel(
+                  point: searchPoint,
+                  breadth: mapState?.searchBreadth ?? SearchBreadth.quick,
+                  selectedModes: mapState?.selectedModes ?? const {},
+                  onBreadthChanged: (breadth) =>
+                      unawaited(notifier.setBreadth(breadth)),
+                  onClose: notifier.clearPoint,
+                  onClearFilters: (mapState?.selectedModes.isEmpty ?? true)
+                      ? null
+                      : () async {
+                          final map = mapController.value;
+                          if (map == null) return;
+                          final bounds = await _getVisibleBounds(map);
+                          await notifier.clearAllModes(
+                            lat1: bounds.lat1,
+                            lon1: bounds.lon1,
+                            lat2: bounds.lat2,
+                            lon2: bounds.lon2,
+                          );
+                        },
+                ),
+              ),
+            ),
+
           // Pro upsell: compact "what do I reach from here?" button
           // (bottom-left, level with the location button on the right).
           Positioned(
@@ -178,9 +344,56 @@ class RepeatersMapPage extends HookConsumerWidget {
             bottom: MediaQuery.of(context).padding.bottom + 24,
             child: const ReachableMapButton(),
           ),
+
+          // Accesso alle postazioni salvate: raggiungibile con una sola mano
+          // sul lato del pollice (FR-063).
+          Positioned(
+            right: 16,
+            bottom: MediaQuery.of(context).padding.bottom + 92,
+            child: FloatingActionButton.small(
+              heroTag: 'saved-stations',
+              tooltip: context.localization.stationsTitle,
+              onPressed: () => context.router.push(const SavedStationsRoute()),
+              child: const Icon(Icons.bookmark_outline_rounded),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  /// Allinea il cerchio del punto di ricerca allo stato: lo crea, lo sposta o
+  /// lo rimuove. Non lancia mai — se l'annotazione fallisce, la mappa resta
+  /// usabile e il risultato continua a essere mostrato nel foglio.
+  static Future<void> _syncSearchMarker({
+    required CircleAnnotationManager manager,
+    required ObjectRef<CircleAnnotation?> existing,
+    required SearchPoint? point,
+    required int fillColor,
+    required int strokeColor,
+  }) async {
+    try {
+      final previous = existing.value;
+      if (previous != null) {
+        await manager.delete(previous);
+        existing.value = null;
+      }
+      if (point == null) return;
+
+      existing.value = await manager.create(
+        CircleAnnotationOptions(
+          geometry: Point(
+            coordinates: Position(point.longitude, point.latitude),
+          ),
+          circleRadius: _searchPointRadius,
+          circleColor: fillColor,
+          circleStrokeWidth: 3,
+          circleStrokeColor: strokeColor,
+        ),
+      );
+    } catch (_) {
+      // Il pin è un aiuto visivo: la sua assenza non deve rompere la pagina.
+    }
   }
 
   /// Handle camera changes with debounce
@@ -912,6 +1125,43 @@ class RepeatersMapPage extends HookConsumerWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                // Barra di ricerca del punto: disponibile a tutti gli utenti
+                // (FR-011). Il gate Pro scatta sul responso, non sulla ricerca.
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+                  child: PlaceSearchBar(
+                    onSelected: (point) async {
+                      await notifier.selectPoint(point);
+                      await mapController?.flyTo(
+                        CameraOptions(
+                          center: Point(
+                            coordinates:
+                                Position(point.longitude, point.latitude),
+                          ),
+                          zoom: _searchPointZoom,
+                        ),
+                        MapAnimationOptions(duration: 900),
+                      );
+                    },
+                    onError: notifier.reportPointError,
+                  ),
+                ),
+                if (mapState?.pointError != null)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                    child: _SearchPointErrorBanner(
+                      error: mapState!.pointError!,
+                      onDismiss: notifier.clearPointError,
+                    ),
+                  ),
+                if (mapState?.searchPoint != null)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                    child: _SelectedPointChip(
+                      point: mapState!.searchPoint!,
+                      onClear: notifier.clearPoint,
+                    ),
+                  ),
                 // Filter chips
                 ModeFilterChipsHorizontal(
                   allLabel: context.localization.repeaterModeAllmode,
@@ -1091,4 +1341,105 @@ Future<({double lat1, double lon1, double lat2, double lon2})>
     lat2: ne[1]!.toDouble(),
     lon2: ne[0]!.toDouble()
   );
+}
+
+/// Riga che mostra il punto attualmente selezionato e permette di rimuoverlo
+/// (FR-008).
+class _SelectedPointChip extends StatelessWidget {
+  const _SelectedPointChip({required this.point, required this.onClear});
+
+  final SearchPoint point;
+  final VoidCallback onClear;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Material(
+      color: theme.colorScheme.surface,
+      elevation: 2,
+      shadowColor: theme.shadowColor,
+      borderRadius: BorderRadius.circular(20),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(14, 8, 6, 8),
+        child: Row(
+          children: [
+            Icon(
+              Icons.place_rounded,
+              size: 18,
+              color: theme.colorScheme.primary,
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                point.label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodyMedium,
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.close_rounded, size: 18),
+              tooltip: context.localization.coverageSearchClearPoint,
+              onPressed: onClear,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Banner non bloccante per gli errori di selezione del punto: la mappa resta
+/// utilizzabile e il risultato eventualmente già a schermo non viene distrutto
+/// (Principio III).
+class _SearchPointErrorBanner extends StatelessWidget {
+  const _SearchPointErrorBanner({required this.error, required this.onDismiss});
+
+  final SearchPointError error;
+  final VoidCallback onDismiss;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = context.localization;
+
+    final message = switch (error) {
+      SearchPointError.coordinatesOutOfRange =>
+        l10n.coverageSearchErrorOutOfRange,
+      SearchPointError.noPlaceFound => l10n.coverageSearchNoResults,
+      SearchPointError.geocodingUnavailable => l10n.coverageSearchErrorOffline,
+      SearchPointError.geocodingFailed => l10n.coverageSearchErrorFailed,
+    };
+
+    return Material(
+      color: theme.colorScheme.errorContainer,
+      borderRadius: BorderRadius.circular(16),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(14, 10, 6, 10),
+        child: Row(
+          children: [
+            Icon(
+              Icons.error_outline_rounded,
+              size: 18,
+              color: theme.colorScheme.onErrorContainer,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                message,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onErrorContainer,
+                ),
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.close_rounded, size: 16),
+              color: theme.colorScheme.onErrorContainer,
+              onPressed: onDismiss,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

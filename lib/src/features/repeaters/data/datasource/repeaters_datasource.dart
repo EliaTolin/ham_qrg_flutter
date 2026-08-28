@@ -16,6 +16,7 @@ abstract interface class RepeatersDatasource {
     required double longitude,
     double radiusKm,
     List<String>? accessModes,
+    int limit,
   });
 
   Future<List<RepeaterModel>> searchRepeaters({

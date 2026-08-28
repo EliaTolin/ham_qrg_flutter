@@ -35,6 +35,15 @@ abstract class RevenueCatClient {
   /// (purchase, restore, expiration, webhook-driven refresh, …).
   Stream<bool> proStatusChanges();
 
+  /// Restores purchases made on another device or after a reinstall.
+  /// Returns `true` if Pro is active once the restore completes.
+  ///
+  /// Needed as a visible affordance next to the upsells: a user who already
+  /// paid must not have to walk through a paywall to get their entitlement
+  /// back — showing them a price they already paid is the fastest way to make
+  /// them think they were charged twice.
+  Future<bool> restorePurchases();
+
   /// Presents the RevenueCat remote paywall unconditionally.
   /// Returns `true` if the user purchased or restored Pro.
   ///

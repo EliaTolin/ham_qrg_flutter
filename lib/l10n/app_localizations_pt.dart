@@ -1902,6 +1902,21 @@ class AppLocalizationsPt extends AppLocalizations {
   String get sotaFilterAll => 'All';
 
   @override
+  String get spotsFiltersTitle => 'Filtros';
+
+  @override
+  String get spotsFilterBand => 'Banda';
+
+  @override
+  String get spotsFilterMode => 'Modo';
+
+  @override
+  String get spotsFilterAll => 'Todos';
+
+  @override
+  String get spotsFiltersReset => 'Limpar filtros';
+
+  @override
   String get sotaSortByTime => 'Time';
 
   @override
@@ -2211,4 +2226,207 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get cameraPermissionRationale =>
       'Para tirar uma foto, permite o acesso à câmara nas definições.';
+
+  @override
+  String get coverageSearchHint => 'Pesquisar um local ou colar coordenadas';
+
+  @override
+  String get coverageSearchRecentTitle => 'Pesquisas recentes';
+
+  @override
+  String get coverageSearchNoResults => 'Nenhum local encontrado';
+
+  @override
+  String get coverageSearchTip =>
+      'Podes colar coordenadas (46.4879, 11.8123) ou manter premido no mapa';
+
+  @override
+  String get coverageSearchErrorOutOfRange =>
+      'Coordenadas fora do intervalo: latitude ±90, longitude ±180';
+
+  @override
+  String get coverageSearchErrorOffline =>
+      'Sem ligação: a pesquisa de locais precisa de rede';
+
+  @override
+  String get coverageSearchErrorFailed => 'A pesquisa falhou. Tenta novamente.';
+
+  @override
+  String get coverageSearchClearPoint => 'Remover ponto';
+
+  @override
+  String get coverageSearchPointSemantics => 'Ponto de pesquisa selecionado';
+
+  @override
+  String get coverageBreadthTitle => 'Amplitude da pesquisa';
+
+  @override
+  String get coverageBreadthQuick => 'Rápida';
+
+  @override
+  String get coverageBreadthMedium => 'Média';
+
+  @override
+  String get coverageBreadthExtended => 'Alargada';
+
+  @override
+  String get coverageBreadthQuickHint => '80 km · resposta mais rápida';
+
+  @override
+  String get coverageBreadthMediumHint => '100 km · equilibrada';
+
+  @override
+  String get coverageBreadthExtendedHint => '150 km · mais longe, espera maior';
+
+  @override
+  String get coverageResultSubtitle => 'A partir do ponto selecionado';
+
+  @override
+  String get coverageResultEmptyNoReachable =>
+      'Nenhum repetidor é alcançável a partir deste ponto';
+
+  @override
+  String get coverageResultEmptyNoRepeaters =>
+      'Nenhum repetidor registado nesta área';
+
+  @override
+  String get coverageResultClearFilters => 'Limpar filtros';
+
+  @override
+  String get coverageResultError => 'O cálculo falhou';
+
+  @override
+  String get coverageResultComputing => 'A calcular a receção…';
+
+  @override
+  String get coverageResultCancel => 'Cancelar';
+
+  @override
+  String coverageResultCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count repetidores alcançáveis',
+      one: '1 repetidor alcançável',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageResultHiddenByFilters(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count alcançáveis ocultos pelos filtros',
+      one: '1 alcançável oculto pelos filtros',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverageTeaserTitle(String place) {
+    return 'O que alcanças a partir de $place? 📡';
+  }
+
+  @override
+  String get coverageTeaserBody =>
+      'Cada repetidor que alcanças a partir desse ponto, com sinal previsto e distância — antes mesmo de partires.';
+
+  @override
+  String get coverageTeaserBenefitAnywhere => 'Qualquer ponto do planeta';
+
+  @override
+  String get coverageTeaserBenefitOffline => 'Consultável sem rede, no terreno';
+
+  @override
+  String get coverageTeaserBenefitSave =>
+      'Guardas o posto e voltas a encontrá-lo';
+
+  @override
+  String get coverageTeaserRestore => 'Restaurar compras';
+
+  @override
+  String get stationSaveCta => 'Guardar posto';
+
+  @override
+  String get stationSaveTitle => 'Nome do posto';
+
+  @override
+  String get stationRename => 'Renomear';
+
+  @override
+  String get stationDelete => 'Eliminar';
+
+  @override
+  String get stationRefresh => 'Atualizar';
+
+  @override
+  String get stationRefreshAll => 'Atualizar todas';
+
+  @override
+  String get stationOfflineNotice => 'Dados guardados no dispositivo';
+
+  @override
+  String get stationStaleNotice => 'Os dados podem estar desatualizados';
+
+  @override
+  String get stationMissingEntry => 'Dados indisponíveis offline';
+
+  @override
+  String get stationDuplicateTitle => 'Ponto já guardado';
+
+  @override
+  String get stationDuplicateBody =>
+      'Já existe um posto a menos de 200 metros. Atualizá-lo ou criar um distinto?';
+
+  @override
+  String get stationDuplicateUpdate => 'Atualizar';
+
+  @override
+  String get stationDuplicateCreate => 'Criar distinto';
+
+  @override
+  String get stationSaveFailed => 'Falha ao guardar: espaço insuficiente';
+
+  @override
+  String get stationsTitle => 'Os meus postos';
+
+  @override
+  String get stationsEmptyTitle => 'Ainda sem postos guardados';
+
+  @override
+  String get stationsEmptyBody =>
+      'Escolhe um ponto no mapa, vê o que alcanças e guarda-o: vais reencontrá-lo mesmo sem rede.';
+
+  @override
+  String get stationsGoToMap => 'Ir para o mapa';
+
+  @override
+  String get stationsRefreshDone => 'Atualização concluída';
+
+  @override
+  String spotsUpdatedAgo(String time) {
+    return 'Atualizado $time';
+  }
+
+  @override
+  String spotsNextUpdateSeconds(int seconds) {
+    return 'Atualização em $seconds s';
+  }
+
+  @override
+  String spotsNextUpdateMinutes(int minutes) {
+    return 'Atualização em $minutes min';
+  }
+
+  @override
+  String get spotsUpdating => 'A atualizar…';
+
+  @override
+  String spotsAutoRefreshHint(int seconds) {
+    return 'Atualização automática a cada $seconds segundos';
+  }
+
+  @override
+  String get spotsManualRefreshHint => 'Toque para atualizar';
 }

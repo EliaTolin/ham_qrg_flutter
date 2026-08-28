@@ -6,6 +6,7 @@ import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hamqrg/src/features/sota/data/mappers/sota_mappers.dart';
 import 'package:hamqrg/src/features/sota/data/repository/sota_repository.dart';
 import 'package:hamqrg/src/features/sota/domain/sota_spot.dart';
+import 'package:hamqrg/src/features/sota/presentation/sota_spot_filters.dart';
 import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/controller/state/sota_spots_sort_order.dart';
 import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/controller/state/sota_spots_state.dart';
 import 'package:hamqrg/src/features/sota/presentation/widgets/sota_mode_badge.dart'
@@ -17,11 +18,22 @@ part 'sota_spots_controller.g.dart';
 
 @Riverpod(keepAlive: true)
 class SotaSpotsController extends _$SotaSpotsController {
+  /// Cadence of the automatic refresh, mirrored by the UI label so the
+  /// operator knows the list updates on its own.
+  static const autoRefreshInterval = Duration(seconds: 60);
+
+  Timer? _refreshTimer;
+  DateTime? _nextRefreshAt;
+
   @override
   FutureOr<SotaSpotsState> build() async {
+    ref.onDispose(() => _refreshTimer?.cancel());
     final spots = await ref.read(getSotaSpotsProvider.future);
+    _startAutoRefresh();
     final distances = await _loadDistances(spots);
     return SotaSpotsState(
+      lastUpdatedAt: DateTime.now(),
+      nextRefreshAt: _nextRefreshAt,
       spots: spots,
       filteredSpots: spots,
       availableBands: _extractBands(spots),
@@ -29,6 +41,12 @@ class SotaSpotsController extends _$SotaSpotsController {
       availableAssociations: _extractAssociations(spots),
       distanceBySummitCode: distances,
     );
+  }
+
+  void _startAutoRefresh() {
+    _refreshTimer?.cancel();
+    _nextRefreshAt = DateTime.now().add(autoRefreshInterval);
+    _refreshTimer = Timer.periodic(autoRefreshInterval, (_) => refresh());
   }
 
   Future<void> refresh() async {
@@ -40,6 +58,7 @@ class SotaSpotsController extends _$SotaSpotsController {
       ref.invalidate(getSotaSpotsProvider);
       final spots = await ref.read(getSotaSpotsProvider.future);
       final distances = await _loadDistances(spots);
+      _startAutoRefresh();
       final base = (currentState ?? const SotaSpotsState()).copyWith(
         spots: spots,
         availableBands: _extractBands(spots),
@@ -48,16 +67,20 @@ class SotaSpotsController extends _$SotaSpotsController {
         distanceBySummitCode: distances,
         isRefreshing: false,
         hasLoadError: false,
+        lastUpdatedAt: DateTime.now(),
+        nextRefreshAt: _nextRefreshAt,
       );
       state = AsyncData(
         base.copyWith(filteredSpots: _applyFiltersAndSort(base)),
       );
     } catch (e, st) {
       log('SOTA refresh failed: $e\n$st');
+      _startAutoRefresh();
       state = AsyncData(
         (currentState ?? const SotaSpotsState()).copyWith(
           hasLoadError: true,
           isRefreshing: false,
+          nextRefreshAt: _nextRefreshAt,
         ),
       );
     }
@@ -118,34 +141,13 @@ class SotaSpotsController extends _$SotaSpotsController {
   }
 
   List<SotaSpot> _applyFiltersAndSort(SotaSpotsState s) {
-    var results = s.spots.toList();
-
-    if (s.selectedBand != null) {
-      results = results.where((spot) {
-        final band = bandFromFrequencyMhz(spot.frequencyMhz);
-        return band == s.selectedBand;
-      }).toList();
-    }
-
-    if (s.selectedMode != null) {
-      results = results
-          .where((spot) => normalizeSotaMode(spot.mode) == s.selectedMode)
-          .toList();
-    }
-
-    if (s.minPoints != null) {
-      results = results.where((spot) => spot.points >= s.minPoints!).toList();
-    }
-
-    if (s.selectedAssociation != null) {
-      results = results
-          .where(
-            (spot) =>
-                associationFromSummitCode(spot.summitCode) ==
-                s.selectedAssociation,
-          )
-          .toList();
-    }
+    final results = filterSotaSpots(
+      s.spots,
+      band: s.selectedBand,
+      mode: s.selectedMode,
+      minPoints: s.minPoints,
+      association: s.selectedAssociation,
+    );
 
     switch (s.sortOrder) {
       case SotaSpotsSortOrder.time:

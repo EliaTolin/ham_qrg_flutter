@@ -11,6 +11,8 @@ abstract class SotaSpotsState with _$SotaSpotsState {
     @Default(<SotaSpot>[]) List<SotaSpot> filteredSpots,
     @Default(false) bool hasLoadError,
     @Default(false) bool isRefreshing,
+    DateTime? lastUpdatedAt,
+    DateTime? nextRefreshAt,
     @Default(SotaSpotsSortOrder.time) SotaSpotsSortOrder sortOrder,
     @Default(<String, double>{}) Map<String, double> distanceBySummitCode,
     @Default(<String>[]) List<String> availableBands,

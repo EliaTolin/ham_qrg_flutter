@@ -24,6 +24,17 @@ mixin _$RepeatersMapState {
   List<PotaSpot> get potaSpots;
   Map<String, PotaPark> get potaParkCache;
 
+  /// Punto arbitrario attualmente selezionato: al massimo uno per volta
+  /// (FR-007). `null` significa nessun pin sulla mappa.
+  SearchPoint? get searchPoint;
+
+  /// Ampiezza di ricerca scelta per la valutazione (FR-024).
+  SearchBreadth get searchBreadth;
+
+  /// Errore dell'ultima selezione, mostrato come banner senza far collassare
+  /// la mappa. Si azzera alla selezione successiva riuscita.
+  SearchPointError? get pointError;
+
   /// Create a copy of RepeatersMapState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -52,7 +63,13 @@ mixin _$RepeatersMapState {
                 other.selectedRepeater == selectedRepeater) &&
             const DeepCollectionEquality().equals(other.potaSpots, potaSpots) &&
             const DeepCollectionEquality()
-                .equals(other.potaParkCache, potaParkCache));
+                .equals(other.potaParkCache, potaParkCache) &&
+            (identical(other.searchPoint, searchPoint) ||
+                other.searchPoint == searchPoint) &&
+            (identical(other.searchBreadth, searchBreadth) ||
+                other.searchBreadth == searchBreadth) &&
+            (identical(other.pointError, pointError) ||
+                other.pointError == pointError));
   }
 
   @override
@@ -66,11 +83,14 @@ mixin _$RepeatersMapState {
       const DeepCollectionEquality().hash(selectedModes),
       selectedRepeater,
       const DeepCollectionEquality().hash(potaSpots),
-      const DeepCollectionEquality().hash(potaParkCache));
+      const DeepCollectionEquality().hash(potaParkCache),
+      searchPoint,
+      searchBreadth,
+      pointError);
 
   @override
   String toString() {
-    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater, potaSpots: $potaSpots, potaParkCache: $potaParkCache)';
+    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater, potaSpots: $potaSpots, potaParkCache: $potaParkCache, searchPoint: $searchPoint, searchBreadth: $searchBreadth, pointError: $pointError)';
   }
 }
 
@@ -89,9 +109,13 @@ abstract mixin class $RepeatersMapStateCopyWith<$Res> {
       Set<AccessMode> selectedModes,
       Repeater? selectedRepeater,
       List<PotaSpot> potaSpots,
-      Map<String, PotaPark> potaParkCache});
+      Map<String, PotaPark> potaParkCache,
+      SearchPoint? searchPoint,
+      SearchBreadth searchBreadth,
+      SearchPointError? pointError});
 
   $RepeaterCopyWith<$Res>? get selectedRepeater;
+  $SearchPointCopyWith<$Res>? get searchPoint;
 }
 
 /// @nodoc
@@ -116,6 +140,9 @@ class _$RepeatersMapStateCopyWithImpl<$Res>
     Object? selectedRepeater = freezed,
     Object? potaSpots = null,
     Object? potaParkCache = null,
+    Object? searchPoint = freezed,
+    Object? searchBreadth = null,
+    Object? pointError = freezed,
   }) {
     return _then(_self.copyWith(
       repeaters: null == repeaters
@@ -154,6 +181,18 @@ class _$RepeatersMapStateCopyWithImpl<$Res>
           ? _self.potaParkCache
           : potaParkCache // ignore: cast_nullable_to_non_nullable
               as Map<String, PotaPark>,
+      searchPoint: freezed == searchPoint
+          ? _self.searchPoint
+          : searchPoint // ignore: cast_nullable_to_non_nullable
+              as SearchPoint?,
+      searchBreadth: null == searchBreadth
+          ? _self.searchBreadth
+          : searchBreadth // ignore: cast_nullable_to_non_nullable
+              as SearchBreadth,
+      pointError: freezed == pointError
+          ? _self.pointError
+          : pointError // ignore: cast_nullable_to_non_nullable
+              as SearchPointError?,
     ));
   }
 
@@ -168,6 +207,20 @@ class _$RepeatersMapStateCopyWithImpl<$Res>
 
     return $RepeaterCopyWith<$Res>(_self.selectedRepeater!, (value) {
       return _then(_self.copyWith(selectedRepeater: value));
+    });
+  }
+
+  /// Create a copy of RepeatersMapState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SearchPointCopyWith<$Res>? get searchPoint {
+    if (_self.searchPoint == null) {
+      return null;
+    }
+
+    return $SearchPointCopyWith<$Res>(_self.searchPoint!, (value) {
+      return _then(_self.copyWith(searchPoint: value));
     });
   }
 }
@@ -274,7 +327,10 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             Set<AccessMode> selectedModes,
             Repeater? selectedRepeater,
             List<PotaSpot> potaSpots,
-            Map<String, PotaPark> potaParkCache)?
+            Map<String, PotaPark> potaParkCache,
+            SearchPoint? searchPoint,
+            SearchBreadth searchBreadth,
+            SearchPointError? pointError)?
         $default, {
     required TResult orElse(),
   }) {
@@ -290,7 +346,10 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             _that.selectedModes,
             _that.selectedRepeater,
             _that.potaSpots,
-            _that.potaParkCache);
+            _that.potaParkCache,
+            _that.searchPoint,
+            _that.searchBreadth,
+            _that.pointError);
       case _:
         return orElse();
     }
@@ -320,7 +379,10 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             Set<AccessMode> selectedModes,
             Repeater? selectedRepeater,
             List<PotaSpot> potaSpots,
-            Map<String, PotaPark> potaParkCache)
+            Map<String, PotaPark> potaParkCache,
+            SearchPoint? searchPoint,
+            SearchBreadth searchBreadth,
+            SearchPointError? pointError)
         $default,
   ) {
     final _that = this;
@@ -335,7 +397,10 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             _that.selectedModes,
             _that.selectedRepeater,
             _that.potaSpots,
-            _that.potaParkCache);
+            _that.potaParkCache,
+            _that.searchPoint,
+            _that.searchBreadth,
+            _that.pointError);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -364,7 +429,10 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             Set<AccessMode> selectedModes,
             Repeater? selectedRepeater,
             List<PotaSpot> potaSpots,
-            Map<String, PotaPark> potaParkCache)?
+            Map<String, PotaPark> potaParkCache,
+            SearchPoint? searchPoint,
+            SearchBreadth searchBreadth,
+            SearchPointError? pointError)?
         $default,
   ) {
     final _that = this;
@@ -379,7 +447,10 @@ extension RepeatersMapStatePatterns on RepeatersMapState {
             _that.selectedModes,
             _that.selectedRepeater,
             _that.potaSpots,
-            _that.potaParkCache);
+            _that.potaParkCache,
+            _that.searchPoint,
+            _that.searchBreadth,
+            _that.pointError);
       case _:
         return null;
     }
@@ -398,7 +469,10 @@ class _RepeatersMapState implements RepeatersMapState {
       final Set<AccessMode> selectedModes = const <AccessMode>{},
       this.selectedRepeater,
       final List<PotaSpot> potaSpots = const <PotaSpot>[],
-      final Map<String, PotaPark> potaParkCache = const <String, PotaPark>{}})
+      final Map<String, PotaPark> potaParkCache = const <String, PotaPark>{},
+      this.searchPoint,
+      this.searchBreadth = SearchBreadth.quick,
+      this.pointError})
       : _repeaters = repeaters,
         _selectedModes = selectedModes,
         _potaSpots = potaSpots,
@@ -451,6 +525,21 @@ class _RepeatersMapState implements RepeatersMapState {
     return EqualUnmodifiableMapView(_potaParkCache);
   }
 
+  /// Punto arbitrario attualmente selezionato: al massimo uno per volta
+  /// (FR-007). `null` significa nessun pin sulla mappa.
+  @override
+  final SearchPoint? searchPoint;
+
+  /// Ampiezza di ricerca scelta per la valutazione (FR-024).
+  @override
+  @JsonKey()
+  final SearchBreadth searchBreadth;
+
+  /// Errore dell'ultima selezione, mostrato come banner senza far collassare
+  /// la mappa. Si azzera alla selezione successiva riuscita.
+  @override
+  final SearchPointError? pointError;
+
   /// Create a copy of RepeatersMapState
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -481,7 +570,13 @@ class _RepeatersMapState implements RepeatersMapState {
             const DeepCollectionEquality()
                 .equals(other._potaSpots, _potaSpots) &&
             const DeepCollectionEquality()
-                .equals(other._potaParkCache, _potaParkCache));
+                .equals(other._potaParkCache, _potaParkCache) &&
+            (identical(other.searchPoint, searchPoint) ||
+                other.searchPoint == searchPoint) &&
+            (identical(other.searchBreadth, searchBreadth) ||
+                other.searchBreadth == searchBreadth) &&
+            (identical(other.pointError, pointError) ||
+                other.pointError == pointError));
   }
 
   @override
@@ -495,11 +590,14 @@ class _RepeatersMapState implements RepeatersMapState {
       const DeepCollectionEquality().hash(_selectedModes),
       selectedRepeater,
       const DeepCollectionEquality().hash(_potaSpots),
-      const DeepCollectionEquality().hash(_potaParkCache));
+      const DeepCollectionEquality().hash(_potaParkCache),
+      searchPoint,
+      searchBreadth,
+      pointError);
 
   @override
   String toString() {
-    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater, potaSpots: $potaSpots, potaParkCache: $potaParkCache)';
+    return 'RepeatersMapState(repeaters: $repeaters, latitude: $latitude, longitude: $longitude, locationError: $locationError, hasLoadError: $hasLoadError, selectedModes: $selectedModes, selectedRepeater: $selectedRepeater, potaSpots: $potaSpots, potaParkCache: $potaParkCache, searchPoint: $searchPoint, searchBreadth: $searchBreadth, pointError: $pointError)';
   }
 }
 
@@ -520,10 +618,15 @@ abstract mixin class _$RepeatersMapStateCopyWith<$Res>
       Set<AccessMode> selectedModes,
       Repeater? selectedRepeater,
       List<PotaSpot> potaSpots,
-      Map<String, PotaPark> potaParkCache});
+      Map<String, PotaPark> potaParkCache,
+      SearchPoint? searchPoint,
+      SearchBreadth searchBreadth,
+      SearchPointError? pointError});
 
   @override
   $RepeaterCopyWith<$Res>? get selectedRepeater;
+  @override
+  $SearchPointCopyWith<$Res>? get searchPoint;
 }
 
 /// @nodoc
@@ -548,6 +651,9 @@ class __$RepeatersMapStateCopyWithImpl<$Res>
     Object? selectedRepeater = freezed,
     Object? potaSpots = null,
     Object? potaParkCache = null,
+    Object? searchPoint = freezed,
+    Object? searchBreadth = null,
+    Object? pointError = freezed,
   }) {
     return _then(_RepeatersMapState(
       repeaters: null == repeaters
@@ -586,6 +692,18 @@ class __$RepeatersMapStateCopyWithImpl<$Res>
           ? _self._potaParkCache
           : potaParkCache // ignore: cast_nullable_to_non_nullable
               as Map<String, PotaPark>,
+      searchPoint: freezed == searchPoint
+          ? _self.searchPoint
+          : searchPoint // ignore: cast_nullable_to_non_nullable
+              as SearchPoint?,
+      searchBreadth: null == searchBreadth
+          ? _self.searchBreadth
+          : searchBreadth // ignore: cast_nullable_to_non_nullable
+              as SearchBreadth,
+      pointError: freezed == pointError
+          ? _self.pointError
+          : pointError // ignore: cast_nullable_to_non_nullable
+              as SearchPointError?,
     ));
   }
 
@@ -600,6 +718,20 @@ class __$RepeatersMapStateCopyWithImpl<$Res>
 
     return $RepeaterCopyWith<$Res>(_self.selectedRepeater!, (value) {
       return _then(_self.copyWith(selectedRepeater: value));
+    });
+  }
+
+  /// Create a copy of RepeatersMapState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SearchPointCopyWith<$Res>? get searchPoint {
+    if (_self.searchPoint == null) {
+      return null;
+    }
+
+    return $SearchPointCopyWith<$Res>(_self.searchPoint!, (value) {
+      return _then(_self.copyWith(searchPoint: value));
     });
   }
 }
