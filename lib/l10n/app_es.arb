@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Actualizarlo",
   "stationDuplicateCreate": "Crear distinto",
   "stationSaveFailed": "No se pudo guardar: espacio insuficiente",
+  "stationSavedCta": "Ubicación guardada",
+  "stationRemoveCta": "Eliminar",
+  "stationRemoveTitle": "¿Eliminar la ubicación?",
+  "stationRemoveBody": "«{name}» y sus datos sin conexión se eliminarán de este dispositivo.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Ubicación eliminada",
+  "stationSaveError": "No se pudo guardar. Inténtalo de nuevo.",
   "stationsTitle": "Mis puestos",
   "stationsEmptyTitle": "Aún no hay puestos guardados",
   "stationsEmptyBody": "Elige un punto en el mapa, mira qué alcanzas y guárdalo: lo tendrás incluso sin red.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Toca para actualizar"
+  "spotsManualRefreshHint": "Toca para actualizar",
+  "coverageResultScope": "en {km} km · {count} evaluados",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Recalculando",
+  "offlineBannerMessage": "Sin conexión: estás viendo los datos guardados",
+  "offlineMapsTitle": "Mapas sin conexión",
+  "offlineMapsEntrySubtitle": "Descarga mapas para usarlos sin conexión",
+  "offlineMapsEmpty": "No hay regiones descargadas. Descarga una zona para ver el mapa incluso sin conexión.",
+  "offlineMapsAddRegion": "Descargar región",
+  "offlineMapsRegionNameLabel": "Nombre de la región",
+  "offlineMapsRegionNameHint": "P. ej. Casa, Refugio, Activación SOTA",
+  "offlineMapsRadiusLabel": "Radio",
+  "offlineMapsDownload": "Descargar",
+  "offlineMapsDownloadingStyle": "Descargando estilo del mapa…",
+  "offlineMapsDownloadingTiles": "Descargando mapas… {percent}%",
+  "offlineMapsEstimatedSize": "Tamaño estimado: {size}",
+  "offlineMapsDownloadError": "Error de descarga. Inténtalo de nuevo.",
+  "offlineMapsDeleteError": "No se pudo eliminar. Inténtalo de nuevo.",
+  "offlineMapsDeleteConfirmTitle": "¿Eliminar la región?",
+  "offlineMapsDeleteConfirmMessage": "“{name}” ya no estará disponible sin conexión.",
+  "offlineMapsDeleteConfirm": "Eliminar",
+  "offlineMapsRegionSubtitle": "Radio {radius} km · {size}",
+  "offlineMapsIncomplete": "Descarga incompleta",
+  "offlineMapsResume": "Reanudar",
+  "offlineMapsCenterInfo": "La región se centrará en tu ubicación actual.",
+  "dashboardOfflineTitle": "Sin conexión",
+  "dashboardOfflineMessage": "No hay datos guardados para esta zona. Tus ubicaciones guardadas y los mapas descargados siguen disponibles.",
+  "offlineMapsCenterMine": "Mi posición",
+  "offlineMapsCenterSearch": "Buscar un lugar",
+  "offlineMapsCenterSearchInfo": "Busca una ciudad o un lugar: la región se centrará ahí.",
+  "offlineMapsCenterSelected": "Centro: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

@@ -2443,6 +2443,26 @@ class AppLocalizationsSl extends AppLocalizations {
   String get stationSaveFailed => 'Shranjevanje ni uspelo: premalo prostora';
 
   @override
+  String get stationSavedCta => 'Lokacija shranjena';
+
+  @override
+  String get stationRemoveCta => 'Odstrani';
+
+  @override
+  String get stationRemoveTitle => 'Odstranim lokacijo?';
+
+  @override
+  String stationRemoveBody(String name) {
+    return '»$name« in njeni podatki brez povezave bodo izbrisani iz te naprave.';
+  }
+
+  @override
+  String get stationRemovedSnack => 'Lokacija odstranjena';
+
+  @override
+  String get stationSaveError => 'Shranjevanje ni uspelo. Poskusite znova.';
+
+  @override
   String get stationsTitle => 'Moje postojanke';
 
   @override
@@ -2483,4 +2503,108 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get spotsManualRefreshHint => 'Tapnite za posodobitev';
+
+  @override
+  String coverageResultScope(int km, int count) {
+    return 'v obsegu $km km · ovrednotenih: $count';
+  }
+
+  @override
+  String get coverageResultRecalculating => 'Ponovni izračun';
+
+  @override
+  String get offlineBannerMessage => 'Brez povezave: ogled shranjenih podatkov';
+
+  @override
+  String get offlineMapsTitle => 'Zemljevidi brez povezave';
+
+  @override
+  String get offlineMapsEntrySubtitle =>
+      'Prenesite zemljevide za uporabo brez povezave';
+
+  @override
+  String get offlineMapsEmpty =>
+      'Ni prenesenih območij. Prenesite območje, da boste zemljevid videli tudi brez povezave.';
+
+  @override
+  String get offlineMapsAddRegion => 'Prenesi območje';
+
+  @override
+  String get offlineMapsRegionNameLabel => 'Ime območja';
+
+  @override
+  String get offlineMapsRegionNameHint => 'Npr. Dom, Koča, Aktivacija SOTA';
+
+  @override
+  String get offlineMapsRadiusLabel => 'Polmer';
+
+  @override
+  String get offlineMapsDownload => 'Prenesi';
+
+  @override
+  String get offlineMapsDownloadingStyle => 'Prenašanje sloga zemljevida…';
+
+  @override
+  String offlineMapsDownloadingTiles(String percent) {
+    return 'Prenašanje zemljevidov… $percent%';
+  }
+
+  @override
+  String offlineMapsEstimatedSize(String size) {
+    return 'Ocenjena velikost: $size';
+  }
+
+  @override
+  String get offlineMapsDownloadError => 'Prenos ni uspel. Poskusite znova.';
+
+  @override
+  String get offlineMapsDeleteError => 'Brisanje ni uspelo. Poskusite znova.';
+
+  @override
+  String get offlineMapsDeleteConfirmTitle => 'Izbrišem območje?';
+
+  @override
+  String offlineMapsDeleteConfirmMessage(String name) {
+    return '„$name“ ne bo več na voljo brez povezave.';
+  }
+
+  @override
+  String get offlineMapsDeleteConfirm => 'Izbriši';
+
+  @override
+  String offlineMapsRegionSubtitle(String radius, String size) {
+    return 'Polmer $radius km · $size';
+  }
+
+  @override
+  String get offlineMapsIncomplete => 'Nepopoln prenos';
+
+  @override
+  String get offlineMapsResume => 'Nadaljuj';
+
+  @override
+  String get offlineMapsCenterInfo =>
+      'Območje bo osredotočeno na vašo trenutno lokacijo.';
+
+  @override
+  String get dashboardOfflineTitle => 'Brez povezave';
+
+  @override
+  String get dashboardOfflineMessage =>
+      'Za to območje ni shranjenih podatkov. Vaše shranjene lokacije in preneseni zemljevidi so še vedno na voljo.';
+
+  @override
+  String get offlineMapsCenterMine => 'Moja lokacija';
+
+  @override
+  String get offlineMapsCenterSearch => 'Poišči kraj';
+
+  @override
+  String get offlineMapsCenterSearchInfo =>
+      'Poiščite mesto ali kraj: območje bo osredotočeno tam.';
+
+  @override
+  String offlineMapsCenterSelected(String label) {
+    return 'Središče: $label';
+  }
 }

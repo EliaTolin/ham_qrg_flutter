@@ -2380,6 +2380,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get stationSaveFailed => 'Save failed: not enough space';
 
   @override
+  String get stationSavedCta => 'Location saved';
+
+  @override
+  String get stationRemoveCta => 'Remove';
+
+  @override
+  String get stationRemoveTitle => 'Remove this location?';
+
+  @override
+  String stationRemoveBody(String name) {
+    return '“$name” and its offline data will be deleted from this device.';
+  }
+
+  @override
+  String get stationRemovedSnack => 'Location removed';
+
+  @override
+  String get stationSaveError => 'Couldn’t save. Please try again.';
+
+  @override
   String get stationsTitle => 'My stations';
 
   @override
@@ -2420,4 +2440,110 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get spotsManualRefreshHint => 'Tap to refresh';
+
+  @override
+  String coverageResultScope(int km, int count) {
+    return 'within $km km · $count evaluated';
+  }
+
+  @override
+  String get coverageResultRecalculating => 'Recalculating';
+
+  @override
+  String get offlineBannerMessage =>
+      'You\'re offline: viewing previously saved data';
+
+  @override
+  String get offlineMapsTitle => 'Offline maps';
+
+  @override
+  String get offlineMapsEntrySubtitle =>
+      'Download maps for use without a connection';
+
+  @override
+  String get offlineMapsEmpty =>
+      'No regions downloaded. Download an area to see the map even without a connection.';
+
+  @override
+  String get offlineMapsAddRegion => 'Download region';
+
+  @override
+  String get offlineMapsRegionNameLabel => 'Region name';
+
+  @override
+  String get offlineMapsRegionNameHint =>
+      'E.g. Home, Mountain hut, SOTA activation';
+
+  @override
+  String get offlineMapsRadiusLabel => 'Radius';
+
+  @override
+  String get offlineMapsDownload => 'Download';
+
+  @override
+  String get offlineMapsDownloadingStyle => 'Downloading map style…';
+
+  @override
+  String offlineMapsDownloadingTiles(String percent) {
+    return 'Downloading map tiles… $percent%';
+  }
+
+  @override
+  String offlineMapsEstimatedSize(String size) {
+    return 'Estimated size: $size';
+  }
+
+  @override
+  String get offlineMapsDownloadError => 'Download failed. Try again.';
+
+  @override
+  String get offlineMapsDeleteError => 'Deletion failed. Try again.';
+
+  @override
+  String get offlineMapsDeleteConfirmTitle => 'Delete region?';
+
+  @override
+  String offlineMapsDeleteConfirmMessage(String name) {
+    return '“$name” will no longer be available offline.';
+  }
+
+  @override
+  String get offlineMapsDeleteConfirm => 'Delete';
+
+  @override
+  String offlineMapsRegionSubtitle(String radius, String size) {
+    return 'Radius $radius km · $size';
+  }
+
+  @override
+  String get offlineMapsIncomplete => 'Incomplete download';
+
+  @override
+  String get offlineMapsResume => 'Resume';
+
+  @override
+  String get offlineMapsCenterInfo =>
+      'The region will be centered on your current location.';
+
+  @override
+  String get dashboardOfflineTitle => 'You\'re offline';
+
+  @override
+  String get dashboardOfflineMessage =>
+      'No saved data for this area. Your saved stations and downloaded maps are still available.';
+
+  @override
+  String get offlineMapsCenterMine => 'My location';
+
+  @override
+  String get offlineMapsCenterSearch => 'Search a place';
+
+  @override
+  String get offlineMapsCenterSearchInfo =>
+      'Search a city or place: the region will be centered there.';
+
+  @override
+  String offlineMapsCenterSelected(String label) {
+    return 'Center: $label';
+  }
 }

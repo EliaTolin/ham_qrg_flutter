@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Posodobi",
   "stationDuplicateCreate": "Ustvari ločeno",
   "stationSaveFailed": "Shranjevanje ni uspelo: premalo prostora",
+  "stationSavedCta": "Lokacija shranjena",
+  "stationRemoveCta": "Odstrani",
+  "stationRemoveTitle": "Odstranim lokacijo?",
+  "stationRemoveBody": "»{name}« in njeni podatki brez povezave bodo izbrisani iz te naprave.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Lokacija odstranjena",
+  "stationSaveError": "Shranjevanje ni uspelo. Poskusite znova.",
   "stationsTitle": "Moje postojanke",
   "stationsEmptyTitle": "Ni shranjenih postojank",
   "stationsEmptyBody": "Izberite točko na zemljevidu, poglejte, kaj dosežete, in shranite: našli jo boste tudi brez omrežja.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Tapnite za posodobitev"
+  "spotsManualRefreshHint": "Tapnite za posodobitev",
+  "coverageResultScope": "v obsegu {km} km · ovrednotenih: {count}",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Ponovni izračun",
+  "offlineBannerMessage": "Brez povezave: ogled shranjenih podatkov",
+  "offlineMapsTitle": "Zemljevidi brez povezave",
+  "offlineMapsEntrySubtitle": "Prenesite zemljevide za uporabo brez povezave",
+  "offlineMapsEmpty": "Ni prenesenih območij. Prenesite območje, da boste zemljevid videli tudi brez povezave.",
+  "offlineMapsAddRegion": "Prenesi območje",
+  "offlineMapsRegionNameLabel": "Ime območja",
+  "offlineMapsRegionNameHint": "Npr. Dom, Koča, Aktivacija SOTA",
+  "offlineMapsRadiusLabel": "Polmer",
+  "offlineMapsDownload": "Prenesi",
+  "offlineMapsDownloadingStyle": "Prenašanje sloga zemljevida…",
+  "offlineMapsDownloadingTiles": "Prenašanje zemljevidov… {percent}%",
+  "offlineMapsEstimatedSize": "Ocenjena velikost: {size}",
+  "offlineMapsDownloadError": "Prenos ni uspel. Poskusite znova.",
+  "offlineMapsDeleteError": "Brisanje ni uspelo. Poskusite znova.",
+  "offlineMapsDeleteConfirmTitle": "Izbrišem območje?",
+  "offlineMapsDeleteConfirmMessage": "„{name}“ ne bo več na voljo brez povezave.",
+  "offlineMapsDeleteConfirm": "Izbriši",
+  "offlineMapsRegionSubtitle": "Polmer {radius} km · {size}",
+  "offlineMapsIncomplete": "Nepopoln prenos",
+  "offlineMapsResume": "Nadaljuj",
+  "offlineMapsCenterInfo": "Območje bo osredotočeno na vašo trenutno lokacijo.",
+  "dashboardOfflineTitle": "Brez povezave",
+  "dashboardOfflineMessage": "Za to območje ni shranjenih podatkov. Vaše shranjene lokacije in preneseni zemljevidi so še vedno na voljo.",
+  "offlineMapsCenterMine": "Moja lokacija",
+  "offlineMapsCenterSearch": "Poišči kraj",
+  "offlineMapsCenterSearchInfo": "Poiščite mesto ali kraj: območje bo osredotočeno tam.",
+  "offlineMapsCenterSelected": "Središče: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

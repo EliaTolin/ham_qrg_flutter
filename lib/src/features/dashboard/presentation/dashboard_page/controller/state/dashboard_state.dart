@@ -1,13 +1,16 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
-import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
-import 'package:hamqrg/src/features/sota/domain/sota_spot.dart';
 
 part 'dashboard_state.freezed.dart';
 
+/// State of the home dashboard.
+///
+/// POTA and SOTA spots are deliberately absent: they come from third-party
+/// APIs and must never be able to fail the whole home page. Each section
+/// watches its own provider and renders its own error/retry inline.
 @freezed
 abstract class DashboardState with _$DashboardState {
   const factory DashboardState({
@@ -16,9 +19,5 @@ abstract class DashboardState with _$DashboardState {
     required List<Repeater> nearbyRepeaters,
     required Profile? profile,
     LocationErrorType? locationError,
-    @Default(<PotaSpot>[]) List<PotaSpot> potaSpots,
-    @Default(false) bool hasPotaError,
-    @Default(<SotaSpot>[]) List<SotaSpot> sotaSpots,
-    @Default(false) bool hasSotaError,
   }) = _DashboardState;
 }

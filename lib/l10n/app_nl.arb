@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Bijwerken",
   "stationDuplicateCreate": "Apart maken",
   "stationSaveFailed": "Opslaan mislukt: onvoldoende ruimte",
+  "stationSavedCta": "Locatie opgeslagen",
+  "stationRemoveCta": "Verwijderen",
+  "stationRemoveTitle": "Locatie verwijderen?",
+  "stationRemoveBody": "‘{name}’ en de offlinegegevens worden van dit apparaat verwijderd.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Locatie verwijderd",
+  "stationSaveError": "Opslaan mislukt. Probeer het opnieuw.",
   "stationsTitle": "Mijn locaties",
   "stationsEmptyTitle": "Nog geen locaties opgeslagen",
   "stationsEmptyBody": "Kies een punt op de kaart, bekijk wat je bereikt en sla het op: je vindt het ook zonder netwerk terug.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Tik om bij te werken"
+  "spotsManualRefreshHint": "Tik om bij te werken",
+  "coverageResultScope": "binnen {km} km · {count} beoordeeld",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Opnieuw berekenen",
+  "offlineBannerMessage": "Je bent offline: eerder opgeslagen gegevens",
+  "offlineMapsTitle": "Offlinekaarten",
+  "offlineMapsEntrySubtitle": "Download kaarten voor gebruik zonder verbinding",
+  "offlineMapsEmpty": "Geen regio's gedownload. Download een gebied om de kaart ook zonder verbinding te zien.",
+  "offlineMapsAddRegion": "Regio downloaden",
+  "offlineMapsRegionNameLabel": "Naam van de regio",
+  "offlineMapsRegionNameHint": "Bijv. Thuis, Berghut, SOTA-activatie",
+  "offlineMapsRadiusLabel": "Straal",
+  "offlineMapsDownload": "Downloaden",
+  "offlineMapsDownloadingStyle": "Kaartstijl wordt gedownload…",
+  "offlineMapsDownloadingTiles": "Kaarten worden gedownload… {percent}%",
+  "offlineMapsEstimatedSize": "Geschatte grootte: {size}",
+  "offlineMapsDownloadError": "Download mislukt. Probeer het opnieuw.",
+  "offlineMapsDeleteError": "Verwijderen mislukt. Probeer het opnieuw.",
+  "offlineMapsDeleteConfirmTitle": "Regio verwijderen?",
+  "offlineMapsDeleteConfirmMessage": "“{name}” is offline niet meer beschikbaar.",
+  "offlineMapsDeleteConfirm": "Verwijderen",
+  "offlineMapsRegionSubtitle": "Straal {radius} km · {size}",
+  "offlineMapsIncomplete": "Onvolledige download",
+  "offlineMapsResume": "Hervatten",
+  "offlineMapsCenterInfo": "De regio wordt gecentreerd op je huidige locatie.",
+  "dashboardOfflineTitle": "Je bent offline",
+  "dashboardOfflineMessage": "Geen opgeslagen gegevens voor dit gebied. Je opgeslagen locaties en gedownloade kaarten blijven beschikbaar.",
+  "offlineMapsCenterMine": "Mijn locatie",
+  "offlineMapsCenterSearch": "Zoek een plaats",
+  "offlineMapsCenterSearchInfo": "Zoek een stad of plaats: de regio wordt daar gecentreerd.",
+  "offlineMapsCenterSelected": "Centrum: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

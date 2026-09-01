@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Frissítés",
   "stationDuplicateCreate": "Külön létrehozás",
   "stationSaveFailed": "A mentés sikertelen: nincs elég hely",
+  "stationSavedCta": "Helyszín mentve",
+  "stationRemoveCta": "Eltávolítás",
+  "stationRemoveTitle": "Eltávolítja a helyszínt?",
+  "stationRemoveBody": "A(z) „{name}” és offline adatai törlődnek erről az eszközről.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Helyszín eltávolítva",
+  "stationSaveError": "A mentés nem sikerült. Próbálja újra.",
   "stationsTitle": "Helyeim",
   "stationsEmptyTitle": "Még nincs mentett hely",
   "stationsEmptyBody": "Válassz egy pontot a térképen, nézd meg mit érsz el, és mentsd el: hálózat nélkül is megtalálod.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Koppintson a frissítéshez"
+  "spotsManualRefreshHint": "Koppintson a frissítéshez",
+  "coverageResultScope": "{km} km-en belül · {count} kiértékelve",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Újraszámítás",
+  "offlineBannerMessage": "Offline vagy: a mentett adatokat látod",
+  "offlineMapsTitle": "Offline térképek",
+  "offlineMapsEntrySubtitle": "Tölts le térképeket kapcsolat nélküli használatra",
+  "offlineMapsEmpty": "Nincs letöltött régió. Tölts le egy területet, hogy a térképet kapcsolat nélkül is lásd.",
+  "offlineMapsAddRegion": "Régió letöltése",
+  "offlineMapsRegionNameLabel": "Régió neve",
+  "offlineMapsRegionNameHint": "Pl. Otthon, Menedékház, SOTA aktiválás",
+  "offlineMapsRadiusLabel": "Sugár",
+  "offlineMapsDownload": "Letöltés",
+  "offlineMapsDownloadingStyle": "Térképstílus letöltése…",
+  "offlineMapsDownloadingTiles": "Térképek letöltése… {percent}%",
+  "offlineMapsEstimatedSize": "Becsült méret: {size}",
+  "offlineMapsDownloadError": "A letöltés nem sikerült. Próbáld újra.",
+  "offlineMapsDeleteError": "A törlés nem sikerült. Próbáld újra.",
+  "offlineMapsDeleteConfirmTitle": "Törlöd a régiót?",
+  "offlineMapsDeleteConfirmMessage": "„{name}” többé nem lesz elérhető offline.",
+  "offlineMapsDeleteConfirm": "Törlés",
+  "offlineMapsRegionSubtitle": "Sugár: {radius} km · {size}",
+  "offlineMapsIncomplete": "Befejezetlen letöltés",
+  "offlineMapsResume": "Folytatás",
+  "offlineMapsCenterInfo": "A régió a jelenlegi helyzeted köré lesz központosítva.",
+  "dashboardOfflineTitle": "Offline vagy",
+  "dashboardOfflineMessage": "Ehhez a területhez nincs mentett adat. A mentett helyeid és a letöltött térképek továbbra is elérhetők.",
+  "offlineMapsCenterMine": "Saját helyzetem",
+  "offlineMapsCenterSearch": "Hely keresése",
+  "offlineMapsCenterSearchInfo": "Keress egy várost vagy helyet: a régió oda lesz középre igazítva.",
+  "offlineMapsCenterSelected": "Közép: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

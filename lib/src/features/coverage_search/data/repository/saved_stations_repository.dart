@@ -38,12 +38,23 @@ class SavedStationsRepository {
   /// Salva la postazione e **scrive in cache tutti i suoi ripetitori**, così
   /// che sia consultabile offline dal primo istante, senza dipendere da
   /// visite precedenti alle singole schede.
+  ///
+  /// Il record viene scritto per primo, e la cache è dichiaratamente
+  /// best-effort: è un acceleratore, non una dipendenza dura. Se il database
+  /// locale è inagibile la postazione si salva comunque — le voci mancanti
+  /// finiscono in `missingIds` e degradano da sole in [hydrate]. L'ordine
+  /// inverso, con la cache che può sollevare, farebbe fallire in silenzio
+  /// l'unica cosa che l'utente ha davvero chiesto: conservare il punto.
   Future<void> save(
     SavedStation station, {
     required List<ResolvedCoverageEntry> resolved,
   }) async {
-    await _cache.writeAll(resolved.map((e) => e.repeater).toList());
     await _datasource.write(SavedStationModel(station: station));
+    try {
+      await _cache.writeAll(resolved.map((e) => e.repeater).toList());
+    } catch (_) {
+      // Offline degradato, postazione salva.
+    }
   }
 
   Future<void> rename(String id, String name) async {

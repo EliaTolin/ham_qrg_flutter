@@ -5,6 +5,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
+import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback_stats.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/station_kind.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/controller/state/repeater_detail_state.dart';
 import 'package:hamqrg/src/features/repeaters/provider/add_repeater_feedback/add_repeater_feedback_provider.dart';
@@ -32,18 +34,28 @@ class RepeaterDetailController extends _$RepeaterDetailController {
       throw Exception('Repeater not found');
     }
 
-    final feedbackStats = await ref.read(
-      getRepeaterFeedbackStatsProvider(repeaterId).future,
-    );
-    final myFeedbacks = await ref.read(
-      getMyRepeaterFeedbacksProvider(repeaterId).future,
-    );
-    final communityFeedbacks = await ref.read(
-      getRepeaterFeedbacksProvider(
-        repeaterId: repeaterId,
-        limit: 10,
-      ).future,
-    );
+    // I feedback sono contenuto accessorio: se offline (o con il backend
+    // irraggiungibile) falliscono, la scheda resta consultabile con i soli
+    // dati del ripetitore invece di andare in errore o restare in caricamento.
+    RepeaterFeedbackStats? feedbackStats;
+    var myFeedbacks = <RepeaterFeedback>[];
+    var communityFeedbacks = <RepeaterFeedback>[];
+    try {
+      feedbackStats = await ref.read(
+        getRepeaterFeedbackStatsProvider(repeaterId).future,
+      );
+      myFeedbacks = await ref.read(
+        getMyRepeaterFeedbacksProvider(repeaterId).future,
+      );
+      communityFeedbacks = await ref.read(
+        getRepeaterFeedbacksProvider(
+          repeaterId: repeaterId,
+          limit: 10,
+        ).future,
+      );
+    } catch (error) {
+      log('Feedback load skipped (offline?): $error');
+    }
 
     // Pre-select access if only one is available
     final feedbackAccessIds =

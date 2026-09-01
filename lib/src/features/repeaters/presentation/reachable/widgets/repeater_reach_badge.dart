@@ -12,6 +12,7 @@ import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/reachable/widgets/link_profile_chart.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_reachable/get_repeater_link_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
+import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -68,7 +69,7 @@ class RepeaterReachBadge extends HookConsumerWidget {
             AnalyticsEvent.coveragePaywallShown,
             surface: AnalyticsSurface.reachBadge,
           );
-        final purchased = await openReachabilityPaywall(ref);
+        final purchased = await openPaywall(ref, PaywallPlacement.reachBadge);
         analytics.track(
           purchased
               ? AnalyticsEvent.coveragePurchaseCompleted

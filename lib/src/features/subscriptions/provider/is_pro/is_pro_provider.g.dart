@@ -15,6 +15,12 @@ part of 'is_pro_provider.dart';
 ///
 /// Read it as `ref.watch(isProProvider).value ?? false`.
 ///
+/// **Resilienza offline**: ogni valore verificato viene persistito; se la
+/// verifica live fallisce o scade (device senza rete, RevenueCat giù),
+/// vale l'ultimo entitlement noto. Un Pro sul campo resta Pro — la revoca
+/// vera arriva alla prima verifica riuscita, che riallinea il valore
+/// persistito (e fa scattare la pulizia cache del lifecycle watcher).
+///
 /// `keepAlive`: Pro status is global, app-wide and rarely changes, so we keep
 /// it warm. Otherwise each gate that mounts restarts the provider from
 /// `AsyncLoading` (a one-frame false → flash of "locked") and a cold
@@ -31,6 +37,12 @@ final isProProvider = IsProProvider._();
 ///
 /// Read it as `ref.watch(isProProvider).value ?? false`.
 ///
+/// **Resilienza offline**: ogni valore verificato viene persistito; se la
+/// verifica live fallisce o scade (device senza rete, RevenueCat giù),
+/// vale l'ultimo entitlement noto. Un Pro sul campo resta Pro — la revoca
+/// vera arriva alla prima verifica riuscita, che riallinea il valore
+/// persistito (e fa scattare la pulizia cache del lifecycle watcher).
+///
 /// `keepAlive`: Pro status is global, app-wide and rarely changes, so we keep
 /// it warm. Otherwise each gate that mounts restarts the provider from
 /// `AsyncLoading` (a one-frame false → flash of "locked") and a cold
@@ -46,6 +58,12 @@ final class IsProProvider
   /// reports a change (purchase, restore, expiration, webhook refresh).
   ///
   /// Read it as `ref.watch(isProProvider).value ?? false`.
+  ///
+  /// **Resilienza offline**: ogni valore verificato viene persistito; se la
+  /// verifica live fallisce o scade (device senza rete, RevenueCat giù),
+  /// vale l'ultimo entitlement noto. Un Pro sul campo resta Pro — la revoca
+  /// vera arriva alla prima verifica riuscita, che riallinea il valore
+  /// persistito (e fa scattare la pulizia cache del lifecycle watcher).
   ///
   /// `keepAlive`: Pro status is global, app-wide and rarely changes, so we keep
   /// it warm. Otherwise each gate that mounts restarts the provider from
@@ -77,4 +95,4 @@ final class IsProProvider
   }
 }
 
-String _$isProHash() => r'2f4efb5f362760c4cd99376914709efbf9324cdc';
+String _$isProHash() => r'bccfaf965461a213db38c92bdce67ca0505f818e';

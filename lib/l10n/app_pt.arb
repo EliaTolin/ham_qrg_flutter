@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Atualizar",
   "stationDuplicateCreate": "Criar distinto",
   "stationSaveFailed": "Falha ao guardar: espaço insuficiente",
+  "stationSavedCta": "Localização guardada",
+  "stationRemoveCta": "Remover",
+  "stationRemoveTitle": "Remover a localização?",
+  "stationRemoveBody": "«{name}» e os seus dados offline serão eliminados deste dispositivo.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Localização removida",
+  "stationSaveError": "Não foi possível guardar. Tente novamente.",
   "stationsTitle": "Os meus postos",
   "stationsEmptyTitle": "Ainda sem postos guardados",
   "stationsEmptyBody": "Escolhe um ponto no mapa, vê o que alcanças e guarda-o: vais reencontrá-lo mesmo sem rede.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Toque para atualizar"
+  "spotsManualRefreshHint": "Toque para atualizar",
+  "coverageResultScope": "num raio de {km} km · {count} avaliados",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "A recalcular",
+  "offlineBannerMessage": "Sem ligação: a consultar os dados guardados",
+  "offlineMapsTitle": "Mapas offline",
+  "offlineMapsEntrySubtitle": "Transfira mapas para usar sem ligação",
+  "offlineMapsEmpty": "Nenhuma região transferida. Transfira uma zona para ver o mapa mesmo sem ligação.",
+  "offlineMapsAddRegion": "Transferir região",
+  "offlineMapsRegionNameLabel": "Nome da região",
+  "offlineMapsRegionNameHint": "Ex. Casa, Abrigo, Ativação SOTA",
+  "offlineMapsRadiusLabel": "Raio",
+  "offlineMapsDownload": "Transferir",
+  "offlineMapsDownloadingStyle": "A transferir o estilo do mapa…",
+  "offlineMapsDownloadingTiles": "A transferir mapas… {percent}%",
+  "offlineMapsEstimatedSize": "Tamanho estimado: {size}",
+  "offlineMapsDownloadError": "Falha na transferência. Tente novamente.",
+  "offlineMapsDeleteError": "Falha ao eliminar. Tente novamente.",
+  "offlineMapsDeleteConfirmTitle": "Eliminar a região?",
+  "offlineMapsDeleteConfirmMessage": "“{name}” deixará de estar disponível offline.",
+  "offlineMapsDeleteConfirm": "Eliminar",
+  "offlineMapsRegionSubtitle": "Raio {radius} km · {size}",
+  "offlineMapsIncomplete": "Transferência incompleta",
+  "offlineMapsResume": "Retomar",
+  "offlineMapsCenterInfo": "A região será centrada na sua localização atual.",
+  "dashboardOfflineTitle": "Está offline",
+  "dashboardOfflineMessage": "Sem dados guardados para esta zona. As suas localizações guardadas e os mapas transferidos continuam disponíveis.",
+  "offlineMapsCenterMine": "A minha posição",
+  "offlineMapsCenterSearch": "Procurar um local",
+  "offlineMapsCenterSearchInfo": "Procure uma cidade ou local: a região será centrada aí.",
+  "offlineMapsCenterSelected": "Centro: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

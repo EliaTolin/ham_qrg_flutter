@@ -132,51 +132,50 @@ class _SuggestionsPanel extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
+    // Material e non Container: i ListTile dei suggerimenti disegnano l'onda
+    // del tocco sul Material più vicino, e senza un antenato adatto Flutter
+    // segnala a ogni frame che lo splash sarebbe invisibile.
     return Container(
       margin: const EdgeInsets.only(top: 8),
       constraints: const BoxConstraints(maxHeight: 340),
-      decoration: BoxDecoration(
+      child: Material(
         color: theme.colorScheme.surface,
+        elevation: 3,
+        shadowColor: theme.shadowColor,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: theme.shadowColor.withValues(alpha: 0.12),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(child: _panelBody(context, ref)),
-          const Divider(height: 1),
-          // La via d'uscita resta SEMPRE visibile, non solo a lista vuota:
-          // Mapbox restituisce quasi sempre corrispondenze fuzzy anziché
-          // nessun risultato, quindi il fallimento tipico non è la lista vuota
-          // ma suggerimenti fuori tema, e l'utente deve poter tirare dritto.
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 10, 16, 12),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.touch_app_outlined,
-                  size: 16,
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    context.localization.coverageSearchTip,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(child: _panelBody(context, ref)),
+            const Divider(height: 1),
+            // La via d'uscita resta SEMPRE visibile, non solo a lista vuota:
+            // Mapbox restituisce quasi sempre corrispondenze fuzzy anziché
+            // nessun risultato, quindi il fallimento tipico non è la lista vuota
+            // ma suggerimenti fuori tema, e l'utente deve poter tirare dritto.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 12),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.touch_app_outlined,
+                    size: 16,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      context.localization.coverageSearchTip,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -236,7 +235,6 @@ class _SuggestionsPanel extends ConsumerWidget {
           );
         }
         return ListView.builder(
-          shrinkWrap: true,
           padding: EdgeInsets.zero,
           itemCount: places.length,
           itemBuilder: (context, index) => _SuggestionTile(
@@ -326,7 +324,6 @@ class _RecentList extends ConsumerWidget {
         ),
         Flexible(
           child: ListView.builder(
-            shrinkWrap: true,
             padding: EdgeInsets.zero,
             itemCount: recents.length,
             itemBuilder: (context, index) {

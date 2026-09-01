@@ -248,7 +248,10 @@ void main() {
 
           // With modifiers
           expect(CallsignValidator.isValidLicensedCallsign('HC1MD/2'), isTrue);
-          expect(CallsignValidator.isValidLicensedCallsign('KP5/NP3VI'), isTrue);
+          expect(
+            CallsignValidator.isValidLicensedCallsign('KP5/NP3VI'),
+            isTrue,
+          );
         });
       });
 
@@ -312,8 +315,14 @@ void main() {
         test('should validate callsigns with mobile suffix', () {
           expect(CallsignValidator.isValidLicensedCallsign('IU4VRB/M'), isTrue);
           expect(CallsignValidator.isValidLicensedCallsign('W1AW/M'), isTrue);
-          expect(CallsignValidator.isValidLicensedCallsign('IU4VRB/MM'), isTrue);
-          expect(CallsignValidator.isValidLicensedCallsign('IU4VRB/AM'), isTrue);
+          expect(
+            CallsignValidator.isValidLicensedCallsign('IU4VRB/MM'),
+            isTrue,
+          );
+          expect(
+            CallsignValidator.isValidLicensedCallsign('IU4VRB/AM'),
+            isTrue,
+          );
         });
 
         test('should validate callsigns with numeric suffix (area)', () {
@@ -323,16 +332,25 @@ void main() {
         });
 
         test('should validate callsigns with QRP suffix', () {
-          expect(CallsignValidator.isValidLicensedCallsign('IU4VRB/QRP'), isTrue);
+          expect(
+            CallsignValidator.isValidLicensedCallsign('IU4VRB/QRP'),
+            isTrue,
+          );
           expect(CallsignValidator.isValidLicensedCallsign('W1AW/QRP'), isTrue);
         });
 
         test('should validate callsigns with country prefix', () {
           // Operating from different call area
-          expect(CallsignValidator.isValidLicensedCallsign('IK4/IU4VRB'), isTrue);
+          expect(
+            CallsignValidator.isValidLicensedCallsign('IK4/IU4VRB'),
+            isTrue,
+          );
           expect(CallsignValidator.isValidLicensedCallsign('F/IU4VRB'), isTrue);
           expect(CallsignValidator.isValidLicensedCallsign('DL/W1AW'), isTrue);
-          expect(CallsignValidator.isValidLicensedCallsign('EA6/G0ABC'), isTrue);
+          expect(
+            CallsignValidator.isValidLicensedCallsign('EA6/G0ABC'),
+            isTrue,
+          );
         });
 
         test('should validate callsigns with both prefix and suffix', () {

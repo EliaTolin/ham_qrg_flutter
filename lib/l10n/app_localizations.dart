@@ -4396,6 +4396,42 @@ abstract class AppLocalizations {
   /// **'Salvataggio non riuscito: spazio insufficiente'**
   String get stationSaveFailed;
 
+  /// No description provided for @stationSavedCta.
+  ///
+  /// In it, this message translates to:
+  /// **'Postazione salvata'**
+  String get stationSavedCta;
+
+  /// No description provided for @stationRemoveCta.
+  ///
+  /// In it, this message translates to:
+  /// **'Rimuovi'**
+  String get stationRemoveCta;
+
+  /// No description provided for @stationRemoveTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Rimuovere la postazione?'**
+  String get stationRemoveTitle;
+
+  /// No description provided for @stationRemoveBody.
+  ///
+  /// In it, this message translates to:
+  /// **'«{name}» e i suoi dati offline verranno eliminati da questo dispositivo.'**
+  String stationRemoveBody(String name);
+
+  /// No description provided for @stationRemovedSnack.
+  ///
+  /// In it, this message translates to:
+  /// **'Postazione rimossa'**
+  String get stationRemovedSnack;
+
+  /// No description provided for @stationSaveError.
+  ///
+  /// In it, this message translates to:
+  /// **'Salvataggio non riuscito. Riprova.'**
+  String get stationSaveError;
+
   /// No description provided for @stationsTitle.
   ///
   /// In it, this message translates to:
@@ -4461,6 +4497,180 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Tocca per aggiornare'**
   String get spotsManualRefreshHint;
+
+  /// No description provided for @coverageResultScope.
+  ///
+  /// In it, this message translates to:
+  /// **'entro {km} km · {count} valutati'**
+  String coverageResultScope(int km, int count);
+
+  /// No description provided for @coverageResultRecalculating.
+  ///
+  /// In it, this message translates to:
+  /// **'Ricalcolo in corso'**
+  String get coverageResultRecalculating;
+
+  /// No description provided for @offlineBannerMessage.
+  ///
+  /// In it, this message translates to:
+  /// **'Sei offline: stai consultando i dati salvati'**
+  String get offlineBannerMessage;
+
+  /// No description provided for @offlineMapsTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Mappe offline'**
+  String get offlineMapsTitle;
+
+  /// No description provided for @offlineMapsEntrySubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Scarica le mappe per l\'uso senza rete'**
+  String get offlineMapsEntrySubtitle;
+
+  /// No description provided for @offlineMapsEmpty.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessuna regione scaricata. Scarica una zona per vedere la mappa anche senza rete.'**
+  String get offlineMapsEmpty;
+
+  /// No description provided for @offlineMapsAddRegion.
+  ///
+  /// In it, this message translates to:
+  /// **'Scarica regione'**
+  String get offlineMapsAddRegion;
+
+  /// No description provided for @offlineMapsRegionNameLabel.
+  ///
+  /// In it, this message translates to:
+  /// **'Nome della regione'**
+  String get offlineMapsRegionNameLabel;
+
+  /// No description provided for @offlineMapsRegionNameHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. Casa, Rifugio, Attivazione SOTA'**
+  String get offlineMapsRegionNameHint;
+
+  /// No description provided for @offlineMapsRadiusLabel.
+  ///
+  /// In it, this message translates to:
+  /// **'Raggio'**
+  String get offlineMapsRadiusLabel;
+
+  /// No description provided for @offlineMapsDownload.
+  ///
+  /// In it, this message translates to:
+  /// **'Scarica'**
+  String get offlineMapsDownload;
+
+  /// No description provided for @offlineMapsDownloadingStyle.
+  ///
+  /// In it, this message translates to:
+  /// **'Download dello stile mappa…'**
+  String get offlineMapsDownloadingStyle;
+
+  /// No description provided for @offlineMapsDownloadingTiles.
+  ///
+  /// In it, this message translates to:
+  /// **'Download delle mappe… {percent}%'**
+  String offlineMapsDownloadingTiles(String percent);
+
+  /// No description provided for @offlineMapsEstimatedSize.
+  ///
+  /// In it, this message translates to:
+  /// **'Dimensione stimata: {size}'**
+  String offlineMapsEstimatedSize(String size);
+
+  /// No description provided for @offlineMapsDownloadError.
+  ///
+  /// In it, this message translates to:
+  /// **'Download non riuscito. Riprova.'**
+  String get offlineMapsDownloadError;
+
+  /// No description provided for @offlineMapsDeleteError.
+  ///
+  /// In it, this message translates to:
+  /// **'Eliminazione non riuscita. Riprova.'**
+  String get offlineMapsDeleteError;
+
+  /// No description provided for @offlineMapsDeleteConfirmTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Eliminare la regione?'**
+  String get offlineMapsDeleteConfirmTitle;
+
+  /// No description provided for @offlineMapsDeleteConfirmMessage.
+  ///
+  /// In it, this message translates to:
+  /// **'“{name}” non sarà più disponibile senza rete.'**
+  String offlineMapsDeleteConfirmMessage(String name);
+
+  /// No description provided for @offlineMapsDeleteConfirm.
+  ///
+  /// In it, this message translates to:
+  /// **'Elimina'**
+  String get offlineMapsDeleteConfirm;
+
+  /// No description provided for @offlineMapsRegionSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Raggio {radius} km · {size}'**
+  String offlineMapsRegionSubtitle(String radius, String size);
+
+  /// No description provided for @offlineMapsIncomplete.
+  ///
+  /// In it, this message translates to:
+  /// **'Download incompleto'**
+  String get offlineMapsIncomplete;
+
+  /// No description provided for @offlineMapsResume.
+  ///
+  /// In it, this message translates to:
+  /// **'Riprendi'**
+  String get offlineMapsResume;
+
+  /// No description provided for @offlineMapsCenterInfo.
+  ///
+  /// In it, this message translates to:
+  /// **'La regione sarà centrata sulla tua posizione attuale.'**
+  String get offlineMapsCenterInfo;
+
+  /// No description provided for @dashboardOfflineTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Sei offline'**
+  String get dashboardOfflineTitle;
+
+  /// No description provided for @dashboardOfflineMessage.
+  ///
+  /// In it, this message translates to:
+  /// **'Non ci sono dati salvati per questa zona. Le tue postazioni salvate e le mappe scaricate restano disponibili.'**
+  String get dashboardOfflineMessage;
+
+  /// No description provided for @offlineMapsCenterMine.
+  ///
+  /// In it, this message translates to:
+  /// **'La mia posizione'**
+  String get offlineMapsCenterMine;
+
+  /// No description provided for @offlineMapsCenterSearch.
+  ///
+  /// In it, this message translates to:
+  /// **'Cerca un luogo'**
+  String get offlineMapsCenterSearch;
+
+  /// No description provided for @offlineMapsCenterSearchInfo.
+  ///
+  /// In it, this message translates to:
+  /// **'Cerca una città o un luogo: la regione sarà centrata lì.'**
+  String get offlineMapsCenterSearchInfo;
+
+  /// No description provided for @offlineMapsCenterSelected.
+  ///
+  /// In it, this message translates to:
+  /// **'Centro: {label}'**
+  String offlineMapsCenterSelected(String label);
 }
 
 class _AppLocalizationsDelegate

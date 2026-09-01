@@ -6,6 +6,7 @@ import 'package:hamqrg/clients/revenue_cat/impl/revenue_cat_client_impl.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/pro/pro_blur_gate.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_point.dart';
+import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -54,7 +55,8 @@ class CoverageTeaser extends HookConsumerWidget {
           surface: AnalyticsSurface.mapTeaser,
         );
 
-      final purchased = await openReachabilityPaywallInPlace(ref);
+      final purchased =
+          await openPaywallInPlace(ref, PaywallPlacement.coverageTeaser);
 
       analytics.track(
         purchased

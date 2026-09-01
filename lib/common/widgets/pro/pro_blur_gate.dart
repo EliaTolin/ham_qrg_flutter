@@ -55,7 +55,8 @@ class ProBlurGate extends StatelessWidget {
             // Blurred teaser fills behind — decorative, never interactive.
             Positioned.fill(
               child: ImageFiltered(
-                imageFilter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
+                imageFilter:
+                    ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
                 child: IgnorePointer(child: teaser),
               ),
             ),
@@ -93,7 +94,10 @@ class ProBlurGate extends StatelessWidget {
                           color: AppColors.proGold.withValues(alpha: 0.6),
                         ),
                       ),
-                      child: const Icon(Icons.lock_rounded, color: AppColors.proGold),
+                      child: const Icon(
+                        Icons.lock_rounded,
+                        color: AppColors.proGold,
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Text(
@@ -109,7 +113,8 @@ class ProBlurGate extends StatelessWidget {
                         subtitle!,
                         textAlign: TextAlign.center,
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+                          color: theme.colorScheme.onSurface
+                              .withValues(alpha: 0.7),
                         ),
                       ),
                     ],
@@ -121,7 +126,8 @@ class ProBlurGate extends StatelessWidget {
                         foregroundColor: AppColors.onProGold,
                       ),
                       icon: const Icon(Icons.bolt_rounded, size: 18),
-                      label: Text(ctaLabel ?? context.localization.proUnlockCta),
+                      label:
+                          Text(ctaLabel ?? context.localization.proUnlockCta),
                     ),
                   ],
                 ),

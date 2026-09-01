@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "La mettre à jour",
   "stationDuplicateCreate": "En créer un autre",
   "stationSaveFailed": "Échec de l'enregistrement : espace insuffisant",
+  "stationSavedCta": "Emplacement enregistré",
+  "stationRemoveCta": "Supprimer",
+  "stationRemoveTitle": "Supprimer l’emplacement ?",
+  "stationRemoveBody": "« {name} » et ses données hors ligne seront supprimés de cet appareil.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Emplacement supprimé",
+  "stationSaveError": "Échec de l’enregistrement. Réessayez.",
   "stationsTitle": "Mes postes",
   "stationsEmptyTitle": "Aucun poste enregistré",
   "stationsEmptyBody": "Choisissez un point sur la carte, voyez ce que vous captez et enregistrez-le : vous le retrouverez même sans réseau.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Touchez pour actualiser"
+  "spotsManualRefreshHint": "Touchez pour actualiser",
+  "coverageResultScope": "dans un rayon de {km} km · {count} évalués",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Recalcul en cours",
+  "offlineBannerMessage": "Hors ligne : vous consultez les données enregistrées",
+  "offlineMapsTitle": "Cartes hors ligne",
+  "offlineMapsEntrySubtitle": "Téléchargez des cartes pour une utilisation sans connexion",
+  "offlineMapsEmpty": "Aucune région téléchargée. Téléchargez une zone pour voir la carte même sans connexion.",
+  "offlineMapsAddRegion": "Télécharger une région",
+  "offlineMapsRegionNameLabel": "Nom de la région",
+  "offlineMapsRegionNameHint": "Ex. Maison, Refuge, Activation SOTA",
+  "offlineMapsRadiusLabel": "Rayon",
+  "offlineMapsDownload": "Télécharger",
+  "offlineMapsDownloadingStyle": "Téléchargement du style de carte…",
+  "offlineMapsDownloadingTiles": "Téléchargement des cartes… {percent}%",
+  "offlineMapsEstimatedSize": "Taille estimée : {size}",
+  "offlineMapsDownloadError": "Échec du téléchargement. Réessayez.",
+  "offlineMapsDeleteError": "Échec de la suppression. Réessayez.",
+  "offlineMapsDeleteConfirmTitle": "Supprimer la région ?",
+  "offlineMapsDeleteConfirmMessage": "« {name} » ne sera plus disponible hors ligne.",
+  "offlineMapsDeleteConfirm": "Supprimer",
+  "offlineMapsRegionSubtitle": "Rayon {radius} km · {size}",
+  "offlineMapsIncomplete": "Téléchargement incomplet",
+  "offlineMapsResume": "Reprendre",
+  "offlineMapsCenterInfo": "La région sera centrée sur votre position actuelle.",
+  "dashboardOfflineTitle": "Vous êtes hors ligne",
+  "dashboardOfflineMessage": "Aucune donnée enregistrée pour cette zone. Vos emplacements enregistrés et vos cartes téléchargées restent disponibles.",
+  "offlineMapsCenterMine": "Ma position",
+  "offlineMapsCenterSearch": "Chercher un lieu",
+  "offlineMapsCenterSearchInfo": "Cherchez une ville ou un lieu : la région sera centrée dessus.",
+  "offlineMapsCenterSelected": "Centre : {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

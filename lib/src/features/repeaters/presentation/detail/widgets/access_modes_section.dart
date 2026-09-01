@@ -65,7 +65,8 @@ class AccessModeCard extends StatelessWidget {
 
   final RepeaterAccess access;
 
-  bool get _isBrandmeister => access.network?.name.toLowerCase().contains('brandmeister') ?? false;
+  bool get _isBrandmeister =>
+      access.network?.name.toLowerCase().contains('brandmeister') ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -296,7 +297,9 @@ class AccessModeCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    AccessModeHelper.getNodeIdLabel(access.mode)?.toUpperCase() ?? 'NODE ID',
+                    AccessModeHelper.getNodeIdLabel(access.mode)
+                            ?.toUpperCase() ??
+                        'NODE ID',
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.bold,
@@ -398,7 +401,9 @@ class AccessModeCard extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: details.expand((widget) => [widget, const SizedBox(height: 8)]).toList()
+      children: details
+          .expand((widget) => [widget, const SizedBox(height: 8)])
+          .toList()
         ..removeLast(),
     );
   }

@@ -2384,6 +2384,26 @@ class AppLocalizationsHu extends AppLocalizations {
   String get stationSaveFailed => 'A mentés sikertelen: nincs elég hely';
 
   @override
+  String get stationSavedCta => 'Helyszín mentve';
+
+  @override
+  String get stationRemoveCta => 'Eltávolítás';
+
+  @override
+  String get stationRemoveTitle => 'Eltávolítja a helyszínt?';
+
+  @override
+  String stationRemoveBody(String name) {
+    return 'A(z) „$name” és offline adatai törlődnek erről az eszközről.';
+  }
+
+  @override
+  String get stationRemovedSnack => 'Helyszín eltávolítva';
+
+  @override
+  String get stationSaveError => 'A mentés nem sikerült. Próbálja újra.';
+
+  @override
   String get stationsTitle => 'Helyeim';
 
   @override
@@ -2424,4 +2444,110 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get spotsManualRefreshHint => 'Koppintson a frissítéshez';
+
+  @override
+  String coverageResultScope(int km, int count) {
+    return '$km km-en belül · $count kiértékelve';
+  }
+
+  @override
+  String get coverageResultRecalculating => 'Újraszámítás';
+
+  @override
+  String get offlineBannerMessage => 'Offline vagy: a mentett adatokat látod';
+
+  @override
+  String get offlineMapsTitle => 'Offline térképek';
+
+  @override
+  String get offlineMapsEntrySubtitle =>
+      'Tölts le térképeket kapcsolat nélküli használatra';
+
+  @override
+  String get offlineMapsEmpty =>
+      'Nincs letöltött régió. Tölts le egy területet, hogy a térképet kapcsolat nélkül is lásd.';
+
+  @override
+  String get offlineMapsAddRegion => 'Régió letöltése';
+
+  @override
+  String get offlineMapsRegionNameLabel => 'Régió neve';
+
+  @override
+  String get offlineMapsRegionNameHint =>
+      'Pl. Otthon, Menedékház, SOTA aktiválás';
+
+  @override
+  String get offlineMapsRadiusLabel => 'Sugár';
+
+  @override
+  String get offlineMapsDownload => 'Letöltés';
+
+  @override
+  String get offlineMapsDownloadingStyle => 'Térképstílus letöltése…';
+
+  @override
+  String offlineMapsDownloadingTiles(String percent) {
+    return 'Térképek letöltése… $percent%';
+  }
+
+  @override
+  String offlineMapsEstimatedSize(String size) {
+    return 'Becsült méret: $size';
+  }
+
+  @override
+  String get offlineMapsDownloadError =>
+      'A letöltés nem sikerült. Próbáld újra.';
+
+  @override
+  String get offlineMapsDeleteError => 'A törlés nem sikerült. Próbáld újra.';
+
+  @override
+  String get offlineMapsDeleteConfirmTitle => 'Törlöd a régiót?';
+
+  @override
+  String offlineMapsDeleteConfirmMessage(String name) {
+    return '„$name” többé nem lesz elérhető offline.';
+  }
+
+  @override
+  String get offlineMapsDeleteConfirm => 'Törlés';
+
+  @override
+  String offlineMapsRegionSubtitle(String radius, String size) {
+    return 'Sugár: $radius km · $size';
+  }
+
+  @override
+  String get offlineMapsIncomplete => 'Befejezetlen letöltés';
+
+  @override
+  String get offlineMapsResume => 'Folytatás';
+
+  @override
+  String get offlineMapsCenterInfo =>
+      'A régió a jelenlegi helyzeted köré lesz központosítva.';
+
+  @override
+  String get dashboardOfflineTitle => 'Offline vagy';
+
+  @override
+  String get dashboardOfflineMessage =>
+      'Ehhez a területhez nincs mentett adat. A mentett helyeid és a letöltött térképek továbbra is elérhetők.';
+
+  @override
+  String get offlineMapsCenterMine => 'Saját helyzetem';
+
+  @override
+  String get offlineMapsCenterSearch => 'Hely keresése';
+
+  @override
+  String get offlineMapsCenterSearchInfo =>
+      'Keress egy várost vagy helyet: a régió oda lesz középre igazítva.';
+
+  @override
+  String offlineMapsCenterSelected(String label) {
+    return 'Közép: $label';
+  }
 }

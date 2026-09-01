@@ -100,9 +100,8 @@ void main() {
         searchRepeatersProvider(query: 'Casalgrande').future,
       );
 
-      final allModes = results
-          .expand((r) => r.accesses.map((a) => a.mode))
-          .toSet();
+      final allModes =
+          results.expand((r) => r.accesses.map((a) => a.mode)).toSet();
       expect(allModes, contains(AccessMode.atv));
       expect(allModes, contains(AccessMode.analog));
     });

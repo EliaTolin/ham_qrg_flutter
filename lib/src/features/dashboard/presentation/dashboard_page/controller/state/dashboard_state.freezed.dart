@@ -19,10 +19,6 @@ mixin _$DashboardState {
   List<Repeater> get nearbyRepeaters;
   Profile? get profile;
   LocationErrorType? get locationError;
-  List<PotaSpot> get potaSpots;
-  bool get hasPotaError;
-  List<SotaSpot> get sotaSpots;
-  bool get hasSotaError;
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
@@ -45,13 +41,7 @@ mixin _$DashboardState {
                 .equals(other.nearbyRepeaters, nearbyRepeaters) &&
             (identical(other.profile, profile) || other.profile == profile) &&
             (identical(other.locationError, locationError) ||
-                other.locationError == locationError) &&
-            const DeepCollectionEquality().equals(other.potaSpots, potaSpots) &&
-            (identical(other.hasPotaError, hasPotaError) ||
-                other.hasPotaError == hasPotaError) &&
-            const DeepCollectionEquality().equals(other.sotaSpots, sotaSpots) &&
-            (identical(other.hasSotaError, hasSotaError) ||
-                other.hasSotaError == hasSotaError));
+                other.locationError == locationError));
   }
 
   @override
@@ -61,15 +51,11 @@ mixin _$DashboardState {
       initialPosition,
       const DeepCollectionEquality().hash(nearbyRepeaters),
       profile,
-      locationError,
-      const DeepCollectionEquality().hash(potaSpots),
-      hasPotaError,
-      const DeepCollectionEquality().hash(sotaSpots),
-      hasSotaError);
+      locationError);
 
   @override
   String toString() {
-    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError, potaSpots: $potaSpots, hasPotaError: $hasPotaError, sotaSpots: $sotaSpots, hasSotaError: $hasSotaError)';
+    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError)';
   }
 }
 
@@ -84,11 +70,7 @@ abstract mixin class $DashboardStateCopyWith<$Res> {
       ({double lat, double lon}) initialPosition,
       List<Repeater> nearbyRepeaters,
       Profile? profile,
-      LocationErrorType? locationError,
-      List<PotaSpot> potaSpots,
-      bool hasPotaError,
-      List<SotaSpot> sotaSpots,
-      bool hasSotaError});
+      LocationErrorType? locationError});
 
   $DashboardStatisticsCopyWith<$Res> get statistics;
   $ProfileCopyWith<$Res>? get profile;
@@ -112,10 +94,6 @@ class _$DashboardStateCopyWithImpl<$Res>
     Object? nearbyRepeaters = null,
     Object? profile = freezed,
     Object? locationError = freezed,
-    Object? potaSpots = null,
-    Object? hasPotaError = null,
-    Object? sotaSpots = null,
-    Object? hasSotaError = null,
   }) {
     return _then(_self.copyWith(
       statistics: null == statistics
@@ -138,22 +116,6 @@ class _$DashboardStateCopyWithImpl<$Res>
           ? _self.locationError
           : locationError // ignore: cast_nullable_to_non_nullable
               as LocationErrorType?,
-      potaSpots: null == potaSpots
-          ? _self.potaSpots
-          : potaSpots // ignore: cast_nullable_to_non_nullable
-              as List<PotaSpot>,
-      hasPotaError: null == hasPotaError
-          ? _self.hasPotaError
-          : hasPotaError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      sotaSpots: null == sotaSpots
-          ? _self.sotaSpots
-          : sotaSpots // ignore: cast_nullable_to_non_nullable
-              as List<SotaSpot>,
-      hasSotaError: null == hasSotaError
-          ? _self.hasSotaError
-          : hasSotaError // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 
@@ -280,27 +242,15 @@ extension DashboardStatePatterns on DashboardState {
             ({double lat, double lon}) initialPosition,
             List<Repeater> nearbyRepeaters,
             Profile? profile,
-            LocationErrorType? locationError,
-            List<PotaSpot> potaSpots,
-            bool hasPotaError,
-            List<SotaSpot> sotaSpots,
-            bool hasSotaError)?
+            LocationErrorType? locationError)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _DashboardState() when $default != null:
-        return $default(
-            _that.statistics,
-            _that.initialPosition,
-            _that.nearbyRepeaters,
-            _that.profile,
-            _that.locationError,
-            _that.potaSpots,
-            _that.hasPotaError,
-            _that.sotaSpots,
-            _that.hasSotaError);
+        return $default(_that.statistics, _that.initialPosition,
+            _that.nearbyRepeaters, _that.profile, _that.locationError);
       case _:
         return orElse();
     }
@@ -326,26 +276,14 @@ extension DashboardStatePatterns on DashboardState {
             ({double lat, double lon}) initialPosition,
             List<Repeater> nearbyRepeaters,
             Profile? profile,
-            LocationErrorType? locationError,
-            List<PotaSpot> potaSpots,
-            bool hasPotaError,
-            List<SotaSpot> sotaSpots,
-            bool hasSotaError)
+            LocationErrorType? locationError)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _DashboardState():
-        return $default(
-            _that.statistics,
-            _that.initialPosition,
-            _that.nearbyRepeaters,
-            _that.profile,
-            _that.locationError,
-            _that.potaSpots,
-            _that.hasPotaError,
-            _that.sotaSpots,
-            _that.hasSotaError);
+        return $default(_that.statistics, _that.initialPosition,
+            _that.nearbyRepeaters, _that.profile, _that.locationError);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -370,26 +308,14 @@ extension DashboardStatePatterns on DashboardState {
             ({double lat, double lon}) initialPosition,
             List<Repeater> nearbyRepeaters,
             Profile? profile,
-            LocationErrorType? locationError,
-            List<PotaSpot> potaSpots,
-            bool hasPotaError,
-            List<SotaSpot> sotaSpots,
-            bool hasSotaError)?
+            LocationErrorType? locationError)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _DashboardState() when $default != null:
-        return $default(
-            _that.statistics,
-            _that.initialPosition,
-            _that.nearbyRepeaters,
-            _that.profile,
-            _that.locationError,
-            _that.potaSpots,
-            _that.hasPotaError,
-            _that.sotaSpots,
-            _that.hasSotaError);
+        return $default(_that.statistics, _that.initialPosition,
+            _that.nearbyRepeaters, _that.profile, _that.locationError);
       case _:
         return null;
     }
@@ -404,14 +330,8 @@ class _DashboardState implements DashboardState {
       required this.initialPosition,
       required final List<Repeater> nearbyRepeaters,
       required this.profile,
-      this.locationError,
-      final List<PotaSpot> potaSpots = const <PotaSpot>[],
-      this.hasPotaError = false,
-      final List<SotaSpot> sotaSpots = const <SotaSpot>[],
-      this.hasSotaError = false})
-      : _nearbyRepeaters = nearbyRepeaters,
-        _potaSpots = potaSpots,
-        _sotaSpots = sotaSpots;
+      this.locationError})
+      : _nearbyRepeaters = nearbyRepeaters;
 
   @override
   final DashboardStatistics statistics;
@@ -429,30 +349,6 @@ class _DashboardState implements DashboardState {
   final Profile? profile;
   @override
   final LocationErrorType? locationError;
-  final List<PotaSpot> _potaSpots;
-  @override
-  @JsonKey()
-  List<PotaSpot> get potaSpots {
-    if (_potaSpots is EqualUnmodifiableListView) return _potaSpots;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_potaSpots);
-  }
-
-  @override
-  @JsonKey()
-  final bool hasPotaError;
-  final List<SotaSpot> _sotaSpots;
-  @override
-  @JsonKey()
-  List<SotaSpot> get sotaSpots {
-    if (_sotaSpots is EqualUnmodifiableListView) return _sotaSpots;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_sotaSpots);
-  }
-
-  @override
-  @JsonKey()
-  final bool hasSotaError;
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
@@ -475,15 +371,7 @@ class _DashboardState implements DashboardState {
                 .equals(other._nearbyRepeaters, _nearbyRepeaters) &&
             (identical(other.profile, profile) || other.profile == profile) &&
             (identical(other.locationError, locationError) ||
-                other.locationError == locationError) &&
-            const DeepCollectionEquality()
-                .equals(other._potaSpots, _potaSpots) &&
-            (identical(other.hasPotaError, hasPotaError) ||
-                other.hasPotaError == hasPotaError) &&
-            const DeepCollectionEquality()
-                .equals(other._sotaSpots, _sotaSpots) &&
-            (identical(other.hasSotaError, hasSotaError) ||
-                other.hasSotaError == hasSotaError));
+                other.locationError == locationError));
   }
 
   @override
@@ -493,15 +381,11 @@ class _DashboardState implements DashboardState {
       initialPosition,
       const DeepCollectionEquality().hash(_nearbyRepeaters),
       profile,
-      locationError,
-      const DeepCollectionEquality().hash(_potaSpots),
-      hasPotaError,
-      const DeepCollectionEquality().hash(_sotaSpots),
-      hasSotaError);
+      locationError);
 
   @override
   String toString() {
-    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError, potaSpots: $potaSpots, hasPotaError: $hasPotaError, sotaSpots: $sotaSpots, hasSotaError: $hasSotaError)';
+    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError)';
   }
 }
 
@@ -518,11 +402,7 @@ abstract mixin class _$DashboardStateCopyWith<$Res>
       ({double lat, double lon}) initialPosition,
       List<Repeater> nearbyRepeaters,
       Profile? profile,
-      LocationErrorType? locationError,
-      List<PotaSpot> potaSpots,
-      bool hasPotaError,
-      List<SotaSpot> sotaSpots,
-      bool hasSotaError});
+      LocationErrorType? locationError});
 
   @override
   $DashboardStatisticsCopyWith<$Res> get statistics;
@@ -548,10 +428,6 @@ class __$DashboardStateCopyWithImpl<$Res>
     Object? nearbyRepeaters = null,
     Object? profile = freezed,
     Object? locationError = freezed,
-    Object? potaSpots = null,
-    Object? hasPotaError = null,
-    Object? sotaSpots = null,
-    Object? hasSotaError = null,
   }) {
     return _then(_DashboardState(
       statistics: null == statistics
@@ -574,22 +450,6 @@ class __$DashboardStateCopyWithImpl<$Res>
           ? _self.locationError
           : locationError // ignore: cast_nullable_to_non_nullable
               as LocationErrorType?,
-      potaSpots: null == potaSpots
-          ? _self._potaSpots
-          : potaSpots // ignore: cast_nullable_to_non_nullable
-              as List<PotaSpot>,
-      hasPotaError: null == hasPotaError
-          ? _self.hasPotaError
-          : hasPotaError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      sotaSpots: null == sotaSpots
-          ? _self._sotaSpots
-          : sotaSpots // ignore: cast_nullable_to_non_nullable
-              as List<SotaSpot>,
-      hasSotaError: null == hasSotaError
-          ? _self.hasSotaError
-          : hasSotaError // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 

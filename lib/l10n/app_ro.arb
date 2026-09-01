@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Actualizează",
   "stationDuplicateCreate": "Creează separat",
   "stationSaveFailed": "Salvarea a eșuat: spațiu insuficient",
+  "stationSavedCta": "Locație salvată",
+  "stationRemoveCta": "Elimină",
+  "stationRemoveTitle": "Eliminați locația?",
+  "stationRemoveBody": "„{name}” și datele sale offline vor fi șterse de pe acest dispozitiv.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Locație eliminată",
+  "stationSaveError": "Salvarea nu a reușit. Încercați din nou.",
   "stationsTitle": "Posturile mele",
   "stationsEmptyTitle": "Niciun post salvat",
   "stationsEmptyBody": "Alege un punct pe hartă, vezi ce prinzi și salvează-l: îl vei regăsi și fără rețea.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Atinge pentru actualizare"
+  "spotsManualRefreshHint": "Atinge pentru actualizare",
+  "coverageResultScope": "pe o rază de {km} km · {count} evaluate",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Se recalculează",
+  "offlineBannerMessage": "Ești offline: vezi datele salvate",
+  "offlineMapsTitle": "Hărți offline",
+  "offlineMapsEntrySubtitle": "Descarcă hărți pentru utilizare fără conexiune",
+  "offlineMapsEmpty": "Nicio regiune descărcată. Descarcă o zonă pentru a vedea harta chiar și fără conexiune.",
+  "offlineMapsAddRegion": "Descarcă regiune",
+  "offlineMapsRegionNameLabel": "Numele regiunii",
+  "offlineMapsRegionNameHint": "Ex. Acasă, Cabană, Activare SOTA",
+  "offlineMapsRadiusLabel": "Rază",
+  "offlineMapsDownload": "Descarcă",
+  "offlineMapsDownloadingStyle": "Se descarcă stilul hărții…",
+  "offlineMapsDownloadingTiles": "Se descarcă hărțile… {percent}%",
+  "offlineMapsEstimatedSize": "Dimensiune estimată: {size}",
+  "offlineMapsDownloadError": "Descărcarea a eșuat. Încearcă din nou.",
+  "offlineMapsDeleteError": "Ștergerea a eșuat. Încearcă din nou.",
+  "offlineMapsDeleteConfirmTitle": "Ștergi regiunea?",
+  "offlineMapsDeleteConfirmMessage": "„{name}” nu va mai fi disponibilă offline.",
+  "offlineMapsDeleteConfirm": "Șterge",
+  "offlineMapsRegionSubtitle": "Rază {radius} km · {size}",
+  "offlineMapsIncomplete": "Descărcare incompletă",
+  "offlineMapsResume": "Reia",
+  "offlineMapsCenterInfo": "Regiunea va fi centrată pe poziția ta actuală.",
+  "dashboardOfflineTitle": "Ești offline",
+  "dashboardOfflineMessage": "Nu există date salvate pentru această zonă. Locațiile salvate și hărțile descărcate rămân disponibile.",
+  "offlineMapsCenterMine": "Poziția mea",
+  "offlineMapsCenterSearch": "Caută un loc",
+  "offlineMapsCenterSearchInfo": "Caută un oraș sau un loc: regiunea va fi centrată acolo.",
+  "offlineMapsCenterSelected": "Centru: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

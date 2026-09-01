@@ -1,19 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/common/widgets/banner/info_banner.dart';
+import 'package:hamqrg/common/widgets/error/inline_error_retry.dart';
 import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
+import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widgets/dashboard_offline_content.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart'
     show spotTimeAgo;
+import 'package:hamqrg/src/features/pota/provider/get_pota_spots/get_pota_spots_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/sota/data/mappers/sota_mappers.dart'
     as sota_mappers;
@@ -22,6 +27,7 @@ import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/widgets/so
 import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/widgets/sota_points_badge.dart';
 import 'package:hamqrg/src/features/sota/presentation/sota_spots_page/widgets/sota_spot_freshness_indicator.dart'
     as sota_fresh;
+import 'package:hamqrg/src/features/sota/provider/get_sota_spots/get_sota_spots_provider.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/spot_dashboard_tab.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -36,16 +42,12 @@ class DashboardTablet extends StatelessWidget {
     required this.statistics,
     required this.initialPosition,
     required this.nearbyRepeaters,
-    required this.potaSpots,
-    required this.sotaSpots,
     super.key,
   });
 
   final DashboardStatistics statistics;
   final ({double lat, double lon}) initialPosition;
   final List<Repeater> nearbyRepeaters;
-  final List<PotaSpot> potaSpots;
-  final List<SotaSpot> sotaSpots;
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +73,6 @@ class DashboardTablet extends StatelessWidget {
               child: _SidePanel(
                 statistics: statistics,
                 nearbyRepeaters: nearbyRepeaters,
-                potaSpots: potaSpots,
-                sotaSpots: sotaSpots,
               ),
             ),
           ),
@@ -255,24 +255,38 @@ class _SidePanel extends ConsumerWidget {
   const _SidePanel({
     required this.statistics,
     required this.nearbyRepeaters,
-    required this.potaSpots,
-    required this.sotaSpots,
   });
 
   final DashboardStatistics statistics;
   final List<Repeater> nearbyRepeaters;
-  final List<PotaSpot> potaSpots;
-  final List<SotaSpot> sotaSpots;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
+    final isOffline = ref.watch(offlineStatusProvider).value ?? false;
+    // Stesso criterio del layout mobile: offline senza nulla in cache lo
+    // stato dedicato sostituisce tegole a zero e liste vuote.
+    final showOfflineEmptyState =
+        isOffline && nearbyRepeaters.isEmpty && statistics.totalRepeaters == 0;
+    if (showOfflineEmptyState) {
+      return const SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(20, 20, 20, 32),
+        child: DashboardOfflineContent(),
+      );
+    }
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (isOffline) ...[
+            InfoBanner(
+              icon: const Icon(Icons.cloud_off_outlined),
+              label: l10n.offlineBannerMessage,
+            ),
+            const SizedBox(height: 16),
+          ],
           _StatsTiles(statistics: statistics),
           const SizedBox(height: 24),
           _ConsoleSection(
@@ -292,18 +306,16 @@ class _SidePanel extends ConsumerWidget {
             label: 'POTA SPOTS',
             actionLabel: l10n.dashboardViewAllPotaSpots,
             onAction: () => context.router.push(const PotaSpotsRoute()),
-            onRefresh: () =>
-                ref.read(dashboardControllerProvider.notifier).refreshPota(),
-            child: _PotaList(spots: potaSpots.take(5).toList()),
+            onRefresh: () => ref.invalidate(getPotaSpotsProvider),
+            child: const _PotaList(),
           ),
           const SizedBox(height: 20),
           _ConsoleSection(
             label: 'SOTA SPOTS',
             actionLabel: l10n.sotaViewAll,
             onAction: () => context.router.push(const SotaSpotsRoute()),
-            onRefresh: () =>
-                ref.read(dashboardControllerProvider.notifier).refreshSota(),
-            child: _SotaList(spots: sotaSpots.take(5).toList()),
+            onRefresh: () => ref.invalidate(getSotaSpotsProvider),
+            child: const _SotaList(),
           ),
         ],
       ),
@@ -654,15 +666,33 @@ class _CompactRepeaterRow extends StatelessWidget {
 // ---------------------------------------------------------------------------
 // Compact POTA list
 // ---------------------------------------------------------------------------
-class _PotaList extends StatelessWidget {
-  const _PotaList({required this.spots});
-
-  final List<PotaSpot> spots;
+class _PotaList extends ConsumerWidget {
+  const _PotaList();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final l10n = context.localization;
+    final asyncSpots = ref.watch(getPotaSpotsProvider);
+    final spots = asyncSpots.asData?.value ?? const <PotaSpot>[];
+
+    if (asyncSpots.isLoading && spots.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        child: Center(child: CircularProgressIndicator.adaptive()),
+      );
+    }
+
+    // The POTA API is third-party: its failure stays inside this section.
+    if (asyncSpots.hasError && spots.isEmpty) {
+      return InlineErrorRetry(
+        compact: true,
+        message: l10n.potaLoadError,
+        retryLabel: l10n.potaRetry,
+        onRetry: () => ref.invalidate(getPotaSpotsProvider),
+      );
+    }
+
     if (spots.isEmpty) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -675,7 +705,9 @@ class _PotaList extends StatelessWidget {
       );
     }
     return Column(
-      children: [for (final s in spots) _CompactPotaRow(spot: s)],
+      children: [
+        for (final s in spots.take(5)) _CompactPotaRow(spot: s),
+      ],
     );
   }
 }
@@ -774,15 +806,33 @@ class _CompactPotaRow extends StatelessWidget {
   }
 }
 
-class _SotaList extends StatelessWidget {
-  const _SotaList({required this.spots});
-
-  final List<SotaSpot> spots;
+class _SotaList extends ConsumerWidget {
+  const _SotaList();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final l10n = context.localization;
+    final asyncSpots = ref.watch(getSotaSpotsProvider);
+    final spots = asyncSpots.asData?.value ?? const <SotaSpot>[];
+
+    if (asyncSpots.isLoading && spots.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        child: Center(child: CircularProgressIndicator.adaptive()),
+      );
+    }
+
+    // The SOTA API is third-party: its failure stays inside this section.
+    if (asyncSpots.hasError && spots.isEmpty) {
+      return InlineErrorRetry(
+        compact: true,
+        message: l10n.sotaLoadError,
+        retryLabel: l10n.sotaRetry,
+        onRetry: () => ref.invalidate(getSotaSpotsProvider),
+      );
+    }
+
     if (spots.isEmpty) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -795,7 +845,9 @@ class _SotaList extends StatelessWidget {
       );
     }
     return Column(
-      children: [for (final s in spots) _CompactSotaRow(spot: s)],
+      children: [
+        for (final s in spots.take(5)) _CompactSotaRow(spot: s),
+      ],
     );
   }
 }

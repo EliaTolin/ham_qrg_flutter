@@ -2448,6 +2448,26 @@ class AppLocalizationsRo extends AppLocalizations {
   String get stationSaveFailed => 'Salvarea a eșuat: spațiu insuficient';
 
   @override
+  String get stationSavedCta => 'Locație salvată';
+
+  @override
+  String get stationRemoveCta => 'Elimină';
+
+  @override
+  String get stationRemoveTitle => 'Eliminați locația?';
+
+  @override
+  String stationRemoveBody(String name) {
+    return '„$name” și datele sale offline vor fi șterse de pe acest dispozitiv.';
+  }
+
+  @override
+  String get stationRemovedSnack => 'Locație eliminată';
+
+  @override
+  String get stationSaveError => 'Salvarea nu a reușit. Încercați din nou.';
+
+  @override
   String get stationsTitle => 'Posturile mele';
 
   @override
@@ -2488,4 +2508,109 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get spotsManualRefreshHint => 'Atinge pentru actualizare';
+
+  @override
+  String coverageResultScope(int km, int count) {
+    return 'pe o rază de $km km · $count evaluate';
+  }
+
+  @override
+  String get coverageResultRecalculating => 'Se recalculează';
+
+  @override
+  String get offlineBannerMessage => 'Ești offline: vezi datele salvate';
+
+  @override
+  String get offlineMapsTitle => 'Hărți offline';
+
+  @override
+  String get offlineMapsEntrySubtitle =>
+      'Descarcă hărți pentru utilizare fără conexiune';
+
+  @override
+  String get offlineMapsEmpty =>
+      'Nicio regiune descărcată. Descarcă o zonă pentru a vedea harta chiar și fără conexiune.';
+
+  @override
+  String get offlineMapsAddRegion => 'Descarcă regiune';
+
+  @override
+  String get offlineMapsRegionNameLabel => 'Numele regiunii';
+
+  @override
+  String get offlineMapsRegionNameHint => 'Ex. Acasă, Cabană, Activare SOTA';
+
+  @override
+  String get offlineMapsRadiusLabel => 'Rază';
+
+  @override
+  String get offlineMapsDownload => 'Descarcă';
+
+  @override
+  String get offlineMapsDownloadingStyle => 'Se descarcă stilul hărții…';
+
+  @override
+  String offlineMapsDownloadingTiles(String percent) {
+    return 'Se descarcă hărțile… $percent%';
+  }
+
+  @override
+  String offlineMapsEstimatedSize(String size) {
+    return 'Dimensiune estimată: $size';
+  }
+
+  @override
+  String get offlineMapsDownloadError =>
+      'Descărcarea a eșuat. Încearcă din nou.';
+
+  @override
+  String get offlineMapsDeleteError => 'Ștergerea a eșuat. Încearcă din nou.';
+
+  @override
+  String get offlineMapsDeleteConfirmTitle => 'Ștergi regiunea?';
+
+  @override
+  String offlineMapsDeleteConfirmMessage(String name) {
+    return '„$name” nu va mai fi disponibilă offline.';
+  }
+
+  @override
+  String get offlineMapsDeleteConfirm => 'Șterge';
+
+  @override
+  String offlineMapsRegionSubtitle(String radius, String size) {
+    return 'Rază $radius km · $size';
+  }
+
+  @override
+  String get offlineMapsIncomplete => 'Descărcare incompletă';
+
+  @override
+  String get offlineMapsResume => 'Reia';
+
+  @override
+  String get offlineMapsCenterInfo =>
+      'Regiunea va fi centrată pe poziția ta actuală.';
+
+  @override
+  String get dashboardOfflineTitle => 'Ești offline';
+
+  @override
+  String get dashboardOfflineMessage =>
+      'Nu există date salvate pentru această zonă. Locațiile salvate și hărțile descărcate rămân disponibile.';
+
+  @override
+  String get offlineMapsCenterMine => 'Poziția mea';
+
+  @override
+  String get offlineMapsCenterSearch => 'Caută un loc';
+
+  @override
+  String get offlineMapsCenterSearchInfo =>
+      'Caută un oraș sau un loc: regiunea va fi centrată acolo.';
+
+  @override
+  String offlineMapsCenterSelected(String label) {
+    return 'Centru: $label';
+  }
 }

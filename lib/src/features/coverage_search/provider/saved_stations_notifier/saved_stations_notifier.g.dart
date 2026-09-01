@@ -14,6 +14,15 @@ part of 'saved_stations_notifier.dart';
 /// azione esplicita dell'utente (FR-051). In particolare un salvataggio che
 /// fallisce per spazio esaurito propaga l'errore: **non** libera spazio
 /// cancellando postazioni esistenti.
+///
+/// **`keepAlive` non è un'ottimizzazione: è una condizione di correttezza.**
+/// Il salvataggio dalla mappa è un flusso a più passi con un dialog in mezzo —
+/// l'utente digita un nome, e nel frattempo passano secondi. Con la
+/// distruzione automatica, chi ottiene il notifier con un `ref.read` senza
+/// osservarlo se lo ritrova distrutto prima di poter chiamare [save], e il
+/// salvataggio muore su un `Ref` già smontato senza che nulla lo segnali. La
+/// lista è piccola e serve a più pagine: tenerla viva costa nulla e toglie di
+/// mezzo un'intera classe di fallimenti silenziosi.
 
 @ProviderFor(SavedStationsNotifier)
 final savedStationsProvider = SavedStationsNotifierProvider._();
@@ -24,6 +33,15 @@ final savedStationsProvider = SavedStationsNotifierProvider._();
 /// azione esplicita dell'utente (FR-051). In particolare un salvataggio che
 /// fallisce per spazio esaurito propaga l'errore: **non** libera spazio
 /// cancellando postazioni esistenti.
+///
+/// **`keepAlive` non è un'ottimizzazione: è una condizione di correttezza.**
+/// Il salvataggio dalla mappa è un flusso a più passi con un dialog in mezzo —
+/// l'utente digita un nome, e nel frattempo passano secondi. Con la
+/// distruzione automatica, chi ottiene il notifier con un `ref.read` senza
+/// osservarlo se lo ritrova distrutto prima di poter chiamare [save], e il
+/// salvataggio muore su un `Ref` già smontato senza che nulla lo segnali. La
+/// lista è piccola e serve a più pagine: tenerla viva costa nulla e toglie di
+/// mezzo un'intera classe di fallimenti silenziosi.
 final class SavedStationsNotifierProvider
     extends $AsyncNotifierProvider<SavedStationsNotifier, List<SavedStation>> {
   /// Le postazioni salvate, con le operazioni che le modificano.
@@ -32,13 +50,22 @@ final class SavedStationsNotifierProvider
   /// azione esplicita dell'utente (FR-051). In particolare un salvataggio che
   /// fallisce per spazio esaurito propaga l'errore: **non** libera spazio
   /// cancellando postazioni esistenti.
+  ///
+  /// **`keepAlive` non è un'ottimizzazione: è una condizione di correttezza.**
+  /// Il salvataggio dalla mappa è un flusso a più passi con un dialog in mezzo —
+  /// l'utente digita un nome, e nel frattempo passano secondi. Con la
+  /// distruzione automatica, chi ottiene il notifier con un `ref.read` senza
+  /// osservarlo se lo ritrova distrutto prima di poter chiamare [save], e il
+  /// salvataggio muore su un `Ref` già smontato senza che nulla lo segnali. La
+  /// lista è piccola e serve a più pagine: tenerla viva costa nulla e toglie di
+  /// mezzo un'intera classe di fallimenti silenziosi.
   SavedStationsNotifierProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'savedStationsProvider',
-          isAutoDispose: true,
+          isAutoDispose: false,
           dependencies: null,
           $allTransitiveDependencies: null,
         );
@@ -52,7 +79,7 @@ final class SavedStationsNotifierProvider
 }
 
 String _$savedStationsNotifierHash() =>
-    r'c5e83f08ca7ee666c59e8491587328a8b2e85b4f';
+    r'8eb380a4175d89eb6cb53cc2891ed977c4e17364';
 
 /// Le postazioni salvate, con le operazioni che le modificano.
 ///
@@ -60,6 +87,15 @@ String _$savedStationsNotifierHash() =>
 /// azione esplicita dell'utente (FR-051). In particolare un salvataggio che
 /// fallisce per spazio esaurito propaga l'errore: **non** libera spazio
 /// cancellando postazioni esistenti.
+///
+/// **`keepAlive` non è un'ottimizzazione: è una condizione di correttezza.**
+/// Il salvataggio dalla mappa è un flusso a più passi con un dialog in mezzo —
+/// l'utente digita un nome, e nel frattempo passano secondi. Con la
+/// distruzione automatica, chi ottiene il notifier con un `ref.read` senza
+/// osservarlo se lo ritrova distrutto prima di poter chiamare [save], e il
+/// salvataggio muore su un `Ref` già smontato senza che nulla lo segnali. La
+/// lista è piccola e serve a più pagine: tenerla viva costa nulla e toglie di
+/// mezzo un'intera classe di fallimenti silenziosi.
 
 abstract class _$SavedStationsNotifier
     extends $AsyncNotifier<List<SavedStation>> {

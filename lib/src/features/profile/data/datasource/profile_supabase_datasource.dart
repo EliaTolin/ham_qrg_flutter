@@ -1,7 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:hamqrg/clients/supabase/supabase_client/supabase_client.dart';
+import 'package:hamqrg/common/cache/offline_cache_gate_ref.dart';
+import 'package:hamqrg/src/features/profile/data/datasource/cached_profile_datasource.dart';
 import 'package:hamqrg/src/features/profile/data/datasource/profile_datasource.dart';
 import 'package:hamqrg/src/features/profile/data/model/profile_model/profile_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -92,5 +93,10 @@ class ProfileSupabaseDatasource implements ProfileDatasource {
 
 @riverpod
 ProfileDatasource profileSupabaseDatasource(Ref ref) {
-  return ProfileSupabaseDatasource(ref.read(supabaseClientProvider));
+  return CachedProfileDatasource(
+    inner: ProfileSupabaseDatasource(ref.read(supabaseClientProvider)),
+    gate: ref.watchOfflineCacheGate(
+      remoteTimeout: CachedProfileDatasource.remoteTimeout,
+    ),
+  );
 }

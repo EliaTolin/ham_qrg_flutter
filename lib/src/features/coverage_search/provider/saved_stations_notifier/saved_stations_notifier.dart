@@ -16,7 +16,16 @@ part 'saved_stations_notifier.g.dart';
 /// azione esplicita dell'utente (FR-051). In particolare un salvataggio che
 /// fallisce per spazio esaurito propaga l'errore: **non** libera spazio
 /// cancellando postazioni esistenti.
-@riverpod
+///
+/// **`keepAlive` non è un'ottimizzazione: è una condizione di correttezza.**
+/// Il salvataggio dalla mappa è un flusso a più passi con un dialog in mezzo —
+/// l'utente digita un nome, e nel frattempo passano secondi. Con la
+/// distruzione automatica, chi ottiene il notifier con un `ref.read` senza
+/// osservarlo se lo ritrova distrutto prima di poter chiamare [save], e il
+/// salvataggio muore su un `Ref` già smontato senza che nulla lo segnali. La
+/// lista è piccola e serve a più pagine: tenerla viva costa nulla e toglie di
+/// mezzo un'intera classe di fallimenti silenziosi.
+@Riverpod(keepAlive: true)
 class SavedStationsNotifier extends _$SavedStationsNotifier {
   @override
   Future<List<SavedStation>> build() async {

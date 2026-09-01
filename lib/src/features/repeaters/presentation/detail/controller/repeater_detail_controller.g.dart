@@ -52,7 +52,7 @@ final class RepeaterDetailControllerProvider extends $AsyncNotifierProvider<
 }
 
 String _$repeaterDetailControllerHash() =>
-    r'85b59ba1cbc37d1748478f46e857605ac734eefc';
+    r'd0b23a24e6224329ff2e96cb8d687eeb534cbe7d';
 
 final class RepeaterDetailControllerFamily extends $Family
     with

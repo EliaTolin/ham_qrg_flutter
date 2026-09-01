@@ -51,4 +51,4 @@ final class ProfileSupabaseDatasourceProvider extends $FunctionalProvider<
 }
 
 String _$profileSupabaseDatasourceHash() =>
-    r'6a62345e7ad1953630d129bc4428ea45564b1a85';
+    r'cf6ab5305553e88d6f7bfb2be6fdc84563ea4e34';

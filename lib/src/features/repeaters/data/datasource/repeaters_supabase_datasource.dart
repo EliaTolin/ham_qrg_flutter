@@ -1,6 +1,8 @@
 import 'package:hamqrg/clients/supabase/supabase_client/supabase_client.dart';
+import 'package:hamqrg/common/cache/offline_cache_gate_ref.dart';
 import 'package:hamqrg/common/utils/frequency_search_helper.dart';
 import 'package:hamqrg/log/talker_service/talker_service.dart';
+import 'package:hamqrg/src/features/repeaters/data/datasource/cached_repeaters_datasource.dart';
 import 'package:hamqrg/src/features/repeaters/data/datasource/repeaters_datasource.dart';
 import 'package:hamqrg/src/features/repeaters/data/model/feedback/repeater_feedback_model.dart';
 import 'package:hamqrg/src/features/repeaters/data/model/feedback/repeater_feedback_stats_model.dart';
@@ -799,8 +801,13 @@ class _FeedbackAgg {
 
 @riverpod
 RepeatersDatasource repeatersSupabaseDatasource(Ref ref) {
-  return RepeatersSupabaseDatasource(
-    ref.read(supabaseClientProvider),
-    ref.read(talkerServiceProvider),
+  return CachedRepeatersDatasource(
+    inner: RepeatersSupabaseDatasource(
+      ref.read(supabaseClientProvider),
+      ref.read(talkerServiceProvider),
+    ),
+    gate: ref.watchOfflineCacheGate(
+      remoteTimeout: CachedRepeatersDatasource.remoteTimeout,
+    ),
   );
 }

@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Update it",
   "stationDuplicateCreate": "Create separate",
   "stationSaveFailed": "Save failed: not enough space",
+  "stationSavedCta": "Location saved",
+  "stationRemoveCta": "Remove",
+  "stationRemoveTitle": "Remove this location?",
+  "stationRemoveBody": "“{name}” and its offline data will be deleted from this device.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Location removed",
+  "stationSaveError": "Couldn’t save. Please try again.",
   "stationsTitle": "My stations",
   "stationsEmptyTitle": "No saved stations yet",
   "stationsEmptyBody": "Pick a point on the map, see what you reach and save it: you will find it again even without a network.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Tap to refresh"
+  "spotsManualRefreshHint": "Tap to refresh",
+  "coverageResultScope": "within {km} km · {count} evaluated",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Recalculating",
+  "offlineBannerMessage": "You're offline: viewing previously saved data",
+  "offlineMapsTitle": "Offline maps",
+  "offlineMapsEntrySubtitle": "Download maps for use without a connection",
+  "offlineMapsEmpty": "No regions downloaded. Download an area to see the map even without a connection.",
+  "offlineMapsAddRegion": "Download region",
+  "offlineMapsRegionNameLabel": "Region name",
+  "offlineMapsRegionNameHint": "E.g. Home, Mountain hut, SOTA activation",
+  "offlineMapsRadiusLabel": "Radius",
+  "offlineMapsDownload": "Download",
+  "offlineMapsDownloadingStyle": "Downloading map style…",
+  "offlineMapsDownloadingTiles": "Downloading map tiles… {percent}%",
+  "offlineMapsEstimatedSize": "Estimated size: {size}",
+  "offlineMapsDownloadError": "Download failed. Try again.",
+  "offlineMapsDeleteError": "Deletion failed. Try again.",
+  "offlineMapsDeleteConfirmTitle": "Delete region?",
+  "offlineMapsDeleteConfirmMessage": "“{name}” will no longer be available offline.",
+  "offlineMapsDeleteConfirm": "Delete",
+  "offlineMapsRegionSubtitle": "Radius {radius} km · {size}",
+  "offlineMapsIncomplete": "Incomplete download",
+  "offlineMapsResume": "Resume",
+  "offlineMapsCenterInfo": "The region will be centered on your current location.",
+  "dashboardOfflineTitle": "You're offline",
+  "dashboardOfflineMessage": "No saved data for this area. Your saved stations and downloaded maps are still available.",
+  "offlineMapsCenterMine": "My location",
+  "offlineMapsCenterSearch": "Search a place",
+  "offlineMapsCenterSearchInfo": "Search a city or place: the region will be centered there.",
+  "offlineMapsCenterSelected": "Center: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

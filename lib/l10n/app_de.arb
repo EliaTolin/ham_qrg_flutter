@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Aktualisieren",
   "stationDuplicateCreate": "Eigene anlegen",
   "stationSaveFailed": "Speichern fehlgeschlagen: zu wenig Speicherplatz",
+  "stationSavedCta": "Standort gespeichert",
+  "stationRemoveCta": "Entfernen",
+  "stationRemoveTitle": "Standort entfernen?",
+  "stationRemoveBody": "„{name}“ und seine Offline-Daten werden von diesem Gerät gelöscht.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Standort entfernt",
+  "stationSaveError": "Speichern fehlgeschlagen. Bitte erneut versuchen.",
   "stationsTitle": "Meine Standorte",
   "stationsEmptyTitle": "Noch keine Standorte gespeichert",
   "stationsEmptyBody": "Wähle einen Punkt auf der Karte, sieh, was du erreichst, und speichere ihn: Du findest ihn auch ohne Netz wieder.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Zum Aktualisieren tippen"
+  "spotsManualRefreshHint": "Zum Aktualisieren tippen",
+  "coverageResultScope": "im Umkreis von {km} km · {count} geprüft",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Neuberechnung",
+  "offlineBannerMessage": "Du bist offline: gespeicherte Daten werden angezeigt",
+  "offlineMapsTitle": "Offline-Karten",
+  "offlineMapsEntrySubtitle": "Karten für die Nutzung ohne Verbindung herunterladen",
+  "offlineMapsEmpty": "Keine Regionen heruntergeladen. Lade ein Gebiet herunter, um die Karte auch ohne Verbindung zu sehen.",
+  "offlineMapsAddRegion": "Region herunterladen",
+  "offlineMapsRegionNameLabel": "Name der Region",
+  "offlineMapsRegionNameHint": "z. B. Zuhause, Hütte, SOTA-Aktivierung",
+  "offlineMapsRadiusLabel": "Radius",
+  "offlineMapsDownload": "Herunterladen",
+  "offlineMapsDownloadingStyle": "Kartenstil wird heruntergeladen…",
+  "offlineMapsDownloadingTiles": "Karten werden heruntergeladen… {percent}%",
+  "offlineMapsEstimatedSize": "Geschätzte Größe: {size}",
+  "offlineMapsDownloadError": "Download fehlgeschlagen. Versuche es erneut.",
+  "offlineMapsDeleteError": "Löschen fehlgeschlagen. Versuche es erneut.",
+  "offlineMapsDeleteConfirmTitle": "Region löschen?",
+  "offlineMapsDeleteConfirmMessage": "„{name}“ ist offline nicht mehr verfügbar.",
+  "offlineMapsDeleteConfirm": "Löschen",
+  "offlineMapsRegionSubtitle": "Radius {radius} km · {size}",
+  "offlineMapsIncomplete": "Unvollständiger Download",
+  "offlineMapsResume": "Fortsetzen",
+  "offlineMapsCenterInfo": "Die Region wird auf deinen aktuellen Standort zentriert.",
+  "dashboardOfflineTitle": "Du bist offline",
+  "dashboardOfflineMessage": "Keine gespeicherten Daten für dieses Gebiet. Deine gespeicherten Standorte und heruntergeladenen Karten bleiben verfügbar.",
+  "offlineMapsCenterMine": "Mein Standort",
+  "offlineMapsCenterSearch": "Ort suchen",
+  "offlineMapsCenterSearchInfo": "Suche eine Stadt oder einen Ort: die Region wird dort zentriert.",
+  "offlineMapsCenterSelected": "Zentrum: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

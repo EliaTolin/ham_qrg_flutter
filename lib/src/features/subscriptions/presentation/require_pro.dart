@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamqrg/clients/revenue_cat/impl/revenue_cat_client_impl.dart';
 import 'package:hamqrg/common/widgets/pro/pro_welcome_dialog.dart';
-import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/router/app_router.dart';
+import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 
 /// Called after a successful purchase. In order:
@@ -44,12 +44,32 @@ Future<void> _onProPurchasedInPlace(WidgetRef ref) async {
   if (context != null) await showProWelcome(context);
 }
 
-/// Presenta il paywall della reachability lasciando in piedi la pagina
-/// chiamante. Da usare dal teaser della ricerca di copertura.
-Future<bool> openReachabilityPaywallInPlace(WidgetRef ref) async {
-  final purchased = await ref.read(revenueCatClientProvider).presentPaywall(
-        offeringId: AppConfigs.reachabilityPaywallOfferingId,
-      );
+/// Presenta la paywall assegnata a [placement] e, se l'utente compra,
+/// ricarica l'albero di navigazione.
+///
+/// Quale paywall sia non lo decide questa chiamata: il placement viene
+/// risolto da RevenueCat in base alle regole di targeting configurate in
+/// dashboard. Da qui passano i punti in cui perdere la pagina corrente non
+/// costa nulla (card di stato, badge, dialog di upsell).
+Future<bool> openPaywall(WidgetRef ref, PaywallPlacement placement) async {
+  final purchased = await ref
+      .read(revenueCatClientProvider)
+      .presentPaywall(placementId: placement.id);
+  if (purchased) await _onProPurchased(ref);
+  return purchased;
+}
+
+/// Come [openPaywall], ma lascia in piedi la pagina chiamante.
+///
+/// Da usare dove il contesto costruito dall'utente prima dell'acquisto è il
+/// motivo stesso per cui sta comprando (il punto scelto sulla mappa).
+Future<bool> openPaywallInPlace(
+  WidgetRef ref,
+  PaywallPlacement placement,
+) async {
+  final purchased = await ref
+      .read(revenueCatClientProvider)
+      .presentPaywall(placementId: placement.id);
   if (purchased) await _onProPurchasedInPlace(ref);
   return purchased;
 }
@@ -57,41 +77,25 @@ Future<bool> openReachabilityPaywallInPlace(WidgetRef ref) async {
 /// Pro gate used before protected (Pro-only) actions.
 ///
 /// Returns `true` if the user already owns Pro, or just purchased/restored it
-/// through the presented paywall. Returns `false` if the user dismissed the
-/// paywall without buying.
+/// through the paywall assigned to [placement]. Returns `false` if the user
+/// dismissed the paywall without buying.
 ///
 /// Usage:
 /// ```dart
-/// if (!await requirePro(ref)) return; // user declined the paywall
+/// // user declined the paywall
+/// if (!await requirePro(ref, PaywallPlacement.coveragePromo)) return;
 /// // ... run the Pro-only action
 /// ```
 ///
 /// Note: entitlements are linked to the Supabase user at sign-in. For features
 /// where the purchase must follow the account, gate with `requireAuthentication`
 /// first so the user is not anonymous when buying.
-Future<bool> requirePro(WidgetRef ref) async {
+Future<bool> requirePro(WidgetRef ref, PaywallPlacement placement) async {
   final client = ref.read(revenueCatClientProvider);
   if (await client.isPro()) return true;
-  final purchased = await client.presentPaywallIfNeeded();
-  if (purchased) await _onProPurchased(ref);
-  return purchased;
-}
-
-/// Convenience widget action: presents the paywall unconditionally
-/// (e.g. from a "Go Pro" button / upsell card).
-Future<bool> openProPaywall(WidgetRef ref) async {
-  final purchased = await ref.read(revenueCatClientProvider).presentPaywall();
-  if (purchased) await _onProPurchased(ref);
-  return purchased;
-}
-
-/// Presents the dedicated reachability paywall (the feature-specific offering
-/// from [AppConfigs.reachabilityPaywallOfferingId]; falls back to the default
-/// when unset). Use from the "see what you reach" upsell.
-Future<bool> openReachabilityPaywall(WidgetRef ref) async {
-  final purchased = await ref.read(revenueCatClientProvider).presentPaywall(
-        offeringId: AppConfigs.reachabilityPaywallOfferingId,
-      );
+  final purchased = await client.presentPaywallIfNeeded(
+    placementId: placement.id,
+  );
   if (purchased) await _onProPurchased(ref);
   return purchased;
 }

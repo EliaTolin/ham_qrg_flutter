@@ -52,7 +52,8 @@ dependencies:
   flutter_secure_storage: ^10.0.0
   skeletonizer: ^2.1.0+1
   in_app_review: ^2.0.11
-  mapbox_maps_flutter: ^2.4.0
+  # 2.25+: le API offline (OfflineManager/TileStore) sono cambiate lungo la 2.x
+  mapbox_maps_flutter: ^2.25.0
   onesignal_flutter: ^5.6.8
   flutter_widget_from_html_core: ^0.17.0
   flutter_markdown: ^0.7.7+1
@@ -60,6 +61,8 @@ dependencies:
   purchases_flutter: ^10.2.3
   purchases_ui_flutter: ^10.2.3
   remote_caching: ^1.0.19
+  path_provider: ^2.1.6
+  connectivity_plus: ^6.1.0
 
 dependency_overrides:
   path_provider_foundation: 2.5.1

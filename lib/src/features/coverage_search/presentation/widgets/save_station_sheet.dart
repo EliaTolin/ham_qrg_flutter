@@ -52,6 +52,8 @@ Future<void> showSaveStationFlow(
   );
   if (name == null || name.trim().isEmpty) return;
 
+  // Ogni fallimento va detto. Un salvataggio che non avviene e non si vede è
+  // peggio di un errore: l'utente conta su un dato che non ha.
   try {
     await notifier.save(
       evaluation: evaluation,
@@ -63,7 +65,66 @@ Future<void> showSaveStationFlow(
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(l10n.stationSaveFailed)),
     );
+    return;
+  } catch (_) {
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(l10n.stationSaveError)),
+    );
+    return;
   }
+
+  if (!context.mounted) return;
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text(l10n.stationSavedCta)),
+  );
+}
+
+/// Rimuove una postazione salvata, previa conferma esplicita (FR-051).
+Future<void> showRemoveStationFlow(
+  BuildContext context,
+  WidgetRef ref,
+  SavedStation station,
+) async {
+  final l10n = context.localization;
+
+  final confirmed = await showDialog<bool>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(l10n.stationRemoveTitle),
+      content: Text(l10n.stationRemoveBody(station.name)),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(false),
+          child: Text(l10n.coverageResultCancel),
+        ),
+        FilledButton(
+          style: FilledButton.styleFrom(
+            backgroundColor: Theme.of(context).colorScheme.error,
+            foregroundColor: Theme.of(context).colorScheme.onError,
+          ),
+          onPressed: () => Navigator.of(context).pop(true),
+          child: Text(l10n.stationRemoveCta),
+        ),
+      ],
+    ),
+  );
+  if (confirmed != true) return;
+
+  try {
+    await ref.read(savedStationsProvider.notifier).delete(station.id);
+  } catch (_) {
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(l10n.error_message)),
+    );
+    return;
+  }
+
+  if (!context.mounted) return;
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text(l10n.stationRemovedSnack)),
+  );
 }
 
 /// Chiede un nuovo nome per una postazione già salvata.

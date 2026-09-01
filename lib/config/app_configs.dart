@@ -60,17 +60,13 @@ class AppConfigs {
 
   /// Whether the coverage map is gated behind HamQRG Pro.
   /// Pro-only for release: the promo card is shown to everyone (teaser), but
-  /// opening the map requires Pro (presents the default paywall).
+  /// opening the map requires Pro (presents the paywall resolved for the
+  /// `coveragePromo` placement).
   static bool get coverageRequiresPro => true;
 
   /// Whether "what can I reach from here" (reachability) is a Pro feature.
   /// Pro-only by design: non-Pro users see a blurred teaser, never the data.
   static bool get reachabilityRequiresPro => true;
-
-  /// RevenueCat offering id for the dedicated reachability paywall. When set,
-  /// the reachability upsell presents this offering instead of the default;
-  /// leave `null` to fall back to the default paywall.
-  static String? get reachabilityPaywallOfferingId => null;
 
   static String getOneSignalAppId() {
     return 'b25acb1c-1194-4f0d-8d7a-346e6deb747b';
@@ -104,9 +100,6 @@ class AppConfigs {
   /// Must match the entitlement identifier configured in the dashboard
   /// (verified at runtime: the active entitlement is "HamQRG Pro").
   static String get revenueCatProEntitlementId => 'HamQRG Pro';
-
-  /// Identifier of the default RevenueCat offering shown in the paywall.
-  static String get revenueCatDefaultOfferingId => 'default';
 
   /// Distance in kilometers beyond which a confirmation dialog is shown.
   static double get feedbackDistanceWarningKm => 100;

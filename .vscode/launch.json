@@ -1,0 +1,51 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "HamQRG (debug)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "debug"
+    },
+    {
+      "name": "HamQRG (profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "HamQRG (release)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "HamQRG (attach)",
+      "request": "attach",
+      "type": "dart"
+    },
+    {
+      "name": "Test: current file",
+      "request": "launch",
+      "type": "dart",
+      "program": "${file}"
+    },
+    {
+      "name": "Test: unit only (no integration)",
+      "request": "launch",
+      "type": "dart",
+      "program": "test/",
+      "args": ["--exclude-tags", "integration"]
+    },
+    {
+      "name": "Test: integration only",
+      "request": "launch",
+      "type": "dart",
+      "program": "test/",
+      "args": ["--tags", "integration"]
+    }
+  ]
+}
