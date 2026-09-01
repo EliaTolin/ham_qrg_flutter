@@ -1085,5 +1085,11 @@
   "offlineMapsCenterSearch": "Szukaj miejsca",
   "offlineMapsCenterSearchInfo": "Wyszukaj miasto lub miejsce: region zostanie tam wyśrodkowany.",
   "offlineMapsCenterSelected": "Środek: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "changelog120OfflineMode": "Tryb offline: przemienniki, ulubione, profil, zasięg i osiągalność dostępne także bez sieci (PRO)",
+  "changelog120OfflineMaps": "Mapy offline: pobierz okolicę, w której jesteś, lub dowolne wybrane miejsce i korzystaj z niej bez połączenia (PRO)",
+  "changelog120CoverageSearch": "Wyszukiwanie zasięgu z dowolnego punktu: wyszukaj miejscowość, wklej współrzędne lub przytrzymaj mapę, aby sprawdzić, co stamtąd osiągasz",
+  "changelog120SavedStations": "Moje stanowiska: zapisuj interesujące cię punkty i przeglądaj je także offline (PRO)",
+  "changelog120SpotsRefresh": "Spoty SOTA i POTA odświeżają się same co minutę, z kolorowymi odznakami emisji (CW, SSB, FT8…)",
+  "changelog120NoNetwork": "Bez połączenia aplikacja uruchamia się od razu, pokazuje, co jest dostępne, i wyłącza akcje wymagające sieci"
 }

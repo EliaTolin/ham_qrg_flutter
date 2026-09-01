@@ -2557,4 +2557,28 @@ class AppLocalizationsEs extends AppLocalizations {
   String offlineMapsCenterSelected(String label) {
     return 'Centro: $label';
   }
+
+  @override
+  String get changelog120OfflineMode =>
+      'Modo sin conexión: repetidores, favoritos, perfil, cobertura y alcance disponibles también sin red (PRO)';
+
+  @override
+  String get changelog120OfflineMaps =>
+      'Mapas sin conexión: descarga la zona donde estás o un lugar a tu elección y úsala sin conexión (PRO)';
+
+  @override
+  String get changelog120CoverageSearch =>
+      'Búsqueda de cobertura desde cualquier punto: busca una localidad, pega coordenadas o mantén pulsado el mapa para descubrir qué alcanzas desde allí';
+
+  @override
+  String get changelog120SavedStations =>
+      'Mis estaciones: guarda los puntos que te interesan y consúltalos también sin conexión (PRO)';
+
+  @override
+  String get changelog120SpotsRefresh =>
+      'Los spots SOTA y POTA se actualizan solos cada minuto, con insignias de color por modo (CW, SSB, FT8…)';
+
+  @override
+  String get changelog120NoNetwork =>
+      'Sin conexión la app arranca al instante, muestra lo que está disponible y desactiva las acciones que requieren red';
 }

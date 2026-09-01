@@ -2551,4 +2551,28 @@ class AppLocalizationsSk extends AppLocalizations {
   String offlineMapsCenterSelected(String label) {
     return 'Stred: $label';
   }
+
+  @override
+  String get changelog120OfflineMode =>
+      'Offline režim: prevádzače, obľúbené, profil, pokrytie a dosiahnuteľnosť dostupné aj bez siete (PRO)';
+
+  @override
+  String get changelog120OfflineMaps =>
+      'Offline mapy: stiahnite si oblasť, kde ste, alebo ľubovoľné miesto a používajte ju bez pripojenia (PRO)';
+
+  @override
+  String get changelog120CoverageSearch =>
+      'Hľadanie pokrytia z ľubovoľného bodu: vyhľadajte miesto, vložte súradnice alebo podržte prst na mape a zistite, čo odtiaľ dosiahnete';
+
+  @override
+  String get changelog120SavedStations =>
+      'Moje stanovištia: uložte si body, ktoré vás zaujímajú, a prezerajte si ich aj offline (PRO)';
+
+  @override
+  String get changelog120SpotsRefresh =>
+      'Spoty SOTA a POTA sa obnovujú samy každú minútu, s farebnými odznakmi podľa módu (CW, SSB, FT8…)';
+
+  @override
+  String get changelog120NoNetwork =>
+      'Bez pripojenia sa aplikácia spustí okamžite, ukáže, čo je k dispozícii, a vypne akcie vyžadujúce sieť';
 }

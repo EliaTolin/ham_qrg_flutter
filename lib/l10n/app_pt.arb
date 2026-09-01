@@ -1085,5 +1085,11 @@
   "offlineMapsCenterSearch": "Procurar um local",
   "offlineMapsCenterSearchInfo": "Procure uma cidade ou local: a região será centrada aí.",
   "offlineMapsCenterSelected": "Centro: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "changelog120OfflineMode": "Modo offline: repetidores, favoritos, perfil, cobertura e alcance disponíveis mesmo sem rede (PRO)",
+  "changelog120OfflineMaps": "Mapas offline: descarrega a zona onde estás ou um local à tua escolha e usa-a sem ligação (PRO)",
+  "changelog120CoverageSearch": "Pesquisa de cobertura a partir de qualquer ponto: pesquisa uma localidade, cola coordenadas ou mantém premido o mapa para descobrir o que alcanças a partir daí",
+  "changelog120SavedStations": "As minhas estações: guarda os pontos que te interessam e consulta-os também offline (PRO)",
+  "changelog120SpotsRefresh": "Os spots SOTA e POTA atualizam-se sozinhos a cada minuto, com distintivos coloridos por modo (CW, SSB, FT8…)",
+  "changelog120NoNetwork": "Sem ligação a app arranca de imediato, mostra o que está disponível e desativa as ações que precisam de rede"
 }

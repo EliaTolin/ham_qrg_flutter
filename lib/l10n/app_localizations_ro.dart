@@ -2613,4 +2613,28 @@ class AppLocalizationsRo extends AppLocalizations {
   String offlineMapsCenterSelected(String label) {
     return 'Centru: $label';
   }
+
+  @override
+  String get changelog120OfflineMode =>
+      'Mod offline: repetoare, favorite, profil, acoperire și accesibilitate disponibile și fără rețea (PRO)';
+
+  @override
+  String get changelog120OfflineMaps =>
+      'Hărți offline: descarcă zona în care te afli sau un loc la alegere și folosește-o fără conexiune (PRO)';
+
+  @override
+  String get changelog120CoverageSearch =>
+      'Căutare acoperire din orice punct: caută o localitate, lipește coordonate sau apasă lung pe hartă pentru a descoperi ce atingi de acolo';
+
+  @override
+  String get changelog120SavedStations =>
+      'Stațiile mele: salvează punctele care te interesează și consultă-le și offline (PRO)';
+
+  @override
+  String get changelog120SpotsRefresh =>
+      'Spoturile SOTA și POTA se actualizează singure în fiecare minut, cu insigne colorate pe mod (CW, SSB, FT8…)';
+
+  @override
+  String get changelog120NoNetwork =>
+      'Fără conexiune aplicația pornește imediat, arată ce este disponibil și dezactivează acțiunile care necesită rețea';
 }

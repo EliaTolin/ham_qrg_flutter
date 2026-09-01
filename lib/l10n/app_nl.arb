@@ -1085,5 +1085,11 @@
   "offlineMapsCenterSearch": "Zoek een plaats",
   "offlineMapsCenterSearchInfo": "Zoek een stad of plaats: de regio wordt daar gecentreerd.",
   "offlineMapsCenterSelected": "Centrum: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "changelog120OfflineMode": "Offlinemodus: repeaters, favorieten, profiel, dekking en bereik ook zonder netwerk beschikbaar (PRO)",
+  "changelog120OfflineMaps": "Offlinekaarten: download de omgeving van je locatie of een plaats naar keuze en gebruik die zonder verbinding (PRO)",
+  "changelog120CoverageSearch": "Dekking zoeken vanaf elk punt: zoek een plaats, plak coördinaten of druk lang op de kaart om te zien wat je van daaruit bereikt",
+  "changelog120SavedStations": "Mijn stations: sla de punten op die je interesseren en raadpleeg ze ook offline (PRO)",
+  "changelog120SpotsRefresh": "SOTA- en POTA-spots verversen elke minuut vanzelf, met gekleurde badges per mode (CW, SSB, FT8…)",
+  "changelog120NoNetwork": "Zonder verbinding start de app meteen, toont wat beschikbaar is en schakelt acties uit die netwerk vereisen"
 }
