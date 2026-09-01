@@ -516,5 +516,4 @@ void main() {
       expect(RepeaterFormatHelper.formatShift(5000, '   '), '5.0 kHz');
     });
   });
-
 }

@@ -158,7 +158,10 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
   @override
   Future<List<SpotModel>> getRecentSpots() async {
     try {
-      final since = DateTime.now().subtract(const Duration(hours: 24)).toUtc().toIso8601String();
+      final since = DateTime.now()
+          .subtract(const Duration(hours: 24))
+          .toUtc()
+          .toIso8601String();
       final rows = await _client
           .from('repeater_spots')
           .select(_enrichedSelect)
@@ -227,7 +230,9 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
   @override
   Future<void> setClusterNotificationsEnabled({required bool enabled}) async {
     try {
-      await _client.from('profiles').update({'cluster_notifications_enabled': enabled}).eq(
+      await _client
+          .from('profiles')
+          .update({'cluster_notifications_enabled': enabled}).eq(
         'id',
         _client.auth.currentUser!.id,
       );

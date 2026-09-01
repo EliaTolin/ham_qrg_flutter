@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamqrg/clients/analytics/analytics_client.dart';
 import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/themes/app_colors.dart';
 
@@ -122,7 +123,10 @@ class _ReachabilityUpsellDialog extends ConsumerWidget {
                           surface: surface,
                         );
                       Navigator.of(context).pop();
-                      final purchased = await openReachabilityPaywall(ref);
+                      final purchased = await openPaywall(
+                        ref,
+                        PaywallPlacement.reachabilityUpsell,
+                      );
                       analytics.track(
                         purchased
                             ? AnalyticsEvent.coveragePurchaseCompleted

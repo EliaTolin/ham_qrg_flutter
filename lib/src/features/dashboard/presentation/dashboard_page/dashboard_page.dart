@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/utils/version_utils.dart';
+import 'package:hamqrg/common/widgets/banner/info_banner.dart';
+import 'package:hamqrg/common/widgets/error/app_error_widget.dart';
+import 'package:hamqrg/common/widgets/error/inline_error_retry.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
@@ -19,11 +23,13 @@ import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashbo
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashboard_tablet.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
+import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widgets/dashboard_offline_content.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spots_page/widgets/pota_spot_freshness_indicator.dart'
     show spotTimeAgo;
 import 'package:hamqrg/src/features/pota/presentation/widgets/pota_mode_badge.dart';
+import 'package:hamqrg/src/features/pota/provider/get_pota_spots/get_pota_spots_provider.dart';
 import 'package:hamqrg/src/features/profile/domain/profile/profile.dart';
 import 'package:hamqrg/src/features/profile/provider/update_profile/update_profile_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
@@ -48,7 +54,6 @@ class DashboardPage extends HookConsumerWidget {
     final controller = ref.watch(dashboardControllerProvider);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final l10n = context.localization;
 
     return controller.when(
       data: (state) => ResponsiveLayout(
@@ -59,8 +64,6 @@ class DashboardPage extends HookConsumerWidget {
               statistics: state.statistics,
               initialPosition: state.initialPosition,
               nearbyRepeaters: state.nearbyRepeaters,
-              potaSpots: state.potaSpots,
-              sotaSpots: state.sotaSpots,
             ),
           ],
         ),
@@ -135,8 +138,6 @@ class DashboardPage extends HookConsumerWidget {
                 builder: (context, scrollController) => _ContentSection(
                   statistics: state.statistics,
                   nearbyRepeaters: state.nearbyRepeaters,
-                  potaSpots: state.potaSpots,
-                  sotaSpots: state.sotaSpots,
                   scrollController: scrollController,
                 ),
               ),
@@ -144,24 +145,11 @@ class DashboardPage extends HookConsumerWidget {
           ),
         ),
       ),
-      error: (error, stackTrace) => Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.error_outline, size: 48, color: colorScheme.error),
-            const SizedBox(height: 16),
-            Text(
-              l10n.error_message,
-              style: theme.textTheme.bodyMedium,
-            ),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () =>
-                  ref.read(dashboardControllerProvider.notifier).reload(),
-              child: Text(l10n.retry),
-            ),
-          ],
-        ),
+      error: (error, stackTrace) => AppErrorWidget(
+        label: 'Dashboard',
+        error: error,
+        stackTrace: stackTrace,
+        onRetry: () => ref.read(dashboardControllerProvider.notifier).reload(),
       ),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
@@ -172,25 +160,27 @@ class DashboardPage extends HookConsumerWidget {
 // Content Sheet
 // ---------------------------------------------------------------------------
 
-class _ContentSection extends HookWidget {
+class _ContentSection extends HookConsumerWidget {
   const _ContentSection({
     required this.statistics,
     required this.nearbyRepeaters,
-    required this.potaSpots,
-    required this.sotaSpots,
     required this.scrollController,
   });
 
   final DashboardStatistics statistics;
   final List<Repeater> nearbyRepeaters;
-  final List<PotaSpot> potaSpots;
-  final List<SotaSpot> sotaSpots;
   final ScrollController scrollController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final selectedTab = useState(_DashboardTab.repeaters);
     final theme = Theme.of(context);
+    final isOffline = ref.watch(offlineStatusProvider).value ?? false;
+    // Offline senza nulla in cache: statistiche a zero e liste vuote sono
+    // solo rumore — al loro posto uno stato dedicato che dice cosa resta
+    // disponibile sul campo.
+    final showOfflineEmptyState =
+        isOffline && nearbyRepeaters.isEmpty && statistics.totalRepeaters == 0;
 
     return RepaintBoundary(
       child: Container(
@@ -221,36 +211,47 @@ class _ContentSection extends HookWidget {
                   spacing: 4,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Compact Stats Row
-                    _StatsRow(statistics: statistics),
-                    // Segmented Tab Selector
-                    _TabSelector(
-                      selectedTab: selectedTab.value,
-                      potaSpotsCount: potaSpots.length,
-                      sotaSpotsCount: sotaSpots.length,
-                      onTabChanged: (tab) => selectedTab.value = tab,
-                    ),
-                    // Tab Content
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 200),
-                      child: switch (selectedTab.value) {
-                        _DashboardTab.repeaters => _RepeatersTabContent(
-                            key: const ValueKey('repeaters'),
-                            nearbyRepeaters: nearbyRepeaters.take(10).toList(),
+                    if (showOfflineEmptyState)
+                      const DashboardOfflineContent()
+                    else ...[
+                      // Offline con dati in cache: banner informativo sopra
+                      // le statistiche, contenuto normale sotto.
+                      if (isOffline)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 4),
+                          child: InfoBanner(
+                            icon: const Icon(Icons.cloud_off_outlined),
+                            label: context.localization.offlineBannerMessage,
                           ),
-                        _DashboardTab.spots => const SpotDashboardTab(
-                            key: ValueKey('spots'),
-                          ),
-                        _DashboardTab.pota => _PotaTabContent(
-                            key: const ValueKey('pota'),
-                            potaSpots: potaSpots.take(5).toList(),
-                          ),
-                        _DashboardTab.sota => _SotaTabContent(
-                            key: const ValueKey('sota'),
-                            sotaSpots: sotaSpots.take(5).toList(),
-                          ),
-                      },
-                    ),
+                        ),
+                      // Compact Stats Row
+                      _StatsRow(statistics: statistics),
+                      // Segmented Tab Selector
+                      _TabSelector(
+                        selectedTab: selectedTab.value,
+                        onTabChanged: (tab) => selectedTab.value = tab,
+                      ),
+                      // Tab Content
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 200),
+                        child: switch (selectedTab.value) {
+                          _DashboardTab.repeaters => _RepeatersTabContent(
+                              key: const ValueKey('repeaters'),
+                              nearbyRepeaters:
+                                  nearbyRepeaters.take(10).toList(),
+                            ),
+                          _DashboardTab.spots => const SpotDashboardTab(
+                              key: ValueKey('spots'),
+                            ),
+                          _DashboardTab.pota => const _PotaTabContent(
+                              key: ValueKey('pota'),
+                            ),
+                          _DashboardTab.sota => const _SotaTabContent(
+                              key: ValueKey('sota'),
+                            ),
+                        },
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -262,6 +263,13 @@ class _ContentSection extends HookWidget {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Offline empty state
+// ---------------------------------------------------------------------------
+
+/// Contenuto dello sheet quando si è offline senza nulla in cache per la
+/// zona: al posto di statistiche a zero e liste vuote, dice cosa resta
+/// disponibile sul campo e offre un modo per riprovare.
 // ---------------------------------------------------------------------------
 // Compact Stats Row
 // ---------------------------------------------------------------------------
@@ -364,24 +372,29 @@ class _StatChip extends StatelessWidget {
 // Tab Selector (SegmentedButton)
 // ---------------------------------------------------------------------------
 
-class _TabSelector extends StatelessWidget {
+class _TabSelector extends ConsumerWidget {
   const _TabSelector({
     required this.selectedTab,
-    required this.potaSpotsCount,
-    required this.sotaSpotsCount,
     required this.onTabChanged,
   });
 
   final _DashboardTab selectedTab;
-  final int potaSpotsCount;
-  final int sotaSpotsCount;
   final ValueChanged<_DashboardTab> onTabChanged;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+
+    // Watched here (and not in the dashboard controller) so that a POTA/SOTA
+    // outage only blanks the badges, never the home page. Watching from the
+    // always-mounted selector also keeps both fetches warm across tab
+    // switches.
+    final potaSpotsCount =
+        ref.watch(getPotaSpotsProvider).asData?.value.length ?? 0;
+    final sotaSpotsCount =
+        ref.watch(getSotaSpotsProvider).asData?.value.length ?? 0;
 
     final items = <_TabItem>[
       _TabItem(
@@ -615,17 +628,33 @@ class _RepeatersTabContent extends StatelessWidget {
 // ---------------------------------------------------------------------------
 
 class _PotaTabContent extends ConsumerWidget {
-  const _PotaTabContent({required this.potaSpots, super.key});
-
-  final List<PotaSpot> potaSpots;
+  const _PotaTabContent({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
+    final asyncSpots = ref.watch(getPotaSpotsProvider);
+    final spots = asyncSpots.asData?.value ?? const <PotaSpot>[];
 
-    if (potaSpots.isEmpty) {
+    if (asyncSpots.isLoading && spots.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 32),
+        child: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    // The POTA API is third-party: its failure is confined to this tab.
+    if (asyncSpots.hasError && spots.isEmpty) {
+      return InlineErrorRetry(
+        message: l10n.potaLoadError,
+        retryLabel: l10n.potaRetry,
+        onRetry: () => ref.invalidate(getPotaSpotsProvider),
+      );
+    }
+
+    if (spots.isEmpty) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 32),
         child: Center(
@@ -655,9 +684,7 @@ class _PotaTabContent extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  onPressed: () => ref
-                      .read(dashboardControllerProvider.notifier)
-                      .refreshPota(),
+                  onPressed: () => ref.invalidate(getPotaSpotsProvider),
                   icon: Icon(
                     Icons.refresh,
                     size: 20,
@@ -674,9 +701,9 @@ class _PotaTabContent extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: 4),
-        ...potaSpots.map(
-          (spot) => _PotaSpotItem(spot: spot),
-        ),
+        ...spots.take(5).map(
+              (spot) => _PotaSpotItem(spot: spot),
+            ),
       ],
     );
   }
@@ -687,9 +714,7 @@ class _PotaTabContent extends ConsumerWidget {
 // ---------------------------------------------------------------------------
 
 class _SotaTabContent extends ConsumerWidget {
-  const _SotaTabContent({required this.sotaSpots, super.key});
-
-  final List<SotaSpot> sotaSpots;
+  const _SotaTabContent({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -697,49 +722,25 @@ class _SotaTabContent extends ConsumerWidget {
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
     final asyncSpots = ref.watch(getSotaSpotsProvider);
-    final visibleSpots = asyncSpots.asData?.value ?? sotaSpots;
+    final spots = asyncSpots.asData?.value ?? const <SotaSpot>[];
 
-    if (asyncSpots.isLoading && visibleSpots.isEmpty) {
+    if (asyncSpots.isLoading && spots.isEmpty) {
       return const Padding(
         padding: EdgeInsets.symmetric(vertical: 32),
         child: Center(child: CircularProgressIndicator()),
       );
     }
 
-    if (asyncSpots.hasError && visibleSpots.isEmpty) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24),
-        child: Column(
-          children: [
-            Icon(
-              Icons.cloud_off,
-              size: 40,
-              color: colorScheme.onSurface.withValues(alpha: 0.4),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              l10n.sotaLoadError,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.6),
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 12),
-            TextButton.icon(
-              onPressed: () {
-                ref
-                  ..invalidate(getSotaSpotsProvider)
-                  ..read(dashboardControllerProvider.notifier).refreshSota();
-              },
-              icon: const Icon(Icons.refresh, size: 18),
-              label: Text(l10n.sotaRetry),
-            ),
-          ],
-        ),
+    // The SOTA API is third-party: its failure is confined to this tab.
+    if (asyncSpots.hasError && spots.isEmpty) {
+      return InlineErrorRetry(
+        message: l10n.sotaLoadError,
+        retryLabel: l10n.sotaRetry,
+        onRetry: () => ref.invalidate(getSotaSpotsProvider),
       );
     }
 
-    if (visibleSpots.isEmpty) {
+    if (spots.isEmpty) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 24),
         child: Column(
@@ -780,9 +781,7 @@ class _SotaTabContent extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  onPressed: () => ref
-                      .read(dashboardControllerProvider.notifier)
-                      .refreshSota(),
+                  onPressed: () => ref.invalidate(getSotaSpotsProvider),
                   icon: Icon(
                     Icons.refresh,
                     size: 20,
@@ -799,7 +798,7 @@ class _SotaTabContent extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: 4),
-        ...visibleSpots.take(5).map(
+        ...spots.take(5).map(
               (spot) => _SotaSpotItem(spot: spot),
             ),
       ],

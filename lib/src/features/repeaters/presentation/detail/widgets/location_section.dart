@@ -3,13 +3,15 @@ import 'dart:math' as math;
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/altimetric_profile_bottom_sheet.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/repeater_location_map.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class LocationSection extends StatelessWidget {
+class LocationSection extends ConsumerWidget {
   const LocationSection({
     required this.repeater,
     this.calculatedDistanceKm,
@@ -20,10 +22,12 @@ class LocationSection extends StatelessWidget {
   final double? calculatedDistanceKm;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    // Il profilo altimetrico è calcolato dal backend: offline la card sparisce.
+    final isOffline = ref.watch(offlineStatusProvider).value ?? false;
 
     final effectiveDistanceMeters = repeater.distanceMeters ??
         (calculatedDistanceKm != null ? calculatedDistanceKm! * 1000 : null);
@@ -184,7 +188,7 @@ class LocationSection extends StatelessWidget {
           ),
         ),
         // Altimetric profile preview card
-        if (hasCoordinates) ...[
+        if (hasCoordinates && !isOffline) ...[
           const SizedBox(height: 16),
           _AltimetricProfilePreviewCard(
             onTap: () => _showAltimetricProfile(context),

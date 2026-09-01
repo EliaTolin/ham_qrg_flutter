@@ -1044,6 +1044,19 @@
   "stationDuplicateUpdate": "Aggiorna quella",
   "stationDuplicateCreate": "Crea distinta",
   "stationSaveFailed": "Salvataggio non riuscito: spazio insufficiente",
+  "stationSavedCta": "Postazione salvata",
+  "stationRemoveCta": "Rimuovi",
+  "stationRemoveTitle": "Rimuovere la postazione?",
+  "stationRemoveBody": "«{name}» e i suoi dati offline verranno eliminati da questo dispositivo.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Postazione rimossa",
+  "stationSaveError": "Salvataggio non riuscito. Riprova.",
   "stationsTitle": "Le mie postazioni",
   "stationsEmptyTitle": "Nessuna postazione salvata",
   "stationsEmptyBody": "Scegli un punto sulla mappa, valuta cosa raggiungi e salvalo: lo ritroverai anche senza rete.",
@@ -1082,5 +1095,40 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Tocca per aggiornare"
+  "spotsManualRefreshHint": "Tocca per aggiornare",
+  "coverageResultScope": "entro {km} km · {count} valutati",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Ricalcolo in corso",
+  "offlineBannerMessage": "Sei offline: stai consultando i dati salvati",
+  "offlineMapsTitle": "Mappe offline",
+  "offlineMapsEntrySubtitle": "Scarica le mappe per l'uso senza rete",
+  "offlineMapsEmpty": "Nessuna regione scaricata. Scarica una zona per vedere la mappa anche senza rete.",
+  "offlineMapsAddRegion": "Scarica regione",
+  "offlineMapsRegionNameLabel": "Nome della regione",
+  "offlineMapsRegionNameHint": "Es. Casa, Rifugio, Attivazione SOTA",
+  "offlineMapsRadiusLabel": "Raggio",
+  "offlineMapsDownload": "Scarica",
+  "offlineMapsDownloadingStyle": "Download dello stile mappa…",
+  "offlineMapsDownloadingTiles": "Download delle mappe… {percent}%",
+  "@offlineMapsDownloadingTiles": {"placeholders": {"percent": {"type": "String"}}},
+  "offlineMapsEstimatedSize": "Dimensione stimata: {size}",
+  "@offlineMapsEstimatedSize": {"placeholders": {"size": {"type": "String"}}},
+  "offlineMapsDownloadError": "Download non riuscito. Riprova.",
+  "offlineMapsDeleteError": "Eliminazione non riuscita. Riprova.",
+  "offlineMapsDeleteConfirmTitle": "Eliminare la regione?",
+  "offlineMapsDeleteConfirmMessage": "“{name}” non sarà più disponibile senza rete.",
+  "@offlineMapsDeleteConfirmMessage": {"placeholders": {"name": {"type": "String"}}},
+  "offlineMapsDeleteConfirm": "Elimina",
+  "offlineMapsRegionSubtitle": "Raggio {radius} km · {size}",
+  "@offlineMapsRegionSubtitle": {"placeholders": {"radius": {"type": "String"}, "size": {"type": "String"}}},
+  "offlineMapsIncomplete": "Download incompleto",
+  "offlineMapsResume": "Riprendi",
+  "offlineMapsCenterInfo": "La regione sarà centrata sulla tua posizione attuale.",
+  "dashboardOfflineTitle": "Sei offline",
+  "dashboardOfflineMessage": "Non ci sono dati salvati per questa zona. Le tue postazioni salvate e le mappe scaricate restano disponibili.",
+  "offlineMapsCenterMine": "La mia posizione",
+  "offlineMapsCenterSearch": "Cerca un luogo",
+  "offlineMapsCenterSearchInfo": "Cerca una città o un luogo: la regione sarà centrata lì.",
+  "offlineMapsCenterSelected": "Centro: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

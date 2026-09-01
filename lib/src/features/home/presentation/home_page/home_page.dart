@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/dialogs/show_telegram_invite_dialog.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
-import 'package:hamqrg/common/widgets/error/debug_error_widget.dart';
+import 'package:hamqrg/common/widgets/error/app_error_widget.dart';
 import 'package:hamqrg/common/widgets/profile/profile_avatar.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
@@ -69,7 +69,7 @@ class HomePage extends HookConsumerWidget {
         body: Center(child: CircularProgressIndicator()),
       ),
       error: (error, stackTrace) => Scaffold(
-        body: DebugErrorWidget(
+        body: AppErrorWidget(
           label: 'Home',
           error: error,
           stackTrace: stackTrace,

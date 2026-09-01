@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
@@ -321,19 +322,24 @@ class _ClusterActions extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localization;
+    // Offline la creazione di uno spot fallirebbe: pulsanti disabilitati.
+    final isOffline = ref.watch(offlineStatusProvider).value ?? false;
     return Row(
       children: [
         Expanded(
           child: FilledButton.icon(
-            onPressed: () async {
-              final authenticated = await requireAuthentication(context, ref);
-              if (!authenticated || !context.mounted) return;
-              await showCreateSpotSheet(
-                context,
-                repeaterId: repeater.id,
-                accesses: repeater.accesses,
-              );
-            },
+            onPressed: isOffline
+                ? null
+                : () async {
+                    final authenticated =
+                        await requireAuthentication(context, ref);
+                    if (!authenticated || !context.mounted) return;
+                    await showCreateSpotSheet(
+                      context,
+                      repeaterId: repeater.id,
+                      accesses: repeater.accesses,
+                    );
+                  },
             icon: const Icon(Icons.cell_tower, size: 18),
             label: Text(l10n.spotCreateTitle),
           ),
@@ -341,15 +347,18 @@ class _ClusterActions extends ConsumerWidget {
         const SizedBox(width: 8),
         Expanded(
           child: OutlinedButton.icon(
-            onPressed: () async {
-              final authenticated = await requireAuthentication(context, ref);
-              if (!authenticated || !context.mounted) return;
-              await showCreateOtherSpotSheet(
-                context,
-                repeaterId: repeater.id,
-                accesses: repeater.accesses,
-              );
-            },
+            onPressed: isOffline
+                ? null
+                : () async {
+                    final authenticated =
+                        await requireAuthentication(context, ref);
+                    if (!authenticated || !context.mounted) return;
+                    await showCreateOtherSpotSheet(
+                      context,
+                      repeaterId: repeater.id,
+                      accesses: repeater.accesses,
+                    );
+                  },
             icon: const Icon(Icons.person_search, size: 18),
             label: Text(l10n.spotCreateOtherTitle),
           ),

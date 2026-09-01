@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/l10n/app_localizations.dart';
@@ -36,7 +37,10 @@ class FeedbackFormCard extends ConsumerWidget {
 
     final isFormValid = controller.isFormValid();
     final isWithinDistance = controller.isWithinAllowedDistance();
-    final canSubmit = state.selectedStation != null &&
+    // Offline l'invio fallirebbe subito: i pulsanti restano disabilitati.
+    final isOffline = ref.watch(offlineStatusProvider).value ?? false;
+    final canSubmit = !isOffline &&
+        state.selectedStation != null &&
         state.selectedAccessId != null &&
         state.comment.trim().length >= _minCommentChars;
 

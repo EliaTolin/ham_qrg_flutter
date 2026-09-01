@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:auto_route/auto_route.dart';
@@ -114,8 +115,13 @@ class _CoverageMapView extends HookWidget {
     );
 
     final b = coverage.bounds;
+    final imageUrl = coverage.imageUrl;
+    final isLocalFile = imageUrl.startsWith('file://');
 
     // Coverage PNG as an image source (row 0 = north -> top-left = west/north).
+    // Con la cache offline l'URL può essere un `file://` locale: Mapbox non lo
+    // carica come url, quindi la sorgente nasce vuota e i byte vengono
+    // spinti con updateStyleImageSourceImage (stesso formato PNG dei marker).
     await map.style.addSource(
       ImageSource(
         id: 'coverage-source',
@@ -125,7 +131,7 @@ class _CoverageMapView extends HookWidget {
           [b.east, b.south],
           [b.west, b.south],
         ],
-        url: coverage.imageUrl,
+        url: isLocalFile ? null : imageUrl,
       ),
     );
     await map.style.addLayer(
@@ -135,6 +141,20 @@ class _CoverageMapView extends HookWidget {
         rasterOpacity: 0.7,
       ),
     );
+    if (isLocalFile) {
+      final file = File.fromUri(Uri.parse(imageUrl));
+      if (file.existsSync()) {
+        final bytes = await file.readAsBytes();
+        await map.style.updateStyleImageSourceImage(
+          'coverage-source',
+          MbxImage(
+            width: coverage.width,
+            height: coverage.height,
+            data: bytes,
+          ),
+        );
+      }
+    }
 
     // Repeater marker.
     final circles = await map.annotations.createCircleAnnotationManager();
@@ -283,7 +303,8 @@ class _LoadingView extends HookWidget {
                     ),
                     // Antenna core with a gentle pulse.
                     Transform.scale(
-                      scale: 1 + 0.08 * math.sin(controller.value * 2 * math.pi),
+                      scale:
+                          1 + 0.08 * math.sin(controller.value * 2 * math.pi),
                       child: Container(
                         width: 52,
                         height: 52,

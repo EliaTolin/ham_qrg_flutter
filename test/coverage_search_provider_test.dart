@@ -6,6 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hamqrg/clients/revenue_cat/impl/revenue_cat_client_impl.dart';
 import 'package:hamqrg/clients/revenue_cat/revenue_cat_client.dart';
+import 'package:hamqrg/clients/storage/impl/shared_pref_storage_client/shared_pref_storage_client.dart';
+import 'package:hamqrg/clients/storage/storage_client.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/coverage_result.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_breadth.dart';
@@ -15,6 +18,7 @@ import 'package:hamqrg/src/features/coverage_search/provider/evaluate_point/eval
 import 'package:hamqrg/src/features/repeaters/data/datasource/repeaters_supabase_datasource.dart';
 import 'package:hamqrg/src/features/repeaters/data/repository/repeaters_repository.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
+import 'package:remote_caching/remote_caching.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
@@ -97,10 +101,39 @@ class _FakeRevenueCatClient implements RevenueCatClient {
   Future<bool> restorePurchases() async => pro;
 
   @override
-  Future<bool> presentPaywall({String? offeringId}) async => false;
+  Future<bool> presentPaywall({String? placementId}) async => false;
 
   @override
-  Future<bool> presentPaywallIfNeeded() async => pro;
+  Future<bool> presentPaywallIfNeeded({String? placementId}) async => pro;
+}
+
+/// Connettività finta: sempre online. Il notifier reale usa
+/// `connectivity_plus`, un plugin nativo che nei test VM (senza binding
+/// Flutter) andrebbe in errore già alla costruzione del grafo dei provider.
+class _AlwaysOnlineStatusNotifier extends OfflineStatusNotifier {
+  @override
+  Future<bool> build() async => false;
+}
+
+/// Storage in-memory: `isProProvider` persiste l'entitlement verificato su
+/// SharedPreferences — altro plugin nativo assente nei test VM.
+class _InMemoryStorageClient implements StorageClient {
+  final _store = <String, String>{};
+
+  @override
+  Future<bool> delete(String key) async => _store.remove(key) != null;
+
+  @override
+  Future<String?> read(String key) async => _store[key];
+
+  @override
+  Future<bool> write(String key, dynamic value) async {
+    _store[key] = value as String;
+    return true;
+  }
+
+  @override
+  Future<List<String>> getAllKeys() async => _store.keys.toList();
 }
 
 ProviderContainer _containerFor({required bool isPro}) {
@@ -116,12 +149,22 @@ ProviderContainer _containerFor({required bool isPro}) {
       repeatersRepositoryProvider.overrideWithValue(repository),
       revenueCatClientProvider
           .overrideWithValue(_FakeRevenueCatClient(pro: isPro)),
+      offlineStatusProvider.overrideWith(_AlwaysOnlineStatusNotifier.new),
+      sharedPrefStorageClientProvider
+          .overrideWith((ref) async => _InMemoryStorageClient()),
     ],
   );
 }
 
 void main() {
   setUpAll(() async {
+    // I datasource Pro passano da RemoteCaching, che non inizializzato lancia
+    // StateError. Database in-memory: il package usa sqflite_common_ffi al suo
+    // interno, quindi funziona anche nei test VM senza plugin nativi.
+    await RemoteCaching.instance.init(
+      databasePath: getInMemoryDatabasePath(),
+    );
+
     _client = SupabaseClient(
       AppConfigs.getSupabaseUrl(),
       AppConfigs.getSupabaseKey(),

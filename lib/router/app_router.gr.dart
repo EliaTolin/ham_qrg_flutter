@@ -107,6 +107,22 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OfflineMapsPage]
+class OfflineMapsRoute extends PageRouteInfo<void> {
+  const OfflineMapsRoute({List<PageRouteInfo>? children})
+      : super(OfflineMapsRoute.name, initialChildren: children);
+
+  static const String name = 'OfflineMapsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OfflineMapsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [OnboardingPage]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})

@@ -9,6 +9,7 @@ import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/src/app.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:remote_caching/remote_caching.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -81,11 +82,25 @@ Future<void> main() async {
 /// expiry: should a write ever forget the sentinel, the entry survives a year
 /// instead of the package default of one hour.
 ///
+/// ## Why `databasePath` is passed explicitly
+///
+/// The package forces `databaseFactoryFfi` on every platform, so an omitted
+/// path resolves through sqflite_common_ffi to
+/// `./.dart_tool/sqflite_common_ffi/databases` — a development-tooling
+/// location relative to the process working directory. On desktop and in
+/// tests that happens to be writable; on iOS and Android it is not, so
+/// creating it throws and the cache never initializes. Every later `call()`
+/// then throws `StateError`, and saved stations lose their offline data
+/// without a single visible error. The documents directory is the writable,
+/// backed-up location this data belongs in.
+///
 /// Never throws: a cache failure must not block startup — offline consultation
-/// degrades, the app still runs.
+/// degrades, the app still runs. It is reported, not hidden.
 Future<void> _initRemoteCaching() async {
   try {
+    final documents = await getApplicationDocumentsDirectory();
     await RemoteCaching.instance.init(
+      databasePath: documents.path,
       defaultCacheDuration: const Duration(days: 365),
     );
   } catch (error, stackTrace) {

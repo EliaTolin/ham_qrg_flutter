@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/empty_state_widget.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/coverage_result.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_breadth.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_point.dart';
 import 'package:hamqrg/src/features/coverage_search/errors/coverage_search_exception.dart';
-import 'package:hamqrg/src/features/coverage_search/presentation/widgets/breadth_selector.dart';
 import 'package:hamqrg/src/features/coverage_search/presentation/widgets/coverage_teaser.dart';
-import 'package:hamqrg/src/features/coverage_search/presentation/widgets/save_station_sheet.dart';
+import 'package:hamqrg/src/features/coverage_search/presentation/widgets/range_selector.dart';
+import 'package:hamqrg/src/features/coverage_search/presentation/widgets/save_station_button.dart';
 import 'package:hamqrg/src/features/coverage_search/provider/evaluate_point/evaluate_point_provider.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/repeater_card.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-/// Elenco dei ripetitori raggiungibili dal punto scelto, dal segnale più forte
-/// al più debole.
+/// Cosa raggiungi dal punto scelto.
 ///
-/// I filtri di modo attivi sulla mappa agiscono qui come **lente**: il calcolo
-/// dietro comprende sempre tutti i modi (FR-027), quindi togliere un filtro
-/// non richiede di rifare nulla.
+/// Tre zone fisse invece di un unico blocco che scorre: in alto il **responso**
+/// (dove, quanti, entro quanto), sotto il selettore di raggio, poi la lista, e
+/// in fondo il salvataggio ancorato — che con cinquanta risultati non deve
+/// costringere a risalire in cima per essere raggiunto.
+/// Altezza indicativa delle zone fisse del foglio — responso, selettore di
+/// raggio e pulsante di salvataggio — con un margine per le dimensioni di
+/// testo maggiorate. Serve solo a calcolare fin dove il foglio può rimpicciolire.
+const double _chromeHeight = 300;
+
 class CoverageResultSheet extends HookConsumerWidget {
   const CoverageResultSheet({
     required this.point,
@@ -37,271 +43,332 @@ class CoverageResultSheet extends HookConsumerWidget {
   final VoidCallback? onClearFilters;
 
   /// Su tablet il contenuto vive in un pannello fisso affiancato alla mappa,
-  /// quindi non serve — e anzi disturba — l'involucro trascinabile.
+  /// quindi non serve l'involucro trascinabile.
   final bool asPanel;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final l10n = context.localization;
+    final provider = evaluatePointProvider(point: point, breadth: breadth);
+    final async = ref.watch(provider);
 
-    final async =
-        ref.watch(evaluatePointProvider(point: point, breadth: breadth));
+    final isProRequired = async.hasError && async.error is ProRequiredException;
 
-    // Ultimo risultato buono: un errore su un ricalcolo (tipicamente un cambio
-    // di ampiezza andato male) mostra il banner ma NON porta via la lista che
-    // l'utente sta leggendo (FR-022, Principio III).
-    final lastGood = useRef<CoverageEvaluation?>(null);
-    if (async.hasValue) lastGood.value = async.value;
+    // L'ultimo risultato buono si conserva SOLO se appartiene allo stesso
+    // raggio. Cambiare raggio pone una domanda diversa: tenere in vista la
+    // risposta precedente mentre arriva la nuova mostrerebbe ripetitori che
+    // non appartengono più a nulla di ciò che è scritto sopra di loro.
+    final cached = useRef<_Cached?>(null);
+    if (async.hasValue) {
+      cached.value = _Cached(breadth: breadth, evaluation: async.value!);
+    }
+    final previous =
+        cached.value?.breadth == breadth ? cached.value?.evaluation : null;
 
-    // Il gate Pro non è un guasto: porta al percorso di acquisto, non a un
-    // banner di errore. Il calcolo, per un non Pro, non è nemmeno partito.
-    final isProRequired = async.error is ProRequiredException;
+    final evaluation = async.value ?? previous;
+    final isRecalculating = async.isLoading && evaluation == null;
 
-    final evaluation = async.value ?? lastGood.value;
-    final filtered = evaluation?.entries.filteredBy(selectedModes);
-
-    Widget content(ScrollController? scrollController) => CustomScrollView(
-          controller: scrollController,
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      point.label,
-                      style: theme.textTheme.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.w700),
-                    ),
-                    Text(
-                      l10n.coverageResultSubtitle,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    BreadthSelector(
-                      selected: breadth,
-                      onChanged: onBreadthChanged,
-                    ),
-                    const SizedBox(height: 16),
-                    if (async.isLoading)
-                      _ComputingRow(
-                        onCancel: () => ref.invalidate(
-                          evaluatePointProvider(point: point, breadth: breadth),
-                        ),
-                      ),
-                    if (isProRequired)
-                      CoverageTeaser(point: point)
-                    else if (async.hasError && !async.isLoading)
-                      _ErrorBanner(
-                        onRetry: () => ref.invalidate(
-                          evaluatePointProvider(point: point, breadth: breadth),
-                        ),
-                      ),
-                    if (evaluation != null &&
-                        !async.isLoading &&
-                        !isProRequired) ...[
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              l10n.coverageResultCount(
-                                evaluation.reachableCount,
-                              ),
-                              style: theme.textTheme.headlineSmall
-                                  ?.copyWith(fontWeight: FontWeight.w800),
-                            ),
-                          ),
-                          if (evaluation.entries.isNotEmpty)
-                            FilledButton.tonalIcon(
-                              onPressed: () =>
-                                  showSaveStationFlow(context, ref, evaluation),
-                              icon: const Icon(Icons.bookmark_add_outlined),
-                              label: Text(l10n.stationSaveCta),
-                            ),
-                        ],
-                      ),
-                      if ((filtered?.hiddenReachableCount ?? 0) > 0)
-                        _HiddenByFiltersRow(
-                          hidden: filtered!.hiddenReachableCount,
-                          onClearFilters: onClearFilters,
-                        ),
-                    ],
-                  ],
-                ),
+    Widget body(ScrollController? controller) => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 4, 20, 0),
+              child: _Verdict(
+                point: point,
+                breadth: breadth,
+                evaluation: evaluation,
+                isRecalculating: isRecalculating,
+                onCancel: () => ref.invalidate(provider),
               ),
             ),
-            if (evaluation != null && filtered != null && !isProRequired)
-              ..._resultSlivers(context, evaluation, filtered),
-            const SliverToBoxAdapter(child: SizedBox(height: 32)),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: RangeSelector(
+                selected: breadth,
+                onChanged: onBreadthChanged,
+                enabled: !isProRequired,
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Divider(height: 1),
+            Expanded(
+              child: _Body(
+                controller: controller,
+                point: point,
+                evaluation: evaluation,
+                selectedModes: selectedModes,
+                isProRequired: isProRequired,
+                isRecalculating: isRecalculating,
+                hasError: async.hasError && !isProRequired,
+                onRetry: () => ref.invalidate(provider),
+                onClearFilters: onClearFilters,
+              ),
+            ),
+            if (evaluation != null &&
+                evaluation.entries.isNotEmpty &&
+                !isProRequired)
+              SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+                  child: SaveStationButton(evaluation: evaluation),
+                ),
+              ),
           ],
         );
 
-    if (asPanel) return content(null);
+    if (asPanel) return body(null);
+
+    // Il minimo lo detta il contenuto fisso, non una frazione arbitraria: sotto
+    // l'altezza di responso + selettore + pulsante non resta nulla da mostrare,
+    // e la frazione predefinita (0.25) portava il foglio in uno stato in cui
+    // quelle tre zone non ci stavano più — con la lista schiacciata a zero e il
+    // Column in overflow.
+    final minExtent =
+        (_chromeHeight / MediaQuery.sizeOf(context).height).clamp(0.3, 0.66);
+
     return DraggableScrollableSheet(
       expand: false,
-      initialChildSize: 0.62,
+      initialChildSize: 0.66,
+      minChildSize: minExtent,
       maxChildSize: 0.92,
-      builder: (context, scrollController) => content(scrollController),
+      // Il controller va alla lista interna: è così che il trascinamento del
+      // foglio e lo scorrimento dei risultati diventano un gesto solo, invece
+      // di due aree di scorrimento che si contendono il dito.
+      //
+      // Il ritaglio è la rete di sicurezza per i fotogrammi di transizione, in
+      // cui l'altezza può scendere sotto il minimo prima di assestarsi: meglio
+      // un pulsante temporaneamente tagliato di un errore di layout.
+      builder: (context, controller) => ClipRect(child: body(controller)),
     );
-  }
-
-  List<Widget> _resultSlivers(
-    BuildContext context,
-    CoverageEvaluation evaluation,
-    FilteredEntries filtered,
-  ) {
-    final visible = filtered.visible.where((e) => e.verdict.reachable).toList();
-    if (visible.isNotEmpty) {
-      return [
-        SliverList.builder(
-          itemCount: visible.length,
-          itemBuilder: (context, index) {
-            final entry = visible[index];
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-              // RepeaterCard passa già alla rotta di dettaglio con il solo ID
-              // (Principio I: le pagine ricevono identificatori, non entità).
-              child: RepeaterCard(
-                repeater: entry.repeater,
-                signalDbm: entry.verdict.dbm,
-              ),
-            );
-          },
-        ),
-      ];
-    }
-
-    // Tre stati vuoti distinti: per l'operatore "nessuno raggiungibile" e
-    // "nessuno censito" sono due informazioni diverse, e "tutti nascosti dai
-    // filtri" non è affatto uno stato vuoto (FR-021, FR-030).
-    final l10n = context.localization;
-    final hiddenByFilters = filtered.hiddenReachableCount > 0;
-    final message = hiddenByFilters
-        ? l10n.coverageResultHiddenByFilters(filtered.hiddenReachableCount)
-        : evaluation.entries.isEmpty
-            ? l10n.coverageResultEmptyNoRepeaters
-            : l10n.coverageResultEmptyNoReachable;
-
-    return [
-      SliverToBoxAdapter(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
-          child: Column(
-            children: [
-              Icon(
-                hiddenByFilters
-                    ? Icons.filter_alt_off_outlined
-                    : Icons.cell_tower_outlined,
-                size: 40,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                message,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
-              ),
-              if (hiddenByFilters && onClearFilters != null) ...[
-                const SizedBox(height: 12),
-                TextButton(
-                  onPressed: onClearFilters,
-                  child: Text(l10n.coverageResultClearFilters),
-                ),
-              ],
-            ],
-          ),
-        ),
-      ),
-    ];
   }
 }
 
-class _ComputingRow extends StatelessWidget {
-  const _ComputingRow({required this.onCancel});
+/// Un risultato con il raggio a cui appartiene: senza questa coppia non si
+/// potrebbe sapere se ciò che si ha in mano risponde ancora alla domanda posta.
+class _Cached {
+  const _Cached({required this.breadth, required this.evaluation});
 
+  final SearchBreadth breadth;
+  final CoverageEvaluation evaluation;
+}
+
+/// Il responso: da dove, quanti, entro quanto.
+///
+/// Il conteggio è l'unica cosa grande della schermata. Tutto il resto —
+/// nome del luogo in alto, portata e candidati valutati sotto — gli fa da
+/// contorno, perché è l'unica informazione per cui si è aperto il foglio.
+class _Verdict extends StatelessWidget {
+  const _Verdict({
+    required this.point,
+    required this.breadth,
+    required this.evaluation,
+    required this.isRecalculating,
+    required this.onCancel,
+  });
+
+  final SearchPoint point;
+  final SearchBreadth breadth;
+  final CoverageEvaluation? evaluation;
+  final bool isRecalculating;
   final VoidCallback onCancel;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        children: [
-          const SizedBox(
-            width: 18,
-            height: 18,
-            child: CircularProgressIndicator(strokeWidth: 2),
+    final l10n = context.localization;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Eyebrow nel linguaggio "console" già in uso nell'app.
+        Text(
+          point.label.toUpperCase(),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.labelMedium?.copyWith(
+            fontFamily: 'monospace',
+            letterSpacing: 1.2,
+            fontWeight: FontWeight.w800,
+            color: theme.colorScheme.onSurfaceVariant,
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              context.localization.coverageResultComputing,
-              style: theme.textTheme.bodyMedium,
+        ),
+        const SizedBox(height: 6),
+        if (isRecalculating)
+          Row(
+            children: [
+              const SizedBox(
+                width: 18,
+                height: 18,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  l10n.coverageResultRecalculating,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: onCancel,
+                child: Text(l10n.coverageResultCancel),
+              ),
+            ],
+          )
+        else if (evaluation != null) ...[
+          Text(
+            l10n.coverageResultCount(evaluation!.reachableCount),
+            style: theme.textTheme.headlineMedium?.copyWith(
+              fontWeight: FontWeight.w800,
             ),
           ),
-          TextButton(
-            onPressed: onCancel,
-            child: Text(context.localization.coverageResultCancel),
+          const SizedBox(height: 2),
+          // La portata e quanti candidati sono stati valutati dicono il
+          // compromesso meglio di qualunque frase: sono il compromesso.
+          Text(
+            l10n.coverageResultScope(
+              breadth.radiusKm.toInt(),
+              evaluation!.entries.length,
+            ),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
           ),
         ],
-      ),
+      ],
     );
   }
 }
 
-class _ErrorBanner extends StatelessWidget {
-  const _ErrorBanner({required this.onRetry});
+class _Body extends StatelessWidget {
+  const _Body({
+    required this.controller,
+    required this.point,
+    required this.evaluation,
+    required this.selectedModes,
+    required this.isProRequired,
+    required this.isRecalculating,
+    required this.hasError,
+    required this.onRetry,
+    required this.onClearFilters,
+  });
 
+  final ScrollController? controller;
+  final SearchPoint point;
+  final CoverageEvaluation? evaluation;
+  final Set<AccessMode> selectedModes;
+  final bool isProRequired;
+  final bool isRecalculating;
+  final bool hasError;
   final VoidCallback onRetry;
+  final VoidCallback? onClearFilters;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.localization;
+
+    if (isProRequired) {
+      return SingleChildScrollView(
+        controller: controller,
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+        child: CoverageTeaser(point: point),
+      );
+    }
+
+    if (isRecalculating) return _SkeletonList(controller: controller);
+
+    if (hasError && evaluation == null) {
+      return EmptyStateWidget(
+        icon: Icons.error_outline_rounded,
+        message: l10n.coverageResultError,
+        cta: l10n.retry,
+        onCtaTap: onRetry,
+      );
+    }
+
+    if (evaluation == null) return const SizedBox.shrink();
+
+    final filtered = evaluation!.entries.filteredBy(selectedModes);
+    final visible = filtered.visible.where((e) => e.verdict.reachable).toList();
+
+    if (visible.isEmpty) {
+      // Tre esiti diversi, tre messaggi diversi: per l'operatore "nessuno
+      // raggiungibile" e "nessuno censito" sono informazioni distinte, e
+      // "tutti nascosti dai filtri" non è affatto un risultato vuoto.
+      final hiddenByFilters = filtered.hiddenReachableCount > 0;
+      return EmptyStateWidget(
+        icon: hiddenByFilters
+            ? Icons.filter_alt_off_outlined
+            : Icons.cell_tower_outlined,
+        message: hiddenByFilters
+            ? l10n.coverageResultHiddenByFilters(filtered.hiddenReachableCount)
+            : evaluation!.entries.isEmpty
+                ? l10n.coverageResultEmptyNoRepeaters
+                : l10n.coverageResultEmptyNoReachable,
+        cta: hiddenByFilters ? l10n.coverageResultClearFilters : null,
+        onCtaTap: hiddenByFilters ? onClearFilters : null,
+      );
+    }
+
+    return ListView.builder(
+      controller: controller,
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+      itemCount: visible.length + (filtered.hiddenReachableCount > 0 ? 1 : 0),
+      itemBuilder: (context, index) {
+        if (index == visible.length) {
+          return _HiddenByFilters(
+            hidden: filtered.hiddenReachableCount,
+            onClearFilters: onClearFilters,
+          );
+        }
+        final entry = visible[index];
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          child: RepeaterCard(
+            repeater: entry.repeater,
+            signalDbm: entry.verdict.dbm,
+          ),
+        );
+      },
+    );
+  }
+}
+
+/// Sagome al posto della lista durante un ricalcolo.
+///
+/// Non è decorazione: rimpiazzando la lista invece di sovrapporsi a essa,
+/// dichiara che i risultati di prima non valgono più per il raggio appena
+/// scelto — che è esattamente ciò che una rotella sopra una lista vecchia non
+/// riusciva a dire.
+class _SkeletonList extends StatelessWidget {
+  const _SkeletonList({required this.controller});
+
+  final ScrollController? controller;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.fromLTRB(14, 8, 8, 8),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.errorContainer,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            Icons.error_outline_rounded,
-            size: 18,
-            color: theme.colorScheme.onErrorContainer,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              context.localization.coverageResultError,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onErrorContainer,
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: onRetry,
-            child: Text(context.localization.retry),
-          ),
-        ],
+    return ListView.builder(
+      controller: controller,
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+      itemCount: 4,
+      itemBuilder: (context, index) => Container(
+        height: 92,
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surfaceContainerHighest
+              .withValues(alpha: 1 - index * 0.18),
+          borderRadius: BorderRadius.circular(16),
+        ),
       ),
     );
   }
 }
 
-class _HiddenByFiltersRow extends StatelessWidget {
-  const _HiddenByFiltersRow({
-    required this.hidden,
-    required this.onClearFilters,
-  });
+class _HiddenByFilters extends StatelessWidget {
+  const _HiddenByFilters({required this.hidden, required this.onClearFilters});
 
   final int hidden;
   final VoidCallback? onClearFilters;
@@ -310,7 +377,7 @@ class _HiddenByFiltersRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.only(top: 4),
+      padding: const EdgeInsets.fromLTRB(4, 12, 4, 4),
       child: Row(
         children: [
           Icon(
@@ -318,7 +385,7 @@ class _HiddenByFiltersRow extends StatelessWidget {
             size: 16,
             color: theme.colorScheme.onSurfaceVariant,
           ),
-          const SizedBox(width: 6),
+          const SizedBox(width: 8),
           Expanded(
             child: Text(
               context.localization.coverageResultHiddenByFilters(hidden),

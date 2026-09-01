@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:hamqrg/common/cache/offline_cache_gate_ref.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/log/talker_service/talker_service.dart';
+import 'package:hamqrg/src/features/repeaters/data/datasource/cached_coverage_datasource.dart';
 import 'package:hamqrg/src/features/repeaters/data/datasource/coverage_datasource.dart';
 import 'package:hamqrg/src/features/repeaters/data/model/coverage/repeater_coverage_model.dart';
+import 'package:hamqrg/src/features/repeaters/service/coverage_image_cache.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
@@ -56,7 +59,11 @@ CoverageDatasource coverageDatasource(Ref ref) {
     ),
   );
   dio.interceptors.add(_CoverageLogInterceptor(talker));
-  return CoverageHttpDatasource(dio);
+  return CachedCoverageDatasource(
+    inner: CoverageHttpDatasource(dio),
+    imageCache: ref.read(coverageImageCacheProvider),
+    gate: ref.watchOfflineCacheGate(),
+  );
 }
 
 /// Logs each coverage call with the exact request body, the cache outcome
@@ -76,7 +83,10 @@ class _CoverageLogInterceptor extends Interceptor {
   }
 
   @override
-  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
+  void onResponse(
+    Response<dynamic> response,
+    ResponseInterceptorHandler handler,
+  ) {
     final ms = _elapsedMs(response.requestOptions);
     final data = response.data;
     final cached = data is Map ? data['cached'] : null;
@@ -98,7 +108,9 @@ class _CoverageLogInterceptor extends Interceptor {
 
   int _elapsedMs(RequestOptions options) {
     final start = options.extra[_startKey];
-    if (start is DateTime) return DateTime.now().difference(start).inMilliseconds;
+    if (start is DateTime) {
+      return DateTime.now().difference(start).inMilliseconds;
+    }
     return -1;
   }
 }

@@ -2397,6 +2397,27 @@ class AppLocalizationsDe extends AppLocalizations {
       'Speichern fehlgeschlagen: zu wenig Speicherplatz';
 
   @override
+  String get stationSavedCta => 'Standort gespeichert';
+
+  @override
+  String get stationRemoveCta => 'Entfernen';
+
+  @override
+  String get stationRemoveTitle => 'Standort entfernen?';
+
+  @override
+  String stationRemoveBody(String name) {
+    return '„$name“ und seine Offline-Daten werden von diesem Gerät gelöscht.';
+  }
+
+  @override
+  String get stationRemovedSnack => 'Standort entfernt';
+
+  @override
+  String get stationSaveError =>
+      'Speichern fehlgeschlagen. Bitte erneut versuchen.';
+
+  @override
   String get stationsTitle => 'Meine Standorte';
 
   @override
@@ -2437,4 +2458,112 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get spotsManualRefreshHint => 'Zum Aktualisieren tippen';
+
+  @override
+  String coverageResultScope(int km, int count) {
+    return 'im Umkreis von $km km · $count geprüft';
+  }
+
+  @override
+  String get coverageResultRecalculating => 'Neuberechnung';
+
+  @override
+  String get offlineBannerMessage =>
+      'Du bist offline: gespeicherte Daten werden angezeigt';
+
+  @override
+  String get offlineMapsTitle => 'Offline-Karten';
+
+  @override
+  String get offlineMapsEntrySubtitle =>
+      'Karten für die Nutzung ohne Verbindung herunterladen';
+
+  @override
+  String get offlineMapsEmpty =>
+      'Keine Regionen heruntergeladen. Lade ein Gebiet herunter, um die Karte auch ohne Verbindung zu sehen.';
+
+  @override
+  String get offlineMapsAddRegion => 'Region herunterladen';
+
+  @override
+  String get offlineMapsRegionNameLabel => 'Name der Region';
+
+  @override
+  String get offlineMapsRegionNameHint =>
+      'z. B. Zuhause, Hütte, SOTA-Aktivierung';
+
+  @override
+  String get offlineMapsRadiusLabel => 'Radius';
+
+  @override
+  String get offlineMapsDownload => 'Herunterladen';
+
+  @override
+  String get offlineMapsDownloadingStyle => 'Kartenstil wird heruntergeladen…';
+
+  @override
+  String offlineMapsDownloadingTiles(String percent) {
+    return 'Karten werden heruntergeladen… $percent%';
+  }
+
+  @override
+  String offlineMapsEstimatedSize(String size) {
+    return 'Geschätzte Größe: $size';
+  }
+
+  @override
+  String get offlineMapsDownloadError =>
+      'Download fehlgeschlagen. Versuche es erneut.';
+
+  @override
+  String get offlineMapsDeleteError =>
+      'Löschen fehlgeschlagen. Versuche es erneut.';
+
+  @override
+  String get offlineMapsDeleteConfirmTitle => 'Region löschen?';
+
+  @override
+  String offlineMapsDeleteConfirmMessage(String name) {
+    return '„$name“ ist offline nicht mehr verfügbar.';
+  }
+
+  @override
+  String get offlineMapsDeleteConfirm => 'Löschen';
+
+  @override
+  String offlineMapsRegionSubtitle(String radius, String size) {
+    return 'Radius $radius km · $size';
+  }
+
+  @override
+  String get offlineMapsIncomplete => 'Unvollständiger Download';
+
+  @override
+  String get offlineMapsResume => 'Fortsetzen';
+
+  @override
+  String get offlineMapsCenterInfo =>
+      'Die Region wird auf deinen aktuellen Standort zentriert.';
+
+  @override
+  String get dashboardOfflineTitle => 'Du bist offline';
+
+  @override
+  String get dashboardOfflineMessage =>
+      'Keine gespeicherten Daten für dieses Gebiet. Deine gespeicherten Standorte und heruntergeladenen Karten bleiben verfügbar.';
+
+  @override
+  String get offlineMapsCenterMine => 'Mein Standort';
+
+  @override
+  String get offlineMapsCenterSearch => 'Ort suchen';
+
+  @override
+  String get offlineMapsCenterSearchInfo =>
+      'Suche eine Stadt oder einen Ort: die Region wird dort zentriert.';
+
+  @override
+  String offlineMapsCenterSelected(String label) {
+    return 'Zentrum: $label';
+  }
 }

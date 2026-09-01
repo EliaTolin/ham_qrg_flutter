@@ -9,8 +9,15 @@ part 'pota_api_datasource.g.dart';
 /// POTA API base URL.
 const _baseUrl = 'https://api.pota.app';
 
+/// Bounds how long a stalled POTA request can keep a section spinning.
+const _timeout = Duration(seconds: 10);
+
 class PotaApiDatasource implements PotaDatasource {
-  PotaApiDatasource(this._dio);
+  PotaApiDatasource(this._dio) {
+    _dio.options
+      ..connectTimeout = _timeout
+      ..receiveTimeout = _timeout;
+  }
 
   final Dio _dio;
 

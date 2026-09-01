@@ -16,19 +16,36 @@ class FavoriteRepeatersNotifier extends _$FavoriteRepeatersNotifier {
 
     final repository = ref.read(repeatersRepositoryProvider);
 
-    final repeaters = await repository.getFavoriteRepeaters(userId);
-    final ids = await repository.getFavoriteRepeatersIds(userId);
-    final count = await repository.getTotalFavoritesCount(userId);
-    final meta = await repository.getFavoritesMeta(userId);
+    // Solo la lista è essenziale. Ids e conteggio sono derivabili da essa e i
+    // metadati sono accessori: offline basta che la lista sia in cache perché
+    // i preferiti restino consultabili, invece di fallire tutto se una sola
+    // delle quattro voci manca. Le chiamate partono comunque in parallelo
+    // (in serie, su rete degradata, i timeout si sommerebbero).
+    final repeatersFuture = repository.getFavoriteRepeaters(userId);
+    // `_quiet` aggancia subito l'handler: se la lista fallisse per prima, le
+    // altre future non resterebbero con errori non gestiti.
+    final idsFuture = _quiet(repository.getFavoriteRepeatersIds(userId));
+    final countFuture = _quiet(repository.getTotalFavoritesCount(userId));
+    final metaFuture = _quiet(repository.getFavoritesMeta(userId));
+
+    final repeaters = await repeatersFuture;
+    final ids = await idsFuture ?? repeaters.map((r) => r.id).toList();
+    final count = await countFuture ?? repeaters.length;
+    final meta = await metaFuture;
 
     return FavoriteRepeatersState(
       repeaters: repeaters,
       ids: ids,
-      count: count ?? 0,
-      clusterNotifications: meta.clusterNotifications,
-      favoriteIdByRepeaterId: meta.favoriteIds,
+      count: count,
+      clusterNotifications: meta?.clusterNotifications ?? const {},
+      favoriteIdByRepeaterId: meta?.favoriteIds ?? const {},
     );
   }
+
+  /// Converte un fallimento in `null`: usato per i dati accessori dei
+  /// preferiti, che offline devono degradare invece di far fallire il build.
+  static Future<T?> _quiet<T>(Future<T> future) =>
+      future.then<T?>((value) => value, onError: (Object _) => null);
 
   Future<void> add(String repeaterId) async {
     final userId = await ref.read(getUserIdProvider.future);

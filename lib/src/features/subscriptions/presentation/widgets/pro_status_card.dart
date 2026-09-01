@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -62,7 +63,9 @@ class ProStatusCard extends ConsumerWidget {
                 Icons.chevron_right,
                 color: colorScheme.onPrimaryContainer.withValues(alpha: .6),
               ),
-        onTap: isPro ? null : () => openProPaywall(ref),
+        onTap: isPro
+            ? null
+            : () => openPaywall(ref, PaywallPlacement.proStatusCard),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/show_registration_prompt.dart';
@@ -25,6 +26,9 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
 
     final favoritesAsync = ref.watch(favoriteRepeatersProvider);
     final isFavorite = favoritesAsync.value?.ids.contains(repeater.id) ?? false;
+    // Offline le scritture (preferiti, segnalazioni) fallirebbero subito:
+    // meglio un pulsante disabilitato che un errore. La condivisione è locale.
+    final isOffline = ref.watch(offlineStatusProvider).value ?? false;
 
     return Container(
       decoration: BoxDecoration(
@@ -51,6 +55,7 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
                   ? l10n.repeaterDetailSaved
                   : l10n.repeaterDetailSave,
               onTap: () => _onFavoriteTap(context, ref, isFavorite),
+              enabled: !isOffline,
             ),
           ),
           Container(
@@ -75,6 +80,7 @@ class RepeaterDetailActionButtons extends ConsumerWidget {
               icon: Icons.flag_outlined,
               label: l10n.repeaterDetailReport,
               onTap: () => _onReportTap(context, ref),
+              enabled: !isOffline,
             ),
           ),
         ],
@@ -128,12 +134,14 @@ class _ActionButton extends StatelessWidget {
     required this.label,
     required this.onTap,
     this.iconColor,
+    this.enabled = true,
   });
 
   final IconData icon;
   final String label;
   final VoidCallback onTap;
   final Color? iconColor;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -141,26 +149,29 @@ class _ActionButton extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return InkWell(
-      onTap: onTap,
+      onTap: enabled ? onTap : null,
       borderRadius: BorderRadius.circular(16),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              size: 22,
-              color: iconColor ?? colorScheme.onSurfaceVariant,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: theme.textTheme.labelSmall?.copyWith(
-                color: colorScheme.onSurfaceVariant,
+      child: Opacity(
+        opacity: enabled ? 1 : 0.38,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                size: 22,
+                color: iconColor ?? colorScheme.onSurfaceVariant,
               ),
-            ),
-          ],
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

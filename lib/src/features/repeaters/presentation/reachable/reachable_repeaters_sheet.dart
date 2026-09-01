@@ -76,7 +76,8 @@ class ReachableRepeatersSheet extends ConsumerWidget {
                       Text(
                         l10n.reachSheetSubtitle,
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurface.withValues(alpha: 0.65),
+                          color: theme.colorScheme.onSurface
+                              .withValues(alpha: 0.65),
                         ),
                       ),
                     ],

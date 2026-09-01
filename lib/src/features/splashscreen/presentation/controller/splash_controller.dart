@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:hamqrg/clients/package_info/package_info.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
 import 'package:hamqrg/common/utils/version_utils.dart';
 import 'package:hamqrg/config/app_configs.dart';
@@ -19,6 +20,8 @@ import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifi
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hamqrg/src/features/splashscreen/errors/update_required_exception.dart';
+import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
+import 'package:hamqrg/src/features/subscriptions/provider/offline_cache_lifecycle/offline_cache_lifecycle_provider.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/sync_revenue_cat_attributes/sync_revenue_cat_attributes_provider.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -30,37 +33,95 @@ part 'splash_controller.g.dart';
 
 @riverpod
 class SplashController extends _$SplashController {
+  /// Remote steps must never block the splash: offline (no timeout on the
+  /// Supabase HTTP client) a request can hang for minutes.
+  static const _networkStepTimeout = Duration(seconds: 4);
+  static const _prefetchTimeout = Duration(seconds: 6);
+
   Talker get _talker => ref.read(talkerServiceProvider);
 
   @override
   Future<SplashAction?> build() async {
     final talker = _talker;
     try {
-      final startWatch = Stopwatch()..start();
       talker.info('[Splash] build() start');
+      final startWatch = Stopwatch()..start();
 
-      // Mount the reactive RevenueCat attribute sync (keepAlive): from here on
-      // it re-pushes email/name/surname/callsign whenever the profile changes.
-      ref.read(syncRevenueCatAttributesProvider);
+      // Resolve connectivity and entitlement BEFORE any data call: the cached
+      // datasources read both flags synchronously (`.value ?? false`), so an
+      // unresolved stream would make the very first fetches run as
+      // "free & online" — bypassing the offline cache — and their failure
+      // would stick (repositories read datasources with `ref.read`, so a
+      // later flag flip re-triggers nothing).
+      talker.info('[Splash] step: resolveOfflineFlags');
+      // Listener attivi (il controller è osservato dalla pagina): senza,
+      // Riverpod 3 non farebbe nemmeno partire lo stream e `.future` sotto
+      // scadrebbe sempre — vedi test/is_pro_provider_test.dart.
+      ref
+        ..listen(isProProvider, (_, __) {})
+        ..listen(offlineStatusProvider, (_, __) {});
+      try {
+        // 6s: il probe di raggiungibilità interno dura fino a 3s — l'attesa
+        // qui deve essere più lunga, altrimenti scade un attimo prima del
+        // probe e i primi datasource nascono con lo stato sbagliato.
+        await ref
+            .read(offlineStatusProvider.future)
+            .timeout(const Duration(seconds: 6));
+      } catch (_) {
+        talker.warning('[Splash] connectivity check not resolved — skipped');
+      }
+      try {
+        // First emission is bounded internally (live check capped at 5s with
+        // fallback on the persisted entitlement).
+        await ref
+            .read(isProProvider.future)
+            .timeout(const Duration(seconds: 7));
+      } catch (_) {
+        talker.warning('[Splash] entitlement check not resolved — skipped');
+      }
+
+      // Mount the reactive RevenueCat attribute sync (keepAlive) and the
+      // Pro-lapse watcher ONLY NOW: the sync watches getProfileProvider, so
+      // mounting it before the flags above are resolved would build the whole
+      // profile chain as "free & online" (no cache, bare 6s timeout) and —
+      // being keepAlive — freeze that error for the entire session.
+      ref
+        ..read(syncRevenueCatAttributesProvider)
+        ..read(offlineCacheLifecycleProvider);
+
+      // Offline (backend irraggiungibile secondo il probe): ogni passo di
+      // rete della splash è inutile e costerebbe il suo timeout — si salta
+      // tutto e si arriva alla home, che serve i dati dalla cache.
+      final isOffline = ref.read(offlineStatusProvider).value ?? false;
+      if (isOffline) {
+        talker.info('[Splash] offline: skipping network steps');
+      }
 
       var userId = await ref.read(getUserIdProvider.future);
-      if (userId == null) {
+      if (userId == null && !isOffline) {
         talker.info('[Splash] step: anonymousSignIn');
         userId = await ref.read(anonymousSignInProvider.future);
       }
       talker.info('[Splash] userId resolved: $userId');
 
-      if (userId != null) {
+      if (userId != null && !isOffline) {
         talker.info('[Splash] step: OneSignal.login');
-        await OneSignal.login(userId);
+        try {
+          await OneSignal.login(userId).timeout(_networkStepTimeout);
+        } catch (error) {
+          // Push login must never block startup (offline, OneSignal outage).
+          talker.warning('[Splash] OneSignal.login skipped: $error');
+        }
       }
 
       talker.info('[Splash] step: packageInfo');
       final packageInfo = await ref.read(packageInfoProvider.future);
 
       try {
-        talker.info('[Splash] step: ensureMinimumVersion');
-        await _ensureMinimumVersion(packageInfo);
+        if (!isOffline) {
+          talker.info('[Splash] step: ensureMinimumVersion');
+          await _ensureMinimumVersion(packageInfo);
+        }
       } on UpdateRequiredException catch (error) {
         talker.warning(
           '[Splash] update required: '
@@ -91,18 +152,38 @@ class SplashController extends _$SplashController {
       // Check if user is not anonymous and needs post-login onboarding
       talker.info('[Splash] step: isAnonymous');
       final isAnonymous = await ref.read(isAnonymousProvider.future);
-      if (!isAnonymous) {
+      if (!isAnonymous && !isOffline) {
         talker.info('[Splash] step: checkNeedsPostLoginOnboarding');
-        final needsOnboarding =
-            await ref.read(checkNeedsPostLoginOnboardingProvider.future);
-        if (needsOnboarding) {
-          talker.info('[Splash] -> PostLoginOnboardingRoute');
-          return const SplashAction.navigate(PostLoginOnboardingRoute());
+        try {
+          final needsOnboarding = await ref
+              .read(checkNeedsPostLoginOnboardingProvider.future)
+              .timeout(_networkStepTimeout);
+          if (needsOnboarding) {
+            talker.info('[Splash] -> PostLoginOnboardingRoute');
+            return const SplashAction.navigate(PostLoginOnboardingRoute());
+          }
+        } on TimeoutException {
+          talker.warning(
+            '[Splash] postLogin onboarding check timed out — skipped',
+          );
+        } catch (error, stackTrace) {
+          // Offline the profile fetch fails: skip instead of blocking the
+          // app — the check runs again at the next launch.
+          talker.handle(
+            error,
+            stackTrace,
+            '[Splash] postLogin onboarding check failed — skipped',
+          );
+          unawaited(Sentry.captureException(error, stackTrace: stackTrace));
         }
       }
 
       talker.info('[Splash] step: prefetchDashboardData');
-      await _prefetchDashboardData();
+      await _prefetchDashboardData().timeout(
+        _prefetchTimeout,
+        onTimeout: () =>
+            talker.warning('[Splash] prefetch timed out — continuing'),
+      );
       talker.info(
         '[Splash] build() done in ${startWatch.elapsed} -> HomeRoute',
       );
@@ -141,6 +222,20 @@ class SplashController extends _$SplashController {
           longitude: position.longitude,
         ).future,
       );
+      // Warm the list-tab variant too (100 km radius → different cache key)
+      // so Pro users get an offline-ready list even if they never open the
+      // tab while online. Quiet: a failure must not abort the prefetch.
+      if (ref.read(isProProvider).value ?? false) {
+        await ref
+            .read(
+              getRepeatersNearbyProvider(
+                latitude: position.latitude,
+                longitude: position.longitude,
+                radiusKm: 100,
+              ).future,
+            )
+            .then<void>((_) {}, onError: (Object _) {});
+      }
       // Pre-generate all icon combinations
       for (final repeater in repeatersNearby) {
         final accessModes =
@@ -166,8 +261,9 @@ class SplashController extends _$SplashController {
         Platform.isIOS ? 'min_version_app_store' : 'min_version_play_store';
 
     try {
-      final minVersionParam =
-          await ref.read(getParamByKeyProvider(minVersionKey).future);
+      final minVersionParam = await ref
+          .read(getParamByKeyProvider(minVersionKey).future)
+          .timeout(_networkStepTimeout);
       if (minVersionParam == null) return;
 
       final minVersion = minVersionParam.value;
@@ -183,9 +279,12 @@ class SplashController extends _$SplashController {
       }
     } on UpdateRequiredException {
       rethrow;
+    } on TimeoutException {
+      // Offline: the check is skipped, not blocking — it runs again online.
+      talker.warning('[Splash] minVersion check timed out — skipped');
     } catch (error, stackTrace) {
       talker.handle(error, stackTrace, '[Splash] minVersion check failed');
-      await Sentry.captureException(error, stackTrace: stackTrace);
+      unawaited(Sentry.captureException(error, stackTrace: stackTrace));
     }
   }
 

@@ -24,12 +24,14 @@ class ProWelcomeDialog extends StatefulWidget {
 
 class _ProWelcomeDialogState extends State<ProWelcomeDialog>
     with TickerProviderStateMixin {
-  late final AnimationController _intro =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 1500))
-        ..forward();
-  late final AnimationController _loop =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 2600))
-        ..repeat();
+  late final AnimationController _intro = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 1500),
+  )..forward();
+  late final AnimationController _loop = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 2600),
+  )..repeat();
 
   @override
   void dispose() {
@@ -67,7 +69,9 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
         child: Stack(
           children: [
             // Base (pre-reveal) surface.
-            Positioned.fill(child: ColoredBox(color: theme.colorScheme.surface)),
+            Positioned.fill(
+              child: ColoredBox(color: theme.colorScheme.surface),
+            ),
             // Blue gradient flooding in radially.
             AnimatedBuilder(
               animation: reveal,
@@ -81,7 +85,8 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                         end: Alignment.bottomRight,
                         colors: [
                           cs.primary,
-                          Color.lerp(cs.primary, cs.tertiary, 0.5) ?? cs.primary,
+                          Color.lerp(cs.primary, cs.tertiary, 0.5) ??
+                              cs.primary,
                           cs.tertiary,
                         ],
                       ),
@@ -118,7 +123,8 @@ class _ProWelcomeDialogState extends State<ProWelcomeDialog>
                         decoration: BoxDecoration(
                           color: onAccent.withValues(alpha: 0.16),
                           shape: BoxShape.circle,
-                          border: Border.all(color: AppColors.proGold, width: 2.5),
+                          border:
+                              Border.all(color: AppColors.proGold, width: 2.5),
                         ),
                         child: const Icon(
                           Icons.workspace_premium_rounded,
@@ -201,7 +207,8 @@ class _RadialReveal extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(_RadialReveal oldClipper) => oldClipper.progress != progress;
+  bool shouldReclip(_RadialReveal oldClipper) =>
+      oldClipper.progress != progress;
 }
 
 /// Expanding concentric "signal" rings, looping.

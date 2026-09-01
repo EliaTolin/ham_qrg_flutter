@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
-import 'package:hamqrg/src/features/repeaters/presentation/widgets/info_banner.dart';
+import 'package:hamqrg/common/widgets/banner/info_banner.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';

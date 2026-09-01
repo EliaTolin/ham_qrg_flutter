@@ -2392,6 +2392,26 @@ class AppLocalizationsNl extends AppLocalizations {
   String get stationSaveFailed => 'Opslaan mislukt: onvoldoende ruimte';
 
   @override
+  String get stationSavedCta => 'Locatie opgeslagen';
+
+  @override
+  String get stationRemoveCta => 'Verwijderen';
+
+  @override
+  String get stationRemoveTitle => 'Locatie verwijderen?';
+
+  @override
+  String stationRemoveBody(String name) {
+    return '‘$name’ en de offlinegegevens worden van dit apparaat verwijderd.';
+  }
+
+  @override
+  String get stationRemovedSnack => 'Locatie verwijderd';
+
+  @override
+  String get stationSaveError => 'Opslaan mislukt. Probeer het opnieuw.';
+
+  @override
   String get stationsTitle => 'Mijn locaties';
 
   @override
@@ -2432,4 +2452,112 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get spotsManualRefreshHint => 'Tik om bij te werken';
+
+  @override
+  String coverageResultScope(int km, int count) {
+    return 'binnen $km km · $count beoordeeld';
+  }
+
+  @override
+  String get coverageResultRecalculating => 'Opnieuw berekenen';
+
+  @override
+  String get offlineBannerMessage =>
+      'Je bent offline: eerder opgeslagen gegevens';
+
+  @override
+  String get offlineMapsTitle => 'Offlinekaarten';
+
+  @override
+  String get offlineMapsEntrySubtitle =>
+      'Download kaarten voor gebruik zonder verbinding';
+
+  @override
+  String get offlineMapsEmpty =>
+      'Geen regio\'s gedownload. Download een gebied om de kaart ook zonder verbinding te zien.';
+
+  @override
+  String get offlineMapsAddRegion => 'Regio downloaden';
+
+  @override
+  String get offlineMapsRegionNameLabel => 'Naam van de regio';
+
+  @override
+  String get offlineMapsRegionNameHint =>
+      'Bijv. Thuis, Berghut, SOTA-activatie';
+
+  @override
+  String get offlineMapsRadiusLabel => 'Straal';
+
+  @override
+  String get offlineMapsDownload => 'Downloaden';
+
+  @override
+  String get offlineMapsDownloadingStyle => 'Kaartstijl wordt gedownload…';
+
+  @override
+  String offlineMapsDownloadingTiles(String percent) {
+    return 'Kaarten worden gedownload… $percent%';
+  }
+
+  @override
+  String offlineMapsEstimatedSize(String size) {
+    return 'Geschatte grootte: $size';
+  }
+
+  @override
+  String get offlineMapsDownloadError =>
+      'Download mislukt. Probeer het opnieuw.';
+
+  @override
+  String get offlineMapsDeleteError =>
+      'Verwijderen mislukt. Probeer het opnieuw.';
+
+  @override
+  String get offlineMapsDeleteConfirmTitle => 'Regio verwijderen?';
+
+  @override
+  String offlineMapsDeleteConfirmMessage(String name) {
+    return '“$name” is offline niet meer beschikbaar.';
+  }
+
+  @override
+  String get offlineMapsDeleteConfirm => 'Verwijderen';
+
+  @override
+  String offlineMapsRegionSubtitle(String radius, String size) {
+    return 'Straal $radius km · $size';
+  }
+
+  @override
+  String get offlineMapsIncomplete => 'Onvolledige download';
+
+  @override
+  String get offlineMapsResume => 'Hervatten';
+
+  @override
+  String get offlineMapsCenterInfo =>
+      'De regio wordt gecentreerd op je huidige locatie.';
+
+  @override
+  String get dashboardOfflineTitle => 'Je bent offline';
+
+  @override
+  String get dashboardOfflineMessage =>
+      'Geen opgeslagen gegevens voor dit gebied. Je opgeslagen locaties en gedownloade kaarten blijven beschikbaar.';
+
+  @override
+  String get offlineMapsCenterMine => 'Mijn locatie';
+
+  @override
+  String get offlineMapsCenterSearch => 'Zoek een plaats';
+
+  @override
+  String get offlineMapsCenterSearchInfo =>
+      'Zoek een stad of plaats: de regio wordt daar gecentreerd.';
+
+  @override
+  String offlineMapsCenterSelected(String label) {
+    return 'Centrum: $label';
+  }
 }

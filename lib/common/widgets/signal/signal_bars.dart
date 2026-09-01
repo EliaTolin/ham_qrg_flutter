@@ -30,7 +30,9 @@ class SignalBars extends StatelessWidget {
       children: List.generate(SignalHelper.maxBars, (i) {
         final h = maxHeight * (0.4 + 0.6 * (i + 1) / SignalHelper.maxBars);
         return Padding(
-          padding: EdgeInsets.only(right: i == SignalHelper.maxBars - 1 ? 0 : spacing),
+          padding: EdgeInsets.only(
+            right: i == SignalHelper.maxBars - 1 ? 0 : spacing,
+          ),
           child: Container(
             width: barWidth,
             height: h,

@@ -115,31 +115,49 @@ class RevenueCatClientImpl implements RevenueCatClient {
   }
 
   @override
-  Future<bool> presentPaywall({String? offeringId}) async {
+  Future<bool> presentPaywall({String? placementId}) async {
     final result = await RevenueCatUI.presentPaywall(
-      offering: await _defaultOffering(offeringId),
+      offering: await _offeringFor(placementId),
     );
     return _isPurchaseSuccess(result);
   }
 
   @override
-  Future<bool> presentPaywallIfNeeded() async {
+  Future<bool> presentPaywallIfNeeded({String? placementId}) async {
     final result = await RevenueCatUI.presentPaywallIfNeeded(
       AppConfigs.revenueCatProEntitlementId,
-      offering: await _defaultOffering(),
+      offering: await _offeringFor(placementId),
     );
     return _isPurchaseSuccess(result);
   }
 
-  /// Resolves the offering to display: the explicit [offeringId] when given,
-  /// otherwise the configured default, falling back to the current offering.
-  /// Returns `null` if offerings can't be fetched, in which case the SDK shows
-  /// the current offering's paywall.
-  Future<Offering?> _defaultOffering([String? offeringId]) async {
+  /// Resolves the offering to display for [placementId], letting the
+  /// dashboard — not the binary — decide which paywall the user sees.
+  ///
+  /// Order: the offering that RevenueCat's targeting rules assign to the
+  /// placement, then the project's *current* offering. No offering id is
+  /// hardcoded, so swapping the paywall for everyone is a "Make current"
+  /// click in the dashboard, and swapping it for one screen or one audience
+  /// is a placement/targeting rule.
+  ///
+  /// A placement can also be configured to resolve to *nothing*, and that
+  /// case arrives here as `null` — indistinguishable from "placement not
+  /// created yet". We deliberately fall back to the current offering instead
+  /// of honouring it: every caller is a Pro gate, so showing no paywall
+  /// would leave the feature locked with no way to buy it. Turning an upsell
+  /// off is a job for the feature flags, not for a placement.
+  ///
+  /// Returns `null` when offerings can't be fetched at all (offline, SDK not
+  /// configured); the SDK then falls back to the current offering itself.
+  Future<Offering?> _offeringFor(String? placementId) async {
     try {
-      final offerings = await Purchases.getOfferings();
-      final preferred = offeringId ?? AppConfigs.revenueCatDefaultOfferingId;
-      return offerings.all[preferred] ?? offerings.current;
+      if (placementId != null) {
+        final targeted = await Purchases.getCurrentOfferingForPlacement(
+          placementId,
+        );
+        if (targeted != null) return targeted;
+      }
+      return (await Purchases.getOfferings()).current;
     } catch (_) {
       return null;
     }

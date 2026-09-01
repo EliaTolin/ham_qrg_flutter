@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Aktualizovať",
   "stationDuplicateCreate": "Vytvoriť samostatné",
   "stationSaveFailed": "Uloženie zlyhalo: nedostatok miesta",
+  "stationSavedCta": "Stanovisko uložené",
+  "stationRemoveCta": "Odstrániť",
+  "stationRemoveTitle": "Odstrániť stanovisko?",
+  "stationRemoveBody": "„{name}“ a jeho offline údaje budú z tohto zariadenia vymazané.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Stanovisko odstránené",
+  "stationSaveError": "Uloženie zlyhalo. Skúste to znova.",
   "stationsTitle": "Moje stanovištia",
   "stationsEmptyTitle": "Zatiaľ žiadne uložené stanovištia",
   "stationsEmptyBody": "Vyberte bod na mape, zistite, čo dosiahnete, a uložte to: nájdete to aj bez siete.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Klepnutím obnovíte"
+  "spotsManualRefreshHint": "Klepnutím obnovíte",
+  "coverageResultScope": "do {km} km · vyhodnotených: {count}",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Prepočítava sa",
+  "offlineBannerMessage": "Ste offline: prezeráte uložené údaje",
+  "offlineMapsTitle": "Offline mapy",
+  "offlineMapsEntrySubtitle": "Stiahnite si mapy na použitie bez pripojenia",
+  "offlineMapsEmpty": "Žiadne stiahnuté oblasti. Stiahnite si oblasť, aby ste mapu videli aj bez pripojenia.",
+  "offlineMapsAddRegion": "Stiahnuť oblasť",
+  "offlineMapsRegionNameLabel": "Názov oblasti",
+  "offlineMapsRegionNameHint": "Napr. Domov, Chata, Aktivácia SOTA",
+  "offlineMapsRadiusLabel": "Polomer",
+  "offlineMapsDownload": "Stiahnuť",
+  "offlineMapsDownloadingStyle": "Sťahovanie štýlu mapy…",
+  "offlineMapsDownloadingTiles": "Sťahovanie máp… {percent}%",
+  "offlineMapsEstimatedSize": "Odhadovaná veľkosť: {size}",
+  "offlineMapsDownloadError": "Sťahovanie zlyhalo. Skúste to znova.",
+  "offlineMapsDeleteError": "Odstránenie zlyhalo. Skúste to znova.",
+  "offlineMapsDeleteConfirmTitle": "Odstrániť oblasť?",
+  "offlineMapsDeleteConfirmMessage": "„{name}“ už nebude offline k dispozícii.",
+  "offlineMapsDeleteConfirm": "Odstrániť",
+  "offlineMapsRegionSubtitle": "Polomer {radius} km · {size}",
+  "offlineMapsIncomplete": "Nedokončené sťahovanie",
+  "offlineMapsResume": "Pokračovať",
+  "offlineMapsCenterInfo": "Oblasť bude vycentrovaná na vašu aktuálnu polohu.",
+  "dashboardOfflineTitle": "Ste offline",
+  "dashboardOfflineMessage": "Pre túto oblasť nie sú uložené žiadne dáta. Vaše uložené stanovištia a stiahnuté mapy zostávajú k dispozícii.",
+  "offlineMapsCenterMine": "Moja poloha",
+  "offlineMapsCenterSearch": "Hľadať miesto",
+  "offlineMapsCenterSearchInfo": "Vyhľadajte mesto alebo miesto: oblasť bude vycentrovaná tam.",
+  "offlineMapsCenterSelected": "Stred: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

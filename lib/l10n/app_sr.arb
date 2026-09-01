@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Ažuriraj",
   "stationDuplicateCreate": "Napravi zasebnu",
   "stationSaveFailed": "Čuvanje nije uspelo: nedovoljno prostora",
+  "stationSavedCta": "Lokacija sačuvana",
+  "stationRemoveCta": "Ukloni",
+  "stationRemoveTitle": "Ukloniti lokaciju?",
+  "stationRemoveBody": "„{name}” i njeni offline podaci biće obrisani sa ovog uređaja.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Lokacija uklonjena",
+  "stationSaveError": "Čuvanje nije uspelo. Pokušajte ponovo.",
   "stationsTitle": "Moje stanice",
   "stationsEmptyTitle": "Nema sačuvanih stanica",
   "stationsEmptyBody": "Izaberite tačku na mapi, vidite šta dosežete i sačuvajte: naći ćete je i bez mreže.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Dodirnite za ažuriranje"
+  "spotsManualRefreshHint": "Dodirnite za ažuriranje",
+  "coverageResultScope": "u krugu od {km} km · procenjeno: {count}",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Ponovno izračunavanje",
+  "offlineBannerMessage": "Van mreže: pregledate sačuvane podatke",
+  "offlineMapsTitle": "Oflajn mape",
+  "offlineMapsEntrySubtitle": "Preuzmite mape za upotrebu bez veze",
+  "offlineMapsEmpty": "Nema preuzetih regiona. Preuzmite područje da biste mapu videli i bez veze.",
+  "offlineMapsAddRegion": "Preuzmi region",
+  "offlineMapsRegionNameLabel": "Naziv regiona",
+  "offlineMapsRegionNameHint": "Npr. Kuća, Planinarski dom, SOTA aktivacija",
+  "offlineMapsRadiusLabel": "Poluprečnik",
+  "offlineMapsDownload": "Preuzmi",
+  "offlineMapsDownloadingStyle": "Preuzimanje stila mape…",
+  "offlineMapsDownloadingTiles": "Preuzimanje mapa… {percent}%",
+  "offlineMapsEstimatedSize": "Procenjena veličina: {size}",
+  "offlineMapsDownloadError": "Preuzimanje nije uspelo. Pokušajte ponovo.",
+  "offlineMapsDeleteError": "Brisanje nije uspelo. Pokušajte ponovo.",
+  "offlineMapsDeleteConfirmTitle": "Izbrisati region?",
+  "offlineMapsDeleteConfirmMessage": "„{name}“ više neće biti dostupan van mreže.",
+  "offlineMapsDeleteConfirm": "Izbriši",
+  "offlineMapsRegionSubtitle": "Poluprečnik {radius} km · {size}",
+  "offlineMapsIncomplete": "Nepotpuno preuzimanje",
+  "offlineMapsResume": "Nastavi",
+  "offlineMapsCenterInfo": "Region će biti centriran na vašu trenutnu lokaciju.",
+  "dashboardOfflineTitle": "Van mreže ste",
+  "dashboardOfflineMessage": "Nema sačuvanih podataka za ovo područje. Vaše sačuvane lokacije i preuzete mape su i dalje dostupne.",
+  "offlineMapsCenterMine": "Moja lokacija",
+  "offlineMapsCenterSearch": "Pretraži mesto",
+  "offlineMapsCenterSearchInfo": "Pretražite grad ili mesto: region će biti centriran tamo.",
+  "offlineMapsCenterSelected": "Centar: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

@@ -6,6 +6,7 @@ import 'package:hamqrg/src/features/coverage_search/presentation/saved_stations_
 import 'package:hamqrg/src/features/coverage_search/presentation/station_detail_page/station_detail_page.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashboard_page.dart';
 import 'package:hamqrg/src/features/home/presentation/home_page/home_page.dart';
+import 'package:hamqrg/src/features/offline_maps/presentation/offline_maps_page/offline_maps_page.dart';
 import 'package:hamqrg/src/features/onboarding/presentation/onboarding_page/onboarding_page.dart';
 import 'package:hamqrg/src/features/post_login_onboarding/presentation/post_login_onboarding/post_login_onboarding_page.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/pota_spot_detail_page.dart';
@@ -98,6 +99,7 @@ class AppRouter extends RootStackRouter implements AutoRouteGuard {
                 AutoRoute(page: UserSettingsRoute.page),
                 AutoRoute(page: UserReportsRoute.page),
                 AutoRoute(page: AddRepeaterRoute.page),
+                AutoRoute(page: OfflineMapsRoute.page),
               ],
             ),
           ],

@@ -7,6 +7,7 @@ import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
+import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/themes/app_colors.dart';
 
@@ -23,7 +24,10 @@ class CoveragePromoCard extends ConsumerWidget {
 
   Future<void> _open(BuildContext context, WidgetRef ref) async {
     // Pro-gated: opening the coverage map presents the paywall to non-Pro.
-    if (AppConfigs.coverageRequiresPro && !await requirePro(ref)) return;
+    if (AppConfigs.coverageRequiresPro &&
+        !await requirePro(ref, PaywallPlacement.coveragePromo)) {
+      return;
+    }
     if (!context.mounted) return;
     await context.router.push(
       RepeaterCoverageRoute(
@@ -224,8 +228,7 @@ class _MockCoveragePainter extends CustomPainter {
     final path = Path();
     for (var i = 0; i <= steps; i++) {
       final a = (i / steps) * 2 * math.pi;
-      final wobble =
-          1 + 0.10 * math.sin(a * 3) + 0.06 * math.sin(a * 7 + 1.3);
+      final wobble = 1 + 0.10 * math.sin(a * 3) + 0.06 * math.sin(a * 7 + 1.3);
       final r = radius * wobble;
       final p = Offset(
         center.dx + r * math.cos(a),

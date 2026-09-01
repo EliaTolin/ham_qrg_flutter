@@ -1003,6 +1003,19 @@
   "stationDuplicateUpdate": "Zaktualizuj",
   "stationDuplicateCreate": "Utwórz osobne",
   "stationSaveFailed": "Zapis nie powiódł się: za mało miejsca",
+  "stationSavedCta": "Lokalizacja zapisana",
+  "stationRemoveCta": "Usuń",
+  "stationRemoveTitle": "Usunąć lokalizację?",
+  "stationRemoveBody": "„{name}” i jej dane offline zostaną usunięte z tego urządzenia.",
+  "@stationRemoveBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stationRemovedSnack": "Lokalizacja usunięta",
+  "stationSaveError": "Nie udało się zapisać. Spróbuj ponownie.",
   "stationsTitle": "Moje stanowiska",
   "stationsEmptyTitle": "Brak zapisanych stanowisk",
   "stationsEmptyBody": "Wybierz punkt na mapie, sprawdź co osiągasz i zapisz: znajdziesz go nawet bez sieci.",
@@ -1041,5 +1054,36 @@
       }
     }
   },
-  "spotsManualRefreshHint": "Dotknij, aby odświeżyć"
+  "spotsManualRefreshHint": "Dotknij, aby odświeżyć",
+  "coverageResultScope": "w promieniu {km} km · ocenionych: {count}",
+  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "coverageResultRecalculating": "Przeliczanie",
+  "offlineBannerMessage": "Jesteś offline: przeglądasz zapisane dane",
+  "offlineMapsTitle": "Mapy offline",
+  "offlineMapsEntrySubtitle": "Pobierz mapy do użytku bez połączenia",
+  "offlineMapsEmpty": "Brak pobranych regionów. Pobierz obszar, aby widzieć mapę nawet bez połączenia.",
+  "offlineMapsAddRegion": "Pobierz region",
+  "offlineMapsRegionNameLabel": "Nazwa regionu",
+  "offlineMapsRegionNameHint": "Np. Dom, Schronisko, Aktywacja SOTA",
+  "offlineMapsRadiusLabel": "Promień",
+  "offlineMapsDownload": "Pobierz",
+  "offlineMapsDownloadingStyle": "Pobieranie stylu mapy…",
+  "offlineMapsDownloadingTiles": "Pobieranie map… {percent}%",
+  "offlineMapsEstimatedSize": "Szacowany rozmiar: {size}",
+  "offlineMapsDownloadError": "Pobieranie nie powiodło się. Spróbuj ponownie.",
+  "offlineMapsDeleteError": "Usuwanie nie powiodło się. Spróbuj ponownie.",
+  "offlineMapsDeleteConfirmTitle": "Usunąć region?",
+  "offlineMapsDeleteConfirmMessage": "„{name}” nie będzie już dostępny offline.",
+  "offlineMapsDeleteConfirm": "Usuń",
+  "offlineMapsRegionSubtitle": "Promień {radius} km · {size}",
+  "offlineMapsIncomplete": "Niekompletne pobieranie",
+  "offlineMapsResume": "Wznów",
+  "offlineMapsCenterInfo": "Region zostanie wyśrodkowany na Twojej bieżącej lokalizacji.",
+  "dashboardOfflineTitle": "Jesteś offline",
+  "dashboardOfflineMessage": "Brak zapisanych danych dla tego obszaru. Twoje zapisane lokalizacje i pobrane mapy są nadal dostępne.",
+  "offlineMapsCenterMine": "Moja lokalizacja",
+  "offlineMapsCenterSearch": "Szukaj miejsca",
+  "offlineMapsCenterSearchInfo": "Wyszukaj miasto lub miejsce: region zostanie tam wyśrodkowany.",
+  "offlineMapsCenterSelected": "Środek: {label}",
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
 }

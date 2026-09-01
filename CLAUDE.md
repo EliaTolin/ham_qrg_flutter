@@ -228,6 +228,31 @@ Entrambe le invarianti sparirebbero se `remote_caching` supportasse
 `expires_at NULL` = "non scade mai". Il pacchetto è interno: è un miglioramento
 realistico.
 
+## Cache offline Pro (`OfflineCacheGate`)
+
+I datasource remoti sono avvolti da decorator `CachedXDatasource` costruiti
+sul gate condiviso `lib/common/cache/offline_cache_gate.dart`:
+
+- `gate.remote()` corto-circuita offline (`OfflineException`) e applica il
+  timeout del gate; `gate.cached()` / `cachedNullable()` aggiungono la cache
+  network-first **solo per i Pro**. Mai reimplementare guard o cache in un
+  decorator: si aggiunge al gate.
+- Il wiring nei provider dei datasource è uno solo:
+  `ref.watchOfflineCacheGate(remoteTimeout: CachedX.remoteTimeout)`.
+- Frammenti di chiave (coordinate arrotondate, hash di id, modalità) solo via
+  `CacheKeys` (`lib/common/cache/cache_keys.dart`): le chiavi devono restare
+  deterministiche per la stessa richiesta logica.
+- Test di round-trip online → offline: `test/cached_datasources_offline_test.dart`
+  (`RemoteCaching` su DB in-memory, funziona nei test VM).
+
+### Riverpod 3: i provider senza listener attivo sono sospesi
+
+`isProProvider` (stream keepAlive) e `offlineStatusProvider` sono letti in
+modo sincrono (`.value ?? false`) dai datasource. Senza un listener **attivo**
+lo stream non emette nemmeno il primo valore e `.future` resta appeso: il root
+widget (`lib/src/app.dart`) e la splash tengono un `ref.listen` su entrambi.
+Non rimuoverli — `test/is_pro_provider_test.dart` documenta il comportamento.
+
 ## Coding Conventions
 
 - **DRY principle**: Before creating any widget, helper, or utility, check if a similar one already exists in `lib/common/widgets/` or other features. If it does, extend/generalize it. If a new widget could be reused elsewhere, place it in `lib/common/widgets/` from the start.

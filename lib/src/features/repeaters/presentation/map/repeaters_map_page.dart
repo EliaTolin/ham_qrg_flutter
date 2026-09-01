@@ -2,14 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:ui' as ui;
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/pota_marker_helper.dart';
 import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
+import 'package:hamqrg/common/widgets/banner/info_banner.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
 import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/config/constants/map_keys.dart';
@@ -30,7 +31,6 @@ import 'package:hamqrg/src/features/repeaters/presentation/map/controller/repeat
 import 'package:hamqrg/src/features/repeaters/presentation/map/controller/state/repeaters_map_state.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/reachable/widgets/reachable_map_button.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/utils/map_utils.dart';
-import 'package:hamqrg/src/features/repeaters/presentation/widgets/info_banner.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/permission_banner.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/cluster_repeaters_sheet.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/widgets/sheet/repeater_details_sheet/repeater_details_sheet.dart';
@@ -102,9 +102,51 @@ class RepeatersMapPage extends HookConsumerWidget {
     final searchMarkerColor = Theme.of(context).colorScheme.primary.toARGB32();
     final searchMarkerStroke = Theme.of(context).colorScheme.surface.toARGB32();
 
+    // Apre il foglio del risultato per il punto attualmente scelto.
+    //
+    // È una sola funzione perché ci sono due strade per arrivarci — scegliere
+    // un punto, oppure toccare "cosa raggiungo" con un punto già attivo — e
+    // devono mostrare la stessa cosa.
+    void openCoverageSheet() {
+      unawaited(
+        showModalBottomSheet<void>(
+          context: context,
+          isScrollControlled: true,
+          showDragHandle: true,
+          builder: (_) => Consumer(
+            builder: (context, ref, _) {
+              final state = ref.watch(repeatersMapControllerProvider).value;
+              final point = state?.searchPoint;
+              if (point == null) return const SizedBox.shrink();
+              return CoverageResultSheet(
+                point: point,
+                breadth: state!.searchBreadth,
+                selectedModes: state.selectedModes,
+                onBreadthChanged: (breadth) =>
+                    unawaited(notifier.setBreadth(breadth)),
+                onClearFilters: state.selectedModes.isEmpty
+                    ? null
+                    : () async {
+                        final map = mapController.value;
+                        if (map == null) return;
+                        final bounds = await _getVisibleBounds(map);
+                        await notifier.clearAllModes(
+                          lat1: bounds.lat1,
+                          lon1: bounds.lon1,
+                          lat2: bounds.lat2,
+                          lon2: bounds.lon2,
+                        );
+                      },
+              );
+            },
+          ),
+        ),
+      );
+    }
+
     // Il foglio si apre a ogni nuovo punto. È keyed sul solo punto, così un
     // cambio di ampiezza dall'interno non lo richiude e riapre: il contenuto si
-    // aggiorna da solo perché il Consumer qui sotto osserva il controller.
+    // aggiorna da solo perché il Consumer qui dentro osserva il controller.
     useEffect(
       () {
         if (searchPoint == null) return null;
@@ -113,40 +155,7 @@ class RepeatersMapPage extends HookConsumerWidget {
         if (MediaQuery.sizeOf(context).width >= kTabletBreakpoint) return null;
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!context.mounted) return;
-          unawaited(
-            showModalBottomSheet<void>(
-              context: context,
-              isScrollControlled: true,
-              showDragHandle: true,
-              builder: (_) => Consumer(
-                builder: (context, ref, _) {
-                  final state = ref.watch(repeatersMapControllerProvider).value;
-                  final point = state?.searchPoint;
-                  if (point == null) return const SizedBox.shrink();
-                  return CoverageResultSheet(
-                    point: point,
-                    breadth: state!.searchBreadth,
-                    selectedModes: state.selectedModes,
-                    onBreadthChanged: (breadth) =>
-                        unawaited(notifier.setBreadth(breadth)),
-                    onClearFilters: state.selectedModes.isEmpty
-                        ? null
-                        : () async {
-                            final map = mapController.value;
-                            if (map == null) return;
-                            final bounds = await _getVisibleBounds(map);
-                            await notifier.clearAllModes(
-                              lat1: bounds.lat1,
-                              lon1: bounds.lon1,
-                              lat2: bounds.lat2,
-                              lon2: bounds.lon2,
-                            );
-                          },
-                  );
-                },
-              ),
-            ),
-          );
+          openCoverageSheet();
         });
         return null;
       },
@@ -342,7 +351,13 @@ class RepeatersMapPage extends HookConsumerWidget {
           Positioned(
             left: 16,
             bottom: MediaQuery.of(context).padding.bottom + 24,
-            child: const ReachableMapButton(),
+            child: ReachableMapButton(
+              // Con un pin attivo la domanda è "cosa raggiungo da LÌ": usare
+              // comunque il GPS mostrerebbe la risposta a una domanda che
+              // l'utente non ha posto.
+              onOpenForSearchPoint:
+                  searchPoint == null ? null : openCoverageSheet,
+            ),
           ),
 
           // Accesso alle postazioni salvate: raggiungibile con una sola mano
@@ -1193,8 +1208,18 @@ class RepeatersMapPage extends HookConsumerWidget {
                   },
                 ),
                 const SizedBox(height: 8),
-                // Banner / Summary (below filter chips)
-                if (mapState?.locationError != null)
+                // Banner / Summary (below filter chips). Offline first: senza
+                // rete il "load error" è atteso e il messaggio giusto è che si
+                // stanno consultando i dati salvati.
+                if (ref.watch(offlineStatusProvider).value ?? false)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: InfoBanner(
+                      icon: const Icon(Icons.cloud_off_outlined),
+                      label: context.localization.offlineBannerMessage,
+                    ),
+                  )
+                else if (mapState?.locationError != null)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: PermissionBanner(

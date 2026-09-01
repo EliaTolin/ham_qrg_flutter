@@ -4,6 +4,7 @@ import 'package:hamqrg/clients/analytics/analytics_client.dart';
 import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/pro/pro_blur_gate.dart';
+import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -43,7 +44,8 @@ class StationsShowcase extends HookConsumerWidget {
           AnalyticsEvent.coveragePaywallShown,
           surface: AnalyticsSurface.stationsList,
         );
-      final purchased = await openReachabilityPaywallInPlace(ref);
+      final purchased =
+          await openPaywallInPlace(ref, PaywallPlacement.savedStationsShowcase);
       analytics.track(
         purchased
             ? AnalyticsEvent.coveragePurchaseCompleted

@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:hamqrg/common/cache/offline_cache_gate_ref.dart';
 import 'package:hamqrg/config/app_configs.dart';
+import 'package:hamqrg/src/features/repeaters/data/datasource/cached_reachable_datasource.dart';
 import 'package:hamqrg/src/features/repeaters/data/datasource/reachable_datasource.dart';
 import 'package:hamqrg/src/features/repeaters/data/model/reachable/reachable_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -65,5 +67,8 @@ ReachableDatasource reachableDatasource(Ref ref) {
       receiveTimeout: const Duration(seconds: 60),
     ),
   );
-  return ReachableHttpDatasource(dio);
+  return CachedReachableDatasource(
+    inner: ReachableHttpDatasource(dio),
+    gate: ref.watchOfflineCacheGate(),
+  );
 }

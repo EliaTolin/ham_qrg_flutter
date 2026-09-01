@@ -1,10 +1,12 @@
 import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
+import 'package:hamqrg/common/widgets/banner/info_banner.dart';
+import 'package:hamqrg/common/widgets/error/app_error_widget.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
 import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
@@ -135,7 +137,12 @@ class RepeatersListPage extends HookConsumerWidget {
         appBar: AppBar(
           title: Text(context.localization.repeatersListTitle),
         ),
-        body: _buildErrorState(context, listAsyncState.error!),
+        body: _buildErrorState(
+          context,
+          listAsyncState.error!,
+          stackTrace: listAsyncState.stackTrace,
+          onRetry: listNotifier.reload,
+        ),
       );
     }
 
@@ -178,6 +185,15 @@ class RepeatersListPage extends HookConsumerWidget {
       ),
       body: Column(
         children: [
+          // Offline: si stanno consultando i dati salvati in precedenza.
+          if (ref.watch(offlineStatusProvider).value ?? false)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+              child: InfoBanner(
+                icon: const Icon(Icons.cloud_off_outlined),
+                label: l10n.offlineBannerMessage,
+              ),
+            ),
           // Filter chips
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -232,6 +248,7 @@ class RepeatersListPage extends HookConsumerWidget {
                       ref.invalidate(cachedUserPositionProvider);
                       await ref.read(cachedUserPositionProvider.future);
                     },
+                    onRetry: () => ref.invalidate(searchRepeatersProvider),
                   )
                 : _buildNearbyContent(context, ref, listState),
           ),
@@ -247,6 +264,7 @@ class RepeatersListPage extends HookConsumerWidget {
     required RepeatersSortOrder sortOrder,
     required Map<String, RepeaterFeedbackStats> feedbackStats,
     required RefreshCallback onRefresh,
+    required VoidCallback onRetry,
   }) {
     final l10n = context.localization;
     final theme = Theme.of(context);
@@ -324,7 +342,12 @@ class RepeatersListPage extends HookConsumerWidget {
       loading: () => const Center(
         child: CircularProgressIndicator.adaptive(),
       ),
-      error: (error, stackTrace) => _buildErrorState(context, error),
+      error: (error, stackTrace) => _buildErrorState(
+        context,
+        error,
+        stackTrace: stackTrace,
+        onRetry: onRetry,
+      ),
     );
   }
 
@@ -425,7 +448,12 @@ class RepeatersListPage extends HookConsumerWidget {
     );
   }
 
-  Widget _buildErrorState(BuildContext context, Object error) {
+  Widget _buildErrorState(
+    BuildContext context,
+    Object error, {
+    required VoidCallback onRetry,
+    StackTrace? stackTrace,
+  }) {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -460,26 +488,13 @@ class RepeatersListPage extends HookConsumerWidget {
       );
     }
 
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.warning_amber_rounded,
-              size: 64,
-              color: colorScheme.error.withValues(alpha: 0.6),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              l10n.repeatersMapGenericError,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge,
-            ),
-          ],
-        ),
-      ),
+    // Schermata di errore unificata: dettaglio copiabile in debug, messaggio
+    // pulito con Riprova in release (stesso comportamento delle altre pagine).
+    return AppErrorWidget(
+      label: 'Repeaters list',
+      onRetry: onRetry,
+      error: error,
+      stackTrace: stackTrace,
     );
   }
 }

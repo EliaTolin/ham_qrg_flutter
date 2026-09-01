@@ -2378,6 +2378,26 @@ class AppLocalizationsCs extends AppLocalizations {
   String get stationSaveFailed => 'Uložení selhalo: nedostatek místa';
 
   @override
+  String get stationSavedCta => 'Stanoviště uloženo';
+
+  @override
+  String get stationRemoveCta => 'Odebrat';
+
+  @override
+  String get stationRemoveTitle => 'Odebrat stanoviště?';
+
+  @override
+  String stationRemoveBody(String name) {
+    return '„$name“ a jeho offline data budou z tohoto zařízení smazána.';
+  }
+
+  @override
+  String get stationRemovedSnack => 'Stanoviště odebráno';
+
+  @override
+  String get stationSaveError => 'Uložení se nezdařilo. Zkuste to znovu.';
+
+  @override
   String get stationsTitle => 'Moje stanoviště';
 
   @override
@@ -2418,4 +2438,110 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get spotsManualRefreshHint => 'Klepnutím obnovíte';
+
+  @override
+  String coverageResultScope(int km, int count) {
+    return 'do $km km · vyhodnoceno: $count';
+  }
+
+  @override
+  String get coverageResultRecalculating => 'Přepočítávání';
+
+  @override
+  String get offlineBannerMessage => 'Jste offline: prohlížíte uložená data';
+
+  @override
+  String get offlineMapsTitle => 'Offline mapy';
+
+  @override
+  String get offlineMapsEntrySubtitle =>
+      'Stáhněte si mapy pro použití bez připojení';
+
+  @override
+  String get offlineMapsEmpty =>
+      'Žádné stažené oblasti. Stáhněte si oblast, abyste mapu viděli i bez připojení.';
+
+  @override
+  String get offlineMapsAddRegion => 'Stáhnout oblast';
+
+  @override
+  String get offlineMapsRegionNameLabel => 'Název oblasti';
+
+  @override
+  String get offlineMapsRegionNameHint => 'Např. Domov, Chata, Aktivace SOTA';
+
+  @override
+  String get offlineMapsRadiusLabel => 'Poloměr';
+
+  @override
+  String get offlineMapsDownload => 'Stáhnout';
+
+  @override
+  String get offlineMapsDownloadingStyle => 'Stahování stylu mapy…';
+
+  @override
+  String offlineMapsDownloadingTiles(String percent) {
+    return 'Stahování map… $percent%';
+  }
+
+  @override
+  String offlineMapsEstimatedSize(String size) {
+    return 'Odhadovaná velikost: $size';
+  }
+
+  @override
+  String get offlineMapsDownloadError =>
+      'Stahování se nezdařilo. Zkuste to znovu.';
+
+  @override
+  String get offlineMapsDeleteError =>
+      'Odstranění se nezdařilo. Zkuste to znovu.';
+
+  @override
+  String get offlineMapsDeleteConfirmTitle => 'Odstranit oblast?';
+
+  @override
+  String offlineMapsDeleteConfirmMessage(String name) {
+    return '„$name“ už nebude offline k dispozici.';
+  }
+
+  @override
+  String get offlineMapsDeleteConfirm => 'Odstranit';
+
+  @override
+  String offlineMapsRegionSubtitle(String radius, String size) {
+    return 'Poloměr $radius km · $size';
+  }
+
+  @override
+  String get offlineMapsIncomplete => 'Nedokončené stahování';
+
+  @override
+  String get offlineMapsResume => 'Pokračovat';
+
+  @override
+  String get offlineMapsCenterInfo =>
+      'Oblast bude vystředěna na vaši aktuální polohu.';
+
+  @override
+  String get dashboardOfflineTitle => 'Jste offline';
+
+  @override
+  String get dashboardOfflineMessage =>
+      'Pro tuto oblast nejsou uložena žádná data. Vaše uložená stanoviště a stažené mapy zůstávají k dispozici.';
+
+  @override
+  String get offlineMapsCenterMine => 'Moje poloha';
+
+  @override
+  String get offlineMapsCenterSearch => 'Hledat místo';
+
+  @override
+  String get offlineMapsCenterSearchInfo =>
+      'Vyhledejte město nebo místo: oblast bude vystředěna tam.';
+
+  @override
+  String offlineMapsCenterSelected(String label) {
+    return 'Střed: $label';
+  }
 }

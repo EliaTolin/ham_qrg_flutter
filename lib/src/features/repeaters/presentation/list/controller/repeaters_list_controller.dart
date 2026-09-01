@@ -128,11 +128,20 @@ class RepeatersListController extends _$RepeatersListController {
   }
 
   /// Fetch feedback stats for all repeaters in a single batch query.
+  ///
+  /// Non-fatale: le stats sono un accessorio (i like sulle card) — offline
+  /// senza cache la lista deve comunque renderizzare, semplicemente senza
+  /// conteggi.
   Future<Map<String, RepeaterFeedbackStats>> _fetchFeedbackStats(
     List<Repeater> repeaters,
   ) async {
     final ids = repeaters.map((r) => r.id).toList();
-    return ref.read(getRepeatersFeedbackStatsFromIdsProvider(ids).future);
+    try {
+      return await ref
+          .read(getRepeatersFeedbackStatsFromIdsProvider(ids).future);
+    } catch (_) {
+      return const {};
+    }
   }
 
   /// Sort repeaters according to the given [order].

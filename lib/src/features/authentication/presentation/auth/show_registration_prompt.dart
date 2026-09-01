@@ -56,10 +56,12 @@ class _RegistrationPromptSheet extends ConsumerStatefulWidget {
   const _RegistrationPromptSheet();
 
   @override
-  ConsumerState<_RegistrationPromptSheet> createState() => _RegistrationPromptSheetState();
+  ConsumerState<_RegistrationPromptSheet> createState() =>
+      _RegistrationPromptSheetState();
 }
 
-class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptSheet> {
+class _RegistrationPromptSheetState
+    extends ConsumerState<_RegistrationPromptSheet> {
   bool _isLoading = false;
 
   Future<void> _handleAppleSignIn() async {
@@ -90,7 +92,8 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
       }
 
       // Check onboarding and navigate
-      final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+      final needsOnboarding =
+          await ref.read(checkNeedsPostLoginOnboardingProvider.future);
       log('Registration prompt Apple: needsOnboarding=$needsOnboarding');
 
       if (needsOnboarding) {
@@ -140,7 +143,8 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
       }
 
       // Check onboarding and navigate
-      final needsOnboarding = await ref.read(checkNeedsPostLoginOnboardingProvider.future);
+      final needsOnboarding =
+          await ref.read(checkNeedsPostLoginOnboardingProvider.future);
       log('Registration prompt Google: needsOnboarding=$needsOnboarding');
 
       if (needsOnboarding) {
@@ -185,7 +189,8 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
               children: [
                 // Scrollable content
                 SingleChildScrollView(
-                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   child: Column(
                     children: [
                       // Spacer to push content below hero
@@ -205,16 +210,24 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
                           children: [
                             Text(
                               l10n.registrationPromptTitle,
-                              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium
+                                  ?.copyWith(
                                     fontWeight: FontWeight.bold,
-                                    color: isDark ? Colors.white : AppColors.textPrimaryLight,
+                                    color: isDark
+                                        ? Colors.white
+                                        : AppColors.textPrimaryLight,
                                   ),
                               textAlign: TextAlign.center,
                             ),
                             const Gap(8),
                             Text(
                               l10n.registrationPromptDescription,
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
                                     color: isDark
                                         ? AppColors.textSecondaryDark
                                         : AppColors.textSecondaryLight,
@@ -235,19 +248,22 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
                             _buildBenefitItem(
                               icon: Icons.forum_outlined,
                               title: l10n.registrationBenefitInteractTitle,
-                              description: l10n.registrationBenefitInteractDescription,
+                              description:
+                                  l10n.registrationBenefitInteractDescription,
                               isDark: isDark,
                             ),
                             _buildBenefitItem(
                               icon: Icons.favorite_outline,
                               title: l10n.registrationBenefitFavoritesTitle,
-                              description: l10n.registrationBenefitFavoritesDescription,
+                              description:
+                                  l10n.registrationBenefitFavoritesDescription,
                               isDark: isDark,
                             ),
                             _buildBenefitItem(
                               icon: Icons.history_edu_outlined,
                               title: l10n.registrationBenefitLogbookTitle,
-                              description: l10n.registrationBenefitLogbookDescription,
+                              description:
+                                  l10n.registrationBenefitLogbookDescription,
                               isDark: isDark,
                             ),
                           ],
@@ -283,11 +299,12 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
                         padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Text(
                           l10n.registrationPromptFooter,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: isDark
-                                    ? AppColors.textTertiaryDark
-                                    : AppColors.textTertiaryLight,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: isDark
+                                        ? AppColors.textTertiaryDark
+                                        : AppColors.textTertiaryLight,
+                                  ),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -358,7 +375,9 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
             // Gradient overlay
             Builder(
               builder: (context) {
-                final bgColor = isDark ? AppColors.backgroundDark : AppColors.backgroundLight;
+                final bgColor = isDark
+                    ? AppColors.backgroundDark
+                    : AppColors.backgroundLight;
                 return Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -384,7 +403,9 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
 
   Widget _buildCloseButton(bool isDark) {
     return Material(
-      color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.1),
+      color: isDark
+          ? Colors.white.withValues(alpha: 0.1)
+          : Colors.black.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
         onTap: () => Navigator.of(context).pop(false),
@@ -485,7 +506,9 @@ class _RegistrationPromptSheetState extends ConsumerState<_RegistrationPromptShe
               Text(
                 description,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                      color: isDark
+                          ? AppColors.textSecondaryDark
+                          : AppColors.textSecondaryLight,
                     ),
               ),
             ],

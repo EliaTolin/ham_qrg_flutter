@@ -1,5 +1,7 @@
 import 'package:hamqrg/clients/supabase/supabase_client/supabase_client.dart';
+import 'package:hamqrg/common/cache/offline_cache_gate_ref.dart';
 import 'package:hamqrg/src/features/repeaters/data/datasource/altimetric_profile_datasource.dart';
+import 'package:hamqrg/src/features/repeaters/data/datasource/cached_altimetric_profile_datasource.dart';
 import 'package:hamqrg/src/features/repeaters/data/model/altimetric_profile/altimetric_profile_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -35,7 +37,12 @@ class AltimetricProfileSupabaseDatasource
 
 @riverpod
 AltimetricProfileDatasource altimetricProfileSupabaseDatasource(Ref ref) {
-  return AltimetricProfileSupabaseDatasource(
-    ref.read(supabaseClientProvider),
+  return CachedAltimetricProfileDatasource(
+    inner: AltimetricProfileSupabaseDatasource(
+      ref.read(supabaseClientProvider),
+    ),
+    gate: ref.watchOfflineCacheGate(
+      remoteTimeout: CachedAltimetricProfileDatasource.remoteTimeout,
+    ),
   );
 }
