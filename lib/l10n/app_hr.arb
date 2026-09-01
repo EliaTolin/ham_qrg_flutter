@@ -1085,5 +1085,11 @@
   "offlineMapsCenterSearch": "Pretraži mjesto",
   "offlineMapsCenterSearchInfo": "Pretražite grad ili mjesto: regija će biti centrirana ondje.",
   "offlineMapsCenterSelected": "Središte: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "changelog120OfflineMode": "Izvanmrežni način: repetitori, favoriti, profil, pokrivenost i dosežnost dostupni i bez mreže (PRO)",
+  "changelog120OfflineMaps": "Izvanmrežne karte: preuzmite područje gdje se nalazite ili mjesto po izboru i koristite ga bez veze (PRO)",
+  "changelog120CoverageSearch": "Pretraga pokrivenosti s bilo koje točke: potražite mjesto, zalijepite koordinate ili dugo pritisnite kartu da otkrijete što dosežete odande",
+  "changelog120SavedStations": "Moje postaje: spremite točke koje vas zanimaju i pregledajte ih i izvan mreže (PRO)",
+  "changelog120SpotsRefresh": "SOTA i POTA spotovi osvježavaju se sami svake minute, s obojenim značkama po modu (CW, SSB, FT8…)",
+  "changelog120NoNetwork": "Bez veze aplikacija se pokreće odmah, prikazuje što je dostupno i onemogućuje radnje koje traže mrežu"
 }

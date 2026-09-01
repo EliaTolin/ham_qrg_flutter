@@ -2560,4 +2560,28 @@ class AppLocalizationsNl extends AppLocalizations {
   String offlineMapsCenterSelected(String label) {
     return 'Centrum: $label';
   }
+
+  @override
+  String get changelog120OfflineMode =>
+      'Offlinemodus: repeaters, favorieten, profiel, dekking en bereik ook zonder netwerk beschikbaar (PRO)';
+
+  @override
+  String get changelog120OfflineMaps =>
+      'Offlinekaarten: download de omgeving van je locatie of een plaats naar keuze en gebruik die zonder verbinding (PRO)';
+
+  @override
+  String get changelog120CoverageSearch =>
+      'Dekking zoeken vanaf elk punt: zoek een plaats, plak coördinaten of druk lang op de kaart om te zien wat je van daaruit bereikt';
+
+  @override
+  String get changelog120SavedStations =>
+      'Mijn stations: sla de punten op die je interesseren en raadpleeg ze ook offline (PRO)';
+
+  @override
+  String get changelog120SpotsRefresh =>
+      'SOTA- en POTA-spots verversen elke minuut vanzelf, met gekleurde badges per mode (CW, SSB, FT8…)';
+
+  @override
+  String get changelog120NoNetwork =>
+      'Zonder verbinding start de app meteen, toont wat beschikbaar is en schakelt acties uit die netwerk vereisen';
 }

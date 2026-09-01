@@ -4671,6 +4671,42 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Centro: {label}'**
   String offlineMapsCenterSelected(String label);
+
+  /// No description provided for @changelog120OfflineMode.
+  ///
+  /// In it, this message translates to:
+  /// **'Modalità offline: ripetitori, preferiti, profilo, copertura e raggiungibilità consultabili anche senza rete (PRO)'**
+  String get changelog120OfflineMode;
+
+  /// No description provided for @changelog120OfflineMaps.
+  ///
+  /// In it, this message translates to:
+  /// **'Mappe offline: scarica la zona dove ti trovi o un luogo a tua scelta e usala senza connessione (PRO)'**
+  String get changelog120OfflineMaps;
+
+  /// No description provided for @changelog120CoverageSearch.
+  ///
+  /// In it, this message translates to:
+  /// **'Ricerca copertura da qualsiasi punto: cerca una località, incolla coordinate o tieni premuto sulla mappa per scoprire cosa raggiungi da lì'**
+  String get changelog120CoverageSearch;
+
+  /// No description provided for @changelog120SavedStations.
+  ///
+  /// In it, this message translates to:
+  /// **'Le mie postazioni: salva i punti che ti interessano e consultali anche offline (PRO)'**
+  String get changelog120SavedStations;
+
+  /// No description provided for @changelog120SpotsRefresh.
+  ///
+  /// In it, this message translates to:
+  /// **'Spot SOTA e POTA si aggiornano da soli ogni minuto, con badge colorati per modo (CW, SSB, FT8…)'**
+  String get changelog120SpotsRefresh;
+
+  /// No description provided for @changelog120NoNetwork.
+  ///
+  /// In it, this message translates to:
+  /// **'Senza connessione l\'app avvia subito, mostra cosa è disponibile e disattiva le azioni che richiedono la rete'**
+  String get changelog120NoNetwork;
 }
 
 class _AppLocalizationsDelegate

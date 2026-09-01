@@ -1085,5 +1085,11 @@
   "offlineMapsCenterSearch": "Caută un loc",
   "offlineMapsCenterSearchInfo": "Caută un oraș sau un loc: regiunea va fi centrată acolo.",
   "offlineMapsCenterSelected": "Centru: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}}
+  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "changelog120OfflineMode": "Mod offline: repetoare, favorite, profil, acoperire și accesibilitate disponibile și fără rețea (PRO)",
+  "changelog120OfflineMaps": "Hărți offline: descarcă zona în care te afli sau un loc la alegere și folosește-o fără conexiune (PRO)",
+  "changelog120CoverageSearch": "Căutare acoperire din orice punct: caută o localitate, lipește coordonate sau apasă lung pe hartă pentru a descoperi ce atingi de acolo",
+  "changelog120SavedStations": "Stațiile mele: salvează punctele care te interesează și consultă-le și offline (PRO)",
+  "changelog120SpotsRefresh": "Spoturile SOTA și POTA se actualizează singure în fiecare minut, cu insigne colorate pe mod (CW, SSB, FT8…)",
+  "changelog120NoNetwork": "Fără conexiune aplicația pornește imediat, arată ce este disponibil și dezactivează acțiunile care necesită rețea"
 }

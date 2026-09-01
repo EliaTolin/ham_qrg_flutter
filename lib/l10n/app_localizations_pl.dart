@@ -2615,4 +2615,28 @@ class AppLocalizationsPl extends AppLocalizations {
   String offlineMapsCenterSelected(String label) {
     return 'Środek: $label';
   }
+
+  @override
+  String get changelog120OfflineMode =>
+      'Tryb offline: przemienniki, ulubione, profil, zasięg i osiągalność dostępne także bez sieci (PRO)';
+
+  @override
+  String get changelog120OfflineMaps =>
+      'Mapy offline: pobierz okolicę, w której jesteś, lub dowolne wybrane miejsce i korzystaj z niej bez połączenia (PRO)';
+
+  @override
+  String get changelog120CoverageSearch =>
+      'Wyszukiwanie zasięgu z dowolnego punktu: wyszukaj miejscowość, wklej współrzędne lub przytrzymaj mapę, aby sprawdzić, co stamtąd osiągasz';
+
+  @override
+  String get changelog120SavedStations =>
+      'Moje stanowiska: zapisuj interesujące cię punkty i przeglądaj je także offline (PRO)';
+
+  @override
+  String get changelog120SpotsRefresh =>
+      'Spoty SOTA i POTA odświeżają się same co minutę, z kolorowymi odznakami emisji (CW, SSB, FT8…)';
+
+  @override
+  String get changelog120NoNetwork =>
+      'Bez połączenia aplikacja uruchamia się od razu, pokazuje, co jest dostępne, i wyłącza akcje wymagające sieci';
 }

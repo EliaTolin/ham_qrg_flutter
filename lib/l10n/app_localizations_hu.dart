@@ -2550,4 +2550,28 @@ class AppLocalizationsHu extends AppLocalizations {
   String offlineMapsCenterSelected(String label) {
     return 'Közép: $label';
   }
+
+  @override
+  String get changelog120OfflineMode =>
+      'Offline mód: átjátszók, kedvencek, profil, lefedettség és elérhetőség hálózat nélkül is elérhető (PRO)';
+
+  @override
+  String get changelog120OfflineMaps =>
+      'Offline térképek: töltsd le a környéked vagy egy tetszőleges helyet, és használd kapcsolat nélkül (PRO)';
+
+  @override
+  String get changelog120CoverageSearch =>
+      'Lefedettség keresése bármely pontról: keress egy helyet, illessz be koordinátákat vagy nyomd hosszan a térképet, és nézd meg, mit érsz el onnan';
+
+  @override
+  String get changelog120SavedStations =>
+      'Állomásaim: mentsd el a fontos pontokat, és nézd meg őket offline is (PRO)';
+
+  @override
+  String get changelog120SpotsRefresh =>
+      'A SOTA és POTA spotok percenként maguktól frissülnek, módonként színes jelvényekkel (CW, SSB, FT8…)';
+
+  @override
+  String get changelog120NoNetwork =>
+      'Kapcsolat nélkül az app azonnal indul, megmutatja, mi érhető el, és letiltja a hálózatot igénylő műveleteket';
 }

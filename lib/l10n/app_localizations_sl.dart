@@ -2607,4 +2607,28 @@ class AppLocalizationsSl extends AppLocalizations {
   String offlineMapsCenterSelected(String label) {
     return 'Središče: $label';
   }
+
+  @override
+  String get changelog120OfflineMode =>
+      'Način brez povezave: repetitorji, priljubljeni, profil, pokritost in dosegljivost na voljo tudi brez omrežja (PRO)';
+
+  @override
+  String get changelog120OfflineMaps =>
+      'Zemljevidi brez povezave: prenesite območje, kjer ste, ali poljuben kraj in ga uporabljajte brez povezave (PRO)';
+
+  @override
+  String get changelog120CoverageSearch =>
+      'Iskanje pokritosti s katere koli točke: poiščite kraj, prilepite koordinate ali pridržite zemljevid in odkrijte, kaj dosežete od tam';
+
+  @override
+  String get changelog120SavedStations =>
+      'Moje postaje: shranite točke, ki vas zanimajo, in jih preglejte tudi brez povezave (PRO)';
+
+  @override
+  String get changelog120SpotsRefresh =>
+      'Spoti SOTA in POTA se samodejno osvežijo vsako minuto, z barvnimi značkami po načinu (CW, SSB, FT8…)';
+
+  @override
+  String get changelog120NoNetwork =>
+      'Brez povezave se aplikacija zažene takoj, pokaže, kaj je na voljo, in onemogoči dejanja, ki zahtevajo omrežje';
 }
