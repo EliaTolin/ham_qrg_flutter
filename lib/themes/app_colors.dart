@@ -71,6 +71,8 @@ class AppColors {
   static const Color proGold = Color(0xFFD4AF37); // metallic gold
   static const Color proGoldLight = Color(0xFFF1D27A);
   static const Color onProGold = Color(0xFF1A1A1A); // text/icons on proGold
+  // Riflesso speculare che attraversa la CTA Pro (vedi ProStatusCard).
+  static const Color proShine = Color(0xFFFFF8E1); // warm white gleam
 
   // Signal-strength scale (green -> red). Domain token used by SignalHelper:
   // signal quality is a semantic scale with no equivalent in theme.colorScheme.

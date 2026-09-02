@@ -80,15 +80,6 @@ class SplashController extends _$SplashController {
         talker.warning('[Splash] entitlement check not resolved — skipped');
       }
 
-      // Mount the reactive RevenueCat attribute sync (keepAlive) and the
-      // Pro-lapse watcher ONLY NOW: the sync watches getProfileProvider, so
-      // mounting it before the flags above are resolved would build the whole
-      // profile chain as "free & online" (no cache, bare 6s timeout) and —
-      // being keepAlive — freeze that error for the entire session.
-      ref
-        ..read(syncRevenueCatAttributesProvider)
-        ..read(offlineCacheLifecycleProvider);
-
       // Offline (backend irraggiungibile secondo il probe): ogni passo di
       // rete della splash è inutile e costerebbe il suo timeout — si salta
       // tutto e si arriva alla home, che serve i dati dalla cache.
@@ -101,8 +92,28 @@ class SplashController extends _$SplashController {
       if (userId == null && !isOffline) {
         talker.info('[Splash] step: anonymousSignIn');
         userId = await ref.read(anonymousSignInProvider.future);
+        // La sessione anonima nasce DOPO che `getUserIdProvider` ha già
+        // risolto `null`: senza invalidare, ogni provider auth-dipendente
+        // resta congelato su quel `null` (`getProfile` lancia «User ID is
+        // null») per tutta la sessione — al primo avvio dopo l'installazione
+        // la pagina profilo va in errore fino al riavvio dell'app.
+        ref
+          ..invalidate(getUserIdProvider)
+          ..invalidate(isAnonymousProvider)
+          ..invalidate(getProfileProvider)
+          ..invalidate(checkNeedsPostLoginOnboardingProvider);
       }
       talker.info('[Splash] userId resolved: $userId');
+
+      // Mount the reactive RevenueCat attribute sync (keepAlive) and the
+      // Pro-lapse watcher ONLY NOW: the sync watches getProfileProvider, so
+      // mounting it earlier would build the whole profile chain either as
+      // "free & online" (flags unresolved: no cache, bare 6s timeout) or
+      // without a session at all (first install) and — being keepAlive —
+      // freeze that error for the entire session.
+      ref
+        ..read(syncRevenueCatAttributesProvider)
+        ..read(offlineCacheLifecycleProvider);
 
       if (userId != null && !isOffline) {
         talker.info('[Splash] step: OneSignal.login');
