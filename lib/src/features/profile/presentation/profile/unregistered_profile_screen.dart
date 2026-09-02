@@ -20,6 +20,7 @@ import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_o
 import 'package:hamqrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hamqrg/src/features/profile/provider/locale_notifier/locale_notifier.dart';
+import 'package:hamqrg/src/features/subscriptions/presentation/widgets/pro_status_card.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -134,6 +135,14 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
                       ],
                     ),
                     const Gap(32),
+                    // HamQRG Pro — l'upsell deve esistere anche senza account:
+                    // l'acquisto non richiede la registrazione (come negli
+                    // altri placement) e questa era l'unica pagina del profilo
+                    // in cui non c'era alcun accesso alla paywall.
+                    _buildSectionHeader(context, l10n.proSectionTitle),
+                    const Gap(12),
+                    const ProStatusCard(),
+                    const Gap(24),
                     // Community section
                     _buildSectionHeader(context, l10n.profileSectionCommunity),
                     const Gap(12),
