@@ -1,8 +1,13 @@
-/// Eventi del funnel di conversione della ricerca di copertura (FR-064).
+/// Eventi del funnel di conversione a Pro (FR-064).
 ///
 /// Enum chiuso e non stringa libera: i nomi finiscono in una colonna su cui si
 /// calcolano i tassi di passaggio, e un refuso silenzioso spezzerebbe il
 /// confronto fra superfici senza che nessuno se ne accorga.
+///
+/// Gli identificatori portano il prefisso `coverage_` perché il funnel è nato
+/// lì, e restano invariati anche ora che copre ogni punto vendita dell'app:
+/// rinominarli spezzerebbe il confronto con le righe già scritte, che è
+/// l'unica cosa per cui questi eventi esistono.
 enum AnalyticsEvent {
   /// L'utente ha fissato un punto sulla mappa.
   coveragePointSelected('coverage_point_selected'),
@@ -30,9 +35,11 @@ enum AnalyticsEvent {
 
 /// Da quale punto d'ingresso arriva l'evento (FR-065).
 ///
-/// Le ultime due esistono perché senza strumentare anche le superfici già in
-/// produzione il nuovo teaser non avrebbe alcun termine di paragone: si
-/// saprebbe quanto converte, non se converte *meglio*.
+/// Deve esistere una voce per **ogni** `PaywallPlacement`: un punto vendita
+/// non strumentato non è semplicemente poco misurato, rende incomparabili
+/// anche gli altri, perché il totale degli acquisti non torna con la somma
+/// delle superfici. Per questo `openPaywall` & co. pretendono una superficie
+/// invece di accettarne una opzionale.
 enum AnalyticsSurface {
   /// Teaser mostrato sulla mappa dopo la scelta del punto.
   mapTeaser('map_teaser'),
@@ -44,7 +51,17 @@ enum AnalyticsSurface {
   reachButton('reach_button'),
 
   /// Badge sfocato sul dettaglio ripetitore, superficie preesistente (FR-066).
-  reachBadge('reach_badge');
+  reachBadge('reach_badge'),
+
+  /// Card di stato dell'abbonamento nel profilo: la superficie con più
+  /// impression dell'app, ed è rimasta a lungo l'unica senza misura.
+  profileCard('profile_card'),
+
+  /// Card promozionale della copertura nel dettaglio ripetitore.
+  coveragePromo('coverage_promo'),
+
+  /// Voce "Mappe offline" nel profilo.
+  offlineMaps('offline_maps');
 
   const AnalyticsSurface(this.id);
 

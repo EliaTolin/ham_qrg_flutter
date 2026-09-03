@@ -884,10 +884,69 @@
     }
   },
   "proSectionTitle": "Abonnement",
-  "proCardUpgradeTitle": "Upgrade naar HamQRG Pro",
-  "proCardUpgradeSubtitle": "Ontgrendel alle premiumfuncties",
+  "proCardUpgradeTitle": "Ontdek wat je bereikt",
+  "proCardUpgradeSubtitle": "Dekking, repeaters en offline kaarten",
   "proCardActiveTitle": "HamQRG Pro actief",
   "proCardActiveSubtitle": "Bedankt voor je steun!",
+  "proPriceFromMonth": "Vanaf {price} per maand · Altijd opzegbaar",
+  "@proPriceFromMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonth": "Gratis proberen, daarna {price} per maand · Altijd opzegbaar",
+  "@proPriceTrialThenMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceLifetime": "Eenmalig {price} · Voor altijd",
+  "@proPriceLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceFromMonthUpfront": "Vanaf {price} per maand · {total} vooraf · Altijd opzegbaar",
+  "@proPriceFromMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonthUpfront": "Gratis proberen, daarna {price} per maand · {total} vooraf · Altijd opzegbaar",
+  "@proPriceTrialThenMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proRestoreSuccess": "Aankopen hersteld: HamQRG Pro is actief",
+  "proRestoreNone": "Geen aankopen om te herstellen",
+  "proManageSubscription": "Abonnement beheren",
+  "proLinkAccountTitle": "Koppel je account",
+  "proLinkAccountBody": "Koppel HamQRG Pro aan een account zodat je het op elk apparaat houdt, ook na een herinstallatie.",
+  "stationsShowcaseTitle": "Je locaties, ook zonder verbinding",
+  "stationsShowcaseBody": "Sla thuis, de hut of de activatieplek op: wat je bereikt blijft beschikbaar, ook zonder netwerk.",
+  "offlineMapsUpsellTitle": "De kaart blijft op je telefoon 🗺️",
+  "offlineMapsUpsellBody": "Download de gebieden die je nodig hebt en open ze waar geen signaal is: op een bergkam, in een tunnel, in het buitenland zonder data.",
+  "offlineMapsBenefitRegions": "Jij kiest welke gebieden je downloadt",
+  "reachUpsellBenefitSignal": "Verwacht signaal voor elke repeater",
+  "reachUpsellBenefitTerrain": "Terreinprofiel tussen jou en de repeater",
+  "proRestoreCta": "Aankopen herstellen",
   "repeaterCoverageTitle": "Dekking",
   "repeaterCoverageCardTitle": "Dekkingskaart",
   "repeaterCoverageCardSubtitle": "Schat het signaal van de repeater in het gebied",
@@ -979,16 +1038,44 @@
   "coverageResultComputing": "Ontvangst berekenen…",
   "coverageResultCancel": "Annuleren",
   "coverageResultCount": "{count, plural, =1{1 bereikbare repeater} other{{count} bereikbare repeaters}}",
-  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverageResultCountFiltered": "{shown} van {total} bereikbaar",
+  "@coverageResultCountFiltered": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultHiddenByFilters": "{count, plural, =1{1 bereikbare verborgen door filters} other{{count} bereikbare verborgen door filters}}",
-  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultHiddenByFilters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageTeaserTitle": "Wat bereik je vanaf {place}? 📡",
-  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "@coverageTeaserTitle": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
   "coverageTeaserBody": "Elke repeater die je vanaf dat punt bereikt, met voorspeld signaal en afstand — nog voor je vertrekt.",
   "coverageTeaserBenefitAnywhere": "Elk punt op aarde",
   "coverageTeaserBenefitOffline": "Zonder netwerk te raadplegen, in het veld",
   "coverageTeaserBenefitSave": "Bewaar de locatie en vind hem terug",
-  "coverageTeaserRestore": "Aankopen herstellen",
   "stationSaveCta": "Locatie opslaan",
   "stationSaveTitle": "Naam van de locatie",
   "stationRename": "Hernoemen",
@@ -1017,8 +1104,19 @@
   "stationRemovedSnack": "Locatie verwijderd",
   "stationSaveError": "Opslaan mislukt. Probeer het opnieuw.",
   "stationsTitle": "Mijn locaties",
+  "stationsProfileSubtitle": "De punten die je hebt beoordeeld, ook offline beschikbaar",
   "stationsEmptyTitle": "Nog geen locaties opgeslagen",
-  "stationsEmptyBody": "Kies een punt op de kaart, bekijk wat je bereikt en sla het op: je vindt het ook zonder netwerk terug.",
+  "stationsEmptyBody": "Een locatie is een kaartpunt waarvan je de dekking al hebt berekend, opgeslagen om het ook zonder netwerk terug te vinden.",
+  "stationsEmptyStep1": "Kies een punt op de kaart: houd ingedrukt, zoek op naam of plak de coördinaten.",
+  "stationsEmptyStep2": "Tik op “{action}” om te zien welke repeaters je van daaruit bereikt.",
+  "@stationsEmptyStep2": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "stationsEmptyStep3": "Sla het punt op: je vindt het hier terug, ook in het veld zonder netwerk.",
   "stationsGoToMap": "Naar de kaart",
   "stationsRefreshDone": "Vernieuwen voltooid",
   "spotsUpdatedAgo": "Bijgewerkt {time}",
@@ -1056,7 +1154,16 @@
   },
   "spotsManualRefreshHint": "Tik om bij te werken",
   "coverageResultScope": "binnen {km} km · {count} beoordeeld",
-  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "@coverageResultScope": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultRecalculating": "Opnieuw berekenen",
   "offlineBannerMessage": "Je bent offline: eerder opgeslagen gegevens",
   "offlineMapsTitle": "Offlinekaarten",
@@ -1085,7 +1192,13 @@
   "offlineMapsCenterSearch": "Zoek een plaats",
   "offlineMapsCenterSearchInfo": "Zoek een stad of plaats: de regio wordt daar gecentreerd.",
   "offlineMapsCenterSelected": "Centrum: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "@offlineMapsCenterSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "changelog120OfflineMode": "Offlinemodus: repeaters, favorieten, profiel, dekking en bereik ook zonder netwerk beschikbaar (PRO)",
   "changelog120OfflineMaps": "Offlinekaarten: download de omgeving van je locatie of een plaats naar keuze en gebruik die zonder verbinding (PRO)",
   "changelog120CoverageSearch": "Dekking zoeken vanaf elk punt: zoek een plaats, plak coördinaten of druk lang op de kaart om te zien wat je van daaruit bereikt",

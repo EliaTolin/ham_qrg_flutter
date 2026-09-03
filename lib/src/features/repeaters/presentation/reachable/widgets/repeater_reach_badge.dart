@@ -14,6 +14,7 @@ import 'package:hamqrg/src/features/repeaters/provider/get_reachable/get_repeate
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
+import 'package:hamqrg/src/features/subscriptions/presentation/widgets/pro_price_line.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -59,24 +60,20 @@ class RepeaterReachBadge extends HookConsumerWidget {
       title: l10n.reachBadgeTitle,
       subtitle: l10n.reachBadgeSubtitle,
       ctaLabel: l10n.reachDiscoverCta,
-      onUnlock: () async {
-        analytics
-          ..track(
-            AnalyticsEvent.coverageCtaTapped,
-            surface: AnalyticsSurface.reachBadge,
-          )
-          ..track(
-            AnalyticsEvent.coveragePaywallShown,
-            surface: AnalyticsSurface.reachBadge,
-          );
-        final purchased = await openPaywall(ref, PaywallPlacement.reachBadge);
-        analytics.track(
-          purchased
-              ? AnalyticsEvent.coveragePurchaseCompleted
-              : AnalyticsEvent.coveragePaywallDismissed,
-          surface: AnalyticsSurface.reachBadge,
-        );
-      },
+      onUnlock: () => openPaywall(
+        ref,
+        PaywallPlacement.reachBadge,
+        surface: AnalyticsSurface.reachBadge,
+      ),
+      // Compatto: qui il gate è un elemento fra molti sul dettaglio del
+      // ripetitore, non la schermata. Nella forma impilata occupava mezzo
+      // schermo e spingeva sotto la piega frequenze, toni e accessi — cioè
+      // proprio ciò per cui l'utente ha aperto la pagina.
+      dense: true,
+      footer: const ProPriceLine(
+        placement: PaywallPlacement.reachBadge,
+        dense: true,
+      ),
       teaser: const _BadgeFrame(child: _MockBadgeRow()),
       child: _RealReachBadge(repeater: repeater),
     );

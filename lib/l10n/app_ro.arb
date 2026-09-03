@@ -884,10 +884,69 @@
     }
   },
   "proSectionTitle": "Abonament",
-  "proCardUpgradeTitle": "Treci la HamQRG Pro",
-  "proCardUpgradeSubtitle": "Deblochează toate funcțiile premium",
+  "proCardUpgradeTitle": "Descoperă ce prinzi",
+  "proCardUpgradeSubtitle": "Acoperire, relee și hărți offline",
   "proCardActiveTitle": "HamQRG Pro activ",
   "proCardActiveSubtitle": "Mulțumim pentru sprijin!",
+  "proPriceFromMonth": "De la {price} pe lună · Anulezi oricând",
+  "@proPriceFromMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonth": "Probă gratuită, apoi {price} pe lună · Anulezi oricând",
+  "@proPriceTrialThenMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceLifetime": "{price} o singură dată · Pentru totdeauna",
+  "@proPriceLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceFromMonthUpfront": "De la {price} pe lună · {total} în avans · Anulezi oricând",
+  "@proPriceFromMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonthUpfront": "Probă gratuită, apoi {price} pe lună · {total} în avans · Anulezi oricând",
+  "@proPriceTrialThenMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proRestoreSuccess": "Achiziții restaurate: HamQRG Pro este activ",
+  "proRestoreNone": "Nicio achiziție de restaurat",
+  "proManageSubscription": "Gestionează abonamentul",
+  "proLinkAccountTitle": "Conectează-ți contul",
+  "proLinkAccountBody": "Conectează HamQRG Pro la un cont ca să îl păstrezi pe orice dispozitiv, chiar și după o reinstalare.",
+  "stationsShowcaseTitle": "Locațiile tale, chiar și fără rețea",
+  "stationsShowcaseBody": "Salvează casa, refugiul, locul de activare: ce prinzi rămâne acolo și fără rețea.",
+  "offlineMapsUpsellTitle": "Harta rămâne în telefon 🗺️",
+  "offlineMapsUpsellBody": "Descarcă zonele de care ai nevoie și deschide-le unde nu e semnal: pe creastă, în tunel, în străinătate fără date.",
+  "offlineMapsBenefitRegions": "Tu alegi ce zone descarci",
+  "reachUpsellBenefitSignal": "Semnal estimat pentru fiecare releu",
+  "reachUpsellBenefitTerrain": "Profilul terenului dintre tine și releu",
+  "proRestoreCta": "Restaurează achizițiile",
   "repeaterCoverageTitle": "Acoperire",
   "repeaterCoverageCardTitle": "Hartă de acoperire",
   "repeaterCoverageCardSubtitle": "Estimează semnalul releului pe teritoriu",
@@ -979,16 +1038,44 @@
   "coverageResultComputing": "Se calculează recepția…",
   "coverageResultCancel": "Anulează",
   "coverageResultCount": "Relee accesibile: {count}",
-  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverageResultCountFiltered": "{shown} din {total} accesibile",
+  "@coverageResultCountFiltered": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultHiddenByFilters": "Ascunse de filtre: {count}",
-  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultHiddenByFilters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageTeaserTitle": "Ce prinzi din {place}? 📡",
-  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "@coverageTeaserTitle": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
   "coverageTeaserBody": "Fiecare releu pe care îl prinzi din acel punct, cu semnal estimat și distanță — încă înainte să pleci.",
   "coverageTeaserBenefitAnywhere": "Orice punct de pe planetă",
   "coverageTeaserBenefitOffline": "Consultabil fără rețea, pe teren",
   "coverageTeaserBenefitSave": "Salvezi postul și îl regăsești",
-  "coverageTeaserRestore": "Restaurează achizițiile",
   "stationSaveCta": "Salvează postul",
   "stationSaveTitle": "Numele postului",
   "stationRename": "Redenumește",
@@ -1017,8 +1104,19 @@
   "stationRemovedSnack": "Locație eliminată",
   "stationSaveError": "Salvarea nu a reușit. Încercați din nou.",
   "stationsTitle": "Posturile mele",
+  "stationsProfileSubtitle": "Punctele pe care le-ai evaluat, disponibile și fără rețea",
   "stationsEmptyTitle": "Niciun post salvat",
-  "stationsEmptyBody": "Alege un punct pe hartă, vezi ce prinzi și salvează-l: îl vei regăsi și fără rețea.",
+  "stationsEmptyBody": "O locație este un punct de pe hartă pentru care ai calculat deja acoperirea, salvat ca să îl regăsești și fără rețea.",
+  "stationsEmptyStep1": "Alege un punct pe hartă: ține apăsat, caută-l după nume sau lipește coordonatele.",
+  "stationsEmptyStep2": "Atinge «{action}» ca să vezi ce relee prinzi de acolo.",
+  "@stationsEmptyStep2": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "stationsEmptyStep3": "Salvează punctul: îl regăsești aici, chiar și pe teren fără rețea.",
   "stationsGoToMap": "Mergi la hartă",
   "stationsRefreshDone": "Actualizare finalizată",
   "spotsUpdatedAgo": "Actualizat {time}",
@@ -1056,7 +1154,16 @@
   },
   "spotsManualRefreshHint": "Atinge pentru actualizare",
   "coverageResultScope": "pe o rază de {km} km · {count} evaluate",
-  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "@coverageResultScope": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultRecalculating": "Se recalculează",
   "offlineBannerMessage": "Ești offline: vezi datele salvate",
   "offlineMapsTitle": "Hărți offline",
@@ -1085,7 +1192,13 @@
   "offlineMapsCenterSearch": "Caută un loc",
   "offlineMapsCenterSearchInfo": "Caută un oraș sau un loc: regiunea va fi centrată acolo.",
   "offlineMapsCenterSelected": "Centru: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "@offlineMapsCenterSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "changelog120OfflineMode": "Mod offline: repetoare, favorite, profil, acoperire și accesibilitate disponibile și fără rețea (PRO)",
   "changelog120OfflineMaps": "Hărți offline: descarcă zona în care te afli sau un loc la alegere și folosește-o fără conexiune (PRO)",
   "changelog120CoverageSearch": "Căutare acoperire din orice punct: caută o localitate, lipește coordonate sau apasă lung pe hartă pentru a descoperi ce atingi de acolo",

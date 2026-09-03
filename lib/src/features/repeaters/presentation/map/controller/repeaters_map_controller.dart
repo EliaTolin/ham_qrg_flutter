@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:hamqrg/clients/analytics/analytics_client.dart';
+import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
 import 'package:hamqrg/src/features/coverage_search/data/repository/recent_searches_repository.dart';
 import 'package:hamqrg/src/features/coverage_search/data/repository/search_breadth_repository.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_breadth.dart';
@@ -90,6 +92,16 @@ class RepeatersMapController extends _$RepeatersMapController {
     state = AsyncData(
       currentState.copyWith(searchPoint: point, pointError: null),
     );
+
+    // La cima del funnel: quanti utenti scelgono un punto. Senza questo passo
+    // si sa quanti comprano dopo aver visto il teaser, ma non quanti al
+    // teaser non arrivano nemmeno — cioè non si sa se il problema sta prima o
+    // dopo. Nessuna coordinata e nessun nome di luogo viaggiano con l'evento:
+    // la firma di `track` non ha un posto dove metterli (FR-067).
+    ref.read(analyticsClientProvider).track(
+          AnalyticsEvent.coveragePointSelected,
+          surface: AnalyticsSurface.mapTeaser,
+        );
 
     // La cronologia è una comodità: se fallisce, la selezione resta valida.
     try {
@@ -212,14 +224,22 @@ class RepeatersMapController extends _$RepeatersMapController {
         ),
       );
     } on LocationException catch (error) {
+      // I modi scelti si registrano anche quando il caricamento fallisce: sono
+      // una scelta dell'utente, non un esito della rete. Scartarli qui rendeva
+      // i chip inerti offline — dove la copertura in cache è consultabile e
+      // quindi il filtro serve eccome.
       state = AsyncData(
         (currentState ?? const RepeatersMapState()).copyWith(
+          selectedModes:
+              modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
           locationError: error.type,
         ),
       );
     } catch (_) {
       state = AsyncData(
         (currentState ?? const RepeatersMapState()).copyWith(
+          selectedModes:
+              modesToFilter?.toSet() ?? currentState?.selectedModes ?? {},
           hasLoadError: true,
         ),
       );

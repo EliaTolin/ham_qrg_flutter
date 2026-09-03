@@ -884,10 +884,69 @@
     }
   },
   "proSectionTitle": "Naročnina",
-  "proCardUpgradeTitle": "Nadgradi na HamQRG Pro",
-  "proCardUpgradeSubtitle": "Odkleni vse premium funkcije",
+  "proCardUpgradeTitle": "Odkrij, kaj dosežeš",
+  "proCardUpgradeSubtitle": "Pokritost, repetitorji in zemljevidi brez povezave",
   "proCardActiveTitle": "HamQRG Pro aktiven",
   "proCardActiveSubtitle": "Hvala za podporo!",
+  "proPriceFromMonth": "Od {price} na mesec · Prekličeš kadar koli",
+  "@proPriceFromMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonth": "Brezplačen preizkus, nato {price} na mesec · Prekličeš kadar koli",
+  "@proPriceTrialThenMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceLifetime": "{price} enkratno · Za vedno",
+  "@proPriceLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceFromMonthUpfront": "Od {price} na mesec · {total} vnaprej · Prekličeš kadar koli",
+  "@proPriceFromMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonthUpfront": "Brezplačen preizkus, nato {price} na mesec · {total} vnaprej · Prekličeš kadar koli",
+  "@proPriceTrialThenMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proRestoreSuccess": "Nakupi obnovljeni: HamQRG Pro je aktiven",
+  "proRestoreNone": "Ni nakupov za obnovitev",
+  "proManageSubscription": "Upravljaj naročnino",
+  "proLinkAccountTitle": "Poveži svoj račun",
+  "proLinkAccountBody": "Poveži HamQRG Pro z računom, da ga obdržiš na vseh napravah, tudi po ponovni namestitvi.",
+  "stationsShowcaseTitle": "Tvoja mesta, tudi brez omrežja",
+  "stationsShowcaseBody": "Shrani dom, kočo, mesto aktivacije: kar dosežeš, ostane tudi brez omrežja.",
+  "offlineMapsUpsellTitle": "Zemljevid ostane v telefonu 🗺️",
+  "offlineMapsUpsellBody": "Prenesi območja, ki jih potrebuješ, in jih odpri tam, kjer ni signala: na grebenu, v predoru, v tujini brez prenosa podatkov.",
+  "offlineMapsBenefitRegions": "Sam izbereš območja za prenos",
+  "reachUpsellBenefitSignal": "Napovedan signal za vsak repetitor",
+  "reachUpsellBenefitTerrain": "Profil terena med teboj in repetitorjem",
+  "proRestoreCta": "Obnovi nakupe",
   "repeaterCoverageTitle": "Pokritost",
   "repeaterCoverageCardTitle": "Zemljevid pokritosti",
   "repeaterCoverageCardSubtitle": "Oceni signal pretvornika na območju",
@@ -979,16 +1038,44 @@
   "coverageResultComputing": "Izračun sprejema…",
   "coverageResultCancel": "Prekliči",
   "coverageResultCount": "Dosegljivi repetitorji: {count}",
-  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverageResultCountFiltered": "{shown} od {total} dosegljivih",
+  "@coverageResultCountFiltered": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultHiddenByFilters": "Skrito s filtri: {count}",
-  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultHiddenByFilters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageTeaserTitle": "Kaj dosežete z {place}? 📡",
-  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "@coverageTeaserTitle": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
   "coverageTeaserBody": "Vsak repetitor, dosegljiv s te točke, z napovedanim signalom in razdaljo — še preden se odpravite.",
   "coverageTeaserBenefitAnywhere": "Katera koli točka na svetu",
   "coverageTeaserBenefitOffline": "Na voljo brez omrežja, na terenu",
   "coverageTeaserBenefitSave": "Shranite postojanko in jo najdete znova",
-  "coverageTeaserRestore": "Obnovi nakupe",
   "stationSaveCta": "Shrani postojanko",
   "stationSaveTitle": "Ime postojanke",
   "stationRename": "Preimenuj",
@@ -1017,8 +1104,19 @@
   "stationRemovedSnack": "Lokacija odstranjena",
   "stationSaveError": "Shranjevanje ni uspelo. Poskusite znova.",
   "stationsTitle": "Moje postojanke",
+  "stationsProfileSubtitle": "Točke, ki si jih ovrednotil, na voljo tudi brez omrežja",
   "stationsEmptyTitle": "Ni shranjenih postojank",
-  "stationsEmptyBody": "Izberite točko na zemljevidu, poglejte, kaj dosežete, in shranite: našli jo boste tudi brez omrežja.",
+  "stationsEmptyBody": "Postaja je točka na zemljevidu, za katero si že izračunal pokritost, shranjena, da jo najdeš tudi brez omrežja.",
+  "stationsEmptyStep1": "Izberi točko na zemljevidu: dolgo pritisni, poišči jo po imenu ali prilepi koordinate.",
+  "stationsEmptyStep2": "Dotakni se »{action}«, da vidiš, katere repetitorje dosežeš od tam.",
+  "@stationsEmptyStep2": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "stationsEmptyStep3": "Shrani točko: našel jo boš tukaj, tudi na terenu brez omrežja.",
   "stationsGoToMap": "Na zemljevid",
   "stationsRefreshDone": "Osveževanje končano",
   "spotsUpdatedAgo": "Posodobljeno {time}",
@@ -1056,7 +1154,16 @@
   },
   "spotsManualRefreshHint": "Tapnite za posodobitev",
   "coverageResultScope": "v obsegu {km} km · ovrednotenih: {count}",
-  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "@coverageResultScope": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultRecalculating": "Ponovni izračun",
   "offlineBannerMessage": "Brez povezave: ogled shranjenih podatkov",
   "offlineMapsTitle": "Zemljevidi brez povezave",
@@ -1085,7 +1192,13 @@
   "offlineMapsCenterSearch": "Poišči kraj",
   "offlineMapsCenterSearchInfo": "Poiščite mesto ali kraj: območje bo osredotočeno tam.",
   "offlineMapsCenterSelected": "Središče: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "@offlineMapsCenterSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "changelog120OfflineMode": "Način brez povezave: repetitorji, priljubljeni, profil, pokritost in dosegljivost na voljo tudi brez omrežja (PRO)",
   "changelog120OfflineMaps": "Zemljevidi brez povezave: prenesite območje, kjer ste, ali poljuben kraj in ga uporabljajte brez povezave (PRO)",
   "changelog120CoverageSearch": "Iskanje pokritosti s katere koli točke: poiščite kraj, prilepite koordinate ali pridržite zemljevid in odkrijte, kaj dosežete od tam",

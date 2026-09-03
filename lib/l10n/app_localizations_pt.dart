@@ -12,16 +12,86 @@ class AppLocalizationsPt extends AppLocalizations {
   String get proSectionTitle => 'Subscrição';
 
   @override
-  String get proCardUpgradeTitle => 'Mude para o HamQRG Pro';
+  String get proCardUpgradeTitle => 'Descobre o que alcanças';
 
   @override
-  String get proCardUpgradeSubtitle => 'Desbloqueie todos os recursos premium';
+  String get proCardUpgradeSubtitle => 'Cobertura, repetidores e mapas offline';
 
   @override
   String get proCardActiveTitle => 'HamQRG Pro ativo';
 
   @override
   String get proCardActiveSubtitle => 'Obrigado pelo seu apoio!';
+
+  @override
+  String proPriceFromMonth(String price) {
+    return 'A partir de $price por mês · Cancela quando quiseres';
+  }
+
+  @override
+  String proPriceTrialThenMonth(String price) {
+    return 'Experimenta grátis, depois $price por mês · Cancela quando quiseres';
+  }
+
+  @override
+  String proPriceLifetime(String price) {
+    return '$price uma só vez · Para sempre';
+  }
+
+  @override
+  String proPriceFromMonthUpfront(String price, String total) {
+    return 'A partir de $price por mês · $total adiantados · Cancela quando quiseres';
+  }
+
+  @override
+  String proPriceTrialThenMonthUpfront(String price, String total) {
+    return 'Experimenta grátis, depois $price por mês · $total adiantados · Cancela quando quiseres';
+  }
+
+  @override
+  String get proRestoreSuccess =>
+      'Compras restauradas: o HamQRG Pro está ativo';
+
+  @override
+  String get proRestoreNone => 'Não há compras para restaurar';
+
+  @override
+  String get proManageSubscription => 'Gerir subscrição';
+
+  @override
+  String get proLinkAccountTitle => 'Associa a tua conta';
+
+  @override
+  String get proLinkAccountBody =>
+      'Associa o HamQRG Pro a uma conta para o manteres em todos os dispositivos, mesmo depois de reinstalares.';
+
+  @override
+  String get stationsShowcaseTitle => 'Os teus locais, mesmo sem rede';
+
+  @override
+  String get stationsShowcaseBody =>
+      'Guarda casa, o refúgio, o local de ativação: o que alcanças fica lá mesmo sem rede.';
+
+  @override
+  String get offlineMapsUpsellTitle => 'O mapa fica no teu telemóvel 🗺️';
+
+  @override
+  String get offlineMapsUpsellBody =>
+      'Descarrega as zonas de que precisas e abre-as onde não há sinal: numa crista, num túnel, no estrangeiro sem dados.';
+
+  @override
+  String get offlineMapsBenefitRegions =>
+      'És tu que escolhes as zonas a descarregar';
+
+  @override
+  String get reachUpsellBenefitSignal => 'Sinal previsto para cada repetidor';
+
+  @override
+  String get reachUpsellBenefitTerrain =>
+      'Perfil do terreno entre ti e o repetidor';
+
+  @override
+  String get proRestoreCta => 'Restaurar compras';
 
   @override
   String get error => 'Erro';
@@ -2313,6 +2383,11 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String coverageResultCountFiltered(int shown, int total) {
+    return '$shown de $total alcançáveis';
+  }
+
+  @override
   String coverageResultHiddenByFilters(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -2341,9 +2416,6 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get coverageTeaserBenefitSave =>
       'Guardas o posto e voltas a encontrá-lo';
-
-  @override
-  String get coverageTeaserRestore => 'Restaurar compras';
 
   @override
   String get stationSaveCta => 'Guardar posto';
@@ -2412,11 +2484,28 @@ class AppLocalizationsPt extends AppLocalizations {
   String get stationsTitle => 'Os meus postos';
 
   @override
+  String get stationsProfileSubtitle =>
+      'Os pontos que avaliaste, disponíveis sem rede';
+
+  @override
   String get stationsEmptyTitle => 'Ainda sem postos guardados';
 
   @override
   String get stationsEmptyBody =>
-      'Escolhe um ponto no mapa, vê o que alcanças e guarda-o: vais reencontrá-lo mesmo sem rede.';
+      'Uma posição é um ponto do mapa cuja cobertura já calculaste, guardado para o reencontrares sem rede.';
+
+  @override
+  String get stationsEmptyStep1 =>
+      'Escolhe um ponto no mapa: mantém premido, procura pelo nome ou cola as coordenadas.';
+
+  @override
+  String stationsEmptyStep2(String action) {
+    return 'Toca em «$action» para veres que repetidores alcanças a partir dali.';
+  }
+
+  @override
+  String get stationsEmptyStep3 =>
+      'Guarda o ponto: encontra-lo aqui, mesmo no campo sem rede.';
 
   @override
   String get stationsGoToMap => 'Ir para o mapa';

@@ -12,16 +12,85 @@ class AppLocalizationsHr extends AppLocalizations {
   String get proSectionTitle => 'Pretplata';
 
   @override
-  String get proCardUpgradeTitle => 'Prijeđi na HamQRG Pro';
+  String get proCardUpgradeTitle => 'Otkrij što dosežeš';
 
   @override
-  String get proCardUpgradeSubtitle => 'Otključaj sve premium značajke';
+  String get proCardUpgradeSubtitle =>
+      'Pokrivenost, repetitori i offline karte';
 
   @override
   String get proCardActiveTitle => 'HamQRG Pro aktivan';
 
   @override
   String get proCardActiveSubtitle => 'Hvala na podršci!';
+
+  @override
+  String proPriceFromMonth(String price) {
+    return 'Od $price mjesečno · Otkaži bilo kada';
+  }
+
+  @override
+  String proPriceTrialThenMonth(String price) {
+    return 'Besplatna proba, zatim $price mjesečno · Otkaži bilo kada';
+  }
+
+  @override
+  String proPriceLifetime(String price) {
+    return '$price jednokratno · Zauvijek';
+  }
+
+  @override
+  String proPriceFromMonthUpfront(String price, String total) {
+    return 'Od $price mjesečno · $total unaprijed · Otkaži bilo kada';
+  }
+
+  @override
+  String proPriceTrialThenMonthUpfront(String price, String total) {
+    return 'Besplatna proba, zatim $price mjesečno · $total unaprijed · Otkaži bilo kada';
+  }
+
+  @override
+  String get proRestoreSuccess => 'Kupnje vraćene: HamQRG Pro je aktivan';
+
+  @override
+  String get proRestoreNone => 'Nema kupnji za vraćanje';
+
+  @override
+  String get proManageSubscription => 'Upravljaj pretplatom';
+
+  @override
+  String get proLinkAccountTitle => 'Poveži svoj račun';
+
+  @override
+  String get proLinkAccountBody =>
+      'Poveži HamQRG Pro s računom kako bi ga zadržao na svim uređajima, čak i nakon ponovne instalacije.';
+
+  @override
+  String get stationsShowcaseTitle => 'Tvoje lokacije, i bez mreže';
+
+  @override
+  String get stationsShowcaseBody =>
+      'Spremi dom, sklonište, mjesto aktivacije: ono što dosežeš ostaje i bez mreže.';
+
+  @override
+  String get offlineMapsUpsellTitle => 'Karta ostaje u telefonu 🗺️';
+
+  @override
+  String get offlineMapsUpsellBody =>
+      'Preuzmi područja koja trebaš i otvori ih ondje gdje nema signala: na grebenu, u tunelu, u inozemstvu bez podatkovnog prometa.';
+
+  @override
+  String get offlineMapsBenefitRegions => 'Sam biraš područja za preuzimanje';
+
+  @override
+  String get reachUpsellBenefitSignal => 'Predviđeni signal za svaki repetitor';
+
+  @override
+  String get reachUpsellBenefitTerrain =>
+      'Profil terena između tebe i repetitora';
+
+  @override
+  String get proRestoreCta => 'Vrati kupnje';
 
   @override
   String get error => 'Greška';
@@ -2314,6 +2383,11 @@ class AppLocalizationsHr extends AppLocalizations {
   }
 
   @override
+  String coverageResultCountFiltered(int shown, int total) {
+    return '$shown od $total dostupnih';
+  }
+
+  @override
   String coverageResultHiddenByFilters(int count) {
     return 'Skriveno filtrima: $count';
   }
@@ -2336,9 +2410,6 @@ class AppLocalizationsHr extends AppLocalizations {
   @override
   String get coverageTeaserBenefitSave =>
       'Spremite postaju i ponovno je pronađete';
-
-  @override
-  String get coverageTeaserRestore => 'Vrati kupnje';
 
   @override
   String get stationSaveCta => 'Spremi postaju';
@@ -2407,11 +2478,28 @@ class AppLocalizationsHr extends AppLocalizations {
   String get stationsTitle => 'Moje postaje';
 
   @override
+  String get stationsProfileSubtitle =>
+      'Točke koje si procijenio, dostupne i bez mreže';
+
+  @override
   String get stationsEmptyTitle => 'Nema spremljenih postaja';
 
   @override
   String get stationsEmptyBody =>
-      'Odaberite točku na karti, vidite što dosežete i spremite: pronaći ćete je i bez mreže.';
+      'Postaja je točka na karti za koju si već izračunao pokrivenost, spremljena da je pronađeš i bez mreže.';
+
+  @override
+  String get stationsEmptyStep1 =>
+      'Odaberi točku na karti: dugo pritisni, potraži je po imenu ili zalijepi koordinate.';
+
+  @override
+  String stationsEmptyStep2(String action) {
+    return 'Dodirni „$action” da vidiš koje repetitore dosežeš odande.';
+  }
+
+  @override
+  String get stationsEmptyStep3 =>
+      'Spremi točku: pronaći ćeš je ovdje, i na terenu bez mreže.';
 
   @override
   String get stationsGoToMap => 'Idi na kartu';

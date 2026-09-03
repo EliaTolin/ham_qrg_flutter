@@ -228,6 +228,86 @@ Entrambe le invarianti sparirebbero se `remote_caching` supportasse
 `expires_at NULL` = "non scade mai". Il pacchetto è interno: è un miglioramento
 realistico.
 
+## Vendita di Pro: superfici, paywall e funnel
+
+Ogni punto dell'app da cui si può comprare è una voce di `PaywallPlacement`
+(`lib/src/features/subscriptions/domain/paywall_placement.dart`). La paywall
+non si apre mai chiamando direttamente il client: si passa da `openPaywall`,
+`openPaywallInPlace` o `requirePro` in
+`lib/src/features/subscriptions/presentation/require_pro.dart`.
+
+Aggiungendo una placement servono **tre** cose, non una:
+
+1. la voce in `PaywallPlacement`;
+2. il placement omonimo nella dashboard RevenueCat (altrimenti quel punto
+   mostra la paywall di default);
+3. una voce corrispondente in `AnalyticsSurface`. Il parametro `surface` di
+   quelle funzioni è **obbligatorio** apposta: una superficie non strumentata
+   non è solo poco misurata, rende incomparabili anche le altre, perché il
+   totale degli acquisti non torna più con la somma delle superfici.
+
+Regole di composizione, tutte già disponibili come widget condivisi:
+
+- **Mai una paywall a freddo.** Dove il tocco dell'utente non è già una
+  richiesta d'acquisto (una voce di menu, una card informativa) ci va prima un
+  passo di valore: `showProUpsellDialog`
+  (`subscriptions/presentation/widgets/pro_upsell_dialog.dart`), che compone
+  testata → promessa → vantaggi → CTA → prezzo → "più tardi" e restituisce
+  `true` solo se l'acquisto è andato a buon fine.
+- **Ogni CTA porta il prezzo e il ripristino**, tramite `ProPriceLine`
+  (slot `footer` di `ProBlurGate`, o direttamente sotto il bottone). Il prezzo
+  arriva sempre da `StoreProduct` via `RevenueCatClient.priceHint`: già
+  localizzato, già nella valuta dello store. **Non si compone mai un prezzo a
+  mano** — un numero scritto nell'app e diverso da quello dello store è una
+  promessa rotta nel punto peggiore del funnel. Quando `priceHint` torna
+  `null` (offline, SDK non configurato) la riga sparisce e la superficie resta
+  comprabile: il prezzo è un rinforzo della CTA, mai una sua precondizione.
+- **`inPlace` quando il contesto è il motivo dell'acquisto.** `openPaywall`
+  ricostruisce l'albero di navigazione e riporta l'utente sulla tab iniziale;
+  `openPaywallInPlace` lascia in piedi la pagina. Serve dove ciò che l'utente
+  ha costruito prima di pagare è la ragione per cui paga (il punto scelto
+  sulla mappa, FR-031) o dove subito dopo lo si vuole portare in ciò che ha
+  appena comprato.
+- **Il badge `PRO` è `ProBadge`** (`common/widgets/pro/`), non una `Container`
+  scritta a mano: `ProBadge()` su fondo neutro, `ProBadge.onGold()` sopra
+  l'oro. Va su ogni voce che al tocco chiede di pagare, altrimenti quel tocco
+  è una trappola.
+- **Il riflesso dorato (`ProShineSurface`) sta su due superfici, e basta.**
+  Card Pro del profilo e CTA della card copertura: le uniche due in cui
+  l'invito compete con altro contenuto (una lista di righe uguali, i dati
+  tecnici del ripetitore). Nei `ProBlurGate` e nei dialog di upsell la CTA
+  dorata è già l'unica cosa accesa sulla schermata, quindi il riflesso
+  aggiungerebbe movimento senza attenzione. Se luccicano cinque superfici
+  l'effetto è speso e resta solo il consumo: ogni istanza è un ticker che
+  ridipinge di continuo. A chi ha già Pro non luccica nulla.
+- **In `ProBlurGate` l'esempio sta sopra, non dietro.** Il mock sfocato
+  occupa una striscia sua in cima; lucchetto, promessa, CTA e prezzo stanno
+  sotto, su superficie piena. Sovrapposti — com'erano — nessuna sfocatura più
+  leggera rende l'esempio visibile: al massimo lo trasforma in disturbo dietro
+  alle parole. La striscia è **tagliata** (58 px compatta, 132 piena) perché il
+  mock intero costava 450 px al teaser a piena pagina: due righe dicono com'è
+  fatta la risposta, la terza aggiunge solo scroll.
+- **`blurSigma` è basso (4) di proposito.** Nel mock non c'è nulla da
+  proteggere — sono segnaposto inventati e dietro un gate chiuso non gira
+  alcun calcolo (FR-014) — quindi la sfocatura fa solo il lavoro estetico di
+  dire "bloccato". Alzarla cancella l'unica ragione per cui il mock esiste. I
+  valori restano mascherati **nel mock** (`-•• dBm`), non dalla sfocatura: così
+  l'esempio non può essere scambiato per una risposta vera. Mostrare invece il
+  dato reale sfocato è da evitare su tutti i fronti: il blur non è sicurezza,
+  farebbe pagare compute per traffico gratuito, manderebbe la posizione di
+  ogni utente free al servizio, e metà delle volte sfocherebbe un "Fuori
+  copertura" — cioè chiederebbe di pagare per leggere meglio un no.
+- **La variante `dense`** serve dove il gate sta *dentro* una pagina di
+  contenuto invece di esserne il contenuto (il badge di raggiungibilità sul
+  dettaglio ripetitore). `test/pro_blur_gate_layout_test.dart` blocca sia il
+  rapporto con la forma piena sia un tetto assoluto di altezza — e verifica
+  che comprimere non abbia voluto dire tagliare: titolo, promessa e CTA
+  restano tutti.
+- **L'acquisto anonimo non si sbarra con una registrazione.** Un muro di login
+  prima del pagamento perde conversioni già maturate; il collegamento
+  dell'account si propone **dopo**, in `showProLinkAccountPrompt`, chiamato da
+  `require_pro.dart` quando chi ha comprato è ancora anonimo.
+
 ## Cache offline Pro (`OfflineCacheGate`)
 
 I datasource remoti sono avvolti da decorator `CachedXDatasource` costruiti

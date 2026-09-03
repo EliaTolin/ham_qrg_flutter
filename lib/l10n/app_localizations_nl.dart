@@ -12,16 +12,85 @@ class AppLocalizationsNl extends AppLocalizations {
   String get proSectionTitle => 'Abonnement';
 
   @override
-  String get proCardUpgradeTitle => 'Upgrade naar HamQRG Pro';
+  String get proCardUpgradeTitle => 'Ontdek wat je bereikt';
 
   @override
-  String get proCardUpgradeSubtitle => 'Ontgrendel alle premiumfuncties';
+  String get proCardUpgradeSubtitle => 'Dekking, repeaters en offline kaarten';
 
   @override
   String get proCardActiveTitle => 'HamQRG Pro actief';
 
   @override
   String get proCardActiveSubtitle => 'Bedankt voor je steun!';
+
+  @override
+  String proPriceFromMonth(String price) {
+    return 'Vanaf $price per maand · Altijd opzegbaar';
+  }
+
+  @override
+  String proPriceTrialThenMonth(String price) {
+    return 'Gratis proberen, daarna $price per maand · Altijd opzegbaar';
+  }
+
+  @override
+  String proPriceLifetime(String price) {
+    return 'Eenmalig $price · Voor altijd';
+  }
+
+  @override
+  String proPriceFromMonthUpfront(String price, String total) {
+    return 'Vanaf $price per maand · $total vooraf · Altijd opzegbaar';
+  }
+
+  @override
+  String proPriceTrialThenMonthUpfront(String price, String total) {
+    return 'Gratis proberen, daarna $price per maand · $total vooraf · Altijd opzegbaar';
+  }
+
+  @override
+  String get proRestoreSuccess => 'Aankopen hersteld: HamQRG Pro is actief';
+
+  @override
+  String get proRestoreNone => 'Geen aankopen om te herstellen';
+
+  @override
+  String get proManageSubscription => 'Abonnement beheren';
+
+  @override
+  String get proLinkAccountTitle => 'Koppel je account';
+
+  @override
+  String get proLinkAccountBody =>
+      'Koppel HamQRG Pro aan een account zodat je het op elk apparaat houdt, ook na een herinstallatie.';
+
+  @override
+  String get stationsShowcaseTitle => 'Je locaties, ook zonder verbinding';
+
+  @override
+  String get stationsShowcaseBody =>
+      'Sla thuis, de hut of de activatieplek op: wat je bereikt blijft beschikbaar, ook zonder netwerk.';
+
+  @override
+  String get offlineMapsUpsellTitle => 'De kaart blijft op je telefoon 🗺️';
+
+  @override
+  String get offlineMapsUpsellBody =>
+      'Download de gebieden die je nodig hebt en open ze waar geen signaal is: op een bergkam, in een tunnel, in het buitenland zonder data.';
+
+  @override
+  String get offlineMapsBenefitRegions =>
+      'Jij kiest welke gebieden je downloadt';
+
+  @override
+  String get reachUpsellBenefitSignal => 'Verwacht signaal voor elke repeater';
+
+  @override
+  String get reachUpsellBenefitTerrain =>
+      'Terreinprofiel tussen jou en de repeater';
+
+  @override
+  String get proRestoreCta => 'Aankopen herstellen';
 
   @override
   String get error => 'Fout';
@@ -2316,6 +2385,11 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String coverageResultCountFiltered(int shown, int total) {
+    return '$shown van $total bereikbaar';
+  }
+
+  @override
   String coverageResultHiddenByFilters(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -2344,9 +2418,6 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get coverageTeaserBenefitSave => 'Bewaar de locatie en vind hem terug';
-
-  @override
-  String get coverageTeaserRestore => 'Aankopen herstellen';
 
   @override
   String get stationSaveCta => 'Locatie opslaan';
@@ -2415,11 +2486,28 @@ class AppLocalizationsNl extends AppLocalizations {
   String get stationsTitle => 'Mijn locaties';
 
   @override
+  String get stationsProfileSubtitle =>
+      'De punten die je hebt beoordeeld, ook offline beschikbaar';
+
+  @override
   String get stationsEmptyTitle => 'Nog geen locaties opgeslagen';
 
   @override
   String get stationsEmptyBody =>
-      'Kies een punt op de kaart, bekijk wat je bereikt en sla het op: je vindt het ook zonder netwerk terug.';
+      'Een locatie is een kaartpunt waarvan je de dekking al hebt berekend, opgeslagen om het ook zonder netwerk terug te vinden.';
+
+  @override
+  String get stationsEmptyStep1 =>
+      'Kies een punt op de kaart: houd ingedrukt, zoek op naam of plak de coördinaten.';
+
+  @override
+  String stationsEmptyStep2(String action) {
+    return 'Tik op “$action” om te zien welke repeaters je van daaruit bereikt.';
+  }
+
+  @override
+  String get stationsEmptyStep3 =>
+      'Sla het punt op: je vindt het hier terug, ook in het veld zonder netwerk.';
 
   @override
   String get stationsGoToMap => 'Naar de kaart';

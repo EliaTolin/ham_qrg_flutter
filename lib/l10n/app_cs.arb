@@ -884,10 +884,69 @@
     }
   },
   "proSectionTitle": "Předplatné",
-  "proCardUpgradeTitle": "Přejít na HamQRG Pro",
-  "proCardUpgradeSubtitle": "Odemkněte všechny prémiové funkce",
+  "proCardUpgradeTitle": "Zjisti, co dosáhneš",
+  "proCardUpgradeSubtitle": "Pokrytí, převaděče a offline mapy",
   "proCardActiveTitle": "HamQRG Pro aktivní",
   "proCardActiveSubtitle": "Děkujeme za podporu!",
+  "proPriceFromMonth": "Od {price} měsíčně · Kdykoli zrušíš",
+  "@proPriceFromMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonth": "Zkušební verze zdarma, pak {price} měsíčně · Kdykoli zrušíš",
+  "@proPriceTrialThenMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceLifetime": "{price} jednorázově · Navždy",
+  "@proPriceLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceFromMonthUpfront": "Od {price} měsíčně · {total} předem · Kdykoli zrušíš",
+  "@proPriceFromMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonthUpfront": "Zkušební verze zdarma, pak {price} měsíčně · {total} předem · Kdykoli zrušíš",
+  "@proPriceTrialThenMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proRestoreSuccess": "Nákupy obnoveny: HamQRG Pro je aktivní",
+  "proRestoreNone": "Žádné nákupy k obnovení",
+  "proManageSubscription": "Spravovat předplatné",
+  "proLinkAccountTitle": "Propoj svůj účet",
+  "proLinkAccountBody": "Propoj HamQRG Pro s účtem, aby ti zůstalo na všech zařízeních i po přeinstalaci.",
+  "stationsShowcaseTitle": "Tvá stanoviště i bez sítě",
+  "stationsShowcaseBody": "Ulož domov, chatu, aktivační místo: co dosáhneš, zůstane i bez sítě.",
+  "offlineMapsUpsellTitle": "Mapa zůstane v telefonu 🗺️",
+  "offlineMapsUpsellBody": "Stáhni si oblasti, které potřebuješ, a otevři je tam, kde není signál: na hřebeni, v tunelu, v zahraničí bez dat.",
+  "offlineMapsBenefitRegions": "Sám si vybereš oblasti ke stažení",
+  "reachUpsellBenefitSignal": "Předpokládaný signál pro každý převaděč",
+  "reachUpsellBenefitTerrain": "Profil terénu mezi tebou a převaděčem",
+  "proRestoreCta": "Obnovit nákupy",
   "repeaterCoverageTitle": "Pokrytí",
   "repeaterCoverageCardTitle": "Mapa pokrytí",
   "repeaterCoverageCardSubtitle": "Odhadne signál převaděče v oblasti",
@@ -979,16 +1038,44 @@
   "coverageResultComputing": "Výpočet příjmu…",
   "coverageResultCancel": "Zrušit",
   "coverageResultCount": "Dosažitelné převaděče: {count}",
-  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverageResultCountFiltered": "{shown} z {total} dosažitelných",
+  "@coverageResultCountFiltered": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultHiddenByFilters": "Skryto filtry: {count}",
-  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultHiddenByFilters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageTeaserTitle": "Co dosáhnete z {place}? 📡",
-  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "@coverageTeaserTitle": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
   "coverageTeaserBody": "Každý převaděč dosažitelný z toho místa, s předpovězeným signálem a vzdáleností — ještě než vyrazíte.",
   "coverageTeaserBenefitAnywhere": "Jakýkoli bod na planetě",
   "coverageTeaserBenefitOffline": "K nahlédnutí bez sítě, v terénu",
   "coverageTeaserBenefitSave": "Uložíte stanoviště a najdete ho znovu",
-  "coverageTeaserRestore": "Obnovit nákupy",
   "stationSaveCta": "Uložit stanoviště",
   "stationSaveTitle": "Název stanoviště",
   "stationRename": "Přejmenovat",
@@ -1017,8 +1104,19 @@
   "stationRemovedSnack": "Stanoviště odebráno",
   "stationSaveError": "Uložení se nezdařilo. Zkuste to znovu.",
   "stationsTitle": "Moje stanoviště",
+  "stationsProfileSubtitle": "Body, které jsi vyhodnotil, dostupné i bez sítě",
   "stationsEmptyTitle": "Zatím žádná uložená stanoviště",
-  "stationsEmptyBody": "Vyberte bod na mapě, zjistěte, co dosáhnete, a uložte to: najdete to i bez sítě.",
+  "stationsEmptyBody": "Stanoviště je bod na mapě, u kterého už máš spočítané pokrytí, uložený tak, abys ho našel i bez sítě.",
+  "stationsEmptyStep1": "Vyber bod na mapě: podrž ho, najdi ho podle názvu nebo vlož souřadnice.",
+  "stationsEmptyStep2": "Klepni na „{action}“ a uvidíš, na které převaděče odtud dosáhneš.",
+  "@stationsEmptyStep2": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "stationsEmptyStep3": "Ulož bod: najdeš ho tady, i v terénu bez sítě.",
   "stationsGoToMap": "Přejít na mapu",
   "stationsRefreshDone": "Aktualizace dokončena",
   "spotsUpdatedAgo": "Aktualizováno {time}",
@@ -1056,7 +1154,16 @@
   },
   "spotsManualRefreshHint": "Klepnutím obnovíte",
   "coverageResultScope": "do {km} km · vyhodnoceno: {count}",
-  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "@coverageResultScope": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultRecalculating": "Přepočítávání",
   "offlineBannerMessage": "Jste offline: prohlížíte uložená data",
   "offlineMapsTitle": "Offline mapy",
@@ -1085,7 +1192,13 @@
   "offlineMapsCenterSearch": "Hledat místo",
   "offlineMapsCenterSearchInfo": "Vyhledejte město nebo místo: oblast bude vystředěna tam.",
   "offlineMapsCenterSelected": "Střed: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "@offlineMapsCenterSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "changelog120OfflineMode": "Offline režim: převaděče, oblíbené, profil, pokrytí a dosažitelnost dostupné i bez sítě (PRO)",
   "changelog120OfflineMaps": "Offline mapy: stáhněte si oblast, kde jste, nebo libovolné místo a používejte ji bez připojení (PRO)",
   "changelog120CoverageSearch": "Hledání pokrytí z libovolného bodu: vyhledejte místo, vložte souřadnice nebo podržte prst na mapě a zjistěte, co odtud dosáhnete",

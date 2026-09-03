@@ -884,10 +884,69 @@
     }
   },
   "proSectionTitle": "Abonnement",
-  "proCardUpgradeTitle": "Passer à HamQRG Pro",
-  "proCardUpgradeSubtitle": "Débloquez toutes les fonctions premium",
+  "proCardUpgradeTitle": "Découvrez ce que vous atteignez",
+  "proCardUpgradeSubtitle": "Couverture, relais et cartes hors ligne",
   "proCardActiveTitle": "HamQRG Pro actif",
   "proCardActiveSubtitle": "Merci pour votre soutien !",
+  "proPriceFromMonth": "À partir de {price} par mois · Annulable à tout moment",
+  "@proPriceFromMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonth": "Essai gratuit, puis {price} par mois · Annulable à tout moment",
+  "@proPriceTrialThenMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceLifetime": "{price} une seule fois · Pour toujours",
+  "@proPriceLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceFromMonthUpfront": "À partir de {price} par mois · {total} facturés d'avance · Annulable à tout moment",
+  "@proPriceFromMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonthUpfront": "Essai gratuit, puis {price} par mois · {total} facturés d'avance · Annulable à tout moment",
+  "@proPriceTrialThenMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proRestoreSuccess": "Achats restaurés : HamQRG Pro est actif",
+  "proRestoreNone": "Aucun achat à restaurer",
+  "proManageSubscription": "Gérer l'abonnement",
+  "proLinkAccountTitle": "Associez votre compte",
+  "proLinkAccountBody": "Associez HamQRG Pro à un compte pour le conserver sur tous vos appareils, même après une réinstallation.",
+  "stationsShowcaseTitle": "Vos emplacements, même sans réseau",
+  "stationsShowcaseBody": "Enregistrez la maison, le refuge, le site d'activation : ce que vous atteignez reste là même sans réseau.",
+  "offlineMapsUpsellTitle": "La carte reste dans votre téléphone 🗺️",
+  "offlineMapsUpsellBody": "Téléchargez les zones qu'il vous faut et ouvrez-les là où il n'y a pas de réseau : sur une crête, dans un tunnel, à l'étranger sans données.",
+  "offlineMapsBenefitRegions": "Vous choisissez les zones à télécharger",
+  "reachUpsellBenefitSignal": "Signal prévu pour chaque relais",
+  "reachUpsellBenefitTerrain": "Profil du terrain entre vous et le relais",
+  "proRestoreCta": "Restaurer les achats",
   "repeaterCoverageTitle": "Couverture",
   "repeaterCoverageCardTitle": "Carte de couverture",
   "repeaterCoverageCardSubtitle": "Estime le signal du relais sur le territoire",
@@ -979,16 +1038,44 @@
   "coverageResultComputing": "Calcul de la réception…",
   "coverageResultCancel": "Annuler",
   "coverageResultCount": "{count, plural, =1{1 relais accessible} other{{count} relais accessibles}}",
-  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverageResultCountFiltered": "{shown} sur {total} accessibles",
+  "@coverageResultCountFiltered": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultHiddenByFilters": "{count, plural, =1{1 accessible masqué par les filtres} other{{count} accessibles masqués par les filtres}}",
-  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultHiddenByFilters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageTeaserTitle": "Que capterez-vous depuis {place} ? 📡",
-  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "@coverageTeaserTitle": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
   "coverageTeaserBody": "Chaque relais capté depuis ce point, avec signal prévu et distance — avant même de partir.",
   "coverageTeaserBenefitAnywhere": "N'importe quel point du globe",
   "coverageTeaserBenefitOffline": "Consultable hors réseau, sur le terrain",
   "coverageTeaserBenefitSave": "Enregistrez le poste et retrouvez-le",
-  "coverageTeaserRestore": "Restaurer les achats",
   "stationSaveCta": "Enregistrer le poste",
   "stationSaveTitle": "Nom du poste",
   "stationRename": "Renommer",
@@ -1017,8 +1104,19 @@
   "stationRemovedSnack": "Emplacement supprimé",
   "stationSaveError": "Échec de l’enregistrement. Réessayez.",
   "stationsTitle": "Mes postes",
+  "stationsProfileSubtitle": "Les points que vous avez évalués, consultables hors ligne",
   "stationsEmptyTitle": "Aucun poste enregistré",
-  "stationsEmptyBody": "Choisissez un point sur la carte, voyez ce que vous captez et enregistrez-le : vous le retrouverez même sans réseau.",
+  "stationsEmptyBody": "Un poste est un point de la carte dont vous avez déjà calculé la couverture, enregistré pour le retrouver sans réseau.",
+  "stationsEmptyStep1": "Choisissez un point sur la carte : appui long, recherche par nom ou collage des coordonnées.",
+  "stationsEmptyStep2": "Touchez « {action} » pour voir les relais que vous captez depuis là.",
+  "@stationsEmptyStep2": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "stationsEmptyStep3": "Enregistrez le point : vous le retrouvez ici, même sur le terrain sans réseau.",
   "stationsGoToMap": "Aller à la carte",
   "stationsRefreshDone": "Actualisation terminée",
   "spotsUpdatedAgo": "Mis à jour {time}",
@@ -1056,7 +1154,16 @@
   },
   "spotsManualRefreshHint": "Touchez pour actualiser",
   "coverageResultScope": "dans un rayon de {km} km · {count} évalués",
-  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "@coverageResultScope": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultRecalculating": "Recalcul en cours",
   "offlineBannerMessage": "Hors ligne : vous consultez les données enregistrées",
   "offlineMapsTitle": "Cartes hors ligne",
@@ -1085,7 +1192,13 @@
   "offlineMapsCenterSearch": "Chercher un lieu",
   "offlineMapsCenterSearchInfo": "Cherchez une ville ou un lieu : la région sera centrée dessus.",
   "offlineMapsCenterSelected": "Centre : {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "@offlineMapsCenterSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "changelog120OfflineMode": "Mode hors ligne : relais, favoris, profil, couverture et portée consultables même sans réseau (PRO)",
   "changelog120OfflineMaps": "Cartes hors ligne : téléchargez la zone où vous êtes ou un lieu de votre choix et utilisez-la sans connexion (PRO)",
   "changelog120CoverageSearch": "Recherche de couverture depuis n'importe quel point : cherchez un lieu, collez des coordonnées ou appuyez longuement sur la carte pour découvrir ce que vous atteignez de là",

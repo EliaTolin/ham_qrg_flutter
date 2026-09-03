@@ -12,16 +12,87 @@ class AppLocalizationsHu extends AppLocalizations {
   String get proSectionTitle => 'Előfizetés';
 
   @override
-  String get proCardUpgradeTitle => 'Váltás HamQRG Pro-ra';
+  String get proCardUpgradeTitle => 'Fedezd fel, mit érsz el';
 
   @override
-  String get proCardUpgradeSubtitle => 'Oldd fel az összes prémium funkciót';
+  String get proCardUpgradeSubtitle =>
+      'Lefedettség, átjátszók és offline térképek';
 
   @override
   String get proCardActiveTitle => 'HamQRG Pro aktív';
 
   @override
   String get proCardActiveSubtitle => 'Köszönjük a támogatást!';
+
+  @override
+  String proPriceFromMonth(String price) {
+    return 'Havonta már $price · Bármikor lemondható';
+  }
+
+  @override
+  String proPriceTrialThenMonth(String price) {
+    return 'Ingyenes próba, utána havonta $price · Bármikor lemondható';
+  }
+
+  @override
+  String proPriceLifetime(String price) {
+    return 'Egyszeri $price · Örökre';
+  }
+
+  @override
+  String proPriceFromMonthUpfront(String price, String total) {
+    return 'Havonta már $price · $total előre · Bármikor lemondható';
+  }
+
+  @override
+  String proPriceTrialThenMonthUpfront(String price, String total) {
+    return 'Ingyenes próba, utána havonta $price · $total előre · Bármikor lemondható';
+  }
+
+  @override
+  String get proRestoreSuccess =>
+      'Vásárlások visszaállítva: a HamQRG Pro aktív';
+
+  @override
+  String get proRestoreNone => 'Nincs visszaállítható vásárlás';
+
+  @override
+  String get proManageSubscription => 'Előfizetés kezelése';
+
+  @override
+  String get proLinkAccountTitle => 'Kapcsold össze a fiókodat';
+
+  @override
+  String get proLinkAccountBody =>
+      'Kapcsold a HamQRG Prót egy fiókhoz, hogy minden eszközön megmaradjon – újratelepítés után is.';
+
+  @override
+  String get stationsShowcaseTitle => 'A helyszíneid, hálózat nélkül is';
+
+  @override
+  String get stationsShowcaseBody =>
+      'Mentsd el az otthont, a menedékházat, az aktiválási helyet: amit elérsz, hálózat nélkül is megvan.';
+
+  @override
+  String get offlineMapsUpsellTitle => 'A térkép a telefonodon marad 🗺️';
+
+  @override
+  String get offlineMapsUpsellBody =>
+      'Töltsd le a szükséges területeket, és nyisd meg ott, ahol nincs térerő: a gerincen, alagútban, külföldön adatforgalom nélkül.';
+
+  @override
+  String get offlineMapsBenefitRegions =>
+      'Te választod ki a letöltendő területeket';
+
+  @override
+  String get reachUpsellBenefitSignal => 'Várható jel minden átjátszóhoz';
+
+  @override
+  String get reachUpsellBenefitTerrain =>
+      'Terepprofil közted és az átjátszó között';
+
+  @override
+  String get proRestoreCta => 'Vásárlások visszaállítása';
 
   @override
   String get error => 'Hiba';
@@ -2313,6 +2384,11 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String coverageResultCountFiltered(int shown, int total) {
+    return '$shown / $total elérhető';
+  }
+
+  @override
   String coverageResultHiddenByFilters(int count) {
     return 'A szűrők $count elérhetőt rejtenek el';
   }
@@ -2336,9 +2412,6 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get coverageTeaserBenefitSave =>
       'Elmented a helyet és újra megtalálod';
-
-  @override
-  String get coverageTeaserRestore => 'Vásárlások visszaállítása';
 
   @override
   String get stationSaveCta => 'Hely mentése';
@@ -2407,11 +2480,28 @@ class AppLocalizationsHu extends AppLocalizations {
   String get stationsTitle => 'Helyeim';
 
   @override
+  String get stationsProfileSubtitle =>
+      'Az általad kiértékelt pontok, hálózat nélkül is';
+
+  @override
   String get stationsEmptyTitle => 'Még nincs mentett hely';
 
   @override
   String get stationsEmptyBody =>
-      'Válassz egy pontot a térképen, nézd meg mit érsz el, és mentsd el: hálózat nélkül is megtalálod.';
+      'A hely egy térképpont, amelynek a lefedettségét már kiszámoltad, elmentve, hogy hálózat nélkül is megtaláld.';
+
+  @override
+  String get stationsEmptyStep1 =>
+      'Válassz egy pontot a térképen: tartsd nyomva, keresd névre vagy illeszd be a koordinátákat.';
+
+  @override
+  String stationsEmptyStep2(String action) {
+    return 'Koppints a(z) „$action” gombra, hogy lásd, mely átjátszókat éred el onnan.';
+  }
+
+  @override
+  String get stationsEmptyStep3 =>
+      'Mentsd el a pontot: itt megtalálod, terepen, hálózat nélkül is.';
 
   @override
   String get stationsGoToMap => 'Ugrás a térképre';

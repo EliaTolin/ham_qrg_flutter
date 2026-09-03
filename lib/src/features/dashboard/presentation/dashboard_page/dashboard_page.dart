@@ -372,6 +372,10 @@ class _StatChip extends StatelessWidget {
 // Tab Selector (SegmentedButton)
 // ---------------------------------------------------------------------------
 
+/// Raggio condiviso da track e pill: sono complanari, quindi devono avere
+/// lo stesso arrotondamento agli angoli.
+const double _tabRadius = 12;
+
 class _TabSelector extends ConsumerWidget {
   const _TabSelector({
     required this.selectedTab,
@@ -421,24 +425,29 @@ class _TabSelector extends ConsumerWidget {
       ),
     ];
 
+    // Nessun padding sul track: le pill devono partire e finire esattamente
+    // dove partono e finiscono i chip statistiche sopra. L'aria si prende
+    // fuori dal track (margin), non dentro: un'inset verticale farebbe
+    // sbordare le pill a filo bordo dagli angoli arrotondati.
     return Container(
-      padding: const EdgeInsets.all(4),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(_tabRadius),
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final isTight = constraints.maxWidth < 360;
           final collapsedWidth = isTight ? 46.0 : 52.0;
-          const tabMargin = 4.0;
-          final totalMargins = items.length * tabMargin;
+          const tabGap = 4.0;
+          final totalGaps = (items.length - 1) * tabGap;
           final expandedWidth = constraints.maxWidth -
               (items.length - 1) * collapsedWidth -
-              totalMargins;
+              totalGaps;
           final showCollapsedBadges = constraints.maxWidth >= 380;
 
           return Row(
+            spacing: tabGap,
             children: [
               for (final item in items)
                 _ExpandableTab(
@@ -502,18 +511,17 @@ class _ExpandableTab extends StatelessWidget {
       curve: Curves.easeOutCubic,
       width: isSelected ? expandedWidth : collapsedWidth,
       height: 44,
-      margin: const EdgeInsets.symmetric(horizontal: 2),
       decoration: BoxDecoration(
         color: isSelected ? colorScheme.primary : Colors.transparent,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(_tabRadius),
       ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(_tabRadius),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(_tabRadius),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

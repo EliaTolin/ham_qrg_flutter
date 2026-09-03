@@ -12,16 +12,84 @@ class AppLocalizationsRo extends AppLocalizations {
   String get proSectionTitle => 'Abonament';
 
   @override
-  String get proCardUpgradeTitle => 'Treci la HamQRG Pro';
+  String get proCardUpgradeTitle => 'Descoperă ce prinzi';
 
   @override
-  String get proCardUpgradeSubtitle => 'Deblochează toate funcțiile premium';
+  String get proCardUpgradeSubtitle => 'Acoperire, relee și hărți offline';
 
   @override
   String get proCardActiveTitle => 'HamQRG Pro activ';
 
   @override
   String get proCardActiveSubtitle => 'Mulțumim pentru sprijin!';
+
+  @override
+  String proPriceFromMonth(String price) {
+    return 'De la $price pe lună · Anulezi oricând';
+  }
+
+  @override
+  String proPriceTrialThenMonth(String price) {
+    return 'Probă gratuită, apoi $price pe lună · Anulezi oricând';
+  }
+
+  @override
+  String proPriceLifetime(String price) {
+    return '$price o singură dată · Pentru totdeauna';
+  }
+
+  @override
+  String proPriceFromMonthUpfront(String price, String total) {
+    return 'De la $price pe lună · $total în avans · Anulezi oricând';
+  }
+
+  @override
+  String proPriceTrialThenMonthUpfront(String price, String total) {
+    return 'Probă gratuită, apoi $price pe lună · $total în avans · Anulezi oricând';
+  }
+
+  @override
+  String get proRestoreSuccess => 'Achiziții restaurate: HamQRG Pro este activ';
+
+  @override
+  String get proRestoreNone => 'Nicio achiziție de restaurat';
+
+  @override
+  String get proManageSubscription => 'Gestionează abonamentul';
+
+  @override
+  String get proLinkAccountTitle => 'Conectează-ți contul';
+
+  @override
+  String get proLinkAccountBody =>
+      'Conectează HamQRG Pro la un cont ca să îl păstrezi pe orice dispozitiv, chiar și după o reinstalare.';
+
+  @override
+  String get stationsShowcaseTitle => 'Locațiile tale, chiar și fără rețea';
+
+  @override
+  String get stationsShowcaseBody =>
+      'Salvează casa, refugiul, locul de activare: ce prinzi rămâne acolo și fără rețea.';
+
+  @override
+  String get offlineMapsUpsellTitle => 'Harta rămâne în telefon 🗺️';
+
+  @override
+  String get offlineMapsUpsellBody =>
+      'Descarcă zonele de care ai nevoie și deschide-le unde nu e semnal: pe creastă, în tunel, în străinătate fără date.';
+
+  @override
+  String get offlineMapsBenefitRegions => 'Tu alegi ce zone descarci';
+
+  @override
+  String get reachUpsellBenefitSignal => 'Semnal estimat pentru fiecare releu';
+
+  @override
+  String get reachUpsellBenefitTerrain =>
+      'Profilul terenului dintre tine și releu';
+
+  @override
+  String get proRestoreCta => 'Restaurează achizițiile';
 
   @override
   String get error => 'Eroare';
@@ -2379,6 +2447,11 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
+  String coverageResultCountFiltered(int shown, int total) {
+    return '$shown din $total accesibile';
+  }
+
+  @override
   String coverageResultHiddenByFilters(int count) {
     return 'Ascunse de filtre: $count';
   }
@@ -2400,9 +2473,6 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get coverageTeaserBenefitSave => 'Salvezi postul și îl regăsești';
-
-  @override
-  String get coverageTeaserRestore => 'Restaurează achizițiile';
 
   @override
   String get stationSaveCta => 'Salvează postul';
@@ -2471,11 +2541,28 @@ class AppLocalizationsRo extends AppLocalizations {
   String get stationsTitle => 'Posturile mele';
 
   @override
+  String get stationsProfileSubtitle =>
+      'Punctele pe care le-ai evaluat, disponibile și fără rețea';
+
+  @override
   String get stationsEmptyTitle => 'Niciun post salvat';
 
   @override
   String get stationsEmptyBody =>
-      'Alege un punct pe hartă, vezi ce prinzi și salvează-l: îl vei regăsi și fără rețea.';
+      'O locație este un punct de pe hartă pentru care ai calculat deja acoperirea, salvat ca să îl regăsești și fără rețea.';
+
+  @override
+  String get stationsEmptyStep1 =>
+      'Alege un punct pe hartă: ține apăsat, caută-l după nume sau lipește coordonatele.';
+
+  @override
+  String stationsEmptyStep2(String action) {
+    return 'Atinge «$action» ca să vezi ce relee prinzi de acolo.';
+  }
+
+  @override
+  String get stationsEmptyStep3 =>
+      'Salvează punctul: îl regăsești aici, chiar și pe teren fără rețea.';
 
   @override
   String get stationsGoToMap => 'Mergi la hartă';

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/clients/analytics/analytics_client.dart';
 import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
-import 'package:hamqrg/clients/revenue_cat/impl/revenue_cat_client_impl.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/pro/pro_benefits_list.dart';
 import 'package:hamqrg/common/widgets/pro/pro_blur_gate.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_point.dart';
 import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
-import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
+import 'package:hamqrg/src/features/subscriptions/presentation/widgets/pro_price_line.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Cosa vede un utente non Pro dopo aver scelto un punto.
@@ -27,7 +27,6 @@ class CoverageTeaser extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
     final l10n = context.localization;
     final analytics = ref.read(analyticsClientProvider);
 
@@ -45,23 +44,13 @@ class CoverageTeaser extends HookConsumerWidget {
     );
 
     Future<void> unlock() async {
-      analytics
-        ..track(
-          AnalyticsEvent.coverageCtaTapped,
-          surface: AnalyticsSurface.mapTeaser,
-        )
-        ..track(
-          AnalyticsEvent.coveragePaywallShown,
-          surface: AnalyticsSurface.mapTeaser,
-        );
-
-      final purchased =
-          await openPaywallInPlace(ref, PaywallPlacement.coverageTeaser);
-
-      analytics.track(
-        purchased
-            ? AnalyticsEvent.coveragePurchaseCompleted
-            : AnalyticsEvent.coveragePaywallDismissed,
+      // Gli eventi del funnel (CTA toccata, paywall mostrata, esito) li
+      // registra `openPaywallInPlace`: qui resterebbero da riscrivere a mano
+      // a ogni superficie, ed è così che tre punti vendita su sette erano
+      // finiti senza misura.
+      await openPaywallInPlace(
+        ref,
+        PaywallPlacement.coverageTeaser,
         surface: AnalyticsSurface.mapTeaser,
       );
       // Nessun `replaceAll` su questo percorso: la mappa resta montata, quindi
@@ -80,33 +69,20 @@ class CoverageTeaser extends HookConsumerWidget {
           ctaLabel: l10n.reachDiscoverCta,
           onUnlock: unlock,
           teaser: const _MockResultList(),
+          footer: const ProPriceLine(
+            placement: PaywallPlacement.coverageTeaser,
+          ),
           // Mai costruito: `locked` è sempre true in questo widget, che
           // esiste soltanto per gli utenti senza Pro.
           child: const SizedBox.shrink(),
         ),
         const SizedBox(height: 16),
-        _Benefits(
+        ProBenefitsList(
           items: [
             l10n.coverageTeaserBenefitAnywhere,
             l10n.coverageTeaserBenefitOffline,
             l10n.coverageTeaserBenefitSave,
           ],
-        ),
-        const SizedBox(height: 8),
-        Align(
-          child: TextButton(
-            onPressed: () async {
-              final restored =
-                  await ref.read(revenueCatClientProvider).restorePurchases();
-              if (restored) ref.invalidate(isProProvider);
-            },
-            child: Text(
-              l10n.coverageTeaserRestore,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-          ),
         ),
       ],
     );
@@ -166,39 +142,6 @@ class _MockResultList extends StatelessWidget {
           ),
         );
       }),
-    );
-  }
-}
-
-class _Benefits extends StatelessWidget {
-  const _Benefits({required this.items});
-
-  final List<String> items;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        for (final item in items)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.check_circle_rounded,
-                  size: 18,
-                  color: theme.colorScheme.primary,
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(item, style: theme.textTheme.bodyMedium),
-                ),
-              ],
-            ),
-          ),
-      ],
     );
   }
 }
