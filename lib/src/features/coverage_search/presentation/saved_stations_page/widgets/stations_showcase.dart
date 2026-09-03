@@ -3,9 +3,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/clients/analytics/analytics_client.dart';
 import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/pro/pro_benefits_list.dart';
 import 'package:hamqrg/common/widgets/pro/pro_blur_gate.dart';
 import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
+import 'package:hamqrg/src/features/subscriptions/presentation/widgets/pro_price_line.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Cosa vede un utente non Pro al posto della lista.
@@ -19,7 +21,6 @@ class StationsShowcase extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
     final l10n = context.localization;
     final analytics = ref.read(analyticsClientProvider);
 
@@ -35,21 +36,9 @@ class StationsShowcase extends HookConsumerWidget {
     );
 
     Future<void> unlock() async {
-      analytics
-        ..track(
-          AnalyticsEvent.coverageCtaTapped,
-          surface: AnalyticsSurface.stationsList,
-        )
-        ..track(
-          AnalyticsEvent.coveragePaywallShown,
-          surface: AnalyticsSurface.stationsList,
-        );
-      final purchased =
-          await openPaywallInPlace(ref, PaywallPlacement.savedStationsShowcase);
-      analytics.track(
-        purchased
-            ? AnalyticsEvent.coveragePurchaseCompleted
-            : AnalyticsEvent.coveragePaywallDismissed,
+      await openPaywallInPlace(
+        ref,
+        PaywallPlacement.savedStationsShowcase,
         surface: AnalyticsSurface.stationsList,
       );
     }
@@ -59,41 +48,26 @@ class StationsShowcase extends HookConsumerWidget {
       children: [
         ProBlurGate(
           locked: true,
-          title: l10n.stationsTitle,
-          subtitle: l10n.coverageTeaserBenefitOffline,
+          // Copy sua, non l'etichetta della lista: a chi non ha ancora
+          // comprato, "Le mie postazioni" descrive una lista vuota, non un
+          // motivo per pagare.
+          title: l10n.stationsShowcaseTitle,
+          subtitle: l10n.stationsShowcaseBody,
           ctaLabel: l10n.reachDiscoverCta,
           onUnlock: unlock,
           teaser: const _MockStations(),
+          footer: const ProPriceLine(
+            placement: PaywallPlacement.savedStationsShowcase,
+          ),
           child: const SizedBox.shrink(),
         ),
         const SizedBox(height: 20),
-        for (final benefit in [
-          l10n.coverageTeaserBenefitAnywhere,
-          l10n.coverageTeaserBenefitOffline,
-          l10n.coverageTeaserBenefitSave,
-        ])
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.check_circle_rounded,
-                  size: 18,
-                  color: theme.colorScheme.primary,
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(benefit, style: theme.textTheme.bodyMedium),
-                ),
-              ],
-            ),
-          ),
-        const SizedBox(height: 8),
-        Align(
-          child: TextButton(
-            onPressed: unlock,
-            child: Text(l10n.coverageTeaserRestore),
-          ),
+        ProBenefitsList(
+          items: [
+            l10n.coverageTeaserBenefitAnywhere,
+            l10n.coverageTeaserBenefitOffline,
+            l10n.coverageTeaserBenefitSave,
+          ],
         ),
       ],
     );

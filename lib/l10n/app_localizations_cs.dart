@@ -12,16 +12,85 @@ class AppLocalizationsCs extends AppLocalizations {
   String get proSectionTitle => 'Předplatné';
 
   @override
-  String get proCardUpgradeTitle => 'Přejít na HamQRG Pro';
+  String get proCardUpgradeTitle => 'Zjisti, co dosáhneš';
 
   @override
-  String get proCardUpgradeSubtitle => 'Odemkněte všechny prémiové funkce';
+  String get proCardUpgradeSubtitle => 'Pokrytí, převaděče a offline mapy';
 
   @override
   String get proCardActiveTitle => 'HamQRG Pro aktivní';
 
   @override
   String get proCardActiveSubtitle => 'Děkujeme za podporu!';
+
+  @override
+  String proPriceFromMonth(String price) {
+    return 'Od $price měsíčně · Kdykoli zrušíš';
+  }
+
+  @override
+  String proPriceTrialThenMonth(String price) {
+    return 'Zkušební verze zdarma, pak $price měsíčně · Kdykoli zrušíš';
+  }
+
+  @override
+  String proPriceLifetime(String price) {
+    return '$price jednorázově · Navždy';
+  }
+
+  @override
+  String proPriceFromMonthUpfront(String price, String total) {
+    return 'Od $price měsíčně · $total předem · Kdykoli zrušíš';
+  }
+
+  @override
+  String proPriceTrialThenMonthUpfront(String price, String total) {
+    return 'Zkušební verze zdarma, pak $price měsíčně · $total předem · Kdykoli zrušíš';
+  }
+
+  @override
+  String get proRestoreSuccess => 'Nákupy obnoveny: HamQRG Pro je aktivní';
+
+  @override
+  String get proRestoreNone => 'Žádné nákupy k obnovení';
+
+  @override
+  String get proManageSubscription => 'Spravovat předplatné';
+
+  @override
+  String get proLinkAccountTitle => 'Propoj svůj účet';
+
+  @override
+  String get proLinkAccountBody =>
+      'Propoj HamQRG Pro s účtem, aby ti zůstalo na všech zařízeních i po přeinstalaci.';
+
+  @override
+  String get stationsShowcaseTitle => 'Tvá stanoviště i bez sítě';
+
+  @override
+  String get stationsShowcaseBody =>
+      'Ulož domov, chatu, aktivační místo: co dosáhneš, zůstane i bez sítě.';
+
+  @override
+  String get offlineMapsUpsellTitle => 'Mapa zůstane v telefonu 🗺️';
+
+  @override
+  String get offlineMapsUpsellBody =>
+      'Stáhni si oblasti, které potřebuješ, a otevři je tam, kde není signál: na hřebeni, v tunelu, v zahraničí bez dat.';
+
+  @override
+  String get offlineMapsBenefitRegions => 'Sám si vybereš oblasti ke stažení';
+
+  @override
+  String get reachUpsellBenefitSignal =>
+      'Předpokládaný signál pro každý převaděč';
+
+  @override
+  String get reachUpsellBenefitTerrain =>
+      'Profil terénu mezi tebou a převaděčem';
+
+  @override
+  String get proRestoreCta => 'Obnovit nákupy';
 
   @override
   String get error => 'Chyba';
@@ -2308,6 +2377,11 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
+  String coverageResultCountFiltered(int shown, int total) {
+    return '$shown z $total dosažitelných';
+  }
+
+  @override
   String coverageResultHiddenByFilters(int count) {
     return 'Skryto filtry: $count';
   }
@@ -2330,9 +2404,6 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get coverageTeaserBenefitSave =>
       'Uložíte stanoviště a najdete ho znovu';
-
-  @override
-  String get coverageTeaserRestore => 'Obnovit nákupy';
 
   @override
   String get stationSaveCta => 'Uložit stanoviště';
@@ -2401,11 +2472,28 @@ class AppLocalizationsCs extends AppLocalizations {
   String get stationsTitle => 'Moje stanoviště';
 
   @override
+  String get stationsProfileSubtitle =>
+      'Body, které jsi vyhodnotil, dostupné i bez sítě';
+
+  @override
   String get stationsEmptyTitle => 'Zatím žádná uložená stanoviště';
 
   @override
   String get stationsEmptyBody =>
-      'Vyberte bod na mapě, zjistěte, co dosáhnete, a uložte to: najdete to i bez sítě.';
+      'Stanoviště je bod na mapě, u kterého už máš spočítané pokrytí, uložený tak, abys ho našel i bez sítě.';
+
+  @override
+  String get stationsEmptyStep1 =>
+      'Vyber bod na mapě: podrž ho, najdi ho podle názvu nebo vlož souřadnice.';
+
+  @override
+  String stationsEmptyStep2(String action) {
+    return 'Klepni na „$action“ a uvidíš, na které převaděče odtud dosáhneš.';
+  }
+
+  @override
+  String get stationsEmptyStep3 =>
+      'Ulož bod: najdeš ho tady, i v terénu bez sítě.';
 
   @override
   String get stationsGoToMap => 'Přejít na mapu';

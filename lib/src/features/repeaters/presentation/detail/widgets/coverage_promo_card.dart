@@ -2,19 +2,25 @@ import 'dart:math' as math;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hamqrg/clients/analytics/analytics_client.dart';
+import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/widgets/pro/pro_badge.dart';
+import 'package:hamqrg/common/widgets/pro/pro_shine_surface.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
+import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 import 'package:hamqrg/themes/app_colors.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Hero card that promotes the coverage-map feature on the repeater detail.
 /// Designed to "sell" it: a stylized coverage teaser, a clear value prop and
 /// a call to action. Tapping it opens the real coverage map.
-class CoveragePromoCard extends ConsumerWidget {
+class CoveragePromoCard extends HookConsumerWidget {
   const CoveragePromoCard({required this.repeater, super.key});
 
   final Repeater repeater;
@@ -25,7 +31,11 @@ class CoveragePromoCard extends ConsumerWidget {
   Future<void> _open(BuildContext context, WidgetRef ref) async {
     // Pro-gated: opening the coverage map presents the paywall to non-Pro.
     if (AppConfigs.coverageRequiresPro &&
-        !await requirePro(ref, PaywallPlacement.coveragePromo)) {
+        !await requirePro(
+          ref,
+          PaywallPlacement.coveragePromo,
+          surface: AnalyticsSurface.coveragePromo,
+        )) {
       return;
     }
     if (!context.mounted) return;
@@ -46,6 +56,24 @@ class CoveragePromoCard extends ConsumerWidget {
     final l10n = context.localization;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final analytics = ref.read(analyticsClientProvider);
+    final isPro = ref.watch(isProProvider).value ?? false;
+
+    // Solo per chi non ha Pro: contare anche gli abbonati gonfierebbe il
+    // denominatore con utenti che non erano in vendita, e il tasso di
+    // conversione di questa superficie risulterebbe più basso del vero.
+    useEffect(
+      () {
+        if (!isPro && AppConfigs.coverageRequiresPro) {
+          analytics.track(
+            AnalyticsEvent.coverageTeaserShown,
+            surface: AnalyticsSurface.coveragePromo,
+          );
+        }
+        return null;
+      },
+      [isPro],
+    );
 
     return GestureDetector(
       onTap: () => _open(context, ref),
@@ -114,7 +142,7 @@ class CoveragePromoCard extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      const _ProBadge(),
+                      if (!isPro) const ProBadge(),
                     ],
                   ),
                   SizedBox(
@@ -126,35 +154,26 @@ class CoveragePromoCard extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  // Call to action.
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 8,
+                  // Call to action. Per chi non ha Pro è oro con riflesso:
+                  // è l'unica superficie del dettaglio ripetitore che deve
+                  // vincere l'attenzione contro dati tecnici, e il riflesso
+                  // vale solo dove c'è quella competizione (vedi
+                  // ProShineSurface). A chi ha già pagato non si vende
+                  // nulla: resta la pillola tranquilla del tema.
+                  if (isPro)
+                    _CtaPill(
+                      label: l10n.repeaterCoverageCta,
+                      background: colorScheme.primary,
+                      foreground: colorScheme.onPrimary,
+                    )
+                  else
+                    ProShineSurface(
+                      borderRadius: 30,
+                      child: _CtaPill(
+                        label: l10n.repeaterCoverageCta,
+                        foreground: AppColors.onProGold,
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      color: colorScheme.primary,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          l10n.repeaterCoverageCta,
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            color: colorScheme.onPrimary,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(width: 6),
-                        Icon(
-                          Icons.arrow_forward,
-                          size: 16,
-                          color: colorScheme.onPrimary,
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -165,27 +184,48 @@ class CoveragePromoCard extends ConsumerWidget {
   }
 }
 
-class _ProBadge extends StatelessWidget {
-  const _ProBadge();
+/// La pillola della CTA. Identica nei due stati a meno dei colori: se
+/// divergesse, l'utente Pro e quello free vedrebbero due bottoni diversi per
+/// la stessa azione.
+class _CtaPill extends StatelessWidget {
+  const _CtaPill({
+    required this.label,
+    required this.foreground,
+    this.background,
+  });
+
+  final String label;
+  final Color foreground;
+
+  /// `null` quando la pillola poggia su una `ProShineSurface`, che il fondo
+  /// dorato ce l'ha già.
+  final Color? background;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [AppColors.proGold, AppColors.proGoldLight],
-        ),
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: const Text(
-        'PRO',
-        style: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 10,
-          letterSpacing: 0.5,
-        ),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      decoration: background == null
+          ? null
+          : BoxDecoration(
+              color: background,
+              borderRadius: BorderRadius.circular(30),
+            ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            label,
+            style: theme.textTheme.labelLarge?.copyWith(
+              color: foreground,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(width: 6),
+          Icon(Icons.arrow_forward, size: 16, color: foreground),
+        ],
       ),
     );
   }

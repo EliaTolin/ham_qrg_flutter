@@ -133,13 +133,13 @@ abstract class AppLocalizations {
   /// No description provided for @proCardUpgradeTitle.
   ///
   /// In it, this message translates to:
-  /// **'Passa a HamQRG Pro'**
+  /// **'Scopri cosa raggiungi'**
   String get proCardUpgradeTitle;
 
   /// No description provided for @proCardUpgradeSubtitle.
   ///
   /// In it, this message translates to:
-  /// **'Sblocca tutte le funzioni premium'**
+  /// **'Copertura, ponti e mappe offline'**
   String get proCardUpgradeSubtitle;
 
   /// No description provided for @proCardActiveTitle.
@@ -153,6 +153,114 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Grazie per il supporto!'**
   String get proCardActiveSubtitle;
+
+  /// No description provided for @proPriceFromMonth.
+  ///
+  /// In it, this message translates to:
+  /// **'Da {price} al mese · Annulla quando vuoi'**
+  String proPriceFromMonth(String price);
+
+  /// No description provided for @proPriceTrialThenMonth.
+  ///
+  /// In it, this message translates to:
+  /// **'Prova gratis, poi {price} al mese · Annulla quando vuoi'**
+  String proPriceTrialThenMonth(String price);
+
+  /// No description provided for @proPriceLifetime.
+  ///
+  /// In it, this message translates to:
+  /// **'{price} una volta sola · Per sempre'**
+  String proPriceLifetime(String price);
+
+  /// No description provided for @proPriceFromMonthUpfront.
+  ///
+  /// In it, this message translates to:
+  /// **'Da {price} al mese · {total} in anticipo · Annulla quando vuoi'**
+  String proPriceFromMonthUpfront(String price, String total);
+
+  /// No description provided for @proPriceTrialThenMonthUpfront.
+  ///
+  /// In it, this message translates to:
+  /// **'Prova gratis, poi {price} al mese · {total} in anticipo · Annulla quando vuoi'**
+  String proPriceTrialThenMonthUpfront(String price, String total);
+
+  /// No description provided for @proRestoreSuccess.
+  ///
+  /// In it, this message translates to:
+  /// **'Acquisti ripristinati: HamQRG Pro è attivo'**
+  String get proRestoreSuccess;
+
+  /// No description provided for @proRestoreNone.
+  ///
+  /// In it, this message translates to:
+  /// **'Nessun acquisto da ripristinare'**
+  String get proRestoreNone;
+
+  /// No description provided for @proManageSubscription.
+  ///
+  /// In it, this message translates to:
+  /// **'Gestisci abbonamento'**
+  String get proManageSubscription;
+
+  /// No description provided for @proLinkAccountTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Collega il tuo account'**
+  String get proLinkAccountTitle;
+
+  /// No description provided for @proLinkAccountBody.
+  ///
+  /// In it, this message translates to:
+  /// **'Collega HamQRG Pro a un account per ritrovarlo su ogni dispositivo, anche dopo una reinstallazione.'**
+  String get proLinkAccountBody;
+
+  /// No description provided for @stationsShowcaseTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'Le tue postazioni, anche senza rete'**
+  String get stationsShowcaseTitle;
+
+  /// No description provided for @stationsShowcaseBody.
+  ///
+  /// In it, this message translates to:
+  /// **'Salva casa, il rifugio, il sito di attivazione: ritrovi cosa raggiungi anche quando la rete non c\'è.'**
+  String get stationsShowcaseBody;
+
+  /// No description provided for @offlineMapsUpsellTitle.
+  ///
+  /// In it, this message translates to:
+  /// **'La mappa resta nel telefono 🗺️'**
+  String get offlineMapsUpsellTitle;
+
+  /// No description provided for @offlineMapsUpsellBody.
+  ///
+  /// In it, this message translates to:
+  /// **'Scarica le zone che ti servono e aprile dove il segnale non arriva: in cresta, in galleria, all\'estero senza dati.'**
+  String get offlineMapsUpsellBody;
+
+  /// No description provided for @offlineMapsBenefitRegions.
+  ///
+  /// In it, this message translates to:
+  /// **'Scegli tu le zone da scaricare'**
+  String get offlineMapsBenefitRegions;
+
+  /// No description provided for @reachUpsellBenefitSignal.
+  ///
+  /// In it, this message translates to:
+  /// **'Segnale previsto per ogni ponte'**
+  String get reachUpsellBenefitSignal;
+
+  /// No description provided for @reachUpsellBenefitTerrain.
+  ///
+  /// In it, this message translates to:
+  /// **'Profilo del terreno fra te e il ponte'**
+  String get reachUpsellBenefitTerrain;
+
+  /// No description provided for @proRestoreCta.
+  ///
+  /// In it, this message translates to:
+  /// **'Ripristina acquisti'**
+  String get proRestoreCta;
 
   /// No description provided for @error.
   ///
@@ -4270,6 +4378,12 @@ abstract class AppLocalizations {
   /// **'{count, plural, =1{1 ripetitore raggiungibile} other{{count} ripetitori raggiungibili}}'**
   String coverageResultCount(int count);
 
+  /// No description provided for @coverageResultCountFiltered.
+  ///
+  /// In it, this message translates to:
+  /// **'{shown} di {total} raggiungibili'**
+  String coverageResultCountFiltered(int shown, int total);
+
   /// No description provided for @coverageResultHiddenByFilters.
   ///
   /// In it, this message translates to:
@@ -4305,12 +4419,6 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Salvi la postazione e la ritrovi'**
   String get coverageTeaserBenefitSave;
-
-  /// No description provided for @coverageTeaserRestore.
-  ///
-  /// In it, this message translates to:
-  /// **'Ripristina acquisti'**
-  String get coverageTeaserRestore;
 
   /// No description provided for @stationSaveCta.
   ///
@@ -4438,6 +4546,12 @@ abstract class AppLocalizations {
   /// **'Le mie postazioni'**
   String get stationsTitle;
 
+  /// No description provided for @stationsProfileSubtitle.
+  ///
+  /// In it, this message translates to:
+  /// **'I punti che hai valutato, consultabili senza rete'**
+  String get stationsProfileSubtitle;
+
   /// No description provided for @stationsEmptyTitle.
   ///
   /// In it, this message translates to:
@@ -4447,8 +4561,26 @@ abstract class AppLocalizations {
   /// No description provided for @stationsEmptyBody.
   ///
   /// In it, this message translates to:
-  /// **'Scegli un punto sulla mappa, valuta cosa raggiungi e salvalo: lo ritroverai anche senza rete.'**
+  /// **'Una postazione è un punto della mappa di cui hai già la copertura, salvata per ritrovarla anche senza rete.'**
   String get stationsEmptyBody;
+
+  /// No description provided for @stationsEmptyStep1.
+  ///
+  /// In it, this message translates to:
+  /// **'Scegli un punto sulla mappa: tieni premuto, cercalo per nome o incolla le coordinate.'**
+  String get stationsEmptyStep1;
+
+  /// No description provided for @stationsEmptyStep2.
+  ///
+  /// In it, this message translates to:
+  /// **'Tocca «{action}» per vedere quali ripetitori arrivi a prendere da lì.'**
+  String stationsEmptyStep2(String action);
+
+  /// No description provided for @stationsEmptyStep3.
+  ///
+  /// In it, this message translates to:
+  /// **'Salva il punto: lo ritrovi qui, anche in campo senza rete.'**
+  String get stationsEmptyStep3;
 
   /// No description provided for @stationsGoToMap.
   ///

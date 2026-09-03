@@ -102,6 +102,34 @@ class RepeatersMapPage extends HookConsumerWidget {
     final searchMarkerColor = Theme.of(context).colorScheme.primary.toARGB32();
     final searchMarkerStroke = Theme.of(context).colorScheme.surface.toARGB32();
 
+    // I filtri di modo, azionabili sia dai chip in cima alla mappa sia da
+    // dentro il foglio del risultato: una sola sorgente di verità, così la
+    // lente resta la stessa ovunque la si tocchi.
+    Future<void> toggleCoverageMode(AccessMode mode) async {
+      final map = mapController.value;
+      if (map == null) return;
+      final bounds = await _getVisibleBounds(map);
+      await notifier.toggleModeFilter(
+        lat1: bounds.lat1,
+        lon1: bounds.lon1,
+        lat2: bounds.lat2,
+        lon2: bounds.lon2,
+        mode: mode,
+      );
+    }
+
+    Future<void> clearCoverageModes() async {
+      final map = mapController.value;
+      if (map == null) return;
+      final bounds = await _getVisibleBounds(map);
+      await notifier.clearAllModes(
+        lat1: bounds.lat1,
+        lon1: bounds.lon1,
+        lat2: bounds.lat2,
+        lon2: bounds.lon2,
+      );
+    }
+
     // Apre il foglio del risultato per il punto attualmente scelto.
     //
     // È una sola funzione perché ci sono due strade per arrivarci — scegliere
@@ -124,19 +152,8 @@ class RepeatersMapPage extends HookConsumerWidget {
                 selectedModes: state.selectedModes,
                 onBreadthChanged: (breadth) =>
                     unawaited(notifier.setBreadth(breadth)),
-                onClearFilters: state.selectedModes.isEmpty
-                    ? null
-                    : () async {
-                        final map = mapController.value;
-                        if (map == null) return;
-                        final bounds = await _getVisibleBounds(map);
-                        await notifier.clearAllModes(
-                          lat1: bounds.lat1,
-                          lon1: bounds.lon1,
-                          lat2: bounds.lat2,
-                          lon2: bounds.lon2,
-                        );
-                      },
+                onModeToggled: (mode) => unawaited(toggleCoverageMode(mode)),
+                onAllModes: () => unawaited(clearCoverageModes()),
               );
             },
           ),
@@ -329,19 +346,8 @@ class RepeatersMapPage extends HookConsumerWidget {
                   onBreadthChanged: (breadth) =>
                       unawaited(notifier.setBreadth(breadth)),
                   onClose: notifier.clearPoint,
-                  onClearFilters: (mapState?.selectedModes.isEmpty ?? true)
-                      ? null
-                      : () async {
-                          final map = mapController.value;
-                          if (map == null) return;
-                          final bounds = await _getVisibleBounds(map);
-                          await notifier.clearAllModes(
-                            lat1: bounds.lat1,
-                            lon1: bounds.lon1,
-                            lat2: bounds.lat2,
-                            lon2: bounds.lon2,
-                          );
-                        },
+                  onModeToggled: (mode) => unawaited(toggleCoverageMode(mode)),
+                  onAllModes: () => unawaited(clearCoverageModes()),
                 ),
               ),
             ),

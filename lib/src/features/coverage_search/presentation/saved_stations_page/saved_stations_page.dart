@@ -102,6 +102,12 @@ class _StationList extends StatelessWidget {
   }
 }
 
+/// La lista vuota è il primo posto in cui la maggior parte degli utenti
+/// incontra il concetto di "postazione": ci arrivano dal profilo, prima ancora
+/// di aver salvato qualcosa. Una riga sola non basta — chi non ha ancora
+/// capito **cosa sia** una postazione non capisce nemmeno perché la sua lista
+/// sia vuota, e legge la schermata come un guasto. Quindi qui si spiega prima
+/// cos'è, poi i tre passi per farne una, poi si porta l'utente al primo passo.
 class _EmptyState extends StatelessWidget {
   const _EmptyState();
 
@@ -110,39 +116,91 @@ class _EmptyState extends StatelessWidget {
     final theme = Theme.of(context);
     final l10n = context.localization;
 
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              Icons.place_outlined,
-              size: 48,
-              color: theme.colorScheme.onSurfaceVariant,
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(32, 40, 32, 32),
+      children: [
+        Icon(
+          Icons.place_outlined,
+          size: 48,
+          color: theme.colorScheme.onSurfaceVariant,
+        ),
+        const SizedBox(height: 16),
+        Text(
+          l10n.stationsEmptyTitle,
+          textAlign: TextAlign.center,
+          style: theme.textTheme.titleMedium,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          l10n.stationsEmptyBody,
+          textAlign: TextAlign.center,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+        ),
+        const SizedBox(height: 28),
+        _Step(number: 1, text: l10n.stationsEmptyStep1),
+        _Step(number: 2, text: l10n.stationsEmptyStep2(l10n.reachMapButton)),
+        _Step(number: 3, text: l10n.stationsEmptyStep3),
+        const SizedBox(height: 28),
+        FilledButton.icon(
+          onPressed: () => context.router.push(const RepeatersMapRoute()),
+          icon: const Icon(Icons.map_outlined),
+          label: Text(l10n.stationsGoToMap),
+        ),
+      ],
+    );
+  }
+}
+
+/// Un passo della procedura, numerato.
+///
+/// Il numero è dentro un cerchio e non un semplice "1." perché i tre passi
+/// vanno letti come una sequenza da seguire, non come un elenco di opzioni.
+class _Step extends StatelessWidget {
+  const _Step({required this.number, required this.text});
+
+  final int number;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 14),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 26,
+            height: 26,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: theme.colorScheme.primaryContainer,
+              shape: BoxShape.circle,
             ),
-            const SizedBox(height: 16),
-            Text(
-              l10n.stationsEmptyTitle,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              l10n.stationsEmptyBody,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
+            child: Text(
+              '$number',
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: theme.colorScheme.onPrimaryContainer,
+                fontWeight: FontWeight.w800,
               ),
             ),
-            const SizedBox(height: 20),
-            FilledButton.icon(
-              onPressed: () => context.router.push(const RepeatersMapRoute()),
-              icon: const Icon(Icons.map_outlined),
-              label: Text(l10n.stationsGoToMap),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: Text(
+                text,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

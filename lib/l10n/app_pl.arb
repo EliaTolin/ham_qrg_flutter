@@ -884,10 +884,69 @@
     }
   },
   "proSectionTitle": "Subskrypcja",
-  "proCardUpgradeTitle": "Przejdź na HamQRG Pro",
-  "proCardUpgradeSubtitle": "Odblokuj wszystkie funkcje premium",
+  "proCardUpgradeTitle": "Sprawdź, co osiągasz",
+  "proCardUpgradeSubtitle": "Zasięg, przemienniki i mapy offline",
   "proCardActiveTitle": "HamQRG Pro aktywny",
   "proCardActiveSubtitle": "Dziękujemy za wsparcie!",
+  "proPriceFromMonth": "Od {price} miesięcznie · Anuluj w każdej chwili",
+  "@proPriceFromMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonth": "Darmowy okres próbny, potem {price} miesięcznie · Anuluj w każdej chwili",
+  "@proPriceTrialThenMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceLifetime": "{price} jednorazowo · Na zawsze",
+  "@proPriceLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceFromMonthUpfront": "Od {price} miesięcznie · {total} z góry · Anuluj w każdej chwili",
+  "@proPriceFromMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonthUpfront": "Darmowy okres próbny, potem {price} miesięcznie · {total} z góry · Anuluj w każdej chwili",
+  "@proPriceTrialThenMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proRestoreSuccess": "Zakupy przywrócone: HamQRG Pro jest aktywne",
+  "proRestoreNone": "Brak zakupów do przywrócenia",
+  "proManageSubscription": "Zarządzaj subskrypcją",
+  "proLinkAccountTitle": "Połącz swoje konto",
+  "proLinkAccountBody": "Połącz HamQRG Pro z kontem, aby zachować je na każdym urządzeniu, także po ponownej instalacji.",
+  "stationsShowcaseTitle": "Twoje stanowiska, także bez sieci",
+  "stationsShowcaseBody": "Zapisz dom, schronisko, miejsce aktywacji: to, co osiągasz, zostaje z tobą także bez sieci.",
+  "offlineMapsUpsellTitle": "Mapa zostaje w telefonie 🗺️",
+  "offlineMapsUpsellBody": "Pobierz potrzebne obszary i otwieraj je tam, gdzie nie ma zasięgu: na grani, w tunelu, za granicą bez transmisji danych.",
+  "offlineMapsBenefitRegions": "Sam wybierasz obszary do pobrania",
+  "reachUpsellBenefitSignal": "Przewidywany sygnał dla każdego przemiennika",
+  "reachUpsellBenefitTerrain": "Profil terenu między tobą a przemiennikiem",
+  "proRestoreCta": "Przywróć zakupy",
   "repeaterCoverageTitle": "Zasięg",
   "repeaterCoverageCardTitle": "Mapa zasięgu",
   "repeaterCoverageCardSubtitle": "Szacuje sygnał przemiennika na obszarze",
@@ -979,16 +1038,44 @@
   "coverageResultComputing": "Obliczanie odbioru…",
   "coverageResultCancel": "Anuluj",
   "coverageResultCount": "Osiągalne przemienniki: {count}",
-  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverageResultCountFiltered": "{shown} z {total} osiągalnych",
+  "@coverageResultCountFiltered": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultHiddenByFilters": "Ukryte przez filtry: {count}",
-  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultHiddenByFilters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageTeaserTitle": "Co osiągniesz z {place}? 📡",
-  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "@coverageTeaserTitle": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
   "coverageTeaserBody": "Każdy przemiennik osiągalny z tego punktu, z przewidywanym sygnałem i odległością — jeszcze przed wyjazdem.",
   "coverageTeaserBenefitAnywhere": "Dowolny punkt na świecie",
   "coverageTeaserBenefitOffline": "Dostępne bez sieci, w terenie",
   "coverageTeaserBenefitSave": "Zapisujesz stanowisko i wracasz do niego",
-  "coverageTeaserRestore": "Przywróć zakupy",
   "stationSaveCta": "Zapisz stanowisko",
   "stationSaveTitle": "Nazwa stanowiska",
   "stationRename": "Zmień nazwę",
@@ -1017,8 +1104,19 @@
   "stationRemovedSnack": "Lokalizacja usunięta",
   "stationSaveError": "Nie udało się zapisać. Spróbuj ponownie.",
   "stationsTitle": "Moje stanowiska",
+  "stationsProfileSubtitle": "Punkty, które sprawdziłeś, dostępne bez sieci",
   "stationsEmptyTitle": "Brak zapisanych stanowisk",
-  "stationsEmptyBody": "Wybierz punkt na mapie, sprawdź co osiągasz i zapisz: znajdziesz go nawet bez sieci.",
+  "stationsEmptyBody": "Stanowisko to punkt na mapie, dla którego masz już wyliczony zasięg, zapisany po to, by odnaleźć go także bez sieci.",
+  "stationsEmptyStep1": "Wybierz punkt na mapie: przytrzymaj, wyszukaj po nazwie lub wklej współrzędne.",
+  "stationsEmptyStep2": "Dotknij „{action}”, aby zobaczyć, które przemienniki osiągasz z tego miejsca.",
+  "@stationsEmptyStep2": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "stationsEmptyStep3": "Zapisz punkt: znajdziesz go tutaj, także w terenie bez sieci.",
   "stationsGoToMap": "Przejdź do mapy",
   "stationsRefreshDone": "Odświeżanie zakończone",
   "spotsUpdatedAgo": "Zaktualizowano {time}",
@@ -1056,7 +1154,16 @@
   },
   "spotsManualRefreshHint": "Dotknij, aby odświeżyć",
   "coverageResultScope": "w promieniu {km} km · ocenionych: {count}",
-  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "@coverageResultScope": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultRecalculating": "Przeliczanie",
   "offlineBannerMessage": "Jesteś offline: przeglądasz zapisane dane",
   "offlineMapsTitle": "Mapy offline",
@@ -1085,7 +1192,13 @@
   "offlineMapsCenterSearch": "Szukaj miejsca",
   "offlineMapsCenterSearchInfo": "Wyszukaj miasto lub miejsce: region zostanie tam wyśrodkowany.",
   "offlineMapsCenterSelected": "Środek: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "@offlineMapsCenterSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "changelog120OfflineMode": "Tryb offline: przemienniki, ulubione, profil, zasięg i osiągalność dostępne także bez sieci (PRO)",
   "changelog120OfflineMaps": "Mapy offline: pobierz okolicę, w której jesteś, lub dowolne wybrane miejsce i korzystaj z niej bez połączenia (PRO)",
   "changelog120CoverageSearch": "Wyszukiwanie zasięgu z dowolnego punktu: wyszukaj miejscowość, wklej współrzędne lub przytrzymaj mapę, aby sprawdzić, co stamtąd osiągasz",

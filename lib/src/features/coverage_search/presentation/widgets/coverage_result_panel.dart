@@ -19,7 +19,8 @@ class CoverageResultPanel extends StatelessWidget {
     required this.selectedModes,
     required this.onBreadthChanged,
     required this.onClose,
-    this.onClearFilters,
+    this.onModeToggled,
+    this.onAllModes,
     super.key,
   });
 
@@ -28,7 +29,8 @@ class CoverageResultPanel extends StatelessWidget {
   final Set<AccessMode> selectedModes;
   final ValueChanged<SearchBreadth> onBreadthChanged;
   final VoidCallback onClose;
-  final VoidCallback? onClearFilters;
+  final ValueChanged<AccessMode>? onModeToggled;
+  final VoidCallback? onAllModes;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,8 @@ class CoverageResultPanel extends StatelessWidget {
                   breadth: breadth,
                   selectedModes: selectedModes,
                   onBreadthChanged: onBreadthChanged,
-                  onClearFilters: onClearFilters,
+                  onModeToggled: onModeToggled,
+                  onAllModes: onAllModes,
                   asPanel: true,
                 ),
               ),

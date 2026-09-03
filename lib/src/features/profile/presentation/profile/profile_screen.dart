@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hamqrg/clients/analytics/analytics_client.dart';
 import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/error/app_error_widget.dart';
+import 'package:hamqrg/common/widgets/pro/pro_badge.dart';
 import 'package:hamqrg/common/widgets/profile/profile_avatar.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
 import 'package:hamqrg/config/app_configs.dart';
@@ -11,8 +13,8 @@ import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/controller/profile_controller.dart';
 import 'package:hamqrg/src/features/profile/presentation/profile/unregistered_profile_screen.dart';
 import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
-import 'package:hamqrg/src/features/subscriptions/presentation/require_pro.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/widgets/pro_status_card.dart';
+import 'package:hamqrg/src/features/subscriptions/presentation/widgets/pro_upsell_dialog.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -214,8 +216,15 @@ class ProfileScreen extends HookConsumerWidget {
                                   ),
                                 ),
                                 title: Text(l10n.stationsTitle),
+                                // Il sottotitolo dice **cosa sono** le
+                                // postazioni, non perché convenga averle: chi
+                                // tocca questa riga dal profilo di solito non
+                                // ha ancora incontrato il concetto, e un
+                                // vantaggio Pro al posto di una definizione lo
+                                // lascia scoprire la lista vuota senza sapere
+                                // cosa avrebbe dovuto trovarci.
                                 subtitle: Text(
-                                  l10n.coverageTeaserBenefitOffline,
+                                  l10n.stationsProfileSubtitle,
                                   style: theme.textTheme.bodySmall?.copyWith(
                                     color: colorScheme.onSurfaceVariant,
                                   ),
@@ -254,7 +263,22 @@ class ProfileScreen extends HookConsumerWidget {
                                     size: 20,
                                   ),
                                 ),
-                                title: Text(l10n.offlineMapsTitle),
+                                title: Row(
+                                  children: [
+                                    Flexible(
+                                      child: Text(l10n.offlineMapsTitle),
+                                    ),
+                                    // Senza marchio la voce è identica a
+                                    // ogni altra riga del profilo, e il
+                                    // tocco finisce su una richiesta di
+                                    // denaro che l'utente non stava
+                                    // cercando.
+                                    if (!isPro) ...[
+                                      const SizedBox(width: 8),
+                                      const ProBadge(),
+                                    ],
+                                  ],
+                                ),
                                 subtitle: Text(
                                   l10n.offlineMapsEntrySubtitle,
                                   style: theme.textTheme.bodySmall?.copyWith(
@@ -268,11 +292,31 @@ class ProfileScreen extends HookConsumerWidget {
                                   ),
                                 ),
                                 onTap: () async {
-                                  final isAllowed = await requirePro(
-                                    ref,
-                                    PaywallPlacement.offlineMaps,
-                                  );
-                                  if (!isAllowed) return;
+                                  // Un passo di valore prima della paywall:
+                                  // qui l'utente stava esplorando le
+                                  // impostazioni, non stava comprando.
+                                  // `inPlace` tiene in piedi il profilo, così
+                                  // chi compra entra davvero in ciò che ha
+                                  // appena pagato invece di ritrovarsi sulla
+                                  // tab iniziale.
+                                  if (!isPro) {
+                                    final purchased = await showProUpsellDialog(
+                                      context,
+                                      ref,
+                                      placement: PaywallPlacement.offlineMaps,
+                                      surface: AnalyticsSurface.offlineMaps,
+                                      title: l10n.offlineMapsUpsellTitle,
+                                      body: l10n.offlineMapsUpsellBody,
+                                      benefits: [
+                                        l10n.offlineMapsBenefitRegions,
+                                        l10n.coverageTeaserBenefitOffline,
+                                        l10n.coverageTeaserBenefitSave,
+                                      ],
+                                      ctaLabel: l10n.proUnlockCta,
+                                      inPlace: true,
+                                    );
+                                    if (!purchased) return;
+                                  }
                                   if (context.mounted) {
                                     await context.router.push(
                                       const OfflineMapsRoute(),

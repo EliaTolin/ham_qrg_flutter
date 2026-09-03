@@ -5,6 +5,7 @@ library;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hamqrg/clients/revenue_cat/impl/revenue_cat_client_impl.dart';
+import 'package:hamqrg/clients/revenue_cat/model/pro_price_hint.dart';
 import 'package:hamqrg/clients/revenue_cat/revenue_cat_client.dart';
 import 'package:hamqrg/clients/storage/impl/shared_pref_storage_client/shared_pref_storage_client.dart';
 import 'package:hamqrg/clients/storage/storage_client.dart';
@@ -105,6 +106,12 @@ class _FakeRevenueCatClient implements RevenueCatClient {
 
   @override
   Future<bool> presentPaywallIfNeeded({String? placementId}) async => pro;
+
+  @override
+  Future<ProPriceHint?> priceHint({String? placementId}) async => null;
+
+  @override
+  Future<void> presentCustomerCenter() async {}
 }
 
 /// Connettività finta: sempre online. Il notifier reale usa

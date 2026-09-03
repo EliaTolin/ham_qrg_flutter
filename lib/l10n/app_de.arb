@@ -884,10 +884,69 @@
     }
   },
   "proSectionTitle": "Abonnement",
-  "proCardUpgradeTitle": "Auf HamQRG Pro upgraden",
-  "proCardUpgradeSubtitle": "Schalte alle Premium-Funktionen frei",
+  "proCardUpgradeTitle": "Sieh, was du erreichst",
+  "proCardUpgradeSubtitle": "Abdeckung, Relais und Offline-Karten",
   "proCardActiveTitle": "HamQRG Pro aktiv",
   "proCardActiveSubtitle": "Danke für deine Unterstützung!",
+  "proPriceFromMonth": "Ab {price} pro Monat · Jederzeit kündbar",
+  "@proPriceFromMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonth": "Gratis testen, dann {price} pro Monat · Jederzeit kündbar",
+  "@proPriceTrialThenMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceLifetime": "Einmalig {price} · Für immer",
+  "@proPriceLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceFromMonthUpfront": "Ab {price} pro Monat · {total} im Voraus · Jederzeit kündbar",
+  "@proPriceFromMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonthUpfront": "Gratis testen, dann {price} pro Monat · {total} im Voraus · Jederzeit kündbar",
+  "@proPriceTrialThenMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proRestoreSuccess": "Käufe wiederhergestellt: HamQRG Pro ist aktiv",
+  "proRestoreNone": "Keine Käufe zum Wiederherstellen",
+  "proManageSubscription": "Abo verwalten",
+  "proLinkAccountTitle": "Konto verknüpfen",
+  "proLinkAccountBody": "Verknüpfe HamQRG Pro mit einem Konto, damit es auf jedem Gerät bleibt – auch nach einer Neuinstallation.",
+  "stationsShowcaseTitle": "Deine Standorte, auch ohne Netz",
+  "stationsShowcaseBody": "Speichere Zuhause, die Hütte, den Aktivierungsplatz: Was du erreichst, bleibt da – auch ohne Netz.",
+  "offlineMapsUpsellTitle": "Die Karte bleibt auf dem Handy 🗺️",
+  "offlineMapsUpsellBody": "Lade die Gebiete herunter, die du brauchst, und öffne sie ohne Signal: am Grat, im Tunnel, im Ausland ohne Daten.",
+  "offlineMapsBenefitRegions": "Du wählst die Gebiete zum Herunterladen",
+  "reachUpsellBenefitSignal": "Vorhergesagtes Signal für jedes Relais",
+  "reachUpsellBenefitTerrain": "Geländeprofil zwischen dir und dem Relais",
+  "proRestoreCta": "Käufe wiederherstellen",
   "repeaterCoverageTitle": "Abdeckung",
   "repeaterCoverageCardTitle": "Abdeckungskarte",
   "repeaterCoverageCardSubtitle": "Schätzt das Signal des Relais im Gebiet",
@@ -979,16 +1038,44 @@
   "coverageResultComputing": "Empfang wird berechnet…",
   "coverageResultCancel": "Abbrechen",
   "coverageResultCount": "{count, plural, =1{1 erreichbares Relais} other{{count} erreichbare Relais}}",
-  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverageResultCountFiltered": "{shown} von {total} erreichbar",
+  "@coverageResultCountFiltered": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultHiddenByFilters": "{count, plural, =1{1 erreichbares durch Filter ausgeblendet} other{{count} erreichbare durch Filter ausgeblendet}}",
-  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultHiddenByFilters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageTeaserTitle": "Was erreichst du von {place}? 📡",
-  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "@coverageTeaserTitle": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
   "coverageTeaserBody": "Jedes Relais, das du von dort erreichst, mit vorhergesagtem Signal und Entfernung — noch bevor du losfährst.",
   "coverageTeaserBenefitAnywhere": "Jeder Punkt der Erde",
   "coverageTeaserBenefitOffline": "Ohne Netz nutzbar, im Feld",
   "coverageTeaserBenefitSave": "Standort speichern und wiederfinden",
-  "coverageTeaserRestore": "Käufe wiederherstellen",
   "stationSaveCta": "Standort speichern",
   "stationSaveTitle": "Name des Standorts",
   "stationRename": "Umbenennen",
@@ -1017,8 +1104,19 @@
   "stationRemovedSnack": "Standort entfernt",
   "stationSaveError": "Speichern fehlgeschlagen. Bitte erneut versuchen.",
   "stationsTitle": "Meine Standorte",
+  "stationsProfileSubtitle": "Die von dir geprüften Standorte, auch offline verfügbar",
   "stationsEmptyTitle": "Noch keine Standorte gespeichert",
-  "stationsEmptyBody": "Wähle einen Punkt auf der Karte, sieh, was du erreichst, und speichere ihn: Du findest ihn auch ohne Netz wieder.",
+  "stationsEmptyBody": "Ein Standort ist ein Kartenpunkt, dessen Abdeckung du bereits berechnet hast — gespeichert, um ihn auch ohne Netz wiederzufinden.",
+  "stationsEmptyStep1": "Wähle einen Punkt auf der Karte: lange drücken, nach Namen suchen oder Koordinaten einfügen.",
+  "stationsEmptyStep2": "Tippe auf „{action}“, um zu sehen, welche Relais du von dort erreichst.",
+  "@stationsEmptyStep2": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "stationsEmptyStep3": "Speichere den Punkt: Du findest ihn hier wieder, auch im Feld ohne Netz.",
   "stationsGoToMap": "Zur Karte",
   "stationsRefreshDone": "Aktualisierung abgeschlossen",
   "spotsUpdatedAgo": "Aktualisiert {time}",
@@ -1056,7 +1154,16 @@
   },
   "spotsManualRefreshHint": "Zum Aktualisieren tippen",
   "coverageResultScope": "im Umkreis von {km} km · {count} geprüft",
-  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "@coverageResultScope": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultRecalculating": "Neuberechnung",
   "offlineBannerMessage": "Du bist offline: gespeicherte Daten werden angezeigt",
   "offlineMapsTitle": "Offline-Karten",
@@ -1085,7 +1192,13 @@
   "offlineMapsCenterSearch": "Ort suchen",
   "offlineMapsCenterSearchInfo": "Suche eine Stadt oder einen Ort: die Region wird dort zentriert.",
   "offlineMapsCenterSelected": "Zentrum: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "@offlineMapsCenterSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "changelog120OfflineMode": "Offline-Modus: Relais, Favoriten, Profil, Abdeckung und Erreichbarkeit auch ohne Netz verfügbar (PRO)",
   "changelog120OfflineMaps": "Offline-Karten: Lade die Umgebung deines Standorts oder einen Ort deiner Wahl herunter und nutze sie ohne Verbindung (PRO)",
   "changelog120CoverageSearch": "Abdeckungssuche von jedem Punkt aus: Ort suchen, Koordinaten einfügen oder lange auf die Karte drücken, um zu sehen, was du von dort erreichst",

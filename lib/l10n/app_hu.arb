@@ -884,10 +884,69 @@
     }
   },
   "proSectionTitle": "Előfizetés",
-  "proCardUpgradeTitle": "Váltás HamQRG Pro-ra",
-  "proCardUpgradeSubtitle": "Oldd fel az összes prémium funkciót",
+  "proCardUpgradeTitle": "Fedezd fel, mit érsz el",
+  "proCardUpgradeSubtitle": "Lefedettség, átjátszók és offline térképek",
   "proCardActiveTitle": "HamQRG Pro aktív",
   "proCardActiveSubtitle": "Köszönjük a támogatást!",
+  "proPriceFromMonth": "Havonta már {price} · Bármikor lemondható",
+  "@proPriceFromMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonth": "Ingyenes próba, utána havonta {price} · Bármikor lemondható",
+  "@proPriceTrialThenMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceLifetime": "Egyszeri {price} · Örökre",
+  "@proPriceLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceFromMonthUpfront": "Havonta már {price} · {total} előre · Bármikor lemondható",
+  "@proPriceFromMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonthUpfront": "Ingyenes próba, utána havonta {price} · {total} előre · Bármikor lemondható",
+  "@proPriceTrialThenMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proRestoreSuccess": "Vásárlások visszaállítva: a HamQRG Pro aktív",
+  "proRestoreNone": "Nincs visszaállítható vásárlás",
+  "proManageSubscription": "Előfizetés kezelése",
+  "proLinkAccountTitle": "Kapcsold össze a fiókodat",
+  "proLinkAccountBody": "Kapcsold a HamQRG Prót egy fiókhoz, hogy minden eszközön megmaradjon – újratelepítés után is.",
+  "stationsShowcaseTitle": "A helyszíneid, hálózat nélkül is",
+  "stationsShowcaseBody": "Mentsd el az otthont, a menedékházat, az aktiválási helyet: amit elérsz, hálózat nélkül is megvan.",
+  "offlineMapsUpsellTitle": "A térkép a telefonodon marad 🗺️",
+  "offlineMapsUpsellBody": "Töltsd le a szükséges területeket, és nyisd meg ott, ahol nincs térerő: a gerincen, alagútban, külföldön adatforgalom nélkül.",
+  "offlineMapsBenefitRegions": "Te választod ki a letöltendő területeket",
+  "reachUpsellBenefitSignal": "Várható jel minden átjátszóhoz",
+  "reachUpsellBenefitTerrain": "Terepprofil közted és az átjátszó között",
+  "proRestoreCta": "Vásárlások visszaállítása",
   "repeaterCoverageTitle": "Lefedettség",
   "repeaterCoverageCardTitle": "Lefedettségi térkép",
   "repeaterCoverageCardSubtitle": "Megbecsüli az átjátszó jelét a területen",
@@ -979,16 +1038,44 @@
   "coverageResultComputing": "Vétel számítása…",
   "coverageResultCancel": "Mégse",
   "coverageResultCount": "{count} elérhető átjátszó",
-  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverageResultCountFiltered": "{shown} / {total} elérhető",
+  "@coverageResultCountFiltered": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultHiddenByFilters": "A szűrők {count} elérhetőt rejtenek el",
-  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultHiddenByFilters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageTeaserTitle": "Mit érsz el innen: {place}? 📡",
-  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "@coverageTeaserTitle": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
   "coverageTeaserBody": "Minden átjátszó, amit onnan elérsz, várható jellel és távolsággal — még indulás előtt.",
   "coverageTeaserBenefitAnywhere": "A bolygó bármely pontja",
   "coverageTeaserBenefitOffline": "Hálózat nélkül is olvasható, terepen",
   "coverageTeaserBenefitSave": "Elmented a helyet és újra megtalálod",
-  "coverageTeaserRestore": "Vásárlások visszaállítása",
   "stationSaveCta": "Hely mentése",
   "stationSaveTitle": "A hely neve",
   "stationRename": "Átnevezés",
@@ -1017,8 +1104,19 @@
   "stationRemovedSnack": "Helyszín eltávolítva",
   "stationSaveError": "A mentés nem sikerült. Próbálja újra.",
   "stationsTitle": "Helyeim",
+  "stationsProfileSubtitle": "Az általad kiértékelt pontok, hálózat nélkül is",
   "stationsEmptyTitle": "Még nincs mentett hely",
-  "stationsEmptyBody": "Válassz egy pontot a térképen, nézd meg mit érsz el, és mentsd el: hálózat nélkül is megtalálod.",
+  "stationsEmptyBody": "A hely egy térképpont, amelynek a lefedettségét már kiszámoltad, elmentve, hogy hálózat nélkül is megtaláld.",
+  "stationsEmptyStep1": "Válassz egy pontot a térképen: tartsd nyomva, keresd névre vagy illeszd be a koordinátákat.",
+  "stationsEmptyStep2": "Koppints a(z) „{action}” gombra, hogy lásd, mely átjátszókat éred el onnan.",
+  "@stationsEmptyStep2": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "stationsEmptyStep3": "Mentsd el a pontot: itt megtalálod, terepen, hálózat nélkül is.",
   "stationsGoToMap": "Ugrás a térképre",
   "stationsRefreshDone": "A frissítés kész",
   "spotsUpdatedAgo": "Frissítve: {time}",
@@ -1056,7 +1154,16 @@
   },
   "spotsManualRefreshHint": "Koppintson a frissítéshez",
   "coverageResultScope": "{km} km-en belül · {count} kiértékelve",
-  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "@coverageResultScope": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultRecalculating": "Újraszámítás",
   "offlineBannerMessage": "Offline vagy: a mentett adatokat látod",
   "offlineMapsTitle": "Offline térképek",
@@ -1085,7 +1192,13 @@
   "offlineMapsCenterSearch": "Hely keresése",
   "offlineMapsCenterSearchInfo": "Keress egy várost vagy helyet: a régió oda lesz középre igazítva.",
   "offlineMapsCenterSelected": "Közép: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "@offlineMapsCenterSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "changelog120OfflineMode": "Offline mód: átjátszók, kedvencek, profil, lefedettség és elérhetőség hálózat nélkül is elérhető (PRO)",
   "changelog120OfflineMaps": "Offline térképek: töltsd le a környéked vagy egy tetszőleges helyet, és használd kapcsolat nélkül (PRO)",
   "changelog120CoverageSearch": "Lefedettség keresése bármely pontról: keress egy helyet, illessz be koordinátákat vagy nyomd hosszan a térképet, és nézd meg, mit érsz el onnan",

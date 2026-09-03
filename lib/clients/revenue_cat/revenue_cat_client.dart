@@ -1,3 +1,5 @@
+import 'package:hamqrg/clients/revenue_cat/model/pro_price_hint.dart';
+
 /// Abstraction over the RevenueCat SDK (`Purchases`) for the HamQRG Pro tier.
 ///
 /// Implementations proxy the RevenueCat singleton, so the SDK must be
@@ -60,4 +62,21 @@ abstract class RevenueCatClient {
   ///
   /// [placementId] behaves as in [presentPaywall].
   Future<bool> presentPaywallIfNeeded({String? placementId});
+
+  /// Prezzo d'ingresso dell'offering assegnata a [placementId], da mostrare
+  /// **prima** che l'utente apra la paywall.
+  ///
+  /// Restituisce `null` quando il prezzo non è ottenibile (offline, SDK non
+  /// configurato, offering vuota): in quel caso la superficie chiamante non
+  /// mostra alcuna riga di prezzo, e resta esattamente com'era. Un prezzo
+  /// assente è meglio di un prezzo sbagliato.
+  Future<ProPriceHint?> priceHint({String? placementId});
+
+  /// Apre il Customer Center di RevenueCat (stato abbonamento, cambio piano,
+  /// disdetta, richiesta di rimborso).
+  ///
+  /// Serve a chi ha già pagato: senza, l'unica strada per disdire è cercare
+  /// nelle impostazioni dello store, e chi non la trova lascia una recensione
+  /// negativa invece di uscire in silenzio.
+  Future<void> presentCustomerCenter();
 }

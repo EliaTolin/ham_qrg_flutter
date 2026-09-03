@@ -12,16 +12,87 @@ class AppLocalizationsFr extends AppLocalizations {
   String get proSectionTitle => 'Abonnement';
 
   @override
-  String get proCardUpgradeTitle => 'Passer à HamQRG Pro';
+  String get proCardUpgradeTitle => 'Découvrez ce que vous atteignez';
 
   @override
-  String get proCardUpgradeSubtitle => 'Débloquez toutes les fonctions premium';
+  String get proCardUpgradeSubtitle =>
+      'Couverture, relais et cartes hors ligne';
 
   @override
   String get proCardActiveTitle => 'HamQRG Pro actif';
 
   @override
   String get proCardActiveSubtitle => 'Merci pour votre soutien !';
+
+  @override
+  String proPriceFromMonth(String price) {
+    return 'À partir de $price par mois · Annulable à tout moment';
+  }
+
+  @override
+  String proPriceTrialThenMonth(String price) {
+    return 'Essai gratuit, puis $price par mois · Annulable à tout moment';
+  }
+
+  @override
+  String proPriceLifetime(String price) {
+    return '$price une seule fois · Pour toujours';
+  }
+
+  @override
+  String proPriceFromMonthUpfront(String price, String total) {
+    return 'À partir de $price par mois · $total facturés d\'avance · Annulable à tout moment';
+  }
+
+  @override
+  String proPriceTrialThenMonthUpfront(String price, String total) {
+    return 'Essai gratuit, puis $price par mois · $total facturés d\'avance · Annulable à tout moment';
+  }
+
+  @override
+  String get proRestoreSuccess => 'Achats restaurés : HamQRG Pro est actif';
+
+  @override
+  String get proRestoreNone => 'Aucun achat à restaurer';
+
+  @override
+  String get proManageSubscription => 'Gérer l\'abonnement';
+
+  @override
+  String get proLinkAccountTitle => 'Associez votre compte';
+
+  @override
+  String get proLinkAccountBody =>
+      'Associez HamQRG Pro à un compte pour le conserver sur tous vos appareils, même après une réinstallation.';
+
+  @override
+  String get stationsShowcaseTitle => 'Vos emplacements, même sans réseau';
+
+  @override
+  String get stationsShowcaseBody =>
+      'Enregistrez la maison, le refuge, le site d\'activation : ce que vous atteignez reste là même sans réseau.';
+
+  @override
+  String get offlineMapsUpsellTitle =>
+      'La carte reste dans votre téléphone 🗺️';
+
+  @override
+  String get offlineMapsUpsellBody =>
+      'Téléchargez les zones qu\'il vous faut et ouvrez-les là où il n\'y a pas de réseau : sur une crête, dans un tunnel, à l\'étranger sans données.';
+
+  @override
+  String get offlineMapsBenefitRegions =>
+      'Vous choisissez les zones à télécharger';
+
+  @override
+  String get reachUpsellBenefitSignal => 'Signal prévu pour chaque relais';
+
+  @override
+  String get reachUpsellBenefitTerrain =>
+      'Profil du terrain entre vous et le relais';
+
+  @override
+  String get proRestoreCta => 'Restaurer les achats';
 
   @override
   String get error => 'Erreur';
@@ -2325,6 +2396,11 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String coverageResultCountFiltered(int shown, int total) {
+    return '$shown sur $total accessibles';
+  }
+
+  @override
   String coverageResultHiddenByFilters(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -2354,9 +2430,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get coverageTeaserBenefitSave =>
       'Enregistrez le poste et retrouvez-le';
-
-  @override
-  String get coverageTeaserRestore => 'Restaurer les achats';
 
   @override
   String get stationSaveCta => 'Enregistrer le poste';
@@ -2426,11 +2499,28 @@ class AppLocalizationsFr extends AppLocalizations {
   String get stationsTitle => 'Mes postes';
 
   @override
+  String get stationsProfileSubtitle =>
+      'Les points que vous avez évalués, consultables hors ligne';
+
+  @override
   String get stationsEmptyTitle => 'Aucun poste enregistré';
 
   @override
   String get stationsEmptyBody =>
-      'Choisissez un point sur la carte, voyez ce que vous captez et enregistrez-le : vous le retrouverez même sans réseau.';
+      'Un poste est un point de la carte dont vous avez déjà calculé la couverture, enregistré pour le retrouver sans réseau.';
+
+  @override
+  String get stationsEmptyStep1 =>
+      'Choisissez un point sur la carte : appui long, recherche par nom ou collage des coordonnées.';
+
+  @override
+  String stationsEmptyStep2(String action) {
+    return 'Touchez « $action » pour voir les relais que vous captez depuis là.';
+  }
+
+  @override
+  String get stationsEmptyStep3 =>
+      'Enregistrez le point : vous le retrouvez ici, même sur le terrain sans réseau.';
 
   @override
   String get stationsGoToMap => 'Aller à la carte';

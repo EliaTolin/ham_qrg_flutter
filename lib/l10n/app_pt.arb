@@ -884,10 +884,69 @@
     }
   },
   "proSectionTitle": "Subscrição",
-  "proCardUpgradeTitle": "Mude para o HamQRG Pro",
-  "proCardUpgradeSubtitle": "Desbloqueie todos os recursos premium",
+  "proCardUpgradeTitle": "Descobre o que alcanças",
+  "proCardUpgradeSubtitle": "Cobertura, repetidores e mapas offline",
   "proCardActiveTitle": "HamQRG Pro ativo",
   "proCardActiveSubtitle": "Obrigado pelo seu apoio!",
+  "proPriceFromMonth": "A partir de {price} por mês · Cancela quando quiseres",
+  "@proPriceFromMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonth": "Experimenta grátis, depois {price} por mês · Cancela quando quiseres",
+  "@proPriceTrialThenMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceLifetime": "{price} uma só vez · Para sempre",
+  "@proPriceLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceFromMonthUpfront": "A partir de {price} por mês · {total} adiantados · Cancela quando quiseres",
+  "@proPriceFromMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proPriceTrialThenMonthUpfront": "Experimenta grátis, depois {price} por mês · {total} adiantados · Cancela quando quiseres",
+  "@proPriceTrialThenMonthUpfront": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "proRestoreSuccess": "Compras restauradas: o HamQRG Pro está ativo",
+  "proRestoreNone": "Não há compras para restaurar",
+  "proManageSubscription": "Gerir subscrição",
+  "proLinkAccountTitle": "Associa a tua conta",
+  "proLinkAccountBody": "Associa o HamQRG Pro a uma conta para o manteres em todos os dispositivos, mesmo depois de reinstalares.",
+  "stationsShowcaseTitle": "Os teus locais, mesmo sem rede",
+  "stationsShowcaseBody": "Guarda casa, o refúgio, o local de ativação: o que alcanças fica lá mesmo sem rede.",
+  "offlineMapsUpsellTitle": "O mapa fica no teu telemóvel 🗺️",
+  "offlineMapsUpsellBody": "Descarrega as zonas de que precisas e abre-as onde não há sinal: numa crista, num túnel, no estrangeiro sem dados.",
+  "offlineMapsBenefitRegions": "És tu que escolhes as zonas a descarregar",
+  "reachUpsellBenefitSignal": "Sinal previsto para cada repetidor",
+  "reachUpsellBenefitTerrain": "Perfil do terreno entre ti e o repetidor",
+  "proRestoreCta": "Restaurar compras",
   "repeaterCoverageTitle": "Cobertura",
   "repeaterCoverageCardTitle": "Mapa de cobertura",
   "repeaterCoverageCardSubtitle": "Estima o sinal do repetidor no território",
@@ -979,16 +1038,44 @@
   "coverageResultComputing": "A calcular a receção…",
   "coverageResultCancel": "Cancelar",
   "coverageResultCount": "{count, plural, =1{1 repetidor alcançável} other{{count} repetidores alcançáveis}}",
-  "@coverageResultCount": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverageResultCountFiltered": "{shown} de {total} alcançáveis",
+  "@coverageResultCountFiltered": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultHiddenByFilters": "{count, plural, =1{1 alcançável oculto pelos filtros} other{{count} alcançáveis ocultos pelos filtros}}",
-  "@coverageResultHiddenByFilters": {"placeholders": {"count": {"type": "int"}}},
+  "@coverageResultHiddenByFilters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageTeaserTitle": "O que alcanças a partir de {place}? 📡",
-  "@coverageTeaserTitle": {"placeholders": {"place": {"type": "String"}}},
+  "@coverageTeaserTitle": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
   "coverageTeaserBody": "Cada repetidor que alcanças a partir desse ponto, com sinal previsto e distância — antes mesmo de partires.",
   "coverageTeaserBenefitAnywhere": "Qualquer ponto do planeta",
   "coverageTeaserBenefitOffline": "Consultável sem rede, no terreno",
   "coverageTeaserBenefitSave": "Guardas o posto e voltas a encontrá-lo",
-  "coverageTeaserRestore": "Restaurar compras",
   "stationSaveCta": "Guardar posto",
   "stationSaveTitle": "Nome do posto",
   "stationRename": "Renomear",
@@ -1017,8 +1104,19 @@
   "stationRemovedSnack": "Localização removida",
   "stationSaveError": "Não foi possível guardar. Tente novamente.",
   "stationsTitle": "Os meus postos",
+  "stationsProfileSubtitle": "Os pontos que avaliaste, disponíveis sem rede",
   "stationsEmptyTitle": "Ainda sem postos guardados",
-  "stationsEmptyBody": "Escolhe um ponto no mapa, vê o que alcanças e guarda-o: vais reencontrá-lo mesmo sem rede.",
+  "stationsEmptyBody": "Uma posição é um ponto do mapa cuja cobertura já calculaste, guardado para o reencontrares sem rede.",
+  "stationsEmptyStep1": "Escolhe um ponto no mapa: mantém premido, procura pelo nome ou cola as coordenadas.",
+  "stationsEmptyStep2": "Toca em «{action}» para veres que repetidores alcanças a partir dali.",
+  "@stationsEmptyStep2": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "stationsEmptyStep3": "Guarda o ponto: encontra-lo aqui, mesmo no campo sem rede.",
   "stationsGoToMap": "Ir para o mapa",
   "stationsRefreshDone": "Atualização concluída",
   "spotsUpdatedAgo": "Atualizado {time}",
@@ -1056,7 +1154,16 @@
   },
   "spotsManualRefreshHint": "Toque para atualizar",
   "coverageResultScope": "num raio de {km} km · {count} avaliados",
-  "@coverageResultScope": {"placeholders": {"km": {"type": "int"}, "count": {"type": "int"}}},
+  "@coverageResultScope": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "coverageResultRecalculating": "A recalcular",
   "offlineBannerMessage": "Sem ligação: a consultar os dados guardados",
   "offlineMapsTitle": "Mapas offline",
@@ -1085,7 +1192,13 @@
   "offlineMapsCenterSearch": "Procurar um local",
   "offlineMapsCenterSearchInfo": "Procure uma cidade ou local: a região será centrada aí.",
   "offlineMapsCenterSelected": "Centro: {label}",
-  "@offlineMapsCenterSelected": {"placeholders": {"label": {"type": "String"}}},
+  "@offlineMapsCenterSelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "changelog120OfflineMode": "Modo offline: repetidores, favoritos, perfil, cobertura e alcance disponíveis mesmo sem rede (PRO)",
   "changelog120OfflineMaps": "Mapas offline: descarrega a zona onde estás ou um local à tua escolha e usa-a sem ligação (PRO)",
   "changelog120CoverageSearch": "Pesquisa de cobertura a partir de qualquer ponto: pesquisa uma localidade, cola coordenadas ou mantém premido o mapa para descobrir o que alcanças a partir daí",
