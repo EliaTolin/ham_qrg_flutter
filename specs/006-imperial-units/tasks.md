@@ -162,6 +162,37 @@ T018 (sota dettaglio)   | T019 (sota tablet)      | T021 (ARB, 15 file)
 - **Incremento 2 = US2.** Il controllo manuale, per i casi in cui la regione mente.
 - **Incremento 3 = US3 + Fase 6.** Le superfici tecniche e i controlli meccanici che rendono SC-002 dimostrabile invece che dichiarato.
 
+## Stato di esecuzione (2026-09-08)
+
+**37 task su 40 completati.** `flutter analyze` pulito (resta solo il warning
+preesistente sui plugin legacy dell'analizzatore), 428 test verdi contro i 407
+della baseline, `flutter gen-l10n` a zero `untranslated message(s)`.
+Pubblicato su TestFlight come **1.3.0+53** con la lane `beta_internal`.
+
+I tre task aperti — **T022, T026, T034** — sono verifiche visive su
+dispositivo: richiedono di aprire le schermate su un telefono e un tablet, in
+metrico e in imperiale. Non sono state eseguite qui e restano da fare sulla
+build TestFlight appena caricata. Tutto ciò che era verificabile in modo
+meccanico al posto loro è stato verificato: il controllo di copertura T035 non
+trova più alcun sito, T036 conferma che nessuna chiave ARB contiene un'unità,
+T038 verifica come proprietà che nessuna soglia dichiarata sia più larga di
+quella reale.
+
+Scostamenti rispetto al piano, tutti annotati nei task interessati:
+
+- **T021** ha rimosso `sotaAltitudeMeters` invece di parametrizzarla, e ha
+  ceduto due chiavi a T032 per non rompere l'indipendenza fra le storie.
+- Le superfici SOTA mostravano **già** entrambe le unità (`1.240 m · 4.068 ft`).
+  Invece di scartarne una, la preferenza decide quale delle due è in evidenza:
+  nessuna informazione persa, e il numero ufficiale della cima resta quello
+  nativo della sorgente (FR-011).
+- **T031** ha trasformato la stringa inglese di `repeater_detail_controller`
+  in uno `StateError` di programmazione anziché localizzarla: la UI impedisce
+  già quel percorso, quindi non era copy e non doveva sembrarlo.
+- Un sito era sfuggito al censimento (`summit_card.dart:328`) ed è stato
+  trovato proprio dal controllo meccanico T035 — che è il motivo per cui
+  quel controllo esiste.
+
 ## Riepilogo
 
 | Fase | Task | Contenuto |
