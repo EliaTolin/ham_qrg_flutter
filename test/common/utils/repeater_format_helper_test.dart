@@ -221,68 +221,6 @@ void main() {
     });
   });
 
-  group('RepeaterFormatHelper.formatDistance', () {
-    test('returns empty string for null', () {
-      expect(RepeaterFormatHelper.formatDistance(null), '');
-    });
-
-    test('formats meters below 1000', () {
-      expect(RepeaterFormatHelper.formatDistance(500), '500m away');
-    });
-
-    test('formats 0 meters', () {
-      expect(RepeaterFormatHelper.formatDistance(0), '0m away');
-    });
-
-    test('formats exactly 1000 meters as km', () {
-      expect(RepeaterFormatHelper.formatDistance(1000), '1.0km away');
-    });
-
-    test('formats kilometers with one decimal', () {
-      expect(RepeaterFormatHelper.formatDistance(12000), '12.0km away');
-    });
-
-    test('formats kilometers with fractional part', () {
-      expect(RepeaterFormatHelper.formatDistance(1500), '1.5km away');
-    });
-
-    test('formats large distances', () {
-      expect(RepeaterFormatHelper.formatDistance(150300), '150.3km away');
-    });
-
-    test('rounds meters to integer', () {
-      expect(RepeaterFormatHelper.formatDistance(500.7), '501m away');
-    });
-
-    test('boundary: 999 meters stays in meters', () {
-      expect(RepeaterFormatHelper.formatDistance(999), '999m away');
-    });
-
-    test('fractional meters below 1', () {
-      expect(RepeaterFormatHelper.formatDistance(0.4), '0m away');
-    });
-
-    test('boundary: 999.9 meters stays in meters', () {
-      expect(RepeaterFormatHelper.formatDistance(999.9), '1000m away');
-    });
-
-    test('very large distance', () {
-      expect(RepeaterFormatHelper.formatDistance(1000000), '1000.0km away');
-    });
-
-    test('km rounding 1050m', () {
-      expect(RepeaterFormatHelper.formatDistance(1050), '1.1km away');
-    });
-
-    test('km rounding 1049m', () {
-      expect(RepeaterFormatHelper.formatDistance(1049), '1.0km away');
-    });
-
-    test('negative distance treated as meters', () {
-      expect(RepeaterFormatHelper.formatDistance(-100), '-100m away');
-    });
-  });
-
   group('RepeaterFormatHelper.formatCtcss', () {
     test('returns dash for null', () {
       expect(RepeaterFormatHelper.formatCtcss(null), '-');

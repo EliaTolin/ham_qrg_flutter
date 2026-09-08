@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/freshness_color_helper.dart';
 import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
@@ -314,6 +315,10 @@ class _SummitHeroCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final altitude = context.units.summitAltitudeParts(
+      metres: summit.altitudeM,
+      feet: summit.altitudeFt,
+    );
 
     return Container(
       decoration: BoxDecoration(
@@ -379,7 +384,7 @@ class _SummitHeroCard extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '${summit.altitudeM}',
+                              text: altitude.value,
                               style: theme.textTheme.headlineSmall?.copyWith(
                                 color: colorScheme.tertiary,
                                 fontWeight: FontWeight.w900,
@@ -389,14 +394,15 @@ class _SummitHeroCard extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: ' m',
+                              text: ' ${altitude.symbol}',
                               style: theme.textTheme.titleMedium?.copyWith(
                                 color: colorScheme.tertiary,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             TextSpan(
-                              text: '  ·  ${summit.altitudeFt} ft',
+                              text:
+                                  '  ·  ${context.units.summitAltitudeSecondary(metres: summit.altitudeM, feet: summit.altitudeFt)}',
                               style: theme.textTheme.titleSmall?.copyWith(
                                 color: colorScheme.onSurfaceVariant,
                                 fontFeatures: const [
@@ -439,8 +445,14 @@ class _SummitDetailsGrid extends StatelessWidget {
     final tiles = [
       _InfoTileData(
         icon: Icons.terrain,
-        label: l10n.sotaAltitudeMeters(summit.altitudeM),
-        value: '${summit.altitudeFt} ft',
+        label: context.units.summitAltitude(
+          metres: summit.altitudeM,
+          feet: summit.altitudeFt,
+        ),
+        value: context.units.summitAltitudeSecondary(
+          metres: summit.altitudeM,
+          feet: summit.altitudeFt,
+        ),
         color: colorScheme.primary,
       ),
       _InfoTileData(
@@ -453,7 +465,7 @@ class _SummitDetailsGrid extends StatelessWidget {
         _InfoTileData(
           icon: Icons.straighten,
           label: l10n.sotaDistance,
-          value: _formatDistance(distanceKm!),
+          value: context.units.distanceFromKm(distanceKm!),
           color: colorScheme.tertiary,
         ),
       if (bearingDegrees != null)
@@ -491,12 +503,6 @@ class _SummitDetailsGrid extends StatelessWidget {
           SizedBox(width: 220, child: _InfoTile(data: tile)),
       ],
     );
-  }
-
-  String _formatDistance(double km) {
-    if (km < 1) return '${(km * 1000).round()} m';
-    if (km < 10) return '${km.toStringAsFixed(1)} km';
-    return '${km.round()} km';
   }
 }
 

@@ -321,11 +321,11 @@
   "repeaterDetailOthersReports": "Más felhasználók bejelentései",
   "repeaterDetailRemove": "Eltávolítás",
   "repeaterDetailSelectAccess": "Hozzáférés kiválasztása",
-  "repeaterDetailDistanceWarning": "A visszajelzés küldéséhez {distance} km-en belül kell lenned az átjátszótól.",
+  "repeaterDetailDistanceWarning": "A visszajelzés küldéséhez {distance}-en belül kell lenned az átjátszótól.",
   "@repeaterDetailDistanceWarning": {
     "placeholders": {
       "distance": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -336,7 +336,7 @@
   "repeaterDetailLocationPlaceholder": "Hol voltál? (pl. Budapest)",
   "repeaterDetailLocationSelectHint": "Válassz egy helyet a javaslatokból",
   "feedbackDistanceConfirmTitle": "Beküldés megerősítése",
-  "feedbackDistanceConfirmMessage": "A kiválasztott helyszín {distance} km-re van az átjátszótól. Megerősíted, hogy saját felelősségedre küldöd el ezt a visszajelzést?",
+  "feedbackDistanceConfirmMessage": "A kiválasztott helyszín {distance}-re van az átjátszótól. Megerősíted, hogy saját felelősségedre küldöd el ezt a visszajelzést?",
   "@feedbackDistanceConfirmMessage": {
     "placeholders": {
       "distance": {
@@ -571,6 +571,10 @@
     }
   },
   "profileLanguage": "Nyelv",
+  "profileUnitSystem": "Mértékegységek",
+  "profileUnitSystemAuto": "Automatikus",
+  "profileUnitSystemMetric": "Metrikus",
+  "profileUnitSystemImperial": "Angolszász",
   "profileLanguageSystem": "Rendszer",
   "profileLanguageItalian": "Italiano",
   "profileLanguageEnglish": "English",
@@ -795,9 +799,8 @@
   "sotaSummitPursuit": "View toward the summit",
   "sotaLosClear": "Clear line of sight",
   "sotaLosObstructed": "Possible obstruction",
-  "sotaLosObstructionAt": "Obstacle at {distance} km, +{height} m",
+  "sotaLosObstructionAt": "Obstacle at {distance}, +{height}",
   "sotaPointsBadge": "{count} pt",
-  "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
   "spotsFiltersTitle": "Szűrők",
   "spotsFilterBand": "Sáv",
@@ -851,13 +854,6 @@
   "@sotaPointsBadge": {
     "placeholders": {
       "count": {
-        "type": "int"
-      }
-    }
-  },
-  "@sotaAltitudeMeters": {
-    "placeholders": {
-      "m": {
         "type": "int"
       }
     }
@@ -964,8 +960,8 @@
   "reachDiscoverCta": "Fedezd fel a PRO-val",
   "reachReachable": "Eléred",
   "reachOutOfCoverage": "Lefedettségen kívül",
-  "reachReachableDetail": "{signal} · {distance} km · koppints a profilért",
-  "reachDistanceFromHere": "{distance} km innen",
+  "reachReachableDetail": "{signal} · {distance} · koppints a profilért",
+  "reachDistanceFromHere": "{distance} innen",
   "reachComputing": "Lefedettség számítása…",
   "reachRepeaterFallback": "Átjátszó",
   "reachMapButton": "Mit érsz el?",
@@ -974,7 +970,7 @@
   "reachUpsellLater": "Később",
   "linkProfileObstructed": "Akadály az útvonalon (jel diffrakcióval)",
   "linkProfileClear": "Szabad rálátás",
-  "linkProfileCaption": "Terepprofil és rálátás · TX {tx} m · RX {rx} m",
+  "linkProfileCaption": "Terepprofil és rálátás · TX {tx} · RX {rx}",
   "proUnlockCta": "Feloldás PRO-val",
   "proWelcomeTitle": "Üdvözlünk a PRO-ban! 🎉",
   "proWelcomeBody": "Feloldottad a lefedettségi térképet, a helyzetedből elérhető átjátszókat és az összes PRO funkciót. 📡",
@@ -1027,9 +1023,9 @@
   "coverageBreadthQuick": "Gyors",
   "coverageBreadthMedium": "Közepes",
   "coverageBreadthExtended": "Kiterjesztett",
-  "coverageBreadthQuickHint": "80 km · leggyorsabb válasz",
-  "coverageBreadthMediumHint": "100 km · kiegyensúlyozott",
-  "coverageBreadthExtendedHint": "150 km · távolabb, hosszabb várakozás",
+  "coverageBreadthQuickHint": "{radius} · leggyorsabb válasz",
+  "coverageBreadthMediumHint": "{radius} · kiegyensúlyozott",
+  "coverageBreadthExtendedHint": "{radius} · távolabb, hosszabb várakozás",
   "coverageResultSubtitle": "A kiválasztott pontból",
   "coverageResultEmptyNoReachable": "Erről a pontról egyetlen átjátszó sem érhető el",
   "coverageResultEmptyNoRepeaters": "Ezen a területen nincs nyilvántartott átjátszó",
@@ -1086,7 +1082,7 @@
   "stationStaleNotice": "Az adat elavult lehet",
   "stationMissingEntry": "Az adat offline nem érhető el",
   "stationDuplicateTitle": "A pont már mentve van",
-  "stationDuplicateBody": "200 méteren belül már van egy hely. Frissíted, vagy külön hozol létre?",
+  "stationDuplicateBody": "{distance}-en belül már van egy hely. Frissíted, vagy külön hozol létre?",
   "stationDuplicateUpdate": "Frissítés",
   "stationDuplicateCreate": "Külön létrehozás",
   "stationSaveFailed": "A mentés sikertelen: nincs elég hely",
@@ -1153,11 +1149,11 @@
     }
   },
   "spotsManualRefreshHint": "Koppintson a frissítéshez",
-  "coverageResultScope": "{km} km-en belül · {count} kiértékelve",
+  "coverageResultScope": "{km}-en belül · {count} kiértékelve",
   "@coverageResultScope": {
     "placeholders": {
       "km": {
-        "type": "int"
+        "type": "String"
       },
       "count": {
         "type": "int"
@@ -1182,7 +1178,7 @@
   "offlineMapsDeleteConfirmTitle": "Törlöd a régiót?",
   "offlineMapsDeleteConfirmMessage": "„{name}” többé nem lesz elérhető offline.",
   "offlineMapsDeleteConfirm": "Törlés",
-  "offlineMapsRegionSubtitle": "Sugár: {radius} km · {size}",
+  "offlineMapsRegionSubtitle": "Sugár: {radius} · {size}",
   "offlineMapsIncomplete": "Befejezetlen letöltés",
   "offlineMapsResume": "Folytatás",
   "offlineMapsCenterInfo": "A régió a jelenlegi helyzeted köré lesz központosítva.",
@@ -1204,5 +1200,34 @@
   "changelog120CoverageSearch": "Lefedettség keresése bármely pontról: keress egy helyet, illessz be koordinátákat vagy nyomd hosszan a térképet, és nézd meg, mit érsz el onnan",
   "changelog120SavedStations": "Állomásaim: mentsd el a fontos pontokat, és nézd meg őket offline is (PRO)",
   "changelog120SpotsRefresh": "A SOTA és POTA spotok percenként maguktól frissülnek, módonként színes jelvényekkel (CW, SSB, FT8…)",
-  "changelog120NoNetwork": "Kapcsolat nélkül az app azonnal indul, megmutatja, mi érhető el, és letiltja a hálózatot igénylő műveleteket"
+  "changelog120NoNetwork": "Kapcsolat nélkül az app azonnal indul, megmutatja, mi érhető el, és letiltja a hálózatot igénylő műveleteket",
+  "@coverageBreadthQuickHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthMediumHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthExtendedHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@stationDuplicateBody": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog130ImperialUnits": "Mérföld és láb: az alkalmazás mostantól követi a készülék mértékegységeit, a rendszert a Beállításokban is kiválaszthatod"
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/coverage_result.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/saved_station.dart';
+import 'package:hamqrg/src/features/coverage_search/domain/search_point.dart';
 import 'package:hamqrg/src/features/coverage_search/errors/coverage_search_exception.dart';
 import 'package:hamqrg/src/features/coverage_search/provider/saved_stations_notifier/saved_stations_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -27,7 +29,11 @@ Future<void> showSaveStationFlow(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(l10n.stationDuplicateTitle),
-        content: Text(l10n.stationDuplicateBody),
+        content: Text(
+          l10n.stationDuplicateBody(
+            context.units.threshold(kSamePlaceThresholdMeters),
+          ),
+        ),
         actions: [
           TextButton(
             onPressed: () =>

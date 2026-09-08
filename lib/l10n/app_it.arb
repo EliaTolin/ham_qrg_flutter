@@ -406,11 +406,11 @@
   "repeaterDetailOthersReports": "Segnalazioni altri utenti",
   "repeaterDetailRemove": "Rimuovi",
   "repeaterDetailSelectAccess": "Seleziona accesso",
-  "repeaterDetailDistanceWarning": "Devi essere entro {distance} km dal ripetitore per inviare un feedback.",
+  "repeaterDetailDistanceWarning": "Devi essere entro {distance} dal ripetitore per inviare un feedback.",
   "@repeaterDetailDistanceWarning": {
     "placeholders": {
       "distance": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -421,7 +421,7 @@
   "repeaterDetailLocationPlaceholder": "Dove eri? (es. Roma)",
   "repeaterDetailLocationSelectHint": "Seleziona un luogo dai suggerimenti",
   "feedbackDistanceConfirmTitle": "Conferma invio",
-  "feedbackDistanceConfirmMessage": "Il luogo selezionato si trova a {distance} km dal ripetitore. Confermi di voler inviare questo feedback sotto la tua responsabilità?",
+  "feedbackDistanceConfirmMessage": "Il luogo selezionato si trova a {distance} dal ripetitore. Confermi di voler inviare questo feedback sotto la tua responsabilità?",
   "@feedbackDistanceConfirmMessage": {
     "placeholders": {
       "distance": {
@@ -669,6 +669,10 @@
     }
   },
   "profileLanguage": "Lingua",
+  "profileUnitSystem": "Unità di misura",
+  "profileUnitSystemAuto": "Automatico",
+  "profileUnitSystemMetric": "Metrico",
+  "profileUnitSystemImperial": "Imperiale",
   "profileLanguageSystem": "Sistema",
   "profileLanguageItalian": "Italiano",
   "profileLanguageEnglish": "English",
@@ -867,9 +871,8 @@
   "sotaSummitPursuit": "Vista verso la cima",
   "sotaLosClear": "Vista libera",
   "sotaLosObstructed": "Possibile ostruzione",
-  "sotaLosObstructionAt": "Ostacolo a {distance} km, +{height} m",
+  "sotaLosObstructionAt": "Ostacolo a {distance}, +{height}",
   "sotaPointsBadge": "{count} pt",
-  "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "Tutti",
   "spotsFiltersTitle": "Filtri",
   "spotsFilterBand": "Banda",
@@ -927,13 +930,6 @@
       }
     }
   },
-  "@sotaAltitudeMeters": {
-    "placeholders": {
-      "m": {
-        "type": "int"
-      }
-    }
-  },
   "@sotaSummitInvalidFrom": {
     "placeholders": {
       "date": {
@@ -971,7 +967,7 @@
   "reachDiscoverCta": "Scoprilo con PRO",
   "reachReachable": "Lo raggiungi",
   "reachOutOfCoverage": "Fuori copertura",
-  "reachReachableDetail": "{signal} · {distance} km · tocca per il profilo",
+  "reachReachableDetail": "{signal} · {distance} · tocca per il profilo",
   "@reachReachableDetail": {
     "placeholders": {
       "signal": {
@@ -982,7 +978,7 @@
       }
     }
   },
-  "reachDistanceFromHere": "{distance} km da qui",
+  "reachDistanceFromHere": "{distance} da qui",
   "@reachDistanceFromHere": {
     "placeholders": {
       "distance": {
@@ -998,14 +994,14 @@
   "reachUpsellLater": "Più tardi",
   "linkProfileObstructed": "Ostacolo sul percorso (segnale per diffrazione)",
   "linkProfileClear": "Vista diretta libera",
-  "linkProfileCaption": "Profilo del terreno e linea di vista · TX {tx} m · RX {rx} m",
+  "linkProfileCaption": "Profilo del terreno e linea di vista · TX {tx} · RX {rx}",
   "@linkProfileCaption": {
     "placeholders": {
       "tx": {
-        "type": "int"
+        "type": "String"
       },
       "rx": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -1068,9 +1064,9 @@
   "coverageBreadthQuick": "Rapida",
   "coverageBreadthMedium": "Media",
   "coverageBreadthExtended": "Estesa",
-  "coverageBreadthQuickHint": "80 km · risposta più veloce",
-  "coverageBreadthMediumHint": "100 km · equilibrata",
-  "coverageBreadthExtendedHint": "150 km · più lontano, attesa maggiore",
+  "coverageBreadthQuickHint": "{radius} · risposta più veloce",
+  "coverageBreadthMediumHint": "{radius} · equilibrata",
+  "coverageBreadthExtendedHint": "{radius} · più lontano, attesa maggiore",
   "coverageResultSubtitle": "Dal punto selezionato",
   "coverageResultEmptyNoReachable": "Nessun ripetitore raggiungibile da questo punto",
   "coverageResultEmptyNoRepeaters": "Nessun ripetitore censito in quest'area",
@@ -1127,7 +1123,7 @@
   "stationStaleNotice": "Il dato potrebbe non essere aggiornato",
   "stationMissingEntry": "Dato non disponibile offline",
   "stationDuplicateTitle": "Punto già salvato",
-  "stationDuplicateBody": "Esiste già una postazione a meno di 200 metri da qui. Vuoi aggiornarla o crearne una distinta?",
+  "stationDuplicateBody": "Esiste già una postazione a meno di {distance} da qui. Vuoi aggiornarla o crearne una distinta?",
   "stationDuplicateUpdate": "Aggiorna quella",
   "stationDuplicateCreate": "Crea distinta",
   "stationSaveFailed": "Salvataggio non riuscito: spazio insufficiente",
@@ -1194,11 +1190,11 @@
     }
   },
   "spotsManualRefreshHint": "Tocca per aggiornare",
-  "coverageResultScope": "entro {km} km · {count} valutati",
+  "coverageResultScope": "entro {km} · {count} valutati",
   "@coverageResultScope": {
     "placeholders": {
       "km": {
-        "type": "int"
+        "type": "String"
       },
       "count": {
         "type": "int"
@@ -1244,7 +1240,7 @@
     }
   },
   "offlineMapsDeleteConfirm": "Elimina",
-  "offlineMapsRegionSubtitle": "Raggio {radius} km · {size}",
+  "offlineMapsRegionSubtitle": "Raggio {radius} · {size}",
   "@offlineMapsRegionSubtitle": {
     "placeholders": {
       "radius": {
@@ -1276,5 +1272,34 @@
   "changelog120CoverageSearch": "Ricerca copertura da qualsiasi punto: cerca una località, incolla coordinate o tieni premuto sulla mappa per scoprire cosa raggiungi da lì",
   "changelog120SavedStations": "Le mie postazioni: salva i punti che ti interessano e consultali anche offline (PRO)",
   "changelog120SpotsRefresh": "Spot SOTA e POTA si aggiornano da soli ogni minuto, con badge colorati per modo (CW, SSB, FT8…)",
-  "changelog120NoNetwork": "Senza connessione l'app avvia subito, mostra cosa è disponibile e disattiva le azioni che richiedono la rete"
+  "changelog120NoNetwork": "Senza connessione l'app avvia subito, mostra cosa è disponibile e disattiva le azioni che richiedono la rete",
+  "@coverageBreadthQuickHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthMediumHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthExtendedHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@stationDuplicateBody": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog130ImperialUnits": "Miglia e piedi: l’app segue le unità del tuo dispositivo, e nelle Impostazioni puoi scegliere il sistema a mano"
 }

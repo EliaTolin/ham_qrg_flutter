@@ -9,6 +9,7 @@ import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/locale_helper.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
+import 'package:hamqrg/common/widgets/units/unit_system_selector.dart';
 import 'package:hamqrg/config/app_configs.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/presentation/auth/widgets/sign_in_buttons.dart';
@@ -159,6 +160,11 @@ class UnregisteredProfileScreen extends HookConsumerWidget {
                     _buildSectionHeader(context, l10n.profileLanguage),
                     const Gap(12),
                     _buildLanguageButton(context, ref, isDark),
+                    const Gap(24),
+                    // Unit system section
+                    _buildSectionHeader(context, l10n.profileUnitSystem),
+                    const Gap(12),
+                    const UnitSystemSelector(),
                     const Gap(32),
                     // Version
                     ref.watch(packageInfoProvider).when(

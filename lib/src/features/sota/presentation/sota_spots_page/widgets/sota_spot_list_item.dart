@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/freshness_color_helper.dart';
 import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/router/app_router.dart';
@@ -18,12 +19,6 @@ class SotaSpotListItem extends StatelessWidget {
 
   final SotaSpot spot;
   final double? distanceKm;
-
-  String _formatDistance(double km) {
-    if (km < 1) return '${(km * 1000).round()} m';
-    if (km < 100) return '${km.toStringAsFixed(1)} km';
-    return '${km.round()} km';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +174,7 @@ class SotaSpotListItem extends StatelessWidget {
                               const SizedBox(width: 4),
                               Text(
                                 l10n.potaDistanceAway(
-                                  _formatDistance(distanceKm!),
+                                  context.units.distanceFromKm(distanceKm!),
                                 ),
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: colorScheme.onSurfaceVariant,

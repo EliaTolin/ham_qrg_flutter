@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/src/features/repeaters/domain/altimetric_profile/altimetric_profile.dart';
 
 /// Reusable altimetric profile chart with line-of-sight overlay.
@@ -145,21 +146,21 @@ class AltimetricProfileChart extends StatelessWidget {
             Expanded(
               child: _StatCard(
                 label: sourceElevationLabel,
-                value: '${sourcePoint.elevationM.toInt()} m',
+                value: context.units.elevation(sourcePoint.elevationM),
               ),
             ),
             const SizedBox(width: 8),
             Expanded(
               child: _StatCard(
                 label: totalDistanceLabel,
-                value: '${totalDist.toStringAsFixed(1)} km',
+                value: context.units.distanceFromKm(totalDist),
               ),
             ),
             const SizedBox(width: 8),
             Expanded(
               child: _StatCard(
                 label: destinationElevationLabel,
-                value: '${destinationPoint.elevationM.toInt()} m',
+                value: context.units.elevation(destinationPoint.elevationM),
               ),
             ),
           ],
@@ -326,7 +327,7 @@ class _Chart extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: Text(
-                    '${value.toStringAsFixed(1)} km',
+                    context.units.distanceFromKm(value),
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                       fontSize: 10,
@@ -384,7 +385,8 @@ class _Chart extends StatelessWidget {
               return touchedSpots.map((spot) {
                 if (spot.barIndex == 1) return null;
                 return LineTooltipItem(
-                  '${spot.y.toInt()} m\n${spot.x.toStringAsFixed(1)} km',
+                  '${context.units.elevation(spot.y)}\n'
+                  '${context.units.distanceFromKm(spot.x)}',
                   TextStyle(
                     color: colorScheme.onInverseSurface,
                     fontSize: 12,

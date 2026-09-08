@@ -877,8 +877,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get repeaterDetailSelectAccess => 'Selectează accesul';
 
   @override
-  String repeaterDetailDistanceWarning(int distance) {
-    return 'Trebuie să fii la maximum $distance km de repetor pentru a trimite feedback.';
+  String repeaterDetailDistanceWarning(String distance) {
+    return 'Trebuie să fii la maximum $distance de repetor pentru a trimite feedback.';
   }
 
   @override
@@ -906,7 +906,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String feedbackDistanceConfirmMessage(String distance) {
-    return 'Locația selectată este la $distance km de repetor. Confirmi că vrei să trimiți acest feedback pe propria răspundere?';
+    return 'Locația selectată este la $distance de repetor. Confirmi că vrei să trimiți acest feedback pe propria răspundere?';
   }
 
   @override
@@ -1476,6 +1476,18 @@ class AppLocalizationsRo extends AppLocalizations {
   String get profileLanguage => 'Limbă';
 
   @override
+  String get profileUnitSystem => 'Unități de măsură';
+
+  @override
+  String get profileUnitSystemAuto => 'Automat';
+
+  @override
+  String get profileUnitSystemMetric => 'Metric';
+
+  @override
+  String get profileUnitSystemImperial => 'Imperial';
+
+  @override
   String get profileLanguageSystem => 'Sistem';
 
   @override
@@ -2024,17 +2036,12 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String sotaLosObstructionAt(String distance, String height) {
-    return 'Obstacle at $distance km, +$height m';
+    return 'Obstacle at $distance, +$height';
   }
 
   @override
   String sotaPointsBadge(int count) {
     return '$count pt';
-  }
-
-  @override
-  String sotaAltitudeMeters(int m) {
-    return '$m m';
   }
 
   @override
@@ -2204,12 +2211,12 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String reachReachableDetail(String signal, String distance) {
-    return '$signal · $distance km · atinge pentru profil';
+    return '$signal · $distance · atinge pentru profil';
   }
 
   @override
   String reachDistanceFromHere(String distance) {
-    return '$distance km de aici';
+    return '$distance de aici';
   }
 
   @override
@@ -2239,8 +2246,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get linkProfileClear => 'Linie de vedere liberă';
 
   @override
-  String linkProfileCaption(int tx, int rx) {
-    return 'Profilul terenului și linia de vedere · TX $tx m · RX $rx m';
+  String linkProfileCaption(String tx, String rx) {
+    return 'Profilul terenului și linia de vedere · TX $tx · RX $rx';
   }
 
   @override
@@ -2409,14 +2416,19 @@ class AppLocalizationsRo extends AppLocalizations {
   String get coverageBreadthExtended => 'Extinsă';
 
   @override
-  String get coverageBreadthQuickHint => '80 km · cel mai rapid răspuns';
+  String coverageBreadthQuickHint(String radius) {
+    return '$radius · cel mai rapid răspuns';
+  }
 
   @override
-  String get coverageBreadthMediumHint => '100 km · echilibrată';
+  String coverageBreadthMediumHint(String radius) {
+    return '$radius · echilibrată';
+  }
 
   @override
-  String get coverageBreadthExtendedHint =>
-      '150 km · mai departe, așteptare mai lungă';
+  String coverageBreadthExtendedHint(String radius) {
+    return '$radius · mai departe, așteptare mai lungă';
+  }
 
   @override
   String get coverageResultSubtitle => 'Din punctul selectat';
@@ -2505,8 +2517,9 @@ class AppLocalizationsRo extends AppLocalizations {
   String get stationDuplicateTitle => 'Punct deja salvat';
 
   @override
-  String get stationDuplicateBody =>
-      'Există deja un post la mai puțin de 200 de metri. Îl actualizezi sau creezi unul separat?';
+  String stationDuplicateBody(String distance) {
+    return 'Există deja un post la mai puțin de $distance. Îl actualizezi sau creezi unul separat?';
+  }
 
   @override
   String get stationDuplicateUpdate => 'Actualizează';
@@ -2597,8 +2610,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get spotsManualRefreshHint => 'Atinge pentru actualizare';
 
   @override
-  String coverageResultScope(int km, int count) {
-    return 'pe o rază de $km km · $count evaluate';
+  String coverageResultScope(String km, int count) {
+    return 'pe o rază de $km · $count evaluate';
   }
 
   @override
@@ -2666,7 +2679,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String offlineMapsRegionSubtitle(String radius, String size) {
-    return 'Rază $radius km · $size';
+    return 'Rază $radius · $size';
   }
 
   @override
@@ -2724,4 +2737,8 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get changelog120NoNetwork =>
       'Fără conexiune aplicația pornește imediat, arată ce este disponibil și dezactivează acțiunile care necesită rețea';
+
+  @override
+  String get changelog130ImperialUnits =>
+      'Mile și picioare: aplicația urmează acum unitățile dispozitivului, iar sistemul poate fi ales din Setări';
 }

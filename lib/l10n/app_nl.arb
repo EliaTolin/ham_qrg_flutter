@@ -321,11 +321,11 @@
   "repeaterDetailOthersReports": "Meldingen van andere gebruikers",
   "repeaterDetailRemove": "Verwijderen",
   "repeaterDetailSelectAccess": "Selecteer toegang",
-  "repeaterDetailDistanceWarning": "Je moet binnen {distance} km van de repeater zijn om feedback te sturen.",
+  "repeaterDetailDistanceWarning": "Je moet binnen {distance} van de repeater zijn om feedback te sturen.",
   "@repeaterDetailDistanceWarning": {
     "placeholders": {
       "distance": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -336,7 +336,7 @@
   "repeaterDetailLocationPlaceholder": "Waar was je? (bijv. Amsterdam)",
   "repeaterDetailLocationSelectHint": "Selecteer een plaats uit de suggesties",
   "feedbackDistanceConfirmTitle": "Verzending bevestigen",
-  "feedbackDistanceConfirmMessage": "De geselecteerde locatie is {distance} km van de repeater. Bevestig je dat je deze feedback op eigen verantwoordelijkheid wilt versturen?",
+  "feedbackDistanceConfirmMessage": "De geselecteerde locatie is {distance} van de repeater. Bevestig je dat je deze feedback op eigen verantwoordelijkheid wilt versturen?",
   "@feedbackDistanceConfirmMessage": {
     "placeholders": {
       "distance": {
@@ -571,6 +571,10 @@
     }
   },
   "profileLanguage": "Taal",
+  "profileUnitSystem": "Eenheden",
+  "profileUnitSystemAuto": "Automatisch",
+  "profileUnitSystemMetric": "Metrisch",
+  "profileUnitSystemImperial": "Imperiaal",
   "profileLanguageSystem": "Systeem",
   "profileLanguageItalian": "Italiano",
   "profileLanguageEnglish": "English",
@@ -795,9 +799,8 @@
   "sotaSummitPursuit": "View toward the summit",
   "sotaLosClear": "Clear line of sight",
   "sotaLosObstructed": "Possible obstruction",
-  "sotaLosObstructionAt": "Obstacle at {distance} km, +{height} m",
+  "sotaLosObstructionAt": "Obstacle at {distance}, +{height}",
   "sotaPointsBadge": "{count} pt",
-  "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
   "spotsFiltersTitle": "Filters",
   "spotsFilterBand": "Band",
@@ -851,13 +854,6 @@
   "@sotaPointsBadge": {
     "placeholders": {
       "count": {
-        "type": "int"
-      }
-    }
-  },
-  "@sotaAltitudeMeters": {
-    "placeholders": {
-      "m": {
         "type": "int"
       }
     }
@@ -964,8 +960,8 @@
   "reachDiscoverCta": "Ontdek het met PRO",
   "reachReachable": "Je bereikt het",
   "reachOutOfCoverage": "Buiten dekking",
-  "reachReachableDetail": "{signal} · {distance} km · tik voor het profiel",
-  "reachDistanceFromHere": "{distance} km vanaf hier",
+  "reachReachableDetail": "{signal} · {distance} · tik voor het profiel",
+  "reachDistanceFromHere": "{distance} vanaf hier",
   "reachComputing": "Dekking berekenen…",
   "reachRepeaterFallback": "Relais",
   "reachMapButton": "Wat bereik je?",
@@ -974,7 +970,7 @@
   "reachUpsellLater": "Later",
   "linkProfileObstructed": "Obstakel op het pad (signaal via diffractie)",
   "linkProfileClear": "Vrij zicht",
-  "linkProfileCaption": "Terreinprofiel en zichtlijn · TX {tx} m · RX {rx} m",
+  "linkProfileCaption": "Terreinprofiel en zichtlijn · TX {tx} · RX {rx}",
   "proUnlockCta": "Ontgrendel met PRO",
   "proWelcomeTitle": "Welkom bij PRO! 🎉",
   "proWelcomeBody": "Je hebt de dekkingskaart, de relais die je vanaf je locatie bereikt en alle PRO-functies ontgrendeld. 📡",
@@ -1027,9 +1023,9 @@
   "coverageBreadthQuick": "Snel",
   "coverageBreadthMedium": "Gemiddeld",
   "coverageBreadthExtended": "Uitgebreid",
-  "coverageBreadthQuickHint": "80 km · snelste antwoord",
-  "coverageBreadthMediumHint": "100 km · in balans",
-  "coverageBreadthExtendedHint": "150 km · verder, langere wachttijd",
+  "coverageBreadthQuickHint": "{radius} · snelste antwoord",
+  "coverageBreadthMediumHint": "{radius} · in balans",
+  "coverageBreadthExtendedHint": "{radius} · verder, langere wachttijd",
   "coverageResultSubtitle": "Vanaf het geselecteerde punt",
   "coverageResultEmptyNoReachable": "Geen enkele repeater is bereikbaar vanaf dit punt",
   "coverageResultEmptyNoRepeaters": "Geen repeaters geregistreerd in dit gebied",
@@ -1086,7 +1082,7 @@
   "stationStaleNotice": "Deze gegevens zijn mogelijk verouderd",
   "stationMissingEntry": "Gegevens offline niet beschikbaar",
   "stationDuplicateTitle": "Punt al opgeslagen",
-  "stationDuplicateBody": "Er is al een locatie binnen 200 meter. Bijwerken of een aparte maken?",
+  "stationDuplicateBody": "Er is al een locatie binnen {distance}. Bijwerken of een aparte maken?",
   "stationDuplicateUpdate": "Bijwerken",
   "stationDuplicateCreate": "Apart maken",
   "stationSaveFailed": "Opslaan mislukt: onvoldoende ruimte",
@@ -1153,11 +1149,11 @@
     }
   },
   "spotsManualRefreshHint": "Tik om bij te werken",
-  "coverageResultScope": "binnen {km} km · {count} beoordeeld",
+  "coverageResultScope": "binnen {km} · {count} beoordeeld",
   "@coverageResultScope": {
     "placeholders": {
       "km": {
-        "type": "int"
+        "type": "String"
       },
       "count": {
         "type": "int"
@@ -1182,7 +1178,7 @@
   "offlineMapsDeleteConfirmTitle": "Regio verwijderen?",
   "offlineMapsDeleteConfirmMessage": "“{name}” is offline niet meer beschikbaar.",
   "offlineMapsDeleteConfirm": "Verwijderen",
-  "offlineMapsRegionSubtitle": "Straal {radius} km · {size}",
+  "offlineMapsRegionSubtitle": "Straal {radius} · {size}",
   "offlineMapsIncomplete": "Onvolledige download",
   "offlineMapsResume": "Hervatten",
   "offlineMapsCenterInfo": "De regio wordt gecentreerd op je huidige locatie.",
@@ -1204,5 +1200,34 @@
   "changelog120CoverageSearch": "Dekking zoeken vanaf elk punt: zoek een plaats, plak coördinaten of druk lang op de kaart om te zien wat je van daaruit bereikt",
   "changelog120SavedStations": "Mijn stations: sla de punten op die je interesseren en raadpleeg ze ook offline (PRO)",
   "changelog120SpotsRefresh": "SOTA- en POTA-spots verversen elke minuut vanzelf, met gekleurde badges per mode (CW, SSB, FT8…)",
-  "changelog120NoNetwork": "Zonder verbinding start de app meteen, toont wat beschikbaar is en schakelt acties uit die netwerk vereisen"
+  "changelog120NoNetwork": "Zonder verbinding start de app meteen, toont wat beschikbaar is en schakelt acties uit die netwerk vereisen",
+  "@coverageBreadthQuickHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthMediumHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthExtendedHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@stationDuplicateBody": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog130ImperialUnits": "Mijlen en voet: de app volgt nu de eenheden van je apparaat, en je kunt het systeem zelf kiezen in Instellingen"
 }

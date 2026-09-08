@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/src/features/sota/domain/sota_spot.dart';
 import 'package:hamqrg/src/features/sota/domain/sota_summit.dart';
 import 'package:hamqrg/themes/app_colors.dart';
@@ -202,6 +203,8 @@ class _SummitHero extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final altitude =
+        context.units.summitAltitudeParts(metres: altitudeM, feet: altitudeFt);
 
     return Row(
       children: [
@@ -225,7 +228,7 @@ class _SummitHero extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '$altitudeM',
+                          text: altitude.value,
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w800,
                             color: altTone,
@@ -233,14 +236,15 @@ class _SummitHero extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: ' m',
+                          text: ' ${altitude.symbol}',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: altTone,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         TextSpan(
-                          text: '  ·  $altitudeFt ft',
+                          text:
+                              '  ·  ${context.units.summitAltitudeSecondary(metres: altitudeM, feet: altitudeFt)}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: colorScheme.onSurfaceVariant,
                             fontFeatures: const [FontFeature.tabularFigures()],
@@ -321,7 +325,7 @@ class _ChaseStatsRow extends StatelessWidget {
           child: _ChaseStat(
             icon: Icons.near_me,
             label: l10n.sotaDistance,
-            value: '${distanceKm.toStringAsFixed(1)} km',
+            value: context.units.distanceFromKm(distanceKm),
           ),
         ),
         _ChaseDivider(),

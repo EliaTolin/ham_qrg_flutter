@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/utils/signal_helper.dart';
@@ -398,7 +399,7 @@ class _StatsFooter extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            _formatDistance(repeater.distanceMeters!),
+            context.units.distance(repeater.distanceMeters!),
             style: theme.textTheme.bodySmall?.copyWith(
               color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w600,
@@ -407,12 +408,5 @@ class _StatsFooter extends StatelessWidget {
         ],
       ],
     );
-  }
-
-  String _formatDistance(double distanceMeters) {
-    if (distanceMeters < 1000) {
-      return '${distanceMeters.toStringAsFixed(0)} m';
-    }
-    return '${(distanceMeters / 1000).toStringAsFixed(1)} km';
   }
 }

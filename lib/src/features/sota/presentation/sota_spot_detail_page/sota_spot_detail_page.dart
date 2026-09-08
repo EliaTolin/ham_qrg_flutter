@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/freshness_color_helper.dart';
 import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
@@ -496,8 +497,10 @@ class _SummitInfoCard extends StatelessWidget {
     final tiles = <_InfoTileData>[
       _InfoTileData(
         icon: Icons.terrain,
-        label: l10n.sotaAltitudeMeters(altitudeM),
-        value: '$altitudeFt ft',
+        label:
+            context.units.summitAltitude(metres: altitudeM, feet: altitudeFt),
+        value: context.units
+            .summitAltitudeSecondary(metres: altitudeM, feet: altitudeFt),
         color: colorScheme.primary,
       ),
       _InfoTileData(
@@ -510,7 +513,7 @@ class _SummitInfoCard extends StatelessWidget {
         _InfoTileData(
           icon: Icons.straighten,
           label: l10n.sotaDistance,
-          value: _formatDistance(distanceKm!),
+          value: context.units.distanceFromKm(distanceKm!),
           color: colorScheme.tertiary,
         ),
       if (bearingDegrees != null)
@@ -622,12 +625,6 @@ class _SummitInfoCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String _formatDistance(double km) {
-    if (km < 1) return '${(km * 1000).round()} m';
-    if (km < 10) return '${km.toStringAsFixed(1)} km';
-    return '${km.round()} km';
   }
 }
 

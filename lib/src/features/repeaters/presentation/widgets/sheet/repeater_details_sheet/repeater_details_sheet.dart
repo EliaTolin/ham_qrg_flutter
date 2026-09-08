@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/router/app_router.dart';
@@ -299,9 +300,7 @@ class _RepeaterDetailsContent extends StatelessWidget {
                 if (state.distanceInMeters != null)
                   _InfoChip(
                     icon: Icons.straighten,
-                    label: RepeaterFormatHelper.formatDistance(
-                      state.distanceInMeters,
-                    ),
+                    label: context.units.distance(state.distanceInMeters!),
                   ),
               ],
             ),

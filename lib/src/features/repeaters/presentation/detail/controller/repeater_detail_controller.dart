@@ -277,9 +277,12 @@ class RepeaterDetailController extends _$RepeaterDetailController {
     }
 
     if (!isWithinAllowedDistance()) {
-      throw Exception(
-        'You must be within ${AppConfigs.maxFeedbackDistanceKm.toInt()} km '
-        'of the repeater to submit feedback.',
+      // Guardia di programmazione, non copy: la UI disabilita l'invio
+      // fuori raggio (`isWithinAllowedDistance`), quindi questo messaggio
+      // non raggiunge mai un utente e non va localizzato. Prima conteneva
+      // una frase inglese con l'unità dentro, in violazione di CLAUDE.md.
+      throw StateError(
+        'submitFeedback invocato oltre la distanza massima consentita.',
       );
     }
 

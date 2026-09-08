@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:geolocator/geolocator.dart' hide Position;
 import 'package:hamqrg/common/extension/l10n_extension.dart';
-import 'package:hamqrg/common/utils/repeater_format_helper.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/feedback_type.dart';
 import 'package:hamqrg/src/features/repeaters/domain/feedback/repeater_feedback.dart';
@@ -356,8 +356,7 @@ class _DistanceCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    RepeaterFormatHelper.formatDistance(distanceMeters)
-                        .replaceAll(' away', ''),
+                    context.units.distance(distanceMeters!),
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: colorScheme.onSurface,

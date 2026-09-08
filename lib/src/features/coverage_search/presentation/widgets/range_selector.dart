@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_breadth.dart';
 
 /// Scelta del raggio di ricerca (FR-024, FR-025).
@@ -34,11 +35,16 @@ class RangeSelector extends StatelessWidget {
           SearchBreadth.extended => l10n.coverageBreadthExtended,
         };
 
-    String hintOf(SearchBreadth b) => switch (b) {
-          SearchBreadth.quick => l10n.coverageBreadthQuickHint,
-          SearchBreadth.medium => l10n.coverageBreadthMediumHint,
-          SearchBreadth.extended => l10n.coverageBreadthExtendedHint,
-        };
+    // Il raggio esce dal testo tradotto e diventa un parametro: l'identità
+    // metrica del preset non cambia, cambia solo come è scritta (FR-009).
+    String hintOf(SearchBreadth b) {
+      final radius = context.units.presetRadius(b.radiusKm);
+      return switch (b) {
+        SearchBreadth.quick => l10n.coverageBreadthQuickHint(radius),
+        SearchBreadth.medium => l10n.coverageBreadthMediumHint(radius),
+        SearchBreadth.extended => l10n.coverageBreadthExtendedHint(radius),
+      };
+    }
 
     return Row(
       children: [
@@ -48,7 +54,7 @@ class RangeSelector extends StatelessWidget {
               label: labelOf(breadth),
               semanticsLabel: '${l10n.coverageBreadthTitle}: '
                   '${labelOf(breadth)}, ${hintOf(breadth)}',
-              kilometres: breadth.radiusKm.toInt(),
+              radiusLabel: context.units.presetRadius(breadth.radiusKm),
               isSelected: breadth == selected,
               onTap: enabled ? () => onChanged(breadth) : null,
             ),
@@ -64,14 +70,14 @@ class _RangePill extends StatelessWidget {
   const _RangePill({
     required this.label,
     required this.semanticsLabel,
-    required this.kilometres,
+    required this.radiusLabel,
     required this.isSelected,
     required this.onTap,
   });
 
   final String label;
   final String semanticsLabel;
-  final int kilometres;
+  final String radiusLabel;
   final bool isSelected;
   final VoidCallback? onTap;
 
@@ -113,7 +119,7 @@ class _RangePill extends StatelessWidget {
               ),
               const SizedBox(height: 2),
               Text(
-                '$kilometres km',
+                radiusLabel,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: foreground.withValues(alpha: 0.75),
                   fontFamily: 'monospace',

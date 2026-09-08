@@ -824,8 +824,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get repeaterDetailSelectAccess => 'Hozzáférés kiválasztása';
 
   @override
-  String repeaterDetailDistanceWarning(int distance) {
-    return 'A visszajelzés küldéséhez $distance km-en belül kell lenned az átjátszótól.';
+  String repeaterDetailDistanceWarning(String distance) {
+    return 'A visszajelzés küldéséhez $distance-en belül kell lenned az átjátszótól.';
   }
 
   @override
@@ -852,7 +852,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String feedbackDistanceConfirmMessage(String distance) {
-    return 'A kiválasztott helyszín $distance km-re van az átjátszótól. Megerősíted, hogy saját felelősségedre küldöd el ezt a visszajelzést?';
+    return 'A kiválasztott helyszín $distance-re van az átjátszótól. Megerősíted, hogy saját felelősségedre küldöd el ezt a visszajelzést?';
   }
 
   @override
@@ -1412,6 +1412,18 @@ class AppLocalizationsHu extends AppLocalizations {
   String get profileLanguage => 'Nyelv';
 
   @override
+  String get profileUnitSystem => 'Mértékegységek';
+
+  @override
+  String get profileUnitSystemAuto => 'Automatikus';
+
+  @override
+  String get profileUnitSystemMetric => 'Metrikus';
+
+  @override
+  String get profileUnitSystemImperial => 'Angolszász';
+
+  @override
   String get profileLanguageSystem => 'Rendszer';
 
   @override
@@ -1959,17 +1971,12 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String sotaLosObstructionAt(String distance, String height) {
-    return 'Obstacle at $distance km, +$height m';
+    return 'Obstacle at $distance, +$height';
   }
 
   @override
   String sotaPointsBadge(int count) {
     return '$count pt';
-  }
-
-  @override
-  String sotaAltitudeMeters(int m) {
-    return '$m m';
   }
 
   @override
@@ -2139,12 +2146,12 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String reachReachableDetail(String signal, String distance) {
-    return '$signal · $distance km · koppints a profilért';
+    return '$signal · $distance · koppints a profilért';
   }
 
   @override
   String reachDistanceFromHere(String distance) {
-    return '$distance km innen';
+    return '$distance innen';
   }
 
   @override
@@ -2174,8 +2181,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get linkProfileClear => 'Szabad rálátás';
 
   @override
-  String linkProfileCaption(int tx, int rx) {
-    return 'Terepprofil és rálátás · TX $tx m · RX $rx m';
+  String linkProfileCaption(String tx, String rx) {
+    return 'Terepprofil és rálátás · TX $tx · RX $rx';
   }
 
   @override
@@ -2346,14 +2353,19 @@ class AppLocalizationsHu extends AppLocalizations {
   String get coverageBreadthExtended => 'Kiterjesztett';
 
   @override
-  String get coverageBreadthQuickHint => '80 km · leggyorsabb válasz';
+  String coverageBreadthQuickHint(String radius) {
+    return '$radius · leggyorsabb válasz';
+  }
 
   @override
-  String get coverageBreadthMediumHint => '100 km · kiegyensúlyozott';
+  String coverageBreadthMediumHint(String radius) {
+    return '$radius · kiegyensúlyozott';
+  }
 
   @override
-  String get coverageBreadthExtendedHint =>
-      '150 km · távolabb, hosszabb várakozás';
+  String coverageBreadthExtendedHint(String radius) {
+    return '$radius · távolabb, hosszabb várakozás';
+  }
 
   @override
   String get coverageResultSubtitle => 'A kiválasztott pontból';
@@ -2444,8 +2456,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get stationDuplicateTitle => 'A pont már mentve van';
 
   @override
-  String get stationDuplicateBody =>
-      '200 méteren belül már van egy hely. Frissíted, vagy külön hozol létre?';
+  String stationDuplicateBody(String distance) {
+    return '$distance-en belül már van egy hely. Frissíted, vagy külön hozol létre?';
+  }
 
   @override
   String get stationDuplicateUpdate => 'Frissítés';
@@ -2536,8 +2549,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get spotsManualRefreshHint => 'Koppintson a frissítéshez';
 
   @override
-  String coverageResultScope(int km, int count) {
-    return '$km km-en belül · $count kiértékelve';
+  String coverageResultScope(String km, int count) {
+    return '$km-en belül · $count kiértékelve';
   }
 
   @override
@@ -2606,7 +2619,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String offlineMapsRegionSubtitle(String radius, String size) {
-    return 'Sugár: $radius km · $size';
+    return 'Sugár: $radius · $size';
   }
 
   @override
@@ -2664,4 +2677,8 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get changelog120NoNetwork =>
       'Kapcsolat nélkül az app azonnal indul, megmutatja, mi érhető el, és letiltja a hálózatot igénylő műveleteket';
+
+  @override
+  String get changelog130ImperialUnits =>
+      'Mérföld és láb: az alkalmazás mostantól követi a készülék mértékegységeit, a rendszert a Beállításokban is kiválaszthatod';
 }

@@ -8,6 +8,7 @@ import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/utils/locale_helper.dart';
 import 'package:hamqrg/common/widgets/profile/profile_avatar.dart';
+import 'package:hamqrg/common/widgets/units/unit_system_selector.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/profile/presentation/user_settings/controller/user_settings_controller.dart';
 import 'package:hamqrg/src/features/profile/provider/locale_notifier/locale_notifier.dart';
@@ -278,6 +279,16 @@ class UserSettingsScreen extends HookConsumerWidget {
                         },
                       ),
                     ),
+                    const Gap(24),
+
+                    // Unit system selector
+                    _buildFieldLabel(
+                      l10n.profileUnitSystem,
+                      theme,
+                      colorScheme,
+                    ),
+                    const Gap(8),
+                    const UnitSystemSelector(),
                     const Gap(24),
 
                     // Language selector

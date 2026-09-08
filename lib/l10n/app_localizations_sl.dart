@@ -869,8 +869,8 @@ class AppLocalizationsSl extends AppLocalizations {
   String get repeaterDetailSelectAccess => 'Izberi dostop';
 
   @override
-  String repeaterDetailDistanceWarning(int distance) {
-    return 'Za pošiljanje povratne informacije morate biti v razdalji $distance km od repetitorja.';
+  String repeaterDetailDistanceWarning(String distance) {
+    return 'Za pošiljanje povratne informacije morate biti v razdalji $distance od repetitorja.';
   }
 
   @override
@@ -897,7 +897,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String feedbackDistanceConfirmMessage(String distance) {
-    return 'Izbrana lokacija je $distance km od repetitorja. Potrjujete, da želite poslati to povratno informacijo na lastno odgovornost?';
+    return 'Izbrana lokacija je $distance od repetitorja. Potrjujete, da želite poslati to povratno informacijo na lastno odgovornost?';
   }
 
   @override
@@ -1473,6 +1473,18 @@ class AppLocalizationsSl extends AppLocalizations {
   String get profileLanguage => 'Jezik';
 
   @override
+  String get profileUnitSystem => 'Merske enote';
+
+  @override
+  String get profileUnitSystemAuto => 'Samodejno';
+
+  @override
+  String get profileUnitSystemMetric => 'Metrični';
+
+  @override
+  String get profileUnitSystemImperial => 'Imperialni';
+
+  @override
   String get profileLanguageSystem => 'Sistemski';
 
   @override
@@ -2019,17 +2031,12 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String sotaLosObstructionAt(String distance, String height) {
-    return 'Obstacle at $distance km, +$height m';
+    return 'Obstacle at $distance, +$height';
   }
 
   @override
   String sotaPointsBadge(int count) {
     return '$count pt';
-  }
-
-  @override
-  String sotaAltitudeMeters(int m) {
-    return '$m m';
   }
 
   @override
@@ -2201,12 +2208,12 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String reachReachableDetail(String signal, String distance) {
-    return '$signal · $distance km · tapni za profil';
+    return '$signal · $distance · tapni za profil';
   }
 
   @override
   String reachDistanceFromHere(String distance) {
-    return '$distance km od tu';
+    return '$distance od tu';
   }
 
   @override
@@ -2235,8 +2242,8 @@ class AppLocalizationsSl extends AppLocalizations {
   String get linkProfileClear => 'Prosta vidna linija';
 
   @override
-  String linkProfileCaption(int tx, int rx) {
-    return 'Profil terena in vidna linija · TX $tx m · RX $rx m';
+  String linkProfileCaption(String tx, String rx) {
+    return 'Profil terena in vidna linija · TX $tx · RX $rx';
   }
 
   @override
@@ -2405,13 +2412,19 @@ class AppLocalizationsSl extends AppLocalizations {
   String get coverageBreadthExtended => 'Razširjeno';
 
   @override
-  String get coverageBreadthQuickHint => '80 km · najhitrejši odgovor';
+  String coverageBreadthQuickHint(String radius) {
+    return '$radius · najhitrejši odgovor';
+  }
 
   @override
-  String get coverageBreadthMediumHint => '100 km · uravnoteženo';
+  String coverageBreadthMediumHint(String radius) {
+    return '$radius · uravnoteženo';
+  }
 
   @override
-  String get coverageBreadthExtendedHint => '150 km · dlje, daljše čakanje';
+  String coverageBreadthExtendedHint(String radius) {
+    return '$radius · dlje, daljše čakanje';
+  }
 
   @override
   String get coverageResultSubtitle => 'Z izbrane točke';
@@ -2501,8 +2514,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get stationDuplicateTitle => 'Točka je že shranjena';
 
   @override
-  String get stationDuplicateBody =>
-      'V 200 metrih že obstaja postojanka. Jo posodobim ali ustvarim ločeno?';
+  String stationDuplicateBody(String distance) {
+    return 'V $distance že obstaja postojanka. Jo posodobim ali ustvarim ločeno?';
+  }
 
   @override
   String get stationDuplicateUpdate => 'Posodobi';
@@ -2593,8 +2607,8 @@ class AppLocalizationsSl extends AppLocalizations {
   String get spotsManualRefreshHint => 'Tapnite za posodobitev';
 
   @override
-  String coverageResultScope(int km, int count) {
-    return 'v obsegu $km km · ovrednotenih: $count';
+  String coverageResultScope(String km, int count) {
+    return 'v obsegu $km · ovrednotenih: $count';
   }
 
   @override
@@ -2661,7 +2675,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String offlineMapsRegionSubtitle(String radius, String size) {
-    return 'Polmer $radius km · $size';
+    return 'Polmer $radius · $size';
   }
 
   @override
@@ -2719,4 +2733,8 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get changelog120NoNetwork =>
       'Brez povezave se aplikacija zažene takoj, pokaže, kaj je na voljo, in onemogoči dejanja, ki zahtevajo omrežje';
+
+  @override
+  String get changelog130ImperialUnits =>
+      'Milje in čevlji: aplikacija zdaj sledi enotam vaše naprave, sistem pa lahko izberete v Nastavitvah';
 }

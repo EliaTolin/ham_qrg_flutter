@@ -321,11 +321,11 @@
   "repeaterDetailOthersReports": "Hlásenia ostatných používateľov",
   "repeaterDetailRemove": "Odstrániť",
   "repeaterDetailSelectAccess": "Vybrať prístup",
-  "repeaterDetailDistanceWarning": "Na odoslanie spätnej väzby musíte byť do {distance} km od prevádzača.",
+  "repeaterDetailDistanceWarning": "Na odoslanie spätnej väzby musíte byť do {distance} od prevádzača.",
   "@repeaterDetailDistanceWarning": {
     "placeholders": {
       "distance": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -336,7 +336,7 @@
   "repeaterDetailLocationPlaceholder": "Kde ste boli? (napr. Bratislava)",
   "repeaterDetailLocationSelectHint": "Vyberte miesto z návrhov",
   "feedbackDistanceConfirmTitle": "Potvrdenie odoslania",
-  "feedbackDistanceConfirmMessage": "Vybrané miesto je {distance} km od prevádzača. Potvrdzujete, že chcete odoslať túto spätnú väzbu na vlastnú zodpovednosť?",
+  "feedbackDistanceConfirmMessage": "Vybrané miesto je {distance} od prevádzača. Potvrdzujete, že chcete odoslať túto spätnú väzbu na vlastnú zodpovednosť?",
   "@feedbackDistanceConfirmMessage": {
     "placeholders": {
       "distance": {
@@ -571,6 +571,10 @@
     }
   },
   "profileLanguage": "Jazyk",
+  "profileUnitSystem": "Jednotky",
+  "profileUnitSystemAuto": "Automaticky",
+  "profileUnitSystemMetric": "Metrické",
+  "profileUnitSystemImperial": "Imperiálne",
   "profileLanguageSystem": "Systémový",
   "profileLanguageItalian": "Italiano",
   "profileLanguageEnglish": "English",
@@ -795,9 +799,8 @@
   "sotaSummitPursuit": "View toward the summit",
   "sotaLosClear": "Clear line of sight",
   "sotaLosObstructed": "Possible obstruction",
-  "sotaLosObstructionAt": "Obstacle at {distance} km, +{height} m",
+  "sotaLosObstructionAt": "Obstacle at {distance}, +{height}",
   "sotaPointsBadge": "{count} pt",
-  "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
   "spotsFiltersTitle": "Filtre",
   "spotsFilterBand": "Pásmo",
@@ -851,13 +854,6 @@
   "@sotaPointsBadge": {
     "placeholders": {
       "count": {
-        "type": "int"
-      }
-    }
-  },
-  "@sotaAltitudeMeters": {
-    "placeholders": {
-      "m": {
         "type": "int"
       }
     }
@@ -964,8 +960,8 @@
   "reachDiscoverCta": "Objav to s PRO",
   "reachReachable": "Dosiahneš ho",
   "reachOutOfCoverage": "Mimo pokrytia",
-  "reachReachableDetail": "{signal} · {distance} km · ťukni pre profil",
-  "reachDistanceFromHere": "{distance} km odtiaľto",
+  "reachReachableDetail": "{signal} · {distance} · ťukni pre profil",
+  "reachDistanceFromHere": "{distance} odtiaľto",
   "reachComputing": "Výpočet pokrytia…",
   "reachRepeaterFallback": "Prevádzač",
   "reachMapButton": "Čo dosiahneš?",
@@ -974,7 +970,7 @@
   "reachUpsellLater": "Neskôr",
   "linkProfileObstructed": "Prekážka na trase (signál difrakciou)",
   "linkProfileClear": "Priama viditeľnosť",
-  "linkProfileCaption": "Profil terénu a priama viditeľnosť · TX {tx} m · RX {rx} m",
+  "linkProfileCaption": "Profil terénu a priama viditeľnosť · TX {tx} · RX {rx}",
   "proUnlockCta": "Odomknúť s PRO",
   "proWelcomeTitle": "Vitaj v PRO! 🎉",
   "proWelcomeBody": "Odomkol si mapu pokrytia, prevádzače, na ktoré dosiahneš zo svojej polohy, a všetky funkcie PRO. 📡",
@@ -1027,9 +1023,9 @@
   "coverageBreadthQuick": "Rýchle",
   "coverageBreadthMedium": "Stredné",
   "coverageBreadthExtended": "Rozšírené",
-  "coverageBreadthQuickHint": "80 km · najrýchlejšia odpoveď",
-  "coverageBreadthMediumHint": "100 km · vyvážené",
-  "coverageBreadthExtendedHint": "150 km · ďalej, dlhšie čakanie",
+  "coverageBreadthQuickHint": "{radius} · najrýchlejšia odpoveď",
+  "coverageBreadthMediumHint": "{radius} · vyvážené",
+  "coverageBreadthExtendedHint": "{radius} · ďalej, dlhšie čakanie",
   "coverageResultSubtitle": "Z vybraného bodu",
   "coverageResultEmptyNoReachable": "Z tohto bodu nie je dosiahnuteľný žiadny prevádzač",
   "coverageResultEmptyNoRepeaters": "V tejto oblasti nie je evidovaný žiadny prevádzač",
@@ -1086,7 +1082,7 @@
   "stationStaleNotice": "Údaje nemusia byť aktuálne",
   "stationMissingEntry": "Údaje nie sú offline k dispozícii",
   "stationDuplicateTitle": "Bod je už uložený",
-  "stationDuplicateBody": "Do 200 metrov už existuje stanovište. Aktualizovať, alebo vytvoriť samostatné?",
+  "stationDuplicateBody": "Do {distance} už existuje stanovište. Aktualizovať, alebo vytvoriť samostatné?",
   "stationDuplicateUpdate": "Aktualizovať",
   "stationDuplicateCreate": "Vytvoriť samostatné",
   "stationSaveFailed": "Uloženie zlyhalo: nedostatok miesta",
@@ -1153,11 +1149,11 @@
     }
   },
   "spotsManualRefreshHint": "Klepnutím obnovíte",
-  "coverageResultScope": "do {km} km · vyhodnotených: {count}",
+  "coverageResultScope": "do {km} · vyhodnotených: {count}",
   "@coverageResultScope": {
     "placeholders": {
       "km": {
-        "type": "int"
+        "type": "String"
       },
       "count": {
         "type": "int"
@@ -1182,7 +1178,7 @@
   "offlineMapsDeleteConfirmTitle": "Odstrániť oblasť?",
   "offlineMapsDeleteConfirmMessage": "„{name}“ už nebude offline k dispozícii.",
   "offlineMapsDeleteConfirm": "Odstrániť",
-  "offlineMapsRegionSubtitle": "Polomer {radius} km · {size}",
+  "offlineMapsRegionSubtitle": "Polomer {radius} · {size}",
   "offlineMapsIncomplete": "Nedokončené sťahovanie",
   "offlineMapsResume": "Pokračovať",
   "offlineMapsCenterInfo": "Oblasť bude vycentrovaná na vašu aktuálnu polohu.",
@@ -1204,5 +1200,34 @@
   "changelog120CoverageSearch": "Hľadanie pokrytia z ľubovoľného bodu: vyhľadajte miesto, vložte súradnice alebo podržte prst na mape a zistite, čo odtiaľ dosiahnete",
   "changelog120SavedStations": "Moje stanovištia: uložte si body, ktoré vás zaujímajú, a prezerajte si ich aj offline (PRO)",
   "changelog120SpotsRefresh": "Spoty SOTA a POTA sa obnovujú samy každú minútu, s farebnými odznakmi podľa módu (CW, SSB, FT8…)",
-  "changelog120NoNetwork": "Bez pripojenia sa aplikácia spustí okamžite, ukáže, čo je k dispozícii, a vypne akcie vyžadujúce sieť"
+  "changelog120NoNetwork": "Bez pripojenia sa aplikácia spustí okamžite, ukáže, čo je k dispozícii, a vypne akcie vyžadujúce sieť",
+  "@coverageBreadthQuickHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthMediumHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthExtendedHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@stationDuplicateBody": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog130ImperialUnits": "Míle a stopy: aplikácia teraz rešpektuje jednotky vášho zariadenia a systém si môžete zvoliť v Nastaveniach"
 }

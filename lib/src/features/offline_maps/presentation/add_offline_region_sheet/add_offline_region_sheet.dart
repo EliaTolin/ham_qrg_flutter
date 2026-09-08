@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hamqrg/clients/mapbox_offline/impl/mapbox_offline_client_impl.dart';
 import 'package:hamqrg/clients/mapbox_offline/mapbox_offline_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/bytes_format_helper.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_point.dart';
 import 'package:hamqrg/src/features/coverage_search/presentation/widgets/place_search_bar.dart';
@@ -216,7 +217,7 @@ class _AddOfflineRegionSheet extends HookConsumerWidget {
             children: [
               for (final radius in _radiusOptionsKm)
                 ChoiceChip(
-                  label: Text('${radius.toStringAsFixed(0)} km'),
+                  label: Text(context.units.presetRadius(radius)),
                   selected: selectedRadius.value == radius,
                   onSelected: (_) => selectedRadius.value = radius,
                 ),

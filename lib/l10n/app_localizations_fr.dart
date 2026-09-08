@@ -826,8 +826,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get repeaterDetailSelectAccess => 'Sélectionner l\'accès';
 
   @override
-  String repeaterDetailDistanceWarning(int distance) {
-    return 'Vous devez être à moins de $distance km du relais pour envoyer un feedback.';
+  String repeaterDetailDistanceWarning(String distance) {
+    return 'Vous devez être à moins de $distance du relais pour envoyer un feedback.';
   }
 
   @override
@@ -854,7 +854,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String feedbackDistanceConfirmMessage(String distance) {
-    return 'Le lieu sélectionné est à $distance km du relais. Confirmez-vous vouloir envoyer ce feedback sous votre responsabilité ?';
+    return 'Le lieu sélectionné est à $distance du relais. Confirmez-vous vouloir envoyer ce feedback sous votre responsabilité ?';
   }
 
   @override
@@ -1415,6 +1415,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileLanguage => 'Langue';
 
   @override
+  String get profileUnitSystem => 'Unités';
+
+  @override
+  String get profileUnitSystemAuto => 'Automatique';
+
+  @override
+  String get profileUnitSystemMetric => 'Métrique';
+
+  @override
+  String get profileUnitSystemImperial => 'Impérial';
+
+  @override
   String get profileLanguageSystem => 'Système';
 
   @override
@@ -1965,17 +1977,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String sotaLosObstructionAt(String distance, String height) {
-    return 'Obstacle at $distance km, +$height m';
+    return 'Obstacle at $distance, +$height';
   }
 
   @override
   String sotaPointsBadge(int count) {
     return '$count pt';
-  }
-
-  @override
-  String sotaAltitudeMeters(int m) {
-    return '$m m';
   }
 
   @override
@@ -2145,12 +2152,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String reachReachableDetail(String signal, String distance) {
-    return '$signal · $distance km · touchez pour le profil';
+    return '$signal · $distance · touchez pour le profil';
   }
 
   @override
   String reachDistanceFromHere(String distance) {
-    return '$distance km d\'ici';
+    return '$distance d\'ici';
   }
 
   @override
@@ -2180,8 +2187,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get linkProfileClear => 'Ligne de vue dégagée';
 
   @override
-  String linkProfileCaption(int tx, int rx) {
-    return 'Profil du terrain et ligne de vue · TX $tx m · RX $rx m';
+  String linkProfileCaption(String tx, String rx) {
+    return 'Profil du terrain et ligne de vue · TX $tx · RX $rx';
   }
 
   @override
@@ -2352,14 +2359,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get coverageBreadthExtended => 'Étendue';
 
   @override
-  String get coverageBreadthQuickHint => '80 km · réponse la plus rapide';
+  String coverageBreadthQuickHint(String radius) {
+    return '$radius · réponse la plus rapide';
+  }
 
   @override
-  String get coverageBreadthMediumHint => '100 km · équilibrée';
+  String coverageBreadthMediumHint(String radius) {
+    return '$radius · équilibrée';
+  }
 
   @override
-  String get coverageBreadthExtendedHint =>
-      '150 km · plus loin, attente plus longue';
+  String coverageBreadthExtendedHint(String radius) {
+    return '$radius · plus loin, attente plus longue';
+  }
 
   @override
   String get coverageResultSubtitle => 'Depuis le point sélectionné';
@@ -2462,8 +2474,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get stationDuplicateTitle => 'Point déjà enregistré';
 
   @override
-  String get stationDuplicateBody =>
-      'Un poste existe déjà à moins de 200 mètres. Le mettre à jour ou en créer un autre ?';
+  String stationDuplicateBody(String distance) {
+    return 'Un poste existe déjà à moins de $distance. Le mettre à jour ou en créer un autre ?';
+  }
 
   @override
   String get stationDuplicateUpdate => 'La mettre à jour';
@@ -2555,8 +2568,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get spotsManualRefreshHint => 'Touchez pour actualiser';
 
   @override
-  String coverageResultScope(int km, int count) {
-    return 'dans un rayon de $km km · $count évalués';
+  String coverageResultScope(String km, int count) {
+    return 'dans un rayon de $km · $count évalués';
   }
 
   @override
@@ -2624,7 +2637,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String offlineMapsRegionSubtitle(String radius, String size) {
-    return 'Rayon $radius km · $size';
+    return 'Rayon $radius · $size';
   }
 
   @override
@@ -2682,4 +2695,8 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get changelog120NoNetwork =>
       'Sans connexion, l\'app démarre aussitôt, montre ce qui est disponible et désactive les actions qui nécessitent le réseau';
+
+  @override
+  String get changelog130ImperialUnits =>
+      'Miles et pieds : l\'app suit désormais les unités de votre appareil, et vous pouvez choisir le système dans les Réglages';
 }

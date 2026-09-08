@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/clients/analytics/analytics_client.dart';
 import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/signal_helper.dart';
 import 'package:hamqrg/common/widgets/pro/pro_blur_gate.dart';
 import 'package:hamqrg/common/widgets/signal/signal_bars.dart';
@@ -187,7 +188,7 @@ class _BadgeContent extends StatelessWidget {
     final l10n = context.localization;
     final reachable = link.reachable;
     final color = SignalHelper.colorFromDbm(link.dbm);
-    final distance = link.distanceKm.toStringAsFixed(1);
+    final distance = context.units.distanceFromKm(link.distanceKm);
 
     return Row(
       children: [
@@ -277,7 +278,10 @@ class _MockBadgeRow extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Text('-•• dBm · •• km', style: theme.textTheme.bodySmall),
+              Text(
+                '-•• dBm · •• ${context.units.longSymbol}',
+                style: theme.textTheme.bodySmall,
+              ),
             ],
           ),
         ),

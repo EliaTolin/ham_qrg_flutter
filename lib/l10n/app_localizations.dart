@@ -1615,8 +1615,8 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterDetailDistanceWarning.
   ///
   /// In it, this message translates to:
-  /// **'Devi essere entro {distance} km dal ripetitore per inviare un feedback.'**
-  String repeaterDetailDistanceWarning(int distance);
+  /// **'Devi essere entro {distance} dal ripetitore per inviare un feedback.'**
+  String repeaterDetailDistanceWarning(String distance);
 
   /// No description provided for @repeaterDetailInteractive.
   ///
@@ -1663,7 +1663,7 @@ abstract class AppLocalizations {
   /// No description provided for @feedbackDistanceConfirmMessage.
   ///
   /// In it, this message translates to:
-  /// **'Il luogo selezionato si trova a {distance} km dal ripetitore. Confermi di voler inviare questo feedback sotto la tua responsabilità?'**
+  /// **'Il luogo selezionato si trova a {distance} dal ripetitore. Confermi di voler inviare questo feedback sotto la tua responsabilità?'**
   String feedbackDistanceConfirmMessage(String distance);
 
   /// No description provided for @feedbackDistanceConfirmButton.
@@ -2601,6 +2601,30 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Lingua'**
   String get profileLanguage;
+
+  /// No description provided for @profileUnitSystem.
+  ///
+  /// In it, this message translates to:
+  /// **'Unità di misura'**
+  String get profileUnitSystem;
+
+  /// No description provided for @profileUnitSystemAuto.
+  ///
+  /// In it, this message translates to:
+  /// **'Automatico'**
+  String get profileUnitSystemAuto;
+
+  /// No description provided for @profileUnitSystemMetric.
+  ///
+  /// In it, this message translates to:
+  /// **'Metrico'**
+  String get profileUnitSystemMetric;
+
+  /// No description provided for @profileUnitSystemImperial.
+  ///
+  /// In it, this message translates to:
+  /// **'Imperiale'**
+  String get profileUnitSystemImperial;
 
   /// No description provided for @profileLanguageSystem.
   ///
@@ -3625,7 +3649,7 @@ abstract class AppLocalizations {
   /// No description provided for @sotaLosObstructionAt.
   ///
   /// In it, this message translates to:
-  /// **'Ostacolo a {distance} km, +{height} m'**
+  /// **'Ostacolo a {distance}, +{height}'**
   String sotaLosObstructionAt(String distance, String height);
 
   /// No description provided for @sotaPointsBadge.
@@ -3633,12 +3657,6 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'{count} pt'**
   String sotaPointsBadge(int count);
-
-  /// No description provided for @sotaAltitudeMeters.
-  ///
-  /// In it, this message translates to:
-  /// **'{m} m'**
-  String sotaAltitudeMeters(int m);
 
   /// No description provided for @sotaFilterAll.
   ///
@@ -3937,13 +3955,13 @@ abstract class AppLocalizations {
   /// No description provided for @reachReachableDetail.
   ///
   /// In it, this message translates to:
-  /// **'{signal} · {distance} km · tocca per il profilo'**
+  /// **'{signal} · {distance} · tocca per il profilo'**
   String reachReachableDetail(String signal, String distance);
 
   /// No description provided for @reachDistanceFromHere.
   ///
   /// In it, this message translates to:
-  /// **'{distance} km da qui'**
+  /// **'{distance} da qui'**
   String reachDistanceFromHere(String distance);
 
   /// No description provided for @reachComputing.
@@ -3997,8 +4015,8 @@ abstract class AppLocalizations {
   /// No description provided for @linkProfileCaption.
   ///
   /// In it, this message translates to:
-  /// **'Profilo del terreno e linea di vista · TX {tx} m · RX {rx} m'**
-  String linkProfileCaption(int tx, int rx);
+  /// **'Profilo del terreno e linea di vista · TX {tx} · RX {rx}'**
+  String linkProfileCaption(String tx, String rx);
 
   /// No description provided for @proUnlockCta.
   ///
@@ -4315,20 +4333,20 @@ abstract class AppLocalizations {
   /// No description provided for @coverageBreadthQuickHint.
   ///
   /// In it, this message translates to:
-  /// **'80 km · risposta più veloce'**
-  String get coverageBreadthQuickHint;
+  /// **'{radius} · risposta più veloce'**
+  String coverageBreadthQuickHint(String radius);
 
   /// No description provided for @coverageBreadthMediumHint.
   ///
   /// In it, this message translates to:
-  /// **'100 km · equilibrata'**
-  String get coverageBreadthMediumHint;
+  /// **'{radius} · equilibrata'**
+  String coverageBreadthMediumHint(String radius);
 
   /// No description provided for @coverageBreadthExtendedHint.
   ///
   /// In it, this message translates to:
-  /// **'150 km · più lontano, attesa maggiore'**
-  String get coverageBreadthExtendedHint;
+  /// **'{radius} · più lontano, attesa maggiore'**
+  String coverageBreadthExtendedHint(String radius);
 
   /// No description provided for @coverageResultSubtitle.
   ///
@@ -4483,8 +4501,8 @@ abstract class AppLocalizations {
   /// No description provided for @stationDuplicateBody.
   ///
   /// In it, this message translates to:
-  /// **'Esiste già una postazione a meno di 200 metri da qui. Vuoi aggiornarla o crearne una distinta?'**
-  String get stationDuplicateBody;
+  /// **'Esiste già una postazione a meno di {distance} da qui. Vuoi aggiornarla o crearne una distinta?'**
+  String stationDuplicateBody(String distance);
 
   /// No description provided for @stationDuplicateUpdate.
   ///
@@ -4633,8 +4651,8 @@ abstract class AppLocalizations {
   /// No description provided for @coverageResultScope.
   ///
   /// In it, this message translates to:
-  /// **'entro {km} km · {count} valutati'**
-  String coverageResultScope(int km, int count);
+  /// **'entro {km} · {count} valutati'**
+  String coverageResultScope(String km, int count);
 
   /// No description provided for @coverageResultRecalculating.
   ///
@@ -4747,7 +4765,7 @@ abstract class AppLocalizations {
   /// No description provided for @offlineMapsRegionSubtitle.
   ///
   /// In it, this message translates to:
-  /// **'Raggio {radius} km · {size}'**
+  /// **'Raggio {radius} · {size}'**
   String offlineMapsRegionSubtitle(String radius, String size);
 
   /// No description provided for @offlineMapsIncomplete.
@@ -4839,6 +4857,12 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Senza connessione l\'app avvia subito, mostra cosa è disponibile e disattiva le azioni che richiedono la rete'**
   String get changelog120NoNetwork;
+
+  /// No description provided for @changelog130ImperialUnits.
+  ///
+  /// In it, this message translates to:
+  /// **'Miglia e piedi: l’app segue le unità del tuo dispositivo, e nelle Impostazioni puoi scegliere il sistema a mano'**
+  String get changelog130ImperialUnits;
 }
 
 class _AppLocalizationsDelegate

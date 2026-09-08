@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_breadth.dart';
 
 /// Scelta dell'ampiezza di ricerca (FR-024).
@@ -29,11 +30,16 @@ class BreadthSelector extends StatelessWidget {
           SearchBreadth.extended => l10n.coverageBreadthExtended,
         };
 
-    String hintOf(SearchBreadth breadth) => switch (breadth) {
-          SearchBreadth.quick => l10n.coverageBreadthQuickHint,
-          SearchBreadth.medium => l10n.coverageBreadthMediumHint,
-          SearchBreadth.extended => l10n.coverageBreadthExtendedHint,
-        };
+    // Il raggio esce dal testo tradotto e diventa un parametro: l'identità
+    // metrica del preset non cambia, cambia solo come è scritta (FR-009).
+    String hintOf(SearchBreadth breadth) {
+      final radius = context.units.presetRadius(breadth.radiusKm);
+      return switch (breadth) {
+        SearchBreadth.quick => l10n.coverageBreadthQuickHint(radius),
+        SearchBreadth.medium => l10n.coverageBreadthMediumHint(radius),
+        SearchBreadth.extended => l10n.coverageBreadthExtendedHint(radius),
+      };
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

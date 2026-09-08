@@ -333,6 +333,31 @@ lo stream non emette nemmeno il primo valore e `.future` resta appeso: il root
 widget (`lib/src/app.dart`) e la splash tengono un `ref.listen` su entrambi.
 Non rimuoverli — `test/is_pro_provider_test.dart` documenta il comportamento.
 
+## Unità di misura: distanze e quote
+
+Distanze e quote si scrivono **solo** tramite `context.units`
+(`lib/common/extension/unit_system_extension.dart`). Nessun file fuori da
+`lib/common/utils/unit_format_helper.dart` contiene un simbolo di unità di
+lunghezza in una stringa, e nessuna chiave ARB ne contiene uno accanto a un
+placeholder: il segnaposto riceve la stringa già formattata.
+
+- `distance` / `distanceFromKm` per le distanze, `elevation` per le quote,
+  `threshold` per le soglie citate nei testi (arrotondate **per difetto**, così
+  la soglia dichiarata non è mai più larga di quella verificata),
+  `presetRadius` per i raggi predefiniti (arrotondati al più vicino, con
+  l'identità metrica del preset invariata).
+- La preferenza è di **presentazione**: confronti, ordinamenti e verifiche di
+  soglia restano sul valore metrico. Le postazioni salvate e la cache
+  continuano a memorizzare metri e chilometri.
+- Lo scope (`UnitSystemScope`) è installato nel `builder` di
+  `MaterialApp.router`. Un widget test che monta un widget con una distanza
+  deve avvolgerlo nello scope, altrimenti l'assert scatta — è voluto: un
+  fallback silenzioso al metrico nasconderebbe proprio i punti dimenticati.
+- **Non si converte** ciò che non è una distanza: frequenze, toni CTCSS, dBm,
+  byte, coordinate, locator, azimut — e la **lunghezza d'onda** delle bande
+  (`2 m`, `70 cm`), che è in metri ma è il nome della banda, identico in tutto
+  il mondo.
+
 ## Coding Conventions
 
 - **DRY principle**: Before creating any widget, helper, or utility, check if a similar one already exists in `lib/common/widgets/` or other features. If it does, extend/generalize it. If a new widget could be reused elsewhere, place it in `lib/common/widgets/` from the start.
@@ -395,6 +420,8 @@ Prefix format: `[type]: [description]`
 - Nessuno per MVP — solo cache in-memory via `ProviderContainer` Riverpod. Nessuna scrittura su SharedPreferences/SQLite per SOTA. (004-sota-integration)
 - Dart 3.x / Flutter 3.x (vincolati da `pubspec.yaml`) + Riverpod 3.x (`riverpod_annotation ^4.0`), `freezed`, `auto_route`, `dio ^5.7`, `supabase_flutter`, `mapbox_maps_flutter ^2.4` (2.25 risolta), `shared_preferences ^2.3`, **`remote_caching ^1.0.19` (nuova, pacchetto interno)** (005-location-coverage-search)
 - due archivi distinti — `StorageClient`/SharedPreferences per le postazioni (dato utente, durata illimitata); `remote_caching` (SQLite) con scadenza sentinella per i payload ripetitore (dato rigenerabile e condiviso) (005-location-coverage-search)
+- Dart 3.x / Flutter 3.x (vincolati da `pubspec.yaml`) + `hooks_riverpod ^3.1` con `riverpod_annotation ^4.0`, `shared_preferences ^2.3`, `intl` (già presente, per il separatore decimale), `flutter_localizations` + `gen-l10n` su 15 locale (006-imperial-units)
+- `SharedPreferences` tramite `SharedPrefStorageClient`, chiave `unit_system`. Nessuna scrittura su Supabase, nessuna migrazione, nessun campo remoto (006-imperial-units)
 
 ## Recent Changes
 - 002-cluster-spots-frontend: Added Dart 3.x / Flutter 3.x + Riverpod 3.x (`riverpod_annotation: ^4.0`), `@freezed`, `auto_route`, `supabase_flutter`, `onesignal_flutter`, `mapbox_maps_flutter`

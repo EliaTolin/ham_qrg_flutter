@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/clients/analytics/analytics_client.dart';
 import 'package:hamqrg/clients/analytics/impl/supabase_analytics_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/widgets/pro/pro_benefits_list.dart';
 import 'package:hamqrg/common/widgets/pro/pro_blur_gate.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_point.dart';
@@ -130,7 +131,7 @@ class _MockResultList extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      '-•• dBm · •• km',
+                      '-•• dBm · •• ${context.units.longSymbol}',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),

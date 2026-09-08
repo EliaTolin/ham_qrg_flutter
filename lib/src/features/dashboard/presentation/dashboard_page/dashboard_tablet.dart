@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/maidenhead_locator.dart';
@@ -643,7 +644,7 @@ class _CompactRepeaterRow extends StatelessWidget {
               if (repeater.distanceMeters != null) ...[
                 const SizedBox(width: 8),
                 Text(
-                  _formatDistance(repeater.distanceMeters!),
+                  context.units.distance(repeater.distanceMeters!),
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                     fontFeatures: const [FontFeature.tabularFigures()],
@@ -655,11 +656,6 @@ class _CompactRepeaterRow extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String _formatDistance(double m) {
-    if (m < 1000) return '${m.toStringAsFixed(0)} m';
-    return '${(m / 1000).toStringAsFixed(1)} km';
   }
 }
 
@@ -920,7 +916,10 @@ class _CompactSotaRow extends StatelessWidget {
                     Wrap(
                       spacing: 4,
                       children: [
-                        SotaAltitudeBadge(altitudeM: spot.altitudeM),
+                        SotaAltitudeBadge(
+                          altitudeM: spot.altitudeM,
+                          altitudeFt: spot.altitudeFt,
+                        ),
                         SotaPointsBadge(points: spot.points),
                       ],
                     ),

@@ -321,11 +321,11 @@
   "repeaterDetailOthersReports": "Rapoartele altor utilizatori",
   "repeaterDetailRemove": "Elimină",
   "repeaterDetailSelectAccess": "Selectează accesul",
-  "repeaterDetailDistanceWarning": "Trebuie să fii la maximum {distance} km de repetor pentru a trimite feedback.",
+  "repeaterDetailDistanceWarning": "Trebuie să fii la maximum {distance} de repetor pentru a trimite feedback.",
   "@repeaterDetailDistanceWarning": {
     "placeholders": {
       "distance": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -336,7 +336,7 @@
   "repeaterDetailLocationPlaceholder": "Unde te aflai? (ex. București)",
   "repeaterDetailLocationSelectHint": "Selectează un loc din sugestii",
   "feedbackDistanceConfirmTitle": "Confirmă trimiterea",
-  "feedbackDistanceConfirmMessage": "Locația selectată este la {distance} km de repetor. Confirmi că vrei să trimiți acest feedback pe propria răspundere?",
+  "feedbackDistanceConfirmMessage": "Locația selectată este la {distance} de repetor. Confirmi că vrei să trimiți acest feedback pe propria răspundere?",
   "@feedbackDistanceConfirmMessage": {
     "placeholders": {
       "distance": {
@@ -571,6 +571,10 @@
     }
   },
   "profileLanguage": "Limbă",
+  "profileUnitSystem": "Unități de măsură",
+  "profileUnitSystemAuto": "Automat",
+  "profileUnitSystemMetric": "Metric",
+  "profileUnitSystemImperial": "Imperial",
   "profileLanguageSystem": "Sistem",
   "profileLanguageItalian": "Italiano",
   "profileLanguageEnglish": "English",
@@ -795,9 +799,8 @@
   "sotaSummitPursuit": "View toward the summit",
   "sotaLosClear": "Clear line of sight",
   "sotaLosObstructed": "Possible obstruction",
-  "sotaLosObstructionAt": "Obstacle at {distance} km, +{height} m",
+  "sotaLosObstructionAt": "Obstacle at {distance}, +{height}",
   "sotaPointsBadge": "{count} pt",
-  "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
   "spotsFiltersTitle": "Filtre",
   "spotsFilterBand": "Bandă",
@@ -851,13 +854,6 @@
   "@sotaPointsBadge": {
     "placeholders": {
       "count": {
-        "type": "int"
-      }
-    }
-  },
-  "@sotaAltitudeMeters": {
-    "placeholders": {
-      "m": {
         "type": "int"
       }
     }
@@ -964,8 +960,8 @@
   "reachDiscoverCta": "Descoperă cu PRO",
   "reachReachable": "Îl atingi",
   "reachOutOfCoverage": "În afara acoperirii",
-  "reachReachableDetail": "{signal} · {distance} km · atinge pentru profil",
-  "reachDistanceFromHere": "{distance} km de aici",
+  "reachReachableDetail": "{signal} · {distance} · atinge pentru profil",
+  "reachDistanceFromHere": "{distance} de aici",
   "reachComputing": "Se calculează acoperirea…",
   "reachRepeaterFallback": "Releu",
   "reachMapButton": "Ce atingi?",
@@ -974,7 +970,7 @@
   "reachUpsellLater": "Mai târziu",
   "linkProfileObstructed": "Obstacol pe traseu (semnal prin difracție)",
   "linkProfileClear": "Linie de vedere liberă",
-  "linkProfileCaption": "Profilul terenului și linia de vedere · TX {tx} m · RX {rx} m",
+  "linkProfileCaption": "Profilul terenului și linia de vedere · TX {tx} · RX {rx}",
   "proUnlockCta": "Deblochează cu PRO",
   "proWelcomeTitle": "Bine ai venit în PRO! 🎉",
   "proWelcomeBody": "Ai deblocat harta de acoperire, releele pe care le atingi din locația ta și toate funcțiile PRO. 📡",
@@ -1027,9 +1023,9 @@
   "coverageBreadthQuick": "Rapidă",
   "coverageBreadthMedium": "Medie",
   "coverageBreadthExtended": "Extinsă",
-  "coverageBreadthQuickHint": "80 km · cel mai rapid răspuns",
-  "coverageBreadthMediumHint": "100 km · echilibrată",
-  "coverageBreadthExtendedHint": "150 km · mai departe, așteptare mai lungă",
+  "coverageBreadthQuickHint": "{radius} · cel mai rapid răspuns",
+  "coverageBreadthMediumHint": "{radius} · echilibrată",
+  "coverageBreadthExtendedHint": "{radius} · mai departe, așteptare mai lungă",
   "coverageResultSubtitle": "Din punctul selectat",
   "coverageResultEmptyNoReachable": "Niciun releu nu este accesibil din acest punct",
   "coverageResultEmptyNoRepeaters": "Niciun releu înregistrat în această zonă",
@@ -1086,7 +1082,7 @@
   "stationStaleNotice": "Datele ar putea fi neactualizate",
   "stationMissingEntry": "Date indisponibile offline",
   "stationDuplicateTitle": "Punct deja salvat",
-  "stationDuplicateBody": "Există deja un post la mai puțin de 200 de metri. Îl actualizezi sau creezi unul separat?",
+  "stationDuplicateBody": "Există deja un post la mai puțin de {distance}. Îl actualizezi sau creezi unul separat?",
   "stationDuplicateUpdate": "Actualizează",
   "stationDuplicateCreate": "Creează separat",
   "stationSaveFailed": "Salvarea a eșuat: spațiu insuficient",
@@ -1153,11 +1149,11 @@
     }
   },
   "spotsManualRefreshHint": "Atinge pentru actualizare",
-  "coverageResultScope": "pe o rază de {km} km · {count} evaluate",
+  "coverageResultScope": "pe o rază de {km} · {count} evaluate",
   "@coverageResultScope": {
     "placeholders": {
       "km": {
-        "type": "int"
+        "type": "String"
       },
       "count": {
         "type": "int"
@@ -1182,7 +1178,7 @@
   "offlineMapsDeleteConfirmTitle": "Ștergi regiunea?",
   "offlineMapsDeleteConfirmMessage": "„{name}” nu va mai fi disponibilă offline.",
   "offlineMapsDeleteConfirm": "Șterge",
-  "offlineMapsRegionSubtitle": "Rază {radius} km · {size}",
+  "offlineMapsRegionSubtitle": "Rază {radius} · {size}",
   "offlineMapsIncomplete": "Descărcare incompletă",
   "offlineMapsResume": "Reia",
   "offlineMapsCenterInfo": "Regiunea va fi centrată pe poziția ta actuală.",
@@ -1204,5 +1200,34 @@
   "changelog120CoverageSearch": "Căutare acoperire din orice punct: caută o localitate, lipește coordonate sau apasă lung pe hartă pentru a descoperi ce atingi de acolo",
   "changelog120SavedStations": "Stațiile mele: salvează punctele care te interesează și consultă-le și offline (PRO)",
   "changelog120SpotsRefresh": "Spoturile SOTA și POTA se actualizează singure în fiecare minut, cu insigne colorate pe mod (CW, SSB, FT8…)",
-  "changelog120NoNetwork": "Fără conexiune aplicația pornește imediat, arată ce este disponibil și dezactivează acțiunile care necesită rețea"
+  "changelog120NoNetwork": "Fără conexiune aplicația pornește imediat, arată ce este disponibil și dezactivează acțiunile care necesită rețea",
+  "@coverageBreadthQuickHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthMediumHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthExtendedHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@stationDuplicateBody": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog130ImperialUnits": "Mile și picioare: aplicația urmează acum unitățile dispozitivului, iar sistemul poate fi ales din Setări"
 }

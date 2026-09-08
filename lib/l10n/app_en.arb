@@ -321,11 +321,11 @@
   "repeaterDetailOthersReports": "Other users' reports",
   "repeaterDetailRemove": "Remove",
   "repeaterDetailSelectAccess": "Select access",
-  "repeaterDetailDistanceWarning": "You must be within {distance} km of the repeater to send feedback.",
+  "repeaterDetailDistanceWarning": "You must be within {distance} of the repeater to send feedback.",
   "@repeaterDetailDistanceWarning": {
     "placeholders": {
       "distance": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -336,7 +336,7 @@
   "repeaterDetailLocationPlaceholder": "Where were you? (e.g. Rome)",
   "repeaterDetailLocationSelectHint": "Select a place from suggestions",
   "feedbackDistanceConfirmTitle": "Confirm submission",
-  "feedbackDistanceConfirmMessage": "The selected location is {distance} km from the repeater. Do you confirm you want to send this feedback under your responsibility?",
+  "feedbackDistanceConfirmMessage": "The selected location is {distance} from the repeater. Do you confirm you want to send this feedback under your responsibility?",
   "@feedbackDistanceConfirmMessage": {
     "placeholders": {
       "distance": {
@@ -571,6 +571,10 @@
     }
   },
   "profileLanguage": "Language",
+  "profileUnitSystem": "Units",
+  "profileUnitSystemAuto": "Automatic",
+  "profileUnitSystemMetric": "Metric",
+  "profileUnitSystemImperial": "Imperial",
   "profileLanguageSystem": "System",
   "profileLanguageItalian": "Italiano",
   "profileLanguageEnglish": "English",
@@ -795,9 +799,8 @@
   "sotaSummitPursuit": "View toward the summit",
   "sotaLosClear": "Clear line of sight",
   "sotaLosObstructed": "Possible obstruction",
-  "sotaLosObstructionAt": "Obstacle at {distance} km, +{height} m",
+  "sotaLosObstructionAt": "Obstacle at {distance}, +{height}",
   "sotaPointsBadge": "{count} pt",
-  "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
   "spotsFiltersTitle": "Filters",
   "spotsFilterBand": "Band",
@@ -851,13 +854,6 @@
   "@sotaPointsBadge": {
     "placeholders": {
       "count": {
-        "type": "int"
-      }
-    }
-  },
-  "@sotaAltitudeMeters": {
-    "placeholders": {
-      "m": {
         "type": "int"
       }
     }
@@ -964,8 +960,8 @@
   "reachDiscoverCta": "Discover it with PRO",
   "reachReachable": "You reach it",
   "reachOutOfCoverage": "Out of coverage",
-  "reachReachableDetail": "{signal} · {distance} km · tap for the profile",
-  "reachDistanceFromHere": "{distance} km from here",
+  "reachReachableDetail": "{signal} · {distance} · tap for the profile",
+  "reachDistanceFromHere": "{distance} from here",
   "reachComputing": "Computing coverage…",
   "reachRepeaterFallback": "Repeater",
   "reachMapButton": "What do you reach?",
@@ -974,7 +970,7 @@
   "reachUpsellLater": "Later",
   "linkProfileObstructed": "Obstacle on the path (signal via diffraction)",
   "linkProfileClear": "Clear line of sight",
-  "linkProfileCaption": "Terrain profile and line of sight · TX {tx} m · RX {rx} m",
+  "linkProfileCaption": "Terrain profile and line of sight · TX {tx} · RX {rx}",
   "proUnlockCta": "Unlock with PRO",
   "proWelcomeTitle": "Welcome to PRO! 🎉",
   "proWelcomeBody": "You've unlocked the coverage map, the repeaters you reach from your location and all PRO features. 📡",
@@ -1027,9 +1023,9 @@
   "coverageBreadthQuick": "Quick",
   "coverageBreadthMedium": "Medium",
   "coverageBreadthExtended": "Extended",
-  "coverageBreadthQuickHint": "80 km · fastest answer",
-  "coverageBreadthMediumHint": "100 km · balanced",
-  "coverageBreadthExtendedHint": "150 km · farther, longer wait",
+  "coverageBreadthQuickHint": "{radius} · fastest answer",
+  "coverageBreadthMediumHint": "{radius} · balanced",
+  "coverageBreadthExtendedHint": "{radius} · farther, longer wait",
   "coverageResultSubtitle": "From the selected point",
   "coverageResultEmptyNoReachable": "No repeater is reachable from this point",
   "coverageResultEmptyNoRepeaters": "No repeater is listed in this area",
@@ -1086,7 +1082,7 @@
   "stationStaleNotice": "This data may be out of date",
   "stationMissingEntry": "Data not available offline",
   "stationDuplicateTitle": "Point already saved",
-  "stationDuplicateBody": "There is already a station within 200 metres of here. Update it, or create a separate one?",
+  "stationDuplicateBody": "There is already a station within {distance} of here. Update it, or create a separate one?",
   "stationDuplicateUpdate": "Update it",
   "stationDuplicateCreate": "Create separate",
   "stationSaveFailed": "Save failed: not enough space",
@@ -1153,11 +1149,11 @@
     }
   },
   "spotsManualRefreshHint": "Tap to refresh",
-  "coverageResultScope": "within {km} km · {count} evaluated",
+  "coverageResultScope": "within {km} · {count} evaluated",
   "@coverageResultScope": {
     "placeholders": {
       "km": {
-        "type": "int"
+        "type": "String"
       },
       "count": {
         "type": "int"
@@ -1182,7 +1178,7 @@
   "offlineMapsDeleteConfirmTitle": "Delete region?",
   "offlineMapsDeleteConfirmMessage": "“{name}” will no longer be available offline.",
   "offlineMapsDeleteConfirm": "Delete",
-  "offlineMapsRegionSubtitle": "Radius {radius} km · {size}",
+  "offlineMapsRegionSubtitle": "Radius {radius} · {size}",
   "offlineMapsIncomplete": "Incomplete download",
   "offlineMapsResume": "Resume",
   "offlineMapsCenterInfo": "The region will be centered on your current location.",
@@ -1204,5 +1200,34 @@
   "changelog120CoverageSearch": "Coverage search from any point: search a place, paste coordinates or long-press the map to discover what you reach from there",
   "changelog120SavedStations": "My stations: save the spots you care about and consult them offline too (PRO)",
   "changelog120SpotsRefresh": "SOTA and POTA spots refresh automatically every minute, with mode-colored badges (CW, SSB, FT8…)",
-  "changelog120NoNetwork": "Without a connection the app starts instantly, shows what's available and disables actions that need the network"
+  "changelog120NoNetwork": "Without a connection the app starts instantly, shows what's available and disables actions that need the network",
+  "@coverageBreadthQuickHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthMediumHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthExtendedHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@stationDuplicateBody": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog130ImperialUnits": "Miles and feet: the app now follows your device units, and you can pick the system yourself in Settings"
 }

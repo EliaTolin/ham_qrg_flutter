@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/common/utils/maidenhead_locator.dart';
@@ -1273,8 +1274,8 @@ class _NearbyRepeaterItem extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          RepeaterFormatHelper.formatDistance(
-                            repeater.distanceMeters,
+                          context.units.distance(
+                            repeater.distanceMeters!,
                           ),
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: colorScheme.onSurfaceVariant,

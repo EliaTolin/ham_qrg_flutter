@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/freshness_color_helper.dart';
 import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
@@ -334,7 +335,8 @@ class _ParkCard extends StatelessWidget {
       tiles.add(
         _InfoTileData(
           icon: Icons.straighten,
-          label: l10n.potaDistanceAway(_formatDistance(distanceKm!)),
+          label:
+              l10n.potaDistanceAway(context.units.distanceFromKm(distanceKm!)),
           value: '',
           color: colorScheme.tertiary,
         ),
@@ -450,12 +452,6 @@ class _ParkCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String _formatDistance(double km) {
-    if (km < 1) return '${(km * 1000).round()} m';
-    if (km < 10) return '${km.toStringAsFixed(1)} km';
-    return '${km.round()} km';
   }
 }
 

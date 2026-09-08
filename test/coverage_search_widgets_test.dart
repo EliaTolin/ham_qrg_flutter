@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hamqrg/common/utils/unit_system.dart';
+import 'package:hamqrg/common/widgets/units/unit_system_scope.dart';
 import 'package:hamqrg/l10n/app_localizations.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/search_breadth.dart';
 import 'package:hamqrg/src/features/coverage_search/presentation/widgets/place_search_bar.dart';
@@ -25,7 +27,14 @@ Widget _wrap(Widget child) => MaterialApp(
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       locale: const Locale('it'),
-      home: Scaffold(body: child),
+      // Nell'app lo scope è installato nel `builder` di MaterialApp, sopra
+      // ogni rotta: qui va rimesso, altrimenti i widget che formattano una
+      // distanza non trovano il sistema di misura.
+      home: UnitSystemScope(
+        system: UnitSystem.metric,
+        locale: const Locale('it'),
+        child: Scaffold(body: child),
+      ),
     );
 
 void main() {

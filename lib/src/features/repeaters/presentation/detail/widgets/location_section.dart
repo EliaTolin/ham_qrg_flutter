@@ -3,8 +3,8 @@ import 'dart:math' as math;
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
-import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hamqrg/src/features/repeaters/presentation/detail/widgets/altimetric_profile_bottom_sheet.dart';
@@ -33,8 +33,7 @@ class LocationSection extends ConsumerWidget {
         (calculatedDistanceKm != null ? calculatedDistanceKm! * 1000 : null);
 
     final distanceText = effectiveDistanceMeters != null
-        ? RepeaterFormatHelper.formatDistance(effectiveDistanceMeters)
-            .replaceAll(' away', '')
+        ? context.units.distance(effectiveDistanceMeters)
         : null;
 
     final hasCoordinates =

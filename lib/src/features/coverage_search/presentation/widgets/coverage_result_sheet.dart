@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/widgets/empty_state_widget.dart';
 import 'package:hamqrg/common/widgets/mode_filter_chips_horizontal.dart';
 import 'package:hamqrg/src/features/coverage_search/domain/coverage_result.dart';
@@ -294,7 +295,7 @@ class _Verdict extends StatelessWidget {
           // compromesso meglio di qualunque frase: sono il compromesso.
           Text(
             l10n.coverageResultScope(
-              breadth.radiusKm.toInt(),
+              context.units.presetRadius(breadth.radiusKm),
               evaluation!.entries.length,
             ),
             style: theme.textTheme.bodySmall?.copyWith(

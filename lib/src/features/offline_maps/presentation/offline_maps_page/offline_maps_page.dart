@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hamqrg/clients/mapbox_offline/mapbox_offline_client.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/bytes_format_helper.dart';
 import 'package:hamqrg/common/widgets/empty_state_widget.dart';
 import 'package:hamqrg/common/widgets/error/app_error_widget.dart';
@@ -120,7 +121,9 @@ class _RegionsList extends StatelessWidget {
               subtitle: Text(
                 region.isComplete
                     ? l10n.offlineMapsRegionSubtitle(
-                        region.radiusKm?.toStringAsFixed(0) ?? '-',
+                        region.radiusKm == null
+                            ? '-'
+                            : context.units.presetRadius(region.radiusKm!),
                         BytesFormatHelper.format(region.sizeBytes),
                       )
                     : l10n.offlineMapsIncomplete,

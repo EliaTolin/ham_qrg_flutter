@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/signal_helper.dart';
 import 'package:hamqrg/common/widgets/signal/signal_bars.dart';
 import 'package:hamqrg/src/features/repeaters/domain/reachable/reachable_link.dart';
@@ -76,7 +77,8 @@ class LinkProfileChart extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '${link.distanceKm.toStringAsFixed(1)} km · ${link.azimuthDeg.round()}°',
+              '${context.units.distanceFromKm(link.distanceKm)} · '
+              '${link.azimuthDeg.round()}°',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
@@ -190,7 +192,10 @@ class LinkProfileChart extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          l10n.linkProfileCaption(txHeightM.round(), rxHeightM.round()),
+          l10n.linkProfileCaption(
+            context.units.elevation(txHeightM),
+            context.units.elevation(rxHeightM),
+          ),
           style: theme.textTheme.labelSmall?.copyWith(
             color: theme.colorScheme.onSurface.withValues(alpha: 0.55),
           ),

@@ -321,11 +321,11 @@
   "repeaterDetailOthersReports": "Izveštaji drugih korisnika",
   "repeaterDetailRemove": "Ukloni",
   "repeaterDetailSelectAccess": "Izaberite pristup",
-  "repeaterDetailDistanceWarning": "Morate biti na udaljenosti od {distance} km od repetitora da biste poslali povratnu informaciju.",
+  "repeaterDetailDistanceWarning": "Morate biti na udaljenosti od {distance} od repetitora da biste poslali povratnu informaciju.",
   "@repeaterDetailDistanceWarning": {
     "placeholders": {
       "distance": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -336,7 +336,7 @@
   "repeaterDetailLocationPlaceholder": "Gde ste bili? (npr. Beograd)",
   "repeaterDetailLocationSelectHint": "Izaberite mesto iz predloga",
   "feedbackDistanceConfirmTitle": "Potvrdite slanje",
-  "feedbackDistanceConfirmMessage": "Izabrana lokacija je udaljena {distance} km od repetitora. Da li potvrđujete da želite da pošaljete ovu povratnu informaciju na svoju odgovornost?",
+  "feedbackDistanceConfirmMessage": "Izabrana lokacija je udaljena {distance} od repetitora. Da li potvrđujete da želite da pošaljete ovu povratnu informaciju na svoju odgovornost?",
   "@feedbackDistanceConfirmMessage": {
     "placeholders": {
       "distance": {
@@ -571,6 +571,10 @@
     }
   },
   "profileLanguage": "Jezik",
+  "profileUnitSystem": "Merne jedinice",
+  "profileUnitSystemAuto": "Automatski",
+  "profileUnitSystemMetric": "Metrički",
+  "profileUnitSystemImperial": "Imperijalni",
   "profileLanguageSystem": "Sistemski",
   "profileLanguageItalian": "Italiano",
   "profileLanguageEnglish": "English",
@@ -795,9 +799,8 @@
   "sotaSummitPursuit": "View toward the summit",
   "sotaLosClear": "Clear line of sight",
   "sotaLosObstructed": "Possible obstruction",
-  "sotaLosObstructionAt": "Obstacle at {distance} km, +{height} m",
+  "sotaLosObstructionAt": "Obstacle at {distance}, +{height}",
   "sotaPointsBadge": "{count} pt",
-  "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
   "spotsFiltersTitle": "Filteri",
   "spotsFilterBand": "Opseg",
@@ -851,13 +854,6 @@
   "@sotaPointsBadge": {
     "placeholders": {
       "count": {
-        "type": "int"
-      }
-    }
-  },
-  "@sotaAltitudeMeters": {
-    "placeholders": {
-      "m": {
         "type": "int"
       }
     }
@@ -964,8 +960,8 @@
   "reachDiscoverCta": "Откриј уз PRO",
   "reachReachable": "Досежеш га",
   "reachOutOfCoverage": "Ван покривености",
-  "reachReachableDetail": "{signal} · {distance} km · додирни за профил",
-  "reachDistanceFromHere": "{distance} km одавде",
+  "reachReachableDetail": "{signal} · {distance} · додирни за профил",
+  "reachDistanceFromHere": "{distance} одавде",
   "reachComputing": "Израчунавање покривености…",
   "reachRepeaterFallback": "Репетитор",
   "reachMapButton": "Шта досежеш?",
@@ -974,7 +970,7 @@
   "reachUpsellLater": "Касније",
   "linkProfileObstructed": "Препрека на путањи (сигнал дифракцијом)",
   "linkProfileClear": "Слободна оптичка видљивост",
-  "linkProfileCaption": "Профил терена и линија видљивости · TX {tx} m · RX {rx} m",
+  "linkProfileCaption": "Профил терена и линија видљивости · TX {tx} · RX {rx}",
   "proUnlockCta": "Откључај уз PRO",
   "proWelcomeTitle": "Добро дошао у PRO! 🎉",
   "proWelcomeBody": "Откључао си мапу покривености, репетиторе које досежеш са своје локације и све PRO функције. 📡",
@@ -1027,9 +1023,9 @@
   "coverageBreadthQuick": "Brzo",
   "coverageBreadthMedium": "Srednje",
   "coverageBreadthExtended": "Prošireno",
-  "coverageBreadthQuickHint": "80 km · najbrži odgovor",
-  "coverageBreadthMediumHint": "100 km · uravnoteženo",
-  "coverageBreadthExtendedHint": "150 km · dalje, duže čekanje",
+  "coverageBreadthQuickHint": "{radius} · najbrži odgovor",
+  "coverageBreadthMediumHint": "{radius} · uravnoteženo",
+  "coverageBreadthExtendedHint": "{radius} · dalje, duže čekanje",
   "coverageResultSubtitle": "Sa izabrane tačke",
   "coverageResultEmptyNoReachable": "Sa ove tačke nije dostupan nijedan repetitor",
   "coverageResultEmptyNoRepeaters": "U ovoj oblasti nije zabeležen nijedan repetitor",
@@ -1086,7 +1082,7 @@
   "stationStaleNotice": "Podaci možda nisu ažurni",
   "stationMissingEntry": "Podaci nisu dostupni van mreže",
   "stationDuplicateTitle": "Tačka je već sačuvana",
-  "stationDuplicateBody": "U krugu od 200 metara već postoji stanica. Ažurirati je ili napraviti zasebnu?",
+  "stationDuplicateBody": "U krugu od {distance} već postoji stanica. Ažurirati je ili napraviti zasebnu?",
   "stationDuplicateUpdate": "Ažuriraj",
   "stationDuplicateCreate": "Napravi zasebnu",
   "stationSaveFailed": "Čuvanje nije uspelo: nedovoljno prostora",
@@ -1153,11 +1149,11 @@
     }
   },
   "spotsManualRefreshHint": "Dodirnite za ažuriranje",
-  "coverageResultScope": "u krugu od {km} km · procenjeno: {count}",
+  "coverageResultScope": "u krugu od {km} · procenjeno: {count}",
   "@coverageResultScope": {
     "placeholders": {
       "km": {
-        "type": "int"
+        "type": "String"
       },
       "count": {
         "type": "int"
@@ -1182,7 +1178,7 @@
   "offlineMapsDeleteConfirmTitle": "Izbrisati region?",
   "offlineMapsDeleteConfirmMessage": "„{name}“ više neće biti dostupan van mreže.",
   "offlineMapsDeleteConfirm": "Izbriši",
-  "offlineMapsRegionSubtitle": "Poluprečnik {radius} km · {size}",
+  "offlineMapsRegionSubtitle": "Poluprečnik {radius} · {size}",
   "offlineMapsIncomplete": "Nepotpuno preuzimanje",
   "offlineMapsResume": "Nastavi",
   "offlineMapsCenterInfo": "Region će biti centriran na vašu trenutnu lokaciju.",
@@ -1204,5 +1200,34 @@
   "changelog120CoverageSearch": "Pretraga pokrivenosti sa bilo koje tačke: potražite mesto, nalepite koordinate ili dugo pritisnite mapu da otkrijete šta dosežete odatle",
   "changelog120SavedStations": "Moje stanice: sačuvajte tačke koje vas zanimaju i pregledajte ih i oflajn (PRO)",
   "changelog120SpotsRefresh": "SOTA i POTA spotovi se sami osvežavaju svakog minuta, sa obojenim bedževima po modu (CW, SSB, FT8…)",
-  "changelog120NoNetwork": "Bez veze aplikacija se pokreće odmah, prikazuje šta je dostupno i onemogućava radnje koje zahtevaju mrežu"
+  "changelog120NoNetwork": "Bez veze aplikacija se pokreće odmah, prikazuje šta je dostupno i onemogućava radnje koje zahtevaju mrežu",
+  "@coverageBreadthQuickHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthMediumHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthExtendedHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@stationDuplicateBody": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog130ImperialUnits": "Milje i stope: aplikacija sada prati merne jedinice uređaja, a sistem možete izabrati u Podešavanjima"
 }

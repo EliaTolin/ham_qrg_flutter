@@ -321,11 +321,11 @@
   "repeaterDetailOthersReports": "Reportes de otros usuarios",
   "repeaterDetailRemove": "Eliminar",
   "repeaterDetailSelectAccess": "Seleccionar acceso",
-  "repeaterDetailDistanceWarning": "Debes estar a menos de {distance} km del repetidor para enviar feedback.",
+  "repeaterDetailDistanceWarning": "Debes estar a menos de {distance} del repetidor para enviar feedback.",
   "@repeaterDetailDistanceWarning": {
     "placeholders": {
       "distance": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -336,7 +336,7 @@
   "repeaterDetailLocationPlaceholder": "¿Dónde estabas? (ej. Madrid)",
   "repeaterDetailLocationSelectHint": "Selecciona un lugar de las sugerencias",
   "feedbackDistanceConfirmTitle": "Confirmar envío",
-  "feedbackDistanceConfirmMessage": "El lugar seleccionado está a {distance} km del repetidor. ¿Confirmas que quieres enviar este feedback bajo tu responsabilidad?",
+  "feedbackDistanceConfirmMessage": "El lugar seleccionado está a {distance} del repetidor. ¿Confirmas que quieres enviar este feedback bajo tu responsabilidad?",
   "@feedbackDistanceConfirmMessage": {
     "placeholders": {
       "distance": {
@@ -571,6 +571,10 @@
     }
   },
   "profileLanguage": "Idioma",
+  "profileUnitSystem": "Unidades",
+  "profileUnitSystemAuto": "Automático",
+  "profileUnitSystemMetric": "Métrico",
+  "profileUnitSystemImperial": "Imperial",
   "profileLanguageSystem": "Sistema",
   "profileLanguageItalian": "Italiano",
   "profileLanguageEnglish": "English",
@@ -795,9 +799,8 @@
   "sotaSummitPursuit": "View toward the summit",
   "sotaLosClear": "Clear line of sight",
   "sotaLosObstructed": "Possible obstruction",
-  "sotaLosObstructionAt": "Obstacle at {distance} km, +{height} m",
+  "sotaLosObstructionAt": "Obstacle at {distance}, +{height}",
   "sotaPointsBadge": "{count} pt",
-  "sotaAltitudeMeters": "{m} m",
   "sotaFilterAll": "All",
   "spotsFiltersTitle": "Filtros",
   "spotsFilterBand": "Banda",
@@ -851,13 +854,6 @@
   "@sotaPointsBadge": {
     "placeholders": {
       "count": {
-        "type": "int"
-      }
-    }
-  },
-  "@sotaAltitudeMeters": {
-    "placeholders": {
-      "m": {
         "type": "int"
       }
     }
@@ -964,8 +960,8 @@
   "reachDiscoverCta": "Descúbrelo con PRO",
   "reachReachable": "Lo alcanzas",
   "reachOutOfCoverage": "Fuera de cobertura",
-  "reachReachableDetail": "{signal} · {distance} km · toca para ver el perfil",
-  "reachDistanceFromHere": "{distance} km desde aquí",
+  "reachReachableDetail": "{signal} · {distance} · toca para ver el perfil",
+  "reachDistanceFromHere": "{distance} desde aquí",
   "reachComputing": "Calculando cobertura…",
   "reachRepeaterFallback": "Repetidor",
   "reachMapButton": "¿Qué alcanzas?",
@@ -974,7 +970,7 @@
   "reachUpsellLater": "Más tarde",
   "linkProfileObstructed": "Obstáculo en el trayecto (señal por difracción)",
   "linkProfileClear": "Línea de vista despejada",
-  "linkProfileCaption": "Perfil del terreno y línea de vista · TX {tx} m · RX {rx} m",
+  "linkProfileCaption": "Perfil del terreno y línea de vista · TX {tx} · RX {rx}",
   "proUnlockCta": "Desbloquear con PRO",
   "proWelcomeTitle": "¡Bienvenido a PRO! 🎉",
   "proWelcomeBody": "Has desbloqueado el mapa de cobertura, los repetidores que alcanzas desde tu ubicación y todas las funciones PRO. 📡",
@@ -1027,9 +1023,9 @@
   "coverageBreadthQuick": "Rápida",
   "coverageBreadthMedium": "Media",
   "coverageBreadthExtended": "Amplia",
-  "coverageBreadthQuickHint": "80 km · respuesta más rápida",
-  "coverageBreadthMediumHint": "100 km · equilibrada",
-  "coverageBreadthExtendedHint": "150 km · más lejos, más espera",
+  "coverageBreadthQuickHint": "{radius} · respuesta más rápida",
+  "coverageBreadthMediumHint": "{radius} · equilibrada",
+  "coverageBreadthExtendedHint": "{radius} · más lejos, más espera",
   "coverageResultSubtitle": "Desde el punto seleccionado",
   "coverageResultEmptyNoReachable": "Ningún repetidor es accesible desde este punto",
   "coverageResultEmptyNoRepeaters": "No hay repetidores registrados en esta zona",
@@ -1086,7 +1082,7 @@
   "stationStaleNotice": "Los datos podrían no estar actualizados",
   "stationMissingEntry": "Datos no disponibles sin conexión",
   "stationDuplicateTitle": "Punto ya guardado",
-  "stationDuplicateBody": "Ya existe un puesto a menos de 200 metros. ¿Actualizarlo o crear uno distinto?",
+  "stationDuplicateBody": "Ya existe un puesto a menos de {distance}. ¿Actualizarlo o crear uno distinto?",
   "stationDuplicateUpdate": "Actualizarlo",
   "stationDuplicateCreate": "Crear distinto",
   "stationSaveFailed": "No se pudo guardar: espacio insuficiente",
@@ -1153,11 +1149,11 @@
     }
   },
   "spotsManualRefreshHint": "Toca para actualizar",
-  "coverageResultScope": "en {km} km · {count} evaluados",
+  "coverageResultScope": "en {km} · {count} evaluados",
   "@coverageResultScope": {
     "placeholders": {
       "km": {
-        "type": "int"
+        "type": "String"
       },
       "count": {
         "type": "int"
@@ -1182,7 +1178,7 @@
   "offlineMapsDeleteConfirmTitle": "¿Eliminar la región?",
   "offlineMapsDeleteConfirmMessage": "“{name}” ya no estará disponible sin conexión.",
   "offlineMapsDeleteConfirm": "Eliminar",
-  "offlineMapsRegionSubtitle": "Radio {radius} km · {size}",
+  "offlineMapsRegionSubtitle": "Radio {radius} · {size}",
   "offlineMapsIncomplete": "Descarga incompleta",
   "offlineMapsResume": "Reanudar",
   "offlineMapsCenterInfo": "La región se centrará en tu ubicación actual.",
@@ -1204,5 +1200,34 @@
   "changelog120CoverageSearch": "Búsqueda de cobertura desde cualquier punto: busca una localidad, pega coordenadas o mantén pulsado el mapa para descubrir qué alcanzas desde allí",
   "changelog120SavedStations": "Mis estaciones: guarda los puntos que te interesan y consúltalos también sin conexión (PRO)",
   "changelog120SpotsRefresh": "Los spots SOTA y POTA se actualizan solos cada minuto, con insignias de color por modo (CW, SSB, FT8…)",
-  "changelog120NoNetwork": "Sin conexión la app arranca al instante, muestra lo que está disponible y desactiva las acciones que requieren red"
+  "changelog120NoNetwork": "Sin conexión la app arranca al instante, muestra lo que está disponible y desactiva las acciones que requieren red",
+  "@coverageBreadthQuickHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthMediumHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@coverageBreadthExtendedHint": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "@stationDuplicateBody": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog130ImperialUnits": "Millas y pies: la app ahora sigue las unidades de tu dispositivo, y puedes elegir el sistema en Ajustes"
 }

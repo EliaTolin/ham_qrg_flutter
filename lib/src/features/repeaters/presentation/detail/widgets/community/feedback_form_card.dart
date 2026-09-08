@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
 import 'package:hamqrg/config/app_configs.dart';
@@ -507,7 +508,9 @@ class FeedbackFormCard extends ConsumerWidget {
           Expanded(
             child: Text(
               l10n.repeaterDetailDistanceWarning(
-                AppConfigs.maxFeedbackDistanceKm.toInt(),
+                context.units.threshold(
+                  AppConfigs.maxFeedbackDistanceKm * 1000,
+                ),
               ),
               style: theme.textTheme.bodySmall?.copyWith(
                 color: colorScheme.error,

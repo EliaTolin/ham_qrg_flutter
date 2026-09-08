@@ -119,20 +119,6 @@ class RepeaterFormatHelper {
     return '$frequencyHz Hz';
   }
 
-  /// Formats distance in meters to a human-readable string
-  ///
-  /// Examples:
-  /// - 12000 -> "12.0km away"
-  /// - 500 -> "500m away"
-  /// - null -> ""
-  static String formatDistance(double? distanceMeters) {
-    if (distanceMeters == null) return '';
-    if (distanceMeters < 1000) {
-      return '${distanceMeters.toStringAsFixed(0)}m away';
-    }
-    return '${(distanceMeters / 1000).toStringAsFixed(1)}km away';
-  }
-
   /// Formats a CTCSS (Continuous Tone-Coded Squelch System) frequency in hertz.
   ///
   /// Returns a string representation with one decimal place and the "Hz" suffix,

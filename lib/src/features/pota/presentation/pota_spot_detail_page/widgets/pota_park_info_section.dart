@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/l10n/app_localizations.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_park.dart';
 import 'package:hamqrg/src/features/pota/presentation/pota_spot_detail_page/widgets/pota_location_map.dart';
@@ -123,7 +124,8 @@ class PotaParkInfoSection extends StatelessWidget {
       tiles.add(
         _LocationInfoTile(
           icon: Icons.straighten,
-          label: l10n.potaDistanceAway(_formatDistance(distanceKm!)),
+          label:
+              l10n.potaDistanceAway(context.units.distanceFromKm(distanceKm!)),
           iconColor: colorScheme.primary,
         ),
       );
@@ -269,12 +271,6 @@ class PotaParkInfoSection extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String _formatDistance(double km) {
-    if (km < 1) return '${(km * 1000).round()} m';
-    if (km < 10) return '${km.toStringAsFixed(1)} km';
-    return '${km.round()} km';
   }
 }
 
