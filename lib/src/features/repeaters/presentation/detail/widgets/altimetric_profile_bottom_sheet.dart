@@ -9,13 +9,11 @@ class AltimetricProfileBottomSheet extends ConsumerWidget {
   const AltimetricProfileBottomSheet({
     required this.repeaterLat,
     required this.repeaterLon,
-    required this.repeaterName,
     super.key,
   });
 
   final double repeaterLat;
   final double repeaterLon;
-  final String repeaterName;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -83,7 +81,6 @@ class AltimetricProfileBottomSheet extends ConsumerWidget {
                     profile: profile,
                     scrollController: scrollController,
                     sourceLabel: l10n.repeaterDetailYou,
-                    destinationLabel: repeaterName,
                     sourceElevationLabel: l10n.repeaterDetailYourElevation,
                     totalDistanceLabel: l10n.repeaterDetailTotalDistance,
                     destinationElevationLabel:

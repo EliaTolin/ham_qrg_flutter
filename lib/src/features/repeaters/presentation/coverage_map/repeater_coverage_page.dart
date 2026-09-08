@@ -5,6 +5,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
+import 'package:hamqrg/common/widgets/units/map_scale_bar.dart';
 import 'package:hamqrg/log/talker_service/talker_service.dart';
 import 'package:hamqrg/src/features/repeaters/domain/coverage/repeater_coverage.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeater_coverage/get_repeater_coverage_provider.dart';
@@ -89,6 +91,9 @@ class _CoverageMapView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    // La preferenza si legge durante la build: dentro `onMapCreated`
+    // il contesto sarebbe attraversato da un await.
+    final isImperial = context.units.isImperial;
     return Stack(
       children: [
         MapWidget(
@@ -97,7 +102,13 @@ class _CoverageMapView extends HookWidget {
             zoom: 8.5,
           ),
           styleUri: MapboxStyles.OUTDOORS,
-          onMapCreated: _setupMap,
+          onMapCreated: (map) async {
+            await applyUnitAwareScaleBar(
+              map,
+              isImperial: isImperial,
+            );
+            await _setupMap(map);
+          },
         ),
         Positioned(
           left: 12,

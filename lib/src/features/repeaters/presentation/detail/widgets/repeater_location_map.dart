@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
+import 'package:hamqrg/common/widgets/units/map_scale_bar.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
@@ -19,6 +21,9 @@ class RepeaterLocationMap extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // La preferenza si legge durante la build: dentro `onMapCreated`
+    // il contesto sarebbe attraversato da un await.
+    final isImperial = context.units.isImperial;
     final mapController = useState<MapboxMap?>(null);
     final pointManager = useState<PointAnnotationManager?>(null);
 
@@ -71,6 +76,10 @@ class RepeaterLocationMap extends HookConsumerWidget {
                 ),
                 styleUri: MapboxStyles.OUTDOORS,
                 onMapCreated: (mapboxMap) async {
+                  await applyUnitAwareScaleBar(
+                    mapboxMap,
+                    isImperial: isImperial,
+                  );
                   await _initializeMap(
                     mapboxMap,
                     mapController,

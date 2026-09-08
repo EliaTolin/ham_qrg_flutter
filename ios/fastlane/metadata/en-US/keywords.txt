@@ -1,1 +1,1 @@
-ham radio repeaters qrz qrg amateur radio frequencies repeater hamradio shortwave
+dmr,c4fm,dstar,echolink,pota,sota,qrz,qrg,callsign,ctcss,vhf,uhf,relay,band,shortwave,hamradio

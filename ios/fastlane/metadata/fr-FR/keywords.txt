@@ -1,1 +1,1 @@
-radioamateur relais qrz ham qrg radio fréquences répéteur amateur ondes courtes
+dmr,c4fm,dstar,echolink,pota,sota,qrz,qrg,indicatif,ctcss,vhf,uhf,bande,onde courte,ham

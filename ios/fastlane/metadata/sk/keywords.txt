@@ -1,1 +1,1 @@
-rádioamatér,prevádzač,frekvencia,ham radio,hamradio,QRG,DMR,krátke vlny
+dmr,c4fm,dstar,echolink,pota,sota,qrz,qrg,rádioamatér,volačka,ctcss,vhf,uhf,krátke vlny

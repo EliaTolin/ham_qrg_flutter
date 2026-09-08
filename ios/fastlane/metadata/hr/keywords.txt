@@ -1,1 +1,1 @@
-radioamater,repetitori,qrz,qrg,frekvencije,ham radio,amaterski radio,dmr,kratki val
+dmr,c4fm,dstar,echolink,pota,sota,qrz,qrg,radioamater,ctcss,vhf,uhf,pozivni znak,kratki val

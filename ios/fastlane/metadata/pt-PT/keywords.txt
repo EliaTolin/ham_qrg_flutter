@@ -1,1 +1,1 @@
-radioamador,repetidores,qrz,qrg,frequencias,ham radio,radio amador,dmr,ondas curtas
+dmr,c4fm,dstar,echolink,pota,sota,qrz,qrg,indicativo,ctcss,vhf,uhf,banda,mapa,onda curta

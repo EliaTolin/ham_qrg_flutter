@@ -205,7 +205,6 @@ class LocationSection extends ConsumerWidget {
       builder: (_) => AltimetricProfileBottomSheet(
         repeaterLat: repeater.latitude!,
         repeaterLon: repeater.longitude!,
-        repeaterName: repeater.callsign ?? repeater.name ?? '',
       ),
     );
   }

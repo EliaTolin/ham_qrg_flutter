@@ -21,7 +21,6 @@ class AltimetricProfileChart extends StatelessWidget {
   const AltimetricProfileChart({
     required this.profile,
     required this.sourceLabel,
-    required this.destinationLabel,
     required this.sourceElevationLabel,
     required this.totalDistanceLabel,
     required this.destinationElevationLabel,
@@ -41,7 +40,6 @@ class AltimetricProfileChart extends StatelessWidget {
   final AltimetricProfile profile;
 
   final String sourceLabel;
-  final String destinationLabel;
   final String sourceElevationLabel;
   final String totalDistanceLabel;
   final String destinationElevationLabel;
@@ -136,7 +134,6 @@ class AltimetricProfileChart extends StatelessWidget {
           yMax: yMaxFinal,
           losColor: losColor,
           sourceLabel: sourceLabel,
-          destinationLabel: destinationLabel,
         ),
       ),
       if (showStats) ...[
@@ -261,7 +258,6 @@ class _Chart extends StatelessWidget {
     required this.yMax,
     required this.losColor,
     required this.sourceLabel,
-    required this.destinationLabel,
   });
 
   final List<FlSpot> terrainSpots;
@@ -271,7 +267,6 @@ class _Chart extends StatelessWidget {
   final double yMax;
   final Color losColor;
   final String sourceLabel;
-  final String destinationLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -313,32 +308,10 @@ class _Chart extends StatelessWidget {
                     ),
                   );
                 }
-                if (value == meta.max) {
-                  // Il nome del ripetitore è di lunghezza ignota: senza un
-                  // tetto si allarga a cavallo del punto di arrivo e finisce
-                  // sopra l'ultima etichetta di distanza.
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 6, right: 4),
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 96),
-                      child: Text(
-                        destinationLabel,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.end,
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  );
-                }
-                // L'ultimo tick regolare cade a ridosso dell'arrivo: lì c'è
-                // già il nome del ripetitore, e due etichette nello stesso
-                // punto sono peggio di una sola.
-                if (value > meta.max * 0.85) {
-                  return const SizedBox.shrink();
-                }
+                // In fondo all'asse non va più il nome del ripetitore: la
+                // schermata lo ha già in testata, e lì sotto rubava lo spazio
+                // all'ultima etichetta di distanza — che è l'unica delle due
+                // a dire qualcosa che il grafico non dice già.
                 return Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: Text(

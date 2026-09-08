@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/utils/sota_marker_helper.dart';
+import 'package:hamqrg/common/widgets/units/map_scale_bar.dart';
 import 'package:hamqrg/src/features/sota/domain/sota_summit.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
@@ -17,6 +19,9 @@ class SotaLocationMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // La preferenza si legge durante la build: dentro `onMapCreated`
+    // il contesto sarebbe attraversato da un await.
+    final isImperial = context.units.isImperial;
     return GestureDetector(
       onTap: () => _showFullMap(context),
       child: RepaintBoundary(
@@ -41,6 +46,10 @@ class SotaLocationMap extends StatelessWidget {
                     ),
                     styleUri: MapboxStyles.OUTDOORS,
                     onMapCreated: (mapboxMap) async {
+                      await applyUnitAwareScaleBar(
+                        mapboxMap,
+                        isImperial: isImperial,
+                      );
                       await mapboxMap.location.updateSettings(
                         LocationComponentSettings(enabled: false),
                       );
@@ -79,6 +88,9 @@ class _FullMapDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // La preferenza si legge durante la build: dentro `onMapCreated`
+    // il contesto sarebbe attraversato da un await.
+    final isImperial = context.units.isImperial;
     return Dialog.fullscreen(
       child: Scaffold(
         appBar: AppBar(
@@ -99,6 +111,10 @@ class _FullMapDialog extends StatelessWidget {
           ),
           styleUri: MapboxStyles.OUTDOORS,
           onMapCreated: (mapboxMap) async {
+            await applyUnitAwareScaleBar(
+              mapboxMap,
+              isImperial: isImperial,
+            );
             await mapboxMap.location.updateSettings(
               LocationComponentSettings(
                 enabled: true,

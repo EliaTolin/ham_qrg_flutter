@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:ui' as ui;
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -63,7 +64,7 @@ const double _clusterZoomIncrement = 1.5;
 /// - 13-15: Neighborhood view
 /// - 16-18: Street view
 /// - 19+: Building view
-const double _clusterMaxZoom = 6;
+const double _clusterMaxZoom = 5;
 
 /// Zoom applicato quando l'utente sceglie una località dalla ricerca: abbastanza
 /// stretto da vedere il territorio attorno al punto, abbastanza largo da
