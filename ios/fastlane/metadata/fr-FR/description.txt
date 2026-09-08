@@ -1,37 +1,37 @@
-HamQRG est l'application ultime pour les radioamateurs et les auditeurs. Trouvez facilement les relais près de chez vous, suivez les activations POTA en temps réel, consultez les fréquences et rejoignez une communauté qui grandit chaque jour.
+Plus de 24 000 relais sur la carte : fréquence, décalage, tonalités CTCSS, color code DMR et distance depuis votre position. Analogique, DMR, C4FM, D-STAR et EchoLink, avec les spots POTA en temps réel.
 
-**CARTE INTERACTIVE**
+CARTE INTERACTIVE
 • Visualisez tous les relais sur une carte interactive
 • Trouvez les relais les plus proches de votre position
 • Filtrez par mode : Analogique, DMR, C4FM, D-STAR, Echolink
 • Regroupement intelligent pour les zones avec de nombreux relais
 
-**DONNÉES TECHNIQUES COMPLÈTES**
+DONNÉES TECHNIQUES COMPLÈTES
 • Fréquence TX/RX et décalage
 • Tons CTCSS/DCS
 • Color Code et Talk Groups pour DMR
 • Réseaux numériques (BrandMeister, TGIF et autres)
 • Position précise et distance
 
-**SPOTS POTA EN DIRECT**
+SPOTS POTA EN DIRECT
 • Suivez en temps réel toutes les activations Parks On The Air
 • Filtrez les spots par bande et mode (SSB, CW, Digital)
 • Triez par heure ou par distance depuis votre position
 • Visualisez les parcs actifs sur la carte interactive
 • Accès rapide au profil QRZ de l'activateur et à la page du parc
 
-**FAVORIS ET COMMENTAIRES**
+FAVORIS ET COMMENTAIRES
 • Enregistrez vos relais favoris pour un accès rapide
 • Laissez des commentaires sur la qualité du signal
 • Signalez des problèmes ou des mises à jour aux coordinateurs
 • Consultez les rapports de la communauté
 
-**POUR RADIOAMATEURS ET AUDITEURS**
+POUR RADIOAMATEURS ET AUDITEURS
 • Profil personnalisé avec indicatif
 • Support pour les opérateurs licenciés et SWL
 • Accès gratuit à toutes les données publiques
 
-**COMMUNAUTÉ ACTIVE**
+COMMUNAUTÉ ACTIVE
 • Rejoignez le groupe Telegram
 • Proposez de nouvelles fonctionnalités
 • Contactez directement les développeurs

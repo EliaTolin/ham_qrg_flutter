@@ -1,4 +1,4 @@
-A HamQRG a tökéletes alkalmazás rádióamatőrök és hallgatók számára. Könnyedén megtalálhatod a közeledben lévő átjátszókat, valós időben követheted a POTA aktiválásokat, ellenőrizheted a frekvenciákat, és csatlakozhatsz egy közösséghez, amely napról napra növekszik.
+Több mint 24 000 átjátszó a térképen: frekvencia, eltolás, CTCSS hangok, DMR color code és távolság a helyzetedtől. Analóg, DMR, C4FM, D-STAR és EchoLink, valós idejű POTA spotokkal.
 
 <b>INTERAKTÍV TÉRKÉP</b>
 • Az összes átjátszó megjelenítése interaktív térképen

@@ -1,4 +1,4 @@
-HamQRG je savršena aplikacija za radioamatere i slušaoce. Lako pronađite repetitore u svojoj blizini, pratite POTA aktivacije uživo, proverite frekvencije i pridružite se zajednici koja raste svakog dana.
+Više od 24.000 repetitora na mapi: frekvencija, odmak, CTCSS tonovi, DMR color code i udaljenost od tvoje lokacije. Analogni, DMR, C4FM, D-STAR i EchoLink, uz POTA spotove uživo.
 
 <b>INTERAKTIVNA MAPA</b>
 • Prikaz svih repetitora na interaktivnoj mapi

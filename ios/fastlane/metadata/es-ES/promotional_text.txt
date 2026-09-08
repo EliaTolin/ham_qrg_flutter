@@ -1,1 +1,1 @@
-Encuentra repetidores de radio cerca de ti: mapa, frecuencias y comunidad.
+Nuevo: distancias en millas y pies, además del sistema métrico. Más de 24.000 repetidores en el mapa, actualizados por la comunidad.

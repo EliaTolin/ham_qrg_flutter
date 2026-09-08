@@ -1,35 +1,35 @@
-HamQRG e a app definitiva para radioamadores e ouvintes. Encontra facilmente repetidores perto de ti, segue as ativacoes POTA em tempo real, consulta frequencias e junta-te a uma comunidade que cresce todos os dias.
+Mais de 24.000 repetidores no mapa: frequência, shift, tons CTCSS, color code DMR e distância de onde estás. Analógico, DMR, C4FM, D-STAR e EchoLink, com spots POTA em tempo real.
 
 <b>MAPA INTERATIVO</b>
 • Visualiza todos os repetidores num mapa interativo
-• Encontra os repetidores mais proximos da tua localizacao
-• Filtra por modo: Analogico, DMR, C4FM, D-STAR, Echolink
-• Agrupamento inteligente para areas com muitos repetidores
+• Encontra os repetidores mais próximos da tua localização
+• Filtra por modo: Analógico, DMR, C4FM, D-STAR, Echolink
+• Agrupamento inteligente para áreas com muitos repetidores
 
-<b>DADOS TECNICOS COMPLETOS</b>
-• Frequencia TX/RX e desvio
+<b>DADOS TÉCNICOS COMPLETOS</b>
+• Frequência TX/RX e desvio
 • Tons CTCSS/DCS
 • Color Code e Talk Groups para DMR
 • Redes digitais (BrandMeister, TGIF e outras)
-• Localizacao precisa e distancia
+• Localização precisa e distância
 
 <b>SPOTS POTA EM DIRETO</b>
-• Acompanha em tempo real todas as ativacoes Parks On The Air
+• Acompanha em tempo real todas as ativações Parks On The Air
 • Filtra os spots por banda e modo (SSB, CW, Digital)
-• Ordena por hora ou por distancia da tua localizacao
+• Ordena por hora ou por distância da tua localização
 • Visualiza os parques ativos no mapa interativo
-• Acesso rapido ao perfil QRZ do ativador e a pagina do parque
+• Acesso rápido ao perfil QRZ do ativador e à página do parque
 
 <b>FAVORITOS E FEEDBACK</b>
-• Guarda os teus repetidores favoritos para acesso rapido
+• Guarda os teus repetidores favoritos para acesso rápido
 • Deixa feedback sobre a qualidade do sinal
-• Reporta problemas ou atualizacoes aos coordenadores
-• Consulta os relatorios da comunidade
+• Reporta problemas ou atualizações aos coordenadores
+• Consulta os relatórios da comunidade
 
 <b>PARA RADIOAMADORES E OUVINTES</b>
 • Perfil personalizado com indicativo
 • Suporte para operadores licenciados e SWL
-• Acesso gratuito a todos os dados publicos
+• Acesso gratuito a todos os dados públicos
 
 <b>COMUNIDADE ATIVA</b>
 • Junta-te ao grupo Telegram

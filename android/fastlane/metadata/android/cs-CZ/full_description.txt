@@ -1,4 +1,4 @@
-HamQRG je dokonalá aplikace pro radioamatéry a posluchače. Snadno najdete převaděče ve svém okolí, sledujte aktivace POTA v reálném čase, zkontrolujte frekvence a připojte se ke komunitě, která roste každý den.
+Více než 24 000 převaděčů na mapě: frekvence, odstup, tóny CTCSS, DMR color code a vzdálenost od tvé polohy. Analogový, DMR, C4FM, D-STAR a EchoLink, včetně POTA spotů v reálném čase.
 
 <b>INTERAKTIVNÍ MAPA</b>
 • Zobrazení všech převaděčů na interaktivní mapě

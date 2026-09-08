@@ -1,4 +1,4 @@
-HamQRG is de ultieme app voor zendamateurs en luisteraars. Vind eenvoudig repeaters bij jou in de buurt, volg POTA-activaties live, bekijk frequenties en sluit je aan bij een community die elke dag groeit.
+Meer dan 24.000 repeaters op de kaart: frequentie, shift, CTCSS-tonen, DMR-colorcode en afstand vanaf je locatie. Analoog, DMR, C4FM, D-STAR en EchoLink, met live POTA-spots.
 
 <b>INTERACTIEVE KAART</b>
 • Bekijk alle repeaters op een interactieve kaart

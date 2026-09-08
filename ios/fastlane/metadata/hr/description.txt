@@ -1,39 +1,39 @@
-HamQRG je najbolja aplikacija za radioamatere i slusalce. Lako pronadi repetitore u blizini, prati POTA aktivacije uzivo, provjeri frekvencije i pridruzi se zajednici koja raste svakim danom.
+Više od 24.000 repetitora na karti: frekvencija, odmak, CTCSS tonovi, DMR color code i udaljenost od tvoje lokacije. Analogni, DMR, C4FM, D-STAR i EchoLink, uz POTA spotove uživo.
 
-**INTERAKTIVNA KARTA**
+INTERAKTIVNA KARTA
 • Pregledaj sve repetitore na interaktivnoj karti
-• Pronadi najblize repetitore prema tvojoj lokaciji
-• Filtriraj po nacinu rada: Analogni, DMR, C4FM, D-STAR, Echolink
-• Pametno grupiranje za podrucja s mnogo repetitora
+• Pronađi najbliže repetitore prema tvojoj lokaciji
+• Filtriraj po načinu rada: Analogni, DMR, C4FM, D-STAR, Echolink
+• Pametno grupiranje za područja s mnogo repetitora
 
-**POTPUNI TEHNICKI PODACI**
+POTPUNI TEHNIČKI PODACI
 • TX/RX frekvencija i pomak
 • CTCSS/DCS tonovi
 • Color Code i Talk Groups za DMR
-• Digitalne mreze (BrandMeister, TGIF i druge)
-• Tocna lokacija i udaljenost
+• Digitalne mreže (BrandMeister, TGIF i druge)
+• Točna lokacija i udaljenost
 
-**POTA SPOTOVI UZIVO**
+POTA SPOTOVI UŽIVO
 • Prati u stvarnom vremenu sve aktivacije Parks On The Air
-• Filtriraj spotove po pojasu i nacinu rada (SSB, CW, Digital)
+• Filtriraj spotove po pojasu i načinu rada (SSB, CW, Digital)
 • Sortiraj po vremenu ili udaljenosti od tvoje lokacije
 • Pregledaj aktivne parkove na interaktivnoj karti
 • Brzi pristup QRZ profilu aktivatora i stranici parka
 
-**FAVORITI I POVRATNE INFORMACIJE**
+FAVORITI I POVRATNE INFORMACIJE
 • Spremi omiljene repetitore za brzi pristup
 • Ostavi povratnu informaciju o kvaliteti signala
-• Prijavi probleme ili azuriranja koordinatorima
-• Pregledaj izvjesca zajednice
+• Prijavi probleme ili ažuriranja koordinatorima
+• Pregledaj izvješća zajednice
 
-**ZA RADIOAMATERE I SLUSALCE**
+ZA RADIOAMATERE I SLUŠATELJE
 • Personalizirani profil s pozivnim znakom
-• Podrska za licencirane operatere i SWL
+• Podrška za licencirane operatere i SWL
 • Besplatan pristup svim javnim podacima
 
-**AKTIVNA ZAJEDNICA**
-• Pridruzi se Telegram grupi
-• Predlozi nove funkcije
+AKTIVNA ZAJEDNICA
+• Pridruži se Telegram grupi
+• Predloži nove funkcije
 • Izravno kontaktiraj razvojne programere
 
 Preuzmi HamQRG i otkrij svijet radioamaterskih repetitora!

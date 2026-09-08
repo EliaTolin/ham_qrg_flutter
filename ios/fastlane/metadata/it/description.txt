@@ -1,37 +1,37 @@
-HamQRG è l'app definitiva per radioamatori e ascoltatori. Trova facilmente i ripetitori intorno a te, segui le attivazioni POTA in tempo reale, consulta le frequenze e unisciti a una community che cresce ogni giorno.
+Oltre 24.000 ripetitori sulla mappa: frequenza, shift, toni CTCSS, color code DMR e distanza da dove sei. Analogico, DMR, C4FM, D-STAR ed EchoLink, con gli spot POTA in tempo reale.
 
-**MAPPA INTERATTIVA**
+MAPPA INTERATTIVA
 • Visualizza tutti i ripetitori su una mappa interattiva
 • Trova i ripetitori più vicini alla tua posizione
 • Filtra per modalità: Analogico, DMR, C4FM, D-STAR, Echolink
 • Cluster intelligente per aree con molti ripetitori
 
-**DATI TECNICI COMPLETI**
+DATI TECNICI COMPLETI
 • Frequenza TX/RX e shift
 • Toni CTCSS/DCS
 • Color Code e Talk Group per DMR
 • Reti digitali (BrandMeister, TGIF e altre)
 • Posizione precisa e distanza
 
-**POTA SPOT LIVE**
+POTA SPOT LIVE
 • Segui in tempo reale tutte le attivazioni Parks On The Air
 • Filtra gli spot per banda e modo (SSB, CW, Digital)
 • Ordina per orario o per distanza dalla tua posizione
 • Visualizza i parchi attivi sulla mappa interattiva
 • Accesso rapido al profilo QRZ dell'attivatore e alla scheda parco
 
-**PREFERITI E FEEDBACK**
+PREFERITI E FEEDBACK
 • Salva i tuoi ripetitori preferiti per accesso rapido
 • Lascia feedback sulla qualità del segnale
 • Segnala problemi o aggiornamenti ai coordinatori
 • Consulta i report della community
 
-**PER RADIOAMATORI E ASCOLTATORI**
+PER RADIOAMATORI E ASCOLTATORI
 • Profilo personalizzato con nominativo
 • Supporto per operatori con licenza e SWL
 • Accesso gratuito a tutti i dati pubblici
 
-**COMMUNITY ATTIVA**
+COMMUNITY ATTIVA
 • Unisciti al gruppo Telegram
 • Proponi nuove funzionalità
 • Contatta direttamente gli sviluppatori

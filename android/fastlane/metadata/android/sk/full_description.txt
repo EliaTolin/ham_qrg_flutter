@@ -1,4 +1,4 @@
-HamQRG je dokonalá aplikácia pre rádioamatérov a poslucháčov. Jednoducho nájdete prevádzače vo svojom okolí, sledujte aktivácie POTA v reálnom čase, skontrolujte frekvencie a pripojte sa ku komunite, ktorá rastie každý deň.
+Viac než 24 000 prevádzačov na mape: frekvencia, odstup, tóny CTCSS, DMR color code a vzdialenosť od tvojej polohy. Analógový, DMR, C4FM, D-STAR a EchoLink, vrátane POTA spotov v reálnom čase.
 
 <b>INTERAKTÍVNA MAPA</b>
 • Zobrazenie všetkých prevádzačov na interaktívnej mape

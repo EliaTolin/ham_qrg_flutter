@@ -1,37 +1,37 @@
-HamQRG is the ultimate app for ham radio operators and listeners. Easily find repeaters near you, follow POTA activations live, check frequencies and join a community that grows every day.
+Over 24,000 repeaters on the map: frequency, shift, CTCSS tones, DMR color code and distance from where you are. Analog, DMR, C4FM, D-STAR and EchoLink, plus live POTA spots.
 
-**INTERACTIVE MAP**
+INTERACTIVE MAP
 • View all repeaters on an interactive map
 • Find the closest repeaters to your location
 • Filter by mode: Analog, DMR, C4FM, D-STAR, Echolink
 • Smart clustering for areas with many repeaters
 
-**FULL TECHNICAL DATA**
+FULL TECHNICAL DATA
 • TX/RX frequency and shift
 • CTCSS/DCS tones
 • Color Code and Talk Groups for DMR
 • Digital networks (BrandMeister, TGIF, and more)
 • Precise location and distance
 
-**POTA LIVE SPOTS**
+POTA LIVE SPOTS
 • Follow all Parks On The Air activations in real time
 • Filter spots by band and mode (SSB, CW, Digital)
 • Sort by time or by distance from your location
 • View active parks on the interactive map
 • Quick access to the activator's QRZ profile and park page
 
-**FAVORITES & FEEDBACK**
+FAVORITES & FEEDBACK
 • Save your favorite repeaters for quick access
 • Leave feedback on signal quality
 • Report issues or updates to coordinators
 • Browse community reports
 
-**FOR HAM OPERATORS & LISTENERS**
+FOR HAM OPERATORS & LISTENERS
 • Personalized profile with callsign
 • Support for licensed operators and SWL
 • Free access to all public data
 
-**ACTIVE COMMUNITY**
+ACTIVE COMMUNITY
 • Join the Telegram group
 • Suggest new features
 • Contact the developers directly

@@ -1,4 +1,4 @@
-HamQRG est l'application ultime pour les radioamateurs et les auditeurs. Trouvez facilement les relais près de chez vous, suivez les activations POTA en temps réel, consultez les fréquences et rejoignez une communauté qui grandit chaque jour.
+Plus de 24 000 relais sur la carte : fréquence, décalage, tonalités CTCSS, color code DMR et distance depuis votre position. Analogique, DMR, C4FM, D-STAR et EchoLink, avec les spots POTA en temps réel.
 
 <b>CARTE INTERACTIVE</b>
 • Visualisez tous les relais sur une carte interactive

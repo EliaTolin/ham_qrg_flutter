@@ -1,41 +1,41 @@
-HamQRG to najlepsza aplikacja dla krotkofalowcow i sluchaczy. Latwo znajdz przemienniki w poblizu, sledz aktywacje POTA na zywo, sprawdz czestotliwosci i dolacz do spolecznosci, ktora rosnie kazdego dnia.
+Ponad 24 000 przemienników na mapie: częstotliwość, odstęp, tony CTCSS, color code DMR i odległość od Twojej lokalizacji. Analogowy, DMR, C4FM, D-STAR i EchoLink, wraz ze spotami POTA na żywo.
 
-**INTERAKTYWNA MAPA**
-• Wyswietl wszystkie przemienniki na interaktywnej mapie
-• Znajdz najblizsze przemienniki wzgledem Twojej lokalizacji
-• Filtruj wedlug trybu: Analogowy, DMR, C4FM, D-STAR, Echolink
-• Inteligentne grupowanie dla obszarow z wieloma przemiennikami
+INTERAKTYWNA MAPA
+• Wyświetl wszystkie przemienniki na interaktywnej mapie
+• Znajdź najbliższe przemienniki względem Twojej lokalizacji
+• Filtruj według trybu: Analogowy, DMR, C4FM, D-STAR, Echolink
+• Inteligentne grupowanie dla obszarów z wieloma przemiennikami
 
-**PELNE DANE TECHNICZNE**
-• Czestotliwosc TX/RX i przesuniecie
+PEŁNE DANE TECHNICZNE
+• Częstotliwość TX/RX i przesunięcie
 • Tony CTCSS/DCS
 • Color Code i Talk Groups dla DMR
 • Sieci cyfrowe (BrandMeister, TGIF i inne)
-• Dokladna lokalizacja i odleglosc
+• Dokładna lokalizacja i odległość
 
-**SPOTY POTA NA ZYWO**
-• Sledz na zywo wszystkie aktywacje Parks On The Air
-• Filtruj spoty wedlug pasma i trybu (SSB, CW, Digital)
-• Sortuj wedlug czasu lub odleglosci od Twojej lokalizacji
-• Wyswietl aktywne parki na interaktywnej mapie
-• Szybki dostep do profilu QRZ aktywatora i strony parku
+SPOTY POTA NA ŻYWO
+• Śledź na żywo wszystkie aktywacje Parks On The Air
+• Filtruj spoty według pasma i trybu (SSB, CW, Digital)
+• Sortuj według czasu lub odległości od Twojej lokalizacji
+• Wyświetl aktywne parki na interaktywnej mapie
+• Szybki dostęp do profilu QRZ aktywatora i strony parku
 
-**ULUBIONE I OPINIE**
+ULUBIONE I OPINIE
 • Zapisz ulubione przemienniki dla szybkiego dostepu
-• Zostaw opinie o jakosci sygnalu
-• Zglos problemy lub aktualizacje koordynatorom
-• Przegladaj raporty spolecznosci
+• Zostaw opinię o jakości sygnału
+• Zgłoś problemy lub aktualizacje koordynatorom
+• Przeglądaj raporty społeczności
 
-**DLA KROTKOFALOWCOW I SLUCHACZY**
+DLA KRÓTKOFALOWCÓW I SŁUCHACZY
 • Spersonalizowany profil ze znakiem wywolawczym
-• Wsparcie dla licencjonowanych operatorow i SWL
-• Darmowy dostep do wszystkich publicznych danych
+• Wsparcie dla licencjonowanych operatorów i SWL
+• Darmowy dostęp do wszystkich publicznych danych
 
-**AKTYWNA SPOLECZNOSC**
-• Dolacz do grupy na Telegramie
+AKTYWNA SPOŁECZNOŚĆ
+• Dołącz do grupy na Telegramie
 • Proponuj nowe funkcje
-• Skontaktuj sie bezposrednio z deweloperami
+• Skontaktuj się bezpośrednio z deweloperami
 
-Pobierz HamQRG i odkryj swiat przemiennikow krotkofalowych!
+Pobierz HamQRG i odkryj świat przemienników krótkofalowych!
 
 Warunki korzystania (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

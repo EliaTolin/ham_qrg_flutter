@@ -1,41 +1,41 @@
-HamQRG este aplicatia definitiva pentru radioamatori si ascultatori. Gaseste usor repetoare in apropiere, urmareste activarile POTA in timp real, verifica frecventele si alatura-te unei comunitati care creste in fiecare zi.
+Peste 24.000 de repetoare pe hartă: frecvență, shift, tonuri CTCSS, color code DMR și distanța față de poziția ta. Analogic, DMR, C4FM, D-STAR și EchoLink, cu spoturi POTA în timp real.
 
-**HARTA INTERACTIVA**
-• Vizualizeaza toate repetoarele pe o harta interactiva
-• Gaseste cele mai apropiate repetoare de locatia ta
-• Filtreaza dupa mod: Analogic, DMR, C4FM, D-STAR, Echolink
-• Grupare inteligenta pentru zone cu multe repetoare
+HARTĂ INTERACTIVĂ
+• Vizualizează toate repetoarele pe o hartă interactivă
+• Găsește cele mai apropiate repetoare de locația ta
+• Filtrează după mod: Analogic, DMR, C4FM, D-STAR, Echolink
+• Grupare inteligentă pentru zone cu multe repetoare
 
-**DATE TEHNICE COMPLETE**
-• Frecventa TX/RX si deplasare
+DATE TEHNICE COMPLETE
+• Frecvența TX/RX și deplasare
 • Tonuri CTCSS/DCS
-• Color Code si Talk Groups pentru DMR
-• Retele digitale (BrandMeister, TGIF si altele)
-• Locatie precisa si distanta
+• Color Code și Talk Groups pentru DMR
+• Rețele digitale (BrandMeister, TGIF și altele)
+• Locație precisă și distanța
 
-**SPOTURI POTA LIVE**
-• Urmareste in timp real toate activarile Parks On The Air
-• Filtreaza spoturile dupa banda si mod (SSB, CW, Digital)
-• Sorteaza dupa ora sau dupa distanta de la locatia ta
-• Vizualizeaza parcurile active pe harta interactiva
-• Acces rapid la profilul QRZ al activatorului si la pagina parcului
+SPOTURI POTA LIVE
+• Urmărește în timp real toate activările Parks On The Air
+• Filtrează spoturile după bandă și mod (SSB, CW, Digital)
+• Sortează după oră sau după distanța de la locația ta
+• Vizualizează parcurile active pe harta interactivă
+• Acces rapid la profilul QRZ al activatorului și la pagina parcului
 
-**FAVORITE SI FEEDBACK**
-• Salveaza repetoarele favorite pentru acces rapid
-• Lasa feedback despre calitatea semnalului
-• Raporteaza probleme sau actualizari coordonatorilor
-• Consulta rapoartele comunitatii
+FAVORITE ȘI FEEDBACK
+• Salvează repetoarele favorite pentru acces rapid
+• Lasă feedback despre calitatea semnalului
+• Raportează probleme sau actualizări coordonatorilor
+• Consultă rapoartele comunității
 
-**PENTRU RADIOAMATORI SI ASCULTATORI**
+PENTRU RADIOAMATORI ȘI ASCULTATORI
 • Profil personalizat cu indicativ
-• Suport pentru operatori licentiati si SWL
+• Suport pentru operatori licențiați și SWL
 • Acces gratuit la toate datele publice
 
-**COMUNITATE ACTIVA**
-• Alatura-te grupului Telegram
-• Propune functionalitati noi
-• Contacteaza direct dezvoltatorii
+COMUNITATE ACTIVĂ
+• Alătură-te grupului Telegram
+• Propune funcționalități noi
+• Contactează direct dezvoltatorii
 
-Descarca HamQRG si descopera lumea repetoarelor radioamator!
+Descarcă HamQRG și descoperă lumea repetoarelor radioamator!
 
 Termeni de utilizare (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

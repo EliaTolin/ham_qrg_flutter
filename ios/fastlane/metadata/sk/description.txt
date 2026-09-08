@@ -1,37 +1,37 @@
-HamQRG je dokonalá aplikácia pre rádioamatérov a poslucháčov. Jednoducho nájdete prevádzače vo svojom okolí, sledujte aktivácie POTA v reálnom čase, skontrolujte frekvencie a pripojte sa ku komunite, ktorá rastie každý deň.
+Viac než 24 000 prevádzačov na mape: frekvencia, odstup, tóny CTCSS, DMR color code a vzdialenosť od tvojej polohy. Analógový, DMR, C4FM, D-STAR a EchoLink, vrátane POTA spotov v reálnom čase.
 
-**INTERAKTÍVNA MAPA**
+INTERAKTÍVNA MAPA
 • Zobrazenie všetkých prevádzačov na interaktívnej mape
 • Nájdenie najbližších prevádzačov k vašej polohe
 • Filtrovanie podľa režimu: Analógový, DMR, C4FM, D-STAR, Echolink
 • Inteligentné zoskupovanie v oblastiach s mnohými prevádzačmi
 
-**KOMPLETNÉ TECHNICKÉ ÚDAJE**
+KOMPLETNÉ TECHNICKÉ ÚDAJE
 • TX/RX frekvencia a offset
 • CTCSS/DCS tóny
 • Color Code a Talk Group pre DMR
 • Digitálne siete (BrandMeister, TGIF a ďalšie)
 • Presná poloha a vzdialenosť
 
-**POTA SPOTY NAŽIVO**
+POTA SPOTY NAŽIVO
 • Sledujte všetky aktivácie Parks On The Air v reálnom čase
 • Filtrujte spoty podľa pásma a režimu (SSB, CW, Digital)
 • Zoraďte podľa času alebo vzdialenosti od vašej polohy
 • Zobrazte aktívne parky na interaktívnej mape
 • Rýchly prístup k QRZ profilu aktivátora a stránke parku
 
-**OBĽÚBENÉ A SPÄTNÁ VÄZBA**
+OBĽÚBENÉ A SPÄTNÁ VÄZBA
 • Uložte si obľúbené prevádzače pre rýchly prístup
 • Zanechajte spätnú väzbu o kvalite signálu
 • Nahláste problémy alebo aktualizácie koordinátorom
 • Prechádzajte komunitné hlásenia
 
-**PRE RÁDIOAMATÉROV A POSLUCHÁČOV**
+PRE RÁDIOAMATÉROV A POSLUCHÁČOV
 • Personalizovaný profil s volacím znakom
 • Podpora pre licencovaných operátorov a SWL
 • Bezplatný prístup ku všetkým verejným údajom
 
-**AKTÍVNA KOMUNITA**
+AKTÍVNA KOMUNITA
 • Pripojte sa ku skupine na Telegrame
 • Navrhnite nové funkcie
 • Kontaktujte priamo vývojárov

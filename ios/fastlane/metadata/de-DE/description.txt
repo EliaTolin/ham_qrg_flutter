@@ -1,37 +1,37 @@
-HamQRG ist die ultimative App fuer Funkamateure und Hoerer. Finde ganz einfach Relais in deiner Naehe, verfolge POTA-Aktivierungen in Echtzeit, pruefe Frequenzen und werde Teil einer Community, die jeden Tag waechst.
+Über 24.000 Relais auf der Karte: Frequenz, Ablage, CTCSS-Töne, DMR-Color-Code und Entfernung von deinem Standort. Analog, DMR, C4FM, D-STAR und EchoLink, dazu POTA-Spots in Echtzeit.
 
-**INTERAKTIVE KARTE**
+INTERAKTIVE KARTE
 • Alle Relais auf einer interaktiven Karte anzeigen
-• Die naechstgelegenen Relais zu deinem Standort finden
+• Die nächstgelegenen Relais zu deinem Standort finden
 • Nach Betriebsart filtern: Analog, DMR, C4FM, D-STAR, Echolink
-• Intelligentes Clustering fuer Gebiete mit vielen Relais
+• Intelligentes Clustering für Gebiete mit vielen Relais
 
-**VOLLSTAENDIGE TECHNISCHE DATEN**
+VOLLSTÄNDIGE TECHNISCHE DATEN
 • TX/RX-Frequenz und Ablage
-• CTCSS/DCS-Toene
-• Color Code und Talkgroups fuer DMR
+• CTCSS/DCS-Töne
+• Color Code und Talkgroups für DMR
 • Digitale Netze (BrandMeister, TGIF und weitere)
 • Genauer Standort und Entfernung
 
-**POTA-LIVE-SPOTS**
+POTA-LIVE-SPOTS
 • Verfolge alle Parks On The Air Aktivierungen in Echtzeit
 • Filtere Spots nach Band und Betriebsart (SSB, CW, Digital)
 • Sortiere nach Uhrzeit oder Entfernung zu deinem Standort
 • Sieh dir aktive Parks auf der interaktiven Karte an
 • Schneller Zugriff auf das QRZ-Profil des Aktivierers und die Park-Seite
 
-**FAVORITEN & FEEDBACK**
-• Speichere deine Lieblingsrelais fuer schnellen Zugriff
-• Hinterlasse Feedback zur Signalqualitaet
+FAVORITEN & FEEDBACK
+• Speichere deine Lieblingsrelais für schnellen Zugriff
+• Hinterlasse Feedback zur Signalqualität
 • Melde Probleme oder Aktualisierungen an die Koordinatoren
 • Durchsuche Community-Berichte
 
-**FUER FUNKAMATEURE & HOERER**
+FÜR FUNKAMATEURE & HÖRER
 • Personalisiertes Profil mit Rufzeichen
-• Unterstuetzung fuer lizenzierte Funkamateure und SWL
-• Kostenloser Zugang zu allen oeffentlichen Daten
+• Unterstützung für lizenzierte Funkamateure und SWL
+• Kostenloser Zugang zu allen öffentlichen Daten
 
-**AKTIVE COMMUNITY**
+AKTIVE COMMUNITY
 • Tritt der Telegram-Gruppe bei
 • Schlage neue Funktionen vor
 • Kontaktiere die Entwickler direkt

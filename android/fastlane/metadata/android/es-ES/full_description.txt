@@ -1,4 +1,4 @@
-HamQRG es la app definitiva para radioaficionados y oyentes. Encuentra fácilmente los repetidores cerca de ti, sigue las activaciones POTA en tiempo real, consulta las frecuencias y únete a una comunidad que crece cada día.
+Más de 24.000 repetidores en el mapa: frecuencia, shift, tonos CTCSS, color code DMR y distancia desde donde estás. Analógico, DMR, C4FM, D-STAR y EchoLink, con spots POTA en tiempo real.
 
 <b>MAPA INTERACTIVO</b>
 • Visualiza todos los repetidores en un mapa interactivo
