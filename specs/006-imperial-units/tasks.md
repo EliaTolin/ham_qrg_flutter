@@ -193,6 +193,35 @@ Scostamenti rispetto al piano, tutti annotati nei task interessati:
   trovato proprio dal controllo meccanico T035 — che è il motivo per cui
   quel controllo esiste.
 
+## Correzioni dopo la prima build (2026-09-08)
+
+Le verifiche visive T022/T026/T034 hanno cominciato a produrre risultati
+appena la build è finita in mano a una persona, ed è esattamente il motivo per
+cui erano rimaste aperte. Tre correzioni, nel commit `a241a30`:
+
+1. **Il selettore andava a capo.** Con icona più parola, "Automatico"
+   occupava cinque righe su 320 dp. Le etichette sono diventate i simboli
+   (`Auto` · `km` · `mi`), con le parole complete come tooltip e per i lettori
+   di schermo. `test/unit_system_selector_layout_test.dart` blocca il layout
+   su 3 lingue × 3 larghezze × 2 scale di testo.
+2. **L'asse Y del profilo altimetrico era rimasto in metri.** Il controllo
+   T035 non l'aveva visto: cercava il simbolo attaccato a un valore, e lì era
+   una stringa da sola (`'m',`). Il controllo è ora `tool/check_units.py`,
+   cerca entrambe le forme e tiene un elenco di eccezioni motivate.
+3. **Il nome del ripetitore si sovrapponeva all'ultima etichetta di
+   distanza** sull'asse X del profilo. Preesistente, non introdotto qui, ma
+   nel perimetro: ora il nome ha un tetto con ellissi e il tick regolare oltre
+   l'85% della tratta viene soppresso.
+
+La seconda ha una morale che vale oltre questa feature: un controllo
+meccanico vale quanto il pattern che cerca, e il modo per accorgersene è
+guardare l'app. Il primo `grep` di T035 dava zero risultati **mentre** l'asse
+Y era ancora sbagliato.
+
+**Mapbox** non richiede alcuna conversione: la scala grafica è disattivata su
+tutte e quattro le mappe (`ScaleBarSettings(enabled: false)`), quindi non
+esiste una superficie di terze parti che possa contraddire la preferenza.
+
 ## Riepilogo
 
 | Fase | Task | Contenuto |
