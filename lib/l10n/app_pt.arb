@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Milhas e pés: a app segue agora as unidades do teu dispositivo, e podes escolher o sistema nas Definições"
+  "changelog130ImperialUnits": "Milhas e pés: a app segue agora as unidades do teu dispositivo, e podes escolher o sistema nas Definições",
+  "profileUnitSystemAutoShort": "Auto"
 }

@@ -9,7 +9,12 @@ class ReachableMapper {
         azimuthDeg: m.azimuthDeg,
         reachable: m.reachable,
         points: m.profile
-            .map((p) => LinkProfilePoint(distanceKm: p.distanceKm, groundM: p.groundM))
+            .map(
+              (p) => LinkProfilePoint(
+                distanceKm: p.distanceKm,
+                groundM: p.groundM,
+              ),
+            )
             .toList(),
       );
 }

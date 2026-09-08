@@ -140,6 +140,11 @@ abstract final class UnitFormat {
         : (value: _integer(locale).format(metres), symbol: 'm');
   }
 
+  /// Simbolo dell'unità di quota, per le etichette d'asse che nominano
+  /// l'unità senza mostrare un valore.
+  static String elevationSymbol(UnitSystem system) =>
+      _imperial(system) ? 'ft' : 'm';
+
   static bool _imperial(UnitSystem system) => system == UnitSystem.imperial;
 
   /// `auto` non arriva mai fin qui: la risoluzione avviene una volta sola,

@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Miles et pieds : l'app suit désormais les unités de votre appareil, et vous pouvez choisir le système dans les Réglages"
+  "changelog130ImperialUnits": "Miles et pieds : l'app suit désormais les unités de votre appareil, et vous pouvez choisir le système dans les Réglages",
+  "profileUnitSystemAutoShort": "Auto"
 }

@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Meilen und Fuß: Die App folgt jetzt den Einheiten deines Geräts, und in den Einstellungen kannst du das System selbst wählen"
+  "changelog130ImperialUnits": "Meilen und Fuß: Die App folgt jetzt den Einheiten deines Geräts, und in den Einstellungen kannst du das System selbst wählen",
+  "profileUnitSystemAutoShort": "Auto"
 }

@@ -353,6 +353,8 @@ placeholder: il segnaposto riceve la stringa già formattata.
   `MaterialApp.router`. Un widget test che monta un widget con una distanza
   deve avvolgerlo nello scope, altrimenti l'assert scatta — è voluto: un
   fallback silenzioso al metrico nasconderebbe proprio i punti dimenticati.
+- Il controllo di copertura è `python3 tool/check_units.py`: deve tornare
+  verde prima di ogni commit che tocchi una superficie con distanze o quote.
 - **Non si converte** ciò che non è una distanza: frequenze, toni CTCSS, dBm,
   byte, coordinate, locator, azimut — e la **lunghezza d'onda** delle bande
   (`2 m`, `70 cm`), che è in metri ma è il nome della banda, identico in tutto

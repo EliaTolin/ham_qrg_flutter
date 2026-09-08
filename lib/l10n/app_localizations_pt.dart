@@ -2686,4 +2686,7 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get changelog130ImperialUnits =>
       'Milhas e pés: a app segue agora as unidades do teu dispositivo, e podes escolher o sistema nas Definições';
+
+  @override
+  String get profileUnitSystemAutoShort => 'Auto';
 }

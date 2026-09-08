@@ -80,6 +80,9 @@ class UnitsFormatter {
         locale: _scope.locale,
       );
 
+  /// Simbolo dell'unità di quota, per le etichette d'asse.
+  String get elevationSymbol => UnitFormat.elevationSymbol(_scope.system);
+
   /// Simbolo dell'unità lunga, per i segnaposto che non mostrano un valore.
   String get longSymbol => UnitFormat.longSymbol(_scope.system);
 }

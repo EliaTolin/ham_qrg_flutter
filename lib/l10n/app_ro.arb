@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Mile și picioare: aplicația urmează acum unitățile dispozitivului, iar sistemul poate fi ales din Setări"
+  "changelog130ImperialUnits": "Mile și picioare: aplicația urmează acum unitățile dispozitivului, iar sistemul poate fi ales din Setări",
+  "profileUnitSystemAutoShort": "Auto"
 }

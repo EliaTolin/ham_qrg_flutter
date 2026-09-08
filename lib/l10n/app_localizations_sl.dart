@@ -2737,4 +2737,7 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get changelog130ImperialUnits =>
       'Milje in čevlji: aplikacija zdaj sledi enotam vaše naprave, sistem pa lahko izberete v Nastavitvah';
+
+  @override
+  String get profileUnitSystemAutoShort => 'Auto';
 }

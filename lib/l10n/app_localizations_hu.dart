@@ -2681,4 +2681,7 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get changelog130ImperialUnits =>
       'Mérföld és láb: az alkalmazás mostantól követi a készülék mértékegységeit, a rendszert a Beállításokban is kiválaszthatod';
+
+  @override
+  String get profileUnitSystemAutoShort => 'Auto';
 }

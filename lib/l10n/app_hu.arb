@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Mérföld és láb: az alkalmazás mostantól követi a készülék mértékegységeit, a rendszert a Beállításokban is kiválaszthatod"
+  "changelog130ImperialUnits": "Mérföld és láb: az alkalmazás mostantól követi a készülék mértékegységeit, a rendszert a Beállításokban is kiválaszthatod",
+  "profileUnitSystemAutoShort": "Auto"
 }

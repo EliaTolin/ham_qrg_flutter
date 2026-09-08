@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Millas y pies: la app ahora sigue las unidades de tu dispositivo, y puedes elegir el sistema en Ajustes"
+  "changelog130ImperialUnits": "Millas y pies: la app ahora sigue las unidades de tu dispositivo, y puedes elegir el sistema en Ajustes",
+  "profileUnitSystemAutoShort": "Auto"
 }

@@ -314,15 +314,30 @@ class _Chart extends StatelessWidget {
                   );
                 }
                 if (value == meta.max) {
+                  // Il nome del ripetitore è di lunghezza ignota: senza un
+                  // tetto si allarga a cavallo del punto di arrivo e finisce
+                  // sopra l'ultima etichetta di distanza.
                   return Padding(
                     padding: const EdgeInsets.only(top: 6, right: 4),
-                    child: Text(
-                      destinationLabel,
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        fontWeight: FontWeight.w600,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 96),
+                      child: Text(
+                        destinationLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.end,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   );
+                }
+                // L'ultimo tick regolare cade a ridosso dell'arrivo: lì c'è
+                // già il nome del ripetitore, e due etichette nello stesso
+                // punto sono peggio di una sola.
+                if (value > meta.max * 0.85) {
+                  return const SizedBox.shrink();
                 }
                 return Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -339,7 +354,7 @@ class _Chart extends StatelessWidget {
           ),
           leftTitles: AxisTitles(
             axisNameWidget: Text(
-              'm',
+              context.units.elevationSymbol,
               style: theme.textTheme.labelSmall?.copyWith(
                 color: colorScheme.onSurfaceVariant,
               ),

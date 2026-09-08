@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Mile i stopy: aplikacja korzysta teraz z jednostek Twojego urządzenia, a system możesz wybrać w Ustawieniach"
+  "changelog130ImperialUnits": "Mile i stopy: aplikacja korzysta teraz z jednostek Twojego urządzenia, a system możesz wybrać w Ustawieniach",
+  "profileUnitSystemAutoShort": "Auto"
 }

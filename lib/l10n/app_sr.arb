@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Milje i stope: aplikacija sada prati merne jedinice uređaja, a sistem možete izabrati u Podešavanjima"
+  "changelog130ImperialUnits": "Milje i stope: aplikacija sada prati merne jedinice uređaja, a sistem možete izabrati u Podešavanjima",
+  "profileUnitSystemAutoShort": "Auto"
 }

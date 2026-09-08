@@ -4863,6 +4863,12 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Miglia e piedi: l’app segue le unità del tuo dispositivo, e nelle Impostazioni puoi scegliere il sistema a mano'**
   String get changelog130ImperialUnits;
+
+  /// No description provided for @profileUnitSystemAutoShort.
+  ///
+  /// In it, this message translates to:
+  /// **'Auto'**
+  String get profileUnitSystemAutoShort;
 }
 
 class _AppLocalizationsDelegate

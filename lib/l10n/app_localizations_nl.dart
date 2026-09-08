@@ -2689,4 +2689,7 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get changelog130ImperialUnits =>
       'Mijlen en voet: de app volgt nu de eenheden van je apparaat, en je kunt het systeem zelf kiezen in Instellingen';
+
+  @override
+  String get profileUnitSystemAutoShort => 'Auto';
 }

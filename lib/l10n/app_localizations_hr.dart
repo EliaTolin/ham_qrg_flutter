@@ -2681,4 +2681,7 @@ class AppLocalizationsHr extends AppLocalizations {
   @override
   String get changelog130ImperialUnits =>
       'Milje i stope: aplikacija sada slijedi mjerne jedinice uređaja, a sustav možete odabrati i sami u Postavkama';
+
+  @override
+  String get profileUnitSystemAutoShort => 'Auto';
 }

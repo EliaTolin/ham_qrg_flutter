@@ -2699,4 +2699,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get changelog130ImperialUnits =>
       'Miles et pieds : l\'app suit désormais les unités de votre appareil, et vous pouvez choisir le système dans les Réglages';
+
+  @override
+  String get profileUnitSystemAutoShort => 'Auto';
 }

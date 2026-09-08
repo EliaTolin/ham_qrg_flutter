@@ -2674,4 +2674,7 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get changelog130ImperialUnits =>
       'Míle a stopy: aplikace nyní respektuje jednotky vašeho zařízení a v Nastavení si můžete systém zvolit ručně';
+
+  @override
+  String get profileUnitSystemAutoShort => 'Auto';
 }

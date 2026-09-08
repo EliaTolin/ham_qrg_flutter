@@ -2679,4 +2679,7 @@ class AppLocalizationsSr extends AppLocalizations {
   @override
   String get changelog130ImperialUnits =>
       'Milje i stope: aplikacija sada prati merne jedinice uređaja, a sistem možete izabrati u Podešavanjima';
+
+  @override
+  String get profileUnitSystemAutoShort => 'Auto';
 }

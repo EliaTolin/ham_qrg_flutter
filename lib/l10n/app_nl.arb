@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Mijlen en voet: de app volgt nu de eenheden van je apparaat, en je kunt het systeem zelf kiezen in Instellingen"
+  "changelog130ImperialUnits": "Mijlen en voet: de app volgt nu de eenheden van je apparaat, en je kunt het systeem zelf kiezen in Instellingen",
+  "profileUnitSystemAutoShort": "Auto"
 }

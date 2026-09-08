@@ -1229,5 +1229,6 @@
       }
     }
   },
-  "changelog130ImperialUnits": "Míle a stopy: aplikácia teraz rešpektuje jednotky vášho zariadenia a systém si môžete zvoliť v Nastaveniach"
+  "changelog130ImperialUnits": "Míle a stopy: aplikácia teraz rešpektuje jednotky vášho zariadenia a systém si môžete zvoliť v Nastaveniach",
+  "profileUnitSystemAutoShort": "Auto"
 }

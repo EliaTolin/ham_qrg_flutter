@@ -2741,4 +2741,7 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get changelog130ImperialUnits =>
       'Mile și picioare: aplicația urmează acum unitățile dispozitivului, iar sistemul poate fi ales din Setări';
+
+  @override
+  String get profileUnitSystemAutoShort => 'Auto';
 }
