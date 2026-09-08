@@ -18,6 +18,8 @@ class AccessModeHelper {
       AccessMode.nxdn => 0xFF94A3B8, // Slate
       AccessMode.allstar => 0xFF22C55E, // Green
       AccessMode.winlink => 0xFF8B5CF6, // Violet
+      AccessMode.p25 => 0xFF0EA5E9, // Sky
+      AccessMode.irlp => 0xFFD946EF, // Fuchsia
     };
   }
 
@@ -41,6 +43,8 @@ class AccessModeHelper {
       AccessMode.nxdn => 'NXDN',
       AccessMode.allstar => 'AllStar',
       AccessMode.winlink => 'Winlink',
+      AccessMode.p25 => 'P25',
+      AccessMode.irlp => 'IRLP',
     };
   }
 
@@ -59,6 +63,8 @@ class AccessModeHelper {
       AccessMode.nxdn => Icons.abc,
       AccessMode.allstar => Icons.hub,
       AccessMode.winlink => Icons.email,
+      AccessMode.p25 => Icons.shield,
+      AccessMode.irlp => Icons.link,
     };
   }
 
@@ -72,6 +78,8 @@ class AccessModeHelper {
       AccessMode.allstar => 'Node',
       AccessMode.dstar => 'Reflector',
       AccessMode.svx => 'Node',
+      AccessMode.irlp => 'Node',
+      AccessMode.p25 => 'NAC',
       _ => null,
     };
   }

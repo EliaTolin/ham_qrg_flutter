@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hamqrg/common/abstracts/mapper.dart';
 import 'package:hamqrg/src/features/repeaters/data/mappers/network_mapper.dart';
 import 'package:hamqrg/src/features/repeaters/data/model/access/repeater_access_model.dart';
@@ -8,6 +9,28 @@ class RepeaterAccessMapper
     implements Mapper<RepeaterAccess, RepeaterAccessModel> {
   final _networkMapper = NetworkMapper();
 
+  /// Converte il valore `access_mode` del backend nell'enum locale.
+  ///
+  /// Se il backend introduce un modo che questa versione dell'app non conosce,
+  /// il fallback resta `analog` per non rompere la UI, ma la cosa viene
+  /// segnalata in debug: senza log un disallineamento fra enum SQL ed enum Dart
+  /// resterebbe invisibile, mostrando ponti digitali come analogici.
+  static AccessMode _parseMode(String raw) {
+    final normalized = raw.toUpperCase();
+    for (final mode in AccessMode.values) {
+      if (mode.name.toUpperCase() == normalized) return mode;
+    }
+    assert(() {
+      debugPrint(
+        '[RepeaterAccessMapper] access_mode sconosciuto dal backend: "$raw" '
+        '-> fallback su AccessMode.analog. '
+        'Aggiornare enum AccessMode e AccessModeHelper.',
+      );
+      return true;
+    }());
+    return AccessMode.analog;
+  }
+
   @override
   RepeaterAccess fromModel(RepeaterAccessModel model) {
     return RepeaterAccess(
@@ -17,10 +40,7 @@ class RepeaterAccessMapper
       network: model.network != null
           ? _networkMapper.fromModel(model.network!)
           : null,
-      mode: AccessMode.values.firstWhere(
-        (e) => e.name.toUpperCase() == model.mode.toUpperCase(),
-        orElse: () => AccessMode.analog,
-      ),
+      mode: _parseMode(model.mode),
       ctcssTxHz: model.ctcssTxHz,
       ctcssRxHz: model.ctcssRxHz,
       dcsCode: model.dcsCode,
