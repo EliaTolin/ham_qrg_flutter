@@ -11,4 +11,6 @@ enum AccessMode {
   nxdn,
   allstar,
   winlink,
+  p25,
+  irlp,
 }
