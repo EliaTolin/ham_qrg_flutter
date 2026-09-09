@@ -15,12 +15,24 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
       <meta-data android:name="flutter_deeplinking_enabled" android:value="true"/>
+      <!--
+        Only /app/ opens HamQRG. Android combines the attributes of every
+        <data> element in a filter as a cross-product, so declaring scheme and
+        host on separate elements — with no path — matched every URL on the
+        domain and offered the app for the whole website. One element, with an
+        explicit path prefix, keeps ordinary pages in the browser.
+
+        https only: App Links are verified over https, and the trailing slash
+        stops a future /apple-… page from matching.
+      -->
       <intent-filter android:autoVerify="true">
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="http" android:host="hamqrg.com"/>
-        <data android:scheme="https"/>
+        <data
+          android:scheme="https"
+          android:host="hamqrg.com"
+          android:pathPrefix="/app/"/>
       </intent-filter>
     </activity>
     <!-- Don't delete the meta-data below.

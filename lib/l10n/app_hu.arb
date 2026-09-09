@@ -222,6 +222,22 @@
       }
     }
   },
+  "homeStationsLabel": "{count, plural, other{állomás}}",
+  "@homeStationsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSavedLabel": "{count, plural, other{mentett}}",
+  "@homeSavedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "homeActive": "Aktív",
   "homeIdle": "Inaktív",
   "homeNavHome": "Kezdőlap",
@@ -642,6 +658,8 @@
   "addRepeaterAccessDgIdHint": "Pl. 0",
   "addRepeaterAccessNodeId": "Csomópont azonosító",
   "addRepeaterAccessNodeIdHint": "Pl. 1234",
+  "addRepeaterAccessNac": "NAC",
+  "addRepeaterAccessNacHint": "Pl. 659",
   "addRepeaterAccessNetworkName": "Hálózat neve",
   "addRepeaterAccessNetworkNameHint": "Pl. BM Magyarország",
   "addRepeaterAccessNotes": "Hozzáférési megjegyzések",
@@ -1230,5 +1248,17 @@
     }
   },
   "changelog130ImperialUnits": "Mérföld és láb: az alkalmazás mostantól követi a készülék mértékegységeit, a rendszert a Beállításokban is kiválaszthatod",
-  "profileUnitSystemAutoShort": "Auto"
+  "profileUnitSystemAutoShort": "Auto",
+  "updateAvailableBannerMessage": "Elérhető a(z) {version} verzió, javasoljuk a frissítést",
+  "@updateAvailableBannerMessage": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAvailableAction": "Frissítés",
+  "updateAvailableDismiss": "Most nem",
+  "dashboardLoadError": "Nem sikerült betölteni a friss adatokat",
+  "dashboardLoadErrorMessage": "A szerver nem válaszolt. Próbáld újra egy pillanat múlva."
 }

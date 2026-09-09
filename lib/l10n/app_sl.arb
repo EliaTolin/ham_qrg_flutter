@@ -222,6 +222,22 @@
       }
     }
   },
+  "homeStationsLabel": "{count, plural, one{postaja} two{postaji} few{postaje} other{postaj}}",
+  "@homeStationsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSavedLabel": "{count, plural, one{shranjen} two{shranjena} few{shranjeni} other{shranjenih}}",
+  "@homeSavedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "homeActive": "Aktivno",
   "homeIdle": "Neaktivno",
   "homeNavHome": "Domov",
@@ -642,6 +658,8 @@
   "addRepeaterAccessDgIdHint": "Npr. 0",
   "addRepeaterAccessNodeId": "ID vozlišča",
   "addRepeaterAccessNodeIdHint": "Npr. 1234",
+  "addRepeaterAccessNac": "NAC",
+  "addRepeaterAccessNacHint": "Npr. 659",
   "addRepeaterAccessNetworkName": "Ime omrežja",
   "addRepeaterAccessNetworkNameHint": "Npr. BM Italia",
   "addRepeaterAccessNotes": "Opombe dostopa",
@@ -1230,5 +1248,17 @@
     }
   },
   "changelog130ImperialUnits": "Milje in čevlji: aplikacija zdaj sledi enotam vaše naprave, sistem pa lahko izberete v Nastavitvah",
-  "profileUnitSystemAutoShort": "Auto"
+  "profileUnitSystemAutoShort": "Auto",
+  "updateAvailableBannerMessage": "Na voljo je različica {version}, priporočamo posodobitev",
+  "@updateAvailableBannerMessage": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAvailableAction": "Posodobi",
+  "updateAvailableDismiss": "Ne zdaj",
+  "dashboardLoadError": "Posodobljenih podatkov ni bilo mogoče naložiti",
+  "dashboardLoadErrorMessage": "Strežnik se ni odzval. Poskusi znova čez trenutek."
 }

@@ -6,11 +6,17 @@ class InfoBanner extends StatelessWidget {
     required this.label,
     super.key,
     this.trailing,
+    this.footer,
   });
 
   final Widget icon;
   final String label;
   final Widget? trailing;
+
+  /// Riga opzionale sotto al messaggio, per un'azione che accanto al testo
+  /// non ci starebbe: in una riga sola l'etichetta non può scendere sotto la
+  /// sua parola più lunga, e nelle lingue lunghe il bottone la fa traboccare.
+  final Widget? footer;
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +36,30 @@ class InfoBanner extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            icon,
-            const SizedBox(width: 12),
-            Flexible(
-              child: Text(
-                label,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                icon,
+                const SizedBox(width: 12),
+                Flexible(
+                  child: Text(
+                    label,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+                if (trailing != null) ...[
+                  const SizedBox(width: 12),
+                  trailing!,
+                ],
+              ],
             ),
-            if (trailing != null) ...[
-              const SizedBox(width: 12),
-              trailing!,
+            if (footer != null) ...[
+              const SizedBox(height: 4),
+              footer!,
             ],
           ],
         ),

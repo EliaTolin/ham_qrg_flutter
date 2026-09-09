@@ -653,6 +653,32 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
+  String homeStationsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'stacji',
+      many: 'stacji',
+      few: 'stacje',
+      one: 'stacja',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeSavedLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'zapisanych',
+      many: 'zapisanych',
+      few: 'zapisane',
+      one: 'zapisany',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get homeActive => 'Aktywne';
 
   @override
@@ -1788,6 +1814,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get addRepeaterAccessNodeIdHint => 'Np. 1234';
 
   @override
+  String get addRepeaterAccessNac => 'NAC';
+
+  @override
+  String get addRepeaterAccessNacHint => 'Np. 659';
+
+  @override
   String get addRepeaterAccessNetworkName => 'Nazwa sieci';
 
   @override
@@ -2747,4 +2779,22 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get profileUnitSystemAutoShort => 'Auto';
+
+  @override
+  String updateAvailableBannerMessage(String version) {
+    return 'Dostępna jest wersja $version, zalecamy aktualizację';
+  }
+
+  @override
+  String get updateAvailableAction => 'Aktualizuj';
+
+  @override
+  String get updateAvailableDismiss => 'Nie teraz';
+
+  @override
+  String get dashboardLoadError => 'Nie udało się wczytać aktualnych danych';
+
+  @override
+  String get dashboardLoadErrorMessage =>
+      'Serwer nie odpowiedział. Spróbuj ponownie za chwilę.';
 }

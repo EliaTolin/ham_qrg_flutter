@@ -75,9 +75,7 @@ class _HamQRGState extends ConsumerState<HamQRG> with WidgetsBindingObserver {
         deepLinkTransformer: (uri) {
           log('uri: $uri');
           return SynchronousFuture(
-            uri.replace(
-              path: uri.path.replaceFirst('/app-deeplink', ''),
-            ),
+            uri.replace(path: _stripDeepLinkPrefix(uri.path)),
           );
         },
       ),
@@ -98,4 +96,22 @@ class _HamQRGState extends ConsumerState<HamQRG> with WidgetsBindingObserver {
       themeMode: themeMode ?? ThemeMode.system,
     );
   }
+}
+
+/// Prefisso dei link universali di hamqrg.com.
+///
+/// È l'unico percorso del sito che apre l'app: `apple-app-site-association` e
+/// l'intent filter Android sono limitati a `/app/*`, così leggere una pagina
+/// qualsiasi non strappa l'utente dal browser. Oltre il prefisso il percorso è
+/// già quello del router dell'app, quindi qui basta toglierlo.
+const _deepLinkPrefix = '/app';
+
+/// Rimuove il prefisso solo se è il primo segmento.
+///
+/// Non usa `replaceFirst`: quello toglierebbe `/app` ovunque compaia, e un
+/// giorno una rotta come `/home/app-settings` verrebbe corrotta in silenzio.
+String _stripDeepLinkPrefix(String path) {
+  if (path == _deepLinkPrefix) return '/';
+  if (!path.startsWith('$_deepLinkPrefix/')) return path;
+  return path.substring(_deepLinkPrefix.length);
 }

@@ -222,6 +222,22 @@
       }
     }
   },
+  "homeStationsLabel": "{count, plural, one{station} other{stations}}",
+  "@homeStationsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSavedLabel": "{count, plural, other{opgeslagen}}",
+  "@homeSavedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "homeActive": "Actief",
   "homeIdle": "Inactief",
   "homeNavHome": "Home",
@@ -642,6 +658,8 @@
   "addRepeaterAccessDgIdHint": "Bijv. 0",
   "addRepeaterAccessNodeId": "Node-ID",
   "addRepeaterAccessNodeIdHint": "Bijv. 1234",
+  "addRepeaterAccessNac": "NAC",
+  "addRepeaterAccessNacHint": "Bijv. 659",
   "addRepeaterAccessNetworkName": "Netwerknaam",
   "addRepeaterAccessNetworkNameHint": "Bijv. BM Italia",
   "addRepeaterAccessNotes": "Toegangsnotities",
@@ -1230,5 +1248,17 @@
     }
   },
   "changelog130ImperialUnits": "Mijlen en voet: de app volgt nu de eenheden van je apparaat, en je kunt het systeem zelf kiezen in Instellingen",
-  "profileUnitSystemAutoShort": "Auto"
+  "profileUnitSystemAutoShort": "Auto",
+  "updateAvailableBannerMessage": "Versie {version} is beschikbaar, we raden aan bij te werken",
+  "@updateAvailableBannerMessage": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAvailableAction": "Bijwerken",
+  "updateAvailableDismiss": "Niet nu",
+  "dashboardLoadError": "Kan de actuele gegevens niet laden",
+  "dashboardLoadErrorMessage": "De server reageerde niet. Probeer het zo nog eens."
 }

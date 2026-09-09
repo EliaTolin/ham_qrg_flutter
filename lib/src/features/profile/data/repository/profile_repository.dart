@@ -48,9 +48,19 @@ class ProfileRepository {
   }
 }
 
+/// **`watch` e non `read`**: il datasource è costruito attorno a
+/// `OfflineCacheGate`, che cattura connettività ed entitlement **al momento
+/// della costruzione**. Letto con `read`, questo repository resterebbe
+/// aggrappato per sempre alla prima istanza: se al primo avvio i flag erano
+/// ancora sbagliati — il probe di rete che scade sotto la contesa dell'avvio
+/// basta a dichiarare un falso offline — ogni chiamata continuerebbe a
+/// fallire per tutta la sessione, e solo un riprova manuale (che dispone e
+/// ricostruisce la catena) la rimetterebbe in piedi. Con `watch` il
+/// repository si ricostruisce da sé quando i flag si assestano, e le query
+/// che lo osservano ripartono da sole.
 @riverpod
 Future<ProfileRepository> profileRepository(Ref ref) async {
-  final datasource = ref.read(profileSupabaseDatasourceProvider);
+  final datasource = ref.watch(profileSupabaseDatasourceProvider);
   final imageCachingService =
       await ref.read(imageCachingServiceProvider.future);
   return ProfileRepository(datasource, imageCachingService);

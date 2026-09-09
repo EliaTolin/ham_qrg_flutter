@@ -604,6 +604,30 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String homeStationsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'staníc',
+      few: 'stanice',
+      one: 'stanica',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeSavedLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'uložených',
+      few: 'uložené',
+      one: 'uložený',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get homeActive => 'Aktívny';
 
   @override
@@ -1734,6 +1758,12 @@ class AppLocalizationsSk extends AppLocalizations {
   String get addRepeaterAccessNodeIdHint => 'Napr. 1234';
 
   @override
+  String get addRepeaterAccessNac => 'NAC';
+
+  @override
+  String get addRepeaterAccessNacHint => 'Napr. 659';
+
+  @override
   String get addRepeaterAccessNetworkName => 'Názov siete';
 
   @override
@@ -2685,4 +2715,22 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get profileUnitSystemAutoShort => 'Auto';
+
+  @override
+  String updateAvailableBannerMessage(String version) {
+    return 'Je dostupná verzia $version, odporúčame aktualizovať';
+  }
+
+  @override
+  String get updateAvailableAction => 'Aktualizovať';
+
+  @override
+  String get updateAvailableDismiss => 'Teraz nie';
+
+  @override
+  String get dashboardLoadError => 'Aktuálne údaje sa nepodarilo načítať';
+
+  @override
+  String get dashboardLoadErrorMessage =>
+      'Server neodpovedal. Skús to o chvíľu znova.';
 }

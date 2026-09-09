@@ -647,6 +647,29 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
+  String homeStationsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'de stații',
+      few: 'stații',
+      one: 'stație',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeSavedLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'salvate',
+      one: 'salvat',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get homeActive => 'Activ';
 
   @override
@@ -1792,6 +1815,12 @@ class AppLocalizationsRo extends AppLocalizations {
   String get addRepeaterAccessNodeIdHint => 'Ex. 1234';
 
   @override
+  String get addRepeaterAccessNac => 'NAC';
+
+  @override
+  String get addRepeaterAccessNacHint => 'Ex. 659';
+
+  @override
   String get addRepeaterAccessNetworkName => 'Numele rețelei';
 
   @override
@@ -2744,4 +2773,22 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get profileUnitSystemAutoShort => 'Auto';
+
+  @override
+  String updateAvailableBannerMessage(String version) {
+    return 'Este disponibilă versiunea $version, recomandăm actualizarea';
+  }
+
+  @override
+  String get updateAvailableAction => 'Actualizează';
+
+  @override
+  String get updateAvailableDismiss => 'Nu acum';
+
+  @override
+  String get dashboardLoadError => 'Nu s-au putut încărca datele actualizate';
+
+  @override
+  String get dashboardLoadErrorMessage =>
+      'Serverul nu a răspuns. Încearcă din nou peste o clipă.';
 }

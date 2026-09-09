@@ -55,7 +55,7 @@ class AccessChipsSelector extends StatelessWidget {
   }
 
   /// Builds a distinguishable label for each access.
-  /// E.g. "Analog 88.5 Hz", "DMR CC1 BM", "C4FM DG-ID 5".
+  /// E.g. "Analog 88.5 Hz", "DMR CC1 BM", "C4FM DG-ID 5", "P25 NAC 659".
   String _accessLabel(RepeaterAccess access) {
     final mode = AccessModeHelper.getAccessModeLabel(access.mode);
     final detail = _accessDetail(access);
@@ -82,6 +82,14 @@ class AccessChipsSelector extends StatelessWidget {
         if (access.dgId != null) parts.add('DG-ID ${access.dgId}');
       case AccessMode.dstar:
         if (access.nodeId != null) parts.add('${access.nodeId}');
+      case AccessMode.p25 || AccessMode.irlp:
+        // L'etichetta la conosce già `AccessModeHelper` (NAC per il P25, Node
+        // per l'IRLP): riscriverla qui vorrebbe dire tenerne allineate due
+        // copie, e la seconda si scopre sbagliata solo guardando la chip.
+        final nodeLabel = AccessModeHelper.getNodeIdLabel(access.mode);
+        if (access.nodeId != null && nodeLabel != null) {
+          parts.add('$nodeLabel ${access.nodeId}');
+        }
       case AccessMode.echolink:
       case AccessMode.svx:
       case AccessMode.aprs:

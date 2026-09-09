@@ -605,6 +605,28 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String homeStationsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'stazioni',
+      one: 'stazione',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeSavedLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'salvati',
+      one: 'salvato',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get homeActive => 'Attivo';
 
   @override
@@ -1724,6 +1746,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get addRepeaterAccessNodeIdHint => 'Es. 1234';
 
   @override
+  String get addRepeaterAccessNac => 'NAC';
+
+  @override
+  String get addRepeaterAccessNacHint => 'Es. 659';
+
+  @override
   String get addRepeaterAccessNetworkName => 'Nome rete';
 
   @override
@@ -2689,4 +2717,22 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get profileUnitSystemAutoShort => 'Auto';
+
+  @override
+  String updateAvailableBannerMessage(String version) {
+    return 'È disponibile la versione $version, ti consigliamo di aggiornare';
+  }
+
+  @override
+  String get updateAvailableAction => 'Aggiorna';
+
+  @override
+  String get updateAvailableDismiss => 'Non ora';
+
+  @override
+  String get dashboardLoadError => 'Impossibile caricare i dati aggiornati';
+
+  @override
+  String get dashboardLoadErrorMessage =>
+      'Il server non ha risposto. Riprova fra un istante.';
 }

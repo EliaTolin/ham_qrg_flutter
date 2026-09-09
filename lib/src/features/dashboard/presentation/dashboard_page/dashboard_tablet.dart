@@ -4,9 +4,11 @@ import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/common/utils/count_format_helper.dart';
 import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/widgets/banner/info_banner.dart';
+import 'package:hamqrg/common/widgets/banner/update_available_banner.dart';
 import 'package:hamqrg/common/widgets/error/inline_error_retry.dart';
 import 'package:hamqrg/common/widgets/label/callsign_text.dart';
 import 'package:hamqrg/router/app_router.dart';
@@ -14,6 +16,7 @@ import 'package:hamqrg/src/features/authentication/presentation/auth/show_regist
 import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashboard_statistics.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
+import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widgets/dashboard_load_error_content.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widgets/dashboard_offline_content.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
@@ -43,12 +46,14 @@ class DashboardTablet extends StatelessWidget {
     required this.statistics,
     required this.initialPosition,
     required this.nearbyRepeaters,
+    required this.hasLoadError,
     super.key,
   });
 
   final DashboardStatistics statistics;
   final ({double lat, double lon}) initialPosition;
   final List<Repeater> nearbyRepeaters;
+  final bool hasLoadError;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +79,7 @@ class DashboardTablet extends StatelessWidget {
               child: _SidePanel(
                 statistics: statistics,
                 nearbyRepeaters: nearbyRepeaters,
+                hasLoadError: hasLoadError,
               ),
             ),
           ),
@@ -256,10 +262,12 @@ class _SidePanel extends ConsumerWidget {
   const _SidePanel({
     required this.statistics,
     required this.nearbyRepeaters,
+    required this.hasLoadError,
   });
 
   final DashboardStatistics statistics;
   final List<Repeater> nearbyRepeaters;
+  final bool hasLoadError;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -276,11 +284,25 @@ class _SidePanel extends ConsumerWidget {
       );
     }
 
+    // Stesso criterio del layout mobile: con la rete disponibile un
+    // caricamento fallito prende il posto del contenuto, non gli si mette
+    // sopra lasciando in piedi tegole a zero.
+    if (hasLoadError &&
+        !isOffline &&
+        nearbyRepeaters.isEmpty &&
+        statistics.totalRepeaters == 0) {
+      return const SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(20, 20, 20, 32),
+        child: DashboardLoadErrorContent(),
+      );
+    }
+
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          const UpdateAvailableBanner(),
           if (isOffline) ...[
             InfoBanner(
               icon: const Icon(Icons.cloud_off_outlined),
@@ -434,6 +456,8 @@ class _StatsTiles extends ConsumerWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
+    final locale = Localizations.localeOf(context);
+    final favorites = statistics.favoritesCount ?? 0;
 
     return Row(
       children: [
@@ -441,8 +465,8 @@ class _StatsTiles extends ConsumerWidget {
           child: _StatTile(
             icon: Icons.cell_tower,
             iconColor: colorScheme.primary,
-            value: '${statistics.totalRepeaters}',
-            label: l10n.homeStations(statistics.totalRepeaters),
+            value: CountFormat.integer(locale, statistics.totalRepeaters),
+            label: l10n.homeStationsLabel(statistics.totalRepeaters),
             onTap: () => AutoTabsRouter.of(context).setActiveIndex(1),
           ),
         ),
@@ -451,8 +475,8 @@ class _StatsTiles extends ConsumerWidget {
           child: _StatTile(
             icon: Icons.favorite,
             iconColor: colorScheme.error,
-            value: '${statistics.favoritesCount ?? 0}',
-            label: l10n.homeSaved(statistics.favoritesCount ?? 0),
+            value: CountFormat.integer(locale, favorites),
+            label: l10n.homeSavedLabel(favorites),
             onTap: () async {
               final isAuthenticated = await requireAuthentication(context, ref);
               if (!isAuthenticated || !context.mounted) return;
@@ -530,6 +554,7 @@ class _StatTile extends StatelessWidget {
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ],

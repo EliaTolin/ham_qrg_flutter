@@ -222,6 +222,22 @@
       }
     }
   },
+  "homeStationsLabel": "{count, plural, one{Station} other{Stationen}}",
+  "@homeStationsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSavedLabel": "{count, plural, other{gespeichert}}",
+  "@homeSavedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "homeActive": "Aktiv",
   "homeIdle": "Inaktiv",
   "homeNavHome": "Start",
@@ -642,6 +658,8 @@
   "addRepeaterAccessDgIdHint": "Z.B. 0",
   "addRepeaterAccessNodeId": "Node-ID",
   "addRepeaterAccessNodeIdHint": "Z.B. 1234",
+  "addRepeaterAccessNac": "NAC",
+  "addRepeaterAccessNacHint": "Z.B. 659",
   "addRepeaterAccessNetworkName": "Netzwerkname",
   "addRepeaterAccessNetworkNameHint": "Z.B. BM Deutschland",
   "addRepeaterAccessNotes": "Zugangshinweise",
@@ -1230,5 +1248,17 @@
     }
   },
   "changelog130ImperialUnits": "Meilen und Fuß: Die App folgt jetzt den Einheiten deines Geräts, und in den Einstellungen kannst du das System selbst wählen",
-  "profileUnitSystemAutoShort": "Auto"
+  "profileUnitSystemAutoShort": "Auto",
+  "updateAvailableBannerMessage": "Version {version} ist verfügbar, ein Update wird empfohlen",
+  "@updateAvailableBannerMessage": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAvailableAction": "Aktualisieren",
+  "updateAvailableDismiss": "Später",
+  "dashboardLoadError": "Aktuelle Daten konnten nicht geladen werden",
+  "dashboardLoadErrorMessage": "Der Server hat nicht geantwortet. Versuch es gleich noch einmal."
 }

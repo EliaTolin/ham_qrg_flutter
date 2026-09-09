@@ -20,6 +20,13 @@ mixin _$DashboardState {
   Profile? get profile;
   LocationErrorType? get locationError;
 
+  /// Il caricamento dei dati è fallito.
+  ///
+  /// Senza questo flag le statistiche a zero e le liste vuote qui sopra
+  /// sono indistinguibili da un risultato vero: la home direbbe «nessun
+  /// ripetitore» dove la verità è «non sono riuscito a chiederlo».
+  bool get hasLoadError;
+
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -41,7 +48,9 @@ mixin _$DashboardState {
                 .equals(other.nearbyRepeaters, nearbyRepeaters) &&
             (identical(other.profile, profile) || other.profile == profile) &&
             (identical(other.locationError, locationError) ||
-                other.locationError == locationError));
+                other.locationError == locationError) &&
+            (identical(other.hasLoadError, hasLoadError) ||
+                other.hasLoadError == hasLoadError));
   }
 
   @override
@@ -51,11 +60,12 @@ mixin _$DashboardState {
       initialPosition,
       const DeepCollectionEquality().hash(nearbyRepeaters),
       profile,
-      locationError);
+      locationError,
+      hasLoadError);
 
   @override
   String toString() {
-    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError)';
+    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError, hasLoadError: $hasLoadError)';
   }
 }
 
@@ -70,7 +80,8 @@ abstract mixin class $DashboardStateCopyWith<$Res> {
       ({double lat, double lon}) initialPosition,
       List<Repeater> nearbyRepeaters,
       Profile? profile,
-      LocationErrorType? locationError});
+      LocationErrorType? locationError,
+      bool hasLoadError});
 
   $DashboardStatisticsCopyWith<$Res> get statistics;
   $ProfileCopyWith<$Res>? get profile;
@@ -94,6 +105,7 @@ class _$DashboardStateCopyWithImpl<$Res>
     Object? nearbyRepeaters = null,
     Object? profile = freezed,
     Object? locationError = freezed,
+    Object? hasLoadError = null,
   }) {
     return _then(_self.copyWith(
       statistics: null == statistics
@@ -116,6 +128,10 @@ class _$DashboardStateCopyWithImpl<$Res>
           ? _self.locationError
           : locationError // ignore: cast_nullable_to_non_nullable
               as LocationErrorType?,
+      hasLoadError: null == hasLoadError
+          ? _self.hasLoadError
+          : hasLoadError // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -242,15 +258,21 @@ extension DashboardStatePatterns on DashboardState {
             ({double lat, double lon}) initialPosition,
             List<Repeater> nearbyRepeaters,
             Profile? profile,
-            LocationErrorType? locationError)?
+            LocationErrorType? locationError,
+            bool hasLoadError)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _DashboardState() when $default != null:
-        return $default(_that.statistics, _that.initialPosition,
-            _that.nearbyRepeaters, _that.profile, _that.locationError);
+        return $default(
+            _that.statistics,
+            _that.initialPosition,
+            _that.nearbyRepeaters,
+            _that.profile,
+            _that.locationError,
+            _that.hasLoadError);
       case _:
         return orElse();
     }
@@ -276,14 +298,20 @@ extension DashboardStatePatterns on DashboardState {
             ({double lat, double lon}) initialPosition,
             List<Repeater> nearbyRepeaters,
             Profile? profile,
-            LocationErrorType? locationError)
+            LocationErrorType? locationError,
+            bool hasLoadError)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _DashboardState():
-        return $default(_that.statistics, _that.initialPosition,
-            _that.nearbyRepeaters, _that.profile, _that.locationError);
+        return $default(
+            _that.statistics,
+            _that.initialPosition,
+            _that.nearbyRepeaters,
+            _that.profile,
+            _that.locationError,
+            _that.hasLoadError);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -308,14 +336,20 @@ extension DashboardStatePatterns on DashboardState {
             ({double lat, double lon}) initialPosition,
             List<Repeater> nearbyRepeaters,
             Profile? profile,
-            LocationErrorType? locationError)?
+            LocationErrorType? locationError,
+            bool hasLoadError)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _DashboardState() when $default != null:
-        return $default(_that.statistics, _that.initialPosition,
-            _that.nearbyRepeaters, _that.profile, _that.locationError);
+        return $default(
+            _that.statistics,
+            _that.initialPosition,
+            _that.nearbyRepeaters,
+            _that.profile,
+            _that.locationError,
+            _that.hasLoadError);
       case _:
         return null;
     }
@@ -330,7 +364,8 @@ class _DashboardState implements DashboardState {
       required this.initialPosition,
       required final List<Repeater> nearbyRepeaters,
       required this.profile,
-      this.locationError})
+      this.locationError,
+      this.hasLoadError = false})
       : _nearbyRepeaters = nearbyRepeaters;
 
   @override
@@ -349,6 +384,15 @@ class _DashboardState implements DashboardState {
   final Profile? profile;
   @override
   final LocationErrorType? locationError;
+
+  /// Il caricamento dei dati è fallito.
+  ///
+  /// Senza questo flag le statistiche a zero e le liste vuote qui sopra
+  /// sono indistinguibili da un risultato vero: la home direbbe «nessun
+  /// ripetitore» dove la verità è «non sono riuscito a chiederlo».
+  @override
+  @JsonKey()
+  final bool hasLoadError;
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
@@ -371,7 +415,9 @@ class _DashboardState implements DashboardState {
                 .equals(other._nearbyRepeaters, _nearbyRepeaters) &&
             (identical(other.profile, profile) || other.profile == profile) &&
             (identical(other.locationError, locationError) ||
-                other.locationError == locationError));
+                other.locationError == locationError) &&
+            (identical(other.hasLoadError, hasLoadError) ||
+                other.hasLoadError == hasLoadError));
   }
 
   @override
@@ -381,11 +427,12 @@ class _DashboardState implements DashboardState {
       initialPosition,
       const DeepCollectionEquality().hash(_nearbyRepeaters),
       profile,
-      locationError);
+      locationError,
+      hasLoadError);
 
   @override
   String toString() {
-    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError)';
+    return 'DashboardState(statistics: $statistics, initialPosition: $initialPosition, nearbyRepeaters: $nearbyRepeaters, profile: $profile, locationError: $locationError, hasLoadError: $hasLoadError)';
   }
 }
 
@@ -402,7 +449,8 @@ abstract mixin class _$DashboardStateCopyWith<$Res>
       ({double lat, double lon}) initialPosition,
       List<Repeater> nearbyRepeaters,
       Profile? profile,
-      LocationErrorType? locationError});
+      LocationErrorType? locationError,
+      bool hasLoadError});
 
   @override
   $DashboardStatisticsCopyWith<$Res> get statistics;
@@ -428,6 +476,7 @@ class __$DashboardStateCopyWithImpl<$Res>
     Object? nearbyRepeaters = null,
     Object? profile = freezed,
     Object? locationError = freezed,
+    Object? hasLoadError = null,
   }) {
     return _then(_DashboardState(
       statistics: null == statistics
@@ -450,6 +499,10 @@ class __$DashboardStateCopyWithImpl<$Res>
           ? _self.locationError
           : locationError // ignore: cast_nullable_to_non_nullable
               as LocationErrorType?,
+      hasLoadError: null == hasLoadError
+          ? _self.hasLoadError
+          : hasLoadError // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 

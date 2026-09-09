@@ -1,3 +1,4 @@
+import 'package:hamqrg/common/provider/keep_alive_for_ref.dart';
 import 'package:hamqrg/src/features/repeaters/data/repository/repeaters_repository.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/access_mode.dart';
 import 'package:hamqrg/src/features/repeaters/domain/repeater/repeater.dart';
@@ -14,6 +15,7 @@ Future<List<Repeater>> getRepeatersNearby(
   List<AccessMode>? accessModes,
   int limit = 50,
 }) async {
+  ref.keepAliveFor(kHandoverKeepAlive);
   final repository = ref.read(repeatersRepositoryProvider);
   return repository.getRepeatersNearby(
     latitude: latitude,

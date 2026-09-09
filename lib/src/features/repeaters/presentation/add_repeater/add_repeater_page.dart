@@ -708,11 +708,39 @@ class _AccessCard extends HookWidget {
             ),
           ),
         ];
-      case AccessMode.echolink || AccessMode.svx || AccessMode.allstar:
+      case AccessMode.echolink ||
+            AccessMode.svx ||
+            AccessMode.allstar ||
+            AccessMode.irlp:
         return [
           _AccessTextField(
             label: l10n.addRepeaterAccessNodeId,
             hint: l10n.addRepeaterAccessNodeIdHint,
+            value: access.nodeId,
+            keyboardType: TextInputType.number,
+            onChanged: (v) => controller.updateAccessField(
+              index,
+              access.copyWith(nodeId: v),
+            ),
+          ),
+          const Gap(12),
+          _AccessTextField(
+            label: l10n.addRepeaterAccessNetworkName,
+            hint: l10n.addRepeaterAccessNetworkNameHint,
+            value: access.networkName,
+            onChanged: (v) => controller.updateAccessField(
+              index,
+              access.copyWith(networkName: v),
+            ),
+          ),
+        ];
+      case AccessMode.p25:
+        // Il NAC occupa lo stesso campo `nodeId` degli altri identificativi di
+        // nodo: cambia solo l'etichetta, non il dato inviato al backend.
+        return [
+          _AccessTextField(
+            label: l10n.addRepeaterAccessNac,
+            hint: l10n.addRepeaterAccessNacHint,
             value: access.nodeId,
             keyboardType: TextInputType.number,
             onChanged: (v) => controller.updateAccessField(

@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:hamqrg/common/extension/l10n_extension.dart';
-import 'package:hamqrg/common/widgets/snackbars/show_error_snackbar.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:hamqrg/common/utils/store_launcher.dart';
 
 Future<void> showUpdateRequiredDialog(
   BuildContext context, {
@@ -35,43 +32,11 @@ Future<void> showUpdateRequiredDialog(
           content: Text(l10n.updateRequiredBody),
           actions: [
             ElevatedButton(
-              onPressed: () async {
-                try {
-                  Uri? storeUrl;
-                  if (Platform.isIOS) {
-                    storeUrl = Uri.parse(
-                      'https://apps.apple.com/app/id$appStoreId',
-                    );
-                  } else if (Platform.isAndroid) {
-                    storeUrl = Uri.parse(
-                      'https://play.google.com/store/apps/details?id=$playStorePackageName',
-                    );
-                  }
-
-                  if (storeUrl != null) {
-                    if (await canLaunchUrl(storeUrl)) {
-                      await launchUrl(
-                        storeUrl,
-                        mode: LaunchMode.externalApplication,
-                      );
-                    } else {
-                      if (context.mounted) {
-                        showErrorSnackbar(
-                          context,
-                          l10n.errorOpeningStore,
-                        );
-                      }
-                    }
-                  }
-                } catch (e) {
-                  if (context.mounted) {
-                    showErrorSnackbar(
-                      context,
-                      "Errore durante l'apertura dello store",
-                    );
-                  }
-                }
-              },
+              onPressed: () => openStoreListing(
+                context,
+                appStoreId: appStoreId,
+                playStorePackageName: playStorePackageName,
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,

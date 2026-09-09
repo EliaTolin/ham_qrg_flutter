@@ -607,6 +607,26 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String homeStationsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'állomás',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeSavedLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'mentett',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get homeActive => 'Aktív';
 
   @override
@@ -1726,6 +1746,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get addRepeaterAccessNodeIdHint => 'Pl. 1234';
 
   @override
+  String get addRepeaterAccessNac => 'NAC';
+
+  @override
+  String get addRepeaterAccessNacHint => 'Pl. 659';
+
+  @override
   String get addRepeaterAccessNetworkName => 'Hálózat neve';
 
   @override
@@ -2684,4 +2710,22 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get profileUnitSystemAutoShort => 'Auto';
+
+  @override
+  String updateAvailableBannerMessage(String version) {
+    return 'Elérhető a(z) $version verzió, javasoljuk a frissítést';
+  }
+
+  @override
+  String get updateAvailableAction => 'Frissítés';
+
+  @override
+  String get updateAvailableDismiss => 'Most nem';
+
+  @override
+  String get dashboardLoadError => 'Nem sikerült betölteni a friss adatokat';
+
+  @override
+  String get dashboardLoadErrorMessage =>
+      'A szerver nem válaszolt. Próbáld újra egy pillanat múlva.';
 }

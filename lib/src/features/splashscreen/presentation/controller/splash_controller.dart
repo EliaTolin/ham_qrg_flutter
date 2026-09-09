@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:hamqrg/clients/package_info/package_info.dart';
 import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
+import 'package:hamqrg/common/service/in_app_rating/in_app_rating_service.dart';
 import 'package:hamqrg/common/utils/repeater_mode_helper.dart';
 import 'package:hamqrg/common/utils/version_utils.dart';
 import 'package:hamqrg/config/app_configs.dart';
@@ -18,6 +19,7 @@ import 'package:hamqrg/src/features/post_login_onboarding/provider/check_needs_o
 import 'package:hamqrg/src/features/profile/provider/get_profile/get_profile_provider.dart';
 import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifier/favorite_repeaters_notifier.dart';
 import 'package:hamqrg/src/features/repeaters/provider/get_repeaters_nearby/get_repeaters_nearby_provider.dart';
+import 'package:hamqrg/src/features/repeaters/provider/get_total_repeaters_count/get_total_repeaters_count_provider.dart';
 import 'package:hamqrg/src/features/repeaters/service/location_service.dart';
 import 'package:hamqrg/src/features/splashscreen/errors/update_required_exception.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
@@ -46,6 +48,10 @@ class SplashController extends _$SplashController {
     try {
       talker.info('[Splash] build() start');
       final startWatch = Stopwatch()..start();
+
+      // Conta l'avvio: è il segnale su cui si decide se e quando chiedere la
+      // recensione (vedi InAppRatingService). Non blocca nulla e non lancia.
+      await ref.read(inAppRatingServiceProvider).registerAppLaunch();
 
       // Resolve connectivity and entitlement BEFORE any data call: the cached
       // datasources read both flags synchronously (`.value ?? false`), so an
@@ -91,17 +97,32 @@ class SplashController extends _$SplashController {
       var userId = await ref.read(getUserIdProvider.future);
       if (userId == null && !isOffline) {
         talker.info('[Splash] step: anonymousSignIn');
-        userId = await ref.read(anonymousSignInProvider.future);
-        // La sessione anonima nasce DOPO che `getUserIdProvider` ha già
-        // risolto `null`: senza invalidare, ogni provider auth-dipendente
-        // resta congelato su quel `null` (`getProfile` lancia «User ID is
-        // null») per tutta la sessione — al primo avvio dopo l'installazione
-        // la pagina profilo va in errore fino al riavvio dell'app.
-        ref
-          ..invalidate(getUserIdProvider)
-          ..invalidate(isAnonymousProvider)
-          ..invalidate(getProfileProvider)
-          ..invalidate(checkNeedsPostLoginOnboardingProvider);
+        try {
+          // Era l'ultimo passo di rete della splash senza limite di tempo, e
+          // il client Supabase non ne ha uno suo: con la rete su ma il backend
+          // irraggiungibile (captive portal, DNS che non risponde) l'attesa
+          // teneva ferma la splash per minuti.
+          userId = await ref
+              .read(anonymousSignInProvider.future)
+              .timeout(_networkStepTimeout);
+          // La sessione anonima nasce DOPO che `getUserIdProvider` ha già
+          // risolto `null`: senza invalidare, ogni provider auth-dipendente
+          // resta congelato su quel `null` (`getProfile` lancia «User ID is
+          // null») per tutta la sessione — al primo avvio dopo
+          // l'installazione la pagina profilo va in errore fino al riavvio
+          // dell'app.
+          ref
+            ..invalidate(getUserIdProvider)
+            ..invalidate(isAnonymousProvider)
+            ..invalidate(getProfileProvider)
+            ..invalidate(checkNeedsPostLoginOnboardingProvider);
+        } catch (error, stackTrace) {
+          // Senza sessione si parte lo stesso: le pagine mostrano il loro
+          // errore con il riprova, e il prossimo avvio ritenta. Fermare qui
+          // l'avvio sarebbe il danno peggiore fra i due.
+          talker.warning('[Splash] anonymousSignIn skipped: $error');
+          unawaited(Sentry.captureException(error, stackTrace: stackTrace));
+        }
       }
       talker.info('[Splash] userId resolved: $userId');
 
@@ -213,10 +234,16 @@ class SplashController extends _$SplashController {
   Future<void> _prefetchDashboardData() async {
     final talker = _talker;
     try {
-      talker.info('[Splash] prefetch: favorites + profile');
+      // Il conteggio totale sta qui perché è sul percorso critico della home
+      // — il controller lo aspetta prima di poter disegnare — ed era l'unica
+      // delle sue quattro letture che nessuno precaricava: da solo teneva la
+      // home sullo spinner un quarto di secondo dopo che tutto il resto era
+      // già pronto.
+      talker.info('[Splash] prefetch: favorites + profile + count');
       await Future.wait([
         ref.read(favoriteRepeatersProvider.future),
         ref.read(getProfileProvider.future),
+        ref.read(getTotalRepeatersCountProvider.future),
       ]);
 
       // Location + nearby repeaters

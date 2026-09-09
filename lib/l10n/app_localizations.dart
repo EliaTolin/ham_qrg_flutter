@@ -1204,6 +1204,18 @@ abstract class AppLocalizations {
   /// **'{count} salvati'**
   String homeSaved(int count);
 
+  /// No description provided for @homeStationsLabel.
+  ///
+  /// In it, this message translates to:
+  /// **'{count, plural, one{stazione} other{stazioni}}'**
+  String homeStationsLabel(int count);
+
+  /// No description provided for @homeSavedLabel.
+  ///
+  /// In it, this message translates to:
+  /// **'{count, plural, one{salvato} other{salvati}}'**
+  String homeSavedLabel(int count);
+
   /// No description provided for @homeActive.
   ///
   /// In it, this message translates to:
@@ -3208,6 +3220,18 @@ abstract class AppLocalizations {
   /// **'Es. 1234'**
   String get addRepeaterAccessNodeIdHint;
 
+  /// No description provided for @addRepeaterAccessNac.
+  ///
+  /// In it, this message translates to:
+  /// **'NAC'**
+  String get addRepeaterAccessNac;
+
+  /// No description provided for @addRepeaterAccessNacHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 659'**
+  String get addRepeaterAccessNacHint;
+
   /// No description provided for @addRepeaterAccessNetworkName.
   ///
   /// In it, this message translates to:
@@ -4869,6 +4893,36 @@ abstract class AppLocalizations {
   /// In it, this message translates to:
   /// **'Auto'**
   String get profileUnitSystemAutoShort;
+
+  /// No description provided for @updateAvailableBannerMessage.
+  ///
+  /// In it, this message translates to:
+  /// **'È disponibile la versione {version}, ti consigliamo di aggiornare'**
+  String updateAvailableBannerMessage(String version);
+
+  /// No description provided for @updateAvailableAction.
+  ///
+  /// In it, this message translates to:
+  /// **'Aggiorna'**
+  String get updateAvailableAction;
+
+  /// No description provided for @updateAvailableDismiss.
+  ///
+  /// In it, this message translates to:
+  /// **'Non ora'**
+  String get updateAvailableDismiss;
+
+  /// No description provided for @dashboardLoadError.
+  ///
+  /// In it, this message translates to:
+  /// **'Impossibile caricare i dati aggiornati'**
+  String get dashboardLoadError;
+
+  /// No description provided for @dashboardLoadErrorMessage.
+  ///
+  /// In it, this message translates to:
+  /// **'Il server non ha risposto. Riprova fra un istante.'**
+  String get dashboardLoadErrorMessage;
 }
 
 class _AppLocalizationsDelegate

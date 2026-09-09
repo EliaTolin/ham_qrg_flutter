@@ -38,8 +38,14 @@ Future<void> main() async {
 
   await _initRevenueCat();
 
-  // Enable verbose logging for debugging (remove in production)
-  await OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  // `verbose` era acceso ovunque, release compresa, e sommergeva la console:
+  // le righe che servono a capire un avvio andato storto — `[Splash]`,
+  // `[Dashboard]` — finivano in mezzo a centinaia di righe del SDK push, che
+  // di quell'avvio non dicono nulla. In debug restano gli avvisi veri, in
+  // release non si stampa niente.
+  await OneSignal.Debug.setLogLevel(
+    kDebugMode ? OSLogLevel.warn : OSLogLevel.none,
+  );
   // Initialize with your OneSignal App ID
   await OneSignal.initialize(AppConfigs.getOneSignalAppId());
   // Use this method to prompt for push notifications.

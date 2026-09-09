@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 class AppConfigs {
   static String getSite() {
-    return 'https://hamqrg.com/';
+    return 'https://hamqrg.com';
   }
 
   static String getSupabaseKey() {
@@ -36,8 +36,14 @@ class AppConfigs {
     return 'https://www.iz8wnh.it';
   }
 
+  /// Identificativo di **HamQRG** su App Store (`it.auroradigital.hamqrg`).
+  ///
+  /// Verificabile in ogni momento con
+  /// `itunes.apple.com/lookup?bundleId=it.auroradigital.hamqrg`: da qui
+  /// nascono i link allo store, e un id sbagliato manda l'utente sulla
+  /// scheda di un'altra app invece che sull'aggiornamento.
   static String getAppStoreId() {
-    return '6754508610';
+    return '6758155828';
   }
 
   static String getMapboxAccessToken() {

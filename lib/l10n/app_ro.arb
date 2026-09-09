@@ -222,6 +222,22 @@
       }
     }
   },
+  "homeStationsLabel": "{count, plural, one{stație} few{stații} other{de stații}}",
+  "@homeStationsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSavedLabel": "{count, plural, one{salvat} other{salvate}}",
+  "@homeSavedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "homeActive": "Activ",
   "homeIdle": "Inactiv",
   "homeNavHome": "Acasă",
@@ -642,6 +658,8 @@
   "addRepeaterAccessDgIdHint": "Ex. 0",
   "addRepeaterAccessNodeId": "ID nod",
   "addRepeaterAccessNodeIdHint": "Ex. 1234",
+  "addRepeaterAccessNac": "NAC",
+  "addRepeaterAccessNacHint": "Ex. 659",
   "addRepeaterAccessNetworkName": "Numele rețelei",
   "addRepeaterAccessNetworkNameHint": "Ex. BM Italia",
   "addRepeaterAccessNotes": "Note acces",
@@ -1230,5 +1248,17 @@
     }
   },
   "changelog130ImperialUnits": "Mile și picioare: aplicația urmează acum unitățile dispozitivului, iar sistemul poate fi ales din Setări",
-  "profileUnitSystemAutoShort": "Auto"
+  "profileUnitSystemAutoShort": "Auto",
+  "updateAvailableBannerMessage": "Este disponibilă versiunea {version}, recomandăm actualizarea",
+  "@updateAvailableBannerMessage": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAvailableAction": "Actualizează",
+  "updateAvailableDismiss": "Nu acum",
+  "dashboardLoadError": "Nu s-au putut încărca datele actualizate",
+  "dashboardLoadErrorMessage": "Serverul nu a răspuns. Încearcă din nou peste o clipă."
 }

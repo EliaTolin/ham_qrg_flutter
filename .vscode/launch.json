@@ -9,6 +9,17 @@
       "flutterMode": "debug"
     },
     {
+      // Da usare quando l'avvio resta muto: `-v` stampa la fase esatta in cui
+      // il tool si ferma (installazione, handshake col dispositivo, attesa del
+      // VM service), che è il pezzo che VS Code non mostra.
+      "name": "HamQRG (debug, log verboso)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "debug",
+      "toolArgs": ["-v"]
+    },
+    {
       "name": "HamQRG (profile)",
       "request": "launch",
       "type": "dart",
@@ -23,29 +34,32 @@
       "flutterMode": "release"
     },
     {
-      "name": "HamQRG (attach)",
-      "request": "attach",
-      "type": "dart"
-    },
-    {
-      "name": "Test: current file",
+      "name": "Test: file corrente",
       "request": "launch",
       "type": "dart",
       "program": "${file}"
     },
     {
-      "name": "Test: unit only (no integration)",
+      "name": "Test: solo unit (senza integration)",
       "request": "launch",
       "type": "dart",
       "program": "test/",
       "args": ["--exclude-tags", "integration"]
     },
     {
-      "name": "Test: integration only",
+      "name": "Test: solo integration",
       "request": "launch",
       "type": "dart",
       "program": "test/",
       "args": ["--tags", "integration"]
+    },
+    {
+      // NON avvia l'app: si aggancia a una già in esecuzione e, se non ce n'è,
+      // resta in attesa in silenzio. Selezionata per sbaglio nel menu del
+      // pannello Run, fa sembrare che Debug non faccia nulla.
+      "name": "Attach a un'app già avviata (NON la avvia)",
+      "request": "attach",
+      "type": "dart"
     }
   ]
 }

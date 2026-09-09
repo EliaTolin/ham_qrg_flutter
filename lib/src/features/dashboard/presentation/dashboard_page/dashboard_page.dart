@@ -6,14 +6,17 @@ import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/extension/unit_system_extension.dart';
 import 'package:hamqrg/common/provider/offline_status_notifier/offline_status_notifier.dart';
 import 'package:hamqrg/common/utils/access_mode_helper.dart';
+import 'package:hamqrg/common/utils/count_format_helper.dart';
 import 'package:hamqrg/common/utils/maidenhead_locator.dart';
 import 'package:hamqrg/common/utils/repeater_format_helper.dart';
 import 'package:hamqrg/common/utils/version_utils.dart';
 import 'package:hamqrg/common/widgets/banner/info_banner.dart';
+import 'package:hamqrg/common/widgets/banner/update_available_banner.dart';
 import 'package:hamqrg/common/widgets/error/app_error_widget.dart';
 import 'package:hamqrg/common/widgets/error/inline_error_retry.dart';
 import 'package:hamqrg/common/widgets/icons/repeater_access_icon.dart';
 import 'package:hamqrg/common/widgets/label/callsign_text.dart';
+import 'package:hamqrg/common/widgets/rating/in_app_rating_trigger.dart';
 import 'package:hamqrg/common/widgets/responsive/responsive_layout.dart';
 import 'package:hamqrg/common/widgets/sheet/sheet_drag_handle.dart';
 import 'package:hamqrg/router/app_router.dart';
@@ -24,6 +27,7 @@ import 'package:hamqrg/src/features/dashboard/domain/dashboard_statistics/dashbo
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/controller/dashboard_controller.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/dashboard_tablet.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widget/map_section_widget.dart';
+import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widgets/dashboard_load_error_content.dart';
 import 'package:hamqrg/src/features/dashboard/presentation/dashboard_page/widgets/dashboard_offline_content.dart';
 import 'package:hamqrg/src/features/pota/data/mappers/pota_mappers.dart';
 import 'package:hamqrg/src/features/pota/domain/pota_spot.dart';
@@ -61,10 +65,12 @@ class DashboardPage extends HookConsumerWidget {
         tablet: (_) => Stack(
           children: [
             _ChangelogTrigger(profile: state.profile),
+            const InAppRatingTrigger(),
             DashboardTablet(
               statistics: state.statistics,
               initialPosition: state.initialPosition,
               nearbyRepeaters: state.nearbyRepeaters,
+              hasLoadError: state.hasLoadError,
             ),
           ],
         ),
@@ -73,6 +79,9 @@ class DashboardPage extends HookConsumerWidget {
             children: [
               // Changelog trigger (invisible, fires once)
               _ChangelogTrigger(profile: state.profile),
+
+              // Prompt di recensione (invisibile, decide da sé se chiedere)
+              const InAppRatingTrigger(),
 
               // Map Section (full screen, non-interactive preview)
               SizedBox(
@@ -139,6 +148,7 @@ class DashboardPage extends HookConsumerWidget {
                 builder: (context, scrollController) => _ContentSection(
                   statistics: state.statistics,
                   nearbyRepeaters: state.nearbyRepeaters,
+                  hasLoadError: state.hasLoadError,
                   scrollController: scrollController,
                 ),
               ),
@@ -165,11 +175,13 @@ class _ContentSection extends HookConsumerWidget {
   const _ContentSection({
     required this.statistics,
     required this.nearbyRepeaters,
+    required this.hasLoadError,
     required this.scrollController,
   });
 
   final DashboardStatistics statistics;
   final List<Repeater> nearbyRepeaters;
+  final bool hasLoadError;
   final ScrollController scrollController;
 
   @override
@@ -182,6 +194,14 @@ class _ContentSection extends HookConsumerWidget {
     // disponibile sul campo.
     final showOfflineEmptyState =
         isOffline && nearbyRepeaters.isEmpty && statistics.totalRepeaters == 0;
+    // Stesso criterio, e per la stessa ragione: lo stato a piena pagina vale
+    // solo se non è rimasto nulla di vero da mostrare. Se a fallire è stato
+    // il solo contatore dei preferiti, la lista dei ripetitori vicini è
+    // buona — nasconderla dietro un errore sarebbe il danno peggiore.
+    final showLoadErrorState = hasLoadError &&
+        !isOffline &&
+        nearbyRepeaters.isEmpty &&
+        statistics.totalRepeaters == 0;
 
     return RepaintBoundary(
       child: Container(
@@ -214,6 +234,13 @@ class _ContentSection extends HookConsumerWidget {
                   children: [
                     if (showOfflineEmptyState)
                       const DashboardOfflineContent()
+                    // Rete disponibile ma dati non arrivati: prende il posto
+                    // del contenuto invece di stargli sopra. Statistiche a
+                    // zero e "nessun ripetitore nelle vicinanze" sotto un
+                    // avviso d'errore sono la stessa notizia detta tre volte,
+                    // e le prime due la dicono male: sembrano risposte.
+                    else if (showLoadErrorState)
+                      const DashboardLoadErrorContent()
                     else ...[
                       // Offline con dati in cache: banner informativo sopra
                       // le statistiche, contenuto normale sotto.
@@ -225,6 +252,9 @@ class _ContentSection extends HookConsumerWidget {
                             label: context.localization.offlineBannerMessage,
                           ),
                         ),
+                      // Nuova versione sullo store: invito sotto agli avvisi
+                      // che riguardano ciò che l'utente sta guardando adesso.
+                      const UpdateAvailableBanner(),
                       // Compact Stats Row
                       _StatsRow(statistics: statistics),
                       // Segmented Tab Selector
@@ -285,6 +315,8 @@ class _StatsRow extends ConsumerWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = context.localization;
+    final locale = Localizations.localeOf(context);
+    final favorites = statistics.favoritesCount ?? 0;
 
     return Row(
       children: [
@@ -292,7 +324,8 @@ class _StatsRow extends ConsumerWidget {
           child: _StatChip(
             icon: Icons.cell_tower,
             iconColor: colorScheme.primary,
-            label: l10n.homeStations(statistics.totalRepeaters),
+            value: CountFormat.integer(locale, statistics.totalRepeaters),
+            label: l10n.homeStationsLabel(statistics.totalRepeaters),
             onTap: () => AutoTabsRouter.of(context).setActiveIndex(1),
           ),
         ),
@@ -301,7 +334,8 @@ class _StatsRow extends ConsumerWidget {
           child: _StatChip(
             icon: Icons.favorite,
             iconColor: colorScheme.error,
-            label: l10n.homeSaved(statistics.favoritesCount ?? 0),
+            value: CountFormat.integer(locale, favorites),
+            label: l10n.homeSavedLabel(favorites),
             onTap: () async {
               final isAuthenticated = await requireAuthentication(context, ref);
               if (!isAuthenticated || !context.mounted) return;
@@ -314,16 +348,24 @@ class _StatsRow extends ConsumerWidget {
   }
 }
 
+/// Conteggio in evidenza sopra, sostantivo sotto.
+///
+/// Le due parti stanno su righe distinte perché sulla stessa riga il numero
+/// vince sempre: a cinque cifre restava spazio solo per troncare la parola
+/// ("24992 statio…"), e in una lingua con parole più lunghe sarebbe successo
+/// anche prima.
 class _StatChip extends StatelessWidget {
   const _StatChip({
     required this.icon,
     required this.iconColor,
+    required this.value,
     required this.label,
     required this.onTap,
   });
 
   final IconData icon;
   final Color iconColor;
+  final String value;
   final String label;
   final VoidCallback onTap;
 
@@ -349,12 +391,28 @@ class _StatChip extends StatelessWidget {
             Icon(icon, color: iconColor, size: 18),
             const SizedBox(width: 8),
             Expanded(
-              child: Text(
-                label,
-                style: theme.textTheme.labelLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-                overflow: TextOverflow.ellipsis,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    value,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    label,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
             ),
             Icon(
@@ -482,6 +540,10 @@ class _TabItem {
   final int badgeCount;
 }
 
+/// Sotto questa larghezza nella pill entrano solo icona e punto: etichetta e
+/// badge numerico insieme chiedono più spazio di così.
+const double _tabLabelMinWidth = 96;
+
 class _ExpandableTab extends StatelessWidget {
   const _ExpandableTab({
     required this.item,
@@ -505,7 +567,6 @@ class _ExpandableTab extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final foreground =
         isSelected ? colorScheme.onPrimary : colorScheme.onSurfaceVariant;
-    final showBadge = item.badgeCount > 0 && (isSelected || showCollapsedBadge);
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 280),
@@ -523,33 +584,50 @@ class _ExpandableTab extends StatelessWidget {
           borderRadius: BorderRadius.circular(_tabRadius),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(_tabRadius),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(item.icon, size: 18, color: foreground),
-                if (isSelected) ...[
-                  const SizedBox(width: 8),
-                  Flexible(
-                    child: Text(
-                      item.label,
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        color: foreground,
-                        fontWeight: FontWeight.w700,
+            // I figli seguono la larghezza *corrente*, non `isSelected`: la
+            // pill ci mette 280 ms ad aprirsi, e chi guarda lo stato finale
+            // pretende spazio che per tutta l'animazione non c'è ancora.
+            // `LayoutBuilder` ricostruisce a ogni fotogramma con la larghezza
+            // che la pill ha davvero in quell'istante.
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final width = constraints.maxWidth;
+                final showLabel = width >= _tabLabelMinWidth;
+                final showBadge =
+                    item.badgeCount > 0 && (isSelected || showCollapsedBadge);
+
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(item.icon, size: 18, color: foreground),
+                    if (showLabel) ...[
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          item.label,
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            color: foreground,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                      maxLines: 1,
-                      softWrap: false,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-                if (showBadge) ...[
-                  const SizedBox(width: 6),
-                  _LiveBadge(
-                    count: item.badgeCount,
-                    onPrimary: isSelected,
-                  ),
-                ],
-              ],
+                    ],
+                    if (showBadge) ...[
+                      const SizedBox(width: 6),
+                      // Stretta, la pill non ha spazio per un numero a tre
+                      // cifre: il punto dice comunque "qui c'è attività", e
+                      // il conteggio arriva quando la pill si è aperta.
+                      if (showLabel)
+                        _LiveBadge(count: item.badgeCount)
+                      else
+                        const _LiveDot(),
+                    ],
+                  ],
+                );
+              },
             ),
           ),
         ),
@@ -558,17 +636,35 @@ class _ExpandableTab extends StatelessWidget {
   }
 }
 
+/// Il badge quando non c'è spazio per leggerlo: presenza, non conteggio.
+class _LiveDot extends StatelessWidget {
+  const _LiveDot();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 6,
+      height: 6,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary,
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+}
+
+/// Il conteggio, leggibile solo sulla pill aperta: lì il fondo è `primary`,
+/// quindi il badge si inverte per restare visibile.
 class _LiveBadge extends StatelessWidget {
-  const _LiveBadge({required this.count, this.onPrimary = false});
+  const _LiveBadge({required this.count});
 
   final int count;
-  final bool onPrimary;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final bg = onPrimary ? colorScheme.onPrimary : colorScheme.primary;
-    final fg = onPrimary ? colorScheme.primary : colorScheme.onPrimary;
+    final bg = colorScheme.onPrimary;
+    final fg = colorScheme.primary;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),

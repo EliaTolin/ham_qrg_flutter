@@ -19,5 +19,12 @@ abstract class DashboardState with _$DashboardState {
     required List<Repeater> nearbyRepeaters,
     required Profile? profile,
     LocationErrorType? locationError,
+
+    /// Il caricamento dei dati è fallito.
+    ///
+    /// Senza questo flag le statistiche a zero e le liste vuote qui sopra
+    /// sono indistinguibili da un risultato vero: la home direbbe «nessun
+    /// ripetitore» dove la verità è «non sono riuscito a chiederlo».
+    @Default(false) bool hasLoadError,
   }) = _DashboardState;
 }

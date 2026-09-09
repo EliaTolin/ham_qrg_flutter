@@ -604,6 +604,30 @@ class AppLocalizationsHr extends AppLocalizations {
   }
 
   @override
+  String homeStationsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'postaja',
+      few: 'postaje',
+      one: 'postaja',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeSavedLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'spremljenih',
+      few: 'spremljena',
+      one: 'spremljen',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get homeActive => 'Aktivno';
 
   @override
@@ -1729,6 +1753,12 @@ class AppLocalizationsHr extends AppLocalizations {
   String get addRepeaterAccessNodeIdHint => 'Npr. 1234';
 
   @override
+  String get addRepeaterAccessNac => 'NAC';
+
+  @override
+  String get addRepeaterAccessNacHint => 'Npr. 659';
+
+  @override
   String get addRepeaterAccessNetworkName => 'Naziv mreže';
 
   @override
@@ -2684,4 +2714,22 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get profileUnitSystemAutoShort => 'Auto';
+
+  @override
+  String updateAvailableBannerMessage(String version) {
+    return 'Dostupna je verzija $version, preporučujemo ažuriranje';
+  }
+
+  @override
+  String get updateAvailableAction => 'Ažuriraj';
+
+  @override
+  String get updateAvailableDismiss => 'Ne sada';
+
+  @override
+  String get dashboardLoadError => 'Nije moguće učitati ažurirane podatke';
+
+  @override
+  String get dashboardLoadErrorMessage =>
+      'Poslužitelj nije odgovorio. Pokušaj ponovno za trenutak.';
 }

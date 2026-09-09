@@ -1,3 +1,4 @@
+import 'package:hamqrg/common/provider/keep_alive_for_ref.dart';
 import 'package:hamqrg/src/features/authentication/provider/get_user_id/get_user_id_provider.dart';
 import 'package:hamqrg/src/features/repeaters/data/repository/repeaters_repository.dart';
 import 'package:hamqrg/src/features/repeaters/provider/favorite_repeaters_notifier/state/favorite_repeaters_state.dart';
@@ -9,6 +10,7 @@ part 'favorite_repeaters_notifier.g.dart';
 class FavoriteRepeatersNotifier extends _$FavoriteRepeatersNotifier {
   @override
   Future<FavoriteRepeatersState> build() async {
+    ref.keepAliveFor(kHandoverKeepAlive);
     final userId = await ref.watch(getUserIdProvider.future);
     if (userId == null) {
       return const FavoriteRepeatersState();

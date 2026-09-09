@@ -8,21 +8,34 @@ part of 'in_app_rating_service.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
+/// `keepAlive`: le due bandiere di sessione (avvio già contato, recensione già
+/// chiesta) vivono nell'istanza, e un provider ricreato le azzererebbe —
+/// l'avvio verrebbe contato due volte e il prompt potrebbe ripresentarsi nello
+/// stesso avvio.
 
 @ProviderFor(inAppRatingService)
 final inAppRatingServiceProvider = InAppRatingServiceProvider._();
+
+/// `keepAlive`: le due bandiere di sessione (avvio già contato, recensione già
+/// chiesta) vivono nell'istanza, e un provider ricreato le azzererebbe —
+/// l'avvio verrebbe contato due volte e il prompt potrebbe ripresentarsi nello
+/// stesso avvio.
 
 final class InAppRatingServiceProvider extends $FunctionalProvider<
     InAppRatingService,
     InAppRatingService,
     InAppRatingService> with $Provider<InAppRatingService> {
+  /// `keepAlive`: le due bandiere di sessione (avvio già contato, recensione già
+  /// chiesta) vivono nell'istanza, e un provider ricreato le azzererebbe —
+  /// l'avvio verrebbe contato due volte e il prompt potrebbe ripresentarsi nello
+  /// stesso avvio.
   InAppRatingServiceProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
           name: r'inAppRatingServiceProvider',
-          isAutoDispose: true,
+          isAutoDispose: false,
           dependencies: null,
           $allTransitiveDependencies: null,
         );
@@ -51,4 +64,4 @@ final class InAppRatingServiceProvider extends $FunctionalProvider<
 }
 
 String _$inAppRatingServiceHash() =>
-    r'615f77006b6771083798d25fd728e3adc7cfa246';
+    r'e7a7ce79d67fe68da13677ffe39c176746d953ef';

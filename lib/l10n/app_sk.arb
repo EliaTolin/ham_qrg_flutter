@@ -222,6 +222,22 @@
       }
     }
   },
+  "homeStationsLabel": "{count, plural, one{stanica} few{stanice} other{staníc}}",
+  "@homeStationsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSavedLabel": "{count, plural, one{uložený} few{uložené} other{uložených}}",
+  "@homeSavedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "homeActive": "Aktívny",
   "homeIdle": "Neaktívny",
   "homeNavHome": "Domov",
@@ -642,6 +658,8 @@
   "addRepeaterAccessDgIdHint": "Napr. 0",
   "addRepeaterAccessNodeId": "Node ID",
   "addRepeaterAccessNodeIdHint": "Napr. 1234",
+  "addRepeaterAccessNac": "NAC",
+  "addRepeaterAccessNacHint": "Napr. 659",
   "addRepeaterAccessNetworkName": "Názov siete",
   "addRepeaterAccessNetworkNameHint": "Napr. BM Italia",
   "addRepeaterAccessNotes": "Poznámky k prístupu",
@@ -1230,5 +1248,17 @@
     }
   },
   "changelog130ImperialUnits": "Míle a stopy: aplikácia teraz rešpektuje jednotky vášho zariadenia a systém si môžete zvoliť v Nastaveniach",
-  "profileUnitSystemAutoShort": "Auto"
+  "profileUnitSystemAutoShort": "Auto",
+  "updateAvailableBannerMessage": "Je dostupná verzia {version}, odporúčame aktualizovať",
+  "@updateAvailableBannerMessage": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAvailableAction": "Aktualizovať",
+  "updateAvailableDismiss": "Teraz nie",
+  "dashboardLoadError": "Aktuálne údaje sa nepodarilo načítať",
+  "dashboardLoadErrorMessage": "Server neodpovedal. Skús to o chvíľu znova."
 }

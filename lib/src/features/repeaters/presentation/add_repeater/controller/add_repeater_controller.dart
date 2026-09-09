@@ -99,7 +99,13 @@ class AddRepeaterController extends _$AddRepeaterController {
           _addIfNotEmptyStr(map, 'network_name', a.networkName);
         case AccessMode.dstar:
           _addIfNotEmptyStr(map, 'network_name', a.networkName);
-        case AccessMode.echolink || AccessMode.svx || AccessMode.allstar:
+        case AccessMode.echolink ||
+              AccessMode.svx ||
+              AccessMode.allstar ||
+              AccessMode.irlp ||
+              AccessMode.p25:
+          // Per il P25 `node_id` trasporta il NAC: il backend non ha una
+          // colonna dedicata, a cambiare è solo l'etichetta nel form.
           _addIfNotEmpty(map, 'node_id', int.tryParse(a.nodeId));
           _addIfNotEmptyStr(map, 'network_name', a.networkName);
         case AccessMode.aprs ||

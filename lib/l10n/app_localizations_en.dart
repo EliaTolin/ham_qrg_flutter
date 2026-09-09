@@ -600,6 +600,27 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String homeStationsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'stations',
+      one: 'station',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeSavedLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'saved',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get homeActive => 'Active';
 
   @override
@@ -1716,6 +1737,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addRepeaterAccessNodeIdHint => 'E.g. 1234';
 
   @override
+  String get addRepeaterAccessNac => 'NAC';
+
+  @override
+  String get addRepeaterAccessNacHint => 'E.g. 659';
+
+  @override
   String get addRepeaterAccessNetworkName => 'Network name';
 
   @override
@@ -2678,4 +2705,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileUnitSystemAutoShort => 'Auto';
+
+  @override
+  String updateAvailableBannerMessage(String version) {
+    return 'Version $version is available, we recommend updating';
+  }
+
+  @override
+  String get updateAvailableAction => 'Update';
+
+  @override
+  String get updateAvailableDismiss => 'Not now';
+
+  @override
+  String get dashboardLoadError => 'Couldn\'t load the latest data';
+
+  @override
+  String get dashboardLoadErrorMessage =>
+      'The server didn\'t respond. Try again in a moment.';
 }

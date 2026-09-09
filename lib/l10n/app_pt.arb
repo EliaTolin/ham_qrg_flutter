@@ -222,6 +222,22 @@
       }
     }
   },
+  "homeStationsLabel": "{count, plural, one{estação} other{estações}}",
+  "@homeStationsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSavedLabel": "{count, plural, one{guardado} other{guardados}}",
+  "@homeSavedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "homeActive": "Ativo",
   "homeIdle": "Inativo",
   "homeNavHome": "Início",
@@ -642,6 +658,8 @@
   "addRepeaterAccessDgIdHint": "Ex. 0",
   "addRepeaterAccessNodeId": "Node ID",
   "addRepeaterAccessNodeIdHint": "Ex. 1234",
+  "addRepeaterAccessNac": "NAC",
+  "addRepeaterAccessNacHint": "Ex. 659",
   "addRepeaterAccessNetworkName": "Nome da rede",
   "addRepeaterAccessNetworkNameHint": "Ex. BM Portugal",
   "addRepeaterAccessNotes": "Notas do acesso",
@@ -1230,5 +1248,17 @@
     }
   },
   "changelog130ImperialUnits": "Milhas e pés: a app segue agora as unidades do teu dispositivo, e podes escolher o sistema nas Definições",
-  "profileUnitSystemAutoShort": "Auto"
+  "profileUnitSystemAutoShort": "Auto",
+  "updateAvailableBannerMessage": "A versão {version} está disponível, recomendamos atualizar",
+  "@updateAvailableBannerMessage": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAvailableAction": "Atualizar",
+  "updateAvailableDismiss": "Agora não",
+  "dashboardLoadError": "Não foi possível carregar os dados atualizados",
+  "dashboardLoadErrorMessage": "O servidor não respondeu. Tenta novamente daqui a pouco."
 }

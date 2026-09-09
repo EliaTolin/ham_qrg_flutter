@@ -222,6 +222,22 @@
       }
     }
   },
+  "homeStationsLabel": "{count, plural, one{stanica} few{stanice} other{stanica}}",
+  "@homeStationsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSavedLabel": "{count, plural, one{sačuvan} few{sačuvana} other{sačuvanih}}",
+  "@homeSavedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "homeActive": "Aktivno",
   "homeIdle": "Neaktivno",
   "homeNavHome": "Početna",
@@ -642,6 +658,8 @@
   "addRepeaterAccessDgIdHint": "Npr. 0",
   "addRepeaterAccessNodeId": "Node ID",
   "addRepeaterAccessNodeIdHint": "Npr. 1234",
+  "addRepeaterAccessNac": "NAC",
+  "addRepeaterAccessNacHint": "Npr. 659",
   "addRepeaterAccessNetworkName": "Naziv mreže",
   "addRepeaterAccessNetworkNameHint": "Npr. BM Italia",
   "addRepeaterAccessNotes": "Napomene o pristupu",
@@ -1230,5 +1248,17 @@
     }
   },
   "changelog130ImperialUnits": "Milje i stope: aplikacija sada prati merne jedinice uređaja, a sistem možete izabrati u Podešavanjima",
-  "profileUnitSystemAutoShort": "Auto"
+  "profileUnitSystemAutoShort": "Auto",
+  "updateAvailableBannerMessage": "Dostupna je verzija {version}, preporučujemo ažuriranje",
+  "@updateAvailableBannerMessage": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateAvailableAction": "Ažuriraj",
+  "updateAvailableDismiss": "Ne sada",
+  "dashboardLoadError": "Nije moguće učitati ažurirane podatke",
+  "dashboardLoadErrorMessage": "Server nije odgovorio. Pokušaj ponovo za trenutak."
 }
