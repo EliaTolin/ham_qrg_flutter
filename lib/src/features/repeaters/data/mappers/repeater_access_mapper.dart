@@ -20,14 +20,17 @@ class RepeaterAccessMapper
     for (final mode in AccessMode.values) {
       if (mode.name.toUpperCase() == normalized) return mode;
     }
-    assert(() {
-      debugPrint(
-        '[RepeaterAccessMapper] access_mode sconosciuto dal backend: "$raw" '
-        '-> fallback su AccessMode.analog. '
-        'Aggiornare enum AccessMode e AccessModeHelper.',
-      );
-      return true;
-    }());
+    assert(
+      () {
+        debugPrint(
+          '[RepeaterAccessMapper] access_mode sconosciuto dal backend: "$raw" '
+          '-> fallback su AccessMode.analog. '
+          'Aggiornare enum AccessMode e AccessModeHelper.',
+        );
+        return true;
+      }(),
+      'access_mode sconosciuto: enum SQL e enum Dart disallineati',
+    );
     return AccessMode.analog;
   }
 

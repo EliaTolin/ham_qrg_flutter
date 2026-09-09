@@ -40,4 +40,4 @@ final class GetProfileProvider
   }
 }
 
-String _$getProfileHash() => r'f93933ba0871678800e5c2badd34a931e52205dc';
+String _$getProfileHash() => r'648842c00a017ba131812cbdd3188513c9f57061';

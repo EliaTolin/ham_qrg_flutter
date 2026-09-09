@@ -63,6 +63,7 @@ dependencies:
   remote_caching: ^1.0.19
   path_provider: ^2.1.6
   connectivity_plus: ^6.1.0
+  upgrader: ^13.7.0
 
 dependency_overrides:
   path_provider_foundation: 2.5.1

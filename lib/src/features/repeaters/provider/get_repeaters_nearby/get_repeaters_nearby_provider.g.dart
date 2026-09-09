@@ -80,7 +80,7 @@ final class GetRepeatersNearbyProvider extends $FunctionalProvider<
 }
 
 String _$getRepeatersNearbyHash() =>
-    r'845ca149daf9daa4821f439fb16f3038413ee35d';
+    r'd36930a5042e3271392728ed38ac0ee5ab8cdb37';
 
 final class GetRepeatersNearbyFamily extends $Family
     with

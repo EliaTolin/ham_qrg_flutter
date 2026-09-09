@@ -97,31 +97,46 @@ class SplashController extends _$SplashController {
       var userId = await ref.read(getUserIdProvider.future);
       if (userId == null && !isOffline) {
         talker.info('[Splash] step: anonymousSignIn');
+        // Il riferimento alla richiesta si tiene: `timeout` ferma l'attesa,
+        // non la richiesta, e ciò che succede dopo conta (vedi sotto).
+        final signIn = ref.read(anonymousSignInProvider.future);
+        // Vale per questa build soltanto: se la splash viene smontata prima
+        // che il login arrivi, il seguito trova la porta chiusa invece di
+        // invalidare attraverso un `Ref` che non esiste più.
+        var stale = false;
+        ref.onDispose(() => stale = true);
         try {
           // Era l'ultimo passo di rete della splash senza limite di tempo, e
           // il client Supabase non ne ha uno suo: con la rete su ma il backend
           // irraggiungibile (captive portal, DNS che non risponde) l'attesa
           // teneva ferma la splash per minuti.
-          userId = await ref
-              .read(anonymousSignInProvider.future)
-              .timeout(_networkStepTimeout);
-          // La sessione anonima nasce DOPO che `getUserIdProvider` ha già
-          // risolto `null`: senza invalidare, ogni provider auth-dipendente
-          // resta congelato su quel `null` (`getProfile` lancia «User ID is
-          // null») per tutta la sessione — al primo avvio dopo
-          // l'installazione la pagina profilo va in errore fino al riavvio
-          // dell'app.
-          ref
-            ..invalidate(getUserIdProvider)
-            ..invalidate(isAnonymousProvider)
-            ..invalidate(getProfileProvider)
-            ..invalidate(checkNeedsPostLoginOnboardingProvider);
+          userId = await signIn.timeout(_networkStepTimeout);
+          _refreshAuthDependentProviders();
         } catch (error, stackTrace) {
           // Senza sessione si parte lo stesso: le pagine mostrano il loro
           // errore con il riprova, e il prossimo avvio ritenta. Fermare qui
           // l'avvio sarebbe il danno peggiore fra i due.
           talker.warning('[Splash] anonymousSignIn skipped: $error');
           unawaited(Sentry.captureException(error, stackTrace: stackTrace));
+          // Il caso peggiore non è il login fallito: è il login **riuscito in
+          // ritardo**. Il timeout ha mollato l'attesa, ma la richiesta va
+          // avanti e la sessione Supabase nasce lo stesso — solo dopo. Senza
+          // questo seguito le invalidazioni non verrebbero eseguite mai:
+          // l'app resterebbe con una sessione attiva e `getUserIdProvider`
+          // congelato sul `null` letto prima, cioè lo stato peggiore dei tre
+          // (peggio del login fallito, perché nessuno ritenta).
+          unawaited(
+            signIn.then<void>(
+              (_) {
+                if (stale) return;
+                talker
+                    .info('[Splash] anonymousSignIn landed late — refreshing');
+                _refreshAuthDependentProviders();
+              },
+              // Già segnalato sopra: qui interessa solo il caso riuscito.
+              onError: (Object _) {},
+            ),
+          );
         }
       }
       talker.info('[Splash] userId resolved: $userId');
@@ -227,6 +242,21 @@ class SplashController extends _$SplashController {
       await Sentry.captureException(error, stackTrace: stackTrace);
       rethrow;
     }
+  }
+
+  /// Rilegge tutto ciò che dipende dalla sessione.
+  ///
+  /// La sessione anonima nasce DOPO che `getUserIdProvider` ha già risolto
+  /// `null`: senza invalidare, ogni provider auth-dipendente resta congelato
+  /// su quel `null` (`getProfile` lancia «User ID is null») per tutta la
+  /// sessione — al primo avvio dopo l'installazione la pagina profilo va in
+  /// errore fino al riavvio dell'app.
+  void _refreshAuthDependentProviders() {
+    ref
+      ..invalidate(getUserIdProvider)
+      ..invalidate(isAnonymousProvider)
+      ..invalidate(getProfileProvider)
+      ..invalidate(checkNeedsPostLoginOnboardingProvider);
   }
 
   /// Prefetch all data the dashboard controller will need.
