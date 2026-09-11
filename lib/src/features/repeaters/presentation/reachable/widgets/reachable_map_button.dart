@@ -70,12 +70,14 @@ class ReachableMapButton extends ConsumerWidget {
     // is available synchronously here (no fragile `.future` await).
     final isPro = ref.read(isProProvider).value ?? false;
     if (!isPro) {
-      await showReachabilityUpsell(
+      final purchased = await showReachabilityUpsell(
         context,
         ref,
         surface: AnalyticsSurface.reachButton,
       );
-      return;
+      // Chi non ha comprato si ferma qui; chi ha comprato prosegue e vede
+      // subito ciò che ha pagato, senza dover ritrovare il pulsante da solo.
+      if (!purchased || !context.mounted) return;
     }
     final openForPoint = onOpenForSearchPoint;
     if (openForPoint != null) {

@@ -36,7 +36,7 @@ class StationsShowcase extends HookConsumerWidget {
     );
 
     Future<void> unlock() async {
-      await openPaywallInPlace(
+      await openPaywall(
         ref,
         PaywallPlacement.savedStationsShowcase,
         surface: AnalyticsSurface.stationsList,

@@ -14,7 +14,13 @@ import 'package:hamqrg/src/features/subscriptions/presentation/widgets/pro_upsel
 ///
 /// [surface] dice da quale punto d'ingresso arriva l'utente, così i tassi di
 /// conversione delle diverse superfici restano confrontabili fra loro (FR-065).
-Future<void> showReachabilityUpsell(
+///
+/// Restituisce `true` se l'utente ha comprato. Era `Future<void>`, e il `bool`
+/// di [showProUpsellDialog] veniva buttato via dalla firma: il chiamante non
+/// poteva sapere di avere davanti un Pro appena fatto, quindi tornava indietro
+/// comunque e il foglio dei raggiungibili non si apriva mai. Due acquisti
+/// misurati sono finiti così.
+Future<bool> showReachabilityUpsell(
   BuildContext context,
   WidgetRef ref, {
   required AnalyticsSurface surface,

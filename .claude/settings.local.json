@@ -87,5 +87,9 @@
     "additionalDirectories": [
       "/Users/eliatolin"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "supabase"
+  ],
+  "enableAllProjectMcpServers": true
 }

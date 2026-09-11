@@ -7,53 +7,40 @@ import 'package:hamqrg/router/app_router.dart';
 import 'package:hamqrg/src/features/authentication/provider/is_anonymous/is_anonymous_provider.dart';
 import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
 import 'package:hamqrg/src/features/subscriptions/presentation/widgets/pro_link_account_dialog.dart';
-import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 
-/// Called after a successful purchase. In order:
-/// 1. Invalidate `isProProvider` so every watcher (badges, gates, upsells)
-///    re-reads the entitlement immediately instead of waiting for RevenueCat's
-///    async listener (which may lag and leave stale "locked" UI).
-/// 2. Celebrate with the WOW Pro welcome dialog (awaited).
-/// 3. Chiedere a chi è ancora anonimo di collegare un account (vedi
-///    [_offerAccountLink]).
-/// 4. Hard-refresh the whole navigation tree with `replaceAll([HomeRoute()])`:
-///    every page is torn down and rebuilt from scratch, so Pro gates that
-///    captured their state at build time (coverage button, blur gates,
-///    reachability) come back unlocked — equivalent to an app restart, but in
-///    place. The user lands back on the default tab.
+/// Chiude un acquisto riuscito: si festeggia e, a chi è anonimo, si propone
+/// di mettere al sicuro ciò che ha appena comprato.
+///
+/// **Non invalida `isProProvider` e non ricostruisce l'albero.** Le due cose
+/// stavano qui per sbloccare i gate, e facevano il contrario.
+///
+/// L'entitlement arriva da solo: la paywall chiude quando RevenueCat ha già
+/// aggiornato il `CustomerInfo`, quindi `proStatusChanges()` emette `true` e
+/// ogni gate — li osservano tutti con `ref.watch` — si sblocca da sé.
+/// `invalidate` invece fa ripartire il provider. Non azzera il valore —
+/// Riverpod conserva il precedente durante il ricaricamento — ma il
+/// precedente è esattamente `false`, cioè lo stato *prima* dell'acquisto:
+/// per tutta la verifica live, fino a 5 secondi di rete, ogni gate che legge
+/// `.value ?? false` continua a dire "non hai Pro" a chi ha appena pagato. È
+/// successo in produzione: acquisto alle 17:28:22, paywall riproposta alle
+/// 17:28:56. Peggio ancora, far ripartire il provider annulla la
+/// sottoscrizione a `proStatusChanges()` e la ricrea solo dopo la verifica:
+/// l'aggiornamento che RevenueCat emette per l'acquisto può cadere in quel
+/// buco, e con esso la `persist(true)` che teneva l'entitlement fra un avvio
+/// e l'altro. Entrambi i comportamenti sono fissati in
+/// `test/pro_entitlement_propagation_test.dart`.
+///
+/// `replaceAll([HomeRoute()])` serviva a rimontare i gate, ma nessuno di essi
+/// cattura il valore al build, quindi non serviva; in compenso distruggeva la
+/// pagina da cui l'utente aveva comprato — che su `coveragePromo` è proprio
+/// quella che deve eseguire la navigazione successiva, silenziosamente
+/// mangiata dalla guardia `context.mounted`
+/// (vedi `test/coverage_promo_purchase_flow_test.dart`).
 Future<void> _onProPurchased(WidgetRef ref) async {
-  ref.invalidate(isProProvider);
-
-  final router = ref.read(appRouterProvider);
-  final context = router.navigatorKey.currentContext;
-  if (context != null) {
-    await showProWelcome(context);
-    await _offerAccountLink(ref);
-  }
-
-  await router.replaceAll([const HomeRoute()]);
-}
-
-/// Come [_onProPurchased], ma **senza** ricostruire l'albero di navigazione.
-///
-/// Serve dove la pagina deve sopravvivere all'acquisto. Il caso concreto è il
-/// teaser della ricerca di copertura: l'utente ha scelto un punto, ha comprato
-/// e deve ritrovare quel punto ancora lì con il calcolo che parte da solo
-/// (FR-031). Con `replaceAll` finirebbe invece sulla tab predefinita, e il
-/// lavoro di scegliere il posto andrebbe rifatto — esattamente nel momento in
-/// cui ha appena pagato.
-///
-/// È sicuro perché i gate coinvolti osservano `isProProvider` in modo
-/// reattivo: l'invalidazione basta a sbloccarli, senza bisogno del
-/// ricaricamento a martello.
-Future<void> _onProPurchasedInPlace(WidgetRef ref) async {
-  ref.invalidate(isProProvider);
-
   final context = ref.read(appRouterProvider).navigatorKey.currentContext;
-  if (context != null) {
-    await showProWelcome(context);
-    await _offerAccountLink(ref);
-  }
+  if (context == null) return;
+  await showProWelcome(context);
+  await _offerAccountLink(ref);
 }
 
 /// Propone a un utente anonimo di collegare un account, **dopo** l'acquisto.
@@ -103,13 +90,20 @@ Future<bool> _presentTracked(
   return purchased;
 }
 
-/// Presenta la paywall assegnata a [placement] e, se l'utente compra,
-/// ricarica l'albero di navigazione.
+/// Presenta la paywall assegnata a [placement].
 ///
 /// Quale paywall sia non lo decide questa chiamata: il placement viene
 /// risolto da RevenueCat in base alle regole di targeting configurate in
-/// dashboard. Da qui passano i punti in cui perdere la pagina corrente non
-/// costa nulla (card di stato, badge, dialog di upsell).
+/// dashboard.
+///
+/// La pagina chiamante resta **sempre** in piedi. Esisteva una seconda
+/// variante che dopo l'acquisto ricostruiva l'albero di navigazione, con
+/// l'idea che perdere la pagina corrente non costasse nulla sulle superfici
+/// "di servizio" (card di stato, badge, dialog di upsell). Costava: chi
+/// comprava si ritrovava sulla tab iniziale, lontano dal ripetitore o dalla
+/// voce di menu che lo aveva convinto a pagare, e su `coveragePromo` la
+/// navigazione verso ciò che aveva appena comprato spariva del tutto. Su
+/// dieci acquisti misurati, nove non sono mai arrivati alla funzione pagata.
 ///
 /// [surface] è obbligatoria: è il punto d'ingresso con cui l'acquisto verrà
 /// attribuito nel funnel.
@@ -126,26 +120,6 @@ Future<bool> openPaywall(
         .presentPaywall(placementId: placement.id),
   );
   if (purchased) await _onProPurchased(ref);
-  return purchased;
-}
-
-/// Come [openPaywall], ma lascia in piedi la pagina chiamante.
-///
-/// Da usare dove il contesto costruito dall'utente prima dell'acquisto è il
-/// motivo stesso per cui sta comprando (il punto scelto sulla mappa).
-Future<bool> openPaywallInPlace(
-  WidgetRef ref,
-  PaywallPlacement placement, {
-  required AnalyticsSurface surface,
-}) async {
-  final purchased = await _presentTracked(
-    ref,
-    surface,
-    () => ref
-        .read(revenueCatClientProvider)
-        .presentPaywall(placementId: placement.id),
-  );
-  if (purchased) await _onProPurchasedInPlace(ref);
   return purchased;
 }
 

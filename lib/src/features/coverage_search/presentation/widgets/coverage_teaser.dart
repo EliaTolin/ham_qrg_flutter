@@ -46,18 +46,18 @@ class CoverageTeaser extends HookConsumerWidget {
 
     Future<void> unlock() async {
       // Gli eventi del funnel (CTA toccata, paywall mostrata, esito) li
-      // registra `openPaywallInPlace`: qui resterebbero da riscrivere a mano
-      // a ogni superficie, ed è così che tre punti vendita su sette erano
-      // finiti senza misura.
-      await openPaywallInPlace(
+      // registra `openPaywall`: qui resterebbero da riscrivere a mano a ogni
+      // superficie, ed è così che tre punti vendita su sette erano finiti
+      // senza misura.
+      await openPaywall(
         ref,
         PaywallPlacement.coverageTeaser,
         surface: AnalyticsSurface.mapTeaser,
       );
-      // Nessun `replaceAll` su questo percorso: la mappa resta montata, quindi
-      // il pin è ancora al suo posto e `isProProvider`, invalidato
-      // dall'acquisto, fa ripartire da solo il calcolo reale sullo stesso
-      // punto (FR-031).
+      // La mappa resta montata, quindi il pin è ancora al suo posto e
+      // `isProProvider` — che emette da sé quando RevenueCat aggiorna
+      // l'entitlement — fa ripartire il calcolo reale sullo stesso punto
+      // (FR-031).
     }
 
     return Column(

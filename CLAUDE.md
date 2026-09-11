@@ -232,8 +232,8 @@ realistico.
 
 Ogni punto dell'app da cui si può comprare è una voce di `PaywallPlacement`
 (`lib/src/features/subscriptions/domain/paywall_placement.dart`). La paywall
-non si apre mai chiamando direttamente il client: si passa da `openPaywall`,
-`openPaywallInPlace` o `requirePro` in
+non si apre mai chiamando direttamente il client: si passa da `openPaywall` o
+`requirePro` in
 `lib/src/features/subscriptions/presentation/require_pro.dart`.
 
 Aggiungendo una placement servono **tre** cose, non una:
@@ -262,12 +262,27 @@ Regole di composizione, tutte già disponibili come widget condivisi:
   promessa rotta nel punto peggiore del funnel. Quando `priceHint` torna
   `null` (offline, SDK non configurato) la riga sparisce e la superficie resta
   comprabile: il prezzo è un rinforzo della CTA, mai una sua precondizione.
-- **`inPlace` quando il contesto è il motivo dell'acquisto.** `openPaywall`
-  ricostruisce l'albero di navigazione e riporta l'utente sulla tab iniziale;
-  `openPaywallInPlace` lascia in piedi la pagina. Serve dove ciò che l'utente
-  ha costruito prima di pagare è la ragione per cui paga (il punto scelto
-  sulla mappa, FR-031) o dove subito dopo lo si vuole portare in ciò che ha
-  appena comprato.
+- **L'acquisto non ricostruisce mai l'albero di navigazione, e non invalida
+  mai `isProProvider`.** Entrambe le cose sono già state provate: servivano a
+  sbloccare i gate e facevano il contrario. L'entitlement si propaga da solo,
+  perché `proStatusChanges()` emette quando RevenueCat aggiorna il
+  `CustomerInfo` e ogni gate osserva il provider con `ref.watch`.
+  `ref.invalidate` fa ripartire il provider: non azzera il valore (Riverpod
+  conserva il precedente durante il ricaricamento) ma il precedente è quello
+  *pre-acquisto*, cioè `false`, e i gate leggono `.value ?? false` — quindi
+  per tutta la verifica live la paywall ricompare a chi ha appena pagato.
+  Ripartire annulla anche la sottoscrizione a `proStatusChanges()`: se
+  l'aggiornamento dell'acquisto arriva in quel buco si perde, e con esso la
+  `persist(true)`. `replaceAll` distrugge la pagina da cui si è comprato, e
+  con essa la navigazione che doveva seguire l'acquisto. Vale anche per il
+  ripristino acquisti. Presidi: `test/pro_entitlement_propagation_test.dart` e
+  `test/coverage_promo_purchase_flow_test.dart`.
+- **Chi apre la paywall deve usarne l'esito.** `openPaywall`, `requirePro` e
+  `showProUpsellDialog` restituiscono `true` se l'utente ha comprato: il
+  chiamante prosegue e lo porta dentro ciò che ha appena pagato, non si
+  limita a chiudere. Una firma `Future<void>` che scarta quel `bool` è un
+  acquisto che non consegna niente — è già costato due conversioni sul
+  pulsante "cosa raggiungo da qui".
 - **Il badge `PRO` è `ProBadge`** (`common/widgets/pro/`), non una `Container`
   scritta a mano: `ProBadge()` su fondo neutro, `ProBadge.onGold()` sopra
   l'oro. Va su ogni voce che al tocco chiede di pagare, altrimenti quel tocco

@@ -5,7 +5,6 @@ import 'package:hamqrg/common/extension/l10n_extension.dart';
 import 'package:hamqrg/common/widgets/snackbars/show_success_snackbar.dart';
 import 'package:hamqrg/l10n/app_localizations.dart';
 import 'package:hamqrg/src/features/subscriptions/domain/paywall_placement.dart';
-import 'package:hamqrg/src/features/subscriptions/provider/is_pro/is_pro_provider.dart';
 import 'package:hamqrg/src/features/subscriptions/provider/pro_price_hint/pro_price_hint_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -56,7 +55,11 @@ class ProPriceLine extends ConsumerWidget {
     Future<void> restore() async {
       final restored =
           await ref.read(revenueCatClientProvider).restorePurchases();
-      if (restored) ref.invalidate(isProProvider);
+      // Nessun `invalidate`: `restorePurchases()` aggiorna il `CustomerInfo`,
+      // quindi `proStatusChanges()` emette da sé. Invalidare farebbe ripartire
+      // il provider, che durante il ricaricamento conserva il valore
+      // precedente — cioè `false` — e i gate mostrerebbero la paywall proprio
+      // a chi ha appena dimostrato di avere già pagato.
       if (!context.mounted) return;
       showSuccessSnackbar(
         context,

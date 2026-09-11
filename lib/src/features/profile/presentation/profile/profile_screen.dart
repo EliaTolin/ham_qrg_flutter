@@ -295,10 +295,6 @@ class ProfileScreen extends HookConsumerWidget {
                                   // Un passo di valore prima della paywall:
                                   // qui l'utente stava esplorando le
                                   // impostazioni, non stava comprando.
-                                  // `inPlace` tiene in piedi il profilo, così
-                                  // chi compra entra davvero in ciò che ha
-                                  // appena pagato invece di ritrovarsi sulla
-                                  // tab iniziale.
                                   if (!isPro) {
                                     final purchased = await showProUpsellDialog(
                                       context,
@@ -313,7 +309,6 @@ class ProfileScreen extends HookConsumerWidget {
                                         l10n.coverageTeaserBenefitSave,
                                       ],
                                       ctaLabel: l10n.proUnlockCta,
-                                      inPlace: true,
                                     );
                                     if (!purchased) return;
                                   }

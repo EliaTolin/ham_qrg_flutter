@@ -30,7 +30,6 @@ Future<bool> showProUpsellDialog(
   required List<String> benefits,
   required String ctaLabel,
   Widget? header,
-  bool inPlace = false,
 }) async {
   // La superficie è stata mostrata: è il denominatore del suo tasso di
   // conversione. Registrata qui, all'apertura, e non nel widget, così vale
@@ -56,11 +55,8 @@ Future<bool> showProUpsellDialog(
 
   // La paywall si apre **dopo** che il dialog è uscito di scena, non sopra di
   // esso: presentarla su un dialog ancora montato lascia due modali
-  // sovrapposte, e la ricostruzione dell'albero che segue l'acquisto le
-  // troverebbe entrambe da smontare.
-  return inPlace
-      ? openPaywallInPlace(ref, placement, surface: surface)
-      : openPaywall(ref, placement, surface: surface);
+  // sovrapposte.
+  return openPaywall(ref, placement, surface: surface);
 }
 
 class _ProUpsellDialog extends StatelessWidget {
