@@ -71,7 +71,7 @@
       "Bash(mv _tmp.png 5_APP_IPHONE_69_5.png)",
       "Read(//Users/eliatolin/**)",
       "WebFetch(domain:api-db2.sota.org.uk)",
-      "Bash(.specify/scripts/bash/create-new-feature.sh \"Voglio integrare SOTA. Questa è l'API: https://api-db2.sota.org.uk/api/spots/200/all/all https://api-db2.sota.org.uk//api/summits/{summit_code} ritorna le informazioni del summit. E' analogo al POTA e similare. Studia i risultati dell'api e forniamo una funzionalità WOW a riguardo. Che sia studiata a livello di UI e UX anche come posizionata nell'app.\" --json --short-name \"sota-integration\" \"Integrate SOTA with terrain pursuit WOW feature\")",
+      "Bash(.specify/scripts/bash/create-new-feature.sh \"Voglio integrare SOTA. Questa \u00e8 l'API: https://api-db2.sota.org.uk/api/spots/200/all/all https://api-db2.sota.org.uk//api/summits/{summit_code} ritorna le informazioni del summit. E' analogo al POTA e similare. Studia i risultati dell'api e forniamo una funzionalit\u00e0 WOW a riguardo. Che sia studiata a livello di UI e UX anche come posizionata nell'app.\" --json --short-name \"sota-integration\" \"Integrate SOTA with terrain pursuit WOW feature\")",
       "Bash(pod --version)",
       "Bash(ruby --version)",
       "Read(//opt/homebrew/opt/**)",
@@ -90,6 +90,5 @@
   },
   "enabledMcpjsonServers": [
     "supabase"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }
