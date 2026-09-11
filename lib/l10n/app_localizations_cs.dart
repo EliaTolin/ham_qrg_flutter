@@ -1938,6 +1938,38 @@ class AppLocalizationsCs extends AppLocalizations {
   String get spotPreviousClosed => 'Váš předchozí spot již není aktivní';
 
   @override
+  String get spotCreateTalkgroup => 'Talkgroup (volitelné)';
+
+  @override
+  String get spotCreateTalkgroupOther => 'Jiný';
+
+  @override
+  String get spotCreateTalkgroupHint => 'Např. 222';
+
+  @override
+  String get spotCreateTalkgroupInvalid => 'Zadej číslo mezi 1 a 16777215';
+
+  @override
+  String get spotCreateAccessNone => 'Obecný';
+
+  @override
+  String spotTalkgroupShort(int talkgroup) {
+    return 'TG $talkgroup';
+  }
+
+  @override
+  String spotTalkgroupChipNamed(int talkgroup, String name) {
+    return 'TG $talkgroup · $name';
+  }
+
+  @override
+  String get spotErrorInvalidTalkgroup => 'Neplatný talkgroup.';
+
+  @override
+  String get spotErrorTalkgroupNotAllowed =>
+      'Talkgroup lze zadat pouze u přístupu DMR.';
+
+  @override
   String get spotErrorAuthRequired => 'Musíte být přihlášeni.';
 
   @override

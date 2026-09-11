@@ -2003,6 +2003,39 @@ class AppLocalizationsRo extends AppLocalizations {
   String get spotPreviousClosed => 'Spotul tău anterior nu mai este activ';
 
   @override
+  String get spotCreateTalkgroup => 'Talkgroup (opțional)';
+
+  @override
+  String get spotCreateTalkgroupOther => 'Altul';
+
+  @override
+  String get spotCreateTalkgroupHint => 'Ex. 222';
+
+  @override
+  String get spotCreateTalkgroupInvalid =>
+      'Introdu un număr între 1 și 16777215';
+
+  @override
+  String get spotCreateAccessNone => 'Generic';
+
+  @override
+  String spotTalkgroupShort(int talkgroup) {
+    return 'TG $talkgroup';
+  }
+
+  @override
+  String spotTalkgroupChipNamed(int talkgroup, String name) {
+    return 'TG $talkgroup · $name';
+  }
+
+  @override
+  String get spotErrorInvalidTalkgroup => 'Talkgroup invalid.';
+
+  @override
+  String get spotErrorTalkgroupNotAllowed =>
+      'Talkgroup-ul poate fi indicat doar pe un acces DMR.';
+
+  @override
   String get spotErrorAuthRequired => 'Trebuie să fii autentificat.';
 
   @override

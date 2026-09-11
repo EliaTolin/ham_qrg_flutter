@@ -14,6 +14,7 @@ _SpotModel _$SpotModelFromJson(Map<String, dynamic> json) => _SpotModel(
       callsignSnapshot: json['callsign_snapshot'] as String?,
       spottedCallsign: json['spotted_callsign'] as String?,
       accessId: json['access_id'] as String?,
+      talkgroup: (json['talkgroup'] as num?)?.toInt(),
       durationMinutes: (json['duration_minutes'] as num?)?.toInt(),
       expiresAt: json['expires_at'] == null
           ? null
@@ -43,6 +44,7 @@ Map<String, dynamic> _$SpotModelToJson(_SpotModel instance) =>
       'callsign_snapshot': instance.callsignSnapshot,
       'spotted_callsign': instance.spottedCallsign,
       'access_id': instance.accessId,
+      'talkgroup': instance.talkgroup,
       'duration_minutes': instance.durationMinutes,
       'expires_at': instance.expiresAt?.toIso8601String(),
       'closed_at': instance.closedAt?.toIso8601String(),

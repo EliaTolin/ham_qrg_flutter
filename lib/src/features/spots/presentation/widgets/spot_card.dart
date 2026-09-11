@@ -8,6 +8,23 @@ import 'package:hamqrg/src/features/spots/domain/spot_state.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/pulsing_live_dot.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/spot_countdown.dart';
 
+/// The " · " that separates the metadata bits under the callsign.
+class _Separator extends StatelessWidget {
+  const _Separator({required this.theme});
+
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      ' · ',
+      style: theme.textTheme.bodySmall?.copyWith(
+        color: theme.colorScheme.onSurface.withValues(alpha: .4),
+      ),
+    );
+  }
+}
+
 class SpotCard extends StatelessWidget {
   const SpotCard({
     required this.spot,
@@ -119,7 +136,7 @@ class SpotCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                    // Access mode + timestamp
+                    // Access mode + talkgroup + timestamp
                     Row(
                       children: [
                         if (spot.accessMode != null) ...[
@@ -133,14 +150,23 @@ class SpotCard extends StatelessWidget {
                               ),
                             ),
                           ),
+                          _Separator(theme: theme),
+                        ],
+                        // Talkgroup: the one line that says where to point
+                        // the radio, so it keeps the access mode's colour.
+                        if (spot.talkgroup != null) ...[
                           Text(
-                            ' · ',
+                            l10n.spotTalkgroupShort(spot.talkgroup!),
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurface.withValues(
-                                alpha: .4,
-                              ),
+                              fontWeight: FontWeight.w600,
+                              color: spot.accessMode != null
+                                  ? AccessModeHelper.getAccessModeColorObject(
+                                      spot.accessMode!,
+                                    )
+                                  : theme.colorScheme.onSurface,
                             ),
                           ),
+                          _Separator(theme: theme),
                         ],
                         Text(
                           _formatTimestamp(spot.startedAt),

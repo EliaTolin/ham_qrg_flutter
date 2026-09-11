@@ -3562,6 +3562,60 @@ abstract class AppLocalizations {
   /// **'Il tuo spot precedente non è più attivo'**
   String get spotPreviousClosed;
 
+  /// No description provided for @spotCreateTalkgroup.
+  ///
+  /// In it, this message translates to:
+  /// **'Talkgroup (opzionale)'**
+  String get spotCreateTalkgroup;
+
+  /// No description provided for @spotCreateTalkgroupOther.
+  ///
+  /// In it, this message translates to:
+  /// **'Altro'**
+  String get spotCreateTalkgroupOther;
+
+  /// No description provided for @spotCreateTalkgroupHint.
+  ///
+  /// In it, this message translates to:
+  /// **'Es. 222'**
+  String get spotCreateTalkgroupHint;
+
+  /// No description provided for @spotCreateTalkgroupInvalid.
+  ///
+  /// In it, this message translates to:
+  /// **'Inserisci un numero tra 1 e 16777215'**
+  String get spotCreateTalkgroupInvalid;
+
+  /// No description provided for @spotCreateAccessNone.
+  ///
+  /// In it, this message translates to:
+  /// **'Generico'**
+  String get spotCreateAccessNone;
+
+  /// No description provided for @spotTalkgroupShort.
+  ///
+  /// In it, this message translates to:
+  /// **'TG {talkgroup}'**
+  String spotTalkgroupShort(int talkgroup);
+
+  /// No description provided for @spotTalkgroupChipNamed.
+  ///
+  /// In it, this message translates to:
+  /// **'TG {talkgroup} · {name}'**
+  String spotTalkgroupChipNamed(int talkgroup, String name);
+
+  /// No description provided for @spotErrorInvalidTalkgroup.
+  ///
+  /// In it, this message translates to:
+  /// **'Talkgroup non valido.'**
+  String get spotErrorInvalidTalkgroup;
+
+  /// No description provided for @spotErrorTalkgroupNotAllowed.
+  ///
+  /// In it, this message translates to:
+  /// **'Il talkgroup si può indicare solo su un accesso DMR.'**
+  String get spotErrorTalkgroupNotAllowed;
+
   /// No description provided for @spotErrorAuthRequired.
   ///
   /// In it, this message translates to:

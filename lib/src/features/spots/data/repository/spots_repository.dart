@@ -18,11 +18,13 @@ class SpotsRepository {
     required String repeaterId,
     required int durationMinutes,
     required String accessId,
+    int? talkgroup,
   }) async {
     final model = await _datasource.createSelfSpot(
       repeaterId: repeaterId,
       durationMinutes: durationMinutes,
       accessId: accessId,
+      talkgroup: talkgroup,
     );
     return _mapper.fromModel(model);
   }
@@ -31,11 +33,13 @@ class SpotsRepository {
     required String repeaterId,
     required String spottedCallsign,
     String? accessId,
+    int? talkgroup,
   }) async {
     final model = await _datasource.createOtherSpot(
       repeaterId: repeaterId,
       spottedCallsign: spottedCallsign,
       accessId: accessId,
+      talkgroup: talkgroup,
     );
     return _mapper.fromModel(model);
   }

@@ -22,6 +22,7 @@ mixin _$RepeaterSpot {
   String? get spottedCallsign;
   String? get accessId;
   AccessMode? get accessMode;
+  int? get talkgroup;
   int? get durationMinutes;
   DateTime? get expiresAt;
   DateTime? get closedAt;
@@ -56,6 +57,8 @@ mixin _$RepeaterSpot {
                 other.accessId == accessId) &&
             (identical(other.accessMode, accessMode) ||
                 other.accessMode == accessMode) &&
+            (identical(other.talkgroup, talkgroup) ||
+                other.talkgroup == talkgroup) &&
             (identical(other.durationMinutes, durationMinutes) ||
                 other.durationMinutes == durationMinutes) &&
             (identical(other.expiresAt, expiresAt) ||
@@ -81,6 +84,7 @@ mixin _$RepeaterSpot {
       spottedCallsign,
       accessId,
       accessMode,
+      talkgroup,
       durationMinutes,
       expiresAt,
       closedAt,
@@ -90,7 +94,7 @@ mixin _$RepeaterSpot {
 
   @override
   String toString() {
-    return 'RepeaterSpot(id: $id, userId: $userId, repeaterId: $repeaterId, startedAt: $startedAt, callsignSnapshot: $callsignSnapshot, spottedCallsign: $spottedCallsign, accessId: $accessId, accessMode: $accessMode, durationMinutes: $durationMinutes, expiresAt: $expiresAt, closedAt: $closedAt, repeaterCallsign: $repeaterCallsign, repeaterName: $repeaterName, spotterFirstName: $spotterFirstName)';
+    return 'RepeaterSpot(id: $id, userId: $userId, repeaterId: $repeaterId, startedAt: $startedAt, callsignSnapshot: $callsignSnapshot, spottedCallsign: $spottedCallsign, accessId: $accessId, accessMode: $accessMode, talkgroup: $talkgroup, durationMinutes: $durationMinutes, expiresAt: $expiresAt, closedAt: $closedAt, repeaterCallsign: $repeaterCallsign, repeaterName: $repeaterName, spotterFirstName: $spotterFirstName)';
   }
 }
 
@@ -109,6 +113,7 @@ abstract mixin class $RepeaterSpotCopyWith<$Res> {
       String? spottedCallsign,
       String? accessId,
       AccessMode? accessMode,
+      int? talkgroup,
       int? durationMinutes,
       DateTime? expiresAt,
       DateTime? closedAt,
@@ -137,6 +142,7 @@ class _$RepeaterSpotCopyWithImpl<$Res> implements $RepeaterSpotCopyWith<$Res> {
     Object? spottedCallsign = freezed,
     Object? accessId = freezed,
     Object? accessMode = freezed,
+    Object? talkgroup = freezed,
     Object? durationMinutes = freezed,
     Object? expiresAt = freezed,
     Object? closedAt = freezed,
@@ -177,6 +183,10 @@ class _$RepeaterSpotCopyWithImpl<$Res> implements $RepeaterSpotCopyWith<$Res> {
           ? _self.accessMode
           : accessMode // ignore: cast_nullable_to_non_nullable
               as AccessMode?,
+      talkgroup: freezed == talkgroup
+          ? _self.talkgroup
+          : talkgroup // ignore: cast_nullable_to_non_nullable
+              as int?,
       durationMinutes: freezed == durationMinutes
           ? _self.durationMinutes
           : durationMinutes // ignore: cast_nullable_to_non_nullable
@@ -307,6 +317,7 @@ extension RepeaterSpotPatterns on RepeaterSpot {
             String? spottedCallsign,
             String? accessId,
             AccessMode? accessMode,
+            int? talkgroup,
             int? durationMinutes,
             DateTime? expiresAt,
             DateTime? closedAt,
@@ -328,6 +339,7 @@ extension RepeaterSpotPatterns on RepeaterSpot {
             _that.spottedCallsign,
             _that.accessId,
             _that.accessMode,
+            _that.talkgroup,
             _that.durationMinutes,
             _that.expiresAt,
             _that.closedAt,
@@ -363,6 +375,7 @@ extension RepeaterSpotPatterns on RepeaterSpot {
             String? spottedCallsign,
             String? accessId,
             AccessMode? accessMode,
+            int? talkgroup,
             int? durationMinutes,
             DateTime? expiresAt,
             DateTime? closedAt,
@@ -383,6 +396,7 @@ extension RepeaterSpotPatterns on RepeaterSpot {
             _that.spottedCallsign,
             _that.accessId,
             _that.accessMode,
+            _that.talkgroup,
             _that.durationMinutes,
             _that.expiresAt,
             _that.closedAt,
@@ -417,6 +431,7 @@ extension RepeaterSpotPatterns on RepeaterSpot {
             String? spottedCallsign,
             String? accessId,
             AccessMode? accessMode,
+            int? talkgroup,
             int? durationMinutes,
             DateTime? expiresAt,
             DateTime? closedAt,
@@ -437,6 +452,7 @@ extension RepeaterSpotPatterns on RepeaterSpot {
             _that.spottedCallsign,
             _that.accessId,
             _that.accessMode,
+            _that.talkgroup,
             _that.durationMinutes,
             _that.expiresAt,
             _that.closedAt,
@@ -461,6 +477,7 @@ class _RepeaterSpot implements RepeaterSpot {
       this.spottedCallsign,
       this.accessId,
       this.accessMode,
+      this.talkgroup,
       this.durationMinutes,
       this.expiresAt,
       this.closedAt,
@@ -484,6 +501,8 @@ class _RepeaterSpot implements RepeaterSpot {
   final String? accessId;
   @override
   final AccessMode? accessMode;
+  @override
+  final int? talkgroup;
   @override
   final int? durationMinutes;
   @override
@@ -524,6 +543,8 @@ class _RepeaterSpot implements RepeaterSpot {
                 other.accessId == accessId) &&
             (identical(other.accessMode, accessMode) ||
                 other.accessMode == accessMode) &&
+            (identical(other.talkgroup, talkgroup) ||
+                other.talkgroup == talkgroup) &&
             (identical(other.durationMinutes, durationMinutes) ||
                 other.durationMinutes == durationMinutes) &&
             (identical(other.expiresAt, expiresAt) ||
@@ -549,6 +570,7 @@ class _RepeaterSpot implements RepeaterSpot {
       spottedCallsign,
       accessId,
       accessMode,
+      talkgroup,
       durationMinutes,
       expiresAt,
       closedAt,
@@ -558,7 +580,7 @@ class _RepeaterSpot implements RepeaterSpot {
 
   @override
   String toString() {
-    return 'RepeaterSpot(id: $id, userId: $userId, repeaterId: $repeaterId, startedAt: $startedAt, callsignSnapshot: $callsignSnapshot, spottedCallsign: $spottedCallsign, accessId: $accessId, accessMode: $accessMode, durationMinutes: $durationMinutes, expiresAt: $expiresAt, closedAt: $closedAt, repeaterCallsign: $repeaterCallsign, repeaterName: $repeaterName, spotterFirstName: $spotterFirstName)';
+    return 'RepeaterSpot(id: $id, userId: $userId, repeaterId: $repeaterId, startedAt: $startedAt, callsignSnapshot: $callsignSnapshot, spottedCallsign: $spottedCallsign, accessId: $accessId, accessMode: $accessMode, talkgroup: $talkgroup, durationMinutes: $durationMinutes, expiresAt: $expiresAt, closedAt: $closedAt, repeaterCallsign: $repeaterCallsign, repeaterName: $repeaterName, spotterFirstName: $spotterFirstName)';
   }
 }
 
@@ -579,6 +601,7 @@ abstract mixin class _$RepeaterSpotCopyWith<$Res>
       String? spottedCallsign,
       String? accessId,
       AccessMode? accessMode,
+      int? talkgroup,
       int? durationMinutes,
       DateTime? expiresAt,
       DateTime? closedAt,
@@ -608,6 +631,7 @@ class __$RepeaterSpotCopyWithImpl<$Res>
     Object? spottedCallsign = freezed,
     Object? accessId = freezed,
     Object? accessMode = freezed,
+    Object? talkgroup = freezed,
     Object? durationMinutes = freezed,
     Object? expiresAt = freezed,
     Object? closedAt = freezed,
@@ -648,6 +672,10 @@ class __$RepeaterSpotCopyWithImpl<$Res>
           ? _self.accessMode
           : accessMode // ignore: cast_nullable_to_non_nullable
               as AccessMode?,
+      talkgroup: freezed == talkgroup
+          ? _self.talkgroup
+          : talkgroup // ignore: cast_nullable_to_non_nullable
+              as int?,
       durationMinutes: freezed == durationMinutes
           ? _self.durationMinutes
           : durationMinutes // ignore: cast_nullable_to_non_nullable

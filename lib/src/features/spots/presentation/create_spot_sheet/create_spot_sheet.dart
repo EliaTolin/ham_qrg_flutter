@@ -8,6 +8,7 @@ import 'package:hamqrg/l10n/app_localizations.dart';
 import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart';
 import 'package:hamqrg/src/features/spots/errors/spot_error.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/access_chips_selector.dart';
+import 'package:hamqrg/src/features/spots/presentation/widgets/talkgroup_selector.dart';
 import 'package:hamqrg/src/features/spots/provider/create_spot/create_spot_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -46,6 +47,7 @@ class _CreateSpotSheet extends HookConsumerWidget {
     final selectedAccess = useState<RepeaterAccess>(
       accesses.first,
     );
+    final talkgroup = useState<int?>(null);
     final isLoading = useState(false);
     final errorMessage = useState<String?>(null);
 
@@ -58,6 +60,7 @@ class _CreateSpotSheet extends HookConsumerWidget {
             repeaterId: repeaterId,
             durationMinutes: selectedDuration.value,
             accessId: selectedAccess.value.id,
+            talkgroup: talkgroup.value,
           ).future,
         );
         if (context.mounted) {
@@ -122,9 +125,26 @@ class _CreateSpotSheet extends HookConsumerWidget {
           AccessChipsSelector(
             accesses: accesses,
             selectedAccessId: selectedAccess.value.id,
-            onSelected: (access) => selectedAccess.value = access!,
+            onSelected: (access) {
+              selectedAccess.value = access!;
+              // The talkgroup belongs to the access it was picked for.
+              talkgroup.value = null;
+            },
           ),
           const Gap(16),
+          // Talkgroup (DMR only)
+          if (TalkgroupSelector.supports(selectedAccess.value)) ...[
+            TalkgroupSelector(
+              // La chiave lega lo stato interno (campo libero aperto, testo
+              // digitato) all'accesso per cui è stato scelto: senza, il campo
+              // resterebbe a mostrare un TG ormai azzerato.
+              key: ValueKey(selectedAccess.value.id),
+              access: selectedAccess.value,
+              value: talkgroup.value,
+              onChanged: (value) => talkgroup.value = value,
+            ),
+            const Gap(16),
+          ],
           // Error message
           if (errorMessage.value != null) ...[
             SheetErrorMessage(message: errorMessage.value!),
@@ -159,6 +179,8 @@ String mapSpotError(SpotError error, AppLocalizations l10n) {
     SpotErrorInvalidDuration() => l10n.spotErrorInvalidDuration,
     SpotErrorRepeaterNotFound() => l10n.spotErrorRepeaterNotFound,
     SpotErrorInvalidAccess() => l10n.spotErrorInvalidAccess,
+    SpotErrorInvalidTalkgroup() => l10n.spotErrorInvalidTalkgroup,
+    SpotErrorTalkgroupNotAllowed() => l10n.spotErrorTalkgroupNotAllowed,
     SpotErrorSpotNotFound() => l10n.spotErrorSpotNotFound,
     SpotErrorForbidden() => l10n.spotErrorForbidden,
     SpotErrorAlreadyClosed() => l10n.spotErrorAlreadyClosed,

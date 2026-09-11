@@ -11,7 +11,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
 
   static const _enrichedSelect = '''
     id, user_id, repeater_id, callsign_snapshot, spotted_callsign,
-    access_id, started_at, expires_at, closed_at, duration_minutes,
+    access_id, talkgroup, started_at, expires_at, closed_at, duration_minutes,
     profiles!user_id(id, callsign, first_name),
     repeaters!repeater_id(id, callsign, name),
     repeater_access!access_id(id, mode)
@@ -19,7 +19,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
 
   static const _enrichedSelectNoRepeater = '''
     id, user_id, repeater_id, callsign_snapshot, spotted_callsign,
-    access_id, started_at, expires_at, closed_at, duration_minutes,
+    access_id, talkgroup, started_at, expires_at, closed_at, duration_minutes,
     profiles!user_id(id, callsign, first_name),
     repeater_access!access_id(id, mode)
   ''';
@@ -41,6 +41,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
     required String repeaterId,
     required int durationMinutes,
     required String accessId,
+    int? talkgroup,
   }) async {
     try {
       final response = await _client.functions.invoke(
@@ -49,6 +50,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
           'repeater_id': repeaterId,
           'duration_minutes': durationMinutes,
           'access_id': accessId,
+          if (talkgroup != null) 'talkgroup': talkgroup,
         },
       );
       return _parseResponse(response);
@@ -63,6 +65,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
     required String repeaterId,
     required String spottedCallsign,
     String? accessId,
+    int? talkgroup,
   }) async {
     try {
       final response = await _client.functions.invoke(
@@ -71,6 +74,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
           'repeater_id': repeaterId,
           'spotted_callsign': spottedCallsign,
           if (accessId != null) 'access_id': accessId,
+          if (talkgroup != null) 'talkgroup': talkgroup,
         },
       );
       return _parseResponse(response);
@@ -182,7 +186,7 @@ class SpotsSupabaseDatasource implements SpotsDatasource {
       final row = await _client
           .from('repeater_spots')
           .select('''
-            id, user_id, repeater_id, callsign_snapshot,
+            id, user_id, repeater_id, callsign_snapshot, talkgroup,
             started_at, expires_at, closed_at, duration_minutes,
             repeaters!repeater_id(id, callsign, name),
             repeater_access!access_id(id, mode)

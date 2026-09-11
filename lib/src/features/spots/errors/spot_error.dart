@@ -8,6 +8,8 @@ sealed class SpotError implements Exception {
       'INVALID_DURATION' => const SpotErrorInvalidDuration(),
       'REPEATER_NOT_FOUND' => const SpotErrorRepeaterNotFound(),
       'INVALID_ACCESS' => const SpotErrorInvalidAccess(),
+      'INVALID_TALKGROUP' => const SpotErrorInvalidTalkgroup(),
+      'TALKGROUP_NOT_ALLOWED' => const SpotErrorTalkgroupNotAllowed(),
       'SPOT_NOT_FOUND' => const SpotErrorSpotNotFound(),
       'FORBIDDEN' => const SpotErrorForbidden(),
       'ALREADY_CLOSED' => const SpotErrorAlreadyClosed(),
@@ -39,6 +41,14 @@ class SpotErrorRepeaterNotFound extends SpotError {
 
 class SpotErrorInvalidAccess extends SpotError {
   const SpotErrorInvalidAccess() : super('INVALID_ACCESS');
+}
+
+class SpotErrorInvalidTalkgroup extends SpotError {
+  const SpotErrorInvalidTalkgroup() : super('INVALID_TALKGROUP');
+}
+
+class SpotErrorTalkgroupNotAllowed extends SpotError {
+  const SpotErrorTalkgroupNotAllowed() : super('TALKGROUP_NOT_ALLOWED');
 }
 
 class SpotErrorSpotNotFound extends SpotError {

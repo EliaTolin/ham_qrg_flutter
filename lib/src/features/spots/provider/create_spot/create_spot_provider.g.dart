@@ -21,6 +21,7 @@ final class CreateSpotProvider extends $FunctionalProvider<
         String repeaterId,
         int durationMinutes,
         String accessId,
+        int? talkgroup,
       })
           super.argument})
       : super(
@@ -53,12 +54,14 @@ final class CreateSpotProvider extends $FunctionalProvider<
       String repeaterId,
       int durationMinutes,
       String accessId,
+      int? talkgroup,
     });
     return createSpot(
       ref,
       repeaterId: argument.repeaterId,
       durationMinutes: argument.durationMinutes,
       accessId: argument.accessId,
+      talkgroup: argument.talkgroup,
     );
   }
 
@@ -73,7 +76,7 @@ final class CreateSpotProvider extends $FunctionalProvider<
   }
 }
 
-String _$createSpotHash() => r'0c723c0ed8d31017abfbacd978a3322def9b87d7';
+String _$createSpotHash() => r'1f51d2f88bbcdaa056f5caba440dc328a0ad2672';
 
 final class CreateSpotFamily extends $Family
     with
@@ -83,6 +86,7 @@ final class CreateSpotFamily extends $Family
               String repeaterId,
               int durationMinutes,
               String accessId,
+              int? talkgroup,
             })> {
   CreateSpotFamily._()
       : super(
@@ -97,11 +101,13 @@ final class CreateSpotFamily extends $Family
     required String repeaterId,
     required int durationMinutes,
     required String accessId,
+    int? talkgroup,
   }) =>
       CreateSpotProvider._(argument: (
         repeaterId: repeaterId,
         durationMinutes: durationMinutes,
         accessId: accessId,
+        talkgroup: talkgroup,
       ), from: this);
 
   @override

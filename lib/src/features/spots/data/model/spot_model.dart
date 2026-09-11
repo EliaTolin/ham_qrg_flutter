@@ -13,6 +13,7 @@ abstract class SpotModel with _$SpotModel {
     @JsonKey(name: 'callsign_snapshot') String? callsignSnapshot,
     @JsonKey(name: 'spotted_callsign') String? spottedCallsign,
     @JsonKey(name: 'access_id') String? accessId,
+    @JsonKey(name: 'talkgroup') int? talkgroup,
     @JsonKey(name: 'duration_minutes') int? durationMinutes,
     @JsonKey(name: 'expires_at') DateTime? expiresAt,
     @JsonKey(name: 'closed_at') DateTime? closedAt,

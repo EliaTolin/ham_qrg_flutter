@@ -864,6 +864,32 @@
   "spotNotificationDisabled": "Notifiche cluster disattivate nelle impostazioni profilo",
   "spotNotificationPerFavorite": "Notifiche spot",
   "spotPreviousClosed": "Il tuo spot precedente non è più attivo",
+  "spotCreateTalkgroup": "Talkgroup (opzionale)",
+  "spotCreateTalkgroupOther": "Altro",
+  "spotCreateTalkgroupHint": "Es. 222",
+  "spotCreateTalkgroupInvalid": "Inserisci un numero tra 1 e 16777215",
+  "spotCreateAccessNone": "Generico",
+  "spotTalkgroupShort": "TG {talkgroup}",
+  "@spotTalkgroupShort": {
+    "placeholders": {
+      "talkgroup": {
+        "type": "int"
+      }
+    }
+  },
+  "spotTalkgroupChipNamed": "TG {talkgroup} · {name}",
+  "@spotTalkgroupChipNamed": {
+    "placeholders": {
+      "talkgroup": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "spotErrorInvalidTalkgroup": "Talkgroup non valido.",
+  "spotErrorTalkgroupNotAllowed": "Il talkgroup si può indicare solo su un accesso DMR.",
   "spotErrorAuthRequired": "Devi effettuare l'accesso.",
   "spotErrorCallsignRequired": "Imposta il tuo callsign nel profilo per usare il cluster.",
   "spotErrorInvalidDuration": "La durata deve essere tra 5 e 60 minuti.",

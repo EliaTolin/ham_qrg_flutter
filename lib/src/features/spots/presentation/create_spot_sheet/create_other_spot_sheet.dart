@@ -8,6 +8,7 @@ import 'package:hamqrg/src/features/repeaters/domain/access/repeater_access.dart
 import 'package:hamqrg/src/features/spots/errors/spot_error.dart';
 import 'package:hamqrg/src/features/spots/presentation/create_spot_sheet/create_spot_sheet.dart';
 import 'package:hamqrg/src/features/spots/presentation/widgets/access_chips_selector.dart';
+import 'package:hamqrg/src/features/spots/presentation/widgets/talkgroup_selector.dart';
 import 'package:hamqrg/src/features/spots/provider/create_spot/create_other_spot_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -42,6 +43,7 @@ class _CreateOtherSpotSheet extends HookConsumerWidget {
     final theme = Theme.of(context);
     final callsignController = useTextEditingController();
     final selectedAccess = useState<RepeaterAccess?>(null);
+    final talkgroup = useState<int?>(null);
     final isLoading = useState(false);
     final errorMessage = useState<String?>(null);
 
@@ -59,6 +61,7 @@ class _CreateOtherSpotSheet extends HookConsumerWidget {
             repeaterId: repeaterId,
             spottedCallsign: callsign.toUpperCase(),
             accessId: selectedAccess.value?.id,
+            talkgroup: talkgroup.value,
           ).future,
         );
         if (context.mounted) {
@@ -121,11 +124,27 @@ class _CreateOtherSpotSheet extends HookConsumerWidget {
             AccessChipsSelector(
               accesses: accesses,
               selectedAccessId: selectedAccess.value?.id,
-              onSelected: (access) => selectedAccess.value = access,
+              onSelected: (access) {
+                selectedAccess.value = access;
+                // The talkgroup belongs to the access it was picked for.
+                talkgroup.value = null;
+              },
               allowNone: true,
-              noneLabel: 'Generico',
+              noneLabel: l10n.spotCreateAccessNone,
             ),
             const Gap(16),
+            // Talkgroup (DMR only)
+            if (TalkgroupSelector.supports(selectedAccess.value)) ...[
+              TalkgroupSelector(
+                // Vedi create_spot_sheet.dart: lo stato interno segue
+                // l'accesso per cui è stato scelto.
+                key: ValueKey(selectedAccess.value?.id),
+                access: selectedAccess.value,
+                value: talkgroup.value,
+                onChanged: (value) => talkgroup.value = value,
+              ),
+              const Gap(16),
+            ],
           ],
           // Error message
           if (errorMessage.value != null) ...[

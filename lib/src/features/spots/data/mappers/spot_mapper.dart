@@ -17,6 +17,7 @@ class SpotMapper {
               orElse: () => AccessMode.analog,
             )
           : null,
+      talkgroup: model.talkgroup,
       startedAt: model.startedAt,
       durationMinutes: model.durationMinutes,
       expiresAt: model.expiresAt,

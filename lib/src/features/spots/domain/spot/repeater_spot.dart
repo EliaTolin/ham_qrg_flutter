@@ -14,6 +14,7 @@ abstract class RepeaterSpot with _$RepeaterSpot {
     String? spottedCallsign,
     String? accessId,
     AccessMode? accessMode,
+    int? talkgroup,
     int? durationMinutes,
     DateTime? expiresAt,
     DateTime? closedAt,

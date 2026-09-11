@@ -5,12 +5,14 @@ abstract class SpotsDatasource {
     required String repeaterId,
     required int durationMinutes,
     required String accessId,
+    int? talkgroup,
   });
 
   Future<SpotModel> createOtherSpot({
     required String repeaterId,
     required String spottedCallsign,
     String? accessId,
+    int? talkgroup,
   });
 
   Future<SpotModel> closeSpot({required String spotId});

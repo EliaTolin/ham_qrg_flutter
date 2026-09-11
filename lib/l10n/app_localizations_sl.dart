@@ -2002,6 +2002,38 @@ class AppLocalizationsSl extends AppLocalizations {
   String get spotPreviousClosed => 'Vaš prejšnji spot ni več aktiven';
 
   @override
+  String get spotCreateTalkgroup => 'Talkgroup (neobvezno)';
+
+  @override
+  String get spotCreateTalkgroupOther => 'Drugo';
+
+  @override
+  String get spotCreateTalkgroupHint => 'Npr. 222';
+
+  @override
+  String get spotCreateTalkgroupInvalid => 'Vnesi število med 1 in 16777215';
+
+  @override
+  String get spotCreateAccessNone => 'Splošno';
+
+  @override
+  String spotTalkgroupShort(int talkgroup) {
+    return 'TG $talkgroup';
+  }
+
+  @override
+  String spotTalkgroupChipNamed(int talkgroup, String name) {
+    return 'TG $talkgroup · $name';
+  }
+
+  @override
+  String get spotErrorInvalidTalkgroup => 'Neveljaven talkgroup.';
+
+  @override
+  String get spotErrorTalkgroupNotAllowed =>
+      'Talkgroup lahko navedeš samo pri dostopu DMR.';
+
+  @override
   String get spotErrorAuthRequired => 'Morate biti prijavljeni.';
 
   @override

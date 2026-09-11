@@ -10,11 +10,13 @@ Future<RepeaterSpot> createOtherSpot(
   required String repeaterId,
   required String spottedCallsign,
   String? accessId,
+  int? talkgroup,
 }) async {
   final repository = ref.read(spotsRepositoryProvider);
   return repository.createOtherSpot(
     repeaterId: repeaterId,
     spottedCallsign: spottedCallsign,
     accessId: accessId,
+    talkgroup: talkgroup,
   );
 }

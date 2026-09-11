@@ -1,0 +1,52 @@
+# Spot DMR con talkgroup — dall'app fino al database.
+#
+# DUE PREREQUISITI, entrambi verificati a mano il 2026-09-11:
+#
+# 1. Account non anonimo. Il pulsante "Spot yourself" passa da
+#    requireAuthentication (repeater_detail_page.dart): da anonimo apre la
+#    richiesta di registrazione Google/Apple e il flow si ferma lì. Bisogna
+#    fare login sul simulatore una volta: la sessione resta.
+#
+# 2. Albero semantico esposto. Oggi `maestro hierarchy` su questa app vede
+#    solo la status bar: Flutter non pubblica la semantica, quindi i tapOn
+#    per testo non sono affidabili (alcuni passano via OCR, altri no).
+#    Serve SemanticsBinding.instance.ensureSemantics() all'avvio, oppure
+#    Key/Semantics espliciti sui widget toccati da questo flow.
+#
+# Fixture: IR0AAI (BrandMeister, node 222261, TG statici 222/22202/22287),
+# scelto perché nessuno lo ha nei preferiti: confermando lo spot non parte
+# alcuna notifica push verso utenti veri.
+#
+# Stringhe in inglese: il simulatore è in locale en.
+appId: it.auroradigital.hamqrg
+---
+- launchApp:
+    clearState: true
+
+# Carosello introduttivo e changelog di versione
+- tapOn:
+    text: "Skip"
+    optional: true
+- tapOn:
+    text: "Got it!"
+    optional: true
+
+# --- ricerca del ponte fixture ---
+- tapOn: "List"
+- inputText: "IR0AAI"
+- pressKey: Enter
+- tapOn: "IR0AAI"
+
+# --- sheet di spot (richiede il prerequisito 1) ---
+- tapOn: "Spot yourself"
+
+# Il selettore compare solo sull'accesso DMR, coi TG statici come chip
+- assertVisible: "Talkgroup (optional)"
+- assertVisible: "TG 222"
+- assertVisible: "Other"
+
+- tapOn: "TG 222"
+- tapOn: "Confirm"
+
+# Il TG compare nella card dello spot appena creato
+- assertVisible: "TG 222"

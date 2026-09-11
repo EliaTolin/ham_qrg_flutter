@@ -1936,6 +1936,39 @@ class AppLocalizationsHu extends AppLocalizations {
   String get spotPreviousClosed => 'Az előző spotod már nem aktív';
 
   @override
+  String get spotCreateTalkgroup => 'Talkgroup (opcionális)';
+
+  @override
+  String get spotCreateTalkgroupOther => 'Egyéb';
+
+  @override
+  String get spotCreateTalkgroupHint => 'Pl. 222';
+
+  @override
+  String get spotCreateTalkgroupInvalid =>
+      'Adj meg egy számot 1 és 16777215 között';
+
+  @override
+  String get spotCreateAccessNone => 'Általános';
+
+  @override
+  String spotTalkgroupShort(int talkgroup) {
+    return 'TG $talkgroup';
+  }
+
+  @override
+  String spotTalkgroupChipNamed(int talkgroup, String name) {
+    return 'TG $talkgroup · $name';
+  }
+
+  @override
+  String get spotErrorInvalidTalkgroup => 'Érvénytelen talkgroup.';
+
+  @override
+  String get spotErrorTalkgroupNotAllowed =>
+      'Talkgroup csak DMR hozzáférésnél adható meg.';
+
+  @override
   String get spotErrorAuthRequired => 'Be kell jelentkezned.';
 
   @override

@@ -1933,6 +1933,39 @@ class AppLocalizationsNl extends AppLocalizations {
   String get spotPreviousClosed => 'Je vorige spot is niet meer actief';
 
   @override
+  String get spotCreateTalkgroup => 'Talkgroup (optioneel)';
+
+  @override
+  String get spotCreateTalkgroupOther => 'Anders';
+
+  @override
+  String get spotCreateTalkgroupHint => 'Bijv. 222';
+
+  @override
+  String get spotCreateTalkgroupInvalid =>
+      'Voer een getal tussen 1 en 16777215 in';
+
+  @override
+  String get spotCreateAccessNone => 'Algemeen';
+
+  @override
+  String spotTalkgroupShort(int talkgroup) {
+    return 'TG $talkgroup';
+  }
+
+  @override
+  String spotTalkgroupChipNamed(int talkgroup, String name) {
+    return 'TG $talkgroup · $name';
+  }
+
+  @override
+  String get spotErrorInvalidTalkgroup => 'Ongeldige talkgroup.';
+
+  @override
+  String get spotErrorTalkgroupNotAllowed =>
+      'Een talkgroup kan alleen bij een DMR-toegang worden opgegeven.';
+
+  @override
   String get spotErrorAuthRequired => 'Je moet ingelogd zijn.';
 
   @override

@@ -1935,6 +1935,39 @@ class AppLocalizationsPt extends AppLocalizations {
   String get spotPreviousClosed => 'O seu spot anterior já não está ativo';
 
   @override
+  String get spotCreateTalkgroup => 'Talkgroup (opcional)';
+
+  @override
+  String get spotCreateTalkgroupOther => 'Outro';
+
+  @override
+  String get spotCreateTalkgroupHint => 'Ex. 222';
+
+  @override
+  String get spotCreateTalkgroupInvalid =>
+      'Introduz um número entre 1 e 16777215';
+
+  @override
+  String get spotCreateAccessNone => 'Genérico';
+
+  @override
+  String spotTalkgroupShort(int talkgroup) {
+    return 'TG $talkgroup';
+  }
+
+  @override
+  String spotTalkgroupChipNamed(int talkgroup, String name) {
+    return 'TG $talkgroup · $name';
+  }
+
+  @override
+  String get spotErrorInvalidTalkgroup => 'Talkgroup inválido.';
+
+  @override
+  String get spotErrorTalkgroupNotAllowed =>
+      'O talkgroup só pode ser indicado num acesso DMR.';
+
+  @override
   String get spotErrorAuthRequired => 'Tem de ter sessão iniciada.';
 
   @override
