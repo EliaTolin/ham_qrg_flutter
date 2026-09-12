@@ -1155,7 +1155,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Znáte správce převaděče? Nahlaste to!';
+      'Nahlásit chybné údaje';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Mapa zpětné vazby';

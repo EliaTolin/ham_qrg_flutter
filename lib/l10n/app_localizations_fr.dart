@@ -1156,7 +1156,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Vous connaissez le gestionnaire du relais ? Signalez-le !';
+      'Signaler des données erronées';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Carte des feedbacks';

@@ -1157,7 +1157,7 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Znate li upravitelja repetitora? Prijavite to!';
+      'Prijavi pogrešne podatke';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Karta povratnih informacija';

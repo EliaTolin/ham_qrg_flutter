@@ -1211,7 +1211,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Znasz opiekuna przemiennika? Zgłoś go!';
+      'Zgłoś błędne dane';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Mapa opinii';

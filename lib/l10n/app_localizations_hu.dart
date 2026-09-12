@@ -1151,7 +1151,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Ismered az átjátszó üzemeltetőjét? Jelezd nekünk!';
+      'Hibás adatok jelentése';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Visszajelzés térkép';

@@ -1146,7 +1146,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Ken je de repeaterbeheerder? Meld het!';
+      'Onjuiste gegevens melden';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Feedbackkaart';

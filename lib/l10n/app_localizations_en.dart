@@ -1142,7 +1142,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Do you know the repeater manager? Report it!';
+      'Report wrong data';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Feedback map';

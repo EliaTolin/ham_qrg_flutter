@@ -1149,7 +1149,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      '¿Conoces al gestor del repetidor? ¡Repórtalo!';
+      'Reportar datos incorrectos';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Mapa de feedback';

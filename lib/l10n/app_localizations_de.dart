@@ -1152,7 +1152,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Kennst du den Relaisbetreiber? Melde es uns!';
+      'Falsche Daten melden';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Feedback-Karte';

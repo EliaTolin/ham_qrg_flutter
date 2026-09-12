@@ -471,7 +471,7 @@
   "repeaterDetailInfo": "Informations",
   "repeaterDetailSource": "Source",
   "repeaterDetailManager": "Gestionnaire",
-  "repeaterDetailSuggestManager": "Vous connaissez le gestionnaire du relais ? Signalez-le !",
+  "repeaterDetailSuggestManager": "Signaler des données erronées",
   "repeaterDetailViewFeedbackMap": "Carte des feedbacks",
   "repeaterDetailViewFeedbackMapSubtitle": "Visualisez où les j'aime et signalements ont été enregistrés",
   "repeaterDetailAltimetricProfile": "Profil altimétrique",

@@ -1162,7 +1162,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Poznáte správcu prevádzača? Nahláste to!';
+      'Nahlásiť nesprávne údaje';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Mapa spätnej väzby';

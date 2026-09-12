@@ -1212,7 +1212,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Cunoști managerul repetorului? Raportează-l!';
+      'Raportează date greșite';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Harta feedback-urilor';

@@ -1148,7 +1148,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get repeaterDetailSuggestManager =>
-      'Conosci il gestore del ponte? Segnalalo!';
+      'Segnala dati errati';
 
   @override
   String get repeaterDetailViewFeedbackMap => 'Mappa feedback';
