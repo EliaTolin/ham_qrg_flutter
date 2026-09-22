@@ -87,15 +87,15 @@ class AddRepeaterController extends _$AddRepeaterController {
 
       switch (a.mode) {
         case AccessMode.analog:
-          _addIfNotEmpty(map, 'ctcss_tx_hz', double.tryParse(a.ctcssTxHz));
-          _addIfNotEmpty(map, 'ctcss_rx_hz', double.tryParse(a.ctcssRxHz));
-          _addIfNotEmpty(map, 'dcs_code', int.tryParse(a.dcsCode));
+          _addIfNotEmpty(map, 'ctcss_tx_hz', _parseDouble(a.ctcssTxHz));
+          _addIfNotEmpty(map, 'ctcss_rx_hz', _parseDouble(a.ctcssRxHz));
+          _addIfNotEmpty(map, 'dcs_code', _parseInt(a.dcsCode));
         case AccessMode.dmr:
-          _addIfNotEmpty(map, 'color_code', int.tryParse(a.colorCode));
-          _addIfNotEmpty(map, 'talkgroup', int.tryParse(a.talkgroup));
+          _addIfNotEmpty(map, 'color_code', _parseInt(a.colorCode));
+          _addIfNotEmpty(map, 'talkgroup', _parseInt(a.talkgroup));
           _addIfNotEmptyStr(map, 'network_name', a.networkName);
         case AccessMode.c4fm:
-          _addIfNotEmpty(map, 'dg_id', int.tryParse(a.dgId));
+          _addIfNotEmpty(map, 'dg_id', _parseInt(a.dgId));
           _addIfNotEmptyStr(map, 'network_name', a.networkName);
         case AccessMode.dstar:
           _addIfNotEmptyStr(map, 'network_name', a.networkName);
@@ -106,7 +106,7 @@ class AddRepeaterController extends _$AddRepeaterController {
               AccessMode.p25:
           // Per il P25 `node_id` trasporta il NAC: il backend non ha una
           // colonna dedicata, a cambiare è solo l'etichetta nel form.
-          _addIfNotEmpty(map, 'node_id', int.tryParse(a.nodeId));
+          _addIfNotEmpty(map, 'node_id', _parseInt(a.nodeId));
           _addIfNotEmptyStr(map, 'network_name', a.networkName);
         case AccessMode.aprs ||
               AccessMode.beacon ||
@@ -120,6 +120,14 @@ class AddRepeaterController extends _$AddRepeaterController {
       return map;
     }).toList();
   }
+
+  /// Accetta sia il punto sia la virgola come separatore decimale: sulle
+  /// tastiere italiane il tastierino numerico produce la virgola e
+  /// `double.tryParse` restituirebbe null, facendo sparire il campo dal JSON.
+  double? _parseDouble(String value) =>
+      double.tryParse(value.trim().replaceAll(',', '.'));
+
+  int? _parseInt(String value) => int.tryParse(value.trim());
 
   void _addIfNotEmpty(Map<String, dynamic> map, String key, num? value) {
     if (value != null) map[key] = value;
