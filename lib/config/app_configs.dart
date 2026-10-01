@@ -32,6 +32,11 @@ class AppConfigs {
     return 'https://t.me/ham_ita';
   }
 
+  /// Indirizzo dell'assistenza, usato dalla voce "Contattaci" del profilo.
+  static String getSupportEmail() {
+    return 'iu4vrb@gmail.com';
+  }
+
   static String getIz8wnhSite() {
     return 'https://www.iz8wnh.it';
   }

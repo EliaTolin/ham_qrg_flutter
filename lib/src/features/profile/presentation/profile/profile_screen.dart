@@ -429,7 +429,7 @@ class ProfileScreen extends HookConsumerWidget {
                                 onTap: () async {
                                   final emailLaunchUri = Uri(
                                     scheme: 'mailto',
-                                    path: 'info@auroradigital.it',
+                                    path: AppConfigs.getSupportEmail(),
                                     query: 'subject=HamQRG-Support',
                                   );
                                   try {
